@@ -539,20 +539,49 @@ _{More to be added}_
 [appendix]
 == Non Functional Requirements
 
-.  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
-.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+* Application should work on any <<mainstream-os,mainstream OS>> as long as it has Java 11 or above installed.
+
+* Application should be able to hold up to 20 trips no longer than 1 month each without a noticeable sluggishness in performance for typical usage.
+
+* Application should respond within 2 seconds of the client's query.
+
+* A user with above-average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+
+* Application should be easy to use for a new user when following the User Guide.
+
+* Application should work without requiring an installer.
+
+* Application should not depend on a remote server.
+
+* Application should be for a single user i.e. (not a multi-user product).
+
+* Application should not require an online connection.
 
 _{More to be added}_
 
 [appendix]
 == Glossary
 
-[[mainstream-os]] Mainstream OS::
-Windows, Linux, Unix, OS-X
+[[e-t]] E.T.::
+An abbreviation for Easy Travel, the name of the application.
 
-[[private-contact-detail]] Private contact detail::
-A contact detail that is not meant to be shared with others
+[[mainstream-os]] Mainstream OS::
+Windows, Linux, Unix, macOS.
+
+[[prefix]] Prefix::
+The term that comes before each parameter in the command. For example, the prefix in country/COUNTRY is country/.
+
+[[prefix-name]] Prefix Name::
+The word that comes before ‘/’ in the prefix. For example, the prefix name in country/COUNTRY is country/.
+
+[[cli]] Command Line Interface::
+An interface where the user interacts with the application through the command box.
+
+[[gui]] Graphical User Interface::
+A visual display shown on the screen.
+
+[[json]] JavaScript Object Notation::
+A lightweight data-interchange format which is easily readable and writable.
 
 [appendix]
 == Product Survey
