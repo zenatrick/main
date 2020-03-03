@@ -183,10 +183,183 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-=== Packing List
+=== *Packing List*
 
-Shows a list of all persons in the address book. +
+Allow the user to have a packing list for the trip +
 Format: `list`
+
+The following sections [3.3.1. - 3.3.11] allows the user to set and modify the packing list for their trip.
+
+===== Add a preset category: `addpreset`
+
+Adds a preset category
+
+Format: `addpreset preset/PRESET_NAME`
+
+****
+* Adds a preset category into the packing list.
+* When a preset is selected, it will add a preset list of items under that category into that list.
+****
+
+Examples:
+
+* `addpreset beach` +
+Adds a preset list of items under beach into the packing list, such as sunblock, bathing suit, sunglasses, etc.
+
+===== List all the presets in the packing list: `listpresets`
+
+Lists all the presets in the packing list
+
+Format: `listpresets`
+
+****
+* Lists all the presets in the packing list.
+* The list will be shown in a pop up window.
+****
+
+Examples:
+
+* `listpresets` +
+Lists all the presets that one has currently, such as beach, camping, work, fancy dinner, etc.
+
+===== Add an item in the packing list: `additem`
+
+Creates an item in the packing list
+
+Format: `additem item/ITEM quantity/QUANTITY`
+
+****
+* Adds an item into the packing list.
+* If a duplicated item is added, it will let the user know that the item is already in the list.
+* `QUANTITY` *must be a positive integer* 1,2,3...
+****
+
+Examples:
+
+* `additem item/underwear quantity/5` +
+Adds an item called underwear, with a quantity of 5
+
+===== Edit an item in the packing list: `edititem`
+
+Edits an item in the packing list
+
+Format: `edititem INDEX [i/item] [q/quantity]`
+
+****
+* Edits an item in the packing list.
+* Command can only be used if a budget has been added.
+* Existing values will be updated to the input values.
+* `quantity` *must be a positive integer* 1,2,3...
+****
+
+Examples:
+
+* `edititem 1 item/boxer` +
+Edits an item from index 1 to boxer
+* `edititem 1 item/boxer quantity/3` +
+Edits an item from index 1 to boxer, and edits the quantity from 5 to 3
+
+===== Delete an item in the packing list: `deleteitem`
+
+Deletes an item in the packing list
+
+Format: `deleteitem INDEX`
+
+****
+* Deletes an item in the packing list.
+* Command can only be used if an item has been added.
+****
+
+Examples:
+
+* `deleteitem 1` +
+Deletes item in the index 1 of the list
+
+===== Mark an item as packed in the packing list: `doneitem`
+
+Marks an item as packed in the packing list
+
+Format: `doneitem INDEX`
+
+****
+* Checks an item off in the packing list.
+* Command can only be used if an item has been added.
+****
+
+Examples:
+
+* `doneitem 1` +
+Marks item 1 in the packing list as packed
+
+===== Sort items in the packing list: `sort`
+
+Sorts items in the packing list
+
+Format: `sort criteria/CRITERIA`
+
+****
+* Sorts items in the packing list according to a criteria.
+* Command can only be used if at least 1 item has been added.
+****
+
+Examples:
+
+* `sort alphabet` +
+Sorts the packing list alphabetically
+
+===== List the all sorting criteria for the packing list: `listcriteria`
+
+Lists the all the possible sorting criteria for the packing list
+
+Format: `listcriteria`
+
+****
+* Lists the all the possible sorting criteria for the packing list.
+* The list will be shown in a pop up window.
+****
+
+Examples:
+
+* `listcriteria` +
+Lists all the possible criteria, such as alphabetically, by whether it is marked as packed, etc, in a pop up window
+
+===== Save the current packing list as a preset: `savepreset`
+
+Saves the current packing list as a preset
+
+Format: `savepreset preset/PRESET_NAME`
+
+****
+* Saves the current packing list as a preset
+* All items in the packing list when saved as a preset will be marked as not packed
+* This is for future uses, if the user wants to use a previous trip's packing list again
+****
+
+Examples:
+
+* `savepreset Japan 2020` +
+Saves the current packing list as a preset called Japan 2020
+
+===== Create a smart packing list: `createlist`
+
+Creates a smart packing list for inexperienced travelers
+
+Format: `createlist days/DAYS [adult/ADULT] [children/CHILDREN] [season/SEASON]`
+
+****
+* Creates a list based on the information given by the user
+* Useful for inexperienced users, as they do not know what to pack or the quantity to pack
+* `DAYS`, `ADULT`, `CHILDREN`  *must be a positive integer* 1,2,3...
+* `SEASON` *must be* Spring, Summer, Autumn, Winter
+****
+
+Examples:
+
+* `createlist d/7, m/1, f/1, c/2, s/Summer` +
+Creates a packing list based on the information provided. Since the trip is 7 days, with 1 male and 1 female,
+7 sets of adult and child summer clothing will be packed, along with toys for the children.
+
+===== Export the packing list as a txt file: `export` [coming in v2.0]
 
 === Expense Manager
 
