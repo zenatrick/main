@@ -292,20 +292,64 @@ Refer to the guide <<DevOps#, here>>.
 
 Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
 
-[width="59%",cols="22%,<23%,<25%,<30%",options="header",]
+[cols="20%,<20%,<25%,<35%",options="header",]
 |=======================================================================
 |Priority |As a ... |I want to ... |So that I can...
-|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
+|`* * *` |Forgetful user |Write down the day's events | Remember what happened in that day
 
-|`* * *` |user |add a new person |
+|`* * *` |User |Have a diary  |Write my thoughts and feelings for that day
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|`* * *` |Un-thrifty traveller |Notified if my spending goes beyond my planned levels |Adjust my budget
 
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
+|`* * *` |Traveller |Get my expenses to automatically converted to SGD |Avoid manual currency conversion
 
-|`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
+|`* * *` |Budget traveller |Set an individual budget for each day |Minimise my spending
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|`* * *` |Traveller |See amount spent each day/trip and balance left for each day/trip |Record my spending
+
+|`* * *` |Forgetful user |Make a checklist for items to bring |Pack without forgetting anything
+
+|`* * *` |Careless traveller |Set the quantity of items I need to pack |Pack without missing out anything
+
+|`* * *` |Lazy traveller |Add pre-set packing list |Avoid manual addition of many common items
+
+|`* * *` |Traveller |Maintain a list of accommodations |Better plan my accommodations during the trips
+
+|`* * *` |Forgetful traveller |Keep track of my transportation booking information |Avoid being late
+
+|`* * *` |Organised traveller |Plan my trip in terms of days |Split my plan into suitable chunks
+
+|`* * *` |Inexperienced planner |Know what did I miss out from my travel plan |Be reminded and plan for it
+
+|`* * *` |Undisciplined individual |Keep track of my expenses |Avoid spending over my budget
+
+|`* * *` |Organised traveller |Add activities to my daily itinerary |Plan for my trip
+
+|`* *` |User concerned with privacy |Private my diary entry|Minimize chance of someone else seeing them by accident
+
+|`* *` |User who likes pictures |Have a photo diary |Capture memories through pictures in a organised manner
+
+|`* *` |Careless Traveller |Be notified if I have forgotten certain aspects of my trip |Avoid being under prepared for my trip
+
+|`* *` |Cautious Traveller |Be notified if I miss out any dates i did not plan on accommodation |Have a place to sleep every night
+
+|`* *` |Traveller |Be able to print itinerary |Bring it around in my travels if my battery dies
+
+|`* *` |Traveller |Be able to undo my actions |Undo my mistakes
+
+|`* *` |Traveller |View all the information easily|
+
+|`* *` |New User |Have a quick built-in help guide|Get started on using the application quickly
+
+|`*` |Non Math inclined traveller |Get constant recommendations to my budget plan |Avoid having to do any difficult calculations
+
+|`*` |Command Line enthusiast |Tab autocomplete my commands |Be more efficient
+
+|`*` |User who likes customization|Change my application into different colour themes |Make my application's GUI looks better
+
+|`*` |User|Have a calendar planner |Have reference to the dates of the year
+
+
 |=======================================================================
 
 _{More to be added}_

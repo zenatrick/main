@@ -1,9 +1,11 @@
 = E.T. V2.0 - User Guide
 :site-section: UserGuide
 :toc:
+:toclevels: 4
 :toc-title:
 :toc-placement: preamble
 :sectnums:
+:sectnumlevels: 5
 :imagesDir: images
 :stylesDir: stylesheets
 :xrefstyle: full
@@ -63,13 +65,110 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 === Trip Planner
 
-Handles the main interface
+The main feature of the app. Handles all trip and activity management.
 
 ==== Trip list
 
-===== Create new trip: `new NAME start/START_DATE end/END_DATE country/COUNTRY`
+===== Create new trip
+Format: `new NAME start/START_DATE end/END_DATE country/COUNTRY`
 
-Format: `help`
+[.small]#Example: +
+ `new Graduation Trip start/28-09-2020 end/28-10-2020 country/Japan` +
+ Creates a new graduation trip starting from 28 September 2020 to 28 October 2020 in the country Japn#
+****
+ ** start and end date must be a valid date
+****
+
+===== Edit an existing trip
+
+Format: `edit INDEX [name/NAME] [start/START_DATE] [end/END_DATE][country/COUNTRY]`
+
+[.small]#Example: +
+ `edit 1 name/not a graduation trip country/Singapore` +
+ edits the trip 1, changing the name into "not a graduation trip" in the country singapore#
+
+[.small]#Expected output: +
+`Trip 1 has been edited`#
+
+===== Delete and existing trip
+
+Format: `delete INDEX`
+
+[.small]#Example: +
+`delete 1`#
+
+[.small]#Expected output: +
+`Trip 1 has been deleted`#
+
+===== Opens a trip
+Format: `open INDEX`
+
+Open the trip fir editing and viewing
+
+[.small]#Example: +
+ `open 1` +
+ Opens the trip 1#
+
+****
+** Index must correspond to a existing trip
+****
+
+==== Scheduler (after opening a trip)
+
+Allow users to manage the activities in the trip
+
+===== Add activity
+Format: `addactivity DAY name/NAME starttime/START_TIME endtime/END_TIME location/LOCATION`
+
+Adds an activity to the specific day indicated.
+
+[.small]#Example: +
+ `addactivity 1 name/Going to the beach starttime/4 endtime/5 location/Hakone` +
+ Adds an activity to day 1 named "Going to the beach" which starts from 4 and ends at 5. Location of this activity is Hakone.#
+
+****
+** Day cannot exceed the end date
+****
+===== Edit activity
+Format: `editactivity DAY [name/NAME] [starttime/START_TIME] [endtime/END_TIME] [location/LOCATION]`
+
+Edits the activity that is being set previously
+
+[.small]#Example: +
+`editactivity 1 name/Go to an aquarium` +
+Edits a previously existing activity to be named "Go to an aquarium"#
+
+****
+** The activity must exist to be edited
+****
+===== Deleting an activity
+
+Format: `deleteactivity DAY`
+
+
+[.small]#Example: +
+`deleteactivity 1`#
+
+===== View all itinerary: `view`
+Shows the entire itinerary
+
+==== Navigate to other tabs within a trip
+Format: `goto TABNAME`
+
+
+[.small]#TABNAME: `schedule` `pretrip` `packlist` `expense` `diary`#
+
+==== Check preparation status: `checkstatus`
+Shows how prepared the user is for the trip
+
+==== Set reminder
+Reminds the user to do something at the time
+
+Format: `setreminder event/NAME at/time`
+
+[.small]#Example: +
+ `setreminder event/Book tickets at/4` +
+ Sets an reminder named "Book tickets" at 4pm.#
 
 === Pre-Trip Preparation
 
