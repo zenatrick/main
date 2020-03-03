@@ -279,13 +279,25 @@ Refer to the guide <<DevOps#, here>>.
 
 *Target user profile*:
 
-* has a need to manage a significant number of contacts
+
+* want to micromanage all parts of their trips
+* meticulously plan all details of the trip before leaving
+* are inexperienced in planning for overseas trips
+* plan and stick to a preset budget set for their trips
+* want to record down experiences during their trips
+* prefer to have everything in one app
+* want to manage their trip without an internet connection
+* keen on privacy while writing down intimate details
 * prefer desktop apps over other types
 * can type fast
 * prefers typing over mouse input
 * is reasonably comfortable using CLI apps
 
-*Value proposition*: manage contacts faster than a typical mouse/GUI driven app
+
+*Value proposition*:
+
+* An all in one travel planner and manager, that guides the user from head to tail in planning for an overseas trip. Even those who have never planned for a trip before will be able to focus on enjoying their trip while the app guides them in planning and managing the perfect overseas trip.
+* E.T. can manage trips faster than a typical mouse/GUI driven app.
 
 [appendix]
 == User Stories
