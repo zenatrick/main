@@ -208,57 +208,176 @@ Edits the phone number and email address of the 1st person to be `91234567` and 
 * `edit 2 n/Betsy Crower t/` +
 Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-=== Diary
+=== Memory
+Consists of a diary and a photo album to help the user record down meaningful events and memories during the trip.
+Each diary and photo album belong to one `Trip` and each diary entry is tagged to a `Day` of the `Trip`.
 
-Finds persons whose names contain any of the given keywords. +
-Format: `find KEYWORD [MORE_KEYWORDS]`
+[WARNING]
+One diary can only have up to 1000 diary entries and one photo album can only have up to 100 photos.
+
+==== Add a new diary entry: `addentry`
+Adds a new diary entry for a specified `DAY` to the diary of this `Trip`.
+A diary entry allows user to write some text in the diary +
+Format: `addentry DAY title/TITLE detail/DETAIL [tag/TAG]...`
 
 ****
-* The search is case insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* This command can only be used in the `Memory` tab using the command `goto` in a `Trip`.
 ****
 
-Examples:
+[TIP]
+A diary entry can have any number of tags (including 0)
 
-* `find John` +
-Returns `john` and `John Doe`
-* `find Betsy Tim John` +
-Returns any person having names `Betsy`, `Tim`, or `John`
+Example:
 
-// tag::delete[]
+* `addentry 2 title/Sky Diving detail/My first sky diving experience. It was both terrifying and exiciting. tag/skydive`
+
+==== Edit an existing diary entry: `editentry`
+Edits an existing diary entry at the specified `INDEX`. +
+Format: `editentry INDEX [title/TITLE] [detail/DETAIL] [tag/TAG]...`
+
+****
+* This command can only be used in the `Memory` tab using the command `goto` in a `Trip`.
+* `INDEX` refers to the index number shown in the displayed diary entry list. `INDEX` *must be a positive integer* 1, 2, 3, ...
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the diary entry will be removed i.e adding of tags is not cumulative.
+* You can remove all the diary entry's tags by typing `t/` without specifying any tags after it.
+****
+
+Example:
+
+* `editentry 1 title/Breakfast a 5-star hotel` +
+Edits the title of the 1st diary entry.
+* `editentry 2 tag/`
+Clears the tags of the 2nd diary entry.
+
+==== Delete an existing text entry: `deleteentry`
+Deletes an existing diary entry at the specified `INDEX`. +
+Format: `deleteentry INDEX`
+
+****
+* This command can only be used in the `Memory` tab using the command `goto` in a `Trip`.
+* `INDEX` refers to the index number shown in the displayed diary entry list. `INDEX` *must be a positive integer* 1, 2, 3, ...
+****
+
+Example:
+
+* `deleteentry 10` +
+Deletes the 10th diary entry.
+
+==== Locate diary entry by keywords: `find`
+Locate existing diary entries by keywords. +
+Format: `find KEYWORD [MORE_KEYWORD]...`
+
+****
+* This command can only be used in the `Memory` tab using the command `goto` in a `Trip`.
+* `KEYWORD` and `MORE_KEYWORD` are case insensitive. e.g *skydive* will match *Skydive*
+* The order of the keywords does not matter. e.g. *swim beach* will match *beach swim*
+* Both the title and details are searched.
+* Partial words will be matched e.g. *sky* will match *skydive*
+* Diary entries matching at least one keyword will be returned (i.e. OR search). e.g. *skydive beach* can return *My first skydive experience* and *Swimming at Sanur Beach*
+****
+
+==== Add a new photo: addphoto
+Adds a new photo to the photo album of this `Trip`.
+Format: `addphoto caption/CAPTION path/RELATIVE_PATH_OF_PHOTO`
+
+****
+* This command can only be used in the `Memory` tab using the command `goto` in a `Trip`.
+* `RELATIVE_PATH_OF_PHOTO` refers to the path from the directory of this application to the photo.
+* `RELATIVE_PATH_OF_PHOTO` only accepts a `.png` or `.jpg` image file.
+****
+
+Example:
+
+* `addphoto caption/Sanur Beach path/photos/SanurBeach.jpg` +
+Adds an image named `SanurBeach.jpg` in the folder named `photos` in the same directory as this application
+to the photo album with the caption: "Sanur Beach".
+
+==== Set passcode for memories: `setpasscode`
+Set a passcode for the memories tab for user to lock and unlock their data. +
+Format: `setpasscode PASSCODE`
+
+****
+* This command can only be used in the `Memory` tab using the command `goto` in a `Trip`.
+* `PASSCODE` can only be made up of at most 16 alphanumeric characters.
+****
+
+[TIP]
+For a secure passcode, make sure your passcode is long and contains alphanumeric characters.
+
+[WARNING]
+Passcode recovery system will only be implemented in V2.0. If the user forgets the passcode, there is no way to recovery it.
+
+Example:
+* `setpasscode l0NgP455w0Rd`
+
+==== Change passcode for memories: `changepasscode`
+Change the passcode for the memories tab. +
+Format: `changepasscode OLD_PASSCODE NEW_PASSCODE`
+
+****
+* This command can only be used in the `Memory` tab using the command `goto` in a `Trip`.
+* This command can only be used after setting a passcode for the `Memory` tab using the command `setpasscode`.
+* `OLD_PASSCODE` and `NEW_PASSCODE` can only be made up of at most 16 alphanumeric characters each.
+****
+
+Example:
+* `changepasscode l0NgP455w0Rd l0Ng3rP455w0Rd`
+
+==== Lock memories: `lock`
+Locks the ability to view and edit the diary and photo album in the `Memory` tab. +
+Format: `lock`
+
+****
+* This command can only be used in the `Memory` tab using the command `goto` in a `Trip`.
+* This command can only be used after setting a passcode for the `Memory` tab using the command `setpasscode`.
+* `lock` will disable all commands related to the `Memory` tab other than the command `unlock`.
+****
+
+Example:
+
+* `lock`
+
+==== Unlock memories: `unlock`
+Unlocks the restrictions enforced by the command `lock`.
+Format: `unlock PASSCODE`
+
+****
+* This command can only be used after opening a `Trip` using the command `open`.
+* This command can only be used after the `Memory` tab is locked using the command `lock`.
+* To unlock the restrictions successfully, `PASSCODE` must be equivalent to the passcode set for the `Memory` tab using the command `setpasscode`.
+****
+
+Example:
+
+* `unlock l0Ng3rP455w0Rd` +
+Used "l0Ng3rP455w0Rd" as the `PASSCODE` to unlock the restrictions enforced by the command `lock`.
+
+==== Export the diary to pdf file [Coming in V2.0]
+
 === Undo-Redo
+Allows the user to revert their actions quickly and conveniently.
 
-Deletes the specified person from the address book. +
-Format: `delete INDEX`
+==== Undo an action: `undo`
+Undo an undoable command entered by the user. +
+Format: `undo`
 
-****
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index *must be a positive integer* 1, 2, 3, ...
-****
+Example:
 
-Examples:
+* `undo`
 
-* `list` +
-`delete 2` +
-Deletes the 2nd person in the address book.
-* `find Betsy` +
-`delete 1` +
-Deletes the 1st person in the results of the `find` command.
+==== Redo an action: `redo`
+Redo an undone action after using the command `undo`. +
+Format: `redo`
 
-// end::delete[]
+Example:
+
+* `redo`
+
 === Auto-Complete [Coming in V2.0]
 
-Clears all entries from the address book. +
-Format: `clear`
-
 === Import and export of data [Coming in V2.0]
-
-Exits the program. +
-Format: `exit`
 
 == FAQ
 *pass:[<u>TO BE EDITED</u>]*
