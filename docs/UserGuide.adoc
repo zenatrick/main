@@ -1,7 +1,7 @@
 = E.T. V2.0 - User Guide
 :site-section: UserGuide
 :toc:
-:toclevels: 4
+:toclevels: 5
 :toc-title:
 :toc-placement: preamble
 :sectnums:
@@ -172,16 +172,148 @@ Format: `setreminder event/NAME at/time`
 
 === Pre-Trip Preparation
 
-Adds a person to the address book +
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+Allows the user to handle transportation, accommodation bookings as well as insurance when preparing for a trip.
 
-[TIP]
-A person can have any number of tags (including 0)
+==== Transportation Bookings
+
+The following sections [3.2.1.1 to 3.2.1.3] allows the user to set and modify transportation bookings in the trip.
+
+===== Create new transportation booking: `addtransport`
+
+Creates a new transportation booking for the trip.
+
+Format: `addtransport type/TYPE departdatetime/DATE_TIME_OF_DEPARTURE arrivedatetime/DATE_TIME_OF_ARRIVAL
+         startlocation/START_LOCATION endlocation/END_LOCATION`
+
+****
+* `DATE_TIME_OF_DEPARTURE` and `DATE_TIME_OF_ARRIVAL` needs to be in the format dd-MM-yyyy and the time seperated by a
+space and in 24hr format.
+****
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addtransport type/Airplane departdatetime/22-04-2021 0900 arrivedatetime/22-04-2021 1500
+   startlocation/Singapore endlocation/Japan` +
+Creates an airplane booking that starts at 22 Apr 2021 0900hr and ends at 22 Apr 2021 1500hr.
+The location starting from Singapore and ending in Japan.
+
+
+===== Edit transportation booking: `edittransport`
+
+Edits a transportation booking for the trip.
+
+Format: `edittransport INDEX [type/TYPE] [departdatetime/DATE_TIME_OF_DEPARTURE] [arrivedatetime/DATE_TIME_OF_ARRIVAL]
+        [startlocation/START_LOCATION] [endlocation/END_LOCATION]`
+
+****
+* `TIME_OF_DEPARTURE` and `TIME_OF_ARRIVAL` needs to be in 24hr format.
+****
+
+Examples:
+
+* `edittransport 2 departtime/1200 arrivetime/1500` +
+Changes the start time of the second transportation booking in the list to 1200hr and the end time to 1500hr.
+
+* `edittransport 4 startlocation/Malacca endlocation/KL` +
+Changes the starting location of the fourth transportation booking in the list to Malacca and the ending location to KL.
+
+===== Delete transportation booking: `deletetransport`
+
+Deletes a transportation booking in the trip.
+
+Format: `deletetransport INDEX`
+
+Examples:
+
+* `deletetransport 1` +
+Deletes the first transport booking.
+
+==== Accommodation Bookings
+
+The following sections [3.2.2.1 to 3.2.2.3] allows the user to set and modify accommodation bookings in the trip.
+
+===== Create new accommodation booking: `addhotel`
+
+Creates a new accommodation booking for the trip.
+
+Format: `addhotel address/ADDRESS [phone/PHONE] startday/START_DAY endday/END_DAY [remark/REMARK]`
+
+****
+* `START_DAY` and `END_DAY` needs to be *positive integers* within the number of days of the given trip.
+****
+
+Examples:
+
+* `addhotel address/JW Marriott Hotel startday/2 endday/7` +
+Creates an accommodation booking on the 2nd to 7th day at JW Marriott Hotel.
+
+* `addhotel address/JW Marriott phone/+60 3-2715 9000 Hotel startday/2 endday/7` +
+Creates an accommodation booking on the 2nd to 7th day at JW Marriott Hotel.
+Adds a phone number +60 3-2715 9000 for contact purposes.
+
+===== Edit accommodation booking: `edithotel`
+
+Edits an accommodation booking in the trip.
+
+Format: `edithotel INDEX [address/ADDRESS] [phone/PHONE] [startday/START_DAY] [endday/END_DAY] [remark/REMARK]`
+
+****
+* `START_DAY` and `END_DAY` needs to be *positive integers* within the number of days of the given trip.
+****
+
+Examples:
+
+* `edithotel 2 startday/4 endday/6` +
+Changes the start day of the second accommodation booking in the list to 4th day and the end day to 6th day.
+
+* `edithotel 3 address/Hilton KL remark/Check-in at 2pm` +
+Changes the address of the third accommodation booking in the list to Hilton KL and change the remark to Check-in at 2pm.
+
+
+===== Delete accommodation booking: `deletehotel`
+
+Deletes an accommodation booking in the trip.
+
+Format: `deletehotel INDEX`
+
+Examples:
+
+* `deletehotel 2` +
+Deletes the second accommodation booking.
+
+===== Ignore accommodation for some days: `ignore`
+
+Ignores the accommodation bookings for certain days in the trip.
+Would be useful if user does not want to list any accommodation booking in the given days.
+
+Format: `ignorehotel startday/START_DAY endday/END_DAY`
+
+****
+* `START_DAY` and `END_DAY` needs to be *positive integers* within the number of days of the given trip.
+****
+
+Examples:
+
+* `ignorehotel startday/2 endday/3` +
+Ignores any accommodation booking from day 2 to 3.
+
+==== Insurance
+
+===== Change insurance status: `insurance`
+
+Changes the status of whether the insurance has been bought or not.
+
+Format: `insurance STATUS` +
+`STATUS: yes, no`
+
+****
+* By default, insurance status will be set to no (not bought).
+****
+
+Examples:
+
+* `insurance yes` +
+Sets the insurance status to bought.
 
 === *Packing List*
 
