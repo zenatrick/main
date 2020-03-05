@@ -384,19 +384,18 @@ Guarantees:
     - A new trip will be added to the trip list upon successful command.
 
 MSS:
-    1. User request to create a new trip.
-    2. E.T. shows the list of trips.
-    3. User adds a trip to the list.
-    4. E.T. shows the updated list of trips.
+    1. User adds a new trip to the list.
+    2. System adds trip to the list of trips.
+    3. System shows the updated list of trips.
 Use case ends.
 
 Extensions:
     2a. The trip list is empty.
-        2a1. E.T shows an empty page.
+        2a1. System shows an empty page.
         Use case resumes at step 3.
 
     3a. Incomplete details are given.
-        3a1. E.T shows an error message.
+        3a1. System shows an error message.
         Use case resumes at step 3.
 
 UC02: Check trip readiness
