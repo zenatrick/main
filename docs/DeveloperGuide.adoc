@@ -519,17 +519,17 @@ Guarantees:
 MSS:
     1. User requests to create a new accommodation booking.
     2. User navigates to the pre-trip tab.
-    3. E.T. shows the existing list of accommodations for the current trip.
+    3. System shows the existing list of accommodations for the current trip.
     4. User adds a new accommodation booking for the current trip.
-    5. E.T. shows an updated list of accommodations.
+    5. System shows an updated list of accommodations.
 Use case ends
 
 Extensions:
     3a. The is no accommodation booking
-	    3a1. E.T show an empty list
+	    3a1. System show an empty list
 	    Use case resumes at step 4
     4a. Incomplete details are given.
-        4a1. E.T shows an error message.
+        4a1. System shows an error message.
         Use case resumes at step 4.
 ----------------------------------------------------------------------------------------------------------------
 
