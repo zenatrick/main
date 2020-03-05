@@ -487,21 +487,21 @@ Guarantees:
 MSS:
     1. User requests to create a new expense entry.
     2. User navigates to the expense manager tab.
-    3. E.T. shows existing expenses for the current trip.
+    3. System shows existing expenses for the current trip.
     4. User adds a new expense for the current trip.
-    5. E.T. shows the updated expenses for the trip.
+    5. System shows the updated expenses for the trip.
 Use case ends.
 
 Extensions:
     3a. The expense is empty
-        3a1. E.T. shows an empty page.
+        3a1. System shows an empty page.
         Use case resumes at step 4.
 
     4a. Incomplete details are given.
-        4a1. E.T. shows an error message.
+        4a1. System shows an error message.
         Use case resumes at step 4.
     4b. Expenses are entered by the user in the foreign country’s currency when the conversion rate is not set.
-        4b1. E.T. shows an error message.
+        4b1. System shows an error message.
         Use Case resumes at step 4.
 ----------------------------------------------------------------------------------------------------------------
 [discrete]
