@@ -427,19 +427,19 @@ Guarantees:
 MSS:
     1. User requests to create a new trip.
     2. User navigates to the packing list tab.
-    3. E.T. shows the packing list.
+    3. System shows the packing list.
     4. User adds an item to the packing list.
-    5. E.T. shows the updated packing list.
+    5. System shows the updated packing list.
 Use case ends.
 
 
 Extensions:
     3a. The packing list is empty.
-        3a1. E.T. shows an empty list.
+        3a1. System shows an empty list.
         Use case resumes at step 4.
 
     4a. Incomplete details are given.
-        4a1. E.T. shows an error message.
+        4a1. System shows an error message.
         Use case resumes at step 4.
 ----------------------------------------------------------------------------------------------------------------
 [discrete]
