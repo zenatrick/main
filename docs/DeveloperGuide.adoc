@@ -409,7 +409,7 @@ Guarantees:
 
 MSS:
     1. User request for a preparation check
-    2. E.T. shows the list of things that needs to be completed
+    2. System shows the list of things that needs to be completed
 Use case ends.
 ----------------------------------------------------------------------------------------------------------------
 [discrete]
