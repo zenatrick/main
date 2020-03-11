@@ -11,5 +11,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
+    // To add the Prefixes for My setting and editing budgets
+    public static final Prefix PREFIX_SET_BUDGET = new Prefix("set/");
+    public static final Prefix PREFIX_EDIT_BUDGET = new Prefix("edit/");
 
 }
