@@ -53,7 +53,7 @@ public class UniqueTransportBookingList implements Iterable<TransportBooking> {
      * The transport booking identity of {@code editedTransportBooking} must not be the same as another existing
      * transport bookings in the list.
      */
-    public void setTransportation(TransportBooking target, TransportBooking editedTransportBooking) {
+    public void setTransportBooking(TransportBooking target, TransportBooking editedTransportBooking) {
         requireAllNonNull(target, editedTransportBooking);
 
         int index = internalList.indexOf(target);
