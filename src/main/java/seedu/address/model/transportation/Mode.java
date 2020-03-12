@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Transportation's mode in the Transportation manager.
+ * Represents a TransportBooking's mode in the TransportBookingManager.
  * Guarantees: immutable; is valid as declared in {@link #isValidMode(String)}
  */
 public class Mode {

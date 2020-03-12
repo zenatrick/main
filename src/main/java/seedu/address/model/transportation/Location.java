@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Transportation's start or end location in the Transportation manager.
+ * Represents a TransportBooking's start or end location in the TransportBookingManager.
  * Guarantees: immutable; is valid as declared in {@link #isValidLocation(String)}
  */
 public class Location {

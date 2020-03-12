@@ -7,12 +7,12 @@ import java.time.LocalDateTime;
 //import static seedu.address.commons.util.AppUtil.checkArgument;
 //
 ///**
-// * Represents a Transportation's start or end time in the Transportation manager.
+// * Represents a TransportBooking's start or end time in the TransportBookingManager.
 // * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
 // */
 
 /**
- * Represents a Transportation's start or end time in the Transportation manager.
+ * Represents a TransportBooking's start or end time in the TransportBookingManager.
  * Guarantees: immutable
  */
 public class Time {
