@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.transportation.exceptions.DuplicatePersonException;
-import seedu.address.model.transportation.exceptions.PersonNotFoundException;
+import seedu.address.model.transportation.exceptions.DuplicateTransportBookingException;
+import seedu.address.model.transportation.exceptions.TransportBookingNotFoundException;
 
 /**
  * A list of transport bookings that enforces uniqueness between its elements and does not allow nulls.
@@ -42,7 +42,7 @@ public class UniqueTransportBookingList implements Iterable<TransportBooking> {
     public void add(TransportBooking toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTransportBookingException();
         }
         internalList.add(toAdd);
     }
@@ -58,11 +58,11 @@ public class UniqueTransportBookingList implements Iterable<TransportBooking> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new TransportBookingNotFoundException();
         }
 
         if (!target.equals(editedTransportBooking) && contains(editedTransportBooking)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTransportBookingException();
         }
 
         internalList.set(index, editedTransportBooking);
@@ -75,7 +75,7 @@ public class UniqueTransportBookingList implements Iterable<TransportBooking> {
     public void remove(TransportBooking toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new TransportBookingNotFoundException();
         }
     }
 
@@ -91,7 +91,7 @@ public class UniqueTransportBookingList implements Iterable<TransportBooking> {
     public void setTransportBookings(List<TransportBooking> transportBookingList) {
         requireAllNonNull(transportBookingList);
         if (!transportBookingsAreUnique(transportBookingList)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTransportBookingException();
         }
 
         internalList.setAll(transportBookingList);
