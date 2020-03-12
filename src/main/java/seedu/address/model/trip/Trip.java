@@ -1,4 +1,4 @@
-package seedu.address.model.et;
+package seedu.address.model.trip;
 
 import java.util.Objects;
 
@@ -12,7 +12,7 @@ import seedu.address.model.transportation.Transportation;
  * This represents the "Person" of our address book.
  * Main Class of our address book.
  */
-public class Et {
+public class Trip {
 
     //Data Fields
     private final Activity activity;
@@ -21,8 +21,8 @@ public class Et {
     private final FixedCost fixedCost;
     private final PackingList packingList;
 
-    public Et(Activity activity, Accommodation accommodation, Transportation transportation, FixedCost fixedCost,
-              PackingList packingList) {
+    public Trip(Activity activity, Accommodation accommodation, Transportation transportation, FixedCost fixedCost,
+                PackingList packingList) {
         this.activity = activity;
         this.accommodation = accommodation;
         this.transportation = transportation;
@@ -55,16 +55,16 @@ public class Et {
      * Returns true if both Et of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSameEt(Et otherEt) {
-        if (otherEt == this) {
+    public boolean isSameEt(Trip otherTrip) {
+        if (otherTrip == this) {
             return true;
         }
 
-        return otherEt != null
-                && otherEt.getActivity().equals(getActivity())
-                && (otherEt.getAccommodation().equals(getAccommodation())
-                || otherEt.getTransportation().equals(getTransportation())
-                || otherEt.getFixedCost().equals(getFixedCost()));
+        return otherTrip != null
+                && otherTrip.getActivity().equals(getActivity())
+                && (otherTrip.getAccommodation().equals(getAccommodation())
+                || otherTrip.getTransportation().equals(getTransportation())
+                || otherTrip.getFixedCost().equals(getFixedCost()));
     }
 
     @Override
@@ -83,16 +83,16 @@ public class Et {
             return true;
         }
 
-        if (!(other instanceof Et)) {
+        if (!(other instanceof Trip)) {
             return false;
         }
 
-        Et otherEt = (Et) other;
-        return otherEt.getActivity().equals(getActivity())
-                && otherEt.getAccommodation().equals(getAccommodation())
-                && otherEt.getTransportation().equals(getTransportation())
-                && otherEt.getFixedCost().equals(getFixedCost())
-                && otherEt.getPackingList().equals(getPackingList());
+        Trip otherTrip = (Trip) other;
+        return otherTrip.getActivity().equals(getActivity())
+                && otherTrip.getAccommodation().equals(getAccommodation())
+                && otherTrip.getTransportation().equals(getTransportation())
+                && otherTrip.getFixedCost().equals(getFixedCost())
+                && otherTrip.getPackingList().equals(getPackingList());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package seedu.address.model.et;
+package seedu.address.model.trip;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -21,18 +20,18 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Et#isSameEt(Et)
+ * @see Trip#isSameEt(Trip)
  */
-public class UniqueEtList implements Iterable<Et> {
+public class UniqueTripList implements Iterable<Trip> {
 
-    private final ObservableList<Et> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Et> internalUnmodifiableList =
+    private final ObservableList<Trip> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Trip> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
      */
-    public boolean contains(Et toCheck) {
+    public boolean contains(Trip toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameEt);
     }
@@ -41,7 +40,7 @@ public class UniqueEtList implements Iterable<Et> {
      * Adds a Et to the list.
      * The Et must not already exist in the list.
      */
-    public void add(Et toAdd) {
+    public void add(Trip toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
@@ -54,33 +53,33 @@ public class UniqueEtList implements Iterable<Et> {
      * {@code target} must exist in the list.
      * The Et identity of {@code editedPerson} must not be the same as another existing Et in the list.
      */
-    public void setEt(Et target, Et editedEt) {
-        requireAllNonNull(target, editedEt);
+    public void setTrips(Trip target, Trip editedTrip) {
+        requireAllNonNull(target, editedTrip);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSameEt(editedEt) && contains(editedEt)) {
+        if (!target.isSameEt(editedTrip) && contains(editedTrip)) {
             throw new DuplicatePersonException();
         }
 
-        internalList.set(index, editedEt);
+        internalList.set(index, editedTrip);
     }
 
     /**
      * Removes the equivalent Et from the list.
      * The Et must exist in the list.
      */
-    public void remove(Et toRemove) {
+    public void remove(Trip toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }
     }
 
-    public void setEts(UniqueEtList replacement) {
+    public void setTrips(UniqueTripList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -89,32 +88,32 @@ public class UniqueEtList implements Iterable<Et> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setEts(List<Et> ets) {
-        requireAllNonNull(ets);
-        if (!etsAreUnique(ets)) {
+    public void setTrips(List<Trip> trips) {
+        requireAllNonNull(trips);
+        if (!tripsAreUnique(trips)) {
             throw new DuplicatePersonException();
         }
 
-        internalList.setAll(ets);
+        internalList.setAll(trips);
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Et> asUnmodifiableObservableList() {
+    public ObservableList<Trip> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<Et> iterator() {
+    public Iterator<Trip> iterator() {
         return internalList.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueEtList // instanceof handles nulls
-                && internalList.equals(((UniqueEtList) other).internalList));
+                || (other instanceof UniqueTripList // instanceof handles nulls
+                && internalList.equals(((UniqueTripList) other).internalList));
     }
 
     @Override
@@ -125,10 +124,10 @@ public class UniqueEtList implements Iterable<Et> {
     /**
      * Returns true if {@code persons} contains only unique persons.
      */
-    private boolean etsAreUnique(List<Et> ets) {
-        for (int i = 0; i < ets.size() - 1; i++) {
-            for (int j = i + 1; j < ets.size(); j++) {
-                if (ets.get(i).isSameEt(ets.get(j))) {
+    private boolean tripsAreUnique(List<Trip> trips) {
+        for (int i = 0; i < trips.size() - 1; i++) {
+            for (int j = i + 1; j < trips.size(); j++) {
+                if (trips.get(i).isSameEt(trips.get(j))) {
                     return false;
                 }
             }

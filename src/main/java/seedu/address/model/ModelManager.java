@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.et.Et;
+import seedu.address.model.trip.Trip;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,28 +19,28 @@ import seedu.address.model.et.Et;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final EtBook etBook;
+    private final AddressBook tripBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Et> filteredEts;
+    private final FilteredList<Trip> filteredTrips;
 
 
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyEtBook etBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook tripBook, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(etBook, userPrefs);
+        requireAllNonNull(tripBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + etBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + tripBook + " and user prefs " + userPrefs);
 
-        this.etBook = new EtBook(etBook);
+        this.tripBook = new AddressBook(tripBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredEts = new FilteredList<Et>(this.etBook.getEtList());
+        filteredTrips = new FilteredList<Trip>(this.tripBook.getTripList());
     }
 
     public ModelManager() {
-        this(new EtBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -81,37 +81,37 @@ public class ModelManager implements Model {
     //=========== EtBook ================================================================================
 
     @Override
-    public void setEtBook(ReadOnlyEtBook addressBook) {
-        this.etBook.resetData(etBook);
+    public void setTripBook(ReadOnlyAddressBook addressBook) {
+        this.tripBook.resetData(tripBook);
     }
 
     @Override
-    public ReadOnlyEtBook getEtBook() {
-        return etBook;
+    public ReadOnlyAddressBook getTripBook() {
+        return tripBook;
     }
 
     @Override
-    public boolean hasEt(Et et) {
-        requireNonNull(et);
-        return etBook.hasEt(et);
+    public boolean hasTrip(Trip trip) {
+        requireNonNull(trip);
+        return tripBook.hasTrip(trip);
     }
 
     @Override
-    public void deleteEt(Et target) {
-        etBook.removeEt(target);
+    public void deleteTrip(Trip target) {
+        tripBook.removeTrip(target);
     }
 
     @Override
-    public void addEt(Et et) {
-        etBook.addEt(et);
+    public void addTrip(Trip trip) {
+        tripBook.addTrip(trip);
         updateFilteredEtList(PREDICATE_SHOW_ALL_ET);
     }
 
     @Override
-    public void setEt(Et target, Et editedEt) {
-        requireAllNonNull(target, editedEt);
+    public void setTrip(Trip target, Trip editedTrip) {
+        requireAllNonNull(target, editedTrip);
 
-        etBook.setEt(target, editedEt);
+        tripBook.setTrip(target, editedTrip);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -121,14 +121,14 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Et> getFilteredEtList() {
-        return filteredEts;
+    public ObservableList<Trip> getFilteredEtList() {
+        return filteredTrips;
     }
 
     @Override
-    public void updateFilteredEtList(Predicate<Et> predicate) {
+    public void updateFilteredEtList(Predicate<Trip> predicate) {
         requireNonNull(predicate);
-        filteredEts.setPredicate(predicate);
+        filteredTrips.setPredicate(predicate);
     }
 
 
@@ -146,9 +146,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return etBook.equals(other.etBook)
+        return tripBook.equals(other.tripBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredEts.equals(other.filteredEts);
+                && filteredTrips.equals(other.filteredTrips);
     }
 
 }
