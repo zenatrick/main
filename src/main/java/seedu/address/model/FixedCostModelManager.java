@@ -1,4 +1,4 @@
-package seedu.address.model.budget;
+package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -11,12 +11,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.budget.FixedCost;
 
 /**
  * Represents the in-memory FixedCost model of the address book data.
+ * Not used atm, copied over to ModelManager.
  */
 
 public class FixedCostModelManager implements FixedCostModel {
@@ -103,7 +102,7 @@ public class FixedCostModelManager implements FixedCostModel {
 
     @Override
     public void addFixedCost(FixedCost fixedCost) {
-        fixedCostBook.addPerson(fixedCost);
+        fixedCostBook.addFixedCost(fixedCost);
         updateFilteredFixedCostList(PREDICATE_SHOW_ALL_FIXED_COST);
     }
 

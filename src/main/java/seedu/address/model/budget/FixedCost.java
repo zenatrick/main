@@ -14,16 +14,20 @@ import seedu.address.model.tag.Tag;
 public class FixedCost {
 
     //This will be my person.
+    // TODO: Think of a way to link budget into the fixed cost.
 
+    private final Budget budget;
     private final Cost cost;
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
 
-    public FixedCost(Cost cost, Description description, Set<Tag> tags) {
+    public FixedCost(Cost cost, Description description, Set<Tag> tags, Budget budget) {
         this.cost = cost;
         this.description = description;
         this.tags.addAll(tags);
+        this.budget = budget;
     }
+
 
     public Cost getCost() {
         return cost;

@@ -1,10 +1,12 @@
-package seedu.address.model.budget;
+package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.budget.FixedCost;
+import seedu.address.model.budget.UniqueFixedCostList;
 
 /**
  * Wraps all data at the FixedCost-book level
@@ -59,7 +61,7 @@ public class FixedCostBook implements ReadOnlyFixedCostBook {
      * Adds a fixedCost to the fixedCostBook.
      * The person must not already exist in the fixedCostBook.
      */
-    public void addPerson(FixedCost f) {
+    public void addFixedCost(FixedCost f) {
         uniqueFixedCostLists.add(f);
     }
 

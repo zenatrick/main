@@ -17,7 +17,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
  * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Trip#isSameEt(Trip)
@@ -68,17 +68,6 @@ public class UniqueTripList implements Iterable<Trip> {
         internalList.set(index, editedTrip);
     }
 
-    /**
-     * Removes the equivalent Et from the list.
-     * The Et must exist in the list.
-     */
-    public void remove(Trip toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
-        }
-    }
-
     public void setTrips(UniqueTripList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -95,6 +84,17 @@ public class UniqueTripList implements Iterable<Trip> {
         }
 
         internalList.setAll(trips);
+    }
+
+    /**
+     * Removes the equivalent Et from the list.
+     * The Et must exist in the list.
+     */
+    public void remove(Trip toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new PersonNotFoundException();
+        }
     }
 
     /**

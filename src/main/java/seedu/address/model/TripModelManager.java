@@ -13,6 +13,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.trip.Trip;
 
+/**
+ * Supposed to replace AddressBook but not used.
+ */
 public class TripModelManager implements TripModel {
 
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);

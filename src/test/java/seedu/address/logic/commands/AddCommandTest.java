@@ -19,7 +19,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyFixedCostBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.budget.FixedCost;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -146,6 +148,46 @@ public class AddCommandTest {
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setFixedCostBook(ReadOnlyFixedCostBook fixedCostBook) {
+
+        }
+
+        @Override
+        public ReadOnlyFixedCostBook getFixedCostBook() {
+            return null;
+        }
+
+        @Override
+        public boolean hasFixedCost(FixedCost fixedCost) {
+            return false;
+        }
+
+        @Override
+        public void deleteFixedCost(FixedCost target) {
+
+        }
+
+        @Override
+        public void addFixedCost(FixedCost fixedCost) {
+
+        }
+
+        @Override
+        public void setFixedCost(FixedCost target, FixedCost editedFixedCost) {
+
+        }
+
+        @Override
+        public ObservableList<FixedCost> getFilteredFixedCostList() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredFixedCostList(Predicate<FixedCost> predicate) {
+
         }
     }
 
