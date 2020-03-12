@@ -6,10 +6,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 /**
- * Represents a Transportation in the Transportation manager.
+ * Represents a TransportBooking in the TransportBookingManager.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Transportation {
+public class TransportBooking {
 
     public static final String MESSAGE_LOCATION_CONSTRAINTS = "Start location cannot be equal to end location.";
     public static final String MESSAGE_TIME_CONSTRAINTS = "Start time must come before end time.";
@@ -24,8 +24,8 @@ public class Transportation {
     /**
      * Every field must be present and not null.
      */
-    public Transportation(Mode mode, Location startLocation, Location endLocation, Time startTime,
-                          Time endTime) {
+    public TransportBooking(Mode mode, Location startLocation, Location endLocation, Time startTime,
+                            Time endTime) {
         requireAllNonNull(mode, startLocation, endLocation, startTime, endTime);
         checkArgument(areLocationsValid(startLocation, endLocation), MESSAGE_LOCATION_CONSTRAINTS);
         checkArgument(isTimeValid(startTime, endTime), MESSAGE_TIME_CONSTRAINTS);
@@ -71,8 +71,8 @@ public class Transportation {
     }
 
     /**
-     * Returns true if both transportation have the same data fields.
-     * This defines a strong notion of equality between two transportation.
+     * Returns true if both transport bookings have the same data fields.
+     * This defines an equality between two transport bookings.
      */
     @Override
     public boolean equals(Object other) {
@@ -80,16 +80,16 @@ public class Transportation {
             return true;
         }
 
-        if (!(other instanceof Transportation)) {
+        if (!(other instanceof TransportBooking)) {
             return false;
         }
 
-        Transportation otherTransportation = (Transportation) other;
-        return otherTransportation.getMode().equals(getMode())
-                && otherTransportation.getStartLocation().equals(getStartLocation())
-                && otherTransportation.getEndLocation().equals(getEndLocation())
-                && otherTransportation.getStartTime().equals(getStartTime())
-                && otherTransportation.getEndTime().equals(getEndTime());
+        TransportBooking otherTransportBooking = (TransportBooking) other;
+        return otherTransportBooking.getMode().equals(getMode())
+                && otherTransportBooking.getStartLocation().equals(getStartLocation())
+                && otherTransportBooking.getEndLocation().equals(getEndLocation())
+                && otherTransportBooking.getStartTime().equals(getStartTime())
+                && otherTransportBooking.getEndTime().equals(getEndTime());
     }
 
     @Override
@@ -99,7 +99,7 @@ public class Transportation {
 
     @Override
     public String toString() {
-        return "Transportation Booking - Mode: " + getMode()
+        return "TransportBooking - Mode: " + getMode()
                 + " Start Location: " + getStartLocation()
                 + " End Location: " + getEndLocation()
                 + " Start Time: " + getStartTime()
