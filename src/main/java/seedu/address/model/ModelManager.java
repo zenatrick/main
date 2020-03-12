@@ -24,9 +24,6 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<FixedCost> filteredFixedCosts;
-    private final FixedCostBook fixedCostBook = new FixedCostBook(null);
-    private final Budget budget = new Budget(null);
 
 
     /**
@@ -44,7 +41,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         //this.budget = new Budget(budget);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredFixedCosts = new FilteredList<FixedCost>(this.fixedCostBook.getFixedCostList());
 
 
     }
@@ -159,53 +155,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
-
-    //--------------------- From FixedCostModelManager -------------------------//
-
-    @Override
-    public void setFixedCostBook(ReadOnlyFixedCostBook addressBook) {
-        this.fixedCostBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyFixedCostBook getFixedCostBook() {
-        return fixedCostBook;
-    }
-
-    @Override
-    public boolean hasFixedCost(FixedCost fixedCost) {
-        requireNonNull(fixedCost);
-        return fixedCostBook.hasFixedCost(fixedCost);
-    }
-
-    @Override
-    public void deleteFixedCost(FixedCost target) {
-        fixedCostBook.removeFixedCost(target);
-    }
-
-    @Override
-    public void addFixedCost(FixedCost fixedCost) {
-        fixedCostBook.addFixedCost(fixedCost);
-        updateFilteredFixedCostList(PREDICATE_SHOW_ALL_FIXED_COST);
-    }
-
-    @Override
-    public void setFixedCost(FixedCost target, FixedCost editedFixedCost) {
-        requireAllNonNull(target, editedFixedCost);
-
-        fixedCostBook.setFixedCost(target, editedFixedCost);
-    }
-
-    @Override
-    public ObservableList<FixedCost> getFilteredFixedCostList() {
-        return null;
-    }
-
-    @Override
-    public void updateFilteredFixedCostList(Predicate<FixedCost> predicate) {
-
-    }
-
-
 }
