@@ -12,43 +12,33 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.budget.FixedCost;
-import seedu.address.model.person.Person;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory FixedCost model of the address book data.
  */
-public class ModelManager implements Model {
+
+public class FixedCostModelManager implements FixedCostModel {
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
     private final FixedCostBook fixedCostBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
     private final FilteredList<FixedCost> filteredFixedCosts;
 
-
-
-    /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
-     */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public FixedCostModelManager(ReadOnlyFixedCostBook fixedCostBook, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(fixedCostBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + fixedCostBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.fixedCostBook = new FixedCostBook(fixedCostBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-
         filteredFixedCosts = new FilteredList<FixedCost>(this.fixedCostBook.getFixedCostList());
-
     }
 
-    public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+    public FixedCostModelManager() {
+        this(new FixedCostBook(), new UserPrefs());
     }
-
     //=========== UserPrefs ==================================================================================
 
     @Override
@@ -74,51 +64,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    // Stays as addressbook else you might as well change the whole address book sua.
     public Path getAddressBookFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setAddressBookFilePath(Path fixedCostBookFilePath) {
+        requireNonNull(fixedCostBookFilePath);
+        userPrefs.setAddressBookFilePath(fixedCostBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
-
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
-    }
-
-    @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
-    }
+    //======== FixedCostBook================================================//
+    // Believe that it will be merged under the big umbrella of E.T//
 
     @Override
     public void setFixedCostBook(ReadOnlyFixedCostBook addressBook) {
@@ -154,22 +112,13 @@ public class ModelManager implements Model {
         fixedCostBook.setFixedCost(target, editedFixedCost);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+
+    //============== Filtered FixedCost List Accessors =====================//
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code FixedCost} backed by the internal list of
      * {@code versionedAddressBook}
      */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
 
     @Override
     public ObservableList<FixedCost> getFilteredFixedCostList() {
@@ -180,26 +129,6 @@ public class ModelManager implements Model {
     public void updateFilteredFixedCostList(Predicate<FixedCost> predicate) {
         requireNonNull(predicate);
         filteredFixedCosts.setPredicate(predicate);
-    }
-
-
-    @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
     }
 
 }

@@ -1,4 +1,6 @@
-package seedu.address.commons.core.index;
+package seedu.address.model.budget;
+
+import seedu.address.model.budget.exceptions.InvalidIntException;
 
 /**
  * Converts the String input the user put into a Integer
@@ -18,14 +20,14 @@ public class Amount {
     private int convertInputToOutput(String s) throws IllegalArgumentException {
         try {
             int convertedInput = Integer.parseInt(s);
-            System.out.println(convertedInput);
             if (convertedInput < 0) {
                 throw new IllegalArgumentException("You have entered an invalid amount");
             } else {
                 return convertedInput;
             }
-        } catch (Exception e) {
-            throw new IllegalArgumentException("You have entered an invalid amount");
+        } catch (NumberFormatException e) {
+            // When the person did not put an integer
+            throw new InvalidIntException("You have not entered an integer");
         }
     }
 

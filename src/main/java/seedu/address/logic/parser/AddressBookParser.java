@@ -7,7 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.BudgetCommand;
+import seedu.address.logic.commands.BudgetEditCommand;
+import seedu.address.logic.commands.BudgetSetCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -69,13 +70,11 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case BudgetCommand.COMMAND_WORD:
-            if (arguments.contains("/")) {
-                return new BudgetCommandParser().parse(arguments);
-            } else {
-                return new BudgetCommand(arguments, "");
-            }
+        case BudgetSetCommand.COMMAND_WORD:
+            return new BudgetSetCommandParser().parse(arguments);
 
+        case BudgetEditCommand.COMMAND_WORD:
+            return new BudgetEditCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
