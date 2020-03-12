@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.trip.Trip;
+import seedu.address.model.person.Person;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,24 +19,22 @@ import seedu.address.model.trip.Trip;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook tripBook;
+    private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Trip> filteredTrips;
-
-
+    private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook tripBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(tripBook, userPrefs);
+        requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + tripBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.tripBook = new AddressBook(tripBook);
+        this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredTrips = new FilteredList<Trip>(this.tripBook.getTripList());
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
@@ -78,40 +76,40 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== EtBook ================================================================================
+    //=========== AddressBook ================================================================================
 
     @Override
-    public void setTripBook(ReadOnlyAddressBook addressBook) {
-        this.tripBook.resetData(tripBook);
+    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        this.addressBook.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getTripBook() {
-        return tripBook;
+    public ReadOnlyAddressBook getAddressBook() {
+        return addressBook;
     }
 
     @Override
-    public boolean hasTrip(Trip trip) {
-        requireNonNull(trip);
-        return tripBook.hasTrip(trip);
+    public boolean hasPerson(Person person) {
+        requireNonNull(person);
+        return addressBook.hasPerson(person);
     }
 
     @Override
-    public void deleteTrip(Trip target) {
-        tripBook.removeTrip(target);
+    public void deletePerson(Person target) {
+        addressBook.removePerson(target);
     }
 
     @Override
-    public void addTrip(Trip trip) {
-        tripBook.addTrip(trip);
-        updateFilteredEtList(PREDICATE_SHOW_ALL_ET);
+    public void addPerson(Person person) {
+        addressBook.addPerson(person);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setTrip(Trip target, Trip editedTrip) {
-        requireAllNonNull(target, editedTrip);
+    public void setPerson(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
 
-        tripBook.setTrip(target, editedTrip);
+        addressBook.setPerson(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -121,16 +119,15 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Trip> getFilteredEtList() {
-        return filteredTrips;
+    public ObservableList<Person> getFilteredPersonList() {
+        return filteredPersons;
     }
 
     @Override
-    public void updateFilteredEtList(Predicate<Trip> predicate) {
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        filteredTrips.setPredicate(predicate);
+        filteredPersons.setPredicate(predicate);
     }
-
 
     @Override
     public boolean equals(Object obj) {
@@ -146,9 +143,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return tripBook.equals(other.tripBook)
+        return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredTrips.equals(other.filteredTrips);
+                && filteredPersons.equals(other.filteredPersons);
     }
 
 }
