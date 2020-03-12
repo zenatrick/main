@@ -11,8 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.budget.FixedCost;
-import seedu.address.model.person.Person;
+import seedu.address.model.et.Et;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -20,33 +19,28 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
-    private final FixedCostBook fixedCostBook;
+    private final EtBook etBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
-    private final FilteredList<FixedCost> filteredFixedCosts;
+    private final FilteredList<Et> filteredEts;
 
 
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyEtBook etBook, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(etBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + etBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.etBook = new EtBook(etBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-
-        filteredFixedCosts = new FilteredList<FixedCost>(this.fixedCostBook.getFixedCostList());
-
+        filteredEts = new FilteredList<Et>(this.etBook.getEtList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new EtBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -84,74 +78,40 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== EtBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setEtBook(ReadOnlyEtBook addressBook) {
+        this.etBook.resetData(etBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyEtBook getEtBook() {
+        return etBook;
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasEt(Et et) {
+        requireNonNull(et);
+        return etBook.hasEt(et);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteEt(Et target) {
+        etBook.removeEt(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addEt(Et et) {
+        etBook.addEt(et);
+        updateFilteredEtList(PREDICATE_SHOW_ALL_ET);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setEt(Et target, Et editedEt) {
+        requireAllNonNull(target, editedEt);
 
-        addressBook.setPerson(target, editedPerson);
-    }
-
-    @Override
-    public void setFixedCostBook(ReadOnlyFixedCostBook addressBook) {
-        this.fixedCostBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyFixedCostBook getFixedCostBook() {
-        return fixedCostBook;
-    }
-
-    @Override
-    public boolean hasFixedCost(FixedCost fixedCost) {
-        requireNonNull(fixedCost);
-        return fixedCostBook.hasFixedCost(fixedCost);
-    }
-
-    @Override
-    public void deleteFixedCost(FixedCost target) {
-        fixedCostBook.removeFixedCost(target);
-    }
-
-    @Override
-    public void addFixedCost(FixedCost fixedCost) {
-        fixedCostBook.addPerson(fixedCost);
-        updateFilteredFixedCostList(PREDICATE_SHOW_ALL_FIXED_COST);
-    }
-
-    @Override
-    public void setFixedCost(FixedCost target, FixedCost editedFixedCost) {
-        requireAllNonNull(target, editedFixedCost);
-
-        fixedCostBook.setFixedCost(target, editedFixedCost);
+        etBook.setEt(target, editedEt);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -161,25 +121,14 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Et> getFilteredEtList() {
+        return filteredEts;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredEtList(Predicate<Et> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
-
-    @Override
-    public ObservableList<FixedCost> getFilteredFixedCostList() {
-        return filteredFixedCosts;
-    }
-
-    @Override
-    public void updateFilteredFixedCostList(Predicate<FixedCost> predicate) {
-        requireNonNull(predicate);
-        filteredFixedCosts.setPredicate(predicate);
+        filteredEts.setPredicate(predicate);
     }
 
 
@@ -197,9 +146,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return etBook.equals(other.etBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredEts.equals(other.filteredEts);
     }
 
 }

@@ -5,20 +5,17 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.budget.FixedCost;
-import seedu.address.model.person.Person;
+import seedu.address.model.et.Et;
 
 /**
  * The API of the Model component.
+ * Place to add your method names,
  */
 public interface Model {
     /**
      * {@code Predicate} that always evaluate to true
      */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<FixedCost> PREDICATE_SHOW_ALL_FIXED_COST = unused -> true;
+    Predicate<Et> PREDICATE_SHOW_ALL_ET = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -51,101 +48,45 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces etBooks data with the data in {@code etBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setEtBook(ReadOnlyEtBook etBook);
 
     /**
-     * Returns the AddressBook
+     * Returns the EtBook
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyEtBook getEtBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasEt(Et et);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given et.
+     * The et must exist in the Etbook.
      */
-    void deletePerson(Person target);
+    void deleteEt(Et et);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given et.
+     * {@code person} must not already exist in the Etbook.
      */
-    void addPerson(Person person);
+    void addEt(Et et);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given Et {@code target} with {@code editedEt}.
+     * {@code target} must exist in the Etbook.
+     * The person identity of {@code editedEt} must not be the same as another existing person in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setEt(Et target, Et editedEt);
 
     /**
      * Returns an unmodifiable view of the filtered person list
      */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Et> getFilteredEtList();
 
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredPersonList(Predicate<Person> predicate);
-
-
-    // From FixedCostModel.java
-
-
-    /**
-     * Replaces FixedCost book data with the data in {@code addressBook}.
-     */
-    void setFixedCostBook(ReadOnlyFixedCostBook fixedCostBook);
-
-    /**
-     * Returns the FixedCostBook
-     */
-    ReadOnlyFixedCostBook getFixedCostBook();
-
-    /**
-     * Returns true if a FixedCost with the same identity as {@code FixedCost} exists in the address book.
-     */
-    boolean hasFixedCost(FixedCost fixedCost);
-
-    /**
-     * Deletes the given FixedCost.
-     * The FixedCost must exist in the address book.
-     */
-    void deleteFixedCost(FixedCost target);
-
-    /**
-     * Adds the given FixedCost.
-     * {@code FixedCost} must not already exist in the address book.
-     */
-    void addFixedCost(FixedCost fixedCost);
-
-    /**
-     * Replaces the given FixedCost {@code target} with {@code editedFixedCost}.
-     * {@code target} must exist in the address book.
-     * The FixedCost identity of {@code editedFixedCost} must not be the same as another existing FixedCost
-     * in the address book.
-     */
-    void setFixedCost(FixedCost target, FixedCost editedFixedCost);
-
-    /**
-     * Returns an unmodifiable view of the filtered FixedCost list
-     */
-    ObservableList<FixedCost> getFilteredFixedCostList();
-
-    /**
-     * Updates the filter of the filtered FixedCost list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredFixedCostList(Predicate<FixedCost> predicate);
+    void updateFilteredEtList(Predicate<Et> predicate);
 
 
 }

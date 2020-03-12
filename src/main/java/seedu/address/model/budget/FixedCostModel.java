@@ -1,11 +1,11 @@
-package seedu.address.model;
+package seedu.address.model.budget;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.budget.FixedCost;
+import seedu.address.model.ReadOnlyUserPrefs;
 
 /**
  * The API of the FixedCostModel component.

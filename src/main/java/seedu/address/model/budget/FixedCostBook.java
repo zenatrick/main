@@ -1,12 +1,10 @@
-package seedu.address.model;
+package seedu.address.model.budget;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.budget.FixedCost;
-import seedu.address.model.budget.UniqueFixedCostList;
 
 /**
  * Wraps all data at the FixedCost-book level
