@@ -1,7 +1,5 @@
 package seedu.address.model.budget;
 
-import seedu.address.model.budget.exceptions.InvalidIntException;
-
 /**
  * Converts the String input the user put into a Integer
  */
