@@ -12,7 +12,8 @@ public class Description {
             + "than 50 characters long.";
 
     // todo update regex to match constraints
-    public static final String VALIDATION_REGEX = "";
+    // Done description now allows for 1-50 characters long.
+    public static final String VALIDATION_REGEX = "^[A-Za-z0-9\\s]{2,50}+";
 
     private final String value;
 

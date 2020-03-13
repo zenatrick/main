@@ -37,6 +37,9 @@ class AmountTest {
         assertFalse(Amount.isValidAmount("$3000"));
         assertFalse(Amount.isValidAmount("¥3000"));
 
+        //Not valid amount
+        assertFalse(Amount.isValidAmount("1000.000"));
+
         //Valid amount
         assertTrue(Amount.isValidAmount("1000")); // Normal case
         assertTrue(Amount.isValidAmount("1")); // Only 1 digit
@@ -47,12 +50,21 @@ class AmountTest {
 
     @Test
     void testToString() {
-        assertEquals("1000", new Amount("1000").toString());
+        assertEquals("1000.00", new Amount("1000.00").toString());
     }
 
     @Test
     void testEquals() {
         assertEquals(new Amount("1000"), new Amount("1000")); // When two amounts are the same.
-        assertNotEquals(new Amount("1000"), new Amount("2000")); // When two amounts are different.
+        assertNotEquals(new Amount("1000.00"), new Amount("2000.00")); // When two amounts are different.
+    }
+
+    @Test
+    void testHashCode() {
+        // Equal Hashcode
+        assertEquals(new Amount("1000.00").hashCode(), new Amount("1000.00").hashCode());
+
+        //Non Equal Hashcode
+        assertNotEquals(new Amount("1").hashCode(), new Amount("0").hashCode());
     }
 }

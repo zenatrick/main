@@ -11,7 +11,8 @@ public class Amount {
     public static final String MESSAGE_CONSTRAINTS = "Amount must be a valid number with at most 2 decimal places.";
 
     // todo update regex
-    public static final String VALIDATION_REGEX = "[0-9]+";
+    // Done already, allows 10 digits, and at most 2 decimal places.
+    public static final String VALIDATION_REGEX = "^([\\d]{1,30})(\\.[\\d]{1,2})?$";
 
     private String value;
 
