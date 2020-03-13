@@ -1,4 +1,4 @@
-package seedu.address.model.transportation;
+package seedu.address.model.transportbooking;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.transportation.exceptions.DuplicateTransportBookingException;
-import seedu.address.model.transportation.exceptions.TransportBookingNotFoundException;
+import seedu.address.model.transportbooking.exceptions.DuplicateTransportBookingException;
+import seedu.address.model.transportbooking.exceptions.TransportBookingNotFoundException;
 
 /**
  * A list of transport bookings that enforces uniqueness between its elements and does not allow nulls.

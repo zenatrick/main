@@ -1,7 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.transportation.TransportBooking;
+import seedu.address.model.transportbooking.TransportBooking;
 
 /**
  * Unmodifiable view of a TransportBookingManager.

@@ -1,4 +1,4 @@
-package seedu.address.model.transportation;
+package seedu.address.model.transportbooking;
 
 import static java.util.Objects.requireNonNull;
 
