@@ -1,14 +1,14 @@
 package seedu.address.model;
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.packinglistitem.Item;
-import seedu.address.model.packinglistitem.ItemName;
+import seedu.address.model.packinglistitem.Name;
 import seedu.address.model.packinglistitem.Quantity;
 import seedu.address.model.packinglistitem.UniquePackingList;
 //@@author loycatherine
@@ -16,7 +16,7 @@ import seedu.address.model.packinglistitem.UniquePackingList;
 /**
  * The type Packing list manager.
  */
-public class PackingListManager implements ReadOnlyPackingList {
+public class PackingListManager implements ReadOnlyPackingListManager {
     private final UniquePackingList packingList;
 
     /*
@@ -40,7 +40,7 @@ public class PackingListManager implements ReadOnlyPackingList {
      *
      * @param toBeCopied the to be copied
      */
-    public PackingListManager(ReadOnlyPackingList toBeCopied) {
+    public PackingListManager(ReadOnlyPackingListManager toBeCopied) {
         this();
         resetDataPackingList(toBeCopied);
     }
@@ -52,7 +52,7 @@ public class PackingListManager implements ReadOnlyPackingList {
      *
      * @param newData the new data
      */
-    public void resetDataPackingList(ReadOnlyPackingList newData) {
+    public void resetDataPackingList(ReadOnlyPackingListManager newData) {
         requireNonNull(newData);
         setPackingList(newData.getPackingList());
     }
@@ -87,7 +87,7 @@ public class PackingListManager implements ReadOnlyPackingList {
      * @param quantity the quantity
      * @return the item
      */
-    public Optional<Item> getItem(ItemName name, Quantity quantity) {
+    public Optional<Item> getItem(Name name, Quantity quantity) {
         return packingList.getItem(name, quantity);
     }
 
