@@ -2,11 +2,7 @@ package seedu.address.model.trip;
 
 import java.util.Objects;
 
-import seedu.address.model.accommodation.Accommodation;
-import seedu.address.model.activity.Activity;
 import seedu.address.model.budget.FixedCost;
-import seedu.address.model.packinglist.PackingList;
-import seedu.address.model.transportation.Transportation;
 
 /**
  * This represents the "Person" of our address book.
@@ -15,40 +11,14 @@ import seedu.address.model.transportation.Transportation;
 public class Trip {
 
     //Data Fields
-    private final Activity activity;
-    private final Accommodation accommodation;
-    private final Transportation transportation;
     private final FixedCost fixedCost;
-    private final PackingList packingList;
 
-    public Trip(Activity activity, Accommodation accommodation, Transportation transportation, FixedCost fixedCost,
-                PackingList packingList) {
-        this.activity = activity;
-        this.accommodation = accommodation;
-        this.transportation = transportation;
+    public Trip(FixedCost fixedCost) {
         this.fixedCost = fixedCost;
-        this.packingList = packingList;
-    }
-
-    // Standard getter methods.
-    public Activity getActivity() {
-        return activity;
-    }
-
-    public Accommodation getAccommodation() {
-        return accommodation;
-    }
-
-    public Transportation getTransportation() {
-        return transportation;
     }
 
     public FixedCost getFixedCost() {
         return fixedCost;
-    }
-
-    public PackingList getPackingList() {
-        return packingList;
     }
 
     /**
@@ -61,15 +31,12 @@ public class Trip {
         }
 
         return otherTrip != null
-                && otherTrip.getActivity().equals(getActivity())
-                && (otherTrip.getAccommodation().equals(getAccommodation())
-                || otherTrip.getTransportation().equals(getTransportation())
-                || otherTrip.getFixedCost().equals(getFixedCost()));
+                && otherTrip.getFixedCost().equals(getFixedCost());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(activity, accommodation, transportation, fixedCost, packingList);
+        return Objects.hash(fixedCost);
     }
 
     /**
@@ -88,23 +55,13 @@ public class Trip {
         }
 
         Trip otherTrip = (Trip) other;
-        return otherTrip.getActivity().equals(getActivity())
-                && otherTrip.getAccommodation().equals(getAccommodation())
-                && otherTrip.getTransportation().equals(getTransportation())
-                && otherTrip.getFixedCost().equals(getFixedCost())
-                && otherTrip.getPackingList().equals(getPackingList());
+        return otherTrip.getFixedCost().equals(getFixedCost());
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getActivity())
-                .append(" Activity: ")
-                .append(getAccommodation())
-                .append(" Accommodation: ")
-                .append(getTransportation())
-                .append(" Transportation: ")
-                .append(getFixedCost())
+        builder.append(getFixedCost())
                 .append(" Fixed Cost: ");
         return builder.toString();
     }

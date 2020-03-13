@@ -11,6 +11,7 @@ import seedu.address.model.trip.UniqueTripList;
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
+ * The replacement for AddressBook, not used for now.
  */
 public class TripBook implements ReadOnlyTripBook {
 
