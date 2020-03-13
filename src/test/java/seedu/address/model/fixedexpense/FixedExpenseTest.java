@@ -1,15 +1,10 @@
 package seedu.address.model.fixedexpense;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 class FixedExpenseTest {
-
-    @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new FixedExpense(null, null, null));
-    }
 
     @Test
     public void constructor_invalidName_throwsIllegalArgumentException() {
@@ -19,7 +14,6 @@ class FixedExpenseTest {
         assertThrows(IllegalArgumentException.class, () -> new FixedExpense(new Amount(invalidAmount),
                 new Description(invalidDescription), new Category(invalidCategory)));
     }
-
 
 
     @Test

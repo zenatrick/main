@@ -1,8 +1,7 @@
 package seedu.address.model.fixedexpense;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.regex.Pattern;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +26,7 @@ class CategoryTest {
         assertThrows(NullPointerException.class, () -> Category.isValidCategory(null));
 
         // blank category
-        assertTrue(Category.isValidCategory(""));
+        assertFalse(Category.isValidCategory(""));
 
     }
 
