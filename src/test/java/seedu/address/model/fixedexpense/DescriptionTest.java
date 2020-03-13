@@ -34,17 +34,17 @@ class DescriptionTest {
         // invalid description
         assertFalse(Description.isValidDescription("^")); // Non-alphanumeric characters
         assertFalse(Description.isValidDescription("Dog*")); // Contains non-alphanumeric characters.
-        assertFalse(Description.isValidDescription("yoursystemrunsf1234anyhowjustpresswhymylifesobadnow" +
-                "IwanttowithdrawfromNUS")); // Contains 74 characters.
+        assertFalse(Description.isValidDescription("yoursystemrunsf1234anyhowjustpresswhymylifesobadnow"
+                + "IwanttowithdrawfromNUS")); // Contains 74 characters.
 
 
         // Valid name
         assertTrue(Description.isValidDescription("Hello ")); //Normal case
         assertTrue(Description.isValidDescription("Hello1234")); // Contains alphanumeric characters.
-        assertTrue(Description.isValidDescription("hellomynameisJ ohn123an dIamA" +
-                "Dog")); //Contains 30 alphanumeric char with spaces.
-        assertTrue(Description.isValidDescription("yoursystemrunsf1234anyhow" +
-                "justpress")); // Contains 34 characters.
+        assertTrue(Description.isValidDescription("hellomynameisJ ohn123an dIamA"
+                + "Dog")); //Contains 30 alphanumeric char with spaces.
+        assertTrue(Description.isValidDescription("yoursystemrunsf1234anyhow"
+                + "justpress")); // Contains 34 characters.
 
 
     }
