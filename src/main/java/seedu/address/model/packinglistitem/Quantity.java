@@ -17,17 +17,17 @@ public class Quantity {
     /**
      * The Quantity.
      */
-    public final int quantity;
+    public final Integer quantity;
 
     /**
      * Every field must be present and not null.
      *
-     * @param q the q
+     * @param quantity a valid quantity.
      */
-    public Quantity(int q) {
-        requireNonNull(q);
-        checkArgument(isValidQuantity(q), MESSAGE_CONSTRAINTS);
-        quantity = q;
+    public Quantity(Integer quantity) {
+        requireNonNull(quantity);
+        checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
+        this.quantity = quantity;
     }
 
     /**
@@ -43,5 +43,17 @@ public class Quantity {
     @Override
     public String toString() {
         return "" + quantity;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Quantity // instanceof handles nulls
+                && quantity.equals(((Quantity) other).quantity)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return quantity.hashCode();
     }
 }
