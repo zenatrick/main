@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.transportation.TransportBooking;
-import seedu.address.model.transportation.UniqueTransportBookingList;
+import seedu.address.model.transportbooking.TransportBooking;
+import seedu.address.model.transportbooking.UniqueTransportBookingList;
 
 /**
  * Wraps all data at the TransportBookingManager level

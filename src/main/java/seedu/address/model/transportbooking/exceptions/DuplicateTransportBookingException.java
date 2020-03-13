@@ -1,4 +1,4 @@
-package seedu.address.model.transportation.exceptions;
+package seedu.address.model.transportbooking.exceptions;
 
 /**
  * Signals that the operation will result in duplicate TransportBookings.

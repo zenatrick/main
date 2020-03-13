@@ -1,4 +1,4 @@
-package seedu.address.model.transportation;
+package seedu.address.model.transportbooking;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
