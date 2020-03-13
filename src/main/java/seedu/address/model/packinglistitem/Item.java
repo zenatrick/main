@@ -2,77 +2,45 @@ package seedu.address.model.packinglistitem;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-
-import seedu.address.model.tag.Tag;
 
 /**
- * Represents an Item in the packing list.
+ * Represents a Item in the PackingListManager.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Item {
     // Identity fields
-    private final Check check;
-    private final ItemName name;
-    private final Quantity quantity;
+    private final Name name;
 
     // Data fields
-    private final Set<Tag> tags = new HashSet<>();
+    private final boolean isChecked;
+    private final Quantity quantity;
 
     /**
      * Every field must be present and not null.
-     *
-     * @param name     the name
-     * @param quantity the quantity
-     * @param check    the check
-     * @param tags     the tags
      */
-    public Item(ItemName name, Quantity quantity, Check check, Set<Tag> tags) {
-        requireAllNonNull(name, quantity, tags);
+    public Item(Name name, Quantity quantity, boolean isChecked) {
+        requireAllNonNull(name, quantity);
         this.name = name;
         this.quantity = quantity;
-        this.check = check;
-        this.tags.addAll(tags);
+        this.isChecked = isChecked;
     }
 
-    /**
-     * Gets item name.
-     *
-     * @return the item name
-     */
-    public ItemName getItemName() {
+    public Name getItemName() {
         return name;
     }
 
-    /**
-     * Gets quantity.
-     *
-     * @return the quantity
-     */
     public Quantity getQuantity() {
         return quantity;
     }
 
     /**
-     * Gets check.
+     * Returns true of the item is checked.
      *
-     * @return the check
+     * @return true if the item is checked.
      */
-    public Check getCheck() {
-        return check;
-    }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     *
-     * @return the tags
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public boolean isChecked() {
+        return isChecked;
     }
 
     /**
@@ -80,7 +48,7 @@ public class Item {
      * This defines a weaker notion of equality between two items.
      *
      * @param otherItem the other item
-     * @return the boolean
+     * @return true if both items are the same.
      */
     public boolean isSameItem(Item otherItem) {
         if (otherItem == this) {
@@ -88,7 +56,7 @@ public class Item {
         }
 
         return otherItem != null
-                && otherItem.getItemName().equals(getItemName());
+                && otherItem.name.equals(name);
     }
 
     /**
@@ -111,20 +79,13 @@ public class Item {
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, quantity, check, tags);
+        return Objects.hash(name, quantity, isChecked);
     }
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getItemName())
-                .append(" Item Name: ")
-                .append(getQuantity())
-                .append(" Quantity: ")
-                .append(getCheck())
-                .append(" Check: ");
-        getTags().forEach(builder::append);
-        return builder.toString();
+        return "Packing list item - Name: " + name
+                + " Quantity: " + quantity
+                + " Is Checked: " + isChecked;
     }
 }

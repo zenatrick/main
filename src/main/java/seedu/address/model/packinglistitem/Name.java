@@ -7,18 +7,16 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an Item's quantity in the packing list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class ItemName {
+public class Name {
 
     /**
      * The constant MESSAGE_CONSTRAINTS.
      */
-    public static final String MESSAGE_CONSTRAINTS =
-            "Item name should only contain letters, and it should have at least 1 letter";
+    public static final String MESSAGE_CONSTRAINTS = "Name must be made up of alphanumeric words that is less "
+            + "than 50 characters long.";
 
-    /**
-     * The constant VALIDATION_REGEX.
-     */
-    public static final String VALIDATION_REGEX = "\\d{1,}";
+    // todo update regex to match constraints
+    public static final String VALIDATION_REGEX = "";
 
     /**
      * The Value.
@@ -28,20 +26,14 @@ public class ItemName {
     /**
      * Every field must be present and not null.
      *
-     * @param name the name
+     * @param name a valid name.
      */
-    public ItemName(String name) {
+    public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         value = name;
     }
 
-    /**
-     * Returns true if a given string is a valid item name.
-     *
-     * @param test the test
-     * @return the boolean
-     */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
@@ -54,8 +46,8 @@ public class ItemName {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ItemName // instanceof handles nulls
-                && value.equals(((ItemName) other).value)); // state check
+                || (other instanceof Name // instanceof handles nulls
+                && value.equals(((Name) other).value)); // state check
     }
 
     @Override

@@ -67,7 +67,7 @@ public class UniquePackingList implements Iterable<Item> {
      * @param quantity the quantity
      * @return the item
      */
-    public Optional<Item> getItem(ItemName name, Quantity quantity) {
+    public Optional<Item> getItem(Name name, Quantity quantity) {
         requireAllNonNull(name, quantity);
         return internalList.stream().filter(x -> x.getItemName().equals(name) && x.getQuantity().equals(quantity))
                 .findFirst();
