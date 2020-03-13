@@ -1,4 +1,4 @@
-package seedu.address.model.budget;
+package seedu.address.model.fixedexpense;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;

@@ -1,7 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.budget.FixedExpense;
+import seedu.address.model.fixedexpense.FixedExpense;
 
 /**
  * Unmodifiable view of a FixedExpenseManager

@@ -1,4 +1,4 @@
-package seedu.address.model.budget.exceptions;
+package seedu.address.model.fixedexpense.exceptions;
 
 /**
  * Signals that the operation will result in duplicate FixedExpenses (FixedExpenses are considered duplicates if they

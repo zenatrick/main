@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.budget.FixedExpense;
-import seedu.address.model.budget.UniqueFixedExpenseList;
+import seedu.address.model.fixedexpense.FixedExpense;
+import seedu.address.model.fixedexpense.UniqueFixedExpenseList;
 
 /**
  * Wraps all data at the FixedExpenseManager level

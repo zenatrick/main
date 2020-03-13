@@ -1,4 +1,4 @@
-package seedu.address.model.budget;
+package seedu.address.model.fixedexpense;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.budget.exceptions.DuplicateFixedExpenseException;
-import seedu.address.model.budget.exceptions.FixedExpenseNotFoundException;
+import seedu.address.model.fixedexpense.exceptions.DuplicateFixedExpenseException;
+import seedu.address.model.fixedexpense.exceptions.FixedExpenseNotFoundException;
 
 /**
  * A list of FixedExpenses that enforces uniqueness between its elements and does not allow nulls.

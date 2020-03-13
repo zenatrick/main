@@ -1,4 +1,4 @@
-package seedu.address.model.budget.exceptions;
+package seedu.address.model.fixedexpense.exceptions;
 
 /**
  * Signals that the operation is unable to find the specified fixed expense.

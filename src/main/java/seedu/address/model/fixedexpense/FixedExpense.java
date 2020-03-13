@@ -1,4 +1,4 @@
-package seedu.address.model.budget;
+package seedu.address.model.fixedexpense;
 
 import java.util.Objects;
 
