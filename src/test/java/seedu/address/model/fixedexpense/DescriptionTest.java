@@ -39,7 +39,7 @@ class DescriptionTest {
                 + "IwanttowithdrawfromNUS")); // Contains 74 characters.
 
 
-        // Valid name
+        // Valid description
         assertTrue(Description.isValidDescription("Hello ")); //Normal case
         assertTrue(Description.isValidDescription("Hello1234")); // Contains alphanumeric characters.
         assertTrue(Description.isValidDescription("hellomynameisJ ohn123an dIamA"
