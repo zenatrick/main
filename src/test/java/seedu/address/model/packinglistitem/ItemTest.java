@@ -13,7 +13,7 @@ class ItemTest {
     private final Item item = new Item(new Name("Shirt") , new Quantity(10) , false);
 
     @Test
-    public void constructor_invalidName_throwsIllegalArgumentException() {
+    public void constructorInvalidNameThrowsIllegalArgumentException() {
         String invalidName = " ";
         Integer invalidQuantity = 0;
         boolean isChecked = false;
@@ -22,7 +22,7 @@ class ItemTest {
     }
 
     @Test
-    void getItemName() {
+    public void getItemName() {
 
         // Correct case
         assertEquals(new Name("Shirt"), new Item(new Name("Shirt"),
@@ -35,7 +35,7 @@ class ItemTest {
     }
 
     @Test
-    void getQuantity() {
+    public void getQuantity() {
 
         // Correct case
         assertEquals(new Quantity(10), new Item(new Name("Shirt"),
@@ -48,7 +48,7 @@ class ItemTest {
     }
 
     @Test
-    void isChecked() {
+    public void isChecked() {
 
         // Correct case
         assertTrue(new Item(new Name("Shirt"),
@@ -57,11 +57,10 @@ class ItemTest {
         //Different case
         assertFalse(new Item(new Name("Shirt"),
                 new Quantity(10), false).isChecked());
-        ;
     }
 
     @Test
-    void isSameItem() {
+    public void isSameItem() {
         // same object -> returns true
         assertTrue(item.isSameItem(item));
 
@@ -78,7 +77,7 @@ class ItemTest {
     }
 
     @Test
-    void testEquals() {
+    public void testEquals() {
         // Same case
         Item editedItem = new Item(new Name("Shirt"), new Quantity(10), false);
         assertEquals(item, editedItem);
@@ -89,7 +88,7 @@ class ItemTest {
     }
 
     @Test
-    void testHashCode() {
+    public void testHashCode() {
 
         //Same case
         Item editedItem = new Item(new Name("Shirt"), new Quantity(10), false);
@@ -101,7 +100,7 @@ class ItemTest {
     }
 
     @Test
-    void testToString() {
+    public void testToString() {
         Item editedItem = new Item(new Name("Shirt"), new Quantity(10), false);
         assertEquals(item.toString(), editedItem.toString());
 

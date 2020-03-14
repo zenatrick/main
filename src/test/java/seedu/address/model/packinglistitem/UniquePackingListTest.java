@@ -33,23 +33,23 @@ class UniquePackingListTest {
     private final UniquePackingList uniquePackingList = new UniquePackingList();
 
     @Test
-    public void contains_nullPackingList_throwsNullPointerException() {
+    public void containsNullPackingListThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePackingList.contains(null));
     }
 
     @Test
-    public void contains_packingListNotInList_returnsFalse() {
+    public void containsPackingListNotInListReturnsFalse() {
         assertFalse(uniquePackingList.contains(FIXED_ITEM_JEANS));
     }
 
     @Test
-    public void contains_packingListInList_returnsTrue() {
+    public void containsPackingListInListReturnsTrue() {
         uniquePackingList.add(FIXED_ITEM_JEANS);
         assertTrue(uniquePackingList.contains(FIXED_ITEM_JEANS));
     }
 
     @Test
-    public void contains_packingListWithSameIdentifyFieldsInList_returnsTrue() {
+    public void containsPackingListWithSameIdentifyFieldsInListReturnsTrue() {
         //Slightly different from UniquePersonListTest, due to different
         //contains convention used for AB3 and for ours.
         uniquePackingList.add(FIXED_ITEM_JEANS);
@@ -59,37 +59,37 @@ class UniquePackingListTest {
     }
 
     @Test
-    public void add_nullPackingList_throwsNullPointerException() {
+    public void addNullPackingListThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePackingList.add(null));
     }
 
     @Test
-    public void add_duplicatePackingList_throwsDuplicatePackingListException() {
+    public void addDuplicatePackingListThrowsDuplicatePackingListException() {
         uniquePackingList.add(FIXED_ITEM_JEANS);
         assertThrows(DuplicateItemException.class, () -> uniquePackingList.add(FIXED_ITEM_JEANS));
     }
 
     @Test
-    public void setPackingList_nullTargetPackingList_throwsNullPointerException() {
+    public void setPackingListNullTargetPackingListThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePackingList.setItem(null,
                 FIXED_ITEM_JEANS));
     }
 
     @Test
-    public void setPackingList_nullPackingList_throwsNullPointerException() {
+    public void setPackingListNullPackingListThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePackingList
                 .setItem(FIXED_ITEM_JEANS,
                         null));
     }
 
     @Test
-    public void setPackingList_targetPackingListNotInList_throwsPackingListNotFoundException() {
+    public void setPackingListTargetPackingListNotInListThrowsPackingListNotFoundException() {
         assertThrows(ItemNotFoundException.class, () -> uniquePackingList.setItem(
                 FIXED_ITEM_JEANS, FIXED_ITEM_JEANS));
     }
 
     @Test
-    public void setPackingList_editedPackingListIsSamePackingList_success() {
+    public void setPackingListEditedPackingListIsSamePackingListSuccess() {
         uniquePackingList.add(FIXED_ITEM_JEANS);
         uniquePackingList.setItem(FIXED_ITEM_JEANS, FIXED_ITEM_JEANS);
         UniquePackingList expectedPackingList = new UniquePackingList();
@@ -98,7 +98,7 @@ class UniquePackingListTest {
     }
 
     @Test
-    public void setPackingListHasSameIdentity_success() {
+    public void setPackingListHasSameIdentitySuccess() {
         uniquePackingList.add(FIXED_ITEM_JEANS);
         Item item = new Item(new Name("Jeans"), new Quantity(10),
                 true);
@@ -109,7 +109,7 @@ class UniquePackingListTest {
     }
 
     @Test
-    public void setPackingList_editedPackingListHasDifferentPackingList_success() {
+    public void setPackingListEditedPackingListHasDifferentPackingListSuccess() {
         uniquePackingList.add(FIXED_ITEM_JEANS);
         uniquePackingList.setItem(FIXED_ITEM_JEANS, FIXED_ITEM_PANTS);
         UniquePackingList expectedPackingExpenseList = new UniquePackingList();
@@ -118,7 +118,7 @@ class UniquePackingListTest {
     }
 
     @Test
-    public void setPackingList_editedPackingListHasNonUniqueIdentity_throwsDuplicatePackingListException() {
+    public void setPackingListEditedPackingListHasNonUniqueIdentityThrowsDuplicatePackingListException() {
         uniquePackingList.add(FIXED_ITEM_JEANS);
         uniquePackingList.add(FIXED_ITEM_PANTS);
         assertThrows(DuplicateItemException.class, () -> uniquePackingList.setItem(
@@ -126,18 +126,18 @@ class UniquePackingListTest {
     }
 
     @Test
-    public void remove_nullPackingList_throwsNullPointerException() {
+    public void removeNullPackingListThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePackingList.remove(null));
     }
 
     @Test
-    public void remove_packingListDoesNotExist_throwsPackingListNotFoundException() {
+    public void removePackingListDoesNotExistThrowsPackingListNotFoundException() {
         assertThrows(ItemNotFoundException.class, () -> uniquePackingList
                 .remove(FIXED_ITEM_SHIRT));
     }
 
     @Test
-    public void remove_existingPackingList_removesPackingList() {
+    public void removeExistingPackingListRemovesPackingList() {
         uniquePackingList.add(FIXED_ITEM_JEANS);
         uniquePackingList.remove(FIXED_ITEM_JEANS);
         UniquePackingList expectedPackingList = new UniquePackingList();
@@ -145,13 +145,13 @@ class UniquePackingListTest {
     }
 
     @Test
-    public void setPackingList_nullUniquePackingList_throwsNullPointerException() {
+    public void setPackingListNullUniquePackingListThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePackingList
                 .setPackingLists((UniquePackingList) null));
     }
 
     @Test
-    public void setPackingList_uniquePackingList_replacesOwnListWithProvidedUniquePackingList() {
+    public void setPackingListUniquePackingListReplacesOwnListWithProvidedUniquePackingList() {
         uniquePackingList.add(FIXED_ITEM_SHIRT);
         UniquePackingList expectedUniquePackingList = new UniquePackingList();
         uniquePackingList.add(FIXED_ITEM_JEANS);
@@ -160,13 +160,13 @@ class UniquePackingListTest {
     }
 
     @Test
-    public void setUniquePackingList_nullList_throwsNullPointerException() {
+    public void setUniquePackingListNullListThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePackingList
                 .setPackingLists((List<Item>) null));
     }
 
     @Test
-    public void setUniquePackingList_list_replacesOwnListWithProvidedList() {
+    public void setUniquePackingListListReplacesOwnListWithProvidedList() {
         uniquePackingList.add(FIXED_ITEM_JEANS);
         List<Item> itemLists = Collections.singletonList(FIXED_ITEM_SHIRT);
         uniquePackingList.setPackingLists(itemLists);
@@ -176,7 +176,7 @@ class UniquePackingListTest {
     }
 
     @Test
-    public void setPackingList_listWithDuplicateFixedExpense_throwsDuplicateItemException() {
+    public void setPackingListListWithDuplicateFixedExpenseThrowsDuplicateItemException() {
         List<Item> listWithDuplicateItems = Arrays
                 .asList(FIXED_ITEM_JEANS, FIXED_ITEM_JEANS);
         assertThrows(DuplicateItemException.class, ()
@@ -184,13 +184,13 @@ class UniquePackingListTest {
     }
 
     @Test
-    public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
+    public void asUnmodifiableObservableListModifyListThrowsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePackingList.asUnmodifiableObservableList().remove(0));
     }
 
     @Test
-    void testEquals() {
+    public void testEquals() {
         UniquePackingList expectedUniquePackingLists = new UniquePackingList();
         expectedUniquePackingLists.add(FIXED_ITEM_JEANS);
         uniquePackingList.add(FIXED_ITEM_JEANS);
@@ -199,7 +199,7 @@ class UniquePackingListTest {
     }
 
     @Test
-    void testHashCode() {
+    public void testHashCode() {
         //Same Hash Code
         uniquePackingList.add(FIXED_ITEM_JEANS);
         UniquePackingList pl = new UniquePackingList();

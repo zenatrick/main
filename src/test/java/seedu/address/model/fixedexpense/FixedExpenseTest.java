@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class FixedExpenseTest {
 
     @Test
-    public void constructor_invalidName_throwsIllegalArgumentException() {
+    public void constructorInvalidNameThrowsIllegalArgumentException() {
         String invalidAmount = "";
         String invalidDescription = "";
         String invalidCategory = "";
@@ -18,7 +18,7 @@ class FixedExpenseTest {
     }
 
     @Test
-    void getAmount() {
+    public void getAmount() {
         // Correct case
         assertEquals(new Amount("100"), new FixedExpense(new Amount("100"),
                 new Description("Test"), new Category("Food")).getAmount());
@@ -29,7 +29,7 @@ class FixedExpenseTest {
     }
 
     @Test
-    void getDescription() {
+    public void getDescription() {
         // Correct case
         assertEquals(new Description("Test"), new FixedExpense(new Amount("100"),
                 new Description("Test"), new Category("Food")).getDescription());
@@ -41,7 +41,7 @@ class FixedExpenseTest {
     }
 
     @Test
-    void getCategory() {
+    public void getCategory() {
         // Correct case
         assertEquals(new Category("Food"), new FixedExpense(new Amount("100"),
                 new Description("Test"), new Category("Food")).getCategory());
@@ -52,7 +52,7 @@ class FixedExpenseTest {
     }
 
     @Test
-    void testEquals() {
+    public void testEquals() {
         //Same case
         assertEquals(new FixedExpense(new Amount("100"), new Description("Test"),
                 new Category("Food")), new FixedExpense(new Amount("100"),
@@ -65,7 +65,7 @@ class FixedExpenseTest {
     }
 
     @Test
-    void testHashCode() {
+    public void testHashCode() {
         //Same case
         assertEquals(new FixedExpense(new Amount("12345"),
                 new Description("Foody"), new Category("Haha")).hashCode(),
@@ -79,7 +79,7 @@ class FixedExpenseTest {
     }
 
     @Test
-    void testToString() {
+    public void testToString() {
         //Same case
         FixedExpense fixedExpense = new FixedExpense(new Amount("100"),
                 new Description("Food"), new Category("Eating"));

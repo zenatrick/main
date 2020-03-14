@@ -12,18 +12,18 @@ import org.junit.jupiter.api.Test;
 class ModeTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
+    public void constructorNullThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Mode(null));
     }
 
     @Test
-    public void constructor_invalidMode_throwsIllegalArgumentException() {
+    public void constructorInvalidModeThrowsIllegalArgumentException() {
         String invalidMode = "";
         assertThrows(IllegalArgumentException.class, () -> new Mode(invalidMode));
     }
 
     @Test
-    void isValidMode() {
+    public void isValidMode() {
 
         // null mode
         assertThrows(NullPointerException.class, () -> Mode.isValidMode(null));
@@ -57,7 +57,7 @@ class ModeTest {
     }
 
     @Test
-    void testToString() {
+    public void testToString() {
         assertEquals("bus", new Mode("bus").toString());
         assertEquals("PLAne", new Mode("PLAne").toString()); //Caps and non caps characters
 
@@ -66,7 +66,7 @@ class ModeTest {
     }
 
     @Test
-    void testEquals() {
+    public void testEquals() {
 
         //Equal Mode Object
         assertEquals(new Mode("plane"), new Mode("plane")); // When two description are the same.
@@ -78,7 +78,7 @@ class ModeTest {
     }
 
     @Test
-    void testHashCode() {
+    public void testHashCode() {
 
         // Equal Hashcode
         assertEquals(new Mode("plane").hashCode(), new Mode("plane").hashCode());

@@ -12,18 +12,18 @@ class CategoryTest {
 
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
+    public void constructorNullThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Category(null));
     }
 
     @Test
-    public void constructor_invalidCategory_throwsIllegalArgumentException() {
+    public void constructorInvalidCategoryThrowsIllegalArgumentException() {
         String invalidCategory = "";
         assertThrows(IllegalArgumentException.class, () -> new Category(invalidCategory));
     }
 
     @Test
-    void isValidCategory() {
+    public void isValidCategory() {
         // null category
         assertThrows(NullPointerException.class, () -> Category.isValidCategory(null));
 
@@ -43,7 +43,7 @@ class CategoryTest {
     }
 
     @Test
-    void testToString() {
+    public void testToString() {
         assertEquals("1000", new Category("1000").toString());
         assertEquals("HelloImaDog", new Category("HelloImaDog").toString());
         assertEquals("1000Money", new Category("1000Money").toString());
@@ -53,7 +53,7 @@ class CategoryTest {
     }
 
     @Test
-    void testEquals() {
+    public void testEquals() {
         //Equal Category Object
         assertEquals(new Category("1000Hello"), new Category("1000Hello")); // When two categories are the same.
 
@@ -62,7 +62,7 @@ class CategoryTest {
     }
 
     @Test
-    void testHashCode() {
+    public void testHashCode() {
         // Equal Hashcode
         assertEquals(new Category("Hashcode").hashCode(), new Category("Hashcode").hashCode());
 

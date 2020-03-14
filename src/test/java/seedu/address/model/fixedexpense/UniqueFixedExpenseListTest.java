@@ -34,23 +34,23 @@ class UniqueFixedExpenseListTest {
 
 
     @Test
-    public void contains_nullFixedExpense_throwsNullPointerException() {
+    public void containsNullFixedExpenseThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueFixedExpenseList.contains(null));
     }
 
     @Test
-    public void contains_expenseNotInList_returnsFalse() {
+    public void containsExpenseNotInListReturnsFalse() {
         assertFalse(uniqueFixedExpenseList.contains(FIXED_ACCOMMODATION_EXPENSE));
     }
 
     @Test
-    public void contains_expenseInList_returnsTrue() {
+    public void containsExpenseInListReturnsTrue() {
         uniqueFixedExpenseList.add(FIXED_ACCOMMODATION_EXPENSE);
         assertTrue(uniqueFixedExpenseList.contains(FIXED_ACCOMMODATION_EXPENSE));
     }
 
     @Test
-    public void contains_expenseWithSameIdentifyFieldsInList_returnsTrue() {
+    public void containsExpenseWithSameIdentifyFieldsInListReturnsTrue() {
         //Slightly different from UniquePersonListTest, due to different
         //contains convention used for AB3 and for ours.
         uniqueFixedExpenseList.add(FIXED_ACCOMMODATION_EXPENSE);
@@ -60,37 +60,37 @@ class UniqueFixedExpenseListTest {
     }
 
     @Test
-    public void add_nullFixedExpense_throwsNullPointerException() {
+    public void addNullFixedExpenseThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueFixedExpenseList.add(null));
     }
 
     @Test
-    public void add_duplicateFixedExpense_throwsDuplicateFixedExpenseException() {
+    public void addDuplicateFixedExpenseThrowsDuplicateFixedExpenseException() {
         uniqueFixedExpenseList.add(FIXED_ACTIVITY_EXPENSE);
         assertThrows(DuplicateFixedExpenseException.class, () -> uniqueFixedExpenseList.add(FIXED_ACTIVITY_EXPENSE));
     }
 
     @Test
-    public void setFixedExpense_nullTargetFixedExpense_throwsNullPointerException() {
+    public void setFixedExpenseNullTargetFixedExpenseThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueFixedExpenseList.setFixedExpense(null,
                 FIXED_ACTIVITY_EXPENSE));
     }
 
     @Test
-    public void setFixedExpense_nullFixedExpense_throwsNullPointerException() {
+    public void setFixedExpenseNullFixedExpenseThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueFixedExpenseList
                 .setFixedExpense(FIXED_ACCOMMODATION_EXPENSE,
                 null));
     }
 
     @Test
-    public void setFixedExpense_targetFixedExpenseNotInList_throwsFixedExpenseNotFoundException() {
+    public void setFixedExpenseTargetFixedExpenseNotInListThrowsFixedExpenseNotFoundException() {
         assertThrows(FixedExpenseNotFoundException.class, () -> uniqueFixedExpenseList.setFixedExpense(
                 FIXED_ACCOMMODATION_EXPENSE, FIXED_ACCOMMODATION_EXPENSE));
     }
 
     @Test
-    public void setFixedExpense_editedFixedExpenseIsSameFixedExpense_success() {
+    public void setFixedExpenseEditedFixedExpenseIsSameFixedExpenseSuccess() {
         uniqueFixedExpenseList.add(FIXED_ACTIVITY_EXPENSE);
         uniqueFixedExpenseList.setFixedExpense(FIXED_ACTIVITY_EXPENSE, FIXED_ACTIVITY_EXPENSE);
         UniqueFixedExpenseList expectedFixedExpenseList = new UniqueFixedExpenseList();
@@ -99,7 +99,7 @@ class UniqueFixedExpenseListTest {
     }
 
     @Test
-    public void setFixedExpenseHasSameIdentity_success() {
+    public void setFixedExpenseHasSameIdentitySuccess() {
         uniqueFixedExpenseList.add(FIXED_ACTIVITY_EXPENSE);
         FixedExpense editedExpense = new FixedExpense(new Amount("100"), new Description("Disneyland"),
                 new Category("Activity"));
@@ -110,7 +110,7 @@ class UniqueFixedExpenseListTest {
     }
 
     @Test
-    public void setFixedExpense_editedFixedExpenseHasDifferentFixedExpense_success() {
+    public void setFixedExpenseEditedFixedExpenseHasDifferentFixedExpenseSuccess() {
         uniqueFixedExpenseList.add(FIXED_ACTIVITY_EXPENSE);
         uniqueFixedExpenseList.setFixedExpense(FIXED_ACTIVITY_EXPENSE, FIXED_ACCOMMODATION_EXPENSE);
         UniqueFixedExpenseList expectedFixedExpenseList = new UniqueFixedExpenseList();
@@ -119,7 +119,7 @@ class UniqueFixedExpenseListTest {
     }
 
     @Test
-    public void setFixedExpense_editedFixedExpenseHasNonUniqueIdentity_throwsDuplicateFixedExpenseException() {
+    public void setFixedExpenseEditedFixedExpenseHasNonUniqueIdentityThrowsDuplicateFixedExpenseException() {
         uniqueFixedExpenseList.add(FIXED_ACCOMMODATION_EXPENSE);
         uniqueFixedExpenseList.add(FIXED_TRANSPORTATION_EXPENSE);
         assertThrows(DuplicateFixedExpenseException.class, () -> uniqueFixedExpenseList.setFixedExpense
@@ -127,18 +127,18 @@ class UniqueFixedExpenseListTest {
     }
 
     @Test
-    public void remove_nullFixedExpense_throwsNullPointerException() {
+    public void removeNullFixedExpenseThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueFixedExpenseList.remove(null));
     }
 
     @Test
-    public void remove_fixedExpenseDoesNotExist_throwsFixedExpenseNotFoundException() {
+    public void removeFixedExpenseDoesNotExistThrowsFixedExpenseNotFoundException() {
         assertThrows(FixedExpenseNotFoundException.class, () -> uniqueFixedExpenseList
                 .remove(FIXED_ACCOMMODATION_EXPENSE));
     }
 
     @Test
-    public void remove_existingFixedExpense_removesFixedExpense() {
+    public void removeExistingFixedExpenseRemovesFixedExpense() {
         uniqueFixedExpenseList.add(FIXED_TRANSPORTATION_EXPENSE);
         uniqueFixedExpenseList.remove(FIXED_TRANSPORTATION_EXPENSE);
         UniqueFixedExpenseList expectedUniquePersonList = new UniqueFixedExpenseList();
@@ -146,13 +146,13 @@ class UniqueFixedExpenseListTest {
     }
 
     @Test
-    public void setFixedExpense_nullUniqueFixedExpenseList_throwsNullPointerException() {
+    public void setFixedExpenseNullUniqueFixedExpenseListThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueFixedExpenseList
                 .setFixedExpenses((UniqueFixedExpenseList) null));
     }
 
     @Test
-    public void setFixedExpense_uniqueFixedExpense_replacesOwnListWithProvidedUniqueFixedExpenseList() {
+    public void setFixedExpenseUniqueFixedExpenseReplacesOwnListWithProvidedUniqueFixedExpenseList() {
         uniqueFixedExpenseList.add(FIXED_TRANSPORTATION_EXPENSE);
         UniqueFixedExpenseList expectedFixedExpenseList = new UniqueFixedExpenseList();
         uniqueFixedExpenseList.add(FIXED_ACCOMMODATION_EXPENSE);
@@ -161,13 +161,13 @@ class UniqueFixedExpenseListTest {
     }
 
     @Test
-    public void setFixedExpense_nullList_throwsNullPointerException() {
+    public void setFixedExpenseNullListThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueFixedExpenseList
                 .setFixedExpenses((List<FixedExpense>) null));
     }
 
     @Test
-    public void setFixedExpense_list_replacesOwnListWithProvidedList() {
+    public void setFixedExpenseListReplacesOwnListWithProvidedList() {
         uniqueFixedExpenseList.add(FIXED_TRANSPORTATION_EXPENSE);
         List<FixedExpense> fixedExpenseLists = Collections.singletonList(FIXED_ACCOMMODATION_EXPENSE);
         uniqueFixedExpenseList.setFixedExpenses(fixedExpenseLists);
@@ -177,7 +177,7 @@ class UniqueFixedExpenseListTest {
     }
 
     @Test
-    public void setFixedExpense_listWithDuplicateFixedExpense_throwsDuplicateFixedExpenseException() {
+    public void setFixedExpenseListWithDuplicateFixedExpenseThrowsDuplicateFixedExpenseException() {
         List<FixedExpense> listWithDuplicateFixedExpenses = Arrays
                 .asList(FIXED_ACCOMMODATION_EXPENSE, FIXED_ACCOMMODATION_EXPENSE);
         assertThrows(DuplicateFixedExpenseException.class, ()
@@ -185,13 +185,13 @@ class UniqueFixedExpenseListTest {
     }
 
     @Test
-    public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
+    public void asUnmodifiableObservableListModifyListThrowsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueFixedExpenseList.asUnmodifiableObservableList().remove(0));
     }
 
     @Test
-    void testEquals() {
+    public void testEquals() {
         UniqueFixedExpenseList expectedUniqueFixedExpenseLists = new UniqueFixedExpenseList();
         expectedUniqueFixedExpenseLists.add(FIXED_ACCOMMODATION_EXPENSE);
         uniqueFixedExpenseList.add(FIXED_ACCOMMODATION_EXPENSE);
@@ -199,7 +199,7 @@ class UniqueFixedExpenseListTest {
     }
 
     @Test
-    void testHashCode() {
+    public void testHashCode() {
         //Same Hash Code
         uniqueFixedExpenseList.add(FIXED_ACCOMMODATION_EXPENSE);
         UniqueFixedExpenseList ue = new UniqueFixedExpenseList();

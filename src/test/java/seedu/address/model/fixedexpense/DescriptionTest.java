@@ -11,18 +11,18 @@ import org.junit.jupiter.api.Test;
 class DescriptionTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
+    public void constructorNullThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Description(null));
     }
 
     @Test
-    public void constructor_invalidDescription_throwsIllegalArgumentException() {
+    public void constructorInvalidDescriptionThrowsIllegalArgumentException() {
         String invalidDescription = "";
         assertThrows(IllegalArgumentException.class, () -> new Description(invalidDescription));
     }
 
     @Test
-    void isValidDescription() {
+    public void isValidDescription() {
 
         // null description
         assertThrows(NullPointerException.class, () -> Description.isValidDescription(null));
@@ -51,7 +51,7 @@ class DescriptionTest {
     }
 
     @Test
-    void testToString() {
+    public void testToString() {
         assertEquals("1000", new Description("1000").toString());
         assertEquals("HelloImaDog", new Description("HelloImaDog").toString()); //Caps and non caps characters
         assertEquals("1000Money", new Description("1000Money").toString()); //Alphanumeric
@@ -62,7 +62,7 @@ class DescriptionTest {
     }
 
     @Test
-    void testEquals() {
+    public void testEquals() {
         //Equal Description Object
         assertEquals(new Description("Food"), new Description("Food")); // When two description are the same.
 
@@ -72,7 +72,7 @@ class DescriptionTest {
     }
 
     @Test
-    void testHashCode() {
+    public void testHashCode() {
         // Equal Hashcode
         assertEquals(new Description("Hashcode").hashCode(), new Description("Hashcode").hashCode());
 

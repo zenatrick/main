@@ -12,19 +12,19 @@ import org.junit.jupiter.api.Test;
 class AmountTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
+    public void constructorNullThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Amount(null));
     }
 
     @Test
-    public void constructor_invalidAmount_throwsIllegalArgumentException() {
+    public void constructorInvalidAmountThrowsIllegalArgumentException() {
         String invalidAmount = "";
         assertThrows(IllegalArgumentException.class, () -> new Amount(invalidAmount));
     }
 
 
     @Test
-    void isValidAmount() {
+    public void isValidAmount() {
 
         // null Amount
         assertThrows(NullPointerException.class, () -> Amount.isValidAmount(null));
@@ -49,18 +49,18 @@ class AmountTest {
     }
 
     @Test
-    void testToString() {
+    public void testToString() {
         assertEquals("1000.00", new Amount("1000.00").toString());
     }
 
     @Test
-    void testEquals() {
+    public void testEquals() {
         assertEquals(new Amount("1000"), new Amount("1000")); // When two amounts are the same.
         assertNotEquals(new Amount("1000.00"), new Amount("2000.00")); // When two amounts are different.
     }
 
     @Test
-    void testHashCode() {
+    public void testHashCode() {
         // Equal Hashcode
         assertEquals(new Amount("1000.00").hashCode(), new Amount("1000.00").hashCode());
 

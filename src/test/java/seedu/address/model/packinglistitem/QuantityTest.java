@@ -11,18 +11,18 @@ import org.junit.jupiter.api.Test;
 class QuantityTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
+    public void constructorNullThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Quantity(null));
     }
 
     @Test
-    public void constructor_invalidQuantity_throwsIllegalArgumentException() {
+    public void constructorInvalidQuantityThrowsIllegalArgumentException() {
         Integer integer = (Integer) 0;
         assertThrows(IllegalArgumentException.class, () -> new Quantity(integer));
     }
 
     @Test
-    void isValidQuantity() {
+    public void isValidQuantity() {
 
         // null quantity
         Integer integer = (Integer) null;
@@ -40,7 +40,7 @@ class QuantityTest {
     }
 
     @Test
-    void testToString() {
+    public void testToString() {
 
         assertEquals("10", new Quantity(10).toString());
 
@@ -50,7 +50,7 @@ class QuantityTest {
     }
 
     @Test
-    void testEquals() {
+    public void testEquals() {
 
         //Equal Description Object
         assertEquals(new Quantity(18), new Quantity(18)); // When two quantities are the same.
@@ -61,7 +61,7 @@ class QuantityTest {
     }
 
     @Test
-    void testHashCode() {
+    public void testHashCode() {
 
         // Equal Hashcode
         assertEquals(new Quantity(1).hashCode(), new Quantity(1).hashCode());

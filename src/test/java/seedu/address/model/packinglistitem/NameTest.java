@@ -12,19 +12,19 @@ import org.junit.jupiter.api.Test;
 class NameTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
+    public void constructorNullThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Name(null));
     }
 
     @Test
-    public void constructor_invalidName_throwsIllegalArgumentException() {
+    public void constructorInvalidNameThrowsIllegalArgumentException() {
         String invalidName = "";
         assertThrows(IllegalArgumentException.class, () -> new Name(invalidName));
     }
 
 
     @Test
-    void isValidName() {
+    public void isValidName() {
 
         // null name
         assertThrows(NullPointerException.class, () -> Name.isValidName(null));
@@ -52,7 +52,7 @@ class NameTest {
     }
 
     @Test
-    void testToString() {
+    public void testToString() {
 
         assertEquals("1000", new Name("1000").toString());
         assertEquals("HelloImaDog", new Name("HelloImaDog").toString()); //Caps and non caps characters
@@ -65,7 +65,7 @@ class NameTest {
     }
 
     @Test
-    void testEquals() {
+    public void testEquals() {
         //Equal Description Object
         assertEquals(new Name("10Shirt"), new Name("10Shirt")); // When two name are the same.
 

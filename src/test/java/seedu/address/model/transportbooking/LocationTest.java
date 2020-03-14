@@ -12,12 +12,12 @@ import org.junit.jupiter.api.Test;
 class LocationTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
+    public void constructorNullThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Location(null));
     }
 
     @Test
-    public void constructor_invalidLocation_throwsIllegalArgumentException() {
+    public void constructorInvalidLocationThrowsIllegalArgumentException() {
         String invalidLocation = "";
         assertThrows(IllegalArgumentException.class, () -> new Location(invalidLocation));
     }
@@ -25,7 +25,7 @@ class LocationTest {
 
 
     @Test
-    void isValidLocation() {
+    public void isValidLocation() {
 
         // null location
         assertThrows(NullPointerException.class, () -> Location.isValidLocation(null));
@@ -52,7 +52,7 @@ class LocationTest {
     }
 
     @Test
-    void testToString() {
+    public void testToString() {
 
         assertEquals("Jurong", new Location("Jurong").toString());
         assertEquals("Changi Airport", new Location("Changi Airport").toString()); //Caps and non caps characters
@@ -63,7 +63,7 @@ class LocationTest {
     }
 
     @Test
-    void testEquals() {
+    public void testEquals() {
         //Equal Location Object
         assertEquals(new Location("Airport"), new Location("Airport")); // When two locations are the same.
 
@@ -72,7 +72,7 @@ class LocationTest {
     }
 
     @Test
-    void testHashCode() {
+    public void testHashCode() {
         // Equal Hashcode
         assertEquals(new Location("Hashcode").hashCode(), new Location("Hashcode").hashCode());
 
