@@ -75,7 +75,7 @@ class NameTest {
     }
 
     @Test
-    void testHashCode() {
+    public void testHashCode() {
 
         // Equal Hashcode
         assertEquals(new Name("Hashcode").hashCode(), new Name("Hashcode").hashCode());
