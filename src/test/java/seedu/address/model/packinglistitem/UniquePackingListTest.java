@@ -1,6 +1,5 @@
 package seedu.address.model.packinglistitem;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -13,10 +12,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.fixedexpense.FixedExpense;
-import seedu.address.model.fixedexpense.UniqueFixedExpenseList;
-import seedu.address.model.fixedexpense.exceptions.DuplicateFixedExpenseException;
-import seedu.address.model.fixedexpense.exceptions.FixedExpenseNotFoundException;
 import seedu.address.model.packinglistitem.exceptions.DuplicateItemException;
 import seedu.address.model.packinglistitem.exceptions.ItemNotFoundException;
 
@@ -106,7 +101,7 @@ class UniquePackingListTest {
     public void setPackingListHasSameIdentity_success() {
         uniquePackingList.add(FIXED_ITEM_JEANS);
         Item item = new Item(new Name("Jeans"), new Quantity(10),
-                        true);
+                true);
         uniquePackingList.setItem(FIXED_ITEM_JEANS, item);
         UniquePackingList expectedUniquePackingList = new UniquePackingList();
         expectedUniquePackingList.add(item);
@@ -119,7 +114,7 @@ class UniquePackingListTest {
         uniquePackingList.setItem(FIXED_ITEM_JEANS, FIXED_ITEM_PANTS);
         UniquePackingList expectedPackingExpenseList = new UniquePackingList();
         expectedPackingExpenseList.add(FIXED_ITEM_PANTS);
-        assertEquals(expectedPackingExpenseList,uniquePackingList);
+        assertEquals(expectedPackingExpenseList, uniquePackingList);
     }
 
     @Test
@@ -127,7 +122,7 @@ class UniquePackingListTest {
         uniquePackingList.add(FIXED_ITEM_JEANS);
         uniquePackingList.add(FIXED_ITEM_PANTS);
         assertThrows(DuplicateItemException.class, () -> uniquePackingList.setItem(
-                FIXED_ITEM_JEANS,FIXED_ITEM_PANTS));
+                FIXED_ITEM_JEANS, FIXED_ITEM_PANTS));
     }
 
     @Test
@@ -136,7 +131,7 @@ class UniquePackingListTest {
     }
 
     @Test
-    public void remove_PackingListDoesNotExist_throwsPackingListNotFoundException() {
+    public void remove_packingListDoesNotExist_throwsPackingListNotFoundException() {
         assertThrows(ItemNotFoundException.class, () -> uniquePackingList
                 .remove(FIXED_ITEM_SHIRT));
     }
@@ -185,13 +180,13 @@ class UniquePackingListTest {
         List<Item> listWithDuplicateItems = Arrays
                 .asList(FIXED_ITEM_JEANS, FIXED_ITEM_JEANS);
         assertThrows(DuplicateItemException.class, ()
-               -> uniquePackingList.setPackingLists(listWithDuplicateItems));
+            -> uniquePackingList.setPackingLists(listWithDuplicateItems));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-                -> uniquePackingList.asUnmodifiableObservableList().remove(0));
+            -> uniquePackingList.asUnmodifiableObservableList().remove(0));
     }
 
     @Test
@@ -216,8 +211,4 @@ class UniquePackingListTest {
         diffPl.add(FIXED_ITEM_SHIRT);
         assertNotEquals(diffPl.hashCode(), uniquePackingList.hashCode());
     }
-
-
-
-
 }

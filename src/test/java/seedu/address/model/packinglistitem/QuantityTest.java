@@ -30,13 +30,13 @@ class QuantityTest {
 
         // invalid quantity
         assertFalse(Quantity.isValidQuantity(0)); // 0 quantity.
-        assertFalse(Quantity.isValidQuantity(-100)); // Negative quantity
-        assertFalse(Quantity.isValidQuantity(3/4)); // Fraction Quantity
-        assertFalse(Quantity.isValidQuantity(1000)); // More then 100 quantity.
+        assertFalse(Quantity.isValidQuantity(-100)); //Negative quantity
+        assertFalse(Quantity.isValidQuantity(3 / 4)); //Fraction Quantity
+        assertFalse(Quantity.isValidQuantity(1000)); //More then 100 quantity.
 
         // Valid quantity
         assertTrue(Quantity.isValidQuantity(4)); //Normal case
-        assertTrue(Quantity.isValidQuantity(18)); // Normal case
+        assertTrue(Quantity.isValidQuantity(18)); //Normal case
     }
 
     @Test

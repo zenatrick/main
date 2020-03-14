@@ -1,10 +1,13 @@
 package seedu.address.model.transportbooking;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.fixedexpense.Description;
 
 class ModeTest {
 
@@ -23,7 +26,7 @@ class ModeTest {
     void isValidMode() {
 
         // null mode
-        assertThrows(NullPointerException.class, () -> Description.isValidDescription(null));
+        assertThrows(NullPointerException.class, () -> Mode.isValidMode(null));
 
         // blank mode
         assertFalse(Mode.isValidMode("")); // Empty string
@@ -56,10 +59,10 @@ class ModeTest {
     @Test
     void testToString() {
         assertEquals("bus", new Mode("bus").toString());
-        assertEquals("PLAne", new Description("PLAne").toString()); //Caps and non caps characters
+        assertEquals("PLAne", new Mode("PLAne").toString()); //Caps and non caps characters
 
         //Wrong toString
-        assertNotEquals("Wrong", new Description("Rocket").toString());
+        assertNotEquals("Wrong", new Mode("Plane").toString());
     }
 
     @Test

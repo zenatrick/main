@@ -1,17 +1,16 @@
 package seedu.address.model.packinglistitem;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.fixedexpense.Amount;
-import seedu.address.model.fixedexpense.FixedExpense;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
-
 class ItemTest {
 
-    Item item = new Item(new Name("Shirt"), new Quantity(10), false);
+    private final Item item = new Item(new Name("Shirt") , new Quantity(10) , false);
 
     @Test
     public void constructor_invalidName_throwsIllegalArgumentException() {
@@ -57,7 +56,8 @@ class ItemTest {
 
         //Different case
         assertFalse(new Item(new Name("Shirt"),
-                new Quantity(10), false).isChecked());;
+                new Quantity(10), false).isChecked());
+        ;
     }
 
     @Test
@@ -85,7 +85,7 @@ class ItemTest {
 
         //Different case
         editedItem = new Item(new Name("Pants"), new Quantity(1), false);
-        assertNotEquals(editedItem,item);
+        assertNotEquals(editedItem, item);
     }
 
     @Test
@@ -106,7 +106,7 @@ class ItemTest {
         assertEquals(item.toString(), editedItem.toString());
 
         editedItem = new Item(new Name("Pants"), new Quantity(1), false);
-        assertNotEquals(editedItem.toString(),item.toString());
+        assertNotEquals(editedItem.toString(), item.toString());
 
     }
 }
