@@ -2,6 +2,7 @@ package seedu.address.model.fixedexpense;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -189,52 +190,21 @@ class UniqueFixedExpenseListTest {
             -> uniqueFixedExpenseList.asUnmodifiableObservableList().remove(0));
     }
 
-
-    @Test
-    void forEach() {
-    }
-
-    @Test
-    void spliterator() {
-    }
-
-    @Test
-    void contains() {
-    }
-
-    @Test
-    void add() {
-    }
-
-    @Test
-    void setFixedExpense() {
-    }
-
-    @Test
-    void remove() {
-    }
-
-    @Test
-    void setFixedExpenses() {
-    }
-
-    @Test
-    void testSetFixedExpenses() {
-    }
-
-    @Test
-    void asUnmodifiableObservableList() {
-    }
-
-    @Test
-    void iterator() {
-    }
-
     @Test
     void testEquals() {
     }
 
     @Test
     void testHashCode() {
+        //Same Hash Code
+        uniqueFixedExpenseList.add(FIXED_ACCOMMODATION_EXPENSE);
+        UniqueFixedExpenseList ue = new UniqueFixedExpenseList();
+        ue.add(FIXED_ACCOMMODATION_EXPENSE);
+        assertEquals(uniqueFixedExpenseList.hashCode() , ue.hashCode());
+
+        //Different Hash code
+        UniqueFixedExpenseList diffUe = new UniqueFixedExpenseList();
+        diffUe.add(FIXED_ACTIVITY_EXPENSE);
+        assertNotEquals(diffUe.hashCode(), uniqueFixedExpenseList.hashCode());
     }
 }
