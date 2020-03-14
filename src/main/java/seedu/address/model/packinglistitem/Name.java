@@ -16,7 +16,8 @@ public class Name {
             + "than 50 characters long.";
 
     // todo update regex to match constraints
-    public static final String VALIDATION_REGEX = "";
+    // Allows for 50 alphanumeric characters.
+    public static final String VALIDATION_REGEX = "^(?!\\s*$)[A-Za-z0-9\\s]{1,50}+";
 
     /**
      * The Value.

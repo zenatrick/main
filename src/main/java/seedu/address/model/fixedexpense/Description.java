@@ -13,7 +13,8 @@ public class Description {
 
     // todo update regex to match constraints
     // Done description now allows for 1-50 characters long.
-    public static final String VALIDATION_REGEX = "^[A-Za-z0-9\\s]{2,50}+";
+    // Spaces does not count.
+    public static final String VALIDATION_REGEX = "^(?!\\s*$)[A-Za-z0-9\\s]{1,50}+";
 
     private final String value;
 

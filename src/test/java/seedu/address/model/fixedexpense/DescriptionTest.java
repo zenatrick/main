@@ -29,7 +29,8 @@ class DescriptionTest {
 
         // blank description
         assertFalse(Description.isValidDescription("")); // Empty string
-        assertFalse(Description.isValidDescription(" ")); // Spaces only
+        assertFalse(Description.isValidDescription("  ")); // Multiple Spaces
+        assertFalse(Description.isValidDescription(" ")); // Single space
 
         // invalid description
         assertFalse(Description.isValidDescription("^")); // Non-alphanumeric characters
@@ -63,10 +64,10 @@ class DescriptionTest {
     @Test
     void testEquals() {
         //Equal Description Object
-        assertEquals(new Description("1000"), new Description("1000")); // When two amounts are the same.
+        assertEquals(new Description("Food"), new Description("Food")); // When two description are the same.
 
         //Non Equal Description Object
-        assertNotEquals(new Description("1000"), new Description("2000")); // When two amounts are different.
+        assertNotEquals(new Description("Foody"), new Description("Food")); // When two description are different.
 
     }
 
@@ -76,7 +77,7 @@ class DescriptionTest {
         assertEquals(new Description("Hashcode").hashCode(), new Description("Hashcode").hashCode());
 
         //Non Equal Hashcode
-        assertNotEquals(new Category("hashcode").hashCode(), new Category("HashCode").hashCode());
+        assertNotEquals(new Description("hashcode").hashCode(), new Description("HashCode").hashCode());
 
     }
 }

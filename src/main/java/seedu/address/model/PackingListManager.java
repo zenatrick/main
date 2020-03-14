@@ -64,7 +64,7 @@ public class PackingListManager implements ReadOnlyPackingListManager {
      * @param packingList the packing list
      */
     public void setPackingList(List<Item> packingList) {
-        this.packingList.setPackingList(packingList);
+        this.packingList.setPackingLists(packingList);
     }
 
     //// packing list-level operations

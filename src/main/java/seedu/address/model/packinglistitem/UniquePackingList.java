@@ -117,7 +117,7 @@ public class UniquePackingList implements Iterable<Item> {
      *
      * @param replacement the replacement
      */
-    public void setPackingList(UniquePackingList replacement) {
+    public void setPackingLists(UniquePackingList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -128,7 +128,7 @@ public class UniquePackingList implements Iterable<Item> {
      *
      * @param items the items
      */
-    public void setPackingList(List<Item> items) {
+    public void setPackingLists(List<Item> items) {
         requireAllNonNull(items);
         if (!itemsAreUnique(items)) {
             throw new DuplicateItemException();

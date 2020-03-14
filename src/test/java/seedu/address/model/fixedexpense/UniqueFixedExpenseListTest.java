@@ -169,19 +169,19 @@ class UniqueFixedExpenseListTest {
     @Test
     public void setFixedExpense_list_replacesOwnListWithProvidedList() {
         uniqueFixedExpenseList.add(FIXED_TRANSPORTATION_EXPENSE);
-        List<FixedExpense> fixedExpenseList = Collections.singletonList(FIXED_ACCOMMODATION_EXPENSE);
-        uniqueFixedExpenseList.setFixedExpenses(fixedExpenseList);
+        List<FixedExpense> fixedExpenseLists = Collections.singletonList(FIXED_ACCOMMODATION_EXPENSE);
+        uniqueFixedExpenseList.setFixedExpenses(fixedExpenseLists);
         UniqueFixedExpenseList expectedUniqueFixedExpenseList = new UniqueFixedExpenseList();
         expectedUniqueFixedExpenseList.add(FIXED_ACCOMMODATION_EXPENSE);
         assertEquals(expectedUniqueFixedExpenseList, uniqueFixedExpenseList);
     }
 
     @Test
-    public void setFixedExpense_listWithDuplicateFixedExpense_throwsDuplicatePersonException() {
-        List<FixedExpense> listWithDuplicateFixedExpense = Arrays
+    public void setFixedExpense_listWithDuplicateFixedExpense_throwsDuplicateFixedExpenseException() {
+        List<FixedExpense> listWithDuplicateFixedExpenses = Arrays
                 .asList(FIXED_ACCOMMODATION_EXPENSE, FIXED_ACCOMMODATION_EXPENSE);
         assertThrows(DuplicateFixedExpenseException.class, ()
-            -> uniqueFixedExpenseList.setFixedExpenses(listWithDuplicateFixedExpense));
+            -> uniqueFixedExpenseList.setFixedExpenses(listWithDuplicateFixedExpenses));
     }
 
     @Test
@@ -192,6 +192,10 @@ class UniqueFixedExpenseListTest {
 
     @Test
     void testEquals() {
+        UniqueFixedExpenseList expectedUniqueFixedExpenseLists = new UniqueFixedExpenseList();
+        expectedUniqueFixedExpenseLists.add(FIXED_ACCOMMODATION_EXPENSE);
+        uniqueFixedExpenseList.add(FIXED_ACCOMMODATION_EXPENSE);
+        assertEquals(uniqueFixedExpenseList, expectedUniqueFixedExpenseLists);
     }
 
     @Test
