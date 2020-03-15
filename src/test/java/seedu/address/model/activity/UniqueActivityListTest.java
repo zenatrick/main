@@ -154,7 +154,7 @@ class UniqueActivityListTest {
     @Test
     public void setActivityListNullUniqueActivityListThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueActivityList
-                .setActivityList((UniqueActivityList) null));
+                .setActivity((UniqueActivityList) null));
     }
 
     @Test
@@ -162,21 +162,21 @@ class UniqueActivityListTest {
         uniqueActivityList.add(FIXED_ACTIVITY_3);
         UniqueActivityList expectedUniqueActivityList = new UniqueActivityList();
         uniqueActivityList.add(FIXED_ACTIVITY_1);
-        uniqueActivityList.setActivityList(expectedUniqueActivityList);
+        uniqueActivityList.setActivity(expectedUniqueActivityList);
         assertEquals(expectedUniqueActivityList, uniqueActivityList);
     }
 
     @Test
     public void setUniqueActivityListNullListThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueActivityList
-                .setActivityList((List<Activity>) null));
+                .setActivity((List<Activity>) null));
     }
 
     @Test
     public void setUniqueActivityListListReplacesOwnListWithProvidedList() {
         uniqueActivityList.add(FIXED_ACTIVITY_1);
         List<Activity> activityLists = Collections.singletonList(FIXED_ACTIVITY_3);
-        uniqueActivityList.setActivityList(activityLists);
+        uniqueActivityList.setActivity(activityLists);
         UniqueActivityList expectedUniqueActivityList = new UniqueActivityList();
         expectedUniqueActivityList.add(FIXED_ACTIVITY_3);
         assertEquals(expectedUniqueActivityList, uniqueActivityList);
@@ -187,7 +187,7 @@ class UniqueActivityListTest {
         List<Activity> listWithDuplicateActivity = Arrays
                 .asList(FIXED_ACTIVITY_1, FIXED_ACTIVITY_1);
         assertThrows(DuplicateActivityException.class, ()
-                -> uniqueActivityList.setActivityList(listWithDuplicateActivity));
+                -> uniqueActivityList.setActivity(listWithDuplicateActivity));
     }
 
     @Test

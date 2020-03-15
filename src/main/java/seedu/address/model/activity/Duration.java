@@ -5,15 +5,15 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Priority in an Activity.
+ * Represents a Duration in an Activity.
  * Guarantees: immutable; is valid as declared in {@link #isValidDuration(String)}
  */
 public class Duration {
-    public static final String MESSAGE_CONSTRAINTS = "Amount must be a valid number less than 32";
+    public static final String MESSAGE_CONSTRAINTS = "Time (Hours) must be a valid number less than 24";
 
     // todo update regex
-    // Done already, allows 10 digits, and at most 2 decimal places.
-    public static final int VALIDATION_MAX_DAYS = 31;
+    public static final int VALIDATION_MAX_HOURS = 24;
+    public static final int VALIDATION_MIN_HOURS = 1;
     public static final String VALIDATION_REGEX = "\\d{2,}";
 
     private String value;
@@ -30,8 +30,9 @@ public class Duration {
     public static boolean isValidDuration(String test) {
         try {
             boolean isValidRegex = test.matches(VALIDATION_REGEX);
-            boolean isValidDays = Integer.parseInt(test) <= VALIDATION_MAX_DAYS;
-            return isValidDays && isValidRegex;
+            boolean isValidHour = Integer.parseInt(test) <= VALIDATION_MAX_HOURS &&
+                    Integer.parseInt(test) > VALIDATION_MIN_HOURS;
+            return isValidHour && isValidRegex;
         }
         catch (Exception e){
             return false;
