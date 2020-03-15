@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Duration in an Activity.
+ * Represents a Priority in an Activity.
  * Guarantees: immutable; is valid as declared in {@link #isValidDuration(String)}
  */
 public class Duration {
