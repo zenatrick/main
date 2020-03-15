@@ -7,7 +7,10 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.fixedexpense.FixedExpense;
+import seedu.address.model.packinglistitem.Item;
 import seedu.address.model.person.Person;
+import seedu.address.model.transportbooking.TransportBooking;
 
 /**
  * Panel containing the list of persons.
@@ -15,9 +18,9 @@ import seedu.address.model.person.Person;
 public class TabPanel extends UiPart<Region> {
     private static final String FXML = "TabPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TabPanel.class);
-    private PersonListPanel personListPanel1;
-    private PersonListPanel personListPanel2;
-    private PersonListPanel personListPanel3;
+    private PackingListPanel packingListPanel;
+    private FixedExpensePanel fixedExpensePanel;
+    private TransportBookingPanel transportBookingPanel;
 
     @FXML
     private StackPane personListPanelPlaceholder1;
@@ -28,13 +31,16 @@ public class TabPanel extends UiPart<Region> {
     @FXML
     private StackPane personListPanelPlaceholder3;
 
-    public TabPanel(ObservableList<Person> personList) {
+    public TabPanel(ObservableList<Person> personList,
+                    ObservableList<FixedExpense> expenseList,
+                    ObservableList<Item>itemList,
+                    ObservableList<TransportBooking> transportList) {
         super(FXML);
-        personListPanel1 = new PersonListPanel(personList);
-        personListPanel2 = new PersonListPanel(personList);
-        personListPanel3 = new PersonListPanel(personList);
-        personListPanelPlaceholder1.getChildren().add(personListPanel1.getRoot());
-        personListPanelPlaceholder2.getChildren().add(personListPanel2.getRoot());
-        personListPanelPlaceholder3.getChildren().add(personListPanel3.getRoot());
+        packingListPanel = new PackingListPanel(itemList);
+        fixedExpensePanel = new FixedExpensePanel(expenseList);
+        transportBookingPanel = new TransportBookingPanel(transportList);
+        personListPanelPlaceholder1.getChildren().add(packingListPanel.getRoot());
+        personListPanelPlaceholder2.getChildren().add(fixedExpensePanel.getRoot());
+        personListPanelPlaceholder3.getChildren().add(transportBookingPanel.getRoot());
     }
 }

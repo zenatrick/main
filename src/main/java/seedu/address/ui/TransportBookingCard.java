@@ -5,14 +5,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.packinglistitem.Item;
+import seedu.address.model.transportbooking.TransportBooking;
 
 /**
  * An UI component that displays information of a {@code Person}.
  */
 public class TransportBookingCard extends UiPart<Region> {
 
-    private static final String FXML = "PackingListCard.fxml";
+    private static final String FXML = "TransportBookingCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -22,30 +22,42 @@ public class TransportBookingCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Item item;
+    public final TransportBooking transportBooking;
 
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label mode;
     @FXML
     private Label id;
     @FXML
-    private Label quantity;
+    private Label startlocation;
     @FXML
-    private Label ischecked;
+    private Label endlocation;
     @FXML
-    private Label category;
+    private Label starttime;
+    @FXML
+    private Label endtime;
     @FXML
     private FlowPane tags;
 
-    public TransportBookingCard(Item item, int displayedIndex) {
+    public TransportBookingCard(TransportBooking transportBooking, int displayedIndex) {
         super(FXML);
-        this.item = item;
+        this.transportBooking = transportBooking;
         id.setText(displayedIndex + ". ");
-        name.setText(item.getItemName().toString());
-        quantity.setText("Quantity: " + item.getQuantity().toString());
-        ischecked.setText("Is Checked: " + item.isChecked());
+        mode.setText(transportBooking.getMode().value);
+        startlocation.setText("Start location is: " + transportBooking.getStartLocation().value);
+        endlocation.setText("End location is: " + transportBooking.getEndLocation().value);
+
+        String startTime = transportBooking.getStartTime().value.toString();
+        startTime = startTime.substring(0, 10) + " , " + startTime.substring(11);
+
+        starttime.setText("Start time is: " + startTime);
+
+        String endTime = transportBooking.getEndTime().value.toString();
+        endTime = endTime.substring(0, 10) + " , " + endTime.substring(11);
+
+        endtime.setText("End time is: " + endTime);
     }
 
     @Override
@@ -63,6 +75,6 @@ public class TransportBookingCard extends UiPart<Region> {
         // state check
         TransportBookingCard card = (TransportBookingCard) other;
         return id.getText().equals(card.id.getText())
-                && item.equals(card.item);
+                && transportBooking.equals(card.transportBooking);
     }
 }

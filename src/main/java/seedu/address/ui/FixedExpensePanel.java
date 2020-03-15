@@ -10,6 +10,9 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.fixedexpense.FixedExpense;
 
+/**
+ * Panel containing the list of fixedExpense.
+ */
 public class FixedExpensePanel extends UiPart<Region> {
 
     private static final String FXML = "FixedExpensePanel.fxml";
@@ -24,14 +27,17 @@ public class FixedExpensePanel extends UiPart<Region> {
         fixedExpenseListView.setCellFactory(listView -> new FixedListViewCell());
     }
 
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code FixedExpense} using a {@code FixedExpenseCard}.
+     */
     class FixedListViewCell extends ListCell<FixedExpense> {
         @Override
         protected void updateItem(FixedExpense fixedExpense, boolean empty) {
-            if(empty || fixedExpense == null) {
+            if (empty || fixedExpense == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new FixedExpenseCard(fixedExpense, getIndex() +1).getRoot());
+                setGraphic(new FixedExpenseCard(fixedExpense, getIndex() + 1).getRoot());
             }
         }
     }
