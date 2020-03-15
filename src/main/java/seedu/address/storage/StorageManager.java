@@ -10,6 +10,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.listmanager.ReadOnlyTransportBookingManager;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -18,12 +19,15 @@ public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
+    private TransportBookingStorage transportBookingStorage;
     private UserPrefsStorage userPrefsStorage;
 
-
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage,
+                          TransportBookingStorage transportBookingStorage,
+                          UserPrefsStorage userPrefsStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
+        this.transportBookingStorage = transportBookingStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -72,6 +76,38 @@ public class StorageManager implements Storage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    // ================ TransportBookingManager methods ==============================
+
+    @Override
+    public Path getTransportBookingStorageFilePath() {
+        return transportBookingStorage.getTransportBookingStorageFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyTransportBookingManager> readTransportBookings() throws DataConversionException,
+            IOException {
+        return readTransportBookings(transportBookingStorage.getTransportBookingStorageFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyTransportBookingManager> readTransportBookings(
+            Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return transportBookingStorage.readTransportBookings(filePath);
+    }
+
+    @Override
+    public void saveTransportBookings(ReadOnlyTransportBookingManager transportBookingManager) throws IOException {
+        saveTransportBookings(transportBookingManager, transportBookingStorage.getTransportBookingStorageFilePath());
+    }
+
+    @Override
+    public void saveTransportBookings(
+            ReadOnlyTransportBookingManager transportBookingManager, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        transportBookingStorage.saveTransportBookings(transportBookingManager, filePath);
     }
 
 }
