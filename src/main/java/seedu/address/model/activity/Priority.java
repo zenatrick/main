@@ -19,10 +19,10 @@ public class Priority {
 
     private String value;
 
-    public Priority(String duration) {
-        requireNonNull(duration);
-        checkArgument(isValidPriority(duration), MESSAGE_CONSTRAINTS);
-        value = duration;
+    public Priority(String priority) {
+        requireNonNull(priority);
+        checkArgument(isValidPriority(priority), MESSAGE_CONSTRAINTS);
+        value = priority;
     }
 
     /**

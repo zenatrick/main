@@ -82,12 +82,12 @@ public class UniqueActivityList implements Iterable<Activity> {
         }
     }
 
-    public void setActivity(seedu.address.model.activity.UniqueActivityList replacement) {
+    public void setActivityList(seedu.address.model.activity.UniqueActivityList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
-    public void setActivity(List<Activity> activity) {
+    public void setActivityList(List<Activity> activity) {
         requireAllNonNull(activity);
         if (!activitiesAreUnique(activity)) {
             throw new DuplicateActivityException();
