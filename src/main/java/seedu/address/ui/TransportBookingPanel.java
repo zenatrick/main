@@ -8,32 +8,40 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.packinglistitem.Item;
+import seedu.address.model.transportbooking.TransportBooking;
 
+/**
+ * Panel containing the list of transportBookings.
+ */
 public class TransportBookingPanel extends UiPart<Region> {
 
-    private static final String FXML = "PackingListPanel.fxml";
+    private static final String FXML = "TransportBookingPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TransportBookingPanel.class);
 
     @FXML
-    private ListView<Item> packingListView;
+    private ListView<TransportBooking> transportBookingListView;
 
-    public TransportBookingPanel(ObservableList<Item> packingList) {
+    public TransportBookingPanel(ObservableList<TransportBooking> transportBookingList) {
         super(FXML);
-        packingListView.setItems(packingList);
-        packingListView.setCellFactory(listView -> new PackingListViewCell());
+        transportBookingListView.setItems(transportBookingList);
+        transportBookingListView.setCellFactory(listView -> new TransportListViewCell());
     }
 
-    class PackingListViewCell extends ListCell<Item> {
+    /**
+     * Custom {@code ListCell} that displays the graphics of a
+     * {@code TransportList} using a {@code TransportBookingCard}.
+     */
+    class TransportListViewCell extends ListCell<TransportBooking> {
         @Override
-        protected void updateItem(Item item, boolean empty) {
-            if(empty || item == null) {
+        protected void updateItem(TransportBooking transportBooking, boolean empty) {
+            if (empty || transportBooking == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PackingListCard(item, getIndex()+1).getRoot());
+                setGraphic(new TransportBookingCard(transportBooking, getIndex() + 1).getRoot());
             }
         }
     }
+
 
 }

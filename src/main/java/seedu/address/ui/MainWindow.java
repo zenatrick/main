@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -16,6 +18,20 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.FixedExpenseManager;
+import seedu.address.model.PackingListManager;
+import seedu.address.model.TransportBookingManager;
+import seedu.address.model.fixedexpense.Amount;
+import seedu.address.model.fixedexpense.Category;
+import seedu.address.model.fixedexpense.Description;
+import seedu.address.model.fixedexpense.FixedExpense;
+import seedu.address.model.packinglistitem.Item;
+import seedu.address.model.packinglistitem.Name;
+import seedu.address.model.packinglistitem.Quantity;
+import seedu.address.model.transportbooking.Location;
+import seedu.address.model.transportbooking.Mode;
+import seedu.address.model.transportbooking.Time;
+import seedu.address.model.transportbooking.TransportBooking;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +50,10 @@ public class MainWindow extends UiPart<Stage> {
     private TabPanel tabPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    private FixedExpenseManager fixedExpenseManager = new FixedExpenseManager();
+    private PackingListManager packingListManager = new PackingListManager();
+    private TransportBookingManager transportBookingManager = new TransportBookingManager();
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -56,6 +76,37 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+
+        //Add the Objects you want to see on the tab.
+        FixedExpense fixedExpense = new FixedExpense(new Amount("1000"),
+                new Description("Flight from Singapore to Hong Kong"), new Category("Flights"));
+
+        //Note: Category cannot have spaces. Etc: "Plane Ticket"
+        FixedExpense fixedExpense1 = new FixedExpense(new Amount("1000"),
+                new Description("Flight from Hong Kong to Singapore"), new Category("Flights"));
+
+        Item item = new Item(new Name("Uniqlo Shirt"), new Quantity(10), false);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime futureDateTime = LocalDateTime.parse("2017-05-05 10:30", formatter);
+        LocalDateTime currentDateTime = LocalDateTime.parse("2017-03-05 10:30", formatter);
+        Time currentTime = new Time(currentDateTime);
+        Time futureTime = new Time(futureDateTime);
+
+        TransportBooking transportBooking = new TransportBooking(new Mode("Bus"),
+                new Location("Jurong"), new Location("Changi"),
+               currentTime, futureTime);
+
+        //Add the objects into the list
+        fixedExpenseManager.addFixedExpense(fixedExpense);
+        fixedExpenseManager.addFixedExpense(fixedExpense1);
+
+        //Packing List items
+        packingListManager.addItem(item);
+
+        //Transportation booking list items
+        transportBookingManager.addTransportBooking(transportBooking);
+
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -107,7 +158,10 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        tabPanel = new TabPanel(logic.getFilteredPersonList());
+        tabPanel = new TabPanel(logic.getFilteredPersonList(),
+                fixedExpenseManager.getFixedExpenseList(),
+                packingListManager.getPackingList(),
+                transportBookingManager.getTransportBookings());
         tabPanelPlaceholder.getChildren().add(tabPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
