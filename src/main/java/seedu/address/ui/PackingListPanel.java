@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.packinglistitem.Item;
+import seedu.address.model.packinglistitem.PackingListItem;
 
 /**
  * Panel containing the list of items.
@@ -19,9 +19,9 @@ public class PackingListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(PackingListPanel.class);
 
     @FXML
-    private ListView<Item> packingListView;
+    private ListView<PackingListItem> packingListView;
 
-    public PackingListPanel(ObservableList<Item> packingList) {
+    public PackingListPanel(ObservableList<PackingListItem> packingList) {
         super(FXML);
         packingListView.setItems(packingList);
         packingListView.setCellFactory(listView -> new PackingListViewCell());
@@ -30,9 +30,9 @@ public class PackingListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Item} using a {@code PackingListCard}.
      */
-    class PackingListViewCell extends ListCell<Item> {
+    class PackingListViewCell extends ListCell<PackingListItem> {
         @Override
-        protected void updateItem(Item item, boolean empty) {
+        protected void updateItem(PackingListItem item, boolean empty) {
             if (empty || item == null) {
                 setGraphic(null);
                 setText(null);
