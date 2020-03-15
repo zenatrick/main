@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Title in an Activity.
+ * Represents an Title in Activity.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Title {
@@ -48,8 +48,8 @@ public class Title {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.packinglistitem.Name // instanceof handles nulls
-                && value.equals(((seedu.address.model.packinglistitem.Name) other).value)); // state check
+                || (other instanceof seedu.address.model.activity.Title // instanceof handles nulls
+                && value.equals(((seedu.address.model.activity.Title) other).value)); // state check
     }
 
     @Override
