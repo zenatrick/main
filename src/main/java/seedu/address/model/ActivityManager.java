@@ -36,8 +36,20 @@ public class ActivityManager implements ReadOnlyActivityManager {
      * Replaces the contents of the Activity list with {@code Activity}.
      * {@code Activity} must not contain duplicate activity.
      */
-    public void setActivity(List<Activity> Activity) {
-        this.uniqueActivityLists.setActivity(Activity);
+    public void setActivity(List<Activity> activity) {
+        this.uniqueActivityLists.setActivity(activity);
+    }
+
+    /**
+     * Replaces the given fixed activity {@code target} in the list with {@code editedActivity}.
+     * {@code target} must exist in the ActivityManager.
+     * The Activity identity of {@code editedActivity} must not be the same as another existing fixed activity
+     * in the ActivityManager.
+     */
+    public void setActivity(Activity target, Activity editedActivity) {
+        requireNonNull(editedActivity);
+
+        uniqueActivityLists.setActivity(target, editedActivity);
     }
 
     /**
@@ -62,18 +74,6 @@ public class ActivityManager implements ReadOnlyActivityManager {
      */
     public void addActivity(Activity f) {
         uniqueActivityLists.add(f);
-    }
-
-    /**
-     * Replaces the given fixed activity {@code target} in the list with {@code editedActivity}.
-     * {@code target} must exist in the ActivityManager.
-     * The Activity identity of {@code editedActivity} must not be the same as another existing fixed activity
-     * in the ActivityManager.
-     */
-    public void setActivity(Activity target, Activity editedActivity) {
-        requireNonNull(editedActivity);
-
-        uniqueActivityLists.setActivity(target, editedActivity);
     }
 
     /**

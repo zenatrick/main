@@ -56,7 +56,6 @@ public class UniqueActivityList implements Iterable<Activity> {
      * The Activity identity of {@code editedActivity} must not be the same as another existing Activity
      * in the list
      */
-
     public void setActivity(Activity target, Activity editedActivity) {
         requireAllNonNull(target, editedActivity);
         int index = internalList.indexOf(target);
@@ -82,12 +81,12 @@ public class UniqueActivityList implements Iterable<Activity> {
         }
     }
 
-    public void setActivityList(seedu.address.model.activity.UniqueActivityList replacement) {
+    public void setActivity(seedu.address.model.activity.UniqueActivityList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
-    public void setActivityList(List<Activity> activity) {
+    public void setActivity(List<Activity> activity) {
         requireAllNonNull(activity);
         if (!activitiesAreUnique(activity)) {
             throw new DuplicateActivityException();

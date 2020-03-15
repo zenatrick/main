@@ -1,7 +1,5 @@
 package seedu.address.model.activity;
 
-
-
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transportbooking.Location;
 
