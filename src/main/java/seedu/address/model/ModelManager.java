@@ -23,25 +23,41 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final TransportBookingManager transportBookingManager;
+    private final FixedExpenseManager fixedExpenseManager;
+    private final PackingListManager packingListManager;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<TransportBooking> filteredTransportBookingList;
+    private final FilteredList<FixedExpense> filteredFixedExpenseList;
+    private final FilteredList<PackingListItem> filteredPackingList;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given managers and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTransportBookingManager transportBookingManager,
+                        ReadOnlyFixedExpenseManager fixedExpenseManager, ReadOnlyPackingListManager packingListManager,
+                        ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.transportBookingManager = new TransportBookingManager(transportBookingManager);
+        this.fixedExpenseManager = new FixedExpenseManager(fixedExpenseManager);
+        this.packingListManager = new PackingListManager(packingListManager);
         this.userPrefs = new UserPrefs(userPrefs);
+
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTransportBookingList = new FilteredList<>(this.transportBookingManager.getTransportBookings());
+        filteredFixedExpenseList = new FilteredList<>(this.fixedExpenseManager.getFixedExpenseList());
+        filteredPackingList = new FilteredList<>(this.packingListManager.getPackingList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new TransportBookingManager(), new FixedExpenseManager(), new PackingListManager(),
+                new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -111,7 +127,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
@@ -137,32 +152,36 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasTransportBooking(TransportBooking target) {
-        return false;
+        requireNonNull(target);
+        return transportBookingManager.hasTransportBooking(target);
     }
 
     @Override
     public void deleteTransportBooking(TransportBooking toDelete) {
-
+        transportBookingManager.removeTransportBooking(toDelete);
     }
 
     @Override
     public void addTransportBooking(TransportBooking toAdd) {
-
+        transportBookingManager.addTransportBooking(toAdd);
+        updateFilteredTransportBookingList(PREDICATE_SHOW_ALL_TRANSPORT_BOOKINGS);
     }
 
     @Override
     public void setTransportBooking(TransportBooking target, TransportBooking edited) {
-
+        requireAllNonNull(target, edited);
+        transportBookingManager.setTransportBooking(target, edited);
     }
 
     @Override
     public ObservableList<TransportBooking> getFilteredTransportBookingList() {
-        return null;
+        return filteredTransportBookingList;
     }
 
     @Override
     public void updateFilteredTransportBookingList(Predicate<TransportBooking> predicate) {
-
+        requireNonNull(predicate);
+        filteredTransportBookingList.setPredicate(predicate);
     }
 
     // ========== FixedExpenseManager ==========
