@@ -1,47 +1,36 @@
 package seedu.address.model.transportbooking;
 
 import static java.util.Objects.requireNonNull;
-
-import java.time.LocalDateTime;
-
-//import static seedu.address.commons.util.AppUtil.checkArgument;
-//
-///**
-// * Represents a TransportBooking's start or end time in the TransportBookingManager.
-// * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
-// */
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a TransportBooking's start or end time in the TransportBookingManager.
- * Guarantees: immutable
+ * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)} )}
  */
 public class Time {
 
-    // todo check time is within trip's start and end time
+    // TODO: Check time is within trip's start and end time
+    public static final String MESSAGE_CONSTRAINTS = "Time must be within the trip's start and end time.";
 
-    //public static final String MESSAGE_CONSTRAINTS = "Time must be within the trip's start and end "
-    //        + "time.";
-
-    public final LocalDateTime value;
+    public final String value;
 
     /**
      * Constructs  {@code Time}.
      *
      * @param time A valid time.
      */
-    public Time(LocalDateTime time) {
+    public Time(String time) {
         requireNonNull(time);
-        //checkArgument(isValidStartTime(startTime), MESSAGE_CONSTRAINTS);
-        //assume value to be valid
+        checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
         value = time;
     }
 
-    ///**
-    // * Returns true if a given string is a valid start time, within the trip's start and end time.
-    // */
-    //public static boolean isValidStartTime(LocalDateTime tripStartTime, LocalDateTime tripEndTime) {
-    //    return value.compareTo(tripStartTime) >= 0 && value.compareTo(tripEndTime) <= 0;
-    //}
+    /**
+     * Returns true if a given string is a valid time, within the trip's start and end time.
+     */
+    public static boolean isValidTime(String test) {
+        return true;
+    }
 
     public int compareTo(Time otherTime) {
         return value.compareTo(otherTime.value);
@@ -49,7 +38,7 @@ public class Time {
 
     @Override
     public String toString() {
-        return value.toString();
+        return value;
     }
 
     @Override
