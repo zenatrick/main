@@ -10,15 +10,15 @@ import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.packinglistitem.exceptions.DuplicateItemException;
-import seedu.address.model.packinglistitem.exceptions.ItemNotFoundException;
+import seedu.address.model.packinglistitem.exceptions.DuplicatePackingListItemException;
+import seedu.address.model.packinglistitem.exceptions.PackingListItemNotFoundException;
 
 /**
  * The type Unique item list.
  */
-public class UniquePackingList implements Iterable<Item> {
-    private final ObservableList<Item> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Item> internalUnmodifiableList =
+public class UniquePackingList implements Iterable<PackingListItem> {
+    private final ObservableList<PackingListItem> internalList = FXCollections.observableArrayList();
+    private final ObservableList<PackingListItem> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
@@ -27,10 +27,10 @@ public class UniquePackingList implements Iterable<Item> {
      *
      * @param toAdd the to add
      */
-    public void add (Item toAdd) {
+    public void add (PackingListItem toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateItemException();
+            throw new DuplicatePackingListItemException();
         }
         internalList.add(toAdd);
     }
@@ -41,21 +41,21 @@ public class UniquePackingList implements Iterable<Item> {
      * @param index the index
      * @param toAdd the to add
      */
-    public void addAtIndex(Index index, Item toAdd) {
+    public void addAtIndex(Index index, PackingListItem toAdd) {
         requireAllNonNull(index, toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateItemException();
+            throw new DuplicatePackingListItemException();
         }
         internalList.add(index.getZeroBased(), toAdd);
     }
 
     /**
-     * Returns true if the list contains an equivalent Item as the given argument.
+     * Returns true if the list contains an equivalent PackingListItem as the given argument.
      *
      * @param toCheck the to check
      * @return the boolean
      */
-    public boolean contains(Item toCheck) {
+    public boolean contains(PackingListItem toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameItem);
     }
@@ -67,7 +67,7 @@ public class UniquePackingList implements Iterable<Item> {
      * @param quantity the quantity
      * @return the item
      */
-    public Optional<Item> getItem(Name name, Quantity quantity) {
+    public Optional<PackingListItem> getItem(Name name, Quantity quantity) {
         requireAllNonNull(name, quantity);
         return internalList.stream().filter(x -> x.getItemName().equals(name) && x.getQuantity().equals(quantity))
                 .findFirst();
@@ -79,7 +79,7 @@ public class UniquePackingList implements Iterable<Item> {
      * @param toFind the to find
      * @return the optional
      */
-    public Optional<Index> indexOf(Item toFind) {
+    public Optional<Index> indexOf(PackingListItem toFind) {
         requireNonNull(toFind);
         int indexOfToFind = internalList.indexOf(toFind);
         if (indexOfToFind == -1) {
@@ -90,26 +90,26 @@ public class UniquePackingList implements Iterable<Item> {
     }
 
     /**
-     * Replaces the item {@code target} in the list with {@code editedItem}.
+     * Replaces the item {@code target} in the list with {@code editedPackingListItem}.
      * {@code target} must exist in the list.
-     * The item identity of {@code editedItem} must not be the same as another existing item in the list.
+     * The item identity of {@code editedPackingListItem} must not be the same as another existing item in the list.
      *
      * @param target     the target
-     * @param editedItem the edited item
+     * @param editedPackingListItem the edited item
      */
-    public void setItem(Item target, Item editedItem) {
-        requireAllNonNull(target, editedItem);
+    public void setItem(PackingListItem target, PackingListItem editedPackingListItem) {
+        requireAllNonNull(target, editedPackingListItem);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new ItemNotFoundException();
+            throw new PackingListItemNotFoundException();
         }
 
-        if (!target.isSameItem(editedItem) && contains(editedItem)) {
-            throw new DuplicateItemException();
+        if (!target.isSameItem(editedPackingListItem) && contains(editedPackingListItem)) {
+            throw new DuplicatePackingListItemException();
         }
 
-        internalList.set(index, editedItem);
+        internalList.set(index, editedPackingListItem);
     }
 
     /**
@@ -123,18 +123,18 @@ public class UniquePackingList implements Iterable<Item> {
     }
 
     /**
-     * Replaces the contents of this list with {@code items}.
-     * {@code items} must not contain duplicate items.
+     * Replaces the contents of this list with {@code packingListItems}.
+     * {@code packingListItems} must not contain duplicate packingListItems.
      *
-     * @param items the items
+     * @param packingListItems the packingListItems
      */
-    public void setPackingList(List<Item> items) {
-        requireAllNonNull(items);
-        if (!itemsAreUnique(items)) {
-            throw new DuplicateItemException();
+    public void setPackingList(List<PackingListItem> packingListItems) {
+        requireAllNonNull(packingListItems);
+        if (!itemsAreUnique(packingListItems)) {
+            throw new DuplicatePackingListItemException();
         }
 
-        internalList.setAll(items);
+        internalList.setAll(packingListItems);
     }
 
     /**
@@ -143,10 +143,10 @@ public class UniquePackingList implements Iterable<Item> {
      *
      * @param toRemove the to remove
      */
-    public void remove(Item toRemove) {
+    public void remove(PackingListItem toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new ItemNotFoundException();
+            throw new PackingListItemNotFoundException();
         }
     }
 
@@ -155,12 +155,12 @@ public class UniquePackingList implements Iterable<Item> {
      *
      * @return the observable list
      */
-    public ObservableList<Item> asUnmodifiableObservableList() {
+    public ObservableList<PackingListItem> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<Item> iterator() {
+    public Iterator<PackingListItem> iterator() {
         return internalList.iterator();
     }
 
@@ -179,7 +179,7 @@ public class UniquePackingList implements Iterable<Item> {
     /**
      * Returns true if {@code items} contains only unique items.
      */
-    private boolean itemsAreUnique(List<Item> packingList) {
+    private boolean itemsAreUnique(List<PackingListItem> packingList) {
         for (int i = 0; i < packingList.size() - 1; i++) {
             for (int j = i + 1; j < packingList.size(); j++) {
                 if (packingList.get(i).isSameItem(packingList.get(j))) {

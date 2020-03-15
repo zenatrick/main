@@ -7,8 +7,8 @@ import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.packinglistitem.Item;
 import seedu.address.model.packinglistitem.Name;
+import seedu.address.model.packinglistitem.PackingListItem;
 import seedu.address.model.packinglistitem.Quantity;
 import seedu.address.model.packinglistitem.UniquePackingList;
 //@@author loycatherine
@@ -63,7 +63,7 @@ public class PackingListManager implements ReadOnlyPackingListManager {
      *
      * @param packingList the packing list
      */
-    public void setPackingList(List<Item> packingList) {
+    public void setPackingList(List<PackingListItem> packingList) {
         this.packingList.setPackingList(packingList);
     }
 
@@ -72,33 +72,33 @@ public class PackingListManager implements ReadOnlyPackingListManager {
     /**
      * Returns true if a contacts with the same identity as {@code contacts} exists in the address book.
      *
-     * @param item the item
+     * @param packingListItem the packingListItem
      * @return the boolean
      */
-    public boolean hasItem(Item item) {
-        requireNonNull(item);
-        return packingList.contains(item);
+    public boolean hasItem(PackingListItem packingListItem) {
+        requireNonNull(packingListItem);
+        return packingList.contains(packingListItem);
     }
 
     /**
-     * Returns the Item that matches the specified name and address
+     * Returns the PackingListItem that matches the specified name and address
      *
      * @param name     the name
      * @param quantity the quantity
      * @return the item
      */
-    public Optional<Item> getItem(Name name, Quantity quantity) {
+    public Optional<PackingListItem> getItem(Name name, Quantity quantity) {
         return packingList.getItem(name, quantity);
     }
 
     /**
-     * Return the optional index of Item to find in {@code packingList}. Returns empty optional if
+     * Return the optional index of PackingListItem to find in {@code packingList}. Returns empty optional if
      * not found.
      *
      * @param toFind the to find
      * @return the optional
      */
-    public Optional<Index> findItemIndex(Item toFind) {
+    public Optional<Index> findItemIndex(PackingListItem toFind) {
         return packingList.indexOf(toFind);
     }
 
@@ -106,10 +106,10 @@ public class PackingListManager implements ReadOnlyPackingListManager {
      * Adds a contacts to the address book.
      * The contacts must not already exist in the address book.
      *
-     * @param item the item
+     * @param packingListItem the packingListItem
      */
-    public void addItem(Item item) {
-        packingList.add(item);
+    public void addItem(PackingListItem packingListItem) {
+        packingList.add(packingListItem);
     }
 
     /**
@@ -117,10 +117,10 @@ public class PackingListManager implements ReadOnlyPackingListManager {
      * The contacts must not already exist in the address book.
      *
      * @param index the index
-     * @param item  the item
+     * @param packingListItem  the packingListItem
      */
-    public void addItemAtIndex(Index index, Item item) {
-        packingList.addAtIndex(index, item);
+    public void addItemAtIndex(Index index, PackingListItem packingListItem) {
+        packingList.addAtIndex(index, packingListItem);
     }
 
     /**
@@ -130,12 +130,12 @@ public class PackingListManager implements ReadOnlyPackingListManager {
      * book.
      *
      * @param target     the target
-     * @param editedItem the edited item
+     * @param editedPackingListItem the edited item
      */
-    public void setItem(Item target, Item editedItem) {
-        requireNonNull(editedItem);
+    public void setItem(PackingListItem target, PackingListItem editedPackingListItem) {
+        requireNonNull(editedPackingListItem);
 
-        packingList.setItem(target, editedItem);
+        packingList.setItem(target, editedPackingListItem);
     }
 
     /**
@@ -144,7 +144,7 @@ public class PackingListManager implements ReadOnlyPackingListManager {
      *
      * @param key the key
      */
-    public void removeItem(Item key) {
+    public void removeItem(PackingListItem key) {
         packingList.remove(key);
     }
 
@@ -156,7 +156,7 @@ public class PackingListManager implements ReadOnlyPackingListManager {
     }
 
     @Override
-    public ObservableList<Item> getPackingList() {
+    public ObservableList<PackingListItem> getPackingList() {
         return packingList.asUnmodifiableObservableList();
     }
 

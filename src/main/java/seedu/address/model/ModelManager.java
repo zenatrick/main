@@ -11,7 +11,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.fixedexpense.FixedExpense;
+import seedu.address.model.packinglistitem.PackingListItem;
 import seedu.address.model.person.Person;
+import seedu.address.model.transportbooking.TransportBooking;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -127,6 +130,103 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    // TODO: Implement the methods below
+    // ========== TransportBookingManager ==========
+
+    @Override
+    public boolean hasTransportBooking(TransportBooking target) {
+        return false;
+    }
+
+    @Override
+    public void deleteTransportBooking(TransportBooking toDelete) {
+
+    }
+
+    @Override
+    public void addTransportBooking(TransportBooking toAdd) {
+
+    }
+
+    @Override
+    public void setTransportBooking(TransportBooking target, TransportBooking edited) {
+
+    }
+
+    @Override
+    public ObservableList<TransportBooking> getFilteredTransportBookingList() {
+        return null;
+    }
+
+    @Override
+    public void updateFilteredTransportBookingList(Predicate<TransportBooking> predicate) {
+
+    }
+
+    // ========== FixedExpenseManager ==========
+
+    @Override
+    public boolean hasFixedExpense(FixedExpense target) {
+        return false;
+    }
+
+    @Override
+    public void deleteFixedExpense(FixedExpense toDelete) {
+
+    }
+
+    @Override
+    public void addFixedExpense(FixedExpense toAdd) {
+
+    }
+
+    @Override
+    public void setFixedExpense(FixedExpense target, FixedExpense edited) {
+
+    }
+
+    @Override
+    public ObservableList<FixedExpense> getFilteredFixedExpenseList() {
+        return null;
+    }
+
+    @Override
+    public void updateFilteredFixedExpenseList(Predicate<FixedExpense> predicate) {
+
+    }
+
+    // ========== PackingListManager ==========
+
+    @Override
+    public boolean hasPackingListItem(PackingListItem target) {
+        return false;
+    }
+
+    @Override
+    public void deletePackingListItem(PackingListItem toDelete) {
+
+    }
+
+    @Override
+    public void addPackingListItem(PackingListItem toAdd) {
+
+    }
+
+    @Override
+    public void setPackingListItem(PackingListItem target, PackingListItem edited) {
+
+    }
+
+    @Override
+    public ObservableList<PackingListItem> getFilteredPackingList() {
+        return null;
+    }
+
+    @Override
+    public void updateFilteredPackingList(Predicate<PackingListItem> predicate) {
+
     }
 
     @Override
