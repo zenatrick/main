@@ -11,11 +11,11 @@ import seedu.address.commons.core.GuiSettings;
  * Represents User's preferences.
  */
 public class UserPrefs implements ReadOnlyUserPrefs {
+    private static final Path DEFAULT_FOLDER_PATH = Path.of("data");
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path storageFilePath = Path.of("data", "filename.json");
-    private Path addressBookFilePath = storageFilePath.resolve("addressbook.json");
-    private Path transportBookingStorageFilePath = storageFilePath.resolve("transportation.json");
+    private Path addressBookFilePath = DEFAULT_FOLDER_PATH.resolve("addressbook.json");
+    private Path transportBookingStorageFilePath = DEFAULT_FOLDER_PATH.resolve("transportation.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
