@@ -5,10 +5,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 /**
- * Represents a Item in the PackingListManager.
+ * Represents a PackingListItem in the PackingListManager.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Item {
+public class PackingListItem {
     // Identity fields
     private final Name name;
 
@@ -19,7 +19,7 @@ public class Item {
     /**
      * Every field must be present and not null.
      */
-    public Item(Name name, Quantity quantity, boolean isChecked) {
+    public PackingListItem(Name name, Quantity quantity, boolean isChecked) {
         requireAllNonNull(name, quantity);
         this.name = name;
         this.quantity = quantity;
@@ -47,16 +47,16 @@ public class Item {
      * Returns true if both items of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two items.
      *
-     * @param otherItem the other item
+     * @param otherPackingListItem the other item
      * @return true if both items are the same.
      */
-    public boolean isSameItem(Item otherItem) {
-        if (otherItem == this) {
+    public boolean isSameItem(PackingListItem otherPackingListItem) {
+        if (otherPackingListItem == this) {
             return true;
         }
 
-        return otherItem != null
-                && otherItem.name.equals(name);
+        return otherPackingListItem != null
+                && otherPackingListItem.name.equals(name);
     }
 
     /**
@@ -69,12 +69,12 @@ public class Item {
             return true;
         }
 
-        if (!(other instanceof Item)) {
+        if (!(other instanceof PackingListItem)) {
             return false;
         }
 
-        Item otherItem = (Item) other;
-        return otherItem.getItemName().equals(getItemName());
+        PackingListItem otherPackingListItem = (PackingListItem) other;
+        return otherPackingListItem.getItemName().equals(getItemName());
     }
 
     @Override

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Item's quantity in the packing list.
+ * Represents an PackingListItem's quantity in the packing list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Name {
