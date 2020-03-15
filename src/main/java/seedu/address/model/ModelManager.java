@@ -66,6 +66,12 @@ public class ModelManager implements Model {
                 new UserPrefs());
     }
 
+    // Temporary constructor
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTransportBookingManager transportBookingManager,
+                        ReadOnlyUserPrefs userPrefs) {
+        this(addressBook, transportBookingManager, new FixedExpenseManager(), new PackingListManager(), userPrefs);
+    }
+
     //=========== UserPrefs ==================================================================================
 
     @Override

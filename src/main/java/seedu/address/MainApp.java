@@ -21,12 +21,16 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.listmanager.ReadOnlyTransportBookingManager;
+import seedu.address.model.listmanager.TransportBookingManager;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonTransportBookingStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.TransportBookingStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -56,8 +60,10 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
+        TransportBookingStorage transportBookingStorage =
+                new JsonTransportBookingStorage((userPrefs.getTransportBookingStorageFilePath()));
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        storage = new StorageManager(addressBookStorage, transportBookingStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -78,7 +84,7 @@ public class MainApp extends Application {
         ReadOnlyAddressBook initialData;
         try {
             addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            if (addressBookOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
@@ -90,7 +96,32 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        ReadOnlyTransportBookingManager transportBookingManager = initTransportBookingManager(storage);
+
+        return new ModelManager(initialData, transportBookingManager, userPrefs);
+    }
+
+    /**
+     * Returns a {@code ReadOnly} with the data from {@code storage}'s transport bookings.
+     * The data from the sample transport bookings will be used instead if {@code storage}'s address book is not found,
+     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     */
+    private ReadOnlyTransportBookingManager initTransportBookingManager(Storage storage) {
+        try {
+            Optional<ReadOnlyTransportBookingManager> transportBookingManagerOptional = storage.readTransportBookings();
+            if (transportBookingManagerOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample TransportBookingManager.");
+            }
+            return transportBookingManagerOptional.orElseGet(SampleDataUtil::getSampleTransportBookingManager);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty"
+                    + "TransportBookingManager.");
+            return new TransportBookingManager();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty "
+                    + "TransportBookingManager.");
+            return new TransportBookingManager();
+        }
     }
 
     private void initLogging(Config config) {
@@ -103,11 +134,7 @@ public class MainApp extends Application {
      * if {@code configFilePath} is null.
      */
     protected Config initConfig(Path configFilePath) {
-        Config initializedConfig;
-        Path configFilePathUsed;
-
-        configFilePathUsed = Config.DEFAULT_CONFIG_FILE;
-
+        Path configFilePathUsed = Config.DEFAULT_CONFIG_FILE;
         if (configFilePath != null) {
             logger.info("Custom Config file specified " + configFilePath);
             configFilePathUsed = configFilePath;
@@ -115,6 +142,7 @@ public class MainApp extends Application {
 
         logger.info("Using config file : " + configFilePathUsed);
 
+        Config initializedConfig;
         try {
             Optional<Config> configOptional = ConfigUtil.readConfig(configFilePathUsed);
             initializedConfig = configOptional.orElse(new Config());
@@ -124,7 +152,7 @@ public class MainApp extends Application {
             initializedConfig = new Config();
         }
 
-        //Update config file in case it was missing to begin with or there are new/unused fields
+        // Update config file in case it was missing to begin with or there are new/unused fields
         try {
             ConfigUtil.saveConfig(initializedConfig, configFilePathUsed);
         } catch (IOException e) {
@@ -155,7 +183,7 @@ public class MainApp extends Application {
             initializedPrefs = new UserPrefs();
         }
 
-        //Update prefs file in case it was missing to begin with or there are new/unused fields
+        // Update prefs file in case it was missing to begin with or there are new/unused fields
         try {
             storage.saveUserPrefs(initializedPrefs);
         } catch (IOException e) {
