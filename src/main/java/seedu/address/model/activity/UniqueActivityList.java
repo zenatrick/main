@@ -1,6 +1,5 @@
 package seedu.address.model.activity;
 
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -9,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.activity.exceptions.DuplicateActivityException;
 import seedu.address.model.activity.exceptions.ActivityNotFoundException;
+import seedu.address.model.activity.exceptions.DuplicateActivityException;
 
 /**
  * A list of Activity that enforces uniqueness between its elements and does not allow nulls.
@@ -70,17 +69,6 @@ public class UniqueActivityList implements Iterable<Activity> {
         internalList.set(index, editedActivity);
     }
 
-    /**
-     * Removes the equivalent Activity from the list.
-     * The Activity must exist in the list.
-     */
-    public void remove(Activity toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new ActivityNotFoundException();
-        }
-    }
-
     public void setActivity(seedu.address.model.activity.UniqueActivityList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -92,6 +80,17 @@ public class UniqueActivityList implements Iterable<Activity> {
             throw new DuplicateActivityException();
         }
         internalList.setAll(activity);
+    }
+
+    /**
+     * Removes the equivalent Activity from the list.
+     * The Activity must exist in the list.
+     */
+    public void remove(Activity toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new ActivityNotFoundException();
+        }
     }
 
     /**

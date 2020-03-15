@@ -21,19 +21,25 @@ class UniqueActivityListTest {
 
     //They have a personBuilder, but since we dont have, improvise by using this for now (Thanks cat
     public static final Activity FIXED_ACTIVITY_1 =
-            new Activity(new Title("Hot Spring"), new Priority("1"),
+            new Activity(new Title("Hot Spring"),
+                    new Priority("1"),
                     new Duration("3"),
-                    new Location("Hokkaido"), new HashSet<>());
+                    new Location("Hokkaido"),
+                    new HashSet<>());
 
     public static final Activity FIXED_ACTIVITY_2 =
             new Activity(new Title("See Deers"),
-                    new Priority("1"),new Duration("1"),
-                    new Location("Nara"), new HashSet<>());
+                    new Priority("1"),
+                    new Duration("1"),
+                    new Location("Nara"),
+                    new HashSet<>());
 
     private static final Activity FIXED_ACTIVITY_3 =
-            new Activity(new Title("Eat Mochi"), new Priority("2"),
+            new Activity(new Title("Eat Mochi"),
+                    new Priority("2"),
                     new Duration("1"),
-                    new Location("Dazaifu"), new HashSet<>());
+                    new Location("Dazaifu"),
+                    new HashSet<>());
 
     private final UniqueActivityList uniqueActivityList = new UniqueActivityList();
 
@@ -59,8 +65,10 @@ class UniqueActivityListTest {
         //contains convention used for AB3 and for ours.
         uniqueActivityList.add(FIXED_ACTIVITY_1);
         Activity activity = new Activity(new Title("Hot Spring"),
-                new Priority("1"),new Duration("3"),
-                new Location("Hokkaido"), new HashSet<>());
+                new Priority("1"),
+                new Duration("3"),
+                new Location("Hokkaido"),
+                new HashSet<>());
         assertTrue(uniqueActivityList.contains(activity));
     }
 
@@ -106,9 +114,11 @@ class UniqueActivityListTest {
     @Test
     public void setActivityListHasSameIdentitySuccess() {
         uniqueActivityList.add(FIXED_ACTIVITY_1);
-        Activity activity = new Activity(new Title("Hot Spring"), new Priority("1"),
+        Activity activity = new Activity(new Title("Hot Spring"),
+                new Priority("1"),
                 new Duration("3"),
-                new Location("Hokkaido"), new HashSet<>());
+                new Location("Hokkaido"),
+                new HashSet<>());
         uniqueActivityList.setActivity(FIXED_ACTIVITY_1, activity);
         UniqueActivityList expectedUniqueActivityList = new UniqueActivityList();
         expectedUniqueActivityList.add(activity);
@@ -186,14 +196,14 @@ class UniqueActivityListTest {
     public void setActivityListWithDuplicateActivityThrowsDuplicateActivityException() {
         List<Activity> listWithDuplicateActivity = Arrays
                 .asList(FIXED_ACTIVITY_1, FIXED_ACTIVITY_1);
-        assertThrows(DuplicateActivityException.class, ()
-                -> uniqueActivityList.setActivity(listWithDuplicateActivity));
+        assertThrows(DuplicateActivityException.class, () ->
+                uniqueActivityList.setActivity(listWithDuplicateActivity));
     }
 
     @Test
     public void asUnmodifiableObservableListModifyListThrowsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-                -> uniqueActivityList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () ->
+                uniqueActivityList.asUnmodifiableObservableList().remove(0));
     }
 
     @Test

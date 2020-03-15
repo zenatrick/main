@@ -1,6 +1,5 @@
 package seedu.address.model.activity;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -8,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.activity.Duration;
 
 
 class DurationTest {
@@ -42,10 +40,10 @@ class DurationTest {
         assertFalse(Duration.isValidDuration("0")); // 0 included
 
         //Valid Duration
-        assertTrue(Duration.isValidDuration("30")); // Normal case
+        assertTrue(Duration.isValidDuration("23")); // Normal case
         assertTrue(Duration.isValidDuration("1")); // Only 1 digit
         assertTrue(Duration.isValidDuration("023")); //When a 0 is placed in front
-        assertTrue(Duration.isValidDuration("0000000000000000000000")); // All 0s
+        assertTrue(Duration.isValidDuration("0000000000000001")); // Trailing 0s
     }
 
     @Test
@@ -56,7 +54,7 @@ class DurationTest {
     @Test
     public void testEquals() {
         assertEquals(new Duration("2"), new Duration("2")); // When two duration are the same.
-        assertNotEquals(new Duration("2.00"), new Duration("3.00")); // When two durations are different.
+        assertNotEquals(new Duration("2"), new Duration("3")); // When two durations are different.
     }
 
     @Test
@@ -65,7 +63,7 @@ class DurationTest {
         assertEquals(new Duration("20").hashCode(), new Duration("20").hashCode());
 
         //Non Equal Hashcode
-        assertNotEquals(new Duration("13").hashCode(), new Duration("33").hashCode());
+        assertNotEquals(new Duration("13").hashCode(), new Duration("21").hashCode());
     }
 }
 

@@ -1,7 +1,5 @@
 package seedu.address.model.activity;
 
-
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -14,8 +12,8 @@ public class Priority {
 
     // todo update regex
     // Done already, allows 10 digits, and at most 2 decimal places.
-    public static final int VALIDATION_MAX_DAYS = 3;
-    public static final String VALIDATION_REGEX = "\\d{1,}";
+    public static final int VALIDATION_MAX_PRIORITY = 3;
+    public static final int VALIDATION_MIN_PRIORITY = 0;
 
     private String value;
 
@@ -29,12 +27,16 @@ public class Priority {
      * Returns true if a given string is valid days.
      */
     public static boolean isValidPriority(String test) {
-        try {
-            boolean isValidRegex = test.matches(VALIDATION_REGEX);
-            boolean isValidPriority = Integer.parseInt(test) <= VALIDATION_MAX_DAYS;
-            return isValidPriority && isValidRegex;
+        if (test == null) {
+            throw new NullPointerException();
         }
-        catch (Exception e){
+
+        try {
+            boolean isValidPriority = Integer.parseInt(test) <= VALIDATION_MAX_PRIORITY
+                    &&
+                    Integer.parseInt(test) >= VALIDATION_MIN_PRIORITY;
+            return isValidPriority;
+        } catch (Exception e) {
             return false;
         }
     }

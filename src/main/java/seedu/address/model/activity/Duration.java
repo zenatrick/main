@@ -1,6 +1,5 @@
 package seedu.address.model.activity;
 
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -14,7 +13,6 @@ public class Duration {
     // todo update regex
     public static final int VALIDATION_MAX_HOURS = 24;
     public static final int VALIDATION_MIN_HOURS = 1;
-    public static final String VALIDATION_REGEX = "\\d{2,}";
 
     private String value;
 
@@ -28,14 +26,19 @@ public class Duration {
      * Returns true if a given string is valid days.
      */
     public static boolean isValidDuration(String test) {
-        try {
-            boolean isValidRegex = test.matches(VALIDATION_REGEX);
-            boolean isValidHour = Integer.parseInt(test) <= VALIDATION_MAX_HOURS &&
-                    Integer.parseInt(test) > VALIDATION_MIN_HOURS;
-            return isValidHour && isValidRegex;
+        if (test == null) {
+            throw new NullPointerException();
         }
-        catch (Exception e){
+
+        try {
+            boolean isValidHour = Integer.parseInt(test) <= VALIDATION_MAX_HOURS
+                    &&
+                    Integer.parseInt(test) >= VALIDATION_MIN_HOURS;
+            return isValidHour;
+        } catch (NumberFormatException e) {
             return false;
+        } catch (Exception e) {
+            throw new NullPointerException();
         }
     }
 

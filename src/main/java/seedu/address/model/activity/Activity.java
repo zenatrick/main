@@ -1,8 +1,5 @@
 package seedu.address.model.activity;
 
-import seedu.address.model.tag.Tag;
-import seedu.address.model.transportbooking.Location;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -10,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.tag.Tag;
+import seedu.address.model.transportbooking.Location;
 /**
  * Represents a Activity in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.

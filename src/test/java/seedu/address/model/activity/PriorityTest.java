@@ -1,7 +1,5 @@
 package seedu.address.model.activity;
 
-
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -9,8 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-
-
 
 class PriorityTest {
 
@@ -39,11 +35,12 @@ class PriorityTest {
 
         //Not valid priority
         assertFalse(Priority.isValidPriority("1000"));
-        assertFalse(Priority.isValidPriority("0")); // 0 included
-        assertFalse(Priority.isValidPriority("4")); // 4 included
+        assertFalse(Priority.isValidPriority("4")); // Out of bounce
+        assertFalse(Priority.isValidPriority("-1")); // Nega
 
         //Valid priority
         assertTrue(Priority.isValidPriority("1")); // Only 1 digit
+        assertTrue(Priority.isValidPriority("0")); // 0 included
 
         assertTrue(Priority.isValidPriority("01")); //When a 0 is placed in front
     }
