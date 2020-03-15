@@ -9,6 +9,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.listmanager.ReadOnlyTransportBookingManager;
+import seedu.address.storage.transportbooking.TransportBookingStorage;
 
 /**
  * API of the Storage component
