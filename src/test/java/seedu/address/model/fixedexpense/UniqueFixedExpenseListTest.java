@@ -17,7 +17,7 @@ import seedu.address.model.fixedexpense.exceptions.FixedExpenseNotFoundException
 
 class UniqueFixedExpenseListTest {
 
-    //They have a personBuilder, but since we dont have, improvise by using this for now
+    // Temporary fields that will be replaced by FixedExpenses made using a FixedExpenseBuilder.
     public static final FixedExpense FIXED_ACCOMMODATION_EXPENSE =
             new FixedExpense(new Amount("500.00"), new Description("Hotel"),
                     new Category("Accommodation"));

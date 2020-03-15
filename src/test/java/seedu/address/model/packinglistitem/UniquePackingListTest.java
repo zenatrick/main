@@ -147,7 +147,7 @@ class UniquePackingListTest {
     @Test
     public void setPackingListNullUniquePackingListThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePackingList
-                .setPackingLists((UniquePackingList) null));
+                .setPackingList((UniquePackingList) null));
     }
 
     @Test
@@ -155,21 +155,21 @@ class UniquePackingListTest {
         uniquePackingList.add(FIXED_ITEM_SHIRT);
         UniquePackingList expectedUniquePackingList = new UniquePackingList();
         uniquePackingList.add(FIXED_ITEM_JEANS);
-        uniquePackingList.setPackingLists(expectedUniquePackingList);
+        uniquePackingList.setPackingList(expectedUniquePackingList);
         assertEquals(expectedUniquePackingList, uniquePackingList);
     }
 
     @Test
     public void setUniquePackingListNullListThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePackingList
-                .setPackingLists((List<Item>) null));
+                .setPackingList((List<Item>) null));
     }
 
     @Test
     public void setUniquePackingListListReplacesOwnListWithProvidedList() {
         uniquePackingList.add(FIXED_ITEM_JEANS);
         List<Item> itemLists = Collections.singletonList(FIXED_ITEM_SHIRT);
-        uniquePackingList.setPackingLists(itemLists);
+        uniquePackingList.setPackingList(itemLists);
         UniquePackingList expectedPackingList = new UniquePackingList();
         expectedPackingList.add(FIXED_ITEM_SHIRT);
         assertEquals(expectedPackingList, uniquePackingList);
@@ -180,7 +180,7 @@ class UniquePackingListTest {
         List<Item> listWithDuplicateItems = Arrays
                 .asList(FIXED_ITEM_JEANS, FIXED_ITEM_JEANS);
         assertThrows(DuplicateItemException.class, ()
-            -> uniquePackingList.setPackingLists(listWithDuplicateItems));
+            -> uniquePackingList.setPackingList(listWithDuplicateItems));
     }
 
     @Test
