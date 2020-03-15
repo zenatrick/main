@@ -5,14 +5,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.fixedexpense.FixedExpense;
+import seedu.address.model.packinglistitem.Item;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Item}.
  */
 public class PackingListCard extends UiPart<Region> {
 
-    private static final String FXML = "FixedExpenseCard.fxml";
+    private static final String FXML = "PackingListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -22,7 +22,7 @@ public class PackingListCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final FixedExpense fixedExpense;
+    public final Item item;
 
     @FXML
     private HBox cardPane;
@@ -31,21 +31,21 @@ public class PackingListCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label amount;
+    private Label quantity;
     @FXML
-    private Label description;
+    private Label ischecked;
     @FXML
     private Label category;
     @FXML
     private FlowPane tags;
 
-    public PackingListCard(FixedExpense fixedExpense, int displayedIndex) {
+    public PackingListCard(Item item, int displayedIndex) {
         super(FXML);
-        this.fixedExpense = fixedExpense;
+        this.item = item;
         id.setText(displayedIndex + ". ");
-        name.setText(fixedExpense.getDescription().toString());
-        amount.setText("Amount: $" + fixedExpense.getAmount().toString());
-        category.setText("Category: " + fixedExpense.getCategory().toString());
+        name.setText(item.getItemName().toString());
+        quantity.setText("Quantity: " + item.getQuantity().toString());
+        ischecked.setText("Is Checked: " + item.isChecked());
     }
 
     @Override
@@ -63,6 +63,6 @@ public class PackingListCard extends UiPart<Region> {
         // state check
         PackingListCard card = (PackingListCard) other;
         return id.getText().equals(card.id.getText())
-                && fixedExpense.equals(card.fixedExpense);
+                && item.equals(card.item);
     }
 }

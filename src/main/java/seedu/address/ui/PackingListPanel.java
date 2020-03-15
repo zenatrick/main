@@ -8,30 +8,36 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.fixedexpense.FixedExpense;
+import seedu.address.model.packinglistitem.Item;
 
+/**
+ * Panel containing the list of items.
+ */
 public class PackingListPanel extends UiPart<Region> {
 
-    private static final String FXML = "FixedExpensePanel.fxml";
+    private static final String FXML = "PackingListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PackingListPanel.class);
 
     @FXML
-    private ListView<FixedExpense> fixedExpenseListView;
+    private ListView<Item> packingListView;
 
-    public PackingListPanel(ObservableList<FixedExpense> fixedExpensesList) {
+    public PackingListPanel(ObservableList<Item> packingList) {
         super(FXML);
-        fixedExpenseListView.setItems(fixedExpensesList);
-        fixedExpenseListView.setCellFactory(listView -> new FixedListViewCell());
+        packingListView.setItems(packingList);
+        packingListView.setCellFactory(listView -> new PackingListViewCell());
     }
 
-    class FixedListViewCell extends ListCell<FixedExpense> {
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Item} using a {@code PackingListCard}.
+     */
+    class PackingListViewCell extends ListCell<Item> {
         @Override
-        protected void updateItem(FixedExpense fixedExpense, boolean empty) {
-            if(empty || fixedExpense == null) {
+        protected void updateItem(Item item, boolean empty) {
+            if (empty || item == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new FixedExpenseCard(fixedExpense, getIndex() +1).getRoot());
+                setGraphic(new PackingListCard(item, getIndex() + 1).getRoot());
             }
         }
     }

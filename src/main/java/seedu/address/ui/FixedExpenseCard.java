@@ -8,7 +8,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.fixedexpense.FixedExpense;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code FixedExpense}.
  */
 public class FixedExpenseCard extends UiPart<Region> {
 
@@ -43,9 +43,9 @@ public class FixedExpenseCard extends UiPart<Region> {
         super(FXML);
         this.fixedExpense = fixedExpense;
         id.setText(displayedIndex + ". ");
-        amount.setText(fixedExpense.getAmount().toString());
-        description.setText(fixedExpense.getDescription().toString());
-        category.setText(fixedExpense.getDescription().toString());
+        name.setText(fixedExpense.getDescription().toString());
+        amount.setText("Amount: $" + fixedExpense.getAmount().toString());
+        category.setText("Category: " + fixedExpense.getCategory().toString());
     }
 
     @Override
