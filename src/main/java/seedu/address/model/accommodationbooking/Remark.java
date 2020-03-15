@@ -1,5 +1,6 @@
 package seedu.address.model.accommodationbooking;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
@@ -28,11 +29,12 @@ public class Remark {
      * @param remark the description
      */
     public Remark(String remark) {
-        checkArgument(isValidDescription(remark), MESSAGE_CONSTRAINTS);
+        requireNonNull(remark);
+        checkArgument(isValidRemark(remark), MESSAGE_CONSTRAINTS);
         accommodationRemark = remark;
     }
 
-    public static boolean isValidDescription(String test) {
+    public static boolean isValidRemark(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
