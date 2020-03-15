@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.packinglistitem.Item;
+import seedu.address.model.packinglistitem.PackingListItem;
 
 /**
  * An UI component that displays information of a {@code Item}.
@@ -22,7 +22,7 @@ public class PackingListCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Item item;
+    public final PackingListItem item;
 
     @FXML
     private HBox cardPane;
@@ -33,19 +33,19 @@ public class PackingListCard extends UiPart<Region> {
     @FXML
     private Label quantity;
     @FXML
-    private Label ischecked;
+    private Label isChecked;
     @FXML
     private Label category;
     @FXML
     private FlowPane tags;
 
-    public PackingListCard(Item item, int displayedIndex) {
+    public PackingListCard(PackingListItem item, int displayedIndex) {
         super(FXML);
         this.item = item;
         id.setText(displayedIndex + ". ");
         name.setText(item.getItemName().toString());
         quantity.setText("Quantity: " + item.getQuantity().toString());
-        ischecked.setText("Is Checked: " + item.isChecked());
+        isChecked.setText("Is Checked: " + item.isChecked());
     }
 
     @Override

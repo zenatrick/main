@@ -31,13 +31,13 @@ public class TransportBookingCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label startlocation;
+    private Label startLocation;
     @FXML
-    private Label endlocation;
+    private Label endLocation;
     @FXML
-    private Label starttime;
+    private Label startTime;
     @FXML
-    private Label endtime;
+    private Label endTime;
     @FXML
     private FlowPane tags;
 
@@ -46,18 +46,10 @@ public class TransportBookingCard extends UiPart<Region> {
         this.transportBooking = transportBooking;
         id.setText(displayedIndex + ". ");
         mode.setText(transportBooking.getMode().value);
-        startlocation.setText("Start location is: " + transportBooking.getStartLocation().value);
-        endlocation.setText("End location is: " + transportBooking.getEndLocation().value);
-
-        String startTime = transportBooking.getStartTime().value.toString();
-        startTime = startTime.substring(0, 10) + " , " + startTime.substring(11);
-
-        starttime.setText("Start time is: " + startTime);
-
-        String endTime = transportBooking.getEndTime().value.toString();
-        endTime = endTime.substring(0, 10) + " , " + endTime.substring(11);
-
-        endtime.setText("End time is: " + endTime);
+        startLocation.setText("Start location is: " + transportBooking.getStartLocation().value);
+        endLocation.setText("End location is: " + transportBooking.getEndLocation().value);
+        startTime.setText("Start time is: " + transportBooking.getStartTime().value);
+        endTime.setText("End time is: " + transportBooking.getStartTime().value);
     }
 
     @Override
