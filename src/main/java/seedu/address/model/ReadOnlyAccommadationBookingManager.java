@@ -12,6 +12,6 @@ public interface ReadOnlyAccommadationBookingManager {
      * Returns an unmodifiable view of the accommodation bookings list.
      * This list will not contain any duplicate accommodation bookings.
      */
-    ObservableList<AccommodationBooking> getAccommodationBookings();
+    ObservableList<AccommodationBooking> getAccommodationBookingList();
 
 }
