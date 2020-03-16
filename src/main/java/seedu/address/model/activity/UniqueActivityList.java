@@ -94,7 +94,7 @@ public class UniqueActivityList implements Iterable<Activity> {
     }
 
     /**
-     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     * Returns the Activity List as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Activity> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
