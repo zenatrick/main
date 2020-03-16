@@ -1,12 +1,12 @@
 package seedu.address.model;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.accommodationbooking.AccommodationBooking;
-import seedu.address.model.accommodationbooking.UniqueAccommodationBookingList;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.address.model.accommodationbooking.AccommodationBooking;
+import seedu.address.model.accommodationbooking.UniqueAccommodationBookingList;
 
 /**
  * Wraps all data at the AccommodationBookingManager level

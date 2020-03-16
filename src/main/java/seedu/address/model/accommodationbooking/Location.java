@@ -12,8 +12,8 @@ public class Location {
     /**
      * The constant MESSAGE_CONSTRAINTS.
      */
-    public static final String MESSAGE_CONSTRAINTS = "Location of accommodation must be alphanumeric words not " +
-            "more than 50 characters long";
+    public static final String MESSAGE_CONSTRAINTS = "Location of accommodation must be alphanumeric words not "
+            + "more than 50 characters long";
 
     // todo update regex to match constraints
     // Allows for 50 alphanumeric characters.

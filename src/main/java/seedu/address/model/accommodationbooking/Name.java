@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Name {
 
-    public static final String MESSAGE_CONSTRAINTS = "Name of accommodation must be made up of alphanumeric words " +
-            "that is less than 50 characters long.";
+    public static final String MESSAGE_CONSTRAINTS = "Name of accommodation must be made up of alphanumeric words "
+            + "that is less than 50 characters long.";
 
     // todo update regex to match constraints
     // Allows for 50 alphanumeric characters.
@@ -46,7 +46,8 @@ public class Name {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof seedu.address.model.accommodationbooking.Name // instanceof handles nulls
-                && accommodationName.equals(((seedu.address.model.accommodationbooking.Name) other).accommodationName)); // state check
+                && accommodationName.equals(((seedu.address.model.accommodationbooking.Name) other)
+                .accommodationName)); // state check
     }
 
     @Override

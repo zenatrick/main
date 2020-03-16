@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Day {
 
-    public static final String MESSAGE_CONSTRAINTS = "Day has to be within the length of the trip and cannot be" +
-            "a negative number.";
+    public static final String MESSAGE_CONSTRAINTS = "Day has to be within the length of the trip and cannot be"
+            + "a negative number.";
 
     public static final String VALIDATION_REGEX = "^\\d+$";
 

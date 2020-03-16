@@ -1,9 +1,9 @@
 package seedu.address.model.accommodationbooking;
 
-import java.util.Objects;
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Objects;
 
 /**
  * Represents an AccommodationBooking in the AccommodationBookingManager.

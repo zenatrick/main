@@ -1,15 +1,15 @@
 package seedu.address.model.accommodationbooking;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.accommodationbooking.exceptions.DuplicateAccommodationBookingException;
-import seedu.address.model.accommodationbooking.exceptions.AccommodationBookingNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.accommodationbooking.exceptions.AccommodationBookingNotFoundException;
+import seedu.address.model.accommodationbooking.exceptions.DuplicateAccommodationBookingException;
 
 /**
  * A list of accommodations that enforces uniqueness between its elements and does not allow nulls.
