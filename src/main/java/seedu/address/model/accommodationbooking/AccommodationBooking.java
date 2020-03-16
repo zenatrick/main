@@ -1,12 +1,8 @@
 package seedu.address.model.accommodationbooking;
 
-import seedu.address.model.accommodationbooking.Name;
-import seedu.address.model.accommodationbooking.Day;
-import seedu.address.model.accommodationbooking.Location;
-import seedu.address.model.accommodationbooking.Remark;
-
 import java.util.Objects;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
@@ -14,6 +10,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class AccommodationBooking {
+
+    public static final String MESSAGE_DAY_CONSTRAINTS = "Start day must come before end day.";
 
     // Identity fields
     private final Name name;
@@ -31,6 +29,7 @@ public class AccommodationBooking {
     public AccommodationBooking(Name name, Location location, Day startDay, Day endDay, Remark remark) {
 
         requireAllNonNull(name, location, startDay, endDay, remark);
+        checkArgument(isDayValid(startDay, endDay), MESSAGE_DAY_CONSTRAINTS);
 
         this.name = name;
         this.location = location;
