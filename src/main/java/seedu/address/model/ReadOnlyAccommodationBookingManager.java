@@ -6,7 +6,7 @@ import seedu.address.model.accommodationbooking.AccommodationBooking;
 /**
  * Unmodifiable view of a TransportBookingManager.
  */
-public interface ReadOnlyAccommadationBookingManager {
+public interface ReadOnlyAccommodationBookingManager {
 
     /**
      * Returns an unmodifiable view of the accommodation bookings list.
