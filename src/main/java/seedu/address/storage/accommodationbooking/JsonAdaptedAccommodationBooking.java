@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.accommodationbooking.AccommodationBooking;
-import seedu.address.model.accommodationbooking.Day;
 import seedu.address.model.accommodationbooking.AccommodationName;
+import seedu.address.model.accommodationbooking.Day;
 import seedu.address.model.accommodationbooking.Remark;
 import seedu.address.model.transportbooking.Location;
 
@@ -56,7 +56,8 @@ public class JsonAdaptedAccommodationBooking {
      */
     public AccommodationBooking toModelType() throws IllegalValueException {
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, AccommodationName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    AccommodationName.class.getSimpleName()));
         }
         if (!AccommodationName.isValidName(name)) {
             throw new IllegalValueException(AccommodationName.MESSAGE_CONSTRAINTS);
@@ -64,7 +65,8 @@ public class JsonAdaptedAccommodationBooking {
         final AccommodationName modelAccommodationName = new AccommodationName(name);
 
         if (location == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Location.class.getSimpleName()));
         }
         if (!Location.isValidLocation(location)) {
             throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);

@@ -7,14 +7,14 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.activity.Activity;
-import seedu.address.model.activity.Duration;
-import seedu.address.model.activity.Priority;
-import seedu.address.model.activity.Title;
 import seedu.address.model.accommodationbooking.AccommodationBooking;
 import seedu.address.model.accommodationbooking.AccommodationName;
 import seedu.address.model.accommodationbooking.Day;
 import seedu.address.model.accommodationbooking.Remark;
+import seedu.address.model.activity.Activity;
+import seedu.address.model.activity.Duration;
+import seedu.address.model.activity.Priority;
+import seedu.address.model.activity.Title;
 import seedu.address.model.fixedexpense.Amount;
 import seedu.address.model.fixedexpense.Category;
 import seedu.address.model.fixedexpense.Description;
@@ -131,8 +131,8 @@ public class SampleDataUtil {
 
     public static AccommodationBooking[] getSampleAccommodationBookings() {
         return new AccommodationBooking[]{
-                new AccommodationBooking(new AccommodationName("Hyatt Regency"), new Location("Kyoto"),
-                        new Day("1"), new Day("4"), new Remark("Check-in at 3pm."))
+            new AccommodationBooking(new AccommodationName("Hyatt Regency"), new Location("Kyoto"),
+                new Day("1"), new Day("4"), new Remark("Check-in at 3pm."))
         };
     }
 

@@ -24,6 +24,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.listmanager.AccommodationBookingManager;
 import seedu.address.model.listmanager.ActivityManager;
 import seedu.address.model.listmanager.FixedExpenseManager;
+import seedu.address.model.listmanager.PackingListManager;
 import seedu.address.model.listmanager.ReadOnlyAccommodationBookingManager;
 import seedu.address.model.listmanager.ReadOnlyActivityManager;
 import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
@@ -124,8 +125,8 @@ public class MainApp extends Application {
         ReadOnlyActivityManager activityManager = initActivityManager(storage);
         ReadOnlyAccommodationBookingManager accommodationBookingManager = initAccommodationBookingManager(storage);
 
-        return new ModelManager(initialData, transportBookingManager, fixedExpenseManager, activityManager,
-                accommodationBookingManager, userPrefs);
+        return new ModelManager(initialData, transportBookingManager, fixedExpenseManager, new PackingListManager(),
+                activityManager, accommodationBookingManager, userPrefs);
     }
 
     /**

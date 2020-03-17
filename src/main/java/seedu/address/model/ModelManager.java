@@ -55,7 +55,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTransportBookingManager transportBookingManager,
                         ReadOnlyFixedExpenseManager fixedExpenseManager, ReadOnlyPackingListManager packingListManager,
                         ReadOnlyActivityManager activityManager,
-                        ReadOnlyAccommodationBookingManager accommodationBookingManager,ReadOnlyUserPrefs userPrefs) {
+                        ReadOnlyAccommodationBookingManager accommodationBookingManager, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -86,8 +86,7 @@ public class ModelManager implements Model {
     // Temporary constructor
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTransportBookingManager transportBookingManager,
                         ReadOnlyFixedExpenseManager fixedExpenseManager,
-                        ReadOnlyAccommodationBookingManager accommodationBookingManager,
-                        ReadOnlyUserPrefs userPrefs) {
+                        ReadOnlyAccommodationBookingManager accommodationBookingManager, ReadOnlyUserPrefs userPrefs) {
         this(addressBook, transportBookingManager, fixedExpenseManager, new PackingListManager(),
                 new ActivityManager(), accommodationBookingManager, userPrefs);
     }

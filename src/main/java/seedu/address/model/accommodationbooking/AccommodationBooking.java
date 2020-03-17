@@ -28,7 +28,8 @@ public class AccommodationBooking {
     /**
      * Every field must be present and not null.
      */
-    public AccommodationBooking(AccommodationName accommodationName, Location location, Day startDay, Day endDay, Remark remark) {
+    public AccommodationBooking(AccommodationName accommodationName, Location location, Day startDay, Day endDay,
+                                Remark remark) {
 
         requireAllNonNull(accommodationName, location, startDay, endDay, remark);
         checkArgument(isDayValid(startDay, endDay), MESSAGE_DAY_CONSTRAINTS);
