@@ -21,7 +21,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.listmanager.ActivityManager;
 import seedu.address.model.listmanager.FixedExpenseManager;
+import seedu.address.model.listmanager.ReadOnlyActivityManager;
 import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
 import seedu.address.model.listmanager.ReadOnlyTransportBookingManager;
 import seedu.address.model.listmanager.TransportBookingManager;
@@ -32,6 +34,8 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.activity.ActivityManagerStorage;
+import seedu.address.storage.activity.JsonActivityManagerStorage;
 import seedu.address.storage.fixedexpense.FixedExpenseStorage;
 import seedu.address.storage.fixedexpense.JsonFixedExpenseStorage;
 import seedu.address.storage.transportbooking.JsonTransportBookingStorage;
@@ -68,9 +72,11 @@ public class MainApp extends Application {
                 new JsonTransportBookingStorage((userPrefs.getTransportBookingStorageFilePath()));
         FixedExpenseStorage fixedExpenseStorage =
                 new JsonFixedExpenseStorage(userPrefs.getFixedExpenseStorageFilePath());
+        ActivityManagerStorage activityManagerStorage =
+                new JsonActivityManagerStorage(userPrefs.getActivityManagerStorageFilePath());
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(addressBookStorage, transportBookingStorage,
-                fixedExpenseStorage, userPrefsStorage);
+                fixedExpenseStorage, activityManagerStorage,userPrefsStorage);
 
         initLogging(config);
 
@@ -105,6 +111,7 @@ public class MainApp extends Application {
 
         ReadOnlyTransportBookingManager transportBookingManager = initTransportBookingManager(storage);
         ReadOnlyFixedExpenseManager fixedExpenseManager = initFixedExpenseManager(storage);
+        ReadOnlyActivityManager activityManager = initActivityManager(storage);
 
         return new ModelManager(initialData, transportBookingManager, fixedExpenseManager, userPrefs);
     }
@@ -175,6 +182,42 @@ public class MainApp extends Application {
 
         return fixedExpenseManager;
     }
+
+    /**
+     * Returns a {@code ReadOnly} with the data from {@code storage}'s activities.
+     * The data from the sample activities will be used instead if {@code storage}'s activities manager is not found,
+     * or an empty activity Manager will be used instead if errors occur when reading {@code storage}'s
+     * activity manager.
+     */
+    private ReadOnlyActivityManager initActivityManager(Storage storage) {
+        ReadOnlyActivityManager activityManager;
+        try {
+            Optional<ReadOnlyActivityManager> activityManagerOptional = storage.readActivityManager();
+            if (activityManagerOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample ActivityManager.");
+            }
+            activityManager =
+                    activityManagerOptional.orElseGet(SampleDataUtil::getSampleActivityManager);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty"
+                    + "ActivityManager.");
+            activityManager = new ActivityManager();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty "
+                    + "ActivityManager.");
+            activityManager = new ActivityManager();
+        }
+
+        try {
+            storage.saveActivityManager(activityManager);
+            logger.info("Saving initial data of Transport Booking Manager.");
+        } catch (IOException e) {
+            logger.warning("Problem while saving to the file.");
+        }
+
+        return activityManager;
+    }
+
 
     private void initLogging(Config config) {
         LogsCenter.init(config);

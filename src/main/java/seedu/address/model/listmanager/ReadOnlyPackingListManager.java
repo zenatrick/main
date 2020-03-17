@@ -1,6 +1,7 @@
 package seedu.address.model.listmanager;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.activity.Activity;
 import seedu.address.model.packinglistitem.PackingListItem;
 
 /**

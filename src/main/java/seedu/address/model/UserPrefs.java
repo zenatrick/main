@@ -17,6 +17,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private Path addressBookFilePath = DEFAULT_FOLDER_PATH.resolve("addressbook.json");
     private Path transportBookingStorageFilePath = DEFAULT_FOLDER_PATH.resolve("transportation.json");
     private Path fixedExpenseStorageFilePath = DEFAULT_FOLDER_PATH.resolve("fixedexpense.json");
+    private Path activityManagerStorageFilePath = DEFAULT_FOLDER_PATH.resolve("activity.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -78,6 +79,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.fixedExpenseStorageFilePath = fixedExpenseStorageFilePath;
     }
 
+    public Path getActivityManagerStorageFilePath() {
+        return activityManagerStorageFilePath;
+    }
+
+    public void setActivityManagerStorageFilePath (Path activityManagerStorageFilePath) {
+        requireNonNull(activityManagerStorageFilePath);
+        this.activityManagerStorageFilePath = activityManagerStorageFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -92,7 +102,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return guiSettings.equals(o.guiSettings)
                 && addressBookFilePath.equals(o.addressBookFilePath)
                 && transportBookingStorageFilePath.equals(o.transportBookingStorageFilePath)
-                && fixedExpenseStorageFilePath.equals(o.fixedExpenseStorageFilePath);
+                && fixedExpenseStorageFilePath.equals(o.fixedExpenseStorageFilePath)
+                && activityManagerStorageFilePath.equals(o.activityManagerStorageFilePath);
     }
 
     @Override

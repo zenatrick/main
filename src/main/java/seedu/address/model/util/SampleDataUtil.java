@@ -1,16 +1,23 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.activity.Activity;
+import seedu.address.model.activity.Duration;
+import seedu.address.model.activity.Priority;
+import seedu.address.model.activity.Title;
 import seedu.address.model.fixedexpense.Amount;
 import seedu.address.model.fixedexpense.Category;
 import seedu.address.model.fixedexpense.Description;
 import seedu.address.model.fixedexpense.FixedExpense;
+import seedu.address.model.listmanager.ActivityManager;
 import seedu.address.model.listmanager.FixedExpenseManager;
+import seedu.address.model.listmanager.ReadOnlyActivityManager;
 import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
 import seedu.address.model.listmanager.ReadOnlyTransportBookingManager;
 import seedu.address.model.listmanager.TransportBookingManager;
@@ -97,6 +104,24 @@ public class SampleDataUtil {
             sampleFixedExpenseManager.addFixedExpense(sampleFixedExpense);
         }
         return sampleFixedExpenseManager;
+    }
+
+    public static Activity[] getSampleActivity() {
+        return new Activity[] {
+                new Activity(new Title("Hot Spring"),
+                        new Priority("1"),
+                        new Duration("3"),
+                        new Location("Hokkaido"),
+                        new HashSet<>())
+        };
+    }
+
+    public static ReadOnlyActivityManager getSampleActivityManager() {
+        ActivityManager sampleActivityManager = new ActivityManager();
+        for (Activity sampleActivity: getSampleActivity()) {
+            sampleActivityManager.addActivity(sampleActivity);
+        }
+        return sampleActivityManager;
     }
 
 }

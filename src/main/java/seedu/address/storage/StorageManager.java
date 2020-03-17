@@ -12,6 +12,8 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
 import seedu.address.model.listmanager.ReadOnlyTransportBookingManager;
+import seedu.address.model.listmanager.ReadOnlyActivityManager;
+import seedu.address.storage.activity.ActivityManagerStorage;
 import seedu.address.storage.fixedexpense.FixedExpenseStorage;
 import seedu.address.storage.transportbooking.TransportBookingStorage;
 
@@ -25,15 +27,18 @@ public class StorageManager implements Storage {
     private TransportBookingStorage transportBookingStorage;
     private FixedExpenseStorage fixedExpenseStorage;
     private UserPrefsStorage userPrefsStorage;
+    private ActivityManagerStorage activityManagerStorage;
 
     public StorageManager(AddressBookStorage addressBookStorage,
                           TransportBookingStorage transportBookingStorage,
                           FixedExpenseStorage fixedExpenseStorage,
+                          ActivityManagerStorage activityManagerStorage,
                           UserPrefsStorage userPrefsStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.transportBookingStorage = transportBookingStorage;
         this.fixedExpenseStorage = fixedExpenseStorage;
+        this.activityManagerStorage = activityManagerStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -146,6 +151,38 @@ public class StorageManager implements Storage {
             ReadOnlyFixedExpenseManager fixedExpenseManager, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         fixedExpenseStorage.saveFixedExpenses(fixedExpenseManager, filePath);
+    }
+
+    // ================ ActivityManager methods ==============================
+
+    @Override
+    public Path getActivityManagerStorageFilePath() {
+        return activityManagerStorage.getActivityManagerStorageFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyActivityManager> readActivityManager() throws DataConversionException,
+            IOException {
+        return readActivityManager(activityManagerStorage.getActivityManagerStorageFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyActivityManager> readActivityManager(
+            Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return activityManagerStorage.readActivityManager(filePath);
+    }
+
+    @Override
+    public void saveActivityManager(ReadOnlyActivityManager activityManager) throws IOException {
+        saveActivityManager(activityManager, activityManagerStorage.getActivityManagerStorageFilePath());
+    }
+
+    @Override
+    public void saveActivityManager(
+            ReadOnlyActivityManager activityManager, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        activityManagerStorage.saveActivityManager(activityManager, filePath);
     }
 
 
