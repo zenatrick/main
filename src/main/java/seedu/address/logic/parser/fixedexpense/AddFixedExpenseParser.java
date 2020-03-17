@@ -22,11 +22,12 @@ import seedu.address.model.fixedexpense.FixedExpense;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddFixedExpenseParser implements Parser<AddFixedExpenseCommand>  {
+public class AddFixedExpenseParser implements Parser<AddFixedExpenseCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddFixedExpenseCommand
      * and returns an AddFixedExpenseCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
 
@@ -53,7 +54,7 @@ public class AddFixedExpenseParser implements Parser<AddFixedExpenseCommand>  {
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix...prefixes){
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 

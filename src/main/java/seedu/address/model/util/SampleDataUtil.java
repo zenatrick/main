@@ -101,11 +101,11 @@ public class SampleDataUtil {
         return new FixedExpense[] {
             new FixedExpense(new Amount("1000"), new Description("TestDescription"),
                       new Category("TestCategory")),
-                new FixedExpense(new Amount("2000"), new Description("TestDescription"),
+            new FixedExpense(new Amount("2000"), new Description("TestDescription"),
                         new Category("TestCategory")),
-                new FixedExpense(new Amount("3000"), new Description("TestDescription"),
+            new FixedExpense(new Amount("3000"), new Description("TestDescription"),
                         new Category("TestCategory")),
-                new FixedExpense(new Amount("4000"), new Description("TestDescription"),
+            new FixedExpense(new Amount("4000"), new Description("TestDescription"),
                         new Category("TestCategory"))
         };
     }

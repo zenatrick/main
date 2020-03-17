@@ -10,7 +10,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.fixedexpense.FixedExpense;
-
+/**
+ * Adds a Fixed Expense to the Fixed Expense manager.
+ */
 public class AddFixedExpenseCommand extends Command {
 
     public static final String COMMAND_WORD = "addexpense";
@@ -41,7 +43,7 @@ public class AddFixedExpenseCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if(model.hasFixedExpense(toAdd)) {
+        if (model.hasFixedExpense(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EXPENSE);
         }
 
