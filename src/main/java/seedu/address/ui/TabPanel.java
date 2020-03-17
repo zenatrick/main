@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.fixedexpense.FixedExpense;
 import seedu.address.model.person.Person;
 import seedu.address.model.transportbooking.TransportBooking;
 
@@ -23,10 +24,15 @@ public class TabPanel extends UiPart<Region> {
     @FXML
     private StackPane transportBookingPanelPlaceholder;
 
+    @FXML
+    private StackPane fixedExpensePanelPlaceholder;
+
     public TabPanel(ObservableList<Person> personList,
-                    ObservableList<TransportBooking> transportList) {
+                    ObservableList<TransportBooking> transportList,
+                    ObservableList<FixedExpense>fixedExpenseList) {
         super(FXML);
         personListPanelPlaceholder.getChildren().add(new PersonListPanel(personList).getRoot());
         transportBookingPanelPlaceholder.getChildren().add(new TransportBookingPanel(transportList).getRoot());
+        fixedExpensePanelPlaceholder.getChildren().add(new FixedExpensePanel(fixedExpenseList).getRoot());
     }
 }

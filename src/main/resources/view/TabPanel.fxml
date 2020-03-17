@@ -10,4 +10,7 @@
         <Tab text="Transport Booking">
                 <StackPane fx:id="transportBookingPanelPlaceholder" />
         </Tab>
+        <Tab text="Fixed Expenses">
+                <StackPane fx:id="fixedExpensePanelPlaceholder" />
+        </Tab>
 </TabPane>

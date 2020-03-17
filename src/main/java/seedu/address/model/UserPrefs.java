@@ -16,6 +16,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = DEFAULT_FOLDER_PATH.resolve("addressbook.json");
     private Path transportBookingStorageFilePath = DEFAULT_FOLDER_PATH.resolve("transportation.json");
+    private Path fixedExpenseStorageFilePath = DEFAULT_FOLDER_PATH.resolve("fixedexpense.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -68,6 +69,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.transportBookingStorageFilePath = transportBookingStorageFilePath;
     }
 
+    public Path getFixedExpenseStorageFilePath() {
+        return fixedExpenseStorageFilePath;
+    }
+
+    public void setFixedExpenseStorageFilePath (Path fixedExpenseStorageFilePath) {
+        requireNonNull(fixedExpenseStorageFilePath);
+        this.fixedExpenseStorageFilePath = fixedExpenseStorageFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -81,7 +91,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         return guiSettings.equals(o.guiSettings)
                 && addressBookFilePath.equals(o.addressBookFilePath)
-                && transportBookingStorageFilePath.equals(o.transportBookingStorageFilePath);
+                && transportBookingStorageFilePath.equals(o.transportBookingStorageFilePath)
+                && fixedExpenseStorageFilePath.equals(o.fixedExpenseStorageFilePath);
     }
 
     @Override

@@ -8,13 +8,16 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
 import seedu.address.model.listmanager.ReadOnlyTransportBookingManager;
+import seedu.address.storage.fixedexpense.FixedExpenseStorage;
 import seedu.address.storage.transportbooking.TransportBookingStorage;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, TransportBookingStorage, UserPrefsStorage {
+public interface Storage extends AddressBookStorage, TransportBookingStorage, FixedExpenseStorage,
+        UserPrefsStorage {
     @Override
     Path getAddressBookFilePath();
 
@@ -46,6 +49,27 @@ public interface Storage extends AddressBookStorage, TransportBookingStorage, Us
     @Override
     void saveTransportBookings(ReadOnlyTransportBookingManager transportBookingManager,
                                Path filePath) throws IOException;
+
+    // ---- FixedExpenseManager ----//
+
+    @Override
+    Path getFixedExpenseStorageFilePath();
+
+    @Override
+    Optional<ReadOnlyFixedExpenseManager> readFixedExpenses() throws DataConversionException, IOException;
+
+    @Override
+    Optional<ReadOnlyFixedExpenseManager> readFixedExpenses(Path filePath) throws DataConversionException,
+            IOException;
+
+    @Override
+    void saveFixedExpenses(ReadOnlyFixedExpenseManager fixedExpenseManager) throws IOException;
+
+    @Override
+    void saveFixedExpenses(ReadOnlyFixedExpenseManager fixedExpenseManager,
+                               Path filePath) throws IOException;
+
+    //--------//
 
     @Override
     Path getUserPrefsFilePath();
