@@ -128,9 +128,14 @@ public interface Model {
     // ========== TransportBookingManager ==========
 
     /**
-     * Returns the TransportManager
+     * Returns the TransportBookingManager
      */
-    ReadOnlyTransportBookingManager getTransportBooking();
+    ReadOnlyTransportBookingManager getTransportBookingManager();
+
+    /**
+     * Replaces TransportBookingManager data with the data in {@code transportBookingManager}.
+     */
+    void setTransportBookingManager(ReadOnlyTransportBookingManager transportBookingManager);
 
     /**
      * Returns true if a transport booking that is the same as {@code target} exists in the
@@ -185,12 +190,12 @@ public interface Model {
     /**
      * Returns the FixedExpenseManager
      */
-    ReadOnlyFixedExpenseManager getFixedExpense();
+    ReadOnlyFixedExpenseManager getFixedExpenseManager();
 
     /**
-     * Replaces FixedExpense book data with the data in {@code addressBook}.
+     * Replaces FixedExpenseManager data with the data in {@code fixedExpenseManager}.
      */
-    void setFixedExpense(ReadOnlyFixedExpenseManager fixedExpense);
+    void setFixedExpenseManager(ReadOnlyFixedExpenseManager fixedExpenseManager);
 
     /**
      * Returns true if a fixed expense that is the same as {@code target} exists in the
@@ -246,6 +251,11 @@ public interface Model {
      * Returns the PackingListManager
      */
     ReadOnlyPackingListManager getPackingListManager();
+
+    /**
+     * Replaces PackingListManager data with the data in {@code packingListManager}.
+     */
+    void setPackingListManager(ReadOnlyPackingListManager packingListManager);
 
     /**
      * Returns true if a packing list item that is the same as {@code target} exists in the

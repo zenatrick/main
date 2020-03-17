@@ -18,7 +18,7 @@ public class ClearFixedExpenseCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setFixedExpense(new FixedExpenseManager());
+        model.setFixedExpenseManager(new FixedExpenseManager());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

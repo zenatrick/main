@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
@@ -29,10 +30,10 @@ public class AddTransportBookingCommandParser implements Parser<AddTransportBook
     public AddTransportBookingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MODE, PREFIX_START_LOCATION, PREFIX_END_LOCATION,
-                        PREFIX_START_LOCATION, PREFIX_END_LOCATION);
+                        PREFIX_START_TIME, PREFIX_END_TIME);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_MODE, PREFIX_START_LOCATION, PREFIX_END_LOCATION,
-                PREFIX_START_LOCATION, PREFIX_END_LOCATION) || !argMultimap.getPreamble().isEmpty()) {
+                PREFIX_START_TIME, PREFIX_END_TIME) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTransportBookingCommand.MESSAGE_USAGE));
         }
@@ -41,7 +42,7 @@ public class AddTransportBookingCommandParser implements Parser<AddTransportBook
         Location startLocation = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_START_LOCATION).get());
         Location endLocation = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_END_LOCATION).get());
         Time startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get());
-        Time endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get());
+        Time endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_END_TIME).get());
 
         TransportBooking transportBooking = new TransportBooking(mode, startLocation, endLocation, startTime, endTime);
 

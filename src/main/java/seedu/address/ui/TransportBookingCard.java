@@ -49,7 +49,7 @@ public class TransportBookingCard extends UiPart<Region> {
         startLocation.setText("Start location is: " + transportBooking.getStartLocation().value);
         endLocation.setText("End location is: " + transportBooking.getEndLocation().value);
         startTime.setText("Start time is: " + transportBooking.getStartTime().value);
-        endTime.setText("End time is: " + transportBooking.getStartTime().value);
+        endTime.setText("End time is: " + transportBooking.getEndTime().value);
     }
 
     @Override

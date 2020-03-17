@@ -182,7 +182,7 @@ public class ParserUtil {
     public static Mode parseMode(String mode) throws ParseException {
         requireNonNull(mode);
         String trimmedMode = mode.trim();
-        if (!Mode.isValidMode(mode)) {
+        if (!Mode.isValidMode(trimmedMode)) {
             throw new ParseException(Mode.MESSAGE_CONSTRAINTS);
         }
         return new Mode(trimmedMode);
@@ -197,7 +197,7 @@ public class ParserUtil {
     public static Location parseLocation(String location) throws ParseException {
         requireNonNull(location);
         String trimmedLocation = location.trim();
-        if (!Location.isValidLocation(location)) {
+        if (!Location.isValidLocation(trimmedLocation)) {
             throw new ParseException(Location.MESSAGE_CONSTRAINTS);
         }
         return new Location(trimmedLocation);
@@ -212,7 +212,7 @@ public class ParserUtil {
     public static Time parseTime(String time) throws ParseException {
         requireNonNull(time);
         String trimmedTime = time.trim();
-        if (!Time.isValidTime(time)) {
+        if (!Time.isValidTime(trimmedTime)) {
             throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
         return new Time(trimmedTime);

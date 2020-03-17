@@ -182,8 +182,13 @@ public class ModelManager implements Model {
     // ========== TransportBookingManager ==========
 
     @Override
-    public ReadOnlyTransportBookingManager getTransportBooking() {
+    public ReadOnlyTransportBookingManager getTransportBookingManager() {
         return transportBookingManager;
+    }
+
+    @Override
+    public void setTransportBookingManager(ReadOnlyTransportBookingManager transportBookingManager) {
+        this.transportBookingManager.resetData(transportBookingManager);
     }
 
     @Override
@@ -223,8 +228,12 @@ public class ModelManager implements Model {
     // ========== FixedExpenseManager ==========
 
     @Override
-    public ReadOnlyFixedExpenseManager getFixedExpense() {
+    public ReadOnlyFixedExpenseManager getFixedExpenseManager() {
         return fixedExpenseManager;
+    }
+
+    public void setFixedExpenseManager(ReadOnlyFixedExpenseManager fixedExpenseManager) {
+        this.fixedExpenseManager.resetData(fixedExpenseManager);
     }
 
     @Override
@@ -261,16 +270,18 @@ public class ModelManager implements Model {
         filteredFixedExpenseList.setPredicate(predicate);
     }
 
+    // ========== PackingListManager ==========
+
     @Override
     public ReadOnlyPackingListManager getPackingListManager() {
         return packingListManager;
     }
 
-    public void setFixedExpense (ReadOnlyFixedExpenseManager readOnlyFixedExpenseManager) {
-        this.fixedExpenseManager.resetData(readOnlyFixedExpenseManager);
+    @Override
+    public void setPackingListManager(ReadOnlyPackingListManager packingListManager) {
+        requireAllNonNull(packingListManager);
+        this.packingListManager.resetData(packingListManager);
     }
-
-    // ========== PackingListManager ==========
 
     @Override
     public boolean hasPackingListItem(PackingListItem target) {

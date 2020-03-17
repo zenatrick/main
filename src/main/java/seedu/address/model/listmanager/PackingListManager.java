@@ -42,7 +42,7 @@ public class PackingListManager implements ReadOnlyPackingListManager {
      */
     public PackingListManager(ReadOnlyPackingListManager toBeCopied) {
         this();
-        resetDataPackingList(toBeCopied);
+        resetData(toBeCopied);
     }
 
     //// For Packing list overwrite operations
@@ -52,7 +52,7 @@ public class PackingListManager implements ReadOnlyPackingListManager {
      *
      * @param newData the new data
      */
-    public void resetDataPackingList(ReadOnlyPackingListManager newData) {
+    public void resetData(ReadOnlyPackingListManager newData) {
         requireNonNull(newData);
         setPackingList(newData.getPackingList());
     }
