@@ -5,6 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.transportbooking.Location;
+
 /**
  * Represents an AccommodationBooking in the AccommodationBookingManager.
  * Guarantees: details are present and not null, field values are validated, immutable.

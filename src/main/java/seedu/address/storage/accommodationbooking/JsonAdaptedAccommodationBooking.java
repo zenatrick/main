@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.accommodationbooking.AccommodationBooking;
 import seedu.address.model.accommodationbooking.Day;
-import seedu.address.model.accommodationbooking.Location;
 import seedu.address.model.accommodationbooking.Name;
 import seedu.address.model.accommodationbooking.Remark;
+import seedu.address.model.transportbooking.Location;
 
 /**
  * Jackson-friendly version of {@link AccommodationBooking}.
@@ -42,7 +42,7 @@ public class JsonAdaptedAccommodationBooking {
      */
     public JsonAdaptedAccommodationBooking(AccommodationBooking source) {
         name = source.getName().accommodationName;
-        location = source.getLocation().accommodationLocation;
+        location = source.getLocation().value;
         startDay = source.getStartDay().accommodationDay;
         endDay = source.getEndDay().accommodationDay;
         remark = source.getRemark().toString();
