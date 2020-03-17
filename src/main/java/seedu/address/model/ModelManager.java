@@ -68,8 +68,8 @@ public class ModelManager implements Model {
 
     // Temporary constructor
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTransportBookingManager transportBookingManager,
-                        ReadOnlyUserPrefs userPrefs) {
-        this(addressBook, transportBookingManager, new FixedExpenseManager(), new PackingListManager(), userPrefs);
+                        ReadOnlyFixedExpenseManager fixedExpenseManager, ReadOnlyUserPrefs userPrefs) {
+        this(addressBook, transportBookingManager, fixedExpenseManager, new PackingListManager(), userPrefs);
     }
 
     //=========== UserPrefs ==================================================================================
@@ -220,7 +220,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<FixedExpense> getFilteredFixedExpenseList() {
-        return null;
+        return filteredFixedExpenseList;
     }
 
     @Override

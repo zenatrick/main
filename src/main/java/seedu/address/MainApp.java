@@ -21,6 +21,8 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.listmanager.FixedExpenseManager;
+import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
 import seedu.address.model.listmanager.ReadOnlyTransportBookingManager;
 import seedu.address.model.listmanager.TransportBookingManager;
 import seedu.address.model.util.SampleDataUtil;
@@ -30,6 +32,8 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.fixedexpense.FixedExpenseStorage;
+import seedu.address.storage.fixedexpense.JsonFixedExpenseStorage;
 import seedu.address.storage.transportbooking.JsonTransportBookingStorage;
 import seedu.address.storage.transportbooking.TransportBookingStorage;
 import seedu.address.ui.Ui;
@@ -62,8 +66,11 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         TransportBookingStorage transportBookingStorage =
                 new JsonTransportBookingStorage((userPrefs.getTransportBookingStorageFilePath()));
+        FixedExpenseStorage fixedExpenseStorage =
+                new JsonFixedExpenseStorage(userPrefs.getFixedExpenseStorageFilePath());
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, transportBookingStorage, userPrefsStorage);
+        storage = new StorageManager(addressBookStorage, transportBookingStorage,
+                fixedExpenseStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -97,8 +104,9 @@ public class MainApp extends Application {
         }
 
         ReadOnlyTransportBookingManager transportBookingManager = initTransportBookingManager(storage);
+        ReadOnlyFixedExpenseManager fixedExpenseManager = initFixedExpenseManager(storage);
 
-        return new ModelManager(initialData, transportBookingManager, userPrefs);
+        return new ModelManager(initialData, transportBookingManager, fixedExpenseManager, userPrefs);
     }
 
     /**
@@ -121,6 +129,29 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty "
                     + "TransportBookingManager.");
             return new TransportBookingManager();
+        }
+    }
+
+    /**
+     * Returns a {@code ReadOnly} with the data from {@code storage}'s transport bookings.
+     * The data from the sample transport bookings will be used instead if {@code storage}'s address book is not found,
+     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     */
+    private ReadOnlyFixedExpenseManager initFixedExpenseManager(Storage storage) {
+        try {
+            Optional<ReadOnlyFixedExpenseManager> fixedExpenseManagerOptional = storage.readFixedExpenses();
+            if (fixedExpenseManagerOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample FixedExpenseManager.");
+            }
+            return fixedExpenseManagerOptional.orElseGet(SampleDataUtil::getSampleFixedExpenseManager);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty"
+                    + "FixedExpenseManager.");
+            return new FixedExpenseManager();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty "
+                    + "FixedExpenseManager.");
+            return new FixedExpenseManager();
         }
     }
 

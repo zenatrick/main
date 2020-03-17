@@ -14,6 +14,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.storage.fixedexpense.JsonFixedExpenseStorage;
+import seedu.address.storage.transportbooking.JsonTransportBookingStorage;
 
 public class StorageManagerTest {
 
@@ -26,7 +28,14 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        //TODO Temporary backstop
+        JsonTransportBookingStorage transportBookingStorage = new JsonTransportBookingStorage(
+                getTempFilePath("tr"));
+        JsonFixedExpenseStorage fixedExpenseStorage = new JsonFixedExpenseStorage(
+                getTempFilePath("fe")
+        );
+        storageManager = new StorageManager(addressBookStorage,
+                transportBookingStorage, fixedExpenseStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {

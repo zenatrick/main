@@ -6,6 +6,12 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.fixedexpense.Amount;
+import seedu.address.model.fixedexpense.Category;
+import seedu.address.model.fixedexpense.Description;
+import seedu.address.model.fixedexpense.FixedExpense;
+import seedu.address.model.listmanager.FixedExpenseManager;
+import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
 import seedu.address.model.listmanager.ReadOnlyTransportBookingManager;
 import seedu.address.model.listmanager.TransportBookingManager;
 import seedu.address.model.person.Address;
@@ -77,4 +83,21 @@ public class SampleDataUtil {
         }
         return sampleTransportBookingManager;
     }
+
+    public static FixedExpense[] getSampleFixedExpenses() {
+        return new FixedExpense[] {
+            new FixedExpense(new Amount("1000"), new Description("TestDescription"),
+                      new Category("TestCategory"))
+        };
+    }
+
+    public static ReadOnlyFixedExpenseManager getSampleFixedExpenseManager() {
+        FixedExpenseManager sampleFixedExpenseManager = new FixedExpenseManager();
+        for (FixedExpense sampleFixedExpense: getSampleFixedExpenses()) {
+            sampleFixedExpenseManager.addFixedExpense(sampleFixedExpense);
+        }
+        return sampleFixedExpenseManager;
+    }
+
 }
+
