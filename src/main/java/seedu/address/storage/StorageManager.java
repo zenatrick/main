@@ -10,9 +10,11 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.listmanager.ReadOnlyAccommodationBookingManager;
 import seedu.address.model.listmanager.ReadOnlyActivityManager;
 import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
 import seedu.address.model.listmanager.ReadOnlyTransportBookingManager;
+import seedu.address.storage.accommodationbooking.AccommodationBookingStorage;
 import seedu.address.storage.activity.ActivityManagerStorage;
 import seedu.address.storage.fixedexpense.FixedExpenseStorage;
 import seedu.address.storage.transportbooking.TransportBookingStorage;
@@ -26,6 +28,7 @@ public class StorageManager implements Storage {
     private AddressBookStorage addressBookStorage;
     private TransportBookingStorage transportBookingStorage;
     private FixedExpenseStorage fixedExpenseStorage;
+    private AccommodationBookingStorage accommodationBookingStorage;
     private UserPrefsStorage userPrefsStorage;
     private ActivityManagerStorage activityManagerStorage;
 
@@ -33,12 +36,14 @@ public class StorageManager implements Storage {
                           TransportBookingStorage transportBookingStorage,
                           FixedExpenseStorage fixedExpenseStorage,
                           ActivityManagerStorage activityManagerStorage,
+                          AccommodationBookingStorage accommodationBookingStorage,
                           UserPrefsStorage userPrefsStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.transportBookingStorage = transportBookingStorage;
         this.fixedExpenseStorage = fixedExpenseStorage;
         this.activityManagerStorage = activityManagerStorage;
+        this.accommodationBookingStorage = accommodationBookingStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -185,6 +190,38 @@ public class StorageManager implements Storage {
         activityManagerStorage.saveActivityManager(activityManager, filePath);
     }
 
+    // ================ AccommodationBookingManager methods ==============================
 
+    @Override
+    public Path getAccommodationBookingStorageFilePath() {
+        return accommodationBookingStorage.getAccommodationBookingStorageFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyAccommodationBookingManager> readAccommodationBookings() throws DataConversionException,
+            IOException {
+        return readAccommodationBookings(accommodationBookingStorage.getAccommodationBookingStorageFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyAccommodationBookingManager> readAccommodationBookings(
+            Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return accommodationBookingStorage.readAccommodationBookings(filePath);
+    }
+
+    @Override
+    public void saveAccommodationBookings(ReadOnlyAccommodationBookingManager accommodationBookingManager)
+            throws IOException {
+        saveAccommodationBookings(accommodationBookingManager,
+                accommodationBookingStorage.getAccommodationBookingStorageFilePath());
+    }
+
+    @Override
+    public void saveAccommodationBookings(
+            ReadOnlyAccommodationBookingManager accommodationBookingManager, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        accommodationBookingStorage.saveAccommodationBookings(accommodationBookingManager, filePath);
+    }
 
 }
