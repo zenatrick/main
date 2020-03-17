@@ -8,9 +8,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Remark {
 
-    /**
-     * The constant MESSAGE_CONSTRAINTS.
-     */
     public static final String MESSAGE_CONSTRAINTS = "Remark must be made up of alphanumeric words that is less "
             + "than 150 characters long.";
 

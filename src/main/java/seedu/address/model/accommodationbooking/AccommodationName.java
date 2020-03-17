@@ -19,40 +19,39 @@ public class AccommodationName {
     /**
      * The accommodation name.
      */
-    public final String accommodationName;
+    public final String value;
 
     /**
-     * Instantiates a new accommodation Name.
+     * Constructs a {@code AccommodationName}.
      *
      * @param name a valid name.
      */
     public AccommodationName(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        accommodationName = name;
+        value = name;
     }
 
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
-
     @Override
     public String toString() {
-        return accommodationName;
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AccommodationName // instanceof handles nulls
-                && accommodationName.equals(((AccommodationName) other)
-                .accommodationName)); // state check
+                && value.equals(((AccommodationName) other)
+                .value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return accommodationName.hashCode();
+        return value.hashCode();
     }
 
 }

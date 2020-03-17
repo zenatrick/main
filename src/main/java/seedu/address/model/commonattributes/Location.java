@@ -20,7 +20,7 @@ public class Location {
     public final String value;
 
     /**
-     * Constructs {@code Location}.
+     * Constructs a {@code Location}.
      *
      * @param location A valid location.
      */

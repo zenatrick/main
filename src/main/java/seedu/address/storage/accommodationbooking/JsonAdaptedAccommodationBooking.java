@@ -41,10 +41,10 @@ public class JsonAdaptedAccommodationBooking {
      * Converts a given {@code AccommodationBooking} into this class for Jackson use.
      */
     public JsonAdaptedAccommodationBooking(AccommodationBooking source) {
-        name = source.getAccommodationName().accommodationName;
+        name = source.getAccommodationName().value;
         location = source.getLocation().value;
-        startDay = source.getStartDay().accommodationDay;
-        endDay = source.getEndDay().accommodationDay;
+        startDay = source.getStartDay().value;
+        endDay = source.getEndDay().value;
         remark = source.getRemark().toString();
     }
 

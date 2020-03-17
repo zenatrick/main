@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Mode {
 
-    public static final String MESSAGE_CONSTRAINTS = "Mode can take one of the following words: \"plane\", \"train\","
-            + " \"bus\", \"car\" or \"others\"";
+    public static final String MESSAGE_CONSTRAINTS = "Mode should take one of the following words: \"plane\", "
+            + "\"train\", \"bus\", \"car\" or \"others\"";
 
     /*
      * Mode should be one of the following words: "plane", "train", "bus", "car" or "others"
@@ -20,7 +20,7 @@ public class Mode {
     public final String value;
 
     /**
-     * Constructs an {@code Mode}.
+     * Constructs a {@code Mode}.
      *
      * @param mode A valid mode.
      */
