@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.accommodationbooking.AccommodationBooking;
 import seedu.address.model.accommodationbooking.Day;
-import seedu.address.model.accommodationbooking.Name;
+import seedu.address.model.accommodationbooking.accommodationName;
 import seedu.address.model.accommodationbooking.Remark;
 import seedu.address.model.transportbooking.Location;
 
@@ -41,7 +41,7 @@ public class JsonAdaptedAccommodationBooking {
      * Converts a given {@code AccommodationBooking} into this class for Jackson use.
      */
     public JsonAdaptedAccommodationBooking(AccommodationBooking source) {
-        name = source.getName().accommodationName;
+        name = source.getAccommodationName().accommodationName;
         location = source.getLocation().value;
         startDay = source.getStartDay().accommodationDay;
         endDay = source.getEndDay().accommodationDay;
@@ -56,12 +56,12 @@ public class JsonAdaptedAccommodationBooking {
      */
     public AccommodationBooking toModelType() throws IllegalValueException {
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, accommodationName.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!accommodationName.isValidName(name)) {
+            throw new IllegalValueException(accommodationName.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final accommodationName modelAccommodationName = new accommodationName(name);
 
         if (location == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName()));
@@ -95,7 +95,7 @@ public class JsonAdaptedAccommodationBooking {
         }
         final Remark modelRemark = new Remark(remark);
 
-        return new AccommodationBooking(modelName, modelLocation, modelStartDay, modelEndDay, modelRemark);
+        return new AccommodationBooking(modelAccommodationName, modelLocation, modelStartDay, modelEndDay, modelRemark);
     }
 
 }

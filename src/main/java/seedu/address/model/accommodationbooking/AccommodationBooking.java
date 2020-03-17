@@ -16,7 +16,7 @@ public class AccommodationBooking {
     public static final String MESSAGE_DAY_CONSTRAINTS = "Start day must come before end day.";
 
     // Identity fields
-    private final Name name;
+    private final accommodationName accommodationName;
 
     // Data fields
     private final Day startDay;
@@ -28,20 +28,20 @@ public class AccommodationBooking {
     /**
      * Every field must be present and not null.
      */
-    public AccommodationBooking(Name name, Location location, Day startDay, Day endDay, Remark remark) {
+    public AccommodationBooking(accommodationName accommodationName, Location location, Day startDay, Day endDay, Remark remark) {
 
-        requireAllNonNull(name, location, startDay, endDay, remark);
+        requireAllNonNull(accommodationName, location, startDay, endDay, remark);
         checkArgument(isDayValid(startDay, endDay), MESSAGE_DAY_CONSTRAINTS);
 
-        this.name = name;
+        this.accommodationName = accommodationName;
         this.location = location;
         this.startDay = startDay;
         this.endDay = endDay;
         this.remark = remark;
     }
 
-    public Name getName() {
-        return name;
+    public accommodationName getAccommodationName() {
+        return accommodationName;
     }
 
     public Location getLocation() {
@@ -82,7 +82,7 @@ public class AccommodationBooking {
         }
 
         AccommodationBooking otherAccommodation = (AccommodationBooking) other;
-        return otherAccommodation.getName().equals(getName())
+        return otherAccommodation.getAccommodationName().equals(getAccommodationName())
                 && otherAccommodation.getLocation().equals(getLocation())
                 && otherAccommodation.getStartDay().equals(getStartDay())
                 && otherAccommodation.getEndDay().equals(getEndDay())
@@ -92,12 +92,12 @@ public class AccommodationBooking {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, location, startDay, endDay, remark);
+        return Objects.hash(accommodationName, location, startDay, endDay, remark);
     }
 
     @Override
     public String toString() {
-        return "Accommodation Booking - Name: " + getName()
+        return "Accommodation Booking - Name: " + getAccommodationName()
                 + " Location: " + getLocation()
                 + " Start Day: " + getStartDay()
                 + " End Day: " + getEndDay()
