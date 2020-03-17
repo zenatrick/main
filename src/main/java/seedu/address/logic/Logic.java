@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.accommodationbooking.AccommodationBooking;
 import seedu.address.model.activity.Activity;
 import seedu.address.model.fixedexpense.FixedExpense;
 import seedu.address.model.packinglistitem.PackingListItem;
@@ -61,12 +62,12 @@ public interface Logic {
      */
     ObservableList<TransportBooking> getFilteredTransportBookingList();
 
-    ///**
-    // * Returns an unmodifiable view of the filtered list of accommodation bookings.
-    // *
-    // * @return the unmodifiable view of the filtered list of accommodation bookings.
-    // */
-    //ObservableList<AccommodationBooking> getFilteredAccommodationBookingList();
+    /**
+     * Returns an unmodifiable view of the filtered list of accommodation bookings.
+     *
+     * @return the unmodifiable view of the filtered list of accommodation bookings.
+     */
+    ObservableList<AccommodationBooking> getFilteredAccommodationBookingList();
 
     /**
      * Returns an unmodifiable view of the filtered list of fixed expenses.
