@@ -25,7 +25,7 @@ public interface AccommodationBookingStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException             if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyAccommodationBookingManager> readTransportBookings() throws DataConversionException, IOException;
+    Optional<ReadOnlyAccommodationBookingManager> readAccommodationBookings() throws DataConversionException, IOException;
 
     /**
      * @see #getAccommodationBookingStorageFilePath()
@@ -44,7 +44,7 @@ public interface AccommodationBookingStorage {
     /**
      * @see #saveAccommodationBookings(ReadOnlyAccommodationBookingManager)
      */
-    void saveTransportBookings(
+    void saveAccommodationBookings(
             ReadOnlyAccommodationBookingManager accommodationBookingManager, Path filePath) throws IOException;
 
 }
