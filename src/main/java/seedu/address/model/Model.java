@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.accommodationbooking.AccommodationBooking;
 import seedu.address.model.activity.Activity;
 import seedu.address.model.fixedexpense.FixedExpense;
 import seedu.address.model.packinglistitem.PackingListItem;
@@ -39,6 +40,11 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Activity> PREDICATE_SHOW_ALL_ACTIVITIES = unused -> true;
+
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
+    Predicate<AccommodationBooking> PREDICATE_SHOW_ALL_ACCOMMODATION_BOOKINGS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -314,5 +320,57 @@ public interface Model {
      * @param predicate the given predicate.
      * @throws NullPointerException if {@code predicate} is null.
      */
+
     void updateFilteredActivityList(Predicate<Activity> predicate);
+
+    // ========== AccommodationBookingManager ==========
+
+    /**
+     * Returns true if a accommodation booking that is the same as {@code target} exists in the
+     * AccommodationBookingManager.
+     *
+     * @param target the given accommodation booking.
+     * @return true if the given accommodation booking already exist in the AccommodationBookingManager.
+     */
+    boolean hasAccommodationBooking(AccommodationBooking target);
+
+    /**
+     * Deletes the given accommodation booking.
+     * The accommodation booking must exist in the AccommodationBookingManager.
+     *
+     * @param toDelete the given accommodation booking.
+     */
+    void deleteAccommodationBooking(AccommodationBooking toDelete);
+
+    /**
+     * Adds the given accommodation booking.
+     * {@code toAdd} must not already exist in the AccommodationBookingManager.
+     *
+     * @param toAdd the given accommodation booking.
+     */
+    void addAccommodationBooking(AccommodationBooking toAdd);
+
+    /**
+     * Replaces the given accommodation booking {@code target} with {@code edited}.
+     * {@code target} must exist in the AccommodationBookingManager.
+     * {@code edited} must not be the same as another existing accommodation booking in the address book.
+     *
+     * @param target the given target accommodation booking.
+     * @param edited the given edited accommodation booking.
+     */
+    void setAccommodationBooking(AccommodationBooking target, AccommodationBooking edited);
+
+    /**
+     * Returns an unmodifiable view of the filtered transport booking list
+     */
+    ObservableList<AccommodationBooking> getFilteredAccommodationBookingList();
+
+    /**
+     * Updates the filter of the filtered accommodation booking list to filter by the given {@code predicate}.
+     *
+     * @param predicate the given predicate.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredAccommodationBookingList(Predicate<AccommodationBooking> predicate);
+
 }

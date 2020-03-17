@@ -11,11 +11,14 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.accommodationbooking.AccommodationBooking;
 import seedu.address.model.activity.Activity;
 import seedu.address.model.fixedexpense.FixedExpense;
+import seedu.address.model.listmanager.AccommodationBookingManager;
 import seedu.address.model.listmanager.ActivityManager;
 import seedu.address.model.listmanager.FixedExpenseManager;
 import seedu.address.model.listmanager.PackingListManager;
+import seedu.address.model.listmanager.ReadOnlyAccommodationBookingManager;
 import seedu.address.model.listmanager.ReadOnlyActivityManager;
 import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
 import seedu.address.model.listmanager.ReadOnlyPackingListManager;
@@ -36,19 +39,23 @@ public class ModelManager implements Model {
     private final FixedExpenseManager fixedExpenseManager;
     private final PackingListManager packingListManager;
     private final ActivityManager activityManager;
+    private final AccommodationBookingManager accommodationBookingManager;
     private final UserPrefs userPrefs;
+
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<TransportBooking> filteredTransportBookingList;
     private final FilteredList<FixedExpense> filteredFixedExpenseList;
     private final FilteredList<PackingListItem> filteredPackingList;
     private final FilteredList<Activity> filteredActivityList;
+    private final FilteredList<AccommodationBooking> filteredAccommodationBookingList;
 
     /**
      * Initializes a ModelManager with the given managers and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTransportBookingManager transportBookingManager,
                         ReadOnlyFixedExpenseManager fixedExpenseManager, ReadOnlyPackingListManager packingListManager,
-                        ReadOnlyActivityManager activityManager, ReadOnlyUserPrefs userPrefs) {
+                        ReadOnlyActivityManager activityManager,
+                        ReadOnlyAccommodationBookingManager accommodationBookingManager,ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -59,6 +66,7 @@ public class ModelManager implements Model {
         this.fixedExpenseManager = new FixedExpenseManager(fixedExpenseManager);
         this.packingListManager = new PackingListManager(packingListManager);
         this.activityManager = new ActivityManager(activityManager);
+        this.accommodationBookingManager = new AccommodationBookingManager(accommodationBookingManager);
         this.userPrefs = new UserPrefs(userPrefs);
 
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -66,19 +74,22 @@ public class ModelManager implements Model {
         filteredFixedExpenseList = new FilteredList<>(this.fixedExpenseManager.getFixedExpenseList());
         filteredPackingList = new FilteredList<>(this.packingListManager.getPackingList());
         filteredActivityList = new FilteredList<>(this.activityManager.getActivityList());
+        filteredAccommodationBookingList = new FilteredList<>((this.accommodationBookingManager
+                .getAccommodationBookingList()));
     }
 
     public ModelManager() {
         this(new AddressBook(), new TransportBookingManager(), new FixedExpenseManager(), new PackingListManager(),
-                new ActivityManager(),
-                new UserPrefs());
+                new ActivityManager(), new AccommodationBookingManager(), new UserPrefs());
     }
 
     // Temporary constructor
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTransportBookingManager transportBookingManager,
-                        ReadOnlyFixedExpenseManager fixedExpenseManager, ReadOnlyUserPrefs userPrefs) {
+                        ReadOnlyFixedExpenseManager fixedExpenseManager,
+                        ReadOnlyAccommodationBookingManager accommodationBookingManager,
+                        ReadOnlyUserPrefs userPrefs) {
         this(addressBook, transportBookingManager, fixedExpenseManager, new PackingListManager(),
-                new ActivityManager(), userPrefs);
+                new ActivityManager(), accommodationBookingManager, userPrefs);
     }
 
     //=========== UserPrefs ==================================================================================
@@ -310,6 +321,42 @@ public class ModelManager implements Model {
         filteredActivityList.setPredicate(predicate);
     }
 
+    // ========== AccommodationBookingManager ==========
+
+    @Override
+    public boolean hasAccommodationBooking(AccommodationBooking target) {
+        requireNonNull(target);
+        return accommodationBookingManager.hasAccommodationBooking(target);
+    }
+
+    @Override
+    public void deleteAccommodationBooking(AccommodationBooking toDelete) {
+        accommodationBookingManager.removeAccommodationBooking(toDelete);
+    }
+
+    @Override
+    public void addAccommodationBooking(AccommodationBooking toAdd) {
+        accommodationBookingManager.addAccommodationBooking(toAdd);
+        updateFilteredAccommodationBookingList(PREDICATE_SHOW_ALL_ACCOMMODATION_BOOKINGS);
+    }
+
+    @Override
+    public void setAccommodationBooking(AccommodationBooking target, AccommodationBooking edited) {
+        requireAllNonNull(target, edited);
+        accommodationBookingManager.setAccommodationBooking(target, edited);
+    }
+
+    @Override
+    public ObservableList<AccommodationBooking> getFilteredAccommodationBookingList() {
+        return filteredAccommodationBookingList;
+    }
+
+    @Override
+    public void updateFilteredAccommodationBookingList(Predicate<AccommodationBooking> predicate) {
+        requireNonNull(predicate);
+        filteredAccommodationBookingList.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -326,7 +373,12 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && transportBookingManager.equals(other.transportBookingManager)
+                && fixedExpenseManager.equals(other.fixedExpenseManager)
+                && packingListManager.equals(other.packingListManager)
+                && activityManager.equals(other.activityManager)
+                && accommodationBookingManager.equals(other.accommodationBookingManager);
     }
 
 }
