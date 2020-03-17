@@ -13,8 +13,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.activity.Activity;
 import seedu.address.model.fixedexpense.FixedExpense;
+import seedu.address.model.listmanager.ActivityManager;
 import seedu.address.model.listmanager.FixedExpenseManager;
 import seedu.address.model.listmanager.PackingListManager;
+import seedu.address.model.listmanager.ReadOnlyActivityManager;
 import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
 import seedu.address.model.listmanager.ReadOnlyPackingListManager;
 import seedu.address.model.listmanager.ReadOnlyTransportBookingManager;
@@ -33,18 +35,20 @@ public class ModelManager implements Model {
     private final TransportBookingManager transportBookingManager;
     private final FixedExpenseManager fixedExpenseManager;
     private final PackingListManager packingListManager;
+    private final ActivityManager activityManager;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<TransportBooking> filteredTransportBookingList;
     private final FilteredList<FixedExpense> filteredFixedExpenseList;
     private final FilteredList<PackingListItem> filteredPackingList;
+    private final FilteredList<Activity> filteredActivityList;
 
     /**
      * Initializes a ModelManager with the given managers and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTransportBookingManager transportBookingManager,
                         ReadOnlyFixedExpenseManager fixedExpenseManager, ReadOnlyPackingListManager packingListManager,
-                        ReadOnlyUserPrefs userPrefs) {
+                        ReadOnlyActivityManager activityManager, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -54,23 +58,27 @@ public class ModelManager implements Model {
         this.transportBookingManager = new TransportBookingManager(transportBookingManager);
         this.fixedExpenseManager = new FixedExpenseManager(fixedExpenseManager);
         this.packingListManager = new PackingListManager(packingListManager);
+        this.activityManager = new ActivityManager(activityManager);
         this.userPrefs = new UserPrefs(userPrefs);
 
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTransportBookingList = new FilteredList<>(this.transportBookingManager.getTransportBookings());
         filteredFixedExpenseList = new FilteredList<>(this.fixedExpenseManager.getFixedExpenseList());
         filteredPackingList = new FilteredList<>(this.packingListManager.getPackingList());
+        filteredActivityList = new FilteredList<>(this.activityManager.getActivityList());
     }
 
     public ModelManager() {
         this(new AddressBook(), new TransportBookingManager(), new FixedExpenseManager(), new PackingListManager(),
+                new ActivityManager(),
                 new UserPrefs());
     }
 
     // Temporary constructor
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTransportBookingManager transportBookingManager,
                         ReadOnlyFixedExpenseManager fixedExpenseManager, ReadOnlyUserPrefs userPrefs) {
-        this(addressBook, transportBookingManager, fixedExpenseManager, new PackingListManager(), userPrefs);
+        this(addressBook, transportBookingManager, fixedExpenseManager, new PackingListManager(),
+                new ActivityManager(), userPrefs);
     }
 
     //=========== UserPrefs ==================================================================================
@@ -269,32 +277,37 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasActivity(Activity target) {
-        return false;
+        requireNonNull(target);
+        return activityManager.hasActivity(target);
     }
 
     @Override
     public void deleteActivity(Activity toDelete) {
+        activityManager.removeActivity(toDelete);
 
     }
 
     @Override
     public void addActivity(Activity toAdd) {
-
+        activityManager.addActivity(toAdd);
+        updateFilteredActivityList(PREDICATE_SHOW_ALL_ACTIVITIES);
     }
 
     @Override
     public void setActivity(Activity target, Activity edited) {
-
+        requireAllNonNull(target, edited);
+        activityManager.setActivity(target, edited);
     }
 
     @Override
     public ObservableList<Activity> getFilteredActivityList() {
-        return null;
+        return filteredActivityList;
     }
 
     @Override
     public void updateFilteredActivityList(Predicate<Activity> predicate) {
-
+        requireNonNull(predicate);
+        filteredActivityList.setPredicate(predicate);
     }
 
     @Override

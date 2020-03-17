@@ -36,6 +36,11 @@ public interface Model {
     Predicate<PackingListItem> PREDICATE_SHOW_ALL_PACKING_LIST_ITEMS = unused -> true;
 
     /**
+     * {@code Predicate} that always evaluate to true
+     */
+    Predicate<Activity> PREDICATE_SHOW_ALL_ACTIVITIES = unused -> true;
+
+    /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
