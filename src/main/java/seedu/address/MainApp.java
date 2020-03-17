@@ -21,8 +21,10 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.listmanager.AccommodationBookingManager;
 import seedu.address.model.listmanager.ActivityManager;
 import seedu.address.model.listmanager.FixedExpenseManager;
+import seedu.address.model.listmanager.ReadOnlyAccommodationBookingManager;
 import seedu.address.model.listmanager.ReadOnlyActivityManager;
 import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
 import seedu.address.model.listmanager.ReadOnlyTransportBookingManager;
@@ -34,6 +36,8 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.accommodationbooking.AccommodationBookingStorage;
+import seedu.address.storage.accommodationbooking.JsonAccommodationBookingStorage;
 import seedu.address.storage.activity.ActivityManagerStorage;
 import seedu.address.storage.activity.JsonActivityManagerStorage;
 import seedu.address.storage.fixedexpense.FixedExpenseStorage;
@@ -74,11 +78,14 @@ public class MainApp extends Application {
                 new JsonFixedExpenseStorage(userPrefs.getFixedExpenseStorageFilePath());
         ActivityManagerStorage activityManagerStorage =
                 new JsonActivityManagerStorage(userPrefs.getActivityManagerStorageFilePath());
+        AccommodationBookingStorage accommodationBookingStorage =
+                new JsonAccommodationBookingStorage((userPrefs.getAccommodationBookingStorageFilePath()));
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(addressBookStorage,
                 transportBookingStorage,
                 fixedExpenseStorage,
                 activityManagerStorage,
+                accommodationBookingStorage,
                 userPrefsStorage);
 
         initLogging(config);
@@ -115,8 +122,10 @@ public class MainApp extends Application {
         ReadOnlyTransportBookingManager transportBookingManager = initTransportBookingManager(storage);
         ReadOnlyFixedExpenseManager fixedExpenseManager = initFixedExpenseManager(storage);
         ReadOnlyActivityManager activityManager = initActivityManager(storage);
+        ReadOnlyAccommodationBookingManager accommodationBookingManager = initAccommodationBookingManager(storage);
 
-        return new ModelManager(initialData, transportBookingManager, fixedExpenseManager, userPrefs);
+        return new ModelManager(initialData, transportBookingManager, fixedExpenseManager, activityManager,
+                accommodationBookingManager, userPrefs);
     }
 
     /**
@@ -221,6 +230,41 @@ public class MainApp extends Application {
         return activityManager;
     }
 
+    /**
+     * Returns a {@code ReadOnly} with the data from {@code storage}'s accommodation bookings.
+     * The data from the sample accommodation bookings will be used instead if {@code storage}'s address book
+     * is not found, or an empty address book will be used instead if errors occur when
+     * reading {@code storage}'s address book.
+     */
+    private ReadOnlyAccommodationBookingManager initAccommodationBookingManager(Storage storage) {
+        ReadOnlyAccommodationBookingManager accommodationBookingManager;
+        try {
+            Optional<ReadOnlyAccommodationBookingManager> accommodationBookingManagerOptional =
+                    storage.readAccommodationBookings();
+            if (accommodationBookingManagerOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample AccommodationBookingManager.");
+            }
+            accommodationBookingManager =
+                    accommodationBookingManagerOptional.orElseGet(SampleDataUtil::getSampleAccommodationBookingManager);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty"
+                    + "AccommodationBookingManager.");
+            accommodationBookingManager = new AccommodationBookingManager();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty "
+                    + "AccommodationBookingManager.");
+            accommodationBookingManager = new AccommodationBookingManager();
+        }
+
+        try {
+            storage.saveAccommodationBookings(accommodationBookingManager);
+            logger.info("Saving initial data of Accommodation Booking Manager.");
+        } catch (IOException e) {
+            logger.warning("Problem while saving to the file.");
+        }
+
+        return accommodationBookingManager;
+    }
 
     private void initLogging(Config config) {
         LogsCenter.init(config);
