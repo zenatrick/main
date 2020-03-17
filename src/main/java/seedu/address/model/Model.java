@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.accommodationbooking.AccommodationBooking;
 import seedu.address.model.activity.Activity;
 import seedu.address.model.fixedexpense.FixedExpense;
+import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
 import seedu.address.model.packinglistitem.PackingListItem;
 import seedu.address.model.person.Person;
 import seedu.address.model.transportbooking.TransportBooking;
@@ -173,6 +174,11 @@ public interface Model {
     void updateFilteredTransportBookingList(Predicate<TransportBooking> predicate);
 
     // ========== FixedExpenseManager ==========
+
+    /**
+     * Replaces FixedExpense book data with the data in {@code addressBook}.
+     */
+    void setFixedExpense(ReadOnlyFixedExpenseManager fixedExpense);
 
     /**
      * Returns true if a fixed expense that is the same as {@code target} exists in the

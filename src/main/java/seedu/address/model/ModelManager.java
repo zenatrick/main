@@ -251,6 +251,10 @@ public class ModelManager implements Model {
         filteredFixedExpenseList.setPredicate(predicate);
     }
 
+    public void setFixedExpense (ReadOnlyFixedExpenseManager readOnlyFixedExpenseManager) {
+        this.fixedExpenseManager.resetData(readOnlyFixedExpenseManager);
+    }
+
     // ========== PackingListManager ==========
 
     @Override
