@@ -15,8 +15,10 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.fixedexpense.AddFixedExpenseCommand;
 import seedu.address.logic.commands.fixedexpense.ClearFixedExpenseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.fixedexpense.AddFixedExpenseParser;
 
 /**
  * Parses user input.
@@ -71,6 +73,9 @@ public class AddressBookParser {
 
         case ClearFixedExpenseCommand.COMMAND_WORD:
             return new ClearFixedExpenseCommand();
+
+        case AddFixedExpenseCommand.COMMAND_WORD:
+            return new AddFixedExpenseParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
