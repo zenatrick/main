@@ -18,6 +18,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private Path transportBookingStorageFilePath = DEFAULT_FOLDER_PATH.resolve("transportation.json");
     private Path fixedExpenseStorageFilePath = DEFAULT_FOLDER_PATH.resolve("fixedexpense.json");
     private Path activityManagerStorageFilePath = DEFAULT_FOLDER_PATH.resolve("activity.json");
+    private Path accommodationBookingStorageFilePath = DEFAULT_FOLDER_PATH.resolve("accommodation.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -88,6 +89,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.activityManagerStorageFilePath = activityManagerStorageFilePath;
     }
 
+    public Path getAccommodationBookingStorageFilePath() {
+        return accommodationBookingStorageFilePath;
+    }
+
+    public void setAccommodationBookingStorageFilePath(Path accommodationBookingStorageFilePath) {
+        requireNonNull(accommodationBookingStorageFilePath);
+        this.accommodationBookingStorageFilePath = accommodationBookingStorageFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -103,19 +113,23 @@ public class UserPrefs implements ReadOnlyUserPrefs {
                 && addressBookFilePath.equals(o.addressBookFilePath)
                 && transportBookingStorageFilePath.equals(o.transportBookingStorageFilePath)
                 && fixedExpenseStorageFilePath.equals(o.fixedExpenseStorageFilePath)
-                && activityManagerStorageFilePath.equals(o.activityManagerStorageFilePath);
+                && activityManagerStorageFilePath.equals(o.activityManagerStorageFilePath)
+                && accommodationBookingStorageFilePath.equals(o.accommodationBookingStorageFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath, transportBookingStorageFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, transportBookingStorageFilePath,
+                fixedExpenseStorageFilePath, accommodationBookingStorageFilePath);
     }
 
     @Override
     public String toString() {
         return "Gui Settings : " + guiSettings
                 + "\nLocal data file location : " + addressBookFilePath
-                + "\nTransport Bookings data file location : " + transportBookingStorageFilePath;
+                + "\nTransport Bookings data file location : " + transportBookingStorageFilePath
+                + "\nFixed Expense data file location : " + fixedExpenseStorageFilePath
+                + "\nAccommodation Bookings data file location : " + accommodationBookingStorageFilePath;
     }
 
 }
