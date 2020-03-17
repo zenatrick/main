@@ -16,6 +16,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.listmanager.ActivityManager;
 import seedu.address.model.listmanager.FixedExpenseManager;
 import seedu.address.model.listmanager.PackingListManager;
 import seedu.address.model.listmanager.TransportBookingManager;
@@ -28,7 +29,7 @@ import seedu.address.model.person.Person;
 public class DeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(),
-            new TransportBookingManager(), new FixedExpenseManager(), new PackingListManager(),
+            new TransportBookingManager(), new FixedExpenseManager(), new PackingListManager(), new ActivityManager(),
             new UserPrefs());
 
     @Test
@@ -40,7 +41,7 @@ public class DeleteCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(),
                 new TransportBookingManager(), new FixedExpenseManager(),
-                new PackingListManager(), new UserPrefs());
+                new PackingListManager(), new ActivityManager(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -64,7 +65,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new TransportBookingManager(),
-                new FixedExpenseManager(), new PackingListManager(), new UserPrefs());
+                new FixedExpenseManager(), new PackingListManager(), new ActivityManager(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 
