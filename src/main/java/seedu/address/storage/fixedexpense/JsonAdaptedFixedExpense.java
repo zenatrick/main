@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.fixedexpense.Amount;
-import seedu.address.model.fixedexpense.Category;
-import seedu.address.model.fixedexpense.Description;
-import seedu.address.model.fixedexpense.FixedExpense;
+import seedu.address.model.listmanagers.fixedexpense.Amount;
+import seedu.address.model.listmanagers.fixedexpense.Category;
+import seedu.address.model.listmanagers.fixedexpense.Description;
+import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
 
 /**
  * Jackson-friendly version of {@link FixedExpense}.

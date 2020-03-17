@@ -5,15 +5,16 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.accommodationbooking.AccommodationBooking;
-import seedu.address.model.activity.Activity;
-import seedu.address.model.fixedexpense.FixedExpense;
-import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
-import seedu.address.model.listmanager.ReadOnlyPackingListManager;
-import seedu.address.model.listmanager.ReadOnlyTransportBookingManager;
-import seedu.address.model.packinglistitem.PackingListItem;
+import seedu.address.model.listmanagers.ReadOnlyFixedExpenseManager;
+import seedu.address.model.listmanagers.ReadOnlyPackingListManager;
+import seedu.address.model.listmanagers.ReadOnlyTransportBookingManager;
+import seedu.address.model.listmanagers.ReadOnlyUserPrefs;
+import seedu.address.model.listmanagers.accommodationbooking.AccommodationBooking;
+import seedu.address.model.listmanagers.activity.Activity;
+import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
+import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
+import seedu.address.model.listmanagers.transportbooking.TransportBooking;
 import seedu.address.model.person.Person;
-import seedu.address.model.transportbooking.TransportBooking;
 
 /**
  * The API of the Model component.

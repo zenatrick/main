@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.packinglistitem.PackingListItem;
+import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 
 /**
  * Panel containing the list of items.

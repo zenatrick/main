@@ -12,8 +12,8 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.time.DateTime;
 import seedu.address.logic.commands.AddTransportBookingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.transportbooking.Mode;
-import seedu.address.model.transportbooking.TransportBooking;
+import seedu.address.model.listmanagers.transportbooking.Mode;
+import seedu.address.model.listmanagers.transportbooking.TransportBooking;
 import seedu.address.model.util.attributes.Location;
 
 /**

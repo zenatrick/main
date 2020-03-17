@@ -19,17 +19,17 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.listmanager.AccommodationBookingManager;
-import seedu.address.model.listmanager.ActivityManager;
-import seedu.address.model.listmanager.FixedExpenseManager;
-import seedu.address.model.listmanager.PackingListManager;
-import seedu.address.model.listmanager.ReadOnlyAccommodationBookingManager;
-import seedu.address.model.listmanager.ReadOnlyActivityManager;
-import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
-import seedu.address.model.listmanager.ReadOnlyTransportBookingManager;
-import seedu.address.model.listmanager.TransportBookingManager;
+import seedu.address.model.listmanagers.AccommodationBookingManager;
+import seedu.address.model.listmanagers.ActivityManager;
+import seedu.address.model.listmanagers.FixedExpenseManager;
+import seedu.address.model.listmanagers.PackingListManager;
+import seedu.address.model.listmanagers.ReadOnlyAccommodationBookingManager;
+import seedu.address.model.listmanagers.ReadOnlyActivityManager;
+import seedu.address.model.listmanagers.ReadOnlyFixedExpenseManager;
+import seedu.address.model.listmanagers.ReadOnlyTransportBookingManager;
+import seedu.address.model.listmanagers.ReadOnlyUserPrefs;
+import seedu.address.model.listmanagers.TransportBookingManager;
+import seedu.address.model.listmanagers.UserPrefs;
 import seedu.address.model.util.sampledata.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -155,7 +155,7 @@ public class MainApp extends Application {
 
         try {
             storage.saveTransportBookings(transportBookingManager);
-            logger.info("Saving initial data of Transport Booking Manager.");
+            logger.info("Saving initial data of TransportBookingManager.");
         } catch (IOException e) {
             logger.warning("Problem while saving to the file.");
         }
@@ -188,7 +188,7 @@ public class MainApp extends Application {
 
         try {
             storage.saveFixedExpenses(fixedExpenseManager);
-            logger.info("Saving initial data of Fixed Expense Manager.");
+            logger.info("Saving initial data of FixedExpenseManager.");
         } catch (IOException e) {
             logger.warning("Problem while saving to the file.");
         }
@@ -223,7 +223,7 @@ public class MainApp extends Application {
 
         try {
             storage.saveActivityManager(activityManager);
-            logger.info("Saving initial data of Transport Booking Manager.");
+            logger.info("Saving initial data of ActivityManager.");
         } catch (IOException e) {
             logger.warning("Problem while saving to the file.");
         }
@@ -259,7 +259,7 @@ public class MainApp extends Application {
 
         try {
             storage.saveAccommodationBookings(accommodationBookingManager);
-            logger.info("Saving initial data of Accommodation Booking Manager.");
+            logger.info("Saving initial data of AccommodationBookingManager.");
         } catch (IOException e) {
             logger.warning("Problem while saving to the file.");
         }

@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.activity.Activity;
-import seedu.address.model.listmanager.ActivityManager;
-import seedu.address.model.listmanager.ReadOnlyActivityManager;
+import seedu.address.model.listmanagers.ActivityManager;
+import seedu.address.model.listmanagers.ReadOnlyActivityManager;
+import seedu.address.model.listmanagers.activity.Activity;
 
 
 /**

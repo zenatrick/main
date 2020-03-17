@@ -7,9 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.fixedexpense.FixedExpense;
+import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
+import seedu.address.model.listmanagers.transportbooking.TransportBooking;
 import seedu.address.model.person.Person;
-import seedu.address.model.transportbooking.TransportBooking;
 
 /**
  * Panel containing the list of persons.

@@ -14,10 +14,10 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.fixedexpense.Amount;
-import seedu.address.model.fixedexpense.Category;
-import seedu.address.model.fixedexpense.Description;
-import seedu.address.model.fixedexpense.FixedExpense;
+import seedu.address.model.listmanagers.fixedexpense.Amount;
+import seedu.address.model.listmanagers.fixedexpense.Category;
+import seedu.address.model.listmanagers.fixedexpense.Description;
+import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
 
 /**
  * Parses input arguments and creates a new AddCommand object

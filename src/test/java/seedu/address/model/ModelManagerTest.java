@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.listmanagers.UserPrefs;
 
 // TODO: Fix ModelManagerTest
 public class ModelManagerTest {

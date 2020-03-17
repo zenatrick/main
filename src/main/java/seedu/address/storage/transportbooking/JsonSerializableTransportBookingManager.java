@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.listmanager.ReadOnlyTransportBookingManager;
-import seedu.address.model.listmanager.TransportBookingManager;
-import seedu.address.model.transportbooking.TransportBooking;
+import seedu.address.model.listmanagers.ReadOnlyTransportBookingManager;
+import seedu.address.model.listmanagers.TransportBookingManager;
+import seedu.address.model.listmanagers.transportbooking.TransportBooking;
 
 /**
  * An Immutable TransportBookingManager that is serializable to JSON format.

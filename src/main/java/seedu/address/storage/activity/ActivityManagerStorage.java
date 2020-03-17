@@ -5,8 +5,8 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.listmanager.ActivityManager;
-import seedu.address.model.listmanager.ReadOnlyActivityManager;
+import seedu.address.model.listmanagers.ActivityManager;
+import seedu.address.model.listmanagers.ReadOnlyActivityManager;
 /**
  * Represents a storage for {@link ActivityManager}.
  */

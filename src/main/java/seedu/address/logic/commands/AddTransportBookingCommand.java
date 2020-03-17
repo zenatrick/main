@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.transportbooking.TransportBooking;
+import seedu.address.model.listmanagers.transportbooking.TransportBooking;
 
 /**
  * Adds a TransportBooking to the TransportBookingManager.

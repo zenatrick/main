@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.fixedexpense.FixedExpense;
-import seedu.address.model.listmanager.FixedExpenseManager;
-import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
+import seedu.address.model.listmanagers.FixedExpenseManager;
+import seedu.address.model.listmanagers.ReadOnlyFixedExpenseManager;
+import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
 
 /**
  * An Immutable FixedExpenseManager that is serializable to JSON format.

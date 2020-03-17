@@ -5,8 +5,8 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.listmanager.FixedExpenseManager;
-import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
+import seedu.address.model.listmanagers.FixedExpenseManager;
+import seedu.address.model.listmanagers.ReadOnlyFixedExpenseManager;
 
 /**
  * Represents a storage for {@link FixedExpenseManager}.

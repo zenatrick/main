@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.transportbooking.TransportBooking;
+import seedu.address.model.listmanagers.transportbooking.TransportBooking;
 
 /**
  * Panel containing the list of transportBookings.

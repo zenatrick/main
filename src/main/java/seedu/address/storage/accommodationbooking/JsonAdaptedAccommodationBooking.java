@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.accommodationbooking.AccommodationBooking;
-import seedu.address.model.accommodationbooking.AccommodationName;
-import seedu.address.model.accommodationbooking.Day;
-import seedu.address.model.accommodationbooking.Remark;
+import seedu.address.model.listmanagers.accommodationbooking.AccommodationBooking;
+import seedu.address.model.listmanagers.accommodationbooking.AccommodationName;
+import seedu.address.model.listmanagers.accommodationbooking.Day;
+import seedu.address.model.listmanagers.accommodationbooking.Remark;
 import seedu.address.model.util.attributes.Location;
 
 /**

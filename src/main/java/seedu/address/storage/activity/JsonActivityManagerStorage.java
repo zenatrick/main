@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.listmanager.ReadOnlyActivityManager;
+import seedu.address.model.listmanagers.ReadOnlyActivityManager;
 
 /**
  * A class to access ActivityManager data stored as a json file on the hard disk.
@@ -47,7 +47,7 @@ public class JsonActivityManagerStorage implements ActivityManagerStorage {
 
         Optional<JsonSerializableActivityManager> jsonActivityManager = JsonUtil.readJsonFile(
                 filePath, JsonSerializableActivityManager.class);
-        if (!jsonActivityManager.isPresent()) {
+        if (jsonActivityManager.isEmpty()) {
             return Optional.empty();
         }
 
