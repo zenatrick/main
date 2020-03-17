@@ -16,7 +16,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = DEFAULT_FOLDER_PATH.resolve("addressbook.json");
     private Path transportBookingStorageFilePath = DEFAULT_FOLDER_PATH.resolve("transportation.json");
-    private Path fixedExpenseStorageFilePath = DEFAULT_FOLDER_PATH.resolve("fixedexpense.json");
+    private Path fixedExpenseStorageFilePath = DEFAULT_FOLDER_PATH.resolve("expense.json");
     private Path activityManagerStorageFilePath = DEFAULT_FOLDER_PATH.resolve("activity.json");
     private Path accommodationBookingStorageFilePath = DEFAULT_FOLDER_PATH.resolve("accommodation.json");
 
@@ -41,7 +41,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
-
+        setActivityManagerStorageFilePath(newUserPrefs.getActivityManagerStorageFilePath());
+        setAccommodationBookingStorageFilePath(newUserPrefs.getAccommodationBookingStorageFilePath());
+        setTransportBookingStorageFilePath(newUserPrefs.getTransportBookingStorageFilePath());
+        setFixedExpenseStorageFilePath(newUserPrefs.getFixedExpenseStorageFilePath());
     }
 
     public GuiSettings getGuiSettings() {

@@ -46,14 +46,14 @@ public class JsonFixedExpenseStorage implements FixedExpenseStorage {
             Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableFixedExpenseManager> jsonfixedExpenseManager = JsonUtil.readJsonFile(
+        Optional<JsonSerializableFixedExpenseManager> jsonFixedExpenseManager = JsonUtil.readJsonFile(
                 filePath, JsonSerializableFixedExpenseManager.class);
-        if (jsonfixedExpenseManager.isEmpty()) {
+        if (jsonFixedExpenseManager.isEmpty()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonfixedExpenseManager.get().toModelType());
+            return Optional.of(jsonFixedExpenseManager.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);

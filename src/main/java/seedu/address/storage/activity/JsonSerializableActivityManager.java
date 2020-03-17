@@ -17,7 +17,7 @@ import seedu.address.model.listmanager.ReadOnlyActivityManager;
 /**
  * An Immutable activityManager that is serializable to JSON format.
  */
-@JsonRootName(value = "activitymanager")
+@JsonRootName(value = "activityManager")
 class JsonSerializableActivityManager {
 
     public static final String MESSAGE_DUPLICATE_ACTIVITY = "Persons list contains duplicate person(s).";
@@ -28,7 +28,7 @@ class JsonSerializableActivityManager {
      * Constructs a {@code JsonSerializableActivityManager} with the given activities.
      */
     @JsonCreator
-    public JsonSerializableActivityManager(@JsonProperty("persons") List<JsonAdaptedActivityManager> activities) {
+    public JsonSerializableActivityManager(@JsonProperty("activities") List<JsonAdaptedActivityManager> activities) {
         this.activities.addAll(activities);
     }
 
