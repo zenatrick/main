@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.activity.exceptions.ActivityNotFoundException;
 import seedu.address.model.activity.exceptions.DuplicateActivityException;
-import seedu.address.model.commonattributes.Location;
+import seedu.address.model.util.attributes.Location;
 
 class UniqueActivityListTest {
 

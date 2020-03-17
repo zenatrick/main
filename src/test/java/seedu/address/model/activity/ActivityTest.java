@@ -10,7 +10,7 @@ import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.commonattributes.Location;
+import seedu.address.model.util.attributes.Location;
 
 class ActivityTest {
 
