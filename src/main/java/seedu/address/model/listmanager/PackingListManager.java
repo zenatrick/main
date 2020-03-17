@@ -3,37 +3,25 @@ package seedu.address.model.listmanager;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Optional;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.packinglistitem.Name;
 import seedu.address.model.packinglistitem.PackingListItem;
-import seedu.address.model.packinglistitem.Quantity;
-import seedu.address.model.packinglistitem.UniquePackingList;
-//@@author loycatherine
+import seedu.address.model.util.uniquelist.UniqueList;
 
 /**
  * The type Packing list manager.
+ *
+ * @author loycatherine
  */
 public class PackingListManager implements ReadOnlyPackingListManager {
-    private final UniquePackingList packingList;
-
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
-    {
-        packingList = new UniquePackingList();
-    }
+    private final UniqueList<PackingListItem> packingList;
 
     /**
-     * Instantiates a new Packing list manager.
+     * Instantiates a new PackingListManager.
      */
-    public PackingListManager() {}
+    public PackingListManager() {
+        packingList = new UniqueList<>();
+    }
 
     /**
      * Creates an PackingListManager using the Items in the {@code toBeCopied}
@@ -41,118 +29,71 @@ public class PackingListManager implements ReadOnlyPackingListManager {
      * @param toBeCopied the to be copied
      */
     public PackingListManager(ReadOnlyPackingListManager toBeCopied) {
-        this();
+        packingList = new UniqueList<>();
         resetData(toBeCopied);
     }
 
-    //// For Packing list overwrite operations
+    // List overwrite operations
+
+    /**
+     * Replaces the contents of the packing list with {@code packingListItems}.
+     * {@code packingListItems} must not contain duplicate persons.
+     */
+    public void setPackingListItems(List<PackingListItem> packingListItems) {
+        this.packingList.setElements(packingListItems);
+    }
 
     /**
      * Resets the existing data of this {@code PackingManager} with {@code newData}.
-     *
-     * @param newData the new data
      */
     public void resetData(ReadOnlyPackingListManager newData) {
         requireNonNull(newData);
-        setPackingList(newData.getPackingList());
+        setPackingListItems(newData.getPackingList());
     }
 
-    /**
-     * Replaces the contents of the contacts list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     *
-     * @param packingList the packing list
-     */
-    public void setPackingList(List<PackingListItem> packingList) {
-        this.packingList.setPackingList(packingList);
-    }
-
-    //// packing list-level operations
+    // PackingListItem-level operations
 
     /**
      * Returns true if a contacts with the same identity as {@code contacts} exists in the address book.
-     *
-     * @param packingListItem the packingListItem
-     * @return the boolean
      */
-    public boolean hasItem(PackingListItem packingListItem) {
+    public boolean hasPackingListItem(PackingListItem packingListItem) {
         requireNonNull(packingListItem);
         return packingList.contains(packingListItem);
     }
 
     /**
-     * Returns the PackingListItem that matches the specified name and address
-     *
-     * @param name     the name
-     * @param quantity the quantity
-     * @return the item
+     * Adds a packing list item to the PackingListManager.
+     * The packing list item must not already exist in the PackingListManager.
      */
-    public Optional<PackingListItem> getItem(Name name, Quantity quantity) {
-        return packingList.getItem(name, quantity);
-    }
-
-    /**
-     * Return the optional index of PackingListItem to find in {@code packingList}. Returns empty optional if
-     * not found.
-     *
-     * @param toFind the to find
-     * @return the optional
-     */
-    public Optional<Index> findItemIndex(PackingListItem toFind) {
-        return packingList.indexOf(toFind);
-    }
-
-    /**
-     * Adds a contacts to the address book.
-     * The contacts must not already exist in the address book.
-     *
-     * @param packingListItem the packingListItem
-     */
-    public void addItem(PackingListItem packingListItem) {
+    public void addPackingListItem(PackingListItem packingListItem) {
         packingList.add(packingListItem);
     }
 
     /**
-     * Adds a contacts to the address book.
-     * The contacts must not already exist in the address book.
-     *
-     * @param index the index
-     * @param packingListItem  the packingListItem
+     * Replaces the given packing list item {@code target} in the list with {@code editedPackingListItem}.
+     * {@code target} must exist in the PackingListManager.
+     * The packing list item identity of {@code editedPackingListItem} must not be the same as another existing
+     * packing list item in the PackingListManager.
      */
-    public void addItemAtIndex(Index index, PackingListItem packingListItem) {
-        packingList.addAtIndex(index, packingListItem);
-    }
-
-    /**
-     * Replaces the given contacts {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The contacts identity of {@code editedPerson} must not be the same as another existing contacts in the address
-     * book.
-     *
-     * @param target     the target
-     * @param editedPackingListItem the edited item
-     */
-    public void setItem(PackingListItem target, PackingListItem editedPackingListItem) {
+    public void setPackingListItem(PackingListItem target, PackingListItem editedPackingListItem) {
         requireNonNull(editedPackingListItem);
 
-        packingList.setItem(target, editedPackingListItem);
+        packingList.setElement(target, editedPackingListItem);
     }
 
     /**
-     * Removes {@code key} from this {@code ItemManager}.
-     * {@code key} must exist in the address book.
-     *
-     * @param key the key
+     * Removes {@code key} from this {@code PackingListManager}.
+     * {@code key} must exist in the PackingListManager.
      */
-    public void removeItem(PackingListItem key) {
+    public void removePackingListItem(PackingListItem key) {
         packingList.remove(key);
     }
 
-    //// util methods
+    // Util methods
 
     @Override
     public String toString() {
-        return packingList.asUnmodifiableObservableList().size() + " packingList,";
+        return packingList.asUnmodifiableObservableList().size() + " packing list items";
     }
 
     @Override

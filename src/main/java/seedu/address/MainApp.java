@@ -30,7 +30,7 @@ import seedu.address.model.listmanager.ReadOnlyActivityManager;
 import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
 import seedu.address.model.listmanager.ReadOnlyTransportBookingManager;
 import seedu.address.model.listmanager.TransportBookingManager;
-import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.util.sampledata.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;

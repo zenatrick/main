@@ -10,7 +10,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.time.DateTime;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.commonattributes.Location;
 import seedu.address.model.fixedexpense.Amount;
 import seedu.address.model.fixedexpense.Category;
 import seedu.address.model.fixedexpense.Description;
@@ -18,8 +17,9 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.transportbooking.Mode;
+import seedu.address.model.util.attributes.Location;
+import seedu.address.model.util.attributes.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

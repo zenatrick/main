@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Title in Activity.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Represents an Activity's title in the ActivityManager.
+ * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
  */
 public class Title {
 
@@ -25,16 +25,19 @@ public class Title {
     public final String value;
 
     /**
-     * Every field must be present and not null.
+     * Constructs a {@code Title}.
      *
-     * @param name a valid name.
+     * @param title a valid title.
      */
-    public Title(String name) {
-        requireNonNull(name);
-        checkArgument(isValidTitle(name), MESSAGE_CONSTRAINTS);
-        value = name;
+    public Title(String title) {
+        requireNonNull(title);
+        checkArgument(isValidTitle(title), MESSAGE_CONSTRAINTS);
+        value = title;
     }
 
+    /**
+     * Returns true if a given string is a valid title.
+     */
     public static boolean isValidTitle(String test) {
         return test.matches(VALIDATION_REGEX);
     }
@@ -47,8 +50,8 @@ public class Title {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.activity.Title // instanceof handles nulls
-                && value.equals(((seedu.address.model.activity.Title) other).value)); // state check
+                || (other instanceof Title // instanceof handles nulls
+                && value.equals(((Title) other).value)); // state check
     }
 
     @Override

@@ -8,7 +8,7 @@ import seedu.address.model.accommodationbooking.AccommodationBooking;
 import seedu.address.model.accommodationbooking.AccommodationName;
 import seedu.address.model.accommodationbooking.Day;
 import seedu.address.model.accommodationbooking.Remark;
-import seedu.address.model.commonattributes.Location;
+import seedu.address.model.util.attributes.Location;
 
 /**
  * Jackson-friendly version of {@link AccommodationBooking}.
@@ -19,8 +19,8 @@ public class JsonAdaptedAccommodationBooking {
 
     private final String name;
     private final String location;
-    private final String startDay;
-    private final String endDay;
+    private final Integer startDay;
+    private final Integer endDay;
     private final String remark;
 
     /**
@@ -28,7 +28,7 @@ public class JsonAdaptedAccommodationBooking {
      */
     @JsonCreator
     public JsonAdaptedAccommodationBooking(@JsonProperty("name") String name, @JsonProperty("location") String location,
-                             @JsonProperty("startDay") String startDay, @JsonProperty("endDay") String endDay,
+                             @JsonProperty("startDay") Integer startDay, @JsonProperty("endDay") Integer endDay,
                              @JsonProperty("remark") String remark) {
         this.name = name;
         this.location = location;
@@ -45,7 +45,7 @@ public class JsonAdaptedAccommodationBooking {
         location = source.getLocation().value;
         startDay = source.getStartDay().value;
         endDay = source.getEndDay().value;
-        remark = source.getRemark().toString();
+        remark = source.getRemark().value;
     }
 
     /**

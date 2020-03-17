@@ -1,4 +1,4 @@
-package seedu.address.model.util;
+package seedu.address.model.util.sampledata;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -16,7 +16,6 @@ import seedu.address.model.activity.Activity;
 import seedu.address.model.activity.Duration;
 import seedu.address.model.activity.Priority;
 import seedu.address.model.activity.Title;
-import seedu.address.model.commonattributes.Location;
 import seedu.address.model.fixedexpense.Amount;
 import seedu.address.model.fixedexpense.Category;
 import seedu.address.model.fixedexpense.Description;
@@ -34,9 +33,10 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.transportbooking.Mode;
 import seedu.address.model.transportbooking.TransportBooking;
+import seedu.address.model.util.attributes.Location;
+import seedu.address.model.util.attributes.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -85,7 +85,7 @@ public class SampleDataUtil {
     public static TransportBooking[] getSampleTransportBookings() {
         return new TransportBooking[]{
             new TransportBooking(new Mode("plane"), new Location("Singapore"), new Location("Japan"),
-                    DateTime.fromString("2020-01-10T10:15:00"), DateTime.fromString("2020-01-20T22:00:00"))
+                    DateTime.fromString("10-01-2020 10:15"), DateTime.fromString("20-01-2020 22:00"))
         };
     }
 
@@ -98,32 +98,30 @@ public class SampleDataUtil {
     }
 
     public static FixedExpense[] getSampleFixedExpenses() {
-        return new FixedExpense[] {
+        return new FixedExpense[]{
             new FixedExpense(new Amount("1000"), new Description("TestDescription"),
-                      new Category("TestCategory")),
+                    new Category("TestCategory")),
             new FixedExpense(new Amount("2000"), new Description("TestDescription"),
-                        new Category("TestCategory")),
+                    new Category("TestCategory")),
             new FixedExpense(new Amount("3000"), new Description("TestDescription"),
-                        new Category("TestCategory")),
+                    new Category("TestCategory")),
             new FixedExpense(new Amount("4000"), new Description("TestDescription"),
-                        new Category("TestCategory"))
+                    new Category("TestCategory"))
         };
     }
 
     public static ReadOnlyFixedExpenseManager getSampleFixedExpenseManager() {
         FixedExpenseManager sampleFixedExpenseManager = new FixedExpenseManager();
-        for (FixedExpense sampleFixedExpense: getSampleFixedExpenses()) {
+        for (FixedExpense sampleFixedExpense : getSampleFixedExpenses()) {
             sampleFixedExpenseManager.addFixedExpense(sampleFixedExpense);
         }
         return sampleFixedExpenseManager;
     }
 
     public static Activity[] getSampleActivity() {
-        return new Activity[] { new Activity(new Title("Hot Spring"),
-                        new Priority("1"),
-                        new Duration("3"),
-                        new Location("Hokkaido"),
-                        new HashSet<>())
+        return new Activity[]{
+            new Activity(new Title("Hot Spring"), new Priority(1), new Duration(3), new Location("Hokkaido"),
+                    new HashSet<>())
         };
     }
 
@@ -137,8 +135,8 @@ public class SampleDataUtil {
 
     public static AccommodationBooking[] getSampleAccommodationBookings() {
         return new AccommodationBooking[]{
-            new AccommodationBooking(new AccommodationName("Hyatt Regency"), new Location("Kyoto"),
-                new Day("1"), new Day("4"), new Remark("Checkin at 3pm"))
+            new AccommodationBooking(new AccommodationName("Hyatt Regency"), new Location("Kyoto"), new Day(1),
+                    new Day(3), new Remark("Checkin at 3pm"))
         };
     }
 

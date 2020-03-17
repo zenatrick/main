@@ -15,6 +15,7 @@ public class DateTime {
     public static final String MESSAGE_CONSTRAINTS = "Date-Time entered must be in the format of <dd-MM-yyyy HH:mm>.";
 
     private static final DateTimeFormatter FORMAT_INPUT = DateTimeFormatter.ofPattern("d-M-yyyy H:m");
+    private static final DateTimeFormatter FORMAT_STORAGE = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
     private static final DateTimeFormatter FORMAT_OUTPUT = DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mma");
 
     private final LocalDateTime dateTime;
@@ -34,6 +35,13 @@ public class DateTime {
      */
     public int compareTo(DateTime other) {
         return dateTime.compareTo(other.dateTime);
+    }
+
+    /**
+     * Returns this DateTime in the user input format.
+     */
+    public String getStorageFormat() {
+        return dateTime.format(FORMAT_STORAGE);
     }
 
     /**

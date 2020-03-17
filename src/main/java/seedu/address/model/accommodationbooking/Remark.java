@@ -4,7 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * The type Remark.
+ * Represents an Accommodation's remark in the AccommodationBookingManager.
+ * Guarantees: immutable; is valid as declared in {@link #isValidRemark(String)}
  */
 public class Remark {
 
@@ -15,42 +16,41 @@ public class Remark {
     // Allows for 150 characters long.
     public static final String VALIDATION_REGEX = "^(?!\\s*$)[A-Za-z0-9\\s]{1,150}+";
 
-    /**
-     * The accommodation remark.
-     */
-    private final String accommodationRemark;
+    public final String value;
 
     /**
-     * Instantiates a new Remark.
+     * Constructs a {@code Remark}.
      *
-     * @param remark the description
+     * @param remark A valid remark.
      */
     public Remark(String remark) {
         requireNonNull(remark);
         checkArgument(isValidRemark(remark), MESSAGE_CONSTRAINTS);
-        accommodationRemark = remark;
+        value = remark;
     }
 
+    /**
+     * Returns true if a given string is a valid remark.
+     */
     public static boolean isValidRemark(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return accommodationRemark;
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.accommodationbooking.Remark // instanceof handles nulls
-                && accommodationRemark.equals(((seedu.address.model.accommodationbooking.Remark) other)
-                .accommodationRemark)); // state check
+                || (other instanceof Remark // instanceof handles nulls
+                && value.equals(((Remark) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return accommodationRemark.hashCode();
+        return value.hashCode();
     }
 
 }

@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an PackingListItem's quantity in the packing list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Name {
+public class ItemName {
 
     /**
      * The constant MESSAGE_CONSTRAINTS.
@@ -19,17 +19,14 @@ public class Name {
     // Allows for 50 alphanumeric characters.
     public static final String VALIDATION_REGEX = "^(?!\\s*$)[A-Za-z0-9\\s]{1,50}+";
 
-    /**
-     * The Value.
-     */
     public final String value;
 
     /**
-     * Every field must be present and not null.
+     * Constructs a {@code ItemName}.
      *
      * @param name a valid name.
      */
-    public Name(String name) {
+    public ItemName(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         value = name;
@@ -47,8 +44,8 @@ public class Name {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Name // instanceof handles nulls
-                && value.equals(((Name) other).value)); // state check
+                || (other instanceof ItemName // instanceof handles nulls
+                && value.equals(((ItemName) other).value)); // state check
     }
 
     @Override

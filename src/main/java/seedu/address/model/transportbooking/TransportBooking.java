@@ -6,18 +6,18 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.address.commons.core.time.DateTime;
-import seedu.address.model.commonattributes.Location;
+import seedu.address.model.util.attributes.Location;
+import seedu.address.model.util.uniquelist.UniqueListElement;
 
 /**
  * Represents a TransportBooking in the TransportBookingManager.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class TransportBooking {
+public class TransportBooking implements UniqueListElement {
 
     public static final String MESSAGE_LOCATION_CONSTRAINTS = "Start location cannot be equal to end location.";
     public static final String MESSAGE_TIME_CONSTRAINTS = "Start time must come before end time.";
 
-    //data
     private final Mode mode;
     private final Location startLocation;
     private final Location endLocation;
@@ -74,6 +74,15 @@ public class TransportBooking {
     }
 
     /**
+     * Returns true if this transport booking is equal to {@code other} as per {@link #equals(Object)}.
+     * This defines an equality between two transport bookings.
+     */
+    @Override
+    public boolean isSame(UniqueListElement other) {
+        return equals(other);
+    }
+
+    /**
      * Returns true if both transport bookings have the same data fields.
      * This defines an equality between two transport bookings.
      */
@@ -88,11 +97,11 @@ public class TransportBooking {
         }
 
         TransportBooking otherTransportBooking = (TransportBooking) other;
-        return otherTransportBooking.getMode().equals(getMode())
-                && otherTransportBooking.getStartLocation().equals(getStartLocation())
-                && otherTransportBooking.getEndLocation().equals(getEndLocation())
-                && otherTransportBooking.getStartDateTime().equals(getStartDateTime())
-                && otherTransportBooking.getEndDateTime().equals(getEndDateTime());
+        return mode.equals(otherTransportBooking.mode)
+                && startLocation.equals(otherTransportBooking.startLocation)
+                && endLocation.equals(otherTransportBooking.endLocation)
+                && startDateTime.equals(otherTransportBooking.startDateTime)
+                && endDateTime.equals(otherTransportBooking.endDateTime);
     }
 
     @Override
@@ -102,10 +111,10 @@ public class TransportBooking {
 
     @Override
     public String toString() {
-        return "TransportBooking - Mode: " + getMode()
-                + " Start Location: " + getStartLocation()
-                + " End Location: " + getEndLocation()
-                + " Start Date-Time: " + getStartDateTime()
-                + " End Date-Time: " + getEndDateTime();
+        return "TransportBooking - Mode: " + mode
+                + " Start Location: " + startLocation
+                + " End Location: " + endLocation
+                + " Start Date-Time: " + startDateTime
+                + " End Date-Time: " + endDateTime;
     }
 }

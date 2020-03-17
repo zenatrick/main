@@ -6,45 +6,38 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.accommodationbooking.AccommodationBooking;
-import seedu.address.model.accommodationbooking.UniqueAccommodationBookingList;
+import seedu.address.model.util.uniquelist.UniqueList;
 
 /**
  * Wraps all data at the AccommodationBookingManager level
  * Duplicates are not allowed (by .equals comparison)
  */
 public class AccommodationBookingManager implements ReadOnlyAccommodationBookingManager {
+    private final UniqueList<AccommodationBooking> accommodationBookings;
 
-    private final UniqueAccommodationBookingList accommodationBookings;
-
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+    /**
+     * Instantiates a new AccommodationBookingManager.
      */
-    {
-        accommodationBookings = new UniqueAccommodationBookingList();
+    public AccommodationBookingManager() {
+        accommodationBookings = new UniqueList<>();
     }
-
-    public AccommodationBookingManager() {}
 
     /**
      * Creates an AccommodationBookingManager using the AccommodationBookings in the {@code toBeCopied}
      */
     public AccommodationBookingManager(ReadOnlyAccommodationBookingManager toBeCopied) {
-        this();
+        accommodationBookings = new UniqueList<>();
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
+    // List overwrite operations
 
     /**
-     * Replaces the contents of the accommodation bookings list with {@code accommodation bookings}.
+     * Replaces the contents of the accommodation booking list with {@code accommodation bookings}.
      * {@code accommodationBookings} must not contain duplicate accommodation bookings.
      */
     public void setAccommodationBookings(List<AccommodationBooking> accommodationBookings) {
-        this.accommodationBookings.setAccommodationBookings(accommodationBookings);
+        this.accommodationBookings.setElements(accommodationBookings);
     }
 
     /**
@@ -52,11 +45,10 @@ public class AccommodationBookingManager implements ReadOnlyAccommodationBooking
      */
     public void resetData(ReadOnlyAccommodationBookingManager newData) {
         requireNonNull(newData);
-
         setAccommodationBookings(newData.getAccommodationBookingList());
     }
 
-    //// AccommodationBooking-level operations
+    // AccommodationBooking-level operations
 
     /**
      * Returns true if a accommodation booking with the same identity as {@code accommodationBooking} exists in the
@@ -84,7 +76,7 @@ public class AccommodationBookingManager implements ReadOnlyAccommodationBooking
     public void setAccommodationBooking(AccommodationBooking target, AccommodationBooking editedAccommodationBooking) {
         requireNonNull(editedAccommodationBooking);
 
-        accommodationBookings.setAccommodationBooking(target, editedAccommodationBooking);
+        accommodationBookings.setElement(target, editedAccommodationBooking);
     }
 
     /**
@@ -95,7 +87,7 @@ public class AccommodationBookingManager implements ReadOnlyAccommodationBooking
         accommodationBookings.remove(key);
     }
 
-    //// util methods
+    // Util methods
 
     @Override
     public String toString() {
@@ -119,5 +111,4 @@ public class AccommodationBookingManager implements ReadOnlyAccommodationBooking
     public int hashCode() {
         return accommodationBookings.hashCode();
     }
-
 }

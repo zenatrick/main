@@ -6,46 +6,38 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.transportbooking.TransportBooking;
-import seedu.address.model.transportbooking.UniqueTransportBookingList;
+import seedu.address.model.util.uniquelist.UniqueList;
 
 /**
  * Wraps all data at the TransportBookingManager level
  * Duplicates are not allowed (by .equals comparison)
  */
 public class TransportBookingManager implements ReadOnlyTransportBookingManager {
+    private final UniqueList<TransportBooking> transportBookings;
 
-    private final UniqueTransportBookingList transportBookings;
-
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+    /**
+     * Instantiates a new TransportBookingManager.
      */
-    {
-        transportBookings = new UniqueTransportBookingList();
-    }
-
     public TransportBookingManager() {
+        transportBookings = new UniqueList<>();
     }
 
     /**
      * Creates a TransportBookingManager using the TransportBookings in the {@code toBeCopied}
      */
     public TransportBookingManager(ReadOnlyTransportBookingManager toBeCopied) {
-        this();
+        transportBookings = new UniqueList<>();
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
+    // List overwrite operations
 
     /**
-     * Replaces the contents of the transport bookings list with {@code transport bookings}.
+     * Replaces the contents of the transport booking list with {@code transportBookings}.
      * {@code transportBookings} must not contain duplicate transport bookings.
      */
     public void setTransportBookings(List<TransportBooking> transportBookings) {
-        this.transportBookings.setTransportBookings(transportBookings);
+        this.transportBookings.setElements(transportBookings);
     }
 
     /**
@@ -53,11 +45,10 @@ public class TransportBookingManager implements ReadOnlyTransportBookingManager 
      */
     public void resetData(ReadOnlyTransportBookingManager newData) {
         requireNonNull(newData);
-
         setTransportBookings(newData.getTransportBookings());
     }
 
-    //// TransportBooking-level operations
+    // TransportBooking-level operations
 
     /**
      * Returns true if a transport booking with the same identity as {@code transportBooking} exists in the
@@ -85,7 +76,7 @@ public class TransportBookingManager implements ReadOnlyTransportBookingManager 
     public void setTransportBooking(TransportBooking target, TransportBooking editedTransportBooking) {
         requireNonNull(editedTransportBooking);
 
-        transportBookings.setTransportBooking(target, editedTransportBooking);
+        transportBookings.setElement(target, editedTransportBooking);
     }
 
     /**
@@ -96,7 +87,7 @@ public class TransportBookingManager implements ReadOnlyTransportBookingManager 
         transportBookings.remove(key);
     }
 
-    //// util methods
+    // Util methods
 
     @Override
     public String toString() {

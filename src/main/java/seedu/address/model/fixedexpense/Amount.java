@@ -14,7 +14,7 @@ public class Amount {
     // Done already, allows 10 digits, and at most 2 decimal places.
     public static final String VALIDATION_REGEX = "^([\\d]{1,30})(\\.[\\d]{1,2})?$";
 
-    private String value;
+    public final String value;
 
     public Amount(String amount) {
         requireNonNull(amount);

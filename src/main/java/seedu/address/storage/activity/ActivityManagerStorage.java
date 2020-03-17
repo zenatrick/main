@@ -5,10 +5,10 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.listmanager.ActivityManager;
 import seedu.address.model.listmanager.ReadOnlyActivityManager;
-
 /**
- * Represents a storage for {@link seedu.address.model.activity.UniqueActivityList}.
+ * Represents a storage for {@link ActivityManager}.
  */
 public interface ActivityManagerStorage {
 

@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.core.time.DateTime;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.commonattributes.Location;
 import seedu.address.model.transportbooking.Mode;
 import seedu.address.model.transportbooking.TransportBooking;
+import seedu.address.model.util.attributes.Location;
 
 /**
  * Jackson-friendly version of {@link TransportBooking}.
@@ -45,8 +45,8 @@ class JsonAdaptedTransportBooking {
         mode = source.getMode().value;
         startLocation = source.getStartLocation().value;
         endLocation = source.getEndLocation().value;
-        startDateTime = source.getStartDateTime().toString();
-        endDateTime = source.getEndDateTime().toString();
+        startDateTime = source.getStartDateTime().getStorageFormat();
+        endDateTime = source.getEndDateTime().getStorageFormat();
     }
 
     /**

@@ -4,13 +4,15 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.util.uniquelist.UniqueListElement;
+
 /**
  * Represents a PackingListItem in the PackingListManager.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class PackingListItem {
+public class PackingListItem implements UniqueListElement {
     // Identity fields
-    private final Name name;
+    private final ItemName itemName;
 
     // Data fields
     private final boolean isChecked;
@@ -19,15 +21,15 @@ public class PackingListItem {
     /**
      * Every field must be present and not null.
      */
-    public PackingListItem(Name name, Quantity quantity, boolean isChecked) {
-        requireAllNonNull(name, quantity);
-        this.name = name;
+    public PackingListItem(ItemName itemName, Quantity quantity, boolean isChecked) {
+        requireAllNonNull(itemName, quantity);
+        this.itemName = itemName;
         this.quantity = quantity;
         this.isChecked = isChecked;
     }
 
-    public Name getItemName() {
-        return name;
+    public ItemName getItemName() {
+        return itemName;
     }
 
     public Quantity getQuantity() {
@@ -35,33 +37,32 @@ public class PackingListItem {
     }
 
     /**
-     * Returns true of the item is checked.
-     *
-     * @return true if the item is checked.
+     * Returns true of the packing list item is checked.
      */
     public boolean isChecked() {
         return isChecked;
     }
 
     /**
-     * Returns true if both items of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two items.
-     *
-     * @param otherPackingListItem the other item
-     * @return true if both items are the same.
+     * Returns true if both packing list items has the same identity fields.
+     * This defines a weaker notion of equality between two packing list items.
      */
-    public boolean isSameItem(PackingListItem otherPackingListItem) {
-        if (otherPackingListItem == this) {
+    @Override
+    public boolean isSame(UniqueListElement other) {
+        if (other == this) {
             return true;
         }
 
-        return otherPackingListItem != null
-                && otherPackingListItem.name.equals(name);
+        if (!(other instanceof PackingListItem)) {
+            return false;
+        }
+
+        return itemName.equals(((PackingListItem) other).itemName);
     }
 
     /**
-     * Returns true if both items have the same identity and data fields.
-     * This defines a stronger notion of equality between two items.
+     * Returns true if both packing list items have the same identity and data fields.
+     * This defines a stronger notion of equality between two packing list items.
      */
     @Override
     public boolean equals(Object other) {
@@ -73,18 +74,20 @@ public class PackingListItem {
             return false;
         }
 
-        PackingListItem otherPackingListItem = (PackingListItem) other;
-        return otherPackingListItem.getItemName().equals(getItemName());
+        PackingListItem otherItem = (PackingListItem) other;
+        return itemName.equals(otherItem.itemName)
+                && quantity.equals(otherItem.quantity)
+                && isChecked == otherItem.isChecked;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, quantity, isChecked);
+        return Objects.hash(itemName, quantity, isChecked);
     }
 
     @Override
     public String toString() {
-        return "Packing list item - Name: " + name
+        return "Packing list item - Item Name: " + itemName
                 + " Quantity: " + quantity
                 + " Is Checked: " + isChecked;
     }

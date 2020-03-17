@@ -26,7 +26,7 @@ public class PackingListCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label itemName;
     @FXML
     private Label id;
     @FXML
@@ -38,7 +38,7 @@ public class PackingListCard extends UiPart<Region> {
         super(FXML);
         this.item = item;
         id.setText(displayedIndex + ". ");
-        name.setText(item.getItemName().toString());
+        itemName.setText(item.getItemName().toString());
         quantity.setText("Quantity: " + item.getQuantity().toString());
         isChecked.setText("Is Checked: " + item.isChecked());
     }

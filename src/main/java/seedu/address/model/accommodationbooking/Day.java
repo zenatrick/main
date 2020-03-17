@@ -3,38 +3,41 @@ package seedu.address.model.accommodationbooking;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.function.Predicate;
+
 /**
- * Represents a AccommodationBooking's start or end day in the AccommodationBookingManager.
- * Guarantees: immutable; is valid as declared in {@link #isValidDay(String)}
+ * Represents a AccommodationBooking's day in the AccommodationBookingManager.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDay(Integer)}
  */
 public class Day {
-
     public static final String MESSAGE_CONSTRAINTS = "Day should be a positive integer.";
 
-    public static final String VALIDATION_REGEX = "^\\d+$";
+    private static final int MIN_VALUE = 1;
+    public static final Predicate<Integer> VALIDATION_PREDICATE = i -> i >= MIN_VALUE;
 
-    public final String value;
+    public final Integer value;
 
     /**
      * Constructs an {@code Day}.
      *
      * @param day A valid day within the length of the trip.
      */
-    public Day(String day) {
+    public Day(Integer day) {
         requireNonNull(day);
         checkArgument(isValidDay(day), MESSAGE_CONSTRAINTS);
         value = day;
     }
 
-    // TODO: Find a way to ensure day does not exceed the number of days of a trip
-
-    public static boolean isValidDay(String test) {
-        return test.matches(VALIDATION_REGEX);
+    /**
+     * Returns true if a given string is a valid day.
+     */
+    public static boolean isValidDay(Integer test) {
+        return VALIDATION_PREDICATE.test(test);
     }
 
     @Override
     public String toString() {
-        return value;
+        return value.toString();
     }
 
     @Override

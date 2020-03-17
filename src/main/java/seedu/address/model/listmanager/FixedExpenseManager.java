@@ -6,38 +6,39 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.fixedexpense.FixedExpense;
-import seedu.address.model.fixedexpense.UniqueFixedExpenseList;
+import seedu.address.model.util.uniquelist.UniqueList;
 
 /**
  * Wraps all data at the FixedExpenseManager level
  * Duplicates are not allowed (by.equals comparison)
  */
 public class FixedExpenseManager implements ReadOnlyFixedExpenseManager {
+    private final UniqueList<FixedExpense> uniqueFixedExpenseLists;
 
-    private final UniqueFixedExpenseList uniqueFixedExpenseLists;
-
-    {
-        uniqueFixedExpenseLists = new UniqueFixedExpenseList();
-    }
-
+    /**
+     * Instantiates a new FixedExpenseManager.
+     */
     public FixedExpenseManager() {
+        uniqueFixedExpenseLists = new UniqueList<>();
     }
 
     /**
      * Creates an FixedExpenseManager using the FixedExpenses in the {@code} toBeCopied}
      */
     public FixedExpenseManager(ReadOnlyFixedExpenseManager toBeCopied) {
-        this();
+        uniqueFixedExpenseLists = new UniqueList<>();
         resetData(toBeCopied);
     }
 
     /**
-     * Replaces the contents of the fixedExpenses list with {@code fixedExpenses}.
+     * Replaces the contents of the fixed expense list with {@code fixedExpenses}.
      * {@code fixedExpenses} must not contain duplicate fixed expenses.
      */
     public void setFixedExpenses(List<FixedExpense> fixedExpenses) {
-        this.uniqueFixedExpenseLists.setFixedExpenses(fixedExpenses);
+        this.uniqueFixedExpenseLists.setElements(fixedExpenses);
     }
+
+    // List overwrite operations
 
     /**
      * Resets the existing data of this {@code FixedExpenseManager} with {@code newData}
@@ -46,6 +47,8 @@ public class FixedExpenseManager implements ReadOnlyFixedExpenseManager {
         requireNonNull(newData);
         setFixedExpenses(newData.getFixedExpenseList());
     }
+
+    // FixedExpense-level operations
 
     /**
      * Returns true if a fixedExpense with the same identity as {@code fixedExpense} exists in the FixedExpenseManager.
@@ -72,7 +75,7 @@ public class FixedExpenseManager implements ReadOnlyFixedExpenseManager {
     public void setFixedExpense(FixedExpense target, FixedExpense editedFixedExpense) {
         requireNonNull(editedFixedExpense);
 
-        uniqueFixedExpenseLists.setFixedExpense(target, editedFixedExpense);
+        uniqueFixedExpenseLists.setElement(target, editedFixedExpense);
     }
 
     /**
@@ -82,6 +85,8 @@ public class FixedExpenseManager implements ReadOnlyFixedExpenseManager {
     public void removeFixedExpense(FixedExpense key) {
         uniqueFixedExpenseLists.remove(key);
     }
+
+    // Util methods
 
     @Override
     public String toString() {
@@ -105,11 +110,6 @@ public class FixedExpenseManager implements ReadOnlyFixedExpenseManager {
     public int hashCode() {
         return uniqueFixedExpenseLists.hashCode();
     }
-
-
-
-
-
 
 
 }

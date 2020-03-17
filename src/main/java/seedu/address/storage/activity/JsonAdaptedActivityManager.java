@@ -14,8 +14,8 @@ import seedu.address.model.activity.Activity;
 import seedu.address.model.activity.Duration;
 import seedu.address.model.activity.Priority;
 import seedu.address.model.activity.Title;
-import seedu.address.model.commonattributes.Location;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.util.attributes.Location;
+import seedu.address.model.util.attributes.tag.Tag;
 import seedu.address.storage.JsonAdaptedTag;
 
 /**
@@ -26,8 +26,8 @@ class JsonAdaptedActivityManager {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String title;
-    private final String duration;
-    private final String priority;
+    private final Integer duration;
+    private final Integer priority;
     private final String location;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -36,8 +36,8 @@ class JsonAdaptedActivityManager {
      */
     @JsonCreator
     public JsonAdaptedActivityManager(@JsonProperty("title") String title,
-                                      @JsonProperty("duration") String duration,
-                                      @JsonProperty("priority") String priority,
+                                      @JsonProperty("duration") Integer duration,
+                                      @JsonProperty("priority") Integer priority,
                                       @JsonProperty("location") String location,
                                       @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
@@ -54,8 +54,8 @@ class JsonAdaptedActivityManager {
      */
     public JsonAdaptedActivityManager(Activity source) {
         title = source.getTitle().value;
-        duration = source.getDuration().toString();
-        priority = source.getPriority().toString();
+        duration = source.getDuration().value;
+        priority = source.getPriority().value;
         location = source.getLocation().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

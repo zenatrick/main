@@ -6,48 +6,38 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.activity.Activity;
-import seedu.address.model.activity.UniqueActivityList;
+import seedu.address.model.util.uniquelist.UniqueList;
+
 /**
  * Wraps all data at the ActivityManager level
  * Duplicates are not allowed (by.equals comparison)
  */
 public class ActivityManager implements ReadOnlyActivityManager {
+    private final UniqueList<Activity> activities;
 
-    private final UniqueActivityList uniqueActivityLists;
-
-    {
-        uniqueActivityLists = new UniqueActivityList();
-    }
-
+    /**
+     * Instantiates a new ActivityManager.
+     */
     public ActivityManager() {
+        activities = new UniqueList<>();
     }
 
     /**
-     * Creates an ActivityManager using the Activity in the {@code} toBeCopied}
+     * Creates an ActivityManager using the Activities in the {@code} toBeCopied}
      */
     public ActivityManager(ReadOnlyActivityManager toBeCopied) {
-        this();
+        activities = new UniqueList<>();
         resetData(toBeCopied);
     }
 
-    /**
-     * Replaces the contents of the Activity list with {@code Activity}.
-     * {@code Activity} must not contain duplicate activity.
-     */
-    public void setActivity(List<Activity> activity) {
-        this.uniqueActivityLists.setActivity(activity);
-    }
+    // List overwrite operations
 
     /**
-     * Replaces the given fixed activity {@code target} in the list with {@code editedActivity}.
-     * {@code target} must exist in the ActivityManager.
-     * The Activity identity of {@code editedActivity} must not be the same as another existing fixed activity
-     * in the ActivityManager.
+     * Replaces the contents of the activity list with {@code activities}.
+     * {@code activities} must not contain duplicate activities.
      */
-    public void setActivity(Activity target, Activity editedActivity) {
-        requireNonNull(editedActivity);
-
-        uniqueActivityLists.setActivity(target, editedActivity);
+    public void setActivities(List<Activity> activities) {
+        this.activities.setElements(activities);
     }
 
     /**
@@ -55,23 +45,37 @@ public class ActivityManager implements ReadOnlyActivityManager {
      */
     public void resetData(ReadOnlyActivityManager newData) {
         requireNonNull(newData);
-        setActivity(newData.getActivityList());
+        setActivities(newData.getActivityList());
     }
 
+    // Activity-level operations
+
     /**
-     * Returns true if a activity with the same identity as {@code activity} exists in the ActivityManager.
+     * Returns true if an activity with the same identity as {@code activity} exists in the ActivityManager.
      */
     public boolean hasActivity(Activity activity) {
         requireNonNull(activity);
-        return uniqueActivityLists.contains(activity);
+        return activities.contains(activity);
     }
 
     /**
-     * Adds a fixed activity to the ActivityManager.
-     * The fixed activity must not already exist in the ActivityManager.
+     * Adds an activity to the ActivityManager.
+     * The activity must not already exist in the ActivityManager.
      */
-    public void addActivity(Activity f) {
-        uniqueActivityLists.add(f);
+    public void addActivity(Activity activity) {
+        activities.add(activity);
+    }
+
+    /**
+     * Replaces the given activity {@code target} in the list with {@code editedActivity}.
+     * {@code target} must exist in the ActivityManager.
+     * The activity identity of {@code editedActivity} must not be the same as another existing activity in the
+     * ActivityManager.
+     */
+    public void setActivity(Activity target, Activity editedActivity) {
+        requireNonNull(editedActivity);
+
+        activities.setElement(target, editedActivity);
     }
 
     /**
@@ -79,35 +83,32 @@ public class ActivityManager implements ReadOnlyActivityManager {
      * {@code key} must exist in the ActivityManager.
      */
     public void removeActivity(Activity key) {
-        uniqueActivityLists.remove(key);
+        activities.remove(key);
     }
+
+    // Util methods
 
     @Override
     public String toString() {
-        return uniqueActivityLists.asUnmodifiableObservableList().size() + "  activities";
+        return activities.asUnmodifiableObservableList().size() + "  activities";
         // TODO: refine later
     }
 
     public ObservableList<Activity> getActivityList() {
-        return uniqueActivityLists.asUnmodifiableObservableList();
+        return activities.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ActivityManager // instanceof handles nulls
-                && uniqueActivityLists.equals(((ActivityManager) other).uniqueActivityLists));
+                && activities.equals(((ActivityManager) other).activities));
     }
 
     @Override
     public int hashCode() {
-        return uniqueActivityLists.hashCode();
+        return activities.hashCode();
     }
-
-
-
-
-
 
 
 }

@@ -6,22 +6,25 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-import seedu.address.model.commonattributes.Location;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.util.attributes.Location;
+import seedu.address.model.util.attributes.tag.Tag;
+import seedu.address.model.util.uniquelist.UniqueListElement;
+
 /**
  * Represents a Activity in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Activity {
+public class Activity implements UniqueListElement {
 
     // Identity fields
     private final Title title;
-    private final Priority priority;
     private final Duration duration;
     private final Location location;
 
     // Data fields
+    private final Priority priority;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -61,7 +64,7 @@ public class Activity {
     }
 
     /**
-     * Returns true if both Activities of the same name have at least one other identity field that is the same.
+     * Returns true if both activities of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two Activities.
      */
     public boolean isSameActivity(seedu.address.model.activity.Activity activity) {
@@ -75,6 +78,26 @@ public class Activity {
     }
 
     /**
+     * Returns true if both accommodation bookings has the same identity fields.
+     * This defines a weaker notion of equality between two accommodation bookings.
+     */
+    @Override
+    public boolean isSame(UniqueListElement other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Activity)) {
+            return false;
+        }
+
+        Activity otherActivity = (Activity) other;
+        return title.equals(otherActivity.title)
+                && duration.equals(otherActivity.duration)
+                && location.equals(otherActivity.location);
+    }
+
+    /**
      * Returns true if both Activities have the same identity and data fields.
      * This defines a stronger notion of equality between two Activities.
      */
@@ -84,38 +107,33 @@ public class Activity {
             return true;
         }
 
-        if (!(other instanceof seedu.address.model.activity.Activity)) {
+        if (!(other instanceof Activity)) {
             return false;
         }
 
-        seedu.address.model.activity.Activity otherActivity = (seedu.address.model.activity.Activity) other;
-        return otherActivity.getTitle().equals(getTitle())
-                && otherActivity.getPriority().equals(getPriority())
-                && otherActivity.getDuration().equals(getDuration())
-                && otherActivity.getLocation().equals(getLocation())
-                && otherActivity.getTags().equals(getTags());
+        Activity otherActivity = (Activity) other;
+        return title.equals(otherActivity.title)
+                && duration.equals(otherActivity.duration)
+                && location.equals(otherActivity.location)
+                && priority.equals(otherActivity.priority)
+                && getTags().equals(otherActivity.getTags());
     }
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(title, priority, duration, location, tags);
     }
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
-                .append(" Title: ")
-                .append(getPriority())
-                .append(" Priority: ")
-                .append(getDuration())
-                .append(" Duration: ")
-                .append(getLocation())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
-        return builder.toString();
+        return "Activity - Title: " + title
+                + " Priority: " + priority
+                + " Duration: " + duration
+                + " Tags: "
+                + getTags()
+                .stream()
+                .map(Tag::toString)
+                .collect(Collectors.joining(" "));
     }
-
 }
 

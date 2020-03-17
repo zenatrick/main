@@ -3,54 +3,44 @@ package seedu.address.model.activity;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.function.Predicate;
+
 /**
- * Represents a Priority in numbers in an Activity.
- * Guarantees: immutable; is valid as declared in {@link #isValidPriority(String)}
+ * Represents a Activity's priority in numbers in the ActivityManager.
+ * Guarantees: immutable; is valid as declared in {@link #isValidPriority(Integer)}
  */
 public class Priority {
-    public static final String MESSAGE_CONSTRAINTS = "Priority must be a valid number and not more than 3";
+    public static final String MESSAGE_CONSTRAINTS = "Priority must be a valid integer from 0 to 3";
 
-    // todo update regex
-    // Done already, allows 10 digits, and at most 2 decimal places.
-    public static final int VALIDATION_MAX_PRIORITY = 3;
-    public static final int VALIDATION_MIN_PRIORITY = 0;
+    private static final int MAX_VALUE = 3;
+    private static final int MIN_VALUE = 0;
+    public static final Predicate<Integer> VALIDATION_PREDICATE = i -> i >= MIN_VALUE && i <= MAX_VALUE;
 
-    private String value;
+    public final Integer value;
 
-    public Priority(String priority) {
+    public Priority(Integer priority) {
         requireNonNull(priority);
         checkArgument(isValidPriority(priority), MESSAGE_CONSTRAINTS);
         value = priority;
     }
 
     /**
-     * Returns true if a given string is valid days.
+     * Returns true if a given string is a valid priority.
      */
-    public static boolean isValidPriority(String test) {
-        if (test == null) {
-            throw new NullPointerException();
-        }
-
-        try {
-            boolean isValidPriority = Integer.parseInt(test) <= VALIDATION_MAX_PRIORITY
-                    &&
-                    Integer.parseInt(test) >= VALIDATION_MIN_PRIORITY;
-            return isValidPriority;
-        } catch (Exception e) {
-            return false;
-        }
+    public static boolean isValidPriority(Integer test) {
+        return VALIDATION_PREDICATE.test(test);
     }
 
     @Override
     public String toString() {
-        return value;
+        return value.toString();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.activity.Priority // instanceof handles nulls
-                && value.equals(((seedu.address.model.activity.Priority) other).value)); // state check
+                || (other instanceof Priority // instanceof handles nulls
+                && value.equals(((Priority) other).value)); // state check
     }
 
     @Override

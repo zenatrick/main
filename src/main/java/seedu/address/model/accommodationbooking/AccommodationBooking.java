@@ -5,35 +5,33 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import seedu.address.model.commonattributes.Location;
+import seedu.address.model.util.attributes.Location;
+import seedu.address.model.util.uniquelist.UniqueListElement;
 
 /**
  * Represents an AccommodationBooking in the AccommodationBookingManager.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class AccommodationBooking {
+public class AccommodationBooking implements UniqueListElement {
 
     public static final String MESSAGE_DAY_CONSTRAINTS = "Start day must come before end day.";
 
-    // Identity fields
+    // Identity
     private final AccommodationName accommodationName;
-
-    // Data fields
     private final Day startDay;
     private final Day endDay;
     private final Location location;
-    private final Remark remark;
 
+    // Data
+    private final Remark remark;
 
     /**
      * Every field must be present and not null.
      */
     public AccommodationBooking(AccommodationName accommodationName, Location location, Day startDay, Day endDay,
                                 Remark remark) {
-
         requireAllNonNull(accommodationName, location, startDay, endDay, remark);
         checkArgument(isDayValid(startDay, endDay), MESSAGE_DAY_CONSTRAINTS);
-
         this.accommodationName = accommodationName;
         this.location = location;
         this.startDay = startDay;
@@ -61,16 +59,39 @@ public class AccommodationBooking {
         return remark;
     }
 
+    // TODO: May want to check if day is within the trip's day here
+
     /**
      * Returns true if the specified start day is before the specified end day.
      */
     public boolean isDayValid(Day startDay, Day endDay) {
-        return !(Integer.parseInt(String.valueOf(endDay)) - Integer.parseInt(String.valueOf(startDay)) < 0);
+        return endDay.value - startDay.value >= 0;
+    }
+
+    /**
+     * Returns true if both accommodation bookings has the same identity fields.
+     * This defines a weaker notion of equality between two accommodation bookings.
+     */
+    @Override
+    public boolean isSame(UniqueListElement other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof AccommodationBooking)) {
+            return false;
+        }
+
+        AccommodationBooking otherAccommodationBooking = (AccommodationBooking) other;
+        return accommodationName.equals(otherAccommodationBooking.accommodationName)
+                && location.equals(otherAccommodationBooking.location)
+                && startDay.equals(otherAccommodationBooking.startDay)
+                && endDay.equals(otherAccommodationBooking.endDay);
     }
 
     /**
      * Returns true if both accommodation bookings have the same identity and data fields.
-     * This defines an equality between two accommodations.
+     * This defines a stronger notion of equality between two items.
      */
     @Override
     public boolean equals(Object other) {
@@ -82,27 +103,25 @@ public class AccommodationBooking {
             return false;
         }
 
-        AccommodationBooking otherAccommodation = (AccommodationBooking) other;
-        return otherAccommodation.getAccommodationName().equals(getAccommodationName())
-                && otherAccommodation.getLocation().equals(getLocation())
-                && otherAccommodation.getStartDay().equals(getStartDay())
-                && otherAccommodation.getEndDay().equals(getEndDay())
-                && otherAccommodation.getRemark().equals(getRemark());
+        AccommodationBooking otherAccommodationBooking = (AccommodationBooking) other;
+        return accommodationName.equals(otherAccommodationBooking.accommodationName)
+                && location.equals(otherAccommodationBooking.location)
+                && startDay.equals(otherAccommodationBooking.startDay)
+                && endDay.equals(otherAccommodationBooking.endDay)
+                && remark.equals(otherAccommodationBooking.remark);
     }
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(accommodationName, location, startDay, endDay, remark);
     }
 
     @Override
     public String toString() {
-        return "Accommodation Booking - Name: " + getAccommodationName()
-                + " Location: " + getLocation()
-                + " Start Day: " + getStartDay()
-                + " End Day: " + getEndDay()
-                + " Remark: " + getRemark();
+        return "Accommodation Booking - Name: " + accommodationName
+                + " Location: " + location
+                + " Start Day: " + startDay
+                + " End Day: " + endDay
+                + " Remark: " + remark;
     }
-
 }
