@@ -182,6 +182,11 @@ public class ModelManager implements Model {
     // ========== TransportBookingManager ==========
 
     @Override
+    public ReadOnlyTransportBookingManager getTransportBooking() {
+        return transportBookingManager;
+    }
+
+    @Override
     public boolean hasTransportBooking(TransportBooking target) {
         requireNonNull(target);
         return transportBookingManager.hasTransportBooking(target);
@@ -218,6 +223,11 @@ public class ModelManager implements Model {
     // ========== FixedExpenseManager ==========
 
     @Override
+    public ReadOnlyFixedExpenseManager getFixedExpense() {
+        return fixedExpenseManager;
+    }
+
+    @Override
     public boolean hasFixedExpense(FixedExpense target) {
         requireNonNull(target);
         return fixedExpenseManager.hasFixedExpense(target);
@@ -249,6 +259,11 @@ public class ModelManager implements Model {
     public void updateFilteredFixedExpenseList(Predicate<FixedExpense> predicate) {
         requireNonNull(predicate);
         filteredFixedExpenseList.setPredicate(predicate);
+    }
+
+    @Override
+    public ReadOnlyPackingListManager getPackingListManager() {
+        return packingListManager;
     }
 
     public void setFixedExpense (ReadOnlyFixedExpenseManager readOnlyFixedExpenseManager) {

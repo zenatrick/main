@@ -9,6 +9,8 @@ import seedu.address.model.accommodationbooking.AccommodationBooking;
 import seedu.address.model.activity.Activity;
 import seedu.address.model.fixedexpense.FixedExpense;
 import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
+import seedu.address.model.listmanager.ReadOnlyPackingListManager;
+import seedu.address.model.listmanager.ReadOnlyTransportBookingManager;
 import seedu.address.model.packinglistitem.PackingListItem;
 import seedu.address.model.person.Person;
 import seedu.address.model.transportbooking.TransportBooking;
@@ -126,6 +128,11 @@ public interface Model {
     // ========== TransportBookingManager ==========
 
     /**
+     * Returns the TransportManager
+     */
+    ReadOnlyTransportBookingManager getTransportBooking();
+
+    /**
      * Returns true if a transport booking that is the same as {@code target} exists in the
      * TransportBookingManager.
      *
@@ -174,6 +181,11 @@ public interface Model {
     void updateFilteredTransportBookingList(Predicate<TransportBooking> predicate);
 
     // ========== FixedExpenseManager ==========
+
+    /**
+     * Returns the FixedExpenseManager
+     */
+    ReadOnlyFixedExpenseManager getFixedExpense();
 
     /**
      * Replaces FixedExpense book data with the data in {@code addressBook}.
@@ -229,6 +241,11 @@ public interface Model {
     void updateFilteredFixedExpenseList(Predicate<FixedExpense> predicate);
 
     // ========== PackingListManager ==========
+
+    /**
+     * Returns the PackingListManager
+     */
+    ReadOnlyPackingListManager getPackingListManager();
 
     /**
      * Returns true if a packing list item that is the same as {@code target} exists in the
