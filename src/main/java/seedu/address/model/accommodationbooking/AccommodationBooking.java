@@ -5,7 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import seedu.address.model.transportbooking.Location;
+import seedu.address.model.commonattributes.Location;
 
 /**
  * Represents an AccommodationBooking in the AccommodationBookingManager.

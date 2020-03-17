@@ -9,11 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.time.DateTime;
 import seedu.address.logic.commands.AddTransportBookingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.transportbooking.Location;
+import seedu.address.model.commonattributes.Location;
 import seedu.address.model.transportbooking.Mode;
-import seedu.address.model.transportbooking.Time;
 import seedu.address.model.transportbooking.TransportBooking;
 
 /**
@@ -41,10 +41,11 @@ public class AddTransportBookingCommandParser implements Parser<AddTransportBook
         Mode mode = ParserUtil.parseMode(argMultimap.getValue(PREFIX_MODE).get());
         Location startLocation = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_START_LOCATION).get());
         Location endLocation = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_END_LOCATION).get());
-        Time startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get());
-        Time endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_END_TIME).get());
+        DateTime startDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_START_TIME).get());
+        DateTime endDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_END_TIME).get());
 
-        TransportBooking transportBooking = new TransportBooking(mode, startLocation, endLocation, startTime, endTime);
+        TransportBooking transportBooking = new TransportBooking(mode, startLocation, endLocation, startDateTime,
+                endDateTime);
 
         return new AddTransportBookingCommand(transportBooking);
     }

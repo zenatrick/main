@@ -30,8 +30,8 @@
             <Label fx:id="startLocation" styleClass="cell_small_label" text="\\$startlocation"/>
             <Label fx:id="endLocation" layoutX="25.0" layoutY="54.0" styleClass="cell_small_label"
                    text="\\$endlocation"/>
-            <Label fx:id="startTime" styleClass="cell_small_label" text="\\$starttime"/>
-            <Label fx:id="endTime" layoutX="25.0" layoutY="80.0" styleClass="cell_small_label" text="\\$endtime"/>
+            <Label fx:id="startDateTime" styleClass="cell_small_label" text="\\$starttime"/>
+            <Label fx:id="endDateTime" layoutX="25.0" layoutY="80.0" styleClass="cell_small_label" text="\\$endtime"/>
         </VBox>
         <rowConstraints>
             <RowConstraints/>

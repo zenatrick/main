@@ -1,10 +1,10 @@
-package seedu.address.model.transportbooking;
+package seedu.address.model.commonattributes;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a TransportBooking's start or end location in the TransportBookingManager.
+ * Represents a location attribute in a list manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidLocation(String)}
  */
 public class Location {
@@ -20,14 +20,14 @@ public class Location {
     public final String value;
 
     /**
-     * Constructs  {@code Location}.
+     * Constructs {@code Location}.
      *
-     * @param startLocation A valid location.
+     * @param location A valid location.
      */
-    public Location(String startLocation) {
-        requireNonNull(startLocation);
-        checkArgument(isValidLocation(startLocation), MESSAGE_CONSTRAINTS);
-        value = startLocation;
+    public Location(String location) {
+        requireNonNull(location);
+        checkArgument(isValidLocation(location), MESSAGE_CONSTRAINTS);
+        value = location;
     }
 
     /**

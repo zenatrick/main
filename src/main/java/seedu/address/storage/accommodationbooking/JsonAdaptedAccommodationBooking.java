@@ -8,7 +8,7 @@ import seedu.address.model.accommodationbooking.AccommodationBooking;
 import seedu.address.model.accommodationbooking.AccommodationName;
 import seedu.address.model.accommodationbooking.Day;
 import seedu.address.model.accommodationbooking.Remark;
-import seedu.address.model.transportbooking.Location;
+import seedu.address.model.commonattributes.Location;
 
 /**
  * Jackson-friendly version of {@link AccommodationBooking}.

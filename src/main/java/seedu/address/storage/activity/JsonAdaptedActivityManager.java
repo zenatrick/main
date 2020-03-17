@@ -10,13 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-
 import seedu.address.model.activity.Activity;
 import seedu.address.model.activity.Duration;
 import seedu.address.model.activity.Priority;
 import seedu.address.model.activity.Title;
+import seedu.address.model.commonattributes.Location;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.transportbooking.Location;
 import seedu.address.storage.JsonAdaptedTag;
 
 /**

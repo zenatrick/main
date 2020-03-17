@@ -3,10 +3,10 @@ package seedu.address.storage.transportbooking;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.core.time.DateTime;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.transportbooking.Location;
+import seedu.address.model.commonattributes.Location;
 import seedu.address.model.transportbooking.Mode;
-import seedu.address.model.transportbooking.Time;
 import seedu.address.model.transportbooking.TransportBooking;
 
 /**
@@ -19,8 +19,8 @@ class JsonAdaptedTransportBooking {
     private final String mode;
     private final String startLocation;
     private final String endLocation;
-    private final String startTime;
-    private final String endTime;
+    private final String startDateTime;
+    private final String endDateTime;
 
     /**
      * Constructs a {@code JsonAdaptedTransportBooking} with the given details.
@@ -29,13 +29,13 @@ class JsonAdaptedTransportBooking {
     public JsonAdaptedTransportBooking(@JsonProperty("mode") String mode,
                                        @JsonProperty("startLocation") String startLocation,
                                        @JsonProperty("endLocation") String endLocation,
-                                       @JsonProperty("startTime") String startTime,
-                                       @JsonProperty("endTime") String endTime) {
+                                       @JsonProperty("startDateTime") String startDateTime,
+                                       @JsonProperty("endDateTime") String endDateTime) {
         this.mode = mode;
         this.startLocation = startLocation;
         this.endLocation = endLocation;
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
     }
 
     /**
@@ -45,8 +45,8 @@ class JsonAdaptedTransportBooking {
         mode = source.getMode().value;
         startLocation = source.getStartLocation().value;
         endLocation = source.getEndLocation().value;
-        startTime = source.getStartTime().value;
-        endTime = source.getEndTime().value;
+        startDateTime = source.getStartDateTime().toString();
+        endDateTime = source.getEndDateTime().toString();
     }
 
     /**
@@ -81,23 +81,26 @@ class JsonAdaptedTransportBooking {
         }
         final Location modelEndLocation = new Location(endLocation);
 
-        if (startTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
+        if (startDateTime == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, DateTime.class.getSimpleName()));
         }
-        if (!Time.isValidTime(startTime)) {
-            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
+        if (!DateTime.isValidDateTime(startDateTime)) {
+            throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
         }
-        Time modelStartTime = new Time(startTime);
+        DateTime modelStartDateTime = DateTime.fromString(startDateTime);
 
-        if (endTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
+        if (endDateTime == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, DateTime.class.getSimpleName()));
         }
-        if (!Time.isValidTime(endTime)) {
-            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
+        if (!DateTime.isValidDateTime(endDateTime)) {
+            throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
         }
-        Time modelEndTime = new Time(endTime);
+        DateTime modelEndDateTime = DateTime.fromString(endDateTime);
 
-        return new TransportBooking(modelMode, modelStartLocation, modelEndLocation, modelStartTime, modelEndTime);
+        return new TransportBooking(
+                modelMode, modelStartLocation, modelEndLocation, modelStartDateTime, modelEndDateTime);
     }
 
 }

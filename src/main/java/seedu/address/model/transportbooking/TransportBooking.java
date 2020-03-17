@@ -5,6 +5,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.commons.core.time.DateTime;
+import seedu.address.model.commonattributes.Location;
+
 /**
  * Represents a TransportBooking in the TransportBookingManager.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -18,22 +21,22 @@ public class TransportBooking {
     private final Mode mode;
     private final Location startLocation;
     private final Location endLocation;
-    private final Time startTime;
-    private final Time endTime;
+    private final DateTime startDateTime;
+    private final DateTime endDateTime;
 
     /**
      * Every field must be present and not null.
      */
-    public TransportBooking(Mode mode, Location startLocation, Location endLocation, Time startTime,
-                            Time endTime) {
-        requireAllNonNull(mode, startLocation, endLocation, startTime, endTime);
+    public TransportBooking(Mode mode, Location startLocation, Location endLocation, DateTime startDateTime,
+                            DateTime endDateTime) {
+        requireAllNonNull(mode, startLocation, endLocation, startDateTime, endDateTime);
         checkArgument(areLocationsValid(startLocation, endLocation), MESSAGE_LOCATION_CONSTRAINTS);
-        checkArgument(isTimeValid(startTime, endTime), MESSAGE_TIME_CONSTRAINTS);
+        checkArgument(isTimeValid(startDateTime, endDateTime), MESSAGE_TIME_CONSTRAINTS);
         this.mode = mode;
         this.startLocation = startLocation;
         this.endLocation = endLocation;
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
     }
 
     public Mode getMode() {
@@ -48,12 +51,12 @@ public class TransportBooking {
         return endLocation;
     }
 
-    public Time getStartTime() {
-        return startTime;
+    public DateTime getStartDateTime() {
+        return startDateTime;
     }
 
-    public Time getEndTime() {
-        return endTime;
+    public DateTime getEndDateTime() {
+        return endDateTime;
     }
 
     /**
@@ -66,8 +69,8 @@ public class TransportBooking {
     /**
      * Returns true if the specified start time is before the specified end time..
      */
-    public boolean isTimeValid(Time startTime, Time endTime) {
-        return startTime.compareTo(endTime) < 0;
+    public boolean isTimeValid(DateTime startDateTime, DateTime endDateTime) {
+        return startDateTime.compareTo(endDateTime) < 0;
     }
 
     /**
@@ -88,13 +91,13 @@ public class TransportBooking {
         return otherTransportBooking.getMode().equals(getMode())
                 && otherTransportBooking.getStartLocation().equals(getStartLocation())
                 && otherTransportBooking.getEndLocation().equals(getEndLocation())
-                && otherTransportBooking.getStartTime().equals(getStartTime())
-                && otherTransportBooking.getEndTime().equals(getEndTime());
+                && otherTransportBooking.getStartDateTime().equals(getStartDateTime())
+                && otherTransportBooking.getEndDateTime().equals(getEndDateTime());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(mode, startLocation, endLocation, startTime, endTime);
+        return Objects.hash(mode, startLocation, endLocation, startDateTime, endDateTime);
     }
 
     @Override
@@ -102,8 +105,7 @@ public class TransportBooking {
         return "TransportBooking - Mode: " + getMode()
                 + " Start Location: " + getStartLocation()
                 + " End Location: " + getEndLocation()
-                + " Start Time: " + getStartTime()
-                + " End Time: " + getEndTime();
+                + " Start Date-Time: " + getStartDateTime()
+                + " End Date-Time: " + getEndDateTime();
     }
-
 }

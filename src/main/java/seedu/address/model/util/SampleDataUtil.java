@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.time.DateTime;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.accommodationbooking.AccommodationBooking;
@@ -15,6 +16,7 @@ import seedu.address.model.activity.Activity;
 import seedu.address.model.activity.Duration;
 import seedu.address.model.activity.Priority;
 import seedu.address.model.activity.Title;
+import seedu.address.model.commonattributes.Location;
 import seedu.address.model.fixedexpense.Amount;
 import seedu.address.model.fixedexpense.Category;
 import seedu.address.model.fixedexpense.Description;
@@ -33,9 +35,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.transportbooking.Location;
 import seedu.address.model.transportbooking.Mode;
-import seedu.address.model.transportbooking.Time;
 import seedu.address.model.transportbooking.TransportBooking;
 
 /**
@@ -84,8 +84,8 @@ public class SampleDataUtil {
 
     public static TransportBooking[] getSampleTransportBookings() {
         return new TransportBooking[]{
-            new TransportBooking(new Mode("plane"), new Location("Singapore"), new Location("Japan"), new Time(
-                    "2020-01-10T10:15:00"), new Time("2020-01-20T22:00:00"))
+            new TransportBooking(new Mode("plane"), new Location("Singapore"), new Location("Japan"),
+                    DateTime.fromString("2020-01-10T10:15:00"), DateTime.fromString("2020-01-20T22:00:00"))
         };
     }
 
