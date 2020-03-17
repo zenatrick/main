@@ -12,9 +12,13 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
-    // ---------- FixedExpense Prefixes -------------//
     public static final Prefix PREFIX_AMOUNT = new Prefix("amount/");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("description/");
     public static final Prefix PREFIX_CATEGORY = new Prefix("category/");
 
+    public static final Prefix PREFIX_MODE = new Prefix("mode/");
+    public static final Prefix PREFIX_START_LOCATION = new Prefix("startloc/");
+    public static final Prefix PREFIX_END_LOCATION = new Prefix("endloc/");
+    public static final Prefix PREFIX_START_TIME = new Prefix("starttime/");
+    public static final Prefix PREFIX_END_TIME = new Prefix("endtime/");
 }
