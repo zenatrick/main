@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an Accommodation's name in the AccommodationBookingManager.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class accommodationName {
+public class AccommodationName {
 
     public static final String MESSAGE_CONSTRAINTS = "Name of accommodation must be made up of alphanumeric words "
             + "that is less than 50 characters long.";
@@ -26,7 +26,7 @@ public class accommodationName {
      *
      * @param name a valid name.
      */
-    public accommodationName(String name) {
+    public AccommodationName(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         accommodationName = name;
@@ -45,8 +45,8 @@ public class accommodationName {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.accommodationbooking.accommodationName // instanceof handles nulls
-                && accommodationName.equals(((seedu.address.model.accommodationbooking.accommodationName) other)
+                || (other instanceof AccommodationName // instanceof handles nulls
+                && accommodationName.equals(((AccommodationName) other)
                 .accommodationName)); // state check
     }
 

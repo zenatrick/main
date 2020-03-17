@@ -11,12 +11,18 @@ import seedu.address.model.activity.Activity;
 import seedu.address.model.activity.Duration;
 import seedu.address.model.activity.Priority;
 import seedu.address.model.activity.Title;
+import seedu.address.model.accommodationbooking.AccommodationBooking;
+import seedu.address.model.accommodationbooking.AccommodationName;
+import seedu.address.model.accommodationbooking.Day;
+import seedu.address.model.accommodationbooking.Remark;
 import seedu.address.model.fixedexpense.Amount;
 import seedu.address.model.fixedexpense.Category;
 import seedu.address.model.fixedexpense.Description;
 import seedu.address.model.fixedexpense.FixedExpense;
+import seedu.address.model.listmanager.AccommodationBookingManager;
 import seedu.address.model.listmanager.ActivityManager;
 import seedu.address.model.listmanager.FixedExpenseManager;
+import seedu.address.model.listmanager.ReadOnlyAccommodationBookingManager;
 import seedu.address.model.listmanager.ReadOnlyActivityManager;
 import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
 import seedu.address.model.listmanager.ReadOnlyTransportBookingManager;
@@ -117,10 +123,25 @@ public class SampleDataUtil {
 
     public static ReadOnlyActivityManager getSampleActivityManager() {
         ActivityManager sampleActivityManager = new ActivityManager();
-        for (Activity sampleActivity: getSampleActivity()) {
+        for (Activity sampleActivity : getSampleActivity()) {
             sampleActivityManager.addActivity(sampleActivity);
         }
         return sampleActivityManager;
+    }
+
+    public static AccommodationBooking[] getSampleAccommodationBookings() {
+        return new AccommodationBooking[]{
+                new AccommodationBooking(new AccommodationName("Hyatt Regency"), new Location("Kyoto"),
+                        new Day("1"), new Day("4"), new Remark("Check-in at 3pm."))
+        };
+    }
+
+    public static ReadOnlyAccommodationBookingManager getSampleAccommodationBookingManager() {
+        AccommodationBookingManager sampleAccommodationBookingManager = new AccommodationBookingManager();
+        for (AccommodationBooking sampleAccommodationBooking : getSampleAccommodationBookings()) {
+            sampleAccommodationBookingManager.addAccommodationBooking(sampleAccommodationBooking);
+        }
+        return sampleAccommodationBookingManager;
     }
 
 }
