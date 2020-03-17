@@ -12,7 +12,7 @@ import seedu.address.model.listmanager.FixedExpenseManager;
  */
 public class ClearFixedExpenseCommand extends Command {
 
-    public static final String COMMAND_WORD = "clearbudget";
+    public static final String COMMAND_WORD = "clearexpense";
     public static final String MESSAGE_SUCCESS = "Fixed Expenses has been cleared!";
 
     @Override
