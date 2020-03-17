@@ -5,8 +5,8 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.AccommodationBookingManager;
-import seedu.address.model.ReadOnlyAccommodationBookingManager;
+import seedu.address.model.listmanager.AccommodationBookingManager;
+import seedu.address.model.listmanager.ReadOnlyAccommodationBookingManager;
 
 /**
  * Represents a storage for {@link AccommodationBookingManager}.

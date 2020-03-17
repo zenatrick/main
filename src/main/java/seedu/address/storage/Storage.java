@@ -8,9 +8,11 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.listmanager.ReadOnlyAccommodationBookingManager;
 import seedu.address.model.listmanager.ReadOnlyActivityManager;
 import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
 import seedu.address.model.listmanager.ReadOnlyTransportBookingManager;
+import seedu.address.storage.accommodationbooking.AccommodationBookingStorage;
 import seedu.address.storage.activity.ActivityManagerStorage;
 import seedu.address.storage.fixedexpense.FixedExpenseStorage;
 import seedu.address.storage.transportbooking.TransportBookingStorage;
@@ -19,7 +21,7 @@ import seedu.address.storage.transportbooking.TransportBookingStorage;
  * API of the Storage component
  */
 public interface Storage extends AddressBookStorage, TransportBookingStorage,
-        FixedExpenseStorage, ActivityManagerStorage,
+        FixedExpenseStorage, ActivityManagerStorage, AccommodationBookingStorage,
         UserPrefsStorage {
     @Override
     Path getAddressBookFilePath();
@@ -96,6 +98,29 @@ public interface Storage extends AddressBookStorage, TransportBookingStorage,
 
     //--------//
 
+    // ---- AccommodationBookingManager ----//
+
+    @Override
+    Path getAccommodationBookingStorageFilePath();
+
+    @Override
+    Optional<ReadOnlyAccommodationBookingManager> readAccommodationBookings()
+            throws DataConversionException, IOException;
+
+    @Override
+    Optional<ReadOnlyAccommodationBookingManager> readAccommodationBookings(Path filePath)
+            throws DataConversionException, IOException;
+
+    @Override
+    void saveAccommodationBookings(ReadOnlyAccommodationBookingManager accommodationBookingManager)
+            throws IOException;
+
+    @Override
+    void saveAccommodationBookings(ReadOnlyAccommodationBookingManager accommodationBookingManager, Path filePath)
+            throws IOException;
+
+    //--------//
+
     @Override
     Path getUserPrefsFilePath();
 
@@ -104,4 +129,5 @@ public interface Storage extends AddressBookStorage, TransportBookingStorage,
 
     @Override
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
+
 }
