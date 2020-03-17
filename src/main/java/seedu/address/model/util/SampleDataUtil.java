@@ -132,7 +132,7 @@ public class SampleDataUtil {
     public static AccommodationBooking[] getSampleAccommodationBookings() {
         return new AccommodationBooking[]{
             new AccommodationBooking(new AccommodationName("Hyatt Regency"), new Location("Kyoto"),
-                new Day("1"), new Day("4"), new Remark("Check-in at 3pm."))
+                new Day("1"), new Day("4"), new Remark("Checkin at 3pm"))
         };
     }
 
