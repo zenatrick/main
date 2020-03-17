@@ -115,21 +115,32 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private ReadOnlyTransportBookingManager initTransportBookingManager(Storage storage) {
+        ReadOnlyTransportBookingManager transportBookingManager;
         try {
             Optional<ReadOnlyTransportBookingManager> transportBookingManagerOptional = storage.readTransportBookings();
             if (transportBookingManagerOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample TransportBookingManager.");
             }
-            return transportBookingManagerOptional.orElseGet(SampleDataUtil::getSampleTransportBookingManager);
+            transportBookingManager =
+                    transportBookingManagerOptional.orElseGet(SampleDataUtil::getSampleTransportBookingManager);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty"
                     + "TransportBookingManager.");
-            return new TransportBookingManager();
+            transportBookingManager = new TransportBookingManager();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty "
                     + "TransportBookingManager.");
-            return new TransportBookingManager();
+            transportBookingManager = new TransportBookingManager();
         }
+
+        try {
+            storage.saveTransportBookings(transportBookingManager);
+            logger.info("Saving initial data of Transport Booking Manager.");
+        } catch (IOException e) {
+            logger.warning("Problem while saving to the file.");
+        }
+
+        return transportBookingManager;
     }
 
     /**
@@ -138,21 +149,31 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private ReadOnlyFixedExpenseManager initFixedExpenseManager(Storage storage) {
+        ReadOnlyFixedExpenseManager fixedExpenseManager;
         try {
             Optional<ReadOnlyFixedExpenseManager> fixedExpenseManagerOptional = storage.readFixedExpenses();
             if (fixedExpenseManagerOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample FixedExpenseManager.");
             }
-            return fixedExpenseManagerOptional.orElseGet(SampleDataUtil::getSampleFixedExpenseManager);
+            fixedExpenseManager = fixedExpenseManagerOptional.orElseGet(SampleDataUtil::getSampleFixedExpenseManager);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty"
                     + "FixedExpenseManager.");
-            return new FixedExpenseManager();
+            fixedExpenseManager = new FixedExpenseManager();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty "
                     + "FixedExpenseManager.");
-            return new FixedExpenseManager();
+            fixedExpenseManager = new FixedExpenseManager();
         }
+
+        try {
+            storage.saveFixedExpenses(fixedExpenseManager);
+            logger.info("Saving initial data of Fixed Expense Manager.");
+        } catch (IOException e) {
+            logger.warning("Problem while saving to the file.");
+        }
+
+        return fixedExpenseManager;
     }
 
     private void initLogging(Config config) {

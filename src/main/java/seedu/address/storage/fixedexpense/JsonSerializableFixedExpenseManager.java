@@ -29,7 +29,7 @@ class JsonSerializableFixedExpenseManager {
      */
     @JsonCreator
     public JsonSerializableFixedExpenseManager(
-            @JsonProperty("transportBookings") List<JsonAdaptedFixedExpense> fixedExpenses) {
+            @JsonProperty("fixedExpenses") List<JsonAdaptedFixedExpense> fixedExpenses) {
         this.fixedExpenses.addAll(fixedExpenses);
     }
 

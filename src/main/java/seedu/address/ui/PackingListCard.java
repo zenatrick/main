@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.packinglistitem.PackingListItem;
@@ -34,10 +33,6 @@ public class PackingListCard extends UiPart<Region> {
     private Label quantity;
     @FXML
     private Label isChecked;
-    @FXML
-    private Label category;
-    @FXML
-    private FlowPane tags;
 
     public PackingListCard(PackingListItem item, int displayedIndex) {
         super(FXML);

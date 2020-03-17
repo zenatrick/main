@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.fixedexpense.FixedExpense;
@@ -27,8 +26,6 @@ public class FixedExpenseCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
-    @FXML
     private Label id;
     @FXML
     private Label amount;
@@ -36,14 +33,12 @@ public class FixedExpenseCard extends UiPart<Region> {
     private Label description;
     @FXML
     private Label category;
-    @FXML
-    private FlowPane tags;
 
     public FixedExpenseCard(FixedExpense fixedExpense, int displayedIndex) {
         super(FXML);
         this.fixedExpense = fixedExpense;
         id.setText(displayedIndex + ". ");
-        name.setText(fixedExpense.getDescription().toString());
+        description.setText(fixedExpense.getDescription().toString());
         amount.setText("Amount: $" + fixedExpense.getAmount().toString());
         category.setText("Category: " + fixedExpense.getCategory().toString());
     }

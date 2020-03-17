@@ -200,22 +200,25 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasFixedExpense(FixedExpense target) {
-        return false;
+        requireNonNull(target);
+        return fixedExpenseManager.hasFixedExpense(target);
     }
 
     @Override
     public void deleteFixedExpense(FixedExpense toDelete) {
-
+        fixedExpenseManager.removeFixedExpense(toDelete);
     }
 
     @Override
     public void addFixedExpense(FixedExpense toAdd) {
-
+        fixedExpenseManager.addFixedExpense(toAdd);
+        updateFilteredFixedExpenseList(PREDICATE_SHOW_ALL_FIXED_EXPENSES);
     }
 
     @Override
     public void setFixedExpense(FixedExpense target, FixedExpense edited) {
-
+        requireAllNonNull(target, edited);
+        fixedExpenseManager.setFixedExpense(target, edited);
     }
 
     @Override
@@ -225,7 +228,8 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredFixedExpenseList(Predicate<FixedExpense> predicate) {
-
+        requireNonNull(predicate);
+        filteredFixedExpenseList.setPredicate(predicate);
     }
 
     // ========== PackingListManager ==========
