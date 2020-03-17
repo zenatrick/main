@@ -75,8 +75,11 @@ public class MainApp extends Application {
         ActivityManagerStorage activityManagerStorage =
                 new JsonActivityManagerStorage(userPrefs.getActivityManagerStorageFilePath());
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, transportBookingStorage,
-                fixedExpenseStorage, activityManagerStorage,userPrefsStorage);
+        storage = new StorageManager(addressBookStorage,
+                transportBookingStorage,
+                fixedExpenseStorage,
+                activityManagerStorage,
+                userPrefsStorage);
 
         initLogging(config);
 

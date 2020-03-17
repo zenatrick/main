@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.activity.Activity;
 import seedu.address.model.fixedexpense.FixedExpense;
 import seedu.address.model.packinglistitem.PackingListItem;
 import seedu.address.model.person.Person;
@@ -46,12 +47,12 @@ public interface Logic {
     // */
     //SimpleStringProperty getPlanningStatus();
 
-    ///**
-    // * Returns an unmodifiable view of the filtered list of activities.
-    // *
-    // * @return the unmodifiable view of the filtered list of activities.
-    // */
-    //ObservableList<Activity> getFilteredActivityList();
+    /**
+     * Returns an unmodifiable view of the filtered list of activities.
+     *
+     * @return the unmodifiable view of the filtered list of activities.
+     */
+    ObservableList<Activity> getFilteredActivityList();
 
     /**
      * Returns an unmodifiable view of the filtered list of transport bookings.

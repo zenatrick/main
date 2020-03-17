@@ -1,18 +1,17 @@
 package seedu.address.model.listmanager;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.activity.Activity;
-import seedu.address.model.activity.UniqueActivityList;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-
+import javafx.collections.ObservableList;
+import seedu.address.model.activity.Activity;
+import seedu.address.model.activity.UniqueActivityList;
 /**
  * Wraps all data at the ActivityManager level
  * Duplicates are not allowed (by.equals comparison)
  */
-public class ActivityManager implements ReadOnlyActivityManager{
+public class ActivityManager implements ReadOnlyActivityManager {
 
     private final UniqueActivityList uniqueActivityLists;
 

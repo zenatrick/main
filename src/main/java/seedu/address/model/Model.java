@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.activity.Activity;
 import seedu.address.model.fixedexpense.FixedExpense;
 import seedu.address.model.packinglistitem.PackingListItem;
 import seedu.address.model.person.Person;
@@ -259,4 +260,54 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPackingList(Predicate<PackingListItem> predicate);
+
+    // ========== ActivityManager ==========
+
+    /**
+     * Returns true if a activity that is the same as {@code target} exists in the
+     * ActivityManager.
+     *
+     * @param target the given activity.
+     * @return true if the given activity already exist in the ActivityManager.
+     */
+    boolean hasActivity(Activity target);
+
+    /**
+     * Deletes the given activity.
+     * The activity must exist in the ActivityManager.
+     *
+     * @param toDelete the given activity.
+     */
+    void deleteActivity(Activity toDelete);
+
+    /**
+     * Adds the given activity.
+     * {@code toAdd} must not already exist in the ActivityManager.
+     *
+     * @param toAdd the given activity.
+     */
+    void addActivity(Activity toAdd);
+
+    /**
+     * Replaces the given activity {@code target} with {@code edited}.
+     * {@code target} must exist in the ActivityManager.
+     * {@code edited} must not be the same as another existing activity in the ActivityManager.
+     *
+     * @param target the given target activity.
+     * @param edited the given edited activity.
+     */
+    void setActivity(Activity target, Activity edited);
+
+    /**
+     * Returns an unmodifiable view of the filtered activity list
+     */
+    ObservableList<Activity> getFilteredActivityList();
+
+    /**
+     * Updates the filter of the filtered activity list to filter by the given {@code predicate}.
+     *
+     * @param predicate the given predicate.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredActivityList(Predicate<Activity> predicate);
 }

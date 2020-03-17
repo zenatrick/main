@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.activity.Activity;
 import seedu.address.model.fixedexpense.FixedExpense;
 import seedu.address.model.listmanager.FixedExpenseManager;
 import seedu.address.model.listmanager.PackingListManager;
@@ -261,6 +262,38 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredPackingList(Predicate<PackingListItem> predicate) {
+
+    }
+
+    // ========== ActivityManager ==========
+
+    @Override
+    public boolean hasActivity(Activity target) {
+        return false;
+    }
+
+    @Override
+    public void deleteActivity(Activity toDelete) {
+
+    }
+
+    @Override
+    public void addActivity(Activity toAdd) {
+
+    }
+
+    @Override
+    public void setActivity(Activity target, Activity edited) {
+
+    }
+
+    @Override
+    public ObservableList<Activity> getFilteredActivityList() {
+        return null;
+    }
+
+    @Override
+    public void updateFilteredActivityList(Predicate<Activity> predicate) {
 
     }
 

@@ -33,6 +33,7 @@ import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.activity.JsonActivityManagerStorage;
 import seedu.address.storage.fixedexpense.JsonFixedExpenseStorage;
 import seedu.address.storage.transportbooking.JsonTransportBookingStorage;
 import seedu.address.testutil.PersonBuilder;
@@ -56,8 +57,13 @@ public class LogicManagerTest {
                 .resolve("transport.json"));
         JsonFixedExpenseStorage fixedExpenseStorage = new JsonFixedExpenseStorage(temporaryFolder
                 .resolve("fixedexpense.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, transportBookingStorage,
-                fixedExpenseStorage, userPrefsStorage);
+        JsonActivityManagerStorage activityManagerStorage = new JsonActivityManagerStorage(temporaryFolder
+                .resolve("activity.json"));
+        StorageManager storage = new StorageManager(addressBookStorage,
+                transportBookingStorage,
+                fixedExpenseStorage,
+                activityManagerStorage,
+                userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -91,8 +97,13 @@ public class LogicManagerTest {
                 new JsonTransportBookingStorage(temporaryFolder.resolve("ioExceptionTransportBooking.json"));
         JsonFixedExpenseStorage fixedExpenseStorage =
                 new JsonFixedExpenseStorage(temporaryFolder.resolve("ioExceptionFixedExpense.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, transportBookingStorage,
-                fixedExpenseStorage, userPrefsStorage);
+        JsonActivityManagerStorage activityManagerStorage =
+                new JsonActivityManagerStorage(temporaryFolder.resolve("ioExceptionActivity.json"));
+        StorageManager storage = new StorageManager(addressBookStorage,
+                transportBookingStorage,
+                fixedExpenseStorage,
+                activityManagerStorage,
+                userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command

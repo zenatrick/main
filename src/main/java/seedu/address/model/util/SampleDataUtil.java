@@ -107,8 +107,7 @@ public class SampleDataUtil {
     }
 
     public static Activity[] getSampleActivity() {
-        return new Activity[] {
-                new Activity(new Title("Hot Spring"),
+        return new Activity[] { new Activity(new Title("Hot Spring"),
                         new Priority("1"),
                         new Duration("3"),
                         new Location("Hokkaido"),

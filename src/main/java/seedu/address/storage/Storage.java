@@ -10,7 +10,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.listmanager.ReadOnlyActivityManager;
 import seedu.address.model.listmanager.ReadOnlyFixedExpenseManager;
-import seedu.address.model.listmanager.ReadOnlyPackingListManager;
 import seedu.address.model.listmanager.ReadOnlyTransportBookingManager;
 import seedu.address.storage.activity.ActivityManagerStorage;
 import seedu.address.storage.fixedexpense.FixedExpenseStorage;
