@@ -64,20 +64,6 @@ public class Activity implements UniqueListElement {
     }
 
     /**
-     * Returns true if both activities of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two Activities.
-     */
-    public boolean isSameActivity(seedu.address.model.listmanagers.activity.Activity activity) {
-        if (activity == this) {
-            return true;
-        }
-
-        return activity != null
-                && activity.getTitle().equals(getTitle())
-                && (activity.getPriority().equals(getPriority()) || activity.getDuration().equals(getDuration()));
-    }
-
-    /**
      * Returns true if both accommodation bookings has the same identity fields.
      * This defines a weaker notion of equality between two accommodation bookings.
      */
