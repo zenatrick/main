@@ -6,6 +6,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+/**
+ * Deletes a fixed expense in the list.
+ */
 public class DeleteFixedExpenseCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteexpense";
