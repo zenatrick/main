@@ -15,12 +15,7 @@ public interface PackingListStorage {
     /**
      * Returns the file path of the data file.
      */
-    Path getPackingListFilePath();
-
-    /**
-     * Sets the file path of the data file.
-     */
-    void setPackingListFilePath(Path accommodationFilePath);
+    Path getPackingListStorageFilePath();
 
     /**
      * Read packing list optional.
@@ -40,12 +35,6 @@ public interface PackingListStorage {
     Optional<ReadOnlyPackingListManager> readPackingList(
             Path filePath) throws DataConversionException, IOException;
 
-    /**
-     * Save items.
-     *
-     * @param packingListManager the packing list manager
-     * @throws IOException the io exception
-     */
     void saveItems(ReadOnlyPackingListManager packingListManager) throws IOException;
 
     /**
