@@ -131,8 +131,8 @@ public class MainApp extends Application {
         ReadOnlyAccommodationBookingManager accommodationBookingManager = initAccommodationBookingManager(storage);
         ReadOnlyPackingListManager packingListManager = initPackingListManager(storage);
 
-        return new ModelManager(initialData, transportBookingManager, fixedExpenseManager, new PackingListManager(),
-                activityManager, accommodationBookingManager, packingListManager, userPrefs);
+        return new ModelManager(initialData, transportBookingManager, fixedExpenseManager, packingListManager,
+                activityManager, accommodationBookingManager, userPrefs);
     }
 
     /**
