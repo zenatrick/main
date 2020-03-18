@@ -154,7 +154,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ReadOnly} with the data from {@code storage}'s transport bookings.
+     * Returns a {@code ReadOnlyManager} with the data from {@code storage}'s transport bookings.
      * The data from the sample transport bookings will be used instead
      * if {@code storage}'s transport booking manager is not found,
      * or an empty transport booking manager will be used instead if errors
@@ -190,7 +190,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ReadOnly} with the data from {@code storage}'s fixed expenses.
+     * Returns a {@code ReadOnlyManager} with the data from {@code storage}'s fixed expenses.
      * The data from the sample fixed expenses will be used instead
      * if {@code storage}'s fixed expense manager is not found,
      * or an empty fixed expense manager will be used instead
@@ -225,7 +225,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ReadOnly} with the data from {@code storage}'s activities.
+     * Returns a {@code ReadOnlyManager} with the data from {@code storage}'s activities.
      * The data from the sample activities will be used instead if {@code storage}'s activities manager is not found,
      * or an empty activity manager will be used instead if errors occur when reading {@code storage}'s
      * activity manager.
@@ -260,9 +260,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ReadOnly} with the data from {@code storage}'s accommodation bookings.
+     * Returns a {@code ReadOnlyManager} with the data from {@code storage}'s accommodation bookings.
      * The data from the sample accommodation bookings will be used instead
-     * if {@code storage}'s accommodation booking manager is not found, \
+     * if {@code storage}'s accommodation booking manager is not found,
      * or an empty accommodation booking manager will be used instead if errors occur when
      * reading {@code storage}'s accommodation booking manager.
      */
@@ -297,7 +297,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ReadOnly} with the data from {@code storage}'s packing list.
+     * Returns a {@code ReadOnlyManager} with the data from {@code storage}'s packing list.
      * The data from the sample packing list will be used instead if {@code storage}'s packing list
      * is not found, or an empty packing list will be used instead if errors occur when
      * reading {@code storage}'s packing list.
