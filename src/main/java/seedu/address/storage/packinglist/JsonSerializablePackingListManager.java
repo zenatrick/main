@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.ReadOnlyPackingListManager;
-import seedu.address.model.PackingListManager;
-import seedu.address.model.packinglistitem.Item;
+import seedu.address.model.listmanagers.ReadOnlyPackingListManager;
+import seedu.address.model.listmanagers.PackingListManager;
+import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 
 @JsonRootName(value = "packingListManager")
 public class JsonSerializablePackingListManager {
@@ -43,11 +43,11 @@ public class JsonSerializablePackingListManager {
     public PackingListManager toModelType() throws IllegalValueException {
         PackingListManager packingListManager = new PackingListManager();
         for (JsonAdaptedItem jsonAdaptedItem : packingList) {
-            Item item = jsonAdaptedItem.toModelType();
-            if (packingListManager.hasItem(item)) {
+            PackingListItem item = jsonAdaptedItem.toModelType();
+            if (packingListManager.hasPackingListItem(item)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ITEM);
             }
-            packingListManager.addItem(item);
+            packingListManager.addPackingListItem(item);
         }
         return packingListManager;
     }
