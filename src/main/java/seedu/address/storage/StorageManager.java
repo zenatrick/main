@@ -17,6 +17,7 @@ import seedu.address.model.listmanagers.UserPrefs;
 import seedu.address.storage.accommodationbooking.AccommodationBookingStorage;
 import seedu.address.storage.activity.ActivityManagerStorage;
 import seedu.address.storage.fixedexpense.FixedExpenseStorage;
+import seedu.address.storage.packinglist.PackingListStorage;
 import seedu.address.storage.transportbooking.TransportBookingStorage;
 
 /**
@@ -31,12 +32,14 @@ public class StorageManager implements Storage {
     private AccommodationBookingStorage accommodationBookingStorage;
     private UserPrefsStorage userPrefsStorage;
     private ActivityManagerStorage activityManagerStorage;
+    private PackingListStorage packingListStorage;
 
     public StorageManager(AddressBookStorage addressBookStorage,
                           TransportBookingStorage transportBookingStorage,
                           FixedExpenseStorage fixedExpenseStorage,
                           ActivityManagerStorage activityManagerStorage,
                           AccommodationBookingStorage accommodationBookingStorage,
+                          PackingListStorage packingListStorage,
                           UserPrefsStorage userPrefsStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
@@ -44,6 +47,7 @@ public class StorageManager implements Storage {
         this.fixedExpenseStorage = fixedExpenseStorage;
         this.activityManagerStorage = activityManagerStorage;
         this.accommodationBookingStorage = accommodationBookingStorage;
+        this.packingListStorage = packingListStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
