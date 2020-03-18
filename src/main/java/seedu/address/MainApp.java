@@ -129,9 +129,10 @@ public class MainApp extends Application {
         ReadOnlyFixedExpenseManager fixedExpenseManager = initFixedExpenseManager(storage);
         ReadOnlyActivityManager activityManager = initActivityManager(storage);
         ReadOnlyAccommodationBookingManager accommodationBookingManager = initAccommodationBookingManager(storage);
+        ReadOnlyPackingListManager packingListManager = initPackingListManager(storage);
 
         return new ModelManager(initialData, transportBookingManager, fixedExpenseManager, new PackingListManager(),
-                activityManager, accommodationBookingManager, userPrefs);
+                activityManager, accommodationBookingManager, packingListManager, userPrefs);
     }
 
     /**
@@ -280,7 +281,7 @@ public class MainApp extends Application {
             if (!packingListManagerOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample PackingListManager");
             }
-            packingListManager = packingListManagerOptional.orElseGet(SampleDataUtil::getSamplePackingList);
+            packingListManager = packingListManagerOptional.orElseGet(SampleDataUtil::getSamplePackingListManager);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty "
                     + "PackingListManager");
