@@ -26,6 +26,7 @@ import seedu.address.model.listmanagers.PackingListManager;
 import seedu.address.model.listmanagers.ReadOnlyAccommodationBookingManager;
 import seedu.address.model.listmanagers.ReadOnlyActivityManager;
 import seedu.address.model.listmanagers.ReadOnlyFixedExpenseManager;
+import seedu.address.model.listmanagers.ReadOnlyPackingListManager;
 import seedu.address.model.listmanagers.ReadOnlyTransportBookingManager;
 import seedu.address.model.listmanagers.ReadOnlyUserPrefs;
 import seedu.address.model.listmanagers.TransportBookingManager;
@@ -43,6 +44,8 @@ import seedu.address.storage.activity.ActivityManagerStorage;
 import seedu.address.storage.activity.JsonActivityManagerStorage;
 import seedu.address.storage.fixedexpense.FixedExpenseStorage;
 import seedu.address.storage.fixedexpense.JsonFixedExpenseStorage;
+import seedu.address.storage.packinglist.JsonPackingListStorage;
+import seedu.address.storage.packinglist.PackingListStorage;
 import seedu.address.storage.transportbooking.JsonTransportBookingStorage;
 import seedu.address.storage.transportbooking.TransportBookingStorage;
 import seedu.address.ui.Ui;
@@ -81,12 +84,14 @@ public class MainApp extends Application {
                 new JsonActivityManagerStorage(userPrefs.getActivityManagerStorageFilePath());
         AccommodationBookingStorage accommodationBookingStorage =
                 new JsonAccommodationBookingStorage((userPrefs.getAccommodationBookingStorageFilePath()));
+        PackingListStorage packingListStorage = new JsonPackingListStorage(userPrefs.getPackingListStorageFilePath());
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(addressBookStorage,
                 transportBookingStorage,
                 fixedExpenseStorage,
                 activityManagerStorage,
                 accommodationBookingStorage,
+                packingListStorage,
                 userPrefsStorage);
 
         initLogging(config);
@@ -265,6 +270,27 @@ public class MainApp extends Application {
         }
 
         return accommodationBookingManager;
+    }
+
+    private ReadOnlyPackingListManager initPackingListManager(Storage storage) {
+        Optional<ReadOnlyPackingListManager> packingListManagerOptional;
+        ReadOnlyPackingListManager packingListManager;
+        try {
+            packingListManagerOptional = storage.readPackingList();
+            if (!packingListManagerOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample PackingListManager");
+            }
+            packingListManager = packingListManagerOptional.orElseGet(SampleDataUtil::getSamplePackingList);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty "
+                    + "PackingListManager");
+            packingListManager = new PackingListManager();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty "
+                    + "PackingListManager");
+            packingListManager = new PackingListManager();
+        }
+        return packingListManager;
     }
 
     private void initLogging(Config config) {
