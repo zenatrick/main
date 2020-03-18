@@ -14,15 +14,28 @@ import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.listmanagers.ReadOnlyPackingListManager;
 
+/**
+ * The type Json packing list storage.
+ */
 public class JsonPackingListStorage implements PackingListStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonPackingListStorage.class);
 
     private Path filePath;
 
+    /**
+     * Instantiates a new Json packing list storage.
+     *
+     * @param filePath the file path
+     */
     public JsonPackingListStorage(Path filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Gets packing list storage file path.
+     *
+     * @return the packing list storage file path
+     */
     public Path getPackingListStorageFilePath() {
         return filePath;
     }
