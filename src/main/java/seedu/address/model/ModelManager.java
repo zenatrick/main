@@ -288,32 +288,36 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasPackingListItem(PackingListItem target) {
-        return false;
+        requireNonNull(target);
+        return packingListManager.hasPackingListItem(target);
     }
 
     @Override
     public void deletePackingListItem(PackingListItem toDelete) {
-
+        packingListManager.removePackingListItem(toDelete);
     }
 
     @Override
     public void addPackingListItem(PackingListItem toAdd) {
-
+        packingListManager.addPackingListItem(toAdd);
+        updateFilteredPackingList(PREDICATE_SHOW_ALL_PACKING_LIST_ITEMS);
     }
 
     @Override
     public void setPackingListItem(PackingListItem target, PackingListItem edited) {
-
+        requireAllNonNull(target, edited);
+        packingListManager.setPackingListItem(target, edited);
     }
 
     @Override
     public ObservableList<PackingListItem> getFilteredPackingList() {
-        return null;
+        return filteredPackingList;
     }
 
     @Override
     public void updateFilteredPackingList(Predicate<PackingListItem> predicate) {
-
+        requireNonNull(predicate);
+        filteredPackingList.setPredicate(predicate);
     }
 
     // ========== ActivityManager ==========
