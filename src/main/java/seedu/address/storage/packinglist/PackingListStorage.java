@@ -13,12 +13,22 @@ import seedu.address.model.listmanagers.ReadOnlyPackingListManager;
 public interface PackingListStorage {
 
     /**
+     * Returns the file path of the data file.
+     */
+    Path getPackingListFilePath();
+
+    /**
+     * Sets the file path of the data file.
+     */
+    void setPackingListFilePath(Path accommodationFilePath);
+
+    /**
      * Read packing list optional.
      *
      * @return the optional
      * @throws DataConversionException the data conversion exception
      */
-    Optional<ReadOnlyPackingListManager> readPackingList() throws DataConversionException;
+    Optional<ReadOnlyPackingListManager> readPackingList() throws DataConversionException, IOException;
 
     /**
      * Read packing list optional.
@@ -28,7 +38,7 @@ public interface PackingListStorage {
      * @throws DataConversionException the data conversion exception
      */
     Optional<ReadOnlyPackingListManager> readPackingList(
-            Path filePath) throws DataConversionException;
+            Path filePath) throws DataConversionException, IOException;
 
     /**
      * Save items.
