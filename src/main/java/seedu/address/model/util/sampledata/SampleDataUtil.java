@@ -11,9 +11,11 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.listmanagers.AccommodationBookingManager;
 import seedu.address.model.listmanagers.ActivityManager;
 import seedu.address.model.listmanagers.FixedExpenseManager;
+import seedu.address.model.listmanagers.PackingListManager;
 import seedu.address.model.listmanagers.ReadOnlyAccommodationBookingManager;
 import seedu.address.model.listmanagers.ReadOnlyActivityManager;
 import seedu.address.model.listmanagers.ReadOnlyFixedExpenseManager;
+import seedu.address.model.listmanagers.ReadOnlyPackingListManager;
 import seedu.address.model.listmanagers.ReadOnlyTransportBookingManager;
 import seedu.address.model.listmanagers.TransportBookingManager;
 import seedu.address.model.listmanagers.accommodationbooking.AccommodationBooking;
@@ -28,6 +30,9 @@ import seedu.address.model.listmanagers.fixedexpense.Amount;
 import seedu.address.model.listmanagers.fixedexpense.Category;
 import seedu.address.model.listmanagers.fixedexpense.Description;
 import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
+import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
+import seedu.address.model.listmanagers.packinglistitem.ItemName;
+import seedu.address.model.listmanagers.packinglistitem.Quantity;
 import seedu.address.model.listmanagers.transportbooking.Mode;
 import seedu.address.model.listmanagers.transportbooking.TransportBooking;
 import seedu.address.model.person.Address;
@@ -42,6 +47,11 @@ import seedu.address.model.util.attributes.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+    /**
+     * Get sample persons person [ ].
+     *
+     * @return the person [ ]
+     */
     public static Person[] getSamplePersons() {
         return new Person[]{
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
@@ -65,6 +75,11 @@ public class SampleDataUtil {
         };
     }
 
+    /**
+     * Gets sample address book.
+     *
+     * @return the sample address book
+     */
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
@@ -75,6 +90,9 @@ public class SampleDataUtil {
 
     /**
      * Returns a tag set containing the list of strings given.
+     *
+     * @param strings the strings
+     * @return the tag set
      */
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
@@ -82,6 +100,11 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Get sample transport bookings transport booking [ ].
+     *
+     * @return the transport booking [ ]
+     */
     public static TransportBooking[] getSampleTransportBookings() {
         return new TransportBooking[]{
             new TransportBooking(new Mode("plane"), new Location("Singapore"), new Location("Japan"),
@@ -89,6 +112,11 @@ public class SampleDataUtil {
         };
     }
 
+    /**
+     * Gets sample transport booking manager.
+     *
+     * @return the sample transport booking manager
+     */
     public static ReadOnlyTransportBookingManager getSampleTransportBookingManager() {
         TransportBookingManager sampleTransportBookingManager = new TransportBookingManager();
         for (TransportBooking sampleTransportBooking : getSampleTransportBookings()) {
@@ -97,6 +125,11 @@ public class SampleDataUtil {
         return sampleTransportBookingManager;
     }
 
+    /**
+     * Get sample fixed expenses fixed expense [ ].
+     *
+     * @return the fixed expense [ ]
+     */
     public static FixedExpense[] getSampleFixedExpenses() {
         return new FixedExpense[]{
             new FixedExpense(new Amount("1000"), new Description("TestDescription"),
@@ -110,6 +143,11 @@ public class SampleDataUtil {
         };
     }
 
+    /**
+     * Gets sample fixed expense manager.
+     *
+     * @return the sample fixed expense manager
+     */
     public static ReadOnlyFixedExpenseManager getSampleFixedExpenseManager() {
         FixedExpenseManager sampleFixedExpenseManager = new FixedExpenseManager();
         for (FixedExpense sampleFixedExpense : getSampleFixedExpenses()) {
@@ -118,6 +156,11 @@ public class SampleDataUtil {
         return sampleFixedExpenseManager;
     }
 
+    /**
+     * Get sample activity activity [ ].
+     *
+     * @return the activity [ ]
+     */
     public static Activity[] getSampleActivity() {
         return new Activity[]{
             new Activity(new Title("Hot Spring"), new Priority(1), new Duration(3), new Location("Hokkaido"),
@@ -125,6 +168,11 @@ public class SampleDataUtil {
         };
     }
 
+    /**
+     * Gets sample activity manager.
+     *
+     * @return the sample activity manager
+     */
     public static ReadOnlyActivityManager getSampleActivityManager() {
         ActivityManager sampleActivityManager = new ActivityManager();
         for (Activity sampleActivity : getSampleActivity()) {
@@ -133,6 +181,11 @@ public class SampleDataUtil {
         return sampleActivityManager;
     }
 
+    /**
+     * Get sample accommodation bookings accommodation booking [ ].
+     *
+     * @return the accommodation booking [ ]
+     */
     public static AccommodationBooking[] getSampleAccommodationBookings() {
         return new AccommodationBooking[]{
             new AccommodationBooking(new AccommodationName("Hyatt Regency"), new Location("Kyoto"), new Day(1),
@@ -140,6 +193,11 @@ public class SampleDataUtil {
         };
     }
 
+    /**
+     * Gets sample accommodation booking manager.
+     *
+     * @return the sample accommodation booking manager
+     */
     public static ReadOnlyAccommodationBookingManager getSampleAccommodationBookingManager() {
         AccommodationBookingManager sampleAccommodationBookingManager = new AccommodationBookingManager();
         for (AccommodationBooking sampleAccommodationBooking : getSampleAccommodationBookings()) {
@@ -148,5 +206,32 @@ public class SampleDataUtil {
         return sampleAccommodationBookingManager;
     }
 
+    /**
+     * Get sample packing list items packing list item [ ].
+     *
+     * @return the packing list item [ ]
+     */
+    public static PackingListItem[] getSamplePackingListItems() {
+        return new PackingListItem[] {
+                new PackingListItem(new ItemName("T-shirt"), new Quantity(7), false),
+                new PackingListItem(new ItemName("Jeans"), new Quantity(5), false),
+                new PackingListItem(new ItemName("Underwear"), new Quantity(7), false),
+                new PackingListItem(new ItemName("Shampoo"), new Quantity(1), true),
+                new PackingListItem(new ItemName("T-shirt"), new Quantity(7), false)
+        };
+    }
+
+    /**
+     * Gets sample packing list manager.
+     *
+     * @return the sample packing list manager
+     */
+    public static ReadOnlyPackingListManager getSamplePackingListManager() {
+        PackingListManager samplePackingListManager= new PackingListManager();
+        for (PackingListItem samplePackingListItem : getSamplePackingListItems()) {
+            samplePackingListManager.addPackingListItem(samplePackingListItem);
+        }
+        return samplePackingListManager;
+    }
 }
 
