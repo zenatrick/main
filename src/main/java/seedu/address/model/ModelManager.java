@@ -88,7 +88,8 @@ public class ModelManager implements Model {
     // Temporary constructor
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTransportBookingManager transportBookingManager,
                         ReadOnlyFixedExpenseManager fixedExpenseManager,
-                        ReadOnlyAccommodationBookingManager accommodationBookingManager, ReadOnlyPackingListManager packingListManager,
+                        ReadOnlyAccommodationBookingManager accommodationBookingManager,
+                        ReadOnlyPackingListManager packingListManager,
                         ReadOnlyUserPrefs userPrefs) {
         this(addressBook, transportBookingManager, fixedExpenseManager, packingListManager,
                 new ActivityManager(), accommodationBookingManager, userPrefs);

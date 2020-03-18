@@ -56,19 +56,37 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
+    /**
+     * The constant VERSION.
+     */
     public static final Version VERSION = new Version(0, 6, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
+    /**
+     * The Ui.
+     */
     protected Ui ui;
+    /**
+     * The Logic.
+     */
     protected Logic logic;
+    /**
+     * The Storage.
+     */
     protected Storage storage;
+    /**
+     * The Model.
+     */
     protected Model model;
+    /**
+     * The Config.
+     */
     protected Config config;
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing E.T. ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -137,8 +155,10 @@ public class MainApp extends Application {
 
     /**
      * Returns a {@code ReadOnly} with the data from {@code storage}'s transport bookings.
-     * The data from the sample transport bookings will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * The data from the sample transport bookings will be used instead
+     * if {@code storage}'s transport booking manager is not found,
+     * or an empty transport booking manager will be used instead if errors
+     * occur when reading {@code storage}'s transport booking manager.
      */
     private ReadOnlyTransportBookingManager initTransportBookingManager(Storage storage) {
         ReadOnlyTransportBookingManager transportBookingManager;
@@ -170,9 +190,11 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ReadOnly} with the data from {@code storage}'s transport bookings.
-     * The data from the sample transport bookings will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ReadOnly} with the data from {@code storage}'s fixed expenses.
+     * The data from the sample fixed expenses will be used instead
+     * if {@code storage}'s fixed expense manager is not found,
+     * or an empty fixed expense manager will be used instead
+     * if errors occur when reading {@code storage}'s fixed expense manager.
      */
     private ReadOnlyFixedExpenseManager initFixedExpenseManager(Storage storage) {
         ReadOnlyFixedExpenseManager fixedExpenseManager;
@@ -205,7 +227,7 @@ public class MainApp extends Application {
     /**
      * Returns a {@code ReadOnly} with the data from {@code storage}'s activities.
      * The data from the sample activities will be used instead if {@code storage}'s activities manager is not found,
-     * or an empty activity Manager will be used instead if errors occur when reading {@code storage}'s
+     * or an empty activity manager will be used instead if errors occur when reading {@code storage}'s
      * activity manager.
      */
     private ReadOnlyActivityManager initActivityManager(Storage storage) {
@@ -239,9 +261,10 @@ public class MainApp extends Application {
 
     /**
      * Returns a {@code ReadOnly} with the data from {@code storage}'s accommodation bookings.
-     * The data from the sample accommodation bookings will be used instead if {@code storage}'s address book
-     * is not found, or an empty address book will be used instead if errors occur when
-     * reading {@code storage}'s address book.
+     * The data from the sample accommodation bookings will be used instead
+     * if {@code storage}'s accommodation booking manager is not found, \
+     * or an empty accommodation booking manager will be used instead if errors occur when
+     * reading {@code storage}'s accommodation booking manager.
      */
     private ReadOnlyAccommodationBookingManager initAccommodationBookingManager(Storage storage) {
         ReadOnlyAccommodationBookingManager accommodationBookingManager;
@@ -273,24 +296,38 @@ public class MainApp extends Application {
         return accommodationBookingManager;
     }
 
+    /**
+     * Returns a {@code ReadOnly} with the data from {@code storage}'s packing list.
+     * The data from the sample packing list will be used instead if {@code storage}'s packing list
+     * is not found, or an empty packing list will be used instead if errors occur when
+     * reading {@code storage}'s packing list.
+     */
     private ReadOnlyPackingListManager initPackingListManager(Storage storage) {
-        Optional<ReadOnlyPackingListManager> packingListManagerOptional;
         ReadOnlyPackingListManager packingListManager;
         try {
-            packingListManagerOptional = storage.readPackingList();
-            if (!packingListManagerOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample PackingListManager");
+            Optional<ReadOnlyPackingListManager> packingListManagerOptional = storage.readPackingList();
+            if (packingListManagerOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample PackingListManager.");
             }
-            packingListManager = packingListManagerOptional.orElseGet(SampleDataUtil::getSamplePackingListManager);
+            packingListManager =
+                    packingListManagerOptional.orElseGet(SampleDataUtil::getSamplePackingListManager);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty "
-                    + "PackingListManager");
+            logger.warning("Data file not in the correct format. Will be starting with an empty"
+                    + "PackingListManager.");
             packingListManager = new PackingListManager();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty "
-                    + "PackingListManager");
+                    + "PackingListManager.");
             packingListManager = new PackingListManager();
         }
+
+        try {
+            storage.saveItems(packingListManager);
+            logger.info("Saving initial data of PackingListManager.");
+        } catch (IOException e) {
+            logger.warning("Problem while saving to the file.");
+        }
+
         return packingListManager;
     }
 
@@ -302,6 +339,9 @@ public class MainApp extends Application {
      * Returns a {@code Config} using the file at {@code configFilePath}. <br>
      * The default file path {@code Config#DEFAULT_CONFIG_FILE} will be used instead
      * if {@code configFilePath} is null.
+     *
+     * @param configFilePath the config file path
+     * @return the config
      */
     protected Config initConfig(Path configFilePath) {
         Path configFilePathUsed = Config.DEFAULT_CONFIG_FILE;
@@ -335,6 +375,9 @@ public class MainApp extends Application {
      * Returns a {@code UserPrefs} using the file at {@code storage}'s user prefs file path,
      * or a new {@code UserPrefs} with default configuration if errors occur when
      * reading from the file.
+     *
+     * @param storage the storage
+     * @return the user prefs
      */
     protected UserPrefs initPrefs(UserPrefsStorage storage) {
         Path prefsFilePath = storage.getUserPrefsFilePath();
@@ -365,13 +408,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting E.T. " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping E.T. ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

@@ -30,8 +30,8 @@ import seedu.address.model.listmanagers.fixedexpense.Amount;
 import seedu.address.model.listmanagers.fixedexpense.Category;
 import seedu.address.model.listmanagers.fixedexpense.Description;
 import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
-import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 import seedu.address.model.listmanagers.packinglistitem.ItemName;
+import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 import seedu.address.model.listmanagers.packinglistitem.Quantity;
 import seedu.address.model.listmanagers.transportbooking.Mode;
 import seedu.address.model.listmanagers.transportbooking.TransportBooking;
@@ -207,17 +207,17 @@ public class SampleDataUtil {
     }
 
     /**
-     * Get sample packing list items packing list item [ ].
+     * Get sample packing list items [ ].
      *
-     * @return the packing list item [ ]
+     * @return the packing list items [ ]
      */
     public static PackingListItem[] getSamplePackingListItems() {
         return new PackingListItem[] {
-                new PackingListItem(new ItemName("T-shirt"), new Quantity(7), false),
-                new PackingListItem(new ItemName("Jeans"), new Quantity(5), false),
-                new PackingListItem(new ItemName("Underwear"), new Quantity(7), false),
-                new PackingListItem(new ItemName("Shampoo"), new Quantity(1), true),
-                new PackingListItem(new ItemName("T-shirt"), new Quantity(7), false)
+            new PackingListItem(new ItemName("Tshirt"), new Quantity(7), false),
+            new PackingListItem(new ItemName("Jeans"), new Quantity(5), false),
+            new PackingListItem(new ItemName("Underwear"), new Quantity(7), false),
+            new PackingListItem(new ItemName("Shampoo"), new Quantity(1), true),
+            new PackingListItem(new ItemName("Conditioner"), new Quantity(1), true)
         };
     }
 
@@ -227,7 +227,7 @@ public class SampleDataUtil {
      * @return the sample packing list manager
      */
     public static ReadOnlyPackingListManager getSamplePackingListManager() {
-        PackingListManager samplePackingListManager= new PackingListManager();
+        PackingListManager samplePackingListManager = new PackingListManager();
         for (PackingListItem samplePackingListItem : getSamplePackingListItems()) {
             samplePackingListManager.addPackingListItem(samplePackingListItem);
         }

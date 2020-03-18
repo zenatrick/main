@@ -252,7 +252,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyPackingListManager> readPackingList(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyPackingListManager> readPackingList(Path filePath) throws DataConversionException,
+            IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return packingListStorage.readPackingList(filePath);
     }

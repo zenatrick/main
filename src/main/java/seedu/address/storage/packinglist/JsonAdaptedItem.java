@@ -3,8 +3,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 import seedu.address.model.listmanagers.packinglistitem.ItemName;
+import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 import seedu.address.model.listmanagers.packinglistitem.Quantity;
 
 /**
