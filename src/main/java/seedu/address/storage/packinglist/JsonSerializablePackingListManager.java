@@ -18,11 +18,11 @@ public class JsonSerializablePackingListManager {
     public static final String MESSAGE_DUPLICATE_ITEM = "Packing list contains duplicate "
             + "item(s).";
 
-    private final List<JsonAdaptedPackingList> packingList = new ArrayList<>();
+    private final List<JsonAdaptedItem> packingList = new ArrayList<>();
 
     @JsonCreator
     public JsonSerializablePackingListManager(
-            @JsonProperty("packingList") List<JsonAdaptedPackingList> packingList) {
+            @JsonProperty("packingList") List<JsonAdaptedItem> packingList) {
         this.packingList.addAll(packingList);
     }
 
@@ -30,7 +30,7 @@ public class JsonSerializablePackingListManager {
         packingList.addAll(
                 source.getPackingList()
                         .stream()
-                        .map(JsonAdaptedPackingList::new)
+                        .map(JsonAdaptedItem::new)
                         .collect(Collectors.toList())
         );
     }
@@ -42,8 +42,8 @@ public class JsonSerializablePackingListManager {
      */
     public PackingListManager toModelType() throws IllegalValueException {
         PackingListManager packingListManager = new PackingListManager();
-        for (JsonAdaptedPackingList jsonAdaptedPackingList : packingList) {
-            Item item = jsonAdaptedPackingList.toModelType();
+        for (JsonAdaptedItem jsonAdaptedItem : packingList) {
+            Item item = jsonAdaptedItem.toModelType();
             if (packingListManager.hasItem(item)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ITEM);
             }
