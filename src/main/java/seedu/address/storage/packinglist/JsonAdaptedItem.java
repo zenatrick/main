@@ -3,9 +3,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.packinglistitem.Item;
-import seedu.address.model.packinglistitem.ItemName;
-import seedu.address.model.packinglistitem.Quantity;
+import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
+import seedu.address.model.listmanagers.packinglistitem.ItemName;
+import seedu.address.model.listmanagers.packinglistitem.Quantity;
 
 public class JsonAdaptedItem {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Item's %s field is missing!";
@@ -23,13 +23,13 @@ public class JsonAdaptedItem {
         this.isCheck = isCheck;
     }
 
-    public JsonAdaptedItem(Item source) {
+    public JsonAdaptedItem(PackingListItem source) {
         name = source.getItemName().value;
         quantity = source.getQuantity().value;
         isCheck = source.isChecked();
     }
 
-    public Item toModelType() throws IllegalValueException {
+    public PackingListItem toModelType() throws IllegalValueException {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT),
                     ItemName.class.getSimpleName()));
