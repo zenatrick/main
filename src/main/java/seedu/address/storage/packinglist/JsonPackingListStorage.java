@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyPackingListManager;
+import seedu.address.model.listmanagers.ReadOnlyPackingListManager;
 
 public class JsonPackingListStorage implements PackingListStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonPackingListStorage.class);
@@ -32,6 +32,7 @@ public class JsonPackingListStorage implements PackingListStorage {
         return readPackingList(filePath);
     }
 
+    @Override
     public Optional<ReadOnlyPackingListManager> readPackingList(
             Path filePath) throws DataConversionException {
         requireNonNull(filePath);
@@ -55,6 +56,7 @@ public class JsonPackingListStorage implements PackingListStorage {
         saveItems(packingListManager, filePath);
     }
 
+    @Override
     public void saveItems(
             ReadOnlyPackingListManager packingListManager, Path filePath) throws IOException {
         requireNonNull(packingListManager);
