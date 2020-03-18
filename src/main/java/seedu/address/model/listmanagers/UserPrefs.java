@@ -19,6 +19,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private Path fixedExpenseStorageFilePath = DEFAULT_FOLDER_PATH.resolve("expense.json");
     private Path activityManagerStorageFilePath = DEFAULT_FOLDER_PATH.resolve("activity.json");
     private Path accommodationBookingStorageFilePath = DEFAULT_FOLDER_PATH.resolve("accommodation.json");
+    private Path packingListStorageFilePath = DEFAULT_FOLDER_PATH.resolve("packinglist.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -45,6 +46,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setAccommodationBookingStorageFilePath(newUserPrefs.getAccommodationBookingStorageFilePath());
         setTransportBookingStorageFilePath(newUserPrefs.getTransportBookingStorageFilePath());
         setFixedExpenseStorageFilePath(newUserPrefs.getFixedExpenseStorageFilePath());
+        setPackingListStorageFilePath(newUserPrefs.getPackingListStorageFilePath());
     }
 
     @Override
@@ -105,6 +107,16 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setAccommodationBookingStorageFilePath(Path accommodationBookingStorageFilePath) {
         requireNonNull(accommodationBookingStorageFilePath);
         this.accommodationBookingStorageFilePath = accommodationBookingStorageFilePath;
+    }
+
+    @Override
+    public Path getPackingListStorageFilePath() {
+        return packingListStorageFilePath;
+    }
+
+    public void setPackingListStorageFilePath(Path packingListStorageFilePath) {
+        requireNonNull(packingListStorageFilePath);
+        this.packingListStorageFilePath = packingListStorageFilePath;
     }
 
     @Override
