@@ -11,6 +11,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.listmanagers.ReadOnlyAccommodationBookingManager;
 import seedu.address.model.listmanagers.ReadOnlyActivityManager;
 import seedu.address.model.listmanagers.ReadOnlyFixedExpenseManager;
+import seedu.address.model.listmanagers.ReadOnlyPackingListManager;
 import seedu.address.model.listmanagers.ReadOnlyTransportBookingManager;
 import seedu.address.model.listmanagers.ReadOnlyUserPrefs;
 import seedu.address.model.listmanagers.UserPrefs;
@@ -34,6 +35,17 @@ public class StorageManager implements Storage {
     private ActivityManagerStorage activityManagerStorage;
     private PackingListStorage packingListStorage;
 
+    /**
+     * Instantiates a new Storage manager.
+     *
+     * @param addressBookStorage          the address book storage
+     * @param transportBookingStorage     the transport booking storage
+     * @param fixedExpenseStorage         the fixed expense storage
+     * @param activityManagerStorage      the activity manager storage
+     * @param accommodationBookingStorage the accommodation booking storage
+     * @param packingListStorage          the packing list storage
+     * @param userPrefsStorage            the user prefs storage
+     */
     public StorageManager(AddressBookStorage addressBookStorage,
                           TransportBookingStorage transportBookingStorage,
                           FixedExpenseStorage fixedExpenseStorage,
@@ -228,4 +240,36 @@ public class StorageManager implements Storage {
         accommodationBookingStorage.saveAccommodationBookings(accommodationBookingManager, filePath);
     }
 
+    //================ Packing List methods ==============================
+    @Override
+    public Path getPackingListFilePath() {
+        return packingListStorage.getPackingListFilePath();
+    }
+
+    @Override
+    public void setPackingListFilePath(Path packingListFilePath) {
+        packingListStorage.setPackingListFilePath(packingListFilePath);
+    }
+
+    @Override
+    public Optional<ReadOnlyPackingListManager> readPackingList() throws DataConversionException, IOException {
+        return readPackingList(packingListStorage.getPackingListFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyPackingListManager> readPackingList(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return packingListStorage.readPackingList(filePath);
+    }
+
+    @Override
+    public void saveItems(ReadOnlyPackingListManager packingList) throws IOException {
+        saveItems(packingList, packingListStorage.getPackingListFilePath());
+    }
+
+    @Override
+    public void saveItems(ReadOnlyPackingListManager packingList, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        packingListStorage.saveItems(packingList, filePath);
+    }
 }
