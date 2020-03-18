@@ -242,18 +242,13 @@ public class StorageManager implements Storage {
 
     //================ Packing List methods ==============================
     @Override
-    public Path getPackingListFilePath() {
-        return packingListStorage.getPackingListFilePath();
-    }
-
-    @Override
-    public void setPackingListFilePath(Path packingListFilePath) {
-        packingListStorage.setPackingListFilePath(packingListFilePath);
+    public Path getPackingListStorageFilePath() {
+        return packingListStorage.getPackingListStorageFilePath();
     }
 
     @Override
     public Optional<ReadOnlyPackingListManager> readPackingList() throws DataConversionException, IOException {
-        return readPackingList(packingListStorage.getPackingListFilePath());
+        return readPackingList(packingListStorage.getPackingListStorageFilePath());
     }
 
     @Override
@@ -264,7 +259,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveItems(ReadOnlyPackingListManager packingList) throws IOException {
-        saveItems(packingList, packingListStorage.getPackingListFilePath());
+        saveItems(packingList, packingListStorage.getPackingListStorageFilePath());
     }
 
     @Override
