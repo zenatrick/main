@@ -55,7 +55,7 @@ public class JsonAdaptedItem {
      */
     public PackingListItem toModelType() throws IllegalValueException {
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT),
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ItemName.class.getSimpleName()));
         }
         if (!ItemName.isValidName(name)) {
@@ -64,12 +64,14 @@ public class JsonAdaptedItem {
         final ItemName modelItemName = new ItemName(name);
 
         if (quantity == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT),
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Quantity.class.getSimpleName()));
         }
         if (!Quantity.isValidQuantity(quantity)) {
             throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
         }
         final Quantity modelQuantity = new Quantity(quantity);
+
+        return new PackingListItem(modelItemName, modelQuantity, false);
     }
 }
