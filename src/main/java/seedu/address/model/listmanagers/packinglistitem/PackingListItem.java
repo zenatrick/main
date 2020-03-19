@@ -13,6 +13,7 @@ import seedu.address.model.util.uniquelist.UniqueListElement;
 public class PackingListItem implements UniqueListElement {
     // Identity fields
     private final ItemName itemName;
+    private final ItemCategory itemCategory;
 
     // Data fields
     private final boolean isChecked;
@@ -20,24 +21,51 @@ public class PackingListItem implements UniqueListElement {
 
     /**
      * Every field must be present and not null.
+     *
+     * @param itemName     the item name
+     * @param quantity     the quantity
+     * @param itemCategory the item category
+     * @param isChecked    the is checked
      */
-    public PackingListItem(ItemName itemName, Quantity quantity, boolean isChecked) {
-        requireAllNonNull(itemName, quantity);
+    public PackingListItem(ItemName itemName, Quantity quantity, ItemCategory itemCategory, boolean isChecked) {
+        requireAllNonNull(itemName, quantity, itemCategory);
         this.itemName = itemName;
         this.quantity = quantity;
+        this.itemCategory = itemCategory;
         this.isChecked = isChecked;
     }
 
+    /**
+     * Gets item name.
+     *
+     * @return the item name
+     */
     public ItemName getItemName() {
         return itemName;
     }
 
+    /**
+     * Gets quantity.
+     *
+     * @return the quantity
+     */
     public Quantity getQuantity() {
         return quantity;
     }
 
     /**
+     * Gets item category.
+     *
+     * @return the item category
+     */
+    public ItemCategory getItemCategory() {
+        return itemCategory;
+    }
+
+    /**
      * Returns true of the packing list item is checked.
+     *
+     * @return the boolean
      */
     public boolean isChecked() {
         return isChecked;
@@ -77,18 +105,20 @@ public class PackingListItem implements UniqueListElement {
         PackingListItem otherItem = (PackingListItem) other;
         return itemName.equals(otherItem.itemName)
                 && quantity.equals(otherItem.quantity)
+                && itemCategory.equals(otherItem.itemCategory)
                 && isChecked == otherItem.isChecked;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(itemName, quantity, isChecked);
+        return Objects.hash(itemName, quantity, itemCategory, isChecked);
     }
 
     @Override
     public String toString() {
         return "Packing list item - Item Name: " + itemName
                 + " Quantity: " + quantity
+                + " Category: " + itemCategory
                 + " Is Checked: " + isChecked;
     }
 }
