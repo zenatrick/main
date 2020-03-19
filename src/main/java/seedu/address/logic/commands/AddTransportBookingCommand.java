@@ -29,8 +29,8 @@ public class AddTransportBookingCommand extends Command {
             + PREFIX_MODE + "plane "
             + PREFIX_START_LOCATION + "Singapore "
             + PREFIX_END_LOCATION + "Japan "
-            + PREFIX_START_TIME + "20-03-2020 1700 "
-            + PREFIX_END_TIME + "30-03-2020 2200\n";
+            + PREFIX_START_TIME + "20-03-2020 17:00 "
+            + PREFIX_END_TIME + "30-03-2020 22:00\n";
 
     public static final String MESSAGE_SUCCESS = "New transport booking added: %1$s";
     public static final String MESSAGE_DUPLICATE_TRANSPORT_BOOKING = "This transport booking already exists in the "
