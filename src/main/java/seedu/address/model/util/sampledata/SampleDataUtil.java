@@ -30,6 +30,7 @@ import seedu.address.model.listmanagers.fixedexpense.Amount;
 import seedu.address.model.listmanagers.fixedexpense.Category;
 import seedu.address.model.listmanagers.fixedexpense.Description;
 import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
+import seedu.address.model.listmanagers.packinglistitem.ItemCategory;
 import seedu.address.model.listmanagers.packinglistitem.ItemName;
 import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 import seedu.address.model.listmanagers.packinglistitem.Quantity;
@@ -213,11 +214,11 @@ public class SampleDataUtil {
      */
     public static PackingListItem[] getSamplePackingListItems() {
         return new PackingListItem[] {
-            new PackingListItem(new ItemName("Tshirt"), new Quantity(7), false),
-            new PackingListItem(new ItemName("Jeans"), new Quantity(5), false),
-            new PackingListItem(new ItemName("Underwear"), new Quantity(7), false),
-            new PackingListItem(new ItemName("Shampoo"), new Quantity(1), true),
-            new PackingListItem(new ItemName("Conditioner"), new Quantity(1), true)
+            new PackingListItem(new ItemName("Tshirt"), new Quantity(7), new ItemCategory("basics"), false),
+            new PackingListItem(new ItemName("Jeans"), new Quantity(5), new ItemCategory("basics"), false),
+            new PackingListItem(new ItemName("Underwear"), new Quantity(7), new ItemCategory("essentials"), false),
+            new PackingListItem(new ItemName("Shampoo"), new Quantity(1), new ItemCategory("toiletries"), false),
+            new PackingListItem(new ItemName("Conditioner"), new Quantity(1), new ItemCategory("toiletries"), false)
         };
     }
 
