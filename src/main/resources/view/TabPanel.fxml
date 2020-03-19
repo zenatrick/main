@@ -14,4 +14,14 @@
     <Tab text="Fixed Expenses">
         <StackPane fx:id="fixedExpensePanelPlaceholder"/>
     </Tab>
+    <Tab text = "Packing List">
+        <StackPane fx:id="packingListPanelPlaceholder"/>
+    </Tab>
+    <Tab text = "Accommodations">
+        <StackPane fx:id="accommodationListPanelPlaceholder"/>
+    </Tab>
+    <Tab text = "Activities">
+        <StackPane fx:id="activitiesListPanelPlaceholder"/>
+    </Tab>
+
 </TabPane>
