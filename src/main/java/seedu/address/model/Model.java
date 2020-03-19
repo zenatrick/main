@@ -52,6 +52,7 @@ public interface Model {
      */
     Predicate<AccommodationBooking> PREDICATE_SHOW_ALL_ACCOMMODATION_BOOKINGS = unused -> true;
 
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -247,6 +248,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFixedExpenseList(Predicate<FixedExpense> predicate);
+
 
     // ========== PackingListManager ==========
 

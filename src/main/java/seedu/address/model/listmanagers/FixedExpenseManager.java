@@ -2,6 +2,7 @@ package seedu.address.model.listmanagers;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -37,6 +38,7 @@ public class FixedExpenseManager implements ReadOnlyFixedExpenseManager {
     public void setFixedExpenses(List<FixedExpense> fixedExpenses) {
         this.uniqueFixedExpenseLists.setElements(fixedExpenses);
     }
+
 
     // List overwrite operations
 
@@ -78,6 +80,7 @@ public class FixedExpenseManager implements ReadOnlyFixedExpenseManager {
         uniqueFixedExpenseLists.setElement(target, editedFixedExpense);
     }
 
+
     /**
      * Removes {@code key} from this {@code FixedExpenseManager}.
      * {@code key} must exist in the FixedExpenseManager.
@@ -98,6 +101,13 @@ public class FixedExpenseManager implements ReadOnlyFixedExpenseManager {
     public ObservableList<FixedExpense> getFixedExpenseList() {
         return uniqueFixedExpenseLists.asUnmodifiableObservableList();
     }
+
+    @Override
+    public ObservableList<FixedExpense> sortFixedExpenseList(Comparator<FixedExpense> cmp) {
+        uniqueFixedExpenseLists.sort(cmp);
+        return uniqueFixedExpenseLists.asUnmodifiableObservableList();
+    }
+
 
     @Override
     public boolean equals(Object other) {

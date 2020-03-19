@@ -263,6 +263,7 @@ public class ModelManager implements Model {
         fixedExpenseManager.setFixedExpense(target, edited);
     }
 
+
     @Override
     public ObservableList<FixedExpense> getFilteredFixedExpenseList() {
         return filteredFixedExpenseList;

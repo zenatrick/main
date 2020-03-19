@@ -1,5 +1,7 @@
 package seedu.address.model.listmanagers;
 
+import java.util.Comparator;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
 
@@ -13,5 +15,7 @@ public interface ReadOnlyFixedExpenseManager {
      * This list will not contain any duplicate fixed expenses.
      */
     ObservableList<FixedExpense> getFixedExpenseList();
+
+    ObservableList<FixedExpense> sortFixedExpenseList(Comparator<FixedExpense> cmp);
 
 }
