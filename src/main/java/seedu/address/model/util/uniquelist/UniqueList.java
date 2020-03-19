@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.util.uniquelist.exceptions.DuplicateElementException;
 import seedu.address.model.util.uniquelist.exceptions.ElementNotFoundException;
 
@@ -42,7 +41,7 @@ public class UniqueList<T extends UniqueListElement> implements Iterable<T> {
     public void add(T toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateElementException();
         }
         internalList.add(toAdd);
     }
