@@ -16,6 +16,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("description/");
     public static final Prefix PREFIX_CATEGORY = new Prefix("category/");
 
+    public static final Prefix PREFIX_ITEM = new Prefix("item/");
+    public static final Prefix PREFIX_QUANTITY = new Prefix("quantity/");
+    public static final Prefix PREFIX_ITEMCATEGORY = new Prefix("category/");
+
     public static final Prefix PREFIX_MODE = new Prefix("mode/");
     public static final Prefix PREFIX_START_LOCATION = new Prefix("startloc/");
     public static final Prefix PREFIX_END_LOCATION = new Prefix("endloc/");
