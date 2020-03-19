@@ -3,6 +3,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.listmanagers.packinglistitem.ItemCategory;
 import seedu.address.model.listmanagers.packinglistitem.ItemName;
 import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 import seedu.address.model.listmanagers.packinglistitem.Quantity;
@@ -18,6 +19,7 @@ public class JsonAdaptedItem {
 
     private final String name;
     private final Integer quantity;
+    private final String category;
     private final boolean isCheck;
 
     /**
@@ -30,9 +32,11 @@ public class JsonAdaptedItem {
     @JsonCreator
     public JsonAdaptedItem(@JsonProperty("name") String name,
                            @JsonProperty("quantity") Integer quantity,
+                           @JsonProperty("category") String category,
                            @JsonProperty("isCheck") boolean isCheck) {
         this.name = name;
         this.quantity = quantity;
+        this.category = category;
         this.isCheck = isCheck;
     }
 
@@ -44,6 +48,7 @@ public class JsonAdaptedItem {
     public JsonAdaptedItem(PackingListItem source) {
         name = source.getItemName().value;
         quantity = source.getQuantity().value;
+        category = source.getItemCategory().value;
         isCheck = source.isChecked();
     }
 
@@ -72,6 +77,11 @@ public class JsonAdaptedItem {
         }
         final Quantity modelQuantity = new Quantity(quantity);
 
-        return new PackingListItem(modelItemName, modelQuantity, false);
+        if (!ItemCategory.isValidItemCategory(category)) {
+            throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        final ItemCategory modelCategory = new ItemCategory(category);
+
+        return new PackingListItem(modelItemName, modelQuantity, modelCategory, isCheck);
     }
 }
