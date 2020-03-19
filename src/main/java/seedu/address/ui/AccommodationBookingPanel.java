@@ -10,6 +10,9 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.listmanagers.accommodationbooking.AccommodationBooking;
 
+/**
+ * Panel containing the list of accommodations.
+ */
 public class AccommodationBookingPanel extends UiPart<Region> {
 
     private static final String FXML = "AccommodationBookingPanel.fxml";
@@ -24,6 +27,10 @@ public class AccommodationBookingPanel extends UiPart<Region> {
         accommodationBookingListView.setCellFactory(listView -> new AccommodationBookingListViewCell());
     }
 
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Accommodation} using a
+     * {@code AccommodationListCard}.
+     */
     class AccommodationBookingListViewCell extends ListCell<AccommodationBooking> {
         @Override
         protected void updateItem(AccommodationBooking accommodationBooking, boolean empty) {
@@ -31,7 +38,7 @@ public class AccommodationBookingPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new AccommodationBookingCard(accommodationBooking, getIndex()+1).getRoot());
+                setGraphic(new AccommodationBookingCard(accommodationBooking, getIndex() + 1).getRoot());
             }
         }
     }

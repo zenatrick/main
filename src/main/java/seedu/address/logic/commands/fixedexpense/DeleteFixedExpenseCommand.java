@@ -37,7 +37,7 @@ public class DeleteFixedExpenseCommand extends Command {
         requireNonNull(model);
         List<FixedExpense> lastShownList = model.getFilteredFixedExpenseList();
 
-        if(targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_FIXEDEXPENSE_DISPLAYED_INDEX);
         }
 

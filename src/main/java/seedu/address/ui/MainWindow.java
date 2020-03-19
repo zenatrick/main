@@ -112,7 +112,8 @@ public class MainWindow extends UiPart<Stage> {
                 logic.getFilteredTransportBookingList(),
                 logic.getFilteredFixedExpenseList(),
                 logic.getFilteredPackingList(),
-                logic.getFilteredAccommodationBookingList()
+                logic.getFilteredAccommodationBookingList(),
+                logic.getFilteredActivityList()
                 );
         tabPanelPlaceholder.getChildren().add(tabPanel.getRoot());
 

@@ -4,12 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.text.Text;
 import seedu.address.model.listmanagers.accommodationbooking.AccommodationBooking;
-import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 
 /**
- * An UI component that displays information of a {@code Item}.
+ * An UI component that displays information of a {@code Accommodation}.
  */
 public class AccommodationBookingCard extends UiPart<Region> {
 
@@ -36,7 +34,7 @@ public class AccommodationBookingCard extends UiPart<Region> {
     @FXML
     private Label endDay;
     @FXML
-    private Label plance;
+    private Label accommodationLocation;
     @FXML
     private Label remark;
 
@@ -47,9 +45,9 @@ public class AccommodationBookingCard extends UiPart<Region> {
         accommodationName.setText(item.getAccommodationName().toString());
         startDay.setText("Start Day: " + item.getStartDay().toString());
         endDay.setText("End Day: " + item.getEndDay().toString());
-        //Called plance because location is a reserved word in javafx.
-        // Cannot create variable name called location/Location.
-        plance.setText("Location: " + item.getLocation().toString());
+        //Called accommodationLocation because location is a reserved word in javafx.
+        //Cannot create variable name called location/Location.
+        accommodationLocation.setText("Location: " + item.getLocation().toString());
         remark.setText("Remark: " + item.getRemark().value);
     }
 
