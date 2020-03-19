@@ -22,6 +22,9 @@ import seedu.address.logic.commands.packinglist.AddItemCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.fixedexpense.AddFixedExpenseParser;
 import seedu.address.logic.parser.packinglist.AddItemParser;
+import seedu.address.logic.commands.fixedexpense.DeleteFixedExpenseCommand;
+import seedu.address.logic.parser.fixedexpense.DeleteFixedExpenseCommandParser;
+
 
 /**
  * Parses user input.
@@ -79,6 +82,9 @@ public class AddressBookParser {
 
         case ClearFixedExpenseCommand.COMMAND_WORD:
             return new ClearFixedExpenseCommand();
+
+        case DeleteFixedExpenseCommand.COMMAND_WORD:
+            return new DeleteFixedExpenseCommandParser().parse(arguments);
 
         case AddTransportBookingCommand.COMMAND_WORD:
             return new AddTransportBookingCommandParser().parse(arguments);

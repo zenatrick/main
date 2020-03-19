@@ -24,8 +24,8 @@ public class AddFixedExpenseCommand extends Command {
             + PREFIX_DESCRIPTION + "DESCRIPTION"
             + PREFIX_CATEGORY + "CATEGORY...\n "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_AMOUNT + "1500"
-            + PREFIX_DESCRIPTION + "Plane Tickets"
+            + PREFIX_AMOUNT + "1500" + " "
+            + PREFIX_DESCRIPTION + "Plane Tickets" + " "
             + PREFIX_CATEGORY + "Flights";
 
     public static final String MESSAGE_SUCCESS = "New Fixed Expense added: %1$s";

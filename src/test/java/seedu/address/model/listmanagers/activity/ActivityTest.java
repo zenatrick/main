@@ -13,7 +13,7 @@
 //import seedu.address.model.util.attributes.Location;
 //
 //class ActivityTest {
-//
+//1
 //    private final Activity activity =
 //            new Activity(new Title("Hot Spring"),
 //                    new Priority("1"),
