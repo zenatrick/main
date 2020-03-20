@@ -49,7 +49,7 @@ public class JsonAdaptedItem {
         name = source.getItemName().value;
         quantity = source.getQuantity().value;
         category = source.getItemCategory().value;
-        isCheck = source.isChecked();
+        isCheck = source.getChecked();
     }
 
     /**

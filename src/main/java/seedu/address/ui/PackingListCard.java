@@ -42,8 +42,8 @@ public class PackingListCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         itemName.setText(item.getItemName().toString());
         quantity.setText("Quantity: " + item.getQuantity().toString());
-        isChecked.setText("Is Checked: " + item.isChecked());
         itemCategory.setText("Category: " + item.getItemCategory().value);
+        isChecked.setText("Packed: " + item.getChecked());
     }
 
     @Override
