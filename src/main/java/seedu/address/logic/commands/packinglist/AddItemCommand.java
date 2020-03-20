@@ -26,7 +26,7 @@ public class AddItemCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an item to the packing list. "
             + "Parameters: "
             + PREFIX_ITEM + "NAME "
-            + PREFIX_QUANTITY + "QUANTITY"
+            + PREFIX_QUANTITY + "QUANTITY "
             + PREFIX_CATEGORY + "CATEGORY \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ITEM + "Tshirts "
