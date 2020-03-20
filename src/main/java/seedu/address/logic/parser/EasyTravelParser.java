@@ -31,6 +31,7 @@ import seedu.address.logic.commands.packinglist.AddItemCommand;
 import seedu.address.logic.commands.packinglist.CheckItemCommand;
 import seedu.address.logic.commands.packinglist.DeleteItemCommand;
 import seedu.address.logic.commands.packinglist.EditItemCommand;
+import seedu.address.logic.commands.packinglist.UncheckItemCommand;
 import seedu.address.logic.commands.transportbooking.AddTransportBookingCommand;
 import seedu.address.logic.commands.transportbooking.ClearTransportBookingCommand;
 import seedu.address.logic.commands.transportbooking.DeleteTransportBookingCommand;
@@ -49,15 +50,15 @@ import seedu.address.logic.parser.packinglist.AddItemParser;
 import seedu.address.logic.parser.packinglist.CheckItemParser;
 import seedu.address.logic.parser.packinglist.DeleteItemParser;
 import seedu.address.logic.parser.packinglist.EditItemParser;
+import seedu.address.logic.parser.packinglist.UncheckItemParser;
 import seedu.address.logic.parser.transportbooking.AddTransportBookingCommandParser;
 import seedu.address.logic.parser.transportbooking.DeleteTransportBookingCommandParser;
 import seedu.address.logic.parser.transportbooking.EditTransportBookingCommandParser;
 
-
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class EasyTravelParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -144,7 +145,10 @@ public class AddressBookParser {
         case EditItemCommand.COMMAND_WORD:
             return new EditItemParser().parse(arguments);
 
-        // Activity Manager Commands
+        case UncheckItemCommand.COMMAND_WORD:
+            return new UncheckItemParser().parse(arguments);
+
+        // Activity Manager Command
         case AddActivityCommand.COMMAND_WORD:
             return new AddActivityParser().parse(arguments);
 
