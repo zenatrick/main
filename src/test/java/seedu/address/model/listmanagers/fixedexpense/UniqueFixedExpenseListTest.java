@@ -10,12 +10,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import javax.swing.text.Element;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.util.uniquelist.UniqueList;
-import seedu.address.model.util.uniquelist.UniqueListElement;
 import seedu.address.model.util.uniquelist.exceptions.DuplicateElementException;
 import seedu.address.model.util.uniquelist.exceptions.ElementNotFoundException;
 
