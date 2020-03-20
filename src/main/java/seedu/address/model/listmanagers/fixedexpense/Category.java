@@ -12,7 +12,7 @@ public class Category {
             + "less than 30 characters long.";
 
     // todo update regex to match constraints
-    public static final String VALIDATION_REGEX = "\\p{Alnum}{1,30}+";
+    public static final String VALIDATION_REGEX = "^(?!\\s*$)[A-Za-z0-9\\s]{1,50}+";
 
     private final String value;
 
