@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.fixedexpense;
+package seedu.address.logic.commands.activity;
 
 import static java.util.Objects.requireNonNull;
 
@@ -10,39 +10,39 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
+import seedu.address.model.listmanagers.activity.Activity;
 
 /**
- * Deletes a fixed expense in the list.
+ * Deletes an activity in the list.
  */
-public class DeleteFixedExpenseCommand extends Command {
+public class DeleteActivityCommand extends Command {
 
-    public static final String COMMAND_WORD = "deleteexpense";
+    public static final String COMMAND_WORD = "deleteactivity";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the fixed expense identified by the index number used in the displayed fixed expense list.\n"
+            + ": Deletes the activity identified by the index number used in the displayed activity list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_FIXEDEXPENSE_SUCCESS = "Deleted Fixed Expense: %1$s";
+    public static final String MESSAGE_DELETE_ACTIVITY_SUCCESS = "Deleted Activity: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteFixedExpenseCommand(Index targetIndex) {
+    public DeleteActivityCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<FixedExpense> lastShownList = model.getFilteredFixedExpenseList();
+        List<Activity> lastShownList = model.getFilteredActivityList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
         }
 
-        FixedExpense fixedExpenseToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteFixedExpense(fixedExpenseToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_FIXEDEXPENSE_SUCCESS, fixedExpenseToDelete));
+        Activity activityToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteActivity(activityToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_ACTIVITY_SUCCESS, activityToDelete));
     }
 }
