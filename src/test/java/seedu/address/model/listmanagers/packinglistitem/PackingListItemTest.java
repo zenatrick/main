@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 class PackingListItemTest {
 
     private final PackingListItem packingListItem = new PackingListItem(new ItemName("Shirt"), new Quantity(10),
-            false);
+            new ItemCategory("Clothing"), false);
 
     @Test
     public void constructorInvalidNameThrowsIllegalArgumentException() {
@@ -19,7 +19,7 @@ class PackingListItemTest {
         Integer invalidQuantity = 0;
         boolean isChecked = false;
         assertThrows(IllegalArgumentException.class, () -> new PackingListItem(new ItemName(invalidName),
-                new Quantity(invalidQuantity), isChecked));
+                new Quantity(invalidQuantity), new ItemCategory(null), isChecked));
     }
 
     @Test
@@ -27,11 +27,11 @@ class PackingListItemTest {
 
         // Correct case
         assertEquals(new ItemName("Shirt"), new PackingListItem(new ItemName("Shirt"),
-                new Quantity(10), false).getItemName());
+                new Quantity(10), new ItemCategory("Clothing"), false).getItemName());
 
         //Different case
         assertNotEquals(new ItemName("Shirt"), new PackingListItem(new ItemName("Pants"),
-                new Quantity(10), false).getItemName());
+                new Quantity(10), new ItemCategory("Clothing"), false).getItemName());
 
     }
 
@@ -40,11 +40,11 @@ class PackingListItemTest {
 
         // Correct case
         assertEquals(new Quantity(10), new PackingListItem(new ItemName("Shirt"),
-                new Quantity(10), false).getQuantity());
+                new Quantity(10), new ItemCategory("Clothing"), false).getQuantity());
 
         //Different case
         assertNotEquals(new Quantity(5), new PackingListItem(new ItemName("Pants"),
-                new Quantity(20), false).getQuantity());
+                new Quantity(20), new ItemCategory("Clothing"), false).getQuantity());
 
     }
 
@@ -53,11 +53,11 @@ class PackingListItemTest {
 
         // Correct case
         assertTrue(new PackingListItem(new ItemName("Shirt"),
-                new Quantity(10), true).isChecked());
+                new Quantity(10), new ItemCategory("Clothing"), true).isChecked());
 
         //Different case
         assertFalse(new PackingListItem(new ItemName("Shirt"),
-                new Quantity(10), false).isChecked());
+                new Quantity(10), new ItemCategory("Clothing"), false).isChecked());
     }
 
     @Test
@@ -70,23 +70,25 @@ class PackingListItemTest {
 
         // different name and quantity -> returns false
         PackingListItem editedPackingListItem = new PackingListItem(new ItemName("Raincoat"), new Quantity(30),
-                false);
+                new ItemCategory("Clothing"), false);
         assertFalse(editedPackingListItem.isSame(packingListItem));
 
         // different name -> returns false
         PackingListItem secondEditedPackingListItem = new PackingListItem(new ItemName("Pants"), new Quantity(10),
-                false);
+               new ItemCategory("Clothing"), false);
         assertFalse(editedPackingListItem.isSame(secondEditedPackingListItem));
     }
 
     @Test
     public void testEquals() {
         // Same case
-        PackingListItem editedPackingListItem = new PackingListItem(new ItemName("Shirt"), new Quantity(10), false);
+        PackingListItem editedPackingListItem = new PackingListItem(new ItemName("Shirt"), new Quantity(10),
+                new ItemCategory("Clothing"), false);
         assertEquals(packingListItem, editedPackingListItem);
 
         //Different case
-        editedPackingListItem = new PackingListItem(new ItemName("Pants"), new Quantity(1), false);
+        editedPackingListItem = new PackingListItem(new ItemName("Pants"), new Quantity(1),
+                new ItemCategory("Clothing"), false);
         assertNotEquals(editedPackingListItem, packingListItem);
     }
 
@@ -94,21 +96,39 @@ class PackingListItemTest {
     public void testHashCode() {
 
         //Same case
-        PackingListItem editedPackingListItem = new PackingListItem(new ItemName("Shirt"), new Quantity(10), false);
+        PackingListItem editedPackingListItem = new PackingListItem(new ItemName("Shirt"), new Quantity(10),
+                new ItemCategory("Clothing"), false);
         assertEquals(editedPackingListItem.hashCode(), packingListItem.hashCode());
 
         //Different case
-        editedPackingListItem = new PackingListItem(new ItemName("Pants"), new Quantity(1), false);
+        editedPackingListItem = new PackingListItem(new ItemName("Pants"), new Quantity(1),
+                new ItemCategory("Clothing"), false);
         assertNotEquals(editedPackingListItem.hashCode(), packingListItem.hashCode());
     }
 
     @Test
     public void testToString() {
-        PackingListItem editedPackingListItem = new PackingListItem(new ItemName("Shirt"), new Quantity(10), false);
+        PackingListItem editedPackingListItem = new PackingListItem(new ItemName("Shirt"), new Quantity(10),
+                new ItemCategory("Clothing"), false);
         assertEquals(packingListItem.toString(), editedPackingListItem.toString());
 
-        editedPackingListItem = new PackingListItem(new ItemName("Pants"), new Quantity(1), false);
+        editedPackingListItem = new PackingListItem(new ItemName("Pants"), new Quantity(1),
+                new ItemCategory("Clothing"), false);
         assertNotEquals(editedPackingListItem.toString(), packingListItem.toString());
+
+    }
+
+    @Test
+    public void getItemCategory() {
+        PackingListItem editedPackingListItem = new PackingListItem(new ItemName("Shirt"), new Quantity(10),
+                new ItemCategory("Clothing"), false);
+
+        assertEquals(new ItemCategory("Clothing"), editedPackingListItem.getItemCategory());
+
+        editedPackingListItem = new PackingListItem(new ItemName("Shirt"), new Quantity(10),
+                new ItemCategory("Medicine"), false);
+
+        assertNotEquals(packingListItem, editedPackingListItem);
 
     }
 }

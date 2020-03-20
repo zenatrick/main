@@ -21,15 +21,15 @@ class UniquePackingListTest {
     //They have a personBuilder, but since we dont have, improvise by using this for now
     public static final PackingListItem FIXED_PACKING_LIST_ITEM_PANTS =
             new PackingListItem(new ItemName("Pants"), new Quantity(5),
-                    false);
+                    new ItemCategory("Clothing"), false);
 
     public static final PackingListItem FIXED_PACKING_LIST_ITEM_SHIRT =
             new PackingListItem(new ItemName("Shirt"), new Quantity(3),
-                    false);
+                    new ItemCategory("Clothing"), false);
 
     private static final PackingListItem FIXED_PACKING_LIST_ITEM_JEANS =
             new PackingListItem(new ItemName("Jeans"), new Quantity(10),
-                    true);
+                    new ItemCategory("Clothing"), true);
 
     private final UniqueList<PackingListItem> uniquePackingList = new UniqueList<>();
 
@@ -55,7 +55,7 @@ class UniquePackingListTest {
         //contains convention used for AB3 and for ours.
         uniquePackingList.add(FIXED_PACKING_LIST_ITEM_JEANS);
         PackingListItem packingListItem = new PackingListItem(new ItemName("Jeans"),
-                new Quantity(10), false);
+                new Quantity(10), new ItemCategory("Clothing"), false);
         assertTrue(uniquePackingList.contains(packingListItem));
     }
 
@@ -103,7 +103,7 @@ class UniquePackingListTest {
     public void setPackingListHasSameIdentitySuccess() {
         uniquePackingList.add(FIXED_PACKING_LIST_ITEM_JEANS);
         PackingListItem packingListItem = new PackingListItem(new ItemName("Jeans"), new Quantity(10),
-                true);
+                new ItemCategory("Clothing"), true);
         uniquePackingList.setElement(FIXED_PACKING_LIST_ITEM_JEANS, packingListItem);
         UniqueList<PackingListItem> expectedUniquePackingList = new UniqueList<>();
         expectedUniquePackingList.add(packingListItem);
