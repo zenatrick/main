@@ -53,7 +53,6 @@ public class TabPanel extends UiPart<Region> {
         fixedExpensePanelPlaceholder.getChildren().add(new FixedExpensePanel(fixedExpenseList).getRoot());
         packingListPanelPlaceholder.getChildren().add(new PackingListPanel(packingList).getRoot());
         accommodationListPanelPlaceholder.getChildren().add(new AccommodationBookingPanel(accommodationList).getRoot());
-
         activityPanelPlaceholder.getChildren().add(new ActivityPanel(activityList).getRoot());
     }
 }

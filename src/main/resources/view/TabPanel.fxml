@@ -23,8 +23,5 @@
     <Tab text = "Accommodations">
         <StackPane fx:id="accommodationListPanelPlaceholder"/>
     </Tab>
-    <Tab text = "Activities">
-        <StackPane fx:id="activitiesListPanelPlaceholder"/>
-    </Tab>
 
 </TabPane>
