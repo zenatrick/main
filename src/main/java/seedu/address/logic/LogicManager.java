@@ -48,6 +48,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
+            storage.saveAccommodationBookings(model.getAccommodationBookingManager());
             storage.saveAddressBook(model.getAddressBook());
             storage.saveFixedExpenses(model.getFixedExpenseManager());
             storage.saveTransportBookings(model.getTransportBookingManager());

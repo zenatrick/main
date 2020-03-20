@@ -370,6 +370,16 @@ public class ModelManager implements Model {
     // ========== AccommodationBookingManager ==========
 
     @Override
+    public ReadOnlyAccommodationBookingManager getAccommodationBookingManager() {
+        return accommodationBookingManager;
+    }
+
+    @Override
+    public void setAccommodationBookingManager(ReadOnlyAccommodationBookingManager accommodationBookingManager) {
+        this.accommodationBookingManager.resetData(accommodationBookingManager);
+    }
+
+    @Override
     public boolean hasAccommodationBooking(AccommodationBooking target) {
         requireNonNull(target);
         return accommodationBookingManager.hasAccommodationBooking(target);

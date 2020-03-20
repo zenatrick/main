@@ -32,8 +32,6 @@ class RemarkTest {
         assertFalse(Remark.isValidRemark(" ")); // Single space
 
         // invalid remark
-        assertFalse(Remark.isValidRemark("^")); // Non-alphanumeric characters
-        assertFalse(Remark.isValidRemark("Dog*")); // Contains non-alphanumeric characters.
         assertFalse(Remark.isValidRemark("yoursystemrunsf1234anyhowjustpresswhymylifesobadnow"
                 + "IwanttowithdrawfromNUSWhyYouwanttoputupto150characters"
                 + "MakemylifesodifficultwhydidijoinnusSPwassomuchfun")); // Contains 154 characters.
@@ -41,6 +39,8 @@ class RemarkTest {
 
         // Valid remark
         assertTrue(Remark.isValidRemark("Hello ")); //Normal case
+        assertTrue(Remark.isValidRemark("^")); // Non-alphanumeric characters
+        assertTrue(Remark.isValidRemark("Dog*")); // Contains non-alphanumeric characters.
         assertTrue(Remark.isValidRemark("Hello1234")); // Contains alphanumeric characters.
         assertTrue(Remark.isValidRemark("hellomynameisJ ohn123an dIamA"
                 + "Dog")); //Contains 30 alphanumeric char with spaces.
