@@ -14,4 +14,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_FIXEDEXPENSE_DISPLAYED_INDEX = "The Fixed Expense "
             + "index provided is invalid";
 
+    //--------Packing List Messages-----------//
+    public static final String MESSAGE_INVALID_ITEM_DISPLAYED_INDEX = "The Item "
+            + "index provided is invalid";
 }
