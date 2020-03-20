@@ -19,7 +19,8 @@ public class DeleteActivityParser implements Parser<DeleteActivityCommand> {
             Index index = ParserUtil.parseIndex(userInput);
             return new DeleteActivityCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteActivityCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteActivityCommand.MESSAGE_USAGE), pe);
         }
     }
 }
