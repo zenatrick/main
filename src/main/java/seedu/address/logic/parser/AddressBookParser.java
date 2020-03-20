@@ -22,6 +22,7 @@ import seedu.address.logic.commands.activity.AddActivityCommand;
 import seedu.address.logic.commands.fixedexpense.AddFixedExpenseCommand;
 import seedu.address.logic.commands.fixedexpense.ClearFixedExpenseCommand;
 import seedu.address.logic.commands.fixedexpense.DeleteFixedExpenseCommand;
+import seedu.address.logic.commands.fixedexpense.EditFixedExpenseCommand;
 import seedu.address.logic.commands.packinglist.AddItemCommand;
 import seedu.address.logic.commands.packinglist.CheckItemCommand;
 import seedu.address.logic.commands.packinglist.DeleteItemCommand;
@@ -31,6 +32,7 @@ import seedu.address.logic.parser.activity.AddActivityParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.fixedexpense.AddFixedExpenseParser;
 import seedu.address.logic.parser.fixedexpense.DeleteFixedExpenseCommandParser;
+import seedu.address.logic.parser.fixedexpense.EditFixedExpenseParser;
 import seedu.address.logic.parser.packinglist.AddItemParser;
 import seedu.address.logic.parser.packinglist.CheckItemParser;
 import seedu.address.logic.parser.packinglist.DeleteItemParser;
@@ -96,6 +98,9 @@ public class AddressBookParser {
 
         case DeleteFixedExpenseCommand.COMMAND_WORD:
             return new DeleteFixedExpenseCommandParser().parse(arguments);
+
+        case EditFixedExpenseCommand.COMMAND_WORD:
+            return new EditFixedExpenseParser().parse(arguments);
 
         case AddTransportBookingCommand.COMMAND_WORD:
             return new AddTransportBookingCommandParser().parse(arguments);
