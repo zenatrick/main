@@ -29,7 +29,7 @@ class AccommodationBookingTest {
     }
 
     @Test
-    void getName() {
+    public void getName() {
         // Correct case
         assertEquals(new AccommodationName("RitzCarlton"),
                 new AccommodationBooking(new AccommodationName("RitzCarlton"),
@@ -42,7 +42,7 @@ class AccommodationBookingTest {
     }
 
     @Test
-    void getLocation() {
+    public void getLocation() {
         // Correct case
         assertEquals(new Location("Marina Bay"), accommodationBooking.getLocation());
         //Different case
@@ -50,7 +50,7 @@ class AccommodationBookingTest {
     }
 
     @Test
-    void getStartDay() {
+    public void getStartDay() {
         //Correct case
         assertEquals(new Day(1), accommodationBooking.getStartDay());
 

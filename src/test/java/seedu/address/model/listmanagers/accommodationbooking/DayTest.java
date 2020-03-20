@@ -41,18 +41,18 @@ class DayTest {
 
 
     @Test
-    void testToString() {
+    public void testToString() {
         assertEquals("10", new Day(10).toString());
     }
 
     @Test
-    void testEquals() {
+    public void testEquals() {
         assertEquals(new Day(10), new Day(10)); // WHen 2 days are the same
         assertNotEquals(new Day(15), new Day(5)); // WHen 2 days are different.
     }
 
     @Test
-    void testHashCode() {
+    public void testHashCode() {
         // Equal Hashcode
         assertEquals(new Day(1).hashCode(), new Day(1).hashCode());
 

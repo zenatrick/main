@@ -60,7 +60,7 @@ class AccommodationNameTest {
     }
 
     @Test
-    void testEquals() {
+    public void testEquals() {
         //Equal Name Object
         assertEquals(new AccommodationName("Henry"), new AccommodationName("Henry")); // When two names are the same.
 
