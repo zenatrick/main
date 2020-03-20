@@ -1,13 +1,10 @@
 package seedu.address.logic.commands.fixedexpense;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,10 +19,6 @@ import seedu.address.model.listmanagers.fixedexpense.Amount;
 import seedu.address.model.listmanagers.fixedexpense.Category;
 import seedu.address.model.listmanagers.fixedexpense.Description;
 import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 
 /**
  * Edits the details of an existing fixed expense.
@@ -53,7 +46,7 @@ public class EditFixedExpenseCommand extends Command {
     private final EditFixedExpenseDescriptor editFixedExpenseDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                      of the person in the filtered person list to edit
      * @param editFixedExpenseDescriptor details to edit the fixed expense with
      */
     public EditFixedExpenseCommand(Index index, EditFixedExpenseDescriptor editFixedExpenseDescriptor) {
@@ -69,14 +62,14 @@ public class EditFixedExpenseCommand extends Command {
         requireNonNull(model);
         List<FixedExpense> lastShownList = model.getFilteredFixedExpenseList();
 
-        if(index.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_FIXEDEXPENSE_DISPLAYED_INDEX);
         }
 
         FixedExpense fixedExpenseToEdit = lastShownList.get(index.getZeroBased());
         FixedExpense editedExpense = createEditedFixedExpense(fixedExpenseToEdit, editFixedExpenseDescriptor);
 
-        if(!fixedExpenseToEdit.isSame(editedExpense) && model.hasFixedExpense(editedExpense)) {
+        if (!fixedExpenseToEdit.isSame(editedExpense) && model.hasFixedExpense(editedExpense)) {
             throw new CommandException(MESSAGE_DUPLICATE_FIXED_EXPENSE);
         }
 
@@ -89,12 +82,13 @@ public class EditFixedExpenseCommand extends Command {
      * Creates and returns a {@code FixedExpense} with the details of {@code fixedExpenseToEdit}
      * edited with {@code editFixedExpenseDescriptor}
      */
-    private static FixedExpense createEditedFixedExpense(FixedExpense fixedExpenseToEdit
-            , EditFixedExpenseDescriptor editFixedExpenseDescriptor) {
+    private static FixedExpense createEditedFixedExpense(FixedExpense fixedExpenseToEdit,
+                                                         EditFixedExpenseDescriptor editFixedExpenseDescriptor) {
         assert fixedExpenseToEdit != null;
 
         Amount updatedAmount = editFixedExpenseDescriptor.getAmount().orElse(fixedExpenseToEdit.getAmount());
-        Description updatedDescription = editFixedExpenseDescriptor.getDescription().orElse(fixedExpenseToEdit.getDescription());
+        Description updatedDescription = editFixedExpenseDescriptor
+                .getDescription().orElse(fixedExpenseToEdit.getDescription());
         Category updatedCategory = editFixedExpenseDescriptor.getCategory().orElse(fixedExpenseToEdit.getCategory());
 
         return new FixedExpense(updatedAmount, updatedDescription, updatedCategory);
@@ -109,7 +103,8 @@ public class EditFixedExpenseCommand extends Command {
         private Description description;
         private Category category;
 
-        public EditFixedExpenseDescriptor() {}
+        public EditFixedExpenseDescriptor() {
+        }
 
         /**
          * Copy constructor.

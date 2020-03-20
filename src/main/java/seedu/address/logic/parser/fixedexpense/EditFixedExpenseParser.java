@@ -6,10 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
-import com.sun.jdi.connect.Connector;
-
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.fixedexpense.EditFixedExpenseCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -17,6 +14,9 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new EditFixedExpenseCommand.
+ */
 public class EditFixedExpenseParser implements Parser<EditFixedExpenseCommand> {
 
     /**
@@ -24,7 +24,6 @@ public class EditFixedExpenseParser implements Parser<EditFixedExpenseCommand> {
      * and returns an EditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-
     public EditFixedExpenseCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
@@ -35,12 +34,12 @@ public class EditFixedExpenseParser implements Parser<EditFixedExpenseCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT
-                    , EditFixedExpenseCommand.MESSAGE_USAGE),pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditFixedExpenseCommand.MESSAGE_USAGE), pe);
         }
 
-        EditFixedExpenseCommand.EditFixedExpenseDescriptor editFixedExpenseDescriptor
-                = new EditFixedExpenseCommand.EditFixedExpenseDescriptor();
+        EditFixedExpenseCommand.EditFixedExpenseDescriptor editFixedExpenseDescriptor =
+                new EditFixedExpenseCommand.EditFixedExpenseDescriptor();
 
         if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
             editFixedExpenseDescriptor.setAmount(ParserUtil
