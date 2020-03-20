@@ -8,7 +8,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.listmanagers.accommodationbooking.AccommodationBooking;
-import seedu.address.model.listmanagers.activity.Activity;
 import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
 import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 import seedu.address.model.listmanagers.transportbooking.TransportBooking;
