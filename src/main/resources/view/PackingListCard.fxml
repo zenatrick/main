@@ -29,6 +29,7 @@
             </HBox>
             <Label fx:id="quantity" styleClass="cell_small_label" text="\$address"/>
             <Label fx:id="isChecked" styleClass="cell_small_label" text="\$email"/>
+            <Label fx:id="itemCategory" styleClass="cell_small_label" text="\$itemCategory"/>
         </VBox>
         <rowConstraints>
             <RowConstraints/>

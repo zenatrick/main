@@ -33,6 +33,8 @@ public class PackingListCard extends UiPart<Region> {
     private Label quantity;
     @FXML
     private Label isChecked;
+    @FXML
+    private Label itemCategory;
 
     public PackingListCard(PackingListItem item, int displayedIndex) {
         super(FXML);
@@ -41,6 +43,7 @@ public class PackingListCard extends UiPart<Region> {
         itemName.setText(item.getItemName().toString());
         quantity.setText("Quantity: " + item.getQuantity().toString());
         isChecked.setText("Is Checked: " + item.isChecked());
+        itemCategory.setText("Category: " + item.getItemCategory().value);
     }
 
     @Override
