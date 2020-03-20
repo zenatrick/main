@@ -19,7 +19,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * The type Edit item parser.
  */
 public class EditItemParser implements Parser<EditItemCommand> {
-
+    @Override
     public EditItemCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
@@ -41,7 +41,8 @@ public class EditItemParser implements Parser<EditItemCommand> {
             editItemDescriptor.setQuantity(ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get()));
         }
         if (argMultimap.getValue(PREFIX_ITEMCATEGORY).isPresent()) {
-            editItemDescriptor.setItemCategory(ParserUtil.parseItemCategory(argMultimap.getValue(PREFIX_ITEMCATEGORY).get()));
+            editItemDescriptor.setItemCategory(ParserUtil.parseItemCategory
+                    (argMultimap.getValue(PREFIX_ITEMCATEGORY).get()));
         }
 
         if (!editItemDescriptor.isAnyFieldEdited()) {

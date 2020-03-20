@@ -103,7 +103,7 @@ public class AddressBookParser {
         case AddItemCommand.COMMAND_WORD:
             return new AddItemParser().parse(arguments);
 
-	    case CheckItemCommand.COMMAND_WORD:
+        case CheckItemCommand.COMMAND_WORD:
             return new CheckItemParser().parse(arguments);
 
         case DeleteItemCommand.COMMAND_WORD:

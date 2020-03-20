@@ -1,10 +1,9 @@
 package seedu.address.logic.commands.packinglist;
 
-
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PACKING_LIST_ITEMS;
 
 import java.util.List;
@@ -16,10 +15,10 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 import seedu.address.model.listmanagers.packinglistitem.ItemCategory;
 import seedu.address.model.listmanagers.packinglistitem.ItemName;
 import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
-import seedu.address.model.Model;
 import seedu.address.model.listmanagers.packinglistitem.Quantity;
 
 /**
@@ -97,7 +96,14 @@ public class EditItemCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
     }
 
-    private static PackingListItem createEditedItem(PackingListItem itemToEdit, EditItemDescriptor editItemDescriptor) {
+    /**
+     * Creates a new Packing List item with the new attributes.
+     *
+     * @param itemToEdit               of the Item in the filtered Item list to edit
+     * @param editItemDescriptor details to edit the Item with
+     */
+    private static PackingListItem createEditedItem(PackingListItem itemToEdit,
+                                                    EditItemDescriptor editItemDescriptor) {
         assert itemToEdit != null;
 
         ItemName updatedName = editItemDescriptor.getItemName().orElse(itemToEdit.getItemName());

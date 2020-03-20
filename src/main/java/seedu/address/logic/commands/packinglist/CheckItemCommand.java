@@ -9,10 +9,10 @@ import java.util.Optional;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 
-import seedu.address.model.Model;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 import seedu.address.model.listmanagers.packinglistitem.ItemCategory;
 import seedu.address.model.listmanagers.packinglistitem.ItemName;
 import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
@@ -49,9 +49,9 @@ public class CheckItemCommand extends Command {
     private final CheckItemDescriptor checkItemDescriptor;
 
     /**
-     * Instantiates a new Edit item command.
+     * Instantiates a new Check item command.
      *
-     * @param index               of the Item in the filtered Item list to edit
+     * @param index               of the Item in the filtered Item list to check
      * @param checkItemDescriptor details to edit the Item with
      */
     public CheckItemCommand(Index index, CheckItemDescriptor checkItemDescriptor) {
@@ -83,7 +83,14 @@ public class CheckItemCommand extends Command {
         return new CommandResult(String.format(MESSAGE_PACKED_ITEM_SUCCESS, checkItem));
     }
 
-    private static PackingListItem createCheckItem(PackingListItem itemToCheck, CheckItemDescriptor checkItemDescriptor) {
+    /**
+     * Creates a new Packing List item with the new attributes.
+     *
+     * @param itemToCheck               of the Item in the filtered Item list to check
+     * @param checkItemDescriptor details to check the Item with
+     */
+    private static PackingListItem createCheckItem(PackingListItem itemToCheck,
+                                                   CheckItemDescriptor checkItemDescriptor) {
         assert itemToCheck != null;
 
         ItemName updatedName = itemToCheck.getItemName();
