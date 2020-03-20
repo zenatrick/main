@@ -259,13 +259,13 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveItems(ReadOnlyPackingListManager packingList) throws IOException {
-        saveItems(packingList, packingListStorage.getPackingListStorageFilePath());
+    public void savePackingList(ReadOnlyPackingListManager packingList) throws IOException {
+        savePackingList(packingList, packingListStorage.getPackingListStorageFilePath());
     }
 
     @Override
-    public void saveItems(ReadOnlyPackingListManager packingList, Path filePath) throws IOException {
+    public void savePackingList(ReadOnlyPackingListManager packingList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        packingListStorage.saveItems(packingList, filePath);
+        packingListStorage.savePackingList(packingList, filePath);
     }
 }

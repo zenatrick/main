@@ -35,7 +35,7 @@ public interface PackingListStorage {
     Optional<ReadOnlyPackingListManager> readPackingList(
             Path filePath) throws DataConversionException, IOException;
 
-    void saveItems(ReadOnlyPackingListManager packingListManager) throws IOException;
+    void savePackingList(ReadOnlyPackingListManager packingListManager) throws IOException;
 
     /**
      * Save items.
@@ -44,5 +44,5 @@ public interface PackingListStorage {
      * @param filePath           the file path
      * @throws IOException the io exception
      */
-    void saveItems(ReadOnlyPackingListManager packingListManager, Path filePath) throws IOException;
+    void savePackingList(ReadOnlyPackingListManager packingListManager, Path filePath) throws IOException;
 }

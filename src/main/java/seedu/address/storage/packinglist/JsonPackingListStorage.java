@@ -65,12 +65,12 @@ public class JsonPackingListStorage implements PackingListStorage {
     }
 
     @Override
-    public void saveItems(ReadOnlyPackingListManager packingListManager) throws IOException {
-        saveItems(packingListManager, filePath);
+    public void savePackingList(ReadOnlyPackingListManager packingListManager) throws IOException {
+        savePackingList(packingListManager, filePath);
     }
 
     @Override
-    public void saveItems(
+    public void savePackingList(
             ReadOnlyPackingListManager packingListManager, Path filePath) throws IOException {
         requireNonNull(packingListManager);
         requireNonNull(filePath);

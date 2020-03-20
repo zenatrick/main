@@ -322,7 +322,7 @@ public class MainApp extends Application {
         }
 
         try {
-            storage.saveItems(packingListManager);
+            storage.savePackingList(packingListManager);
             logger.info("Saving initial data of PackingListManager.");
         } catch (IOException e) {
             logger.warning("Problem while saving to the file.");
