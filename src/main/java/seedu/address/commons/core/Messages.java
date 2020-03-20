@@ -19,7 +19,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_ITEM_DISPLAYED_INDEX = "The Packing List Item "
             + "index provided is invalid";
 
-
     //--------Activity Messages-----------//
     public static final String MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX = "The activity "
             + "index provided is invalid";
@@ -27,5 +26,4 @@ public class Messages {
     //--------Accommodation Booking Messages-----------//
     public static final String MESSAGE_INVALID_ACCOMMODATION_BOOKING_DISPLAYED_INDEX = "The Accommodation Booking "
             + "index provided is invalid";
-
 }
