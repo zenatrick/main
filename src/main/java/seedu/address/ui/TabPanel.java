@@ -36,15 +36,12 @@ public class TabPanel extends UiPart<Region> {
     @FXML
     private StackPane accommodationListPanelPlaceholder;
 
-    @FXML
-    private StackPane activitiesListPanelPlaceholder;
 
     public TabPanel(ObservableList<Person> personList,
                     ObservableList<TransportBooking> transportList,
                     ObservableList<FixedExpense>fixedExpenseList,
                     ObservableList<PackingListItem> packingList,
-                    ObservableList<AccommodationBooking> accommodationList,
-                    ObservableList<Activity> activityList
+                    ObservableList<AccommodationBooking> accommodationList
                     ) {
         super(FXML);
         personListPanelPlaceholder.getChildren().add(new PersonListPanel(personList).getRoot());
@@ -52,7 +49,6 @@ public class TabPanel extends UiPart<Region> {
         fixedExpensePanelPlaceholder.getChildren().add(new FixedExpensePanel(fixedExpenseList).getRoot());
         packingListPanelPlaceholder.getChildren().add(new PackingListPanel(packingList).getRoot());
         accommodationListPanelPlaceholder.getChildren().add(new AccommodationBookingPanel(accommodationList).getRoot());
-        activitiesListPanelPlaceholder.getChildren().add(new ActivityPanel(activityList).getRoot());
 
 
     }
