@@ -14,7 +14,7 @@ public class Remark {
 
     // todo update regex to match constraints
     // Allows for 150 characters long.
-    public static final String VALIDATION_REGEX = "^(?!\\s*$)[A-Za-z0-9\\s]{1,150}+";
+    public static final String VALIDATION_REGEX = "[\\W\\w\\s]{1,150}+";
 
     public final String value;
 
