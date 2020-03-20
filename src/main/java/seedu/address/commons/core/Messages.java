@@ -16,7 +16,7 @@ public class Messages {
             + "index provided is invalid";
 
     //--------Packing List Messages-----------//
-    public static final String MESSAGE_INVALID_ITEM_DISPLAYED_INDEX = "The Item "
+    public static final String MESSAGE_INVALID_ITEM_DISPLAYED_INDEX = "The Packing List Item "
             + "index provided is invalid";
 
 
