@@ -1,6 +1,5 @@
 package seedu.address.logic.parser.accommodationbooking;
 
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACCOMMODATION_END_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACCOMMODATION_LOCATION;
@@ -8,10 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ACCOMMODATION_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACCOMMODATION_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACCOMMODATION_START_DAY;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.accommodationbooking.AddAccommodationBookingCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -24,7 +21,6 @@ import seedu.address.model.listmanagers.accommodationbooking.AccommodationName;
 import seedu.address.model.listmanagers.accommodationbooking.Day;
 import seedu.address.model.listmanagers.accommodationbooking.Remark;
 import seedu.address.model.util.attributes.Location;
-import seedu.address.model.util.attributes.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddAccommodationBooking object
@@ -49,10 +45,10 @@ public class AddAccommodationBookingCommandParser implements Parser<AddAccommoda
                     AddAccommodationBookingCommand.MESSAGE_USAGE));
         }
 
-        AccommodationName accommodationName = ParserUtil.parseAccommodationName(argMultimap.
-                getValue(PREFIX_ACCOMMODATION_NAME).get());
-        Location accommodationLocation = ParserUtil.parseLocation(argMultimap.
-                getValue(PREFIX_ACCOMMODATION_LOCATION).get());
+        AccommodationName accommodationName = ParserUtil.parseAccommodationName(argMultimap
+                .getValue(PREFIX_ACCOMMODATION_NAME).get());
+        Location accommodationLocation = ParserUtil.parseLocation(argMultimap
+                .getValue(PREFIX_ACCOMMODATION_LOCATION).get());
         Day startDay = ParserUtil.parseDay(argMultimap.getValue(PREFIX_ACCOMMODATION_START_DAY).get());
         Day endDay = ParserUtil.parseDay(argMultimap.getValue(PREFIX_ACCOMMODATION_END_DAY).get());
         Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_ACCOMMODATION_REMARK).orElse(""));
