@@ -17,12 +17,20 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+<<<<<<< HEAD
 import seedu.address.logic.commands.activity.AddActivityCommand;
+=======
+import seedu.address.logic.commands.accommodationbooking.AddAccommodationBookingCommand;
+>>>>>>> Add AddAccommodationBookingCommandParser
 import seedu.address.logic.commands.fixedexpense.AddFixedExpenseCommand;
 import seedu.address.logic.commands.fixedexpense.ClearFixedExpenseCommand;
 import seedu.address.logic.commands.fixedexpense.DeleteFixedExpenseCommand;
 import seedu.address.logic.commands.packinglist.AddItemCommand;
+<<<<<<< HEAD
 import seedu.address.logic.parser.activity.AddActivityParser;
+=======
+import seedu.address.logic.parser.accommodationbooking.AddAccommodationBookingCommandParser;
+>>>>>>> Add AddAccommodationBookingCommandParser
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.fixedexpense.AddFixedExpenseParser;
 import seedu.address.logic.parser.fixedexpense.DeleteFixedExpenseCommandParser;
@@ -100,6 +108,9 @@ public class AddressBookParser {
 
         case AddActivityCommand.COMMAND_WORD:
             return new AddActivityParser().parse(arguments);
+
+        case AddAccommodationBookingCommand.COMMAND_WORD:
+            return new AddAccommodationBookingCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
