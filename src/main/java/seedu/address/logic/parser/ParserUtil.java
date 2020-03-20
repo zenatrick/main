@@ -10,6 +10,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.time.DateTime;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.listmanagers.accommodationbooking.AccommodationName;
+import seedu.address.model.listmanagers.accommodationbooking.Day;
+import seedu.address.model.listmanagers.accommodationbooking.Remark;
 import seedu.address.model.listmanagers.activity.Duration;
 import seedu.address.model.listmanagers.activity.Priority;
 import seedu.address.model.listmanagers.activity.Title;
@@ -351,4 +354,53 @@ public class ParserUtil {
         }
         return new Title(trimmedTitle);
     }
+
+    /**
+     * Parses a {@code String name} into an {@code AccommodationName}
+     *
+     * @param name the name
+     * @return the item name
+     * @throws ParseException the parse exception
+     */
+    public static AccommodationName parseAccommodationName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!AccommodationName.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new AccommodationName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String day} into an {@code Day}
+     *
+     * @param day the day
+     * @return the day
+     * @throws ParseException the parse exception
+     */
+    public static Day parseDay(String day) throws ParseException {
+        requireNonNull(day);
+        String trimmedDay = day.trim();
+        if (!Day.isValidDay(Integer.parseInt(trimmedDay))) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new Day(Integer.parseInt(trimmedDay));
+    }
+
+    /**
+     * Parses a {@code String remark} into an {@code Remark}
+     *
+     * @param remark the remark
+     * @return the remark
+     * @throws ParseException the parse exception
+     */
+    public static Remark parseRemark(String remark) throws ParseException {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        if (!Remark.isValidRemark(trimmedRemark)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new Remark(trimmedRemark);
+    }
+
 }
