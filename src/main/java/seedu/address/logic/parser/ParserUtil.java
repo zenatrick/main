@@ -280,18 +280,22 @@ public class ParserUtil {
     /**
      * Parse {@code String quantity} into a {@code Quantity}
      *
-     * @param q the q
+     * @param quantity the quantity
      * @return the quantity
      * @throws ParseException the parse exception
      */
-    public static Quantity parseQuantity(String q) throws ParseException {
-        requireNonNull(q);
-        String trimmedQuantity = q.trim();
-        Integer quantity = Integer.parseInt(trimmedQuantity);
-        if (!Quantity.isValidQuantity(quantity)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+    public static Quantity parseQuantity(String quantity) throws ParseException {
+        requireNonNull(quantity);
+        String trimmedQuantity = quantity.trim();
+        try {
+            Integer intQuantity = Integer.parseInt(trimmedQuantity);
+            if (!Quantity.isValidQuantity(intQuantity)) {
+                throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+            }
+            return new Quantity(intQuantity);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
-        return new Quantity(quantity);
     }
 
     /**

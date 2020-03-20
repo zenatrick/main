@@ -45,7 +45,7 @@ public class AddItemCommand extends Command {
     private final PackingListItem toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddItemCommand to add the specified {@code Person}
      *
      * @param item the item
      */

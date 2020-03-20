@@ -13,11 +13,11 @@ import seedu.address.model.util.uniquelist.UniqueListElement;
 public class PackingListItem implements UniqueListElement {
     // Identity fields
     private final ItemName itemName;
-    private final ItemCategory itemCategory;
 
     // Data fields
     private final boolean isChecked;
     private final Quantity quantity;
+    private final ItemCategory itemCategory;
 
     /**
      * Every field must be present and not null.
@@ -67,7 +67,7 @@ public class PackingListItem implements UniqueListElement {
      *
      * @return the boolean
      */
-    public boolean isChecked() {
+    public boolean getChecked() {
         return isChecked;
     }
 
