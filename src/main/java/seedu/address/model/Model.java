@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -235,6 +236,8 @@ public interface Model {
      * @param edited the given edited fixed expense.
      */
     void setFixedExpense(FixedExpense target, FixedExpense edited);
+
+    void sortFixedExpenseList(Comparator<FixedExpense> cmp);
 
     /**
      * Returns an unmodifiable view of the filtered fixed expense list

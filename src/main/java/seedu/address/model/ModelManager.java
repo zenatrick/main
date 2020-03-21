@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -261,6 +262,12 @@ public class ModelManager implements Model {
     public void setFixedExpense(FixedExpense target, FixedExpense edited) {
         requireAllNonNull(target, edited);
         fixedExpenseManager.setFixedExpense(target, edited);
+    }
+
+    @Override
+    public void sortFixedExpenseList(Comparator<FixedExpense> cmp) {
+        requireNonNull(cmp);
+        fixedExpenseManager.sortFixedExpenseList(cmp);
     }
 
 

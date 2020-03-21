@@ -208,6 +208,27 @@ public class ParserUtil {
         return new Category(trimmedCategory);
     }
 
+    /**
+     * Parses a {@code String highOrLow}
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param highOrLow to sort by ascending or descending order.
+     * @return the String
+     */
+    public static String parsehighOrLow (String highOrLow) throws ParseException {
+        requireNonNull(highOrLow);
+        String trimmedHighOrLow = highOrLow.trim();
+        if ( !(trimmedHighOrLow.equals("high") ^ trimmedHighOrLow.equals("low")) ) {
+            throw new ParseException("String must consist of either high for descending order"
+                    + " or low for ascending order");
+        }
+        if (trimmedHighOrLow.equals("low")) {
+            return "low";
+        } else {
+          return "high";
+        }
+    }
+
 
     /**
      * Parses a {@code String mode} into an {@code Mode}.

@@ -47,6 +47,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.fixedexpense.AddFixedExpenseParser;
 import seedu.address.logic.parser.fixedexpense.DeleteFixedExpenseCommandParser;
 import seedu.address.logic.parser.fixedexpense.EditFixedExpenseParser;
+import seedu.address.logic.parser.fixedexpense.SortFixedExpenseCommandParser;
 import seedu.address.logic.parser.packinglist.AddItemParser;
 import seedu.address.logic.parser.packinglist.CheckItemParser;
 import seedu.address.logic.parser.packinglist.DeleteItemParser;
@@ -120,7 +121,7 @@ public class EasyTravelParser {
         case EditFixedExpenseCommand.COMMAND_WORD:
             return new EditFixedExpenseParser().parse(arguments);
         case SortFixedExpenseCommand.COMMAND_WORD:
-            return new SortFixedExpenseCommand();
+            return new SortFixedExpenseCommandParser().parse(arguments);
 
         // Transport Booking Commands
         case AddTransportBookingCommand.COMMAND_WORD:

@@ -25,11 +25,11 @@ public class SortFixedExpenseCommand extends Command {
 
     public static final String MESSAGE_SORT_FIXEDEXPENSE_SUCCESS = "Sorting of FixedExpense successful :)";
 
-    //private final String highOrLow;
+    private final String highOrLow;
 
-    //public SortFixedExpenseCommand(String highOrLow) {
-    //this.highOrLow = highOrLow;
-    //}
+    public SortFixedExpenseCommand(String highOrLow) {
+        this.highOrLow = highOrLow.toLowerCase();
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -40,23 +40,17 @@ public class SortFixedExpenseCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_EMPTY_FIXEDEXPENSE_LIST);
         }
 
-        model.getFixedExpenseManager().sortFixedExpenseList(new Comparator<FixedExpense>() {
-            @Override
-            public int compare(FixedExpense o1, FixedExpense o2) {
-                return Integer.parseInt(o1.getAmount().value) - Integer.parseInt(o2.getAmount().value);
-            }
-        });
+        // Want to sort in descending order
+        if (highOrLow.contains("high")) {
+            model.sortFixedExpenseList((x, y) ->
+                    Integer.parseInt(y.getAmount().value) - Integer.parseInt(x.getAmount().value));
 
+        } else  {
+            // Sort in ascending order
+            model.sortFixedExpenseList((x, y) ->
+                    Integer.parseInt(x.getAmount().value) - Integer.parseInt(y.getAmount().value));
 
-        // Means sort from high to low
-        //if (highOrLow.contains("high")) {
-        //    lastShownList
-        //           .sort((x, y) -> Integer.parseInt(y.getAmount().value) - Integer.parseInt(x.getAmount().value));
-        //} else if (highOrLow.contains("low")) {
-
-        //}
-
-        // model.updateFilteredFixedExpenseList(PREDICATE_SHOW_ALL_FIXED_EXPENSES);
+        }
         return new CommandResult(String.format(MESSAGE_SORT_FIXEDEXPENSE_SUCCESS));
     }
 

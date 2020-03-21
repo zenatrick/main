@@ -82,12 +82,24 @@ public class FixedExpenseManager implements ReadOnlyFixedExpenseManager {
 
 
     /**
+     * Remove a single fixed expense from the fixed expense list
      * Removes {@code key} from this {@code FixedExpenseManager}.
      * {@code key} must exist in the FixedExpenseManager.
      */
     public void removeFixedExpense(FixedExpense key) {
         uniqueFixedExpenseLists.remove(key);
     }
+
+    /**
+     * Sorts the fixed expense list
+     * @param cmp
+     * @return the sorted fixedexpense list
+     */
+    public ObservableList<FixedExpense> sortFixedExpenseList(Comparator<FixedExpense> cmp) {
+        uniqueFixedExpenseLists.sort(cmp);
+        return uniqueFixedExpenseLists.asUnmodifiableObservableList();
+    }
+
 
     // Util methods
 
@@ -99,12 +111,6 @@ public class FixedExpenseManager implements ReadOnlyFixedExpenseManager {
 
     @Override
     public ObservableList<FixedExpense> getFixedExpenseList() {
-        return uniqueFixedExpenseLists.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<FixedExpense> sortFixedExpenseList(Comparator<FixedExpense> cmp) {
-        uniqueFixedExpenseLists.sort(cmp);
         return uniqueFixedExpenseLists.asUnmodifiableObservableList();
     }
 

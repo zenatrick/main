@@ -16,6 +16,4 @@ public interface ReadOnlyFixedExpenseManager {
      */
     ObservableList<FixedExpense> getFixedExpenseList();
 
-    ObservableList<FixedExpense> sortFixedExpenseList(Comparator<FixedExpense> cmp);
-
 }
