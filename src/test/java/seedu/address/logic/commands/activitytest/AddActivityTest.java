@@ -1,12 +1,10 @@
 package seedu.address.logic.commands.activitytest;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -14,8 +12,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.activity.AddActivityCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.listmanagers.ActivityManager;
-import seedu.address.model.listmanagers.ReadOnlyActivityManager;
 import seedu.address.model.listmanagers.activity.Activity;
 import seedu.address.model.util.attributes.ModelStub;
 import seedu.address.testutil.ActivityBuilder;
