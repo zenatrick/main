@@ -7,9 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddTransportBookingCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.ClearTransportBookingCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -33,6 +31,10 @@ import seedu.address.logic.commands.packinglist.AddItemCommand;
 import seedu.address.logic.commands.packinglist.CheckItemCommand;
 import seedu.address.logic.commands.packinglist.DeleteItemCommand;
 import seedu.address.logic.commands.packinglist.EditItemCommand;
+import seedu.address.logic.commands.transportbooking.AddTransportBookingCommand;
+import seedu.address.logic.commands.transportbooking.ClearTransportBookingCommand;
+import seedu.address.logic.commands.transportbooking.DeleteTransportBookingCommand;
+import seedu.address.logic.commands.transportbooking.EditTransportBookingCommand;
 import seedu.address.logic.parser.accommodationbooking.AddAccommodationBookingCommandParser;
 import seedu.address.logic.parser.accommodationbooking.DeleteAccommodationBookingCommandParser;
 import seedu.address.logic.parser.accommodationbooking.EditAccommodationBookingCommandParser;
@@ -47,6 +49,9 @@ import seedu.address.logic.parser.packinglist.AddItemParser;
 import seedu.address.logic.parser.packinglist.CheckItemParser;
 import seedu.address.logic.parser.packinglist.DeleteItemParser;
 import seedu.address.logic.parser.packinglist.EditItemParser;
+import seedu.address.logic.parser.transportbooking.AddTransportBookingCommandParser;
+import seedu.address.logic.parser.transportbooking.DeleteTransportBookingCommandParser;
+import seedu.address.logic.parser.transportbooking.EditTransportBookingCommandParser;
 
 
 /**
@@ -75,7 +80,7 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-
+        // Address Book Commands
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
@@ -100,6 +105,7 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        // Fixed Expense Commands
         case AddFixedExpenseCommand.COMMAND_WORD:
             return new AddFixedExpenseParser().parse(arguments);
 
@@ -112,9 +118,20 @@ public class AddressBookParser {
         case EditFixedExpenseCommand.COMMAND_WORD:
             return new EditFixedExpenseParser().parse(arguments);
 
+        // Transport Booking Commands
         case AddTransportBookingCommand.COMMAND_WORD:
             return new AddTransportBookingCommandParser().parse(arguments);
 
+        case EditTransportBookingCommand.COMMAND_WORD:
+            return new EditTransportBookingCommandParser().parse(arguments);
+
+        case DeleteTransportBookingCommand.COMMAND_WORD:
+            return new DeleteTransportBookingCommandParser().parse(arguments);
+
+        case ClearTransportBookingCommand.COMMAND_WORD:
+            return new ClearTransportBookingCommand();
+
+        // Packing List Commands
         case AddItemCommand.COMMAND_WORD:
             return new AddItemParser().parse(arguments);
 
@@ -127,9 +144,7 @@ public class AddressBookParser {
         case EditItemCommand.COMMAND_WORD:
             return new EditItemParser().parse(arguments);
 
-        case ClearTransportBookingCommand.COMMAND_WORD:
-            return new ClearTransportBookingCommand();
-
+        // Activity Manager Commands
         case AddActivityCommand.COMMAND_WORD:
             return new AddActivityParser().parse(arguments);
 
