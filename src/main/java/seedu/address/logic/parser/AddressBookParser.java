@@ -23,6 +23,7 @@ import seedu.address.logic.commands.accommodationbooking.DeleteAccommodationBook
 import seedu.address.logic.commands.activity.AddActivityCommand;
 import seedu.address.logic.commands.activity.ClearActivityCommand;
 import seedu.address.logic.commands.activity.DeleteActivityCommand;
+import seedu.address.logic.commands.activity.EditActivityCommand;
 import seedu.address.logic.commands.fixedexpense.AddFixedExpenseCommand;
 import seedu.address.logic.commands.fixedexpense.ClearFixedExpenseCommand;
 import seedu.address.logic.commands.fixedexpense.DeleteFixedExpenseCommand;
@@ -35,6 +36,7 @@ import seedu.address.logic.parser.accommodationbooking.AddAccommodationBookingCo
 import seedu.address.logic.parser.accommodationbooking.DeleteAccommodationBookingCommandParser;
 import seedu.address.logic.parser.activity.AddActivityParser;
 import seedu.address.logic.parser.activity.DeleteActivityParser;
+import seedu.address.logic.parser.activity.EditActivityParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.fixedexpense.AddFixedExpenseParser;
 import seedu.address.logic.parser.fixedexpense.DeleteFixedExpenseCommandParser;
@@ -143,6 +145,10 @@ public class AddressBookParser {
 
         case ClearActivityCommand.COMMAND_WORD:
             return new ClearActivityCommand();
+
+        case EditActivityCommand.COMMAND_WORD:
+            return new EditActivityParser().parse(arguments);
+            
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
