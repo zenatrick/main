@@ -182,7 +182,7 @@ public class ParserUtil {
      * @return the description
      * @throws ParseException if the given {@code description} is invalid.
      */
-    public static Description parseDescription (String description) throws ParseException {
+    public static Description parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
         if (!Description.isValidDescription(trimmedDescription)) {
@@ -199,7 +199,7 @@ public class ParserUtil {
      * @return the category
      * @throws ParseException if the given {@code category} is invalid.
      */
-    public static Category parseCategory (String category) throws ParseException {
+    public static Category parseCategory(String category) throws ParseException {
         requireNonNull(category);
         String trimmedCategory = category.trim();
         if (!Category.isValidCategory(trimmedCategory)) {
@@ -215,17 +215,17 @@ public class ParserUtil {
      * @param highOrLow to sort by ascending or descending order.
      * @return the String
      */
-    public static String parsehighOrLow (String highOrLow) throws ParseException {
+    public static String parsehighOrLow(String highOrLow) throws ParseException {
         requireNonNull(highOrLow);
         String trimmedHighOrLow = highOrLow.trim();
-        if ( !(trimmedHighOrLow.equals("high") ^ trimmedHighOrLow.equals("low")) ) {
+        if (!(trimmedHighOrLow.equals("high") ^ trimmedHighOrLow.equals("low"))) {
             throw new ParseException("String must consist of either high for descending order"
                     + " or low for ascending order");
         }
         if (trimmedHighOrLow.equals("low")) {
             return "low";
         } else {
-          return "high";
+            return "high";
         }
     }
 
@@ -341,7 +341,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code priority} is invalid.
      */
-    public static Priority parsePriority (String priority) throws ParseException {
+    public static Priority parsePriority(String priority) throws ParseException {
         requireNonNull(priority);
         Integer parsedPriority = Integer.parseInt(priority);
         if (!Priority.isValidPriority(parsedPriority)) {
@@ -356,7 +356,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code duration} is invalid.
      */
-    public static Duration parseDuration (String duration) throws ParseException {
+    public static Duration parseDuration(String duration) throws ParseException {
         requireNonNull(duration);
         Integer parseDuration = Integer.parseInt(duration);
         if (!Duration.isValidDuration(parseDuration)) {

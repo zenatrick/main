@@ -2,7 +2,6 @@ package seedu.address.logic.commands.fixedexpense;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Comparator;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -13,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
 
 /**
- * Sorts your fixedexpenselist
+ * Sorts your Fixed Expense List according to ascending or descending amount.
  */
 public class SortFixedExpenseCommand extends Command {
 
@@ -45,7 +44,7 @@ public class SortFixedExpenseCommand extends Command {
             model.sortFixedExpenseList((x, y) ->
                     Integer.parseInt(y.getAmount().value) - Integer.parseInt(x.getAmount().value));
 
-        } else  {
+        } else {
             // Sort in ascending order
             model.sortFixedExpenseList((x, y) ->
                     Integer.parseInt(x.getAmount().value) - Integer.parseInt(y.getAmount().value));

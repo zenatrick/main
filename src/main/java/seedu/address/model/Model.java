@@ -237,6 +237,11 @@ public interface Model {
      */
     void setFixedExpense(FixedExpense target, FixedExpense edited);
 
+    /**
+     * Sorts the given fixed expense list.
+     *
+     * @param cmp the given target fixed expense.
+     */
     void sortFixedExpenseList(Comparator<FixedExpense> cmp);
 
     /**

@@ -12,12 +12,19 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class SortFixedExpenseCommandParser implements Parser<SortFixedExpenseCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the SortFixedExpenseCommand
+     * and returns an SortFixedExpenseCommand object for execution.
+     *
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public SortFixedExpenseCommand parse(String args) throws ParseException {
         try {
             String highOrLow = ParserUtil.parsehighOrLow(args);
             return new SortFixedExpenseCommand(highOrLow);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortFixedExpenseCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SortFixedExpenseCommand.MESSAGE_USAGE), pe);
         }
     }
 

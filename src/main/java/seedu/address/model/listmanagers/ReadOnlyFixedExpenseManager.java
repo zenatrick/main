@@ -1,7 +1,5 @@
 package seedu.address.model.listmanagers;
 
-import java.util.Comparator;
-
 import javafx.collections.ObservableList;
 import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
 
