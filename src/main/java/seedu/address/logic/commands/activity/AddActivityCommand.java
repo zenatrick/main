@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -56,5 +57,11 @@ public class AddActivityCommand extends Command {
         model.addActivity(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
 
+    }
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddActivityCommand // instanceof handles nulls
+                && toAdd.equals(((AddActivityCommand) other).toAdd));
     }
 }
