@@ -34,12 +34,13 @@ class CategoryTest {
         // invalid category
         assertFalse(Category.isValidCategory("^")); // Non-alphanumeric characters
         assertFalse(Category.isValidCategory("Dog*")); // Contains non-alphanumeric characters.
-        assertFalse(Category.isValidCategory("yoursystemrunsf1234anyhowjustpress")); // Contains 34 characters.
 
         // valid category
         assertTrue(Category.isValidCategory("Hello")); //Normal case
         assertTrue(Category.isValidCategory("Hello1234")); // Contains alphanumeric characters.
         assertTrue(Category.isValidCategory("hellomynameisJohn123andIamADog")); //Contains 30 alphanumeric char.
+        assertTrue(Category.isValidCategory("yoursystemrunsf1234anyhowjustpress")); // Contains 34 characters.
+
     }
 
     @Test
