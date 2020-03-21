@@ -370,7 +370,7 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!AccommodationName.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(AccommodationName.MESSAGE_CONSTRAINTS);
         }
         return new AccommodationName(trimmedName);
     }
@@ -386,7 +386,7 @@ public class ParserUtil {
         requireNonNull(day);
         String trimmedDay = day.trim();
         if (!Day.isValidDay(Integer.parseInt(trimmedDay))) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Day.MESSAGE_CONSTRAINTS);
         }
         return new Day(Integer.parseInt(trimmedDay));
     }
@@ -402,7 +402,7 @@ public class ParserUtil {
         requireNonNull(remark);
         String trimmedRemark = remark.trim();
         if (!Remark.isValidRemark(trimmedRemark)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
         }
         return new Remark(trimmedRemark);
     }
