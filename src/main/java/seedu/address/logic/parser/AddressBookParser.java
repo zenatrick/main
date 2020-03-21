@@ -18,6 +18,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.accommodationbooking.AddAccommodationBookingCommand;
+import seedu.address.logic.commands.accommodationbooking.ClearAccommodationBookingCommand;
 import seedu.address.logic.commands.activity.AddActivityCommand;
 import seedu.address.logic.commands.fixedexpense.AddFixedExpenseCommand;
 import seedu.address.logic.commands.fixedexpense.ClearFixedExpenseCommand;
@@ -125,6 +126,9 @@ public class AddressBookParser {
 
         case AddAccommodationBookingCommand.COMMAND_WORD:
             return new AddAccommodationBookingCommandParser().parse(arguments);
+
+        case ClearAccommodationBookingCommand.COMMAND_WORD:
+            return new ClearAccommodationBookingCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
