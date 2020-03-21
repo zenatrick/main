@@ -153,6 +153,75 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+// end::scheduleactivity[]
+=== Check Status
+==== Rationale
+
+Currently, E.T allows a user to keep track of multiple aspects of a trip.
+However, they exist as separate lists and there is little to no integration between them.
+For example, the fixed expense list has little to no correlation with the packing list, but they are both
+important aspects of a trip. As such, the motivation behind creating a “check status” is to create that missing
+link between the different lists and make E.T more integrated and easier to use for the user.
+
+This feature allows the user to compress all the information from the lists into a single pane and
+alerts the user if they have forgotten to plan for a certain aspect of a trip.
+Before this, the user would have to scroll through each list, look at what they might have forgotten to plan or do.
+Therefore, this would help reduce the amount of information the user would need to process, and indirectly the
+stresses which accompany the planning for a trip.
+
+==== Overview
+E.T’s database stores a hard-coded checklist. For example, it would check if the user has planned for an
+accommodation booking for every single day of the trip and would be informed through the
+`checkstatus` command if they have forgotten to plan for it.
+
+*TIP*
+However, users can also include their own preset `checkstatus` to suit their needs {v2.0}
+
+==== Current Implementation
+The `checkstatus` command checks what the user have planned against the checklist from our database.
+The `checkstatus` command is created by parsing the user’s inputs to form a `checkStatusCommand` where E.T’s
+database is filtered to return the user with the checklist.
+
+The following activity diagram shown in <<Figure x.x>> below, summarizes what happens when a user enters a `checkstatus`
+command:
+
+[KIV]
+[[Figure x.x]]
+Figure x.x: Activity diagram showing the workflow of a `checkstatus` command.
+
+In detail, whenever a “checkstatus” command is entered,
+the command will be identified by E.T by parsing it through the `eTParser` through the `Logic` component.
+A `CheckStatusCommand` will be created.
+E.T will then check against the hard-coded database and generate a checklist of what the
+user might have forgotten to prepare for their upcoming trip.
+The following sequence diagram shown in <<Figure x.x>> below,
+summarizes the sequence flow when a user enters a valid `checkstatus` command:
+
+
+[KIV]
+Figure x.x: Sequence diagram of a “checkstatus” command.
+
+From the sequence diagram:
+
+1.	When the `LogicManager` receives the “execute” command from `MainApp`, it will call the `parseCommand` method of
+`eTParser`.
+2.	`eTParser` will receive `checkstatus` as the command type and instantiate `CheckStatusCommand`
+3.	Through `Model”, the `CheckStatusCommand` will check the individual lists
+[PackingItemList/FixedExpenseList/TransportList] against the hard-coded database in `Storage` and return a
+`CommandResult` object which consists of a `MESSAGE_SUCCESS` back to `LogicManager`
+4.	After receiving the `CommandResult` from `CheckStatusCommand`, `LogicManager` will then proceed to
+return the `CommandResult` back to “MainApp” where the checklist will be shown to the user.
+
+==== Design Considerations
+
+Aspect: Aligning with AB3 Command Calls
+
+Choice 1: Commands to called and handled like AB3.
+Pros:
+
+Easy to implement and understand. All command calls is similar to other commands in ET.
+
+
 // tag::scheduleactivity[]
 === Schedule feature
 *_E.T._* allows the user to schedule an activity from the activity list to a specified time of a day.
@@ -204,7 +273,7 @@ and be added into the schedule.
 * **Alternative:** Activity must be scheduled directly into a day.
 ** Pros: Simple to implement.
 ** Cons: Increase difficulty planning for users and limit the schedule to `Activity` objects only.
-// end::scheduleactivity[]
+
 
 // tag::undoredo[]
 === [Proposed] Undo/Redo feature
