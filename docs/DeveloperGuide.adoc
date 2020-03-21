@@ -203,14 +203,17 @@ Figure x.x: Sequence diagram of a “checkstatus” command.
 
 From the sequence diagram:
 
+****
 1.	When the `LogicManager` receives the “execute” command from `MainApp`, it will call the `parseCommand` method of
 `eTParser`.
 2.	`eTParser` will receive `checkstatus` as the command type and instantiate `CheckStatusCommand`
 3.	Through `Model”, the `CheckStatusCommand` will check the individual lists
-[PackingItemList/FixedExpenseList/TransportList] against the hard-coded database in `Storage` and return a
-`CommandResult` object which consists of a `MESSAGE_SUCCESS` back to `LogicManager`
-4.	After receiving the `CommandResult` from `CheckStatusCommand`, `LogicManager` will then proceed to
+against the hard-coded database in `Storage` to ensure that the user had made sufficient planning for the trip.
+4. A `CommandResult` object which consists of a `MESSAGE_SUCCESS` back to `LogicManager` if the user had made
+sufficient planning for the upcoming trip.
+5.	After receiving the `CommandResult` from `CheckStatusCommand`, `LogicManager` will then proceed to
 return the `CommandResult` back to “MainApp” where the checklist will be shown to the user.
+****
 
 ==== Design Considerations
 
