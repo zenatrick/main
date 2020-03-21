@@ -46,8 +46,8 @@ public class AddActivityTest {
         AddActivityCommand addCommand = new AddActivityCommand(validPerson);
         ModelStub modelStub = new ModelStubWithActivity(validPerson);
 
-        assertThrows(CommandException.class, AddActivityCommand.MESSAGE_DUPLICATE_ACTIVITY,
-        () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddActivityCommand.MESSAGE_DUPLICATE_ACTIVITY, () -> addCommand.execute(modelStub));
     }
 
     @Test
