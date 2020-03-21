@@ -38,7 +38,7 @@ class JsonAdaptedFixedExpense {
     public JsonAdaptedFixedExpense(FixedExpense source) {
         amount = source.getAmount().toString();
         description = source.getDescription().toString();
-        category = source.getDescription().toString();
+        category = source.getCategory().toString();
     }
 
     /**

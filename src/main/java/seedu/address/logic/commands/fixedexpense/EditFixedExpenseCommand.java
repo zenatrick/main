@@ -40,7 +40,8 @@ public class EditFixedExpenseCommand extends Command {
 
     public static final String MESSAGE_EDIT_FIXEDEXPENSE_SUCCESS = "Edited Fixed Expense: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_FIXED_EXPENSE = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_FIXED_EXPENSE = "This Fixed Expense already exists in the "
+            + "address book.";
 
     private final Index index;
     private final EditFixedExpenseDescriptor editFixedExpenseDescriptor;
@@ -140,7 +141,7 @@ public class EditFixedExpenseCommand extends Command {
         }
 
         public void setCategory(Category category) {
-            this.description = description;
+            this.category = category;
         }
 
         public Optional<Category> getCategory() {
