@@ -506,135 +506,78 @@ Examples of Fixed Expenses include,
 * Or any other fixed miscellaneous costs
 ****
 
-==== Modifying budgets for an upcoming trip
+==== Modifying expenses
 
-The following sections [3.4.1.1 - 3.4.1.3] allows the user to set and modify their fixed expenses prior to their trip.
+The following sections [3.4.4.1 - 3.4.4.4] allows a user to set and modify fixed expenses prior to the trip.
 
+===== Adding a new fixed expense: `addexpense`
 
-===== Add new fixed expense for an upcoming trip: `addexpense`
+Allow the user to add a new expense.
 
-Add a new fixed expense for the whole trip.
-
-Format: `addexpense amount/AMOUNT description/DESCRIPTION category/CATEGORY`
+Format: `addexpense amount/AMOUNT description/DESCRIPTION category/CATEGORY
+[amountSGD/AMOUNT/SGD] [amountOTHR/AMOUNTOTHR]`
 
 ****
-* Adds a new fixed expense for an upcoming trip.
-* Users will be able to set a notification whenever they reach a pre-determined budget.
-* `AMOUNT` *must be a positive integer* 1,2,3...
-* Both `DESCRIPTION` and `CATEGORY` *must be an alphanumeric word* of length 50 and 30 respectively.
+* Adds a new fixed expense for the upcomint trip.
+* The amount *must be a positive integer*
+* Both the `Description` and `Category` *must be alphanumeric word* and contains 50 and 30 characters respectively.
+* At least one of the optional fields must be provided.
+* If the user enters the expense in other currency, the amount will be automatically converted to SGD using the *exchange rate* provided.
 ****
 
 Examples:
 
-* `addexpense amount/2000 description/SQ Tickets category/Flights` +
-Adds a fixed expense of $2000, with description as `SQ TICKETS` and `Flights` respectively.
+* `addexpense amount/1100 description/SQ Tickets category/Flights` +
+Adds a fixed expense of $1100SGD, for `SQ Tickets` of category `Flights`.
 
+* `addexpense amount/300 description/Bullet Train category/Transportation` +
+Adds a fixed expense of $300SGD for `Bullet Train` of category `Transportation`.
 
-===== Edit Fixed Expense for an upcoming trip: `editexpense`
+===== Editing a fixed expense: `editexpense`
 
-Edits fixed expense set for an upcoming trip.
+Allow the user to edit a fixed expense. The expense must have been already added to the fixed expense tracker.
 
-Format: `editbudget INDEX amount/AMOUNT description/DESCRIPTION category/CATEGORY`
+Format: `editexpense INDEX amount/AMOUNT [description/DESCRIPTION] [category/CATEGORY] [amountSGD/AMOUNTSGD] [amountOTHR/AMOUNTOTHR]`
 
 ****
-* Edits the current budget in place.
-* Command can only be used if a budget has been added.
+* Edits the expense at the specified `INDEX`. The index refers to the index number shown in the displayed fixed expense
+list. The index *must be a positive integer* 1, 2, 3, ...
+* At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing the budget without specifying an notification amount, the current notification will be removed.
-* Any budgets set for specific day will be removed along with their notifications.
-* Users will be able to set a notification whenever they reach a pre-determined budget. This would be set under `notify/NOTIFYAMOUNT`.
-* The value of `NOTIFYAMOUNT` must be equal to or lesser than `AMOUNT`.
-* Both `AMOUNT` and `NOTIFYAMOUNT` *must be a positive integer* 1,2,3...
+* An *exchange rate* is required if the user is entering the amount in another currency.
+* If the user enters the expense in other currency,
+the amount will be automatically converted to SGD using the *exchange rate* provided.
 ****
 
 Examples:
 
-* `editbudget amount/3000` +
-Edits the current budget of the trip to $3000 and resets the notified amount [if any].
-* `editbudget amount/5000 notify/4500` +
-Edits the current budget of the trip to $5000 to the trip, and will notify the user when their expenses is at $4500.
+* `editexpense 1 amount/3000 description/Cathay Pacific Flight` +
+Edit the details and amount paid in SGD of the 1st fixed expense to be `Cathay Pacific Flight` and `$3000 SGD` respectively.
 
-===== Delete budget for a whole trip: `deletebudget`
+* `editexpense 1 amountOTHR/3000 description/Business Class Flight category/Flight Ticket` +
+Edit the details and amount paid in other currency of the 1st fixed expense to be
+`Business Class Flight` and `$3000` respectively.
+The amount will be automatically converted to SGD using *exchange rate* provided.
 
-Removes budget set for a whole trip.
+===== Deleting a fixed expense: `deleteexpense`
 
-Format: `deletebudget`
+Allow the user to delete a fixed expense. The expense must be already added to the fixed expense list.
 
-****
-* Removes any budget which has been set.
-* Command can only be used if a budget has been added.
-* Any existing budgets, set for a specific day will be removed as well.
-****
+Format: `deleteexpense INDEX`
 
 Examples:
+* deleteexpense 1 +
+Delete the 1st item in the fixed expense list.
 
-* `deletebudget` +
-Deletes any budgets which has been set for the trip.
+===== Clearing a fixed expense: `clearexpense`
 
-==== Setting and modifying budgets for a single day.
+Allow the user to clear the fixed expense in the list.
 
-The following sections [3.4.2.1 to 3.4.2.3] allows a user to set and modify budgets for a single day of the trip.
+Format: `clearexpense INDEX`
 
-===== Add new Budget for a day: `addbudgetday`
-
-Allow the user to add a budget for a specific day of the trip.
-
-Format: `addbudgetday  DAY amount/AMOUNT [notify/NOTIFYAMOUNT]`
-
-****
-* Adds a new budget for a single day of the trip at the specified `DAY`.
-* The `DAY` selected by the user must not be longer than the length of the trip.
-* Both `AMOUNT` and `NOTIFYAMOUNT`specified by the user must be equal to or below the budget set for the whole trip.
-* The value of `NOTIFYAMOUNT` must be equal to or lesser than `AMOUNT`.
-* Users will be able to set a notification whenever they reach a pre-determined budget. This would be set under `notify/NOTIFYAMOUNT`.
-* Both `AMOUNT` and `NOTIFYAMOUNT` *must be a positive integer* 1,2,3...
-****
-
-Examples:
-
-* `addbudgetday 1 amount/3000` +
-Adds a budget for the 1st day of the trip at $3000
-* `addbudgetday 1 amount/5000 notify/4500` +
-Adds a budget for the 1st day of the trip at $5000 and will notify the user when their expenses on `DAY` 1 is at $4500.
-
-===== Edit new Budget for a day: `editbudgetday`
-
-Allow the user to edit a budget for a specific day of the trip.
-
-Format: `editbudgetday DAY amount/AMOUNT [notify/NOTIFYAMOUNT]`
-
-****
-* Edits the current budget for a specific `DAY`. There must be a budget already added for that day.
-* The `DAY` selected by the user must not be longer than the length of the trip.
-* Existing values will be updated to the input values.
-* When editing the budget without specifying an notification amount, the current notification will be removed.
-* The value of `NOTIFYAMOUNT` must be equal to or lesser than `AMOUNT`.
-* Users will be able to set a notification whenever they reach a pre-determined budget. This would be set under `notify/NOTIFYAMOUNT`.
-* Both `AMOUNT` and `NOTIFYAMOUNT` *must be a positive integer* 1,2,3...
-****
-
-Examples:
-
-* `editbudgetday 1 amount/3000` +
-Edits the current budget for the 1st day of the trip to $3000 and resets the notified amount [if any]
-* `editbudgetday 1 amount/5000 notify/4500` +
-Edits the current budget for the 1st day of the trip to $5000, and will notify the user when their expenses is at $4500.
-
-===== Delete budget for a single day: `deletebudgetday`
-
-Allow the user to delete a budget set for a specific day of the trip.
-
-Format: `deletebudgetday DAY`
-
-****
-* Removes any budget which has been set for the Day specified by the user.
-* Command can only be used if a budget has been set for the day.
-****
-
-Examples:
-
-* `deletebudgetday 1` +
-Deletes the budget set for the 1st day of the trip.
+Example:
+* clearexpense +
+Clears the fixed expense in the list
 
 ==== Setting conversion rates: `conversion`
 
@@ -648,82 +591,23 @@ Format: `conversion rate/RATE`
 * Any expenses entered by the user during the trip would be automatically converted to SGD.
 ****
 
-==== Modifying expenses
 
-The following sections [3.4.4.1 - 3.4.4.4] allows a user to set and modify expenses incurred during the trip.
+===== Sort fixed expenses according to amount spent: `sortexpense`
 
-===== Adding a new expense: `addexpense`
+Allow the user to sort their fixed expense in the list.
 
-Allow the user to add a new expense.
-
-Format: `addexpense DAY detail/DETAIL [amountSGD/AMOUNTSGD] [amoungOTHR/AMOUNTOTHR]`
+Format: `sortexpense`
 
 ****
-* Adds a new expense on specified `DAY`. The day refers to a specific day of the trip. The day *must be a positive integer* and be *lesser than the total number of days of the trip*.
-* At least one of the optional fields must be provided.
-* If the user enters the expense in other currency, the amount will be automatically converted to SGD using the *exchange rate* provided.
+* Sorts all fixed expense in ascending order of amount.
+* The list must not be empty.
 ****
 
 Examples:
 
-* `addexpense 1 detail/iPHONE11 amountSGD/1100` +
-Adds an expense incurred on the 1st day of the trip of an `iPHONE11` for $1100 SGD.
+* `sortexpense` +
+Sorts all fixed expense in ascending order of amount.
 
-* `addexpense 1 detail/iPHONE11 amountOTHR/800` +
-Adds an expense incurred on the 1st day of the trip of an `iPHONE11` for $800. This amount will be converted to SGD using *exchange rate* provided.
-
-
-===== Editing an expense: `editexpense`
-
-Allow the user to edit an expense. The expense must be already added to the expense tracker.
-
-Format: `editexpense INDEX [detail/DETAIL] [amountSGD/AMOUNTSGD] [amountOTHR/AMOUNTOTHR]`
-
-****
-* Edits the expense at the specified `INDEX`. The index refers to the index number shown in the displayed expense list. The index *must be a positive integer* 1, 2, 3, ...
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* An *exchange rate* is required if the user is entering the amount in another currency.
-* If the user enters the expense in other currency, the amount will be automatically converted to SGD using the *exchange rate* provided.
-****
-
-Examples:
-
-* `editexpense 1 detail/MacbookPro 13 amountSGD/3000` +
-Edit the details and amount paid in SGD of the 1st expense to be `MacbookPro 13` and `$3000 SGD` respectively.
-
-* `editexpense 1 detail/AirPods amountOTHR/300` +
-Edit the details and amount paid in other currency of the 1st expense to be `AirPods` and `$300` respectively. The amount will be automatically converted to SGD using *exchange rate* provided.
-
-===== Deleting an expense: `deleteexpense`
-
-Allow the user to delete an expense. The expense must be already added to the expense tracker.
-
-Format: `deleteexpense INDEX`
-
-Examples:
-*deleteexpense 1 +
-Delete the 1st item in the expense tracker.
-
-
-===== Listing down expenses for a day: `list`
-
-Allow the user to see their expense for a specific day of the trip as a list.
-
-Format: `list DAY`
-
-****
-* Shows a list of expense on a specified `DAY`. The day refers to a specific day of the trip. The day *must be a positive integer* and be *lesser than the total number of days of the trip*.
-* If `DAY` is entered as 0, all expenses incurred during the trip will be shown as a list.
-****
-
-Examples:
-
-* `list 1` +
-Shows the expenses incurred on the 1st day of the trip.
-
-* `list 0` +
-Shows all expenses incurred during the whole duration of the trip
 
 ==== Recommend ways to save money based on prevailing usage [Coming in v2.0]
 
