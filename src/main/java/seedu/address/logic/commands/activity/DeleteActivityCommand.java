@@ -8,6 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.listmanagers.activity.Activity;
@@ -44,5 +45,12 @@ public class DeleteActivityCommand extends Command {
         Activity activityToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteActivity(activityToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_ACTIVITY_SUCCESS, activityToDelete));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteActivityCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteActivityCommand) other).targetIndex)); // state check
     }
 }

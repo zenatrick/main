@@ -74,46 +74,4 @@ public class AddActivityTest {
         assertFalse(addEggCommand.equals(addOsakaCommand));
     }
 
-    /**
-     * A Model stub that contains a single person.
-     */
-    private class ModelStubWithActivity extends ModelStub {
-        private final Activity activity;
-
-        ModelStubWithActivity(Activity activity) {
-            requireNonNull(activity);
-            this.activity = activity;
-        }
-
-        @Override
-        public boolean hasActivity(Activity activity) {
-            requireNonNull(activity);
-            return this.activity.isSame(activity);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the person being added.
-     */
-    private class ModelStubAcceptingActivityAdded extends ModelStub {
-        final ArrayList<Activity> activitiesAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasActivity(Activity activity) {
-            requireNonNull(activity);
-            return activitiesAdded.stream().anyMatch(activity::isSame);
-        }
-
-        @Override
-        public void addActivity(Activity activity) {
-            requireNonNull(activity);
-            activitiesAdded.add(activity);
-        }
-
-        @Override
-        public ReadOnlyActivityManager getActivityManager() {
-            return new ActivityManager();
-        }
-    }
-
 }
