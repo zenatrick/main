@@ -518,7 +518,7 @@ Format: `addexpense amount/AMOUNT description/DESCRIPTION category/CATEGORY
 [amountSGD/AMOUNT/SGD] [amountOTHR/AMOUNTOTHR]`
 
 ****
-* Adds a new fixed expense for the upcomint trip.
+* Adds a new fixed expense for the upcoming trip.
 * The amount *must be a positive integer*
 * Both the `Description` and `Category` *must be alphanumeric word* and contains 50 and 30 characters respectively.
 * At least one of the optional fields must be provided.
@@ -596,17 +596,23 @@ Format: `conversion rate/RATE`
 
 Allow the user to sort their fixed expense in the list.
 
-Format: `sortexpense`
+Format: `sortexpense SORTIDENTIFIER [AMOUNT] [DESCRIPTION] [CATEGORY]`
 
 ****
-* Sorts all fixed expense in ascending order of amount.
+* Sorts all fixed expense in ascending or descending order dependent on `SORTIDENTIFIER`.
+* The list will be sorted in ascending order if `SORTIDENTIFIER` is 0 and descending order if `SORTIDENTIFIER` is 1.
+* Only one of the optional fields [AMOUNT] [DESCRIPTION] [CATEGORY] must be provided and will sort the
+list in ascending or descending order dependent on what needs to be sorted.
 * The list must not be empty.
 ****
 
 Examples:
 
-* `sortexpense` +
-Sorts all fixed expense in ascending order of amount.
+* `sortexpense 1 amount` +
+Sorts all fixed expense in descending order of amount.
+
+* `sortexpense 0 description` +
+Sorts all fixed expense in lexicographical order.
 
 
 ==== Recommend ways to save money based on prevailing usage [Coming in v2.0]
