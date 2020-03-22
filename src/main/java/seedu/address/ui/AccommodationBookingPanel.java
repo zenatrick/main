@@ -34,6 +34,7 @@ public class AccommodationBookingPanel extends UiPart<Region> {
     class AccommodationBookingListViewCell extends ListCell<AccommodationBooking> {
         @Override
         protected void updateItem(AccommodationBooking accommodationBooking, boolean empty) {
+            super.updateItem(accommodationBooking, empty);
             if (empty || accommodationBooking == null) {
                 setGraphic(null);
                 setText(null);

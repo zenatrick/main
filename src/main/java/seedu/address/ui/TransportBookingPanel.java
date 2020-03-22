@@ -34,6 +34,7 @@ public class TransportBookingPanel extends UiPart<Region> {
     class TransportListViewCell extends ListCell<TransportBooking> {
         @Override
         protected void updateItem(TransportBooking transportBooking, boolean empty) {
+            super.updateItem(transportBooking, empty);
             if (empty || transportBooking == null) {
                 setGraphic(null);
                 setText(null);

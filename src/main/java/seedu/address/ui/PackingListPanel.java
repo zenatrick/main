@@ -33,6 +33,7 @@ public class PackingListPanel extends UiPart<Region> {
     class PackingListViewCell extends ListCell<PackingListItem> {
         @Override
         protected void updateItem(PackingListItem item, boolean empty) {
+            super.updateItem(item, empty);
             if (empty || item == null) {
                 setGraphic(null);
                 setText(null);

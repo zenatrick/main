@@ -33,6 +33,7 @@ public class FixedExpensePanel extends UiPart<Region> {
     class FixedListViewCell extends ListCell<FixedExpense> {
         @Override
         protected void updateItem(FixedExpense fixedExpense, boolean empty) {
+            super.updateItem(fixedExpense, empty);
             if (empty || fixedExpense == null) {
                 setGraphic(null);
                 setText(null);

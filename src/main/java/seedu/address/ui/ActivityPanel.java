@@ -33,6 +33,7 @@ public class ActivityPanel extends UiPart<Region> {
     class ActivityListViewCell extends ListCell<Activity> {
         @Override
         protected void updateItem(Activity activity, boolean empty) {
+            super.updateItem(activity, empty);
             if (empty || activity == null) {
                 setGraphic(null);
                 setText(null);
