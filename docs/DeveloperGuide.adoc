@@ -278,6 +278,52 @@ and be added into the schedule.
 ** Cons: Increase difficulty planning for users and limit the schedule to `Activity` objects only.
 
 
+// tag::transportbooking[]
+=== Transport Booking feature
+
+E.T. allows the user to add a transport booking. This is done using the schedule command which requires the user to specify the mode, start location, end location, start time and end time.
+
+==== Rationale
+
+The transport booking feature is an important feature that allows the user to track the list of bookings that they have done before going leaving.
+This feature also allows the user to schedule their activities while taking the scheduled transport bookings into consideration.
+
+==== Current Implementation
+
+The keywords from the command given by the user is parsed using `AddTransportBookingCommandParser` which converts the string variable `mode` into a `Mode` object, `start location` and `end location` into a `Location` objects, as well as `start time` and `end time` into `Time` objects.
+These objects are used to create the `AddTransportBookingCommand` object that will execute to create a transport booking.
+
+The sequence diagram below shows the creation of the `ScheduleActivityCommand` object:
+
+After the creation of the `ScheduleActivityCommand` object, the `LogicManager` will proceed to call the `execute()` method of `ScheduleActivityCommand`.
+
+The following steps describes the execution of the `ScheduleActivityCommand`:
+
+1. `Model` retrieves the list of activities from the `UniqueList` that stores `Activity` objects.
+2. The `activityIndex` is used to obtain the target `Activity` from the activity list.
+3. The `Activity` object, `dayIndex` and `startTime` is passed into the `scheduleActivity()` method of `Model`.
+4. `Activity` is converted to a `Schedulee` object using the `startTime` from the `ScheduleActivityCommand`, the `title` and `duration` from the target `Activity`.
+5. The `Schedulee` object is added to the target day's `DaySchedule`.
+6. The list of `Schedulee` is sorted according to the `startTime`.
+
+
+// end::transportbooking[]
+
+// tag::accommodationbooking[]
+// end::accommodationbooking[]
+
+// tag::activity[]
+// end::activity[]
+
+// tag::trip[]
+// end::trip[]
+
+// tag::packinglist[]
+// end::packinglist[]
+
+// tag::fixedexpense[]
+// end::fixedexpense[]
+
 // tag::undoredo[]
 === [Proposed] Undo/Redo feature
 ==== Proposed Implementation
