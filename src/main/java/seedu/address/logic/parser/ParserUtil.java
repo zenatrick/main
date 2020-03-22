@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.time.DateTime;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.fixedexpense.SortFixedExpenseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.listmanagers.accommodationbooking.AccommodationName;
 import seedu.address.model.listmanagers.accommodationbooking.Day;
@@ -209,24 +210,52 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String highOrLow}
+     * Parses a {@code String sortIdentifier}
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @param highOrLow to sort by ascending or descending order.
+     * @param sortIdentifier identifier to sort by ascending or descending order.
      * @return the String
+     * @throws ParseException if the given {@code sortIdentifier} is invalid.
      */
-    public static String parsehighOrLow(String highOrLow) throws ParseException {
-        requireNonNull(highOrLow);
-        String trimmedHighOrLow = highOrLow.trim();
-        if (!(trimmedHighOrLow.equals("high") ^ trimmedHighOrLow.equals("low"))) {
+    public static String parseSortIdentifier(String sortIdentifier) throws ParseException {
+        requireNonNull(sortIdentifier);
+
+        switch(sortIdentifier) {
+        case SortFixedExpenseCommand.SORT_ASCENDING:
+            return SortFixedExpenseCommand.SORT_ASCENDING;
+        case SortFixedExpenseCommand.SORT_DESCENDING:
+            return SortFixedExpenseCommand.SORT_DESCENDING;
+        default:
             throw new ParseException("String must consist of either high for descending order"
                     + " or low for ascending order");
         }
-        if (trimmedHighOrLow.equals("low")) {
-            return "low";
-        } else {
-            return "high";
+    }
+
+    /**
+     * Parses a {@code String sortParameters} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param sortParameters the sorting parameters
+     * @return the string
+     * @throws ParseException if the given {@code sortParameters} is invalid.
+     */
+    public static String parseSortParameters(String sortParameters) throws ParseException {
+        requireNonNull(sortParameters);
+
+        switch(sortParameters) {
+        case SortFixedExpenseCommand.AMOUNT:
+            return SortFixedExpenseCommand.AMOUNT;
+
+        case SortFixedExpenseCommand.CATEGORY:
+            return SortFixedExpenseCommand.CATEGORY;
+
+        case SortFixedExpenseCommand.DESCRIPTION:
+            return SortFixedExpenseCommand.DESCRIPTION;
+
+        default:
+            throw new ParseException("Parameters must consist of only amount/description/category");
         }
+
     }
 
 

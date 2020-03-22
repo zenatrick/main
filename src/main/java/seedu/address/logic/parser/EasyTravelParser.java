@@ -120,6 +120,7 @@ public class EasyTravelParser {
 
         case EditFixedExpenseCommand.COMMAND_WORD:
             return new EditFixedExpenseParser().parse(arguments);
+
         case SortFixedExpenseCommand.COMMAND_WORD:
             return new SortFixedExpenseCommandParser().parse(arguments);
 

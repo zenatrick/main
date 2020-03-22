@@ -1,6 +1,7 @@
 package seedu.address.model.util.attributes;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -161,6 +162,11 @@ public class ModelStub implements Model {
 
     @Override
     public void setFixedExpense(FixedExpense target, FixedExpense edited) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void sortFixedExpenseList(Comparator<FixedExpense> cmp) {
         throw new AssertionError("This method should not be called.");
     }
 
