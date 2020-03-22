@@ -153,21 +153,21 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-// end::scheduleactivity[]
+// end::Check Status[]
 === Check Status
 ==== Rationale
 
 Currently, E.T allows a user to keep track of multiple aspects of a trip.
 However, they exist as separate lists and there is little to no integration between them.
+
 For example, the fixed expense list has little to no correlation with the packing list, but they are both
-important aspects of a trip. As such, the motivation behind creating a “check status” is to create that missing
-link between the different lists and make E.T more integrated and easier to use for the user.
+important aspects of a trip. As such, the motivation behind creating a “check status” is to create that missing link between the different lists and make E.T more integrated and easier to use for the user.
 
 This feature allows the user to compress all the information from the lists into a single pane and
 alerts the user if they have forgotten to plan for a certain aspect of a trip.
 Before this, the user would have to scroll through each list, look at what they might have forgotten to plan or do.
-Therefore, this would help reduce the amount of information the user would need to process, and indirectly the
-stresses which accompany the planning for a trip.
+
+Therefore, this would help reduce the amount of information the user would need to process, and indirectly the stresses which accompany the planning for a trip.
 
 ==== Overview
 E.T’s database stores a hard-coded checklist. For example, it would check if the user has planned for an
