@@ -174,23 +174,24 @@ These objects are used to create the `ScheduleActivityCommand` object that can b
 
 The sequence diagram below shows the creation of the `ScheduleActivityCommand` object:
 
-.Sequence diagram that describes the creation of the `ScheduleActivityCommand` object.
-image::ScheduleAcitivityCommandCreation.png[]
+.Sequence diagram that describes the creation of the `ScheduleActivityCommand` from the input user command `schedule 1 day/2 starttime/13:00`.
+image::developer-guide/schedule-feature/ScheduleActivityCommandCreation.png[]
 
 After the creation of the `ScheduleActivityCommand` object, the `LogicManager` will proceed to call the `execute()` method of `ScheduleActivityCommand`.
 
 The following steps describes the execution of the `ScheduleActivityCommand`:
 
-1. `ModelManager` retrieves the list of days from the `Trip` and the list of activities from the `UniqueList` that stores `Activity` objects.
-2. The `activityIndex` is used to obtain the target `Activity` from the activity list and and `dayIndex` is used to obtain the target day's `DaySchedule` from the list of days.
-3. `Activity` is converted to a `Schedulee` object using the `startTime` from the `ScheduleActivityCommand`, the `title` and `duration` from the target `Activity`.
-4. The `Schedulee` object is added to the target day's `DaySchedule`.
-5. The list of `Schedulee` is sorted according to the `startTime`.
+1. `Model` retrieves the list of activities from the `UniqueList` that stores `Activity` objects.
+2. The `activityIndex` is used to obtain the target `Activity` from the activity list.
+3. The `Activity` object, `dayIndex` and `startTime` is passed into the `scheduleActivity()` method of `Model`.
+4. `Activity` is converted to a `Schedulee` object using the `startTime` from the `ScheduleActivityCommand`, the `title` and `duration` from the target `Activity`.
+5. The `Schedulee` object is added to the target day's `DaySchedule`.
+6. The list of `Schedulee` is sorted according to the `startTime`.
 
 The sequence diagram below shows the the execution of `ScheduleActivityCommand`:
 
 .Sequence diagram that describes the execution of ScheduleActivityCommand.
-image::ScheduleActivityCommandExecution.png[]
+image::developer-guide/schedule-feature/ScheduleActivityCommandExecution.png[Schedule Activity Command Execution]
 
 ==== Design Consideration
 
