@@ -30,7 +30,7 @@ public class AddItemCommand extends Command {
             + PREFIX_CATEGORY + "CATEGORY \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ITEM + "Tshirts "
-            + PREFIX_QUANTITY + 5
+            + PREFIX_QUANTITY + 5 + " "
             + PREFIX_CATEGORY + "basics";
 
     /**
