@@ -89,20 +89,6 @@ public class SortFixedExpenseCommand extends Command {
         default:
             throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortFixedExpenseCommand.MESSAGE_USAGE));
-
-
-//        // Want to sort in descending order
-//        if (highOrLow.contains("high")) {
-//            model.sortFixedExpenseList((x, y) ->
-//                    Integer.parseInt(y.getAmount().value) - Integer.parseInt(x.getAmount().value));
-//
-//        } else {
-//            // Sort in ascending order
-//            model.sortFixedExpenseList((x, y) ->
-//                    Integer.parseInt(x.getAmount().value) - Integer.parseInt(y.getAmount().value));
-//
-//        }
-
         }
 
     }
