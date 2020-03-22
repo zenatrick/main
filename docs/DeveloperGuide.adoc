@@ -417,6 +417,65 @@ The following steps describes the execution of the `AddAccommodationBookingComma
 
 // tag::activity[]
 
+=== Activity Manager
+*_E.T._* allows the user to plan for their `activity` for a trip. The activity manager handles everything to do with manipulating of activities.
+
+This `addactivity` command requires the user to include the `title` of an activity, the `priority` of the activity , the `duration` of the activity in terms of hours, `Location` of the activity and optional `tags`.
+
+List of commands that helps with activity management:
+
+* `addactivity title/TITLE priority/PRIORITY duration/DURATION location/LOCATION t/TAG` --  create an activity with the given title, priority, duration, location and tags. There can be more than one tags included
+* `clearactivity`  -- Clears the entire activity list
+* `deleteactivity index`  -- Deletes the activity based on index
+* `editactivity index [title/TITLE] [priority/PRIORITY] [duration/DURATION] [location/LOCATION] [t/TAG]` -- Edits the activity based on index
+
+Example:
+
+`addactivity title/Big Cheese Land priority/1 duration/2 location/The moon t/nice` will create an activity named `Big Cheese` with a priority of `1` , duration of `2` and is happening at a location `The moon`. The activity would also have the tag `nice`
+
+
+The user can use any other activity command if there exist at least one activity in the list.
+
+==== Rationale
+The activity manager allows user to plan and manage their activities for the trip.
+The activity manager only handles activities and the manipulation of activities.
+
+==== Current Implementation
+The keywords from the command given by user is parsed using a parser for the respective command
+
+e.g `DeleteActivityCommandParser`
+
+These objects are used to create the command object for their respective command that can be execution to schedule the activity.
+
+e.g `DeleteActivity`
+
+The sequence diagram below shows the creation of the an ActivityCommand object:
+
+.Sequence diagram that describes the creation of the `deleteactivity` from the input user command `deleteactivity 1`.
+
+image::developer-guide/activity/DeleteActivityCommandCreation.png[]
+
+After the creation of the `DeleteActivityCommand` object, the `LogicManager` will proceed to call the `execute()` method of `DeleteActivityCommand`.
+
+The following steps describes the execution of the `ScheduleActivityCommand`:
+
+1. `Model` retrieves the list of activities from the `UniqueList` that stores `Activity` objects.
+2. The `activityIndex` is used to find the target `Activity` from the activity list.
+3. The `Activity` object that corresponds to the index is removed from the list
+
+
+The sequence diagram below shows the the execution of `DeleteActivityCommand`:
+
+.Sequence diagram that describes the execution of ScheduleActivityCommand.
+image::developer-guide/activity/DeleteActivityCommandExecution.png[Delete Activity Command Execution placeholder]
+
+==== Design Consideration
+
+===== Aspect: Activity does not keep track of the day
+
+* **Current Choice:** Days is being tracked by scheduler
+** Pros: Separation of concerns: Only the scheduler should know which day the activity is held on.
+** Cons: {kiv}
 // end::activity[]
 
 // tag::trip[]
