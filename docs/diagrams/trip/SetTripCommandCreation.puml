@@ -1,0 +1,54 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant "**:LogicManager**" as LogicManager LOGIC_COLOR
+participant "**:EasyTravelParser**" as EtParser LOGIC_COLOR
+participant "**:SetTripCommandParser**" as SetTripCommandParser LOGIC_COLOR
+participant "**:SetTripCommand**" as SetTripCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("settrip title/cheese budget/2000 startdate/20-09-20 enddate/28-09-20")
+activate LogicManager
+
+LogicManager -> EtParser : parseCommand("settrip title/cheese budget/2000 startdate/20-09-20 enddate/28-09-20")
+activate EtParser
+
+create SetTripCommandParser
+EtParser -> SetTripCommandParser
+activate SetTripCommandParser
+
+SetTripCommand --> EtParser
+deactivate SetTripCommand
+
+EtParser -> SetTripCommandParser : parse("settrip title/cheese budget/2000 startdate/20-09-20 enddate/28-09-20")
+activate SetTripCommandParser
+
+create SetTripCommand
+SetTripCommandParser -> SetTripCommand
+activate SetTripCommand
+
+SetTripCommand --> SetTripCommandParser
+deactivate SetTripCommand
+
+SetTripCommandParser --> EtParser
+deactivate SetTripCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SetTripCommandParser -[hidden]-> EtParser
+destroy SetTripCommandParser
+
+EtParser --> LogicManager
+deactivate EtParser
+
+LogicManager -> SetTripCommand : execute()
+activate SetTripCommand
+
+ref over SetTripCommand : Creates an trip
+
+SetTripCommand --> LogicManager : result
+deactivate SetTripCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -228,7 +228,7 @@ Easy to implement and understand. All command calls is similar to other commands
 // tag::TripManagement[]
 === Trip Management feature
 *_E.T._* only allow the user to manage one trip at a time and is necessary to be used first before other commands are available. This is done using the `settrip` command which requires the user to specify the `title` of the trip, the `budget` of the trip and the `start date` and `end date` of the entire trip.
-For example, `settrip title/cheese land budget/2000 startdate/20-09-20 enddate/28-09-20` means that the trip with the title `cheese land` will be set with a budget of `2000` dollars and a duration of 8 days between `20-09-20' to `28-09-20`.
+For example, `settrip title/cheese budget/2000 startdate/20-09-20 enddate/28-09-20` means that the trip with the title `cheese land` will be set with a budget of `2000` dollars and a duration of 8 days between `20-09-20' to `28-09-20`.
 
 
 ==== Rationale
@@ -243,8 +243,8 @@ These objects are used to create the `SetTripCommand` object that can be executi
 
 The sequence diagram below shows the creation of the `SetTripCommand` object:
 
-.Sequence diagram that describes the creation of the `SetTripCommand` from the input user command `settrip title/Hogwarts budget/100 startday/29-09-20 endday/03-10-20`.
-image::developer-guide/schedule-feature/ScheduleActivityCommandCreation.png[]
+.Sequence diagram that describes the creation of the `SetTripCommand` from the input user command `settrip title/cheese budget/2000 startdate/20-09-20 enddate/28-09-20`.
+image::developer-guide/trip/SetTripCommandCreation.png[]
 
 After the creation of the `SetTripCommand` object, the `LogicManager` will proceed to call the `execute()` method of `SetTripCommand`.
 
@@ -258,7 +258,7 @@ The following steps describes the execution of the `SetTripCommand`:
 The sequence diagram below shows the the execution of `ScheduleActivityCommand`:
 
 .Sequence diagram that describes the execution of ScheduleActivityCommand.
-image::developer-guide/schedule-feature/ScheduleActivityCommandExecution.png[Schedule Activity Command Execution]
+image::developer-guide/trip/f.png[SetTrip Command Execution PlaceHolder]
 
 ==== Design Consideration
 
@@ -278,7 +278,7 @@ and be added into the schedule.
 
 * **Current Choice:** A trip must be created before use of any other commands
 ** Pros: Ensures that users cannot implement any activity or schedule without creation of an activity.
-
+** Cons: Complicate to implement and likely result in dependency issues
 // end::Trip Management[]
 
 // tag::scheduleactivity[]
@@ -416,6 +416,7 @@ The following steps describes the execution of the `AddAccommodationBookingComma
 // end::accommodationbooking[]
 
 // tag::activity[]
+
 // end::activity[]
 
 // tag::trip[]
