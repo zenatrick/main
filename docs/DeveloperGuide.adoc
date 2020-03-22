@@ -284,7 +284,7 @@ E.T. allows the user to add a transport booking. This is done using the schedule
 
 ==== Rationale
 
-The transport booking feature is an important feature that allows the user to track the list of bookings that they have done before going leaving.
+The transport booking feature is an important feature that allows the user to track the list of transport bookings that they have made before leaving.
 This feature also allows the user to schedule their activities while taking the scheduled transport bookings into consideration.
 
 ==== Current Implementation
@@ -292,23 +292,66 @@ This feature also allows the user to schedule their activities while taking the 
 The keywords from the command given by the user is parsed using `AddTransportBookingCommandParser` which converts the string variable `mode` into a `Mode` object, `start location` and `end location` into a `Location` objects, as well as `start time` and `end time` into `Time` objects.
 These objects are used to create the `AddTransportBookingCommand` object that will execute to create a transport booking.
 
-The sequence diagram below shows the creation of the `ScheduleActivityCommand` object:
+The sequence diagram below shows the creation of the `AddTransportBookingCommand` object:
 
-After the creation of the `ScheduleActivityCommand` object, the `LogicManager` will proceed to call the `execute()` method of `ScheduleActivityCommand`.
+[KIV]
+Figure x.x: Sequence diagram of a Add Transport Booking command.
 
-The following steps describes the execution of the `ScheduleActivityCommand`:
+After the creation of the `AddTransportBookingCommand` object, the `LogicManager` will proceed to call the `execute()` method of `AddTransportBookingCommand`.
 
-1. `Model` retrieves the list of activities from the `UniqueList` that stores `Activity` objects.
-2. The `activityIndex` is used to obtain the target `Activity` from the activity list.
-3. The `Activity` object, `dayIndex` and `startTime` is passed into the `scheduleActivity()` method of `Model`.
-4. `Activity` is converted to a `Schedulee` object using the `startTime` from the `ScheduleActivityCommand`, the `title` and `duration` from the target `Activity`.
-5. The `Schedulee` object is added to the target day's `DaySchedule`.
-6. The list of `Schedulee` is sorted according to the `startTime`.
+The following steps describes the execution of the `AddTransportBookingCommand`:
 
+1.
 
+==== Design Consideration
+
+===== Aspect:
+
+* **Current Choice:**
+** Pros:
+** Cons:
+
+* **Alternative:**
+** Pros:
+** Cons:
 // end::transportbooking[]
 
 // tag::accommodationbooking[]
+=== Accommodation Booking feature
+
+E.T. allows the user to add an accommodation booking. This is done using the schedule command which requires the user to specify the accommodation name, location, start day, end day and a remark.
+
+==== Rationale
+
+The accommodation booking feature is an important feature that allows the user to track the list of accommodation bookings that they have made before leaving.
+
+==== Current Implementation
+
+The keywords from the command given by the user is parsed using `AddTransportBookingCommandParser` which converts the string variable `accommodation name` into a `AccommodationName` object, `location` into a `Location` object, `start day` and `end day` into `Day` objects, as well as `remark` into a `Remark` object.
+These objects are used to create the `AddAccommodationBookingCommand` object that will execute to create an accommodation booking.
+
+The sequence diagram below shows the creation of the `AddAccommodationBookingCommand` object:
+
+[KIV]
+Figure x.x: Sequence diagram of a Add Accommodation Booking command.
+
+After the creation of the `AddAccommodationBookingCommand` object, the `LogicManager` will proceed to call the `execute()` method of `AddAccommodationBookingCommand`.
+
+The following steps describes the execution of the `AddAccommodationBookingCommand`:
+
+1.
+
+==== Design Consideration
+
+===== Aspect:
+
+* **Current Choice:**
+** Pros:
+** Cons:
+
+* **Alternative:**
+** Pros:
+** Cons:
 // end::accommodationbooking[]
 
 // tag::activity[]
