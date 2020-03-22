@@ -406,11 +406,11 @@ Examples:
 * `deleteitem 1` +
 Deletes item in the index 1 of the list
 
-===== Mark an item as packed in the packing list: `doneitem`
+===== Mark an item as packed in the packing list: `checkitem`
 
 Marks an item as packed in the packing list
 
-Format: `doneitem INDEX`
+Format: `checkitem INDEX`
 
 ****
 * Checks an item off in the packing list.
@@ -419,8 +419,24 @@ Format: `doneitem INDEX`
 
 Examples:
 
-* `doneitem 1` +
+* `checkitem 1` +
 Marks item 1 in the packing list as packed
+
+===== Mark an item as unpacked in the packing list: `uncheckitem`
+
+Marks an item as packed in the packing list
+
+Format: `uncheckitem INDEX`
+
+****
+* Unchecks an item off in the packing list.
+* Command can only be used if an item has been added.
+****
+
+Examples:
+
+* `uncheckitem 1` +
+Marks item 1 in the packing list as unpacked
 
 ===== Sort items in the packing list: `sort`
 
@@ -471,7 +487,7 @@ Examples:
 * `savepreset Japan 2020` +
 Saves the current packing list as a preset called Japan 2020
 
-===== Create a smart packing list: `createlist`
+===== Create a smart packing list: `createlist` [coming in v2.0]
 
 Creates a smart packing list for inexperienced travelers
 
