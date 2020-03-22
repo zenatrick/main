@@ -148,7 +148,6 @@ public class AddressBookParser {
 
         case EditActivityCommand.COMMAND_WORD:
             return new EditActivityParser().parse(arguments);
-            
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
