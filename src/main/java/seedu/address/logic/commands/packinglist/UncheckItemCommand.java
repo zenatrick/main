@@ -82,12 +82,19 @@ public class UncheckItemCommand extends Command {
         return new CommandResult(String.format(MESSAGE_PACKED_ITEM_SUCCESS, checkItem));
     }
 
-    private static PackingListItem createUncheckItem(PackingListItem itemToCheck, UncheckItemDescriptor uncheckItemDescriptor) {
-        assert itemToCheck != null;
+    /**
+     * Creates a new Packing List item with the new attributes.
+     *
+     * @param itemToUncheck               of the Item in the filtered Item list to uncheck
+     * @param uncheckItemDescriptor details to check the Item with
+     */
+    private static PackingListItem createUncheckItem(PackingListItem itemToUncheck,
+                                                     UncheckItemDescriptor uncheckItemDescriptor) {
+        assert itemToUncheck != null;
 
-        ItemName updatedName = itemToCheck.getItemName();
-        Quantity updatedQuantity = itemToCheck.getQuantity();
-        ItemCategory updatedCategory = itemToCheck.getItemCategory();
+        ItemName updatedName = itemToUncheck.getItemName();
+        Quantity updatedQuantity = itemToUncheck.getQuantity();
+        ItemCategory updatedCategory = itemToUncheck.getItemCategory();
 
         Boolean isCheck = uncheckItemDescriptor.getUnpacked().get();
         boolean isPacked = isCheck.booleanValue();

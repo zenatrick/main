@@ -12,7 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * The type Uncheck item parser.
  */
-public class UncheckItemParser implements Parser<UncheckItemCommand>{
+public class UncheckItemParser implements Parser<UncheckItemCommand> {
     @Override
     public UncheckItemCommand parse(String userInput) throws ParseException {
         try {
@@ -20,7 +20,8 @@ public class UncheckItemParser implements Parser<UncheckItemCommand>{
             UncheckItemDescriptor uncheckItemDescriptor = new UncheckItemDescriptor();
             return new UncheckItemCommand(index, uncheckItemDescriptor);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UncheckItemCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    UncheckItemCommand.MESSAGE_USAGE), pe);
         }
     }
 }
