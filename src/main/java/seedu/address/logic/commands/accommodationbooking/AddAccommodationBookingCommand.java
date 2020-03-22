@@ -25,7 +25,7 @@ public class AddAccommodationBookingCommand extends Command {
             + PREFIX_ACCOMMODATION_NAME + "NAME "
             + PREFIX_ACCOMMODATION_LOCATION + "LOCATION "
             + PREFIX_ACCOMMODATION_START_DAY + "START_DAY "
-            + PREFIX_ACCOMMODATION_END_DAY + "ADDRESS "
+            + PREFIX_ACCOMMODATION_END_DAY + "END_DAY "
             + "[" + PREFIX_ACCOMMODATION_REMARK + "REMARK]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ACCOMMODATION_NAME + "JW Marriott Hotel "
