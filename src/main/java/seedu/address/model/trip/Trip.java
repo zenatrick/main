@@ -26,7 +26,7 @@ public class Trip {
         this.title = title;
         this.startDay = start;
         this.endDay = end;
-        this.scheduler = new Scheduler();
+        this.scheduler = new Scheduler(); //replaced with stubed
         this.budget = budget;
         long difference = endDay.getTime() - startDay.getTime();
         this.duration = (difference / (1000 * 60 * 60 * 24));

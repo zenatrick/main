@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Trip's name in the application.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
  */
 public class TripTitle {
 
@@ -27,14 +27,14 @@ public class TripTitle {
      */
     public TripTitle(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTitle(name), MESSAGE_CONSTRAINTS);
         title = name;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidTitle(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
