@@ -20,6 +20,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.accommodationbooking.AddAccommodationBookingCommand;
 import seedu.address.logic.commands.accommodationbooking.ClearAccommodationBookingCommand;
 import seedu.address.logic.commands.accommodationbooking.DeleteAccommodationBookingCommand;
+import seedu.address.logic.commands.accommodationbooking.EditAccommodationBookingCommand;
 import seedu.address.logic.commands.activity.AddActivityCommand;
 import seedu.address.logic.commands.activity.ClearActivityCommand;
 import seedu.address.logic.commands.activity.DeleteActivityCommand;
@@ -34,6 +35,7 @@ import seedu.address.logic.commands.packinglist.DeleteItemCommand;
 import seedu.address.logic.commands.packinglist.EditItemCommand;
 import seedu.address.logic.parser.accommodationbooking.AddAccommodationBookingCommandParser;
 import seedu.address.logic.parser.accommodationbooking.DeleteAccommodationBookingCommandParser;
+import seedu.address.logic.parser.accommodationbooking.EditAccommodationBookingCommandParser;
 import seedu.address.logic.parser.activity.AddActivityParser;
 import seedu.address.logic.parser.activity.DeleteActivityParser;
 import seedu.address.logic.parser.activity.EditActivityParser;
@@ -131,6 +133,15 @@ public class AddressBookParser {
         case AddActivityCommand.COMMAND_WORD:
             return new AddActivityParser().parse(arguments);
 
+        case DeleteActivityCommand.COMMAND_WORD:
+            return new DeleteActivityParser().parse(arguments);
+
+        case ClearActivityCommand.COMMAND_WORD:
+            return new ClearActivityCommand();
+
+        case EditActivityCommand.COMMAND_WORD:
+            return new EditActivityParser().parse(arguments);
+
         case AddAccommodationBookingCommand.COMMAND_WORD:
             return new AddAccommodationBookingCommandParser().parse(arguments);
 
@@ -140,14 +151,9 @@ public class AddressBookParser {
         case DeleteAccommodationBookingCommand.COMMAND_WORD:
             return new DeleteAccommodationBookingCommandParser().parse(arguments);
 
-        case DeleteActivityCommand.COMMAND_WORD:
-            return new DeleteActivityParser().parse(arguments);
+        case EditAccommodationBookingCommand.COMMAND_WORD:
+            return new EditAccommodationBookingCommandParser().parse(arguments);
 
-        case ClearActivityCommand.COMMAND_WORD:
-            return new ClearActivityCommand();
-
-        case EditActivityCommand.COMMAND_WORD:
-            return new EditActivityParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

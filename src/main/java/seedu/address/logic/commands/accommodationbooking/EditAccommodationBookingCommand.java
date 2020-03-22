@@ -77,11 +77,11 @@ public class EditAccommodationBookingCommand extends Command {
         }
 
         AccommodationBooking accommodationBookingToEdit = lastShownList.get(index.getZeroBased());
-        AccommodationBooking editedAccommodationBooking= createEditedAccommodationBooking(accommodationBookingToEdit,
+        AccommodationBooking editedAccommodationBooking = createEditedAccommodationBooking(accommodationBookingToEdit,
                 editAccommodationBookingDescriptor);
 
-        if (!accommodationBookingToEdit.isSame(editedAccommodationBooking) &&
-                model.hasAccommodationBooking(editedAccommodationBooking)) {
+        if (!accommodationBookingToEdit.isSame(editedAccommodationBooking)
+                && model.hasAccommodationBooking(editedAccommodationBooking)) {
             throw new CommandException(MESSAGE_DUPLICATE_ACCOMMODATION_BOOKING);
         }
 
@@ -103,7 +103,7 @@ public class EditAccommodationBookingCommand extends Command {
                 .orElse(accommodationBookingToEdit.getAccommodationName());
         Location updatedLocation = editAccommodationBookingDescriptor.getLocation().orElse(accommodationBookingToEdit
                 .getLocation());
-        Day updatedStartDay= editAccommodationBookingDescriptor.getStartDay().orElse(accommodationBookingToEdit
+        Day updatedStartDay = editAccommodationBookingDescriptor.getStartDay().orElse(accommodationBookingToEdit
                 .getStartDay());
         Day updatedEndDay = editAccommodationBookingDescriptor.getEndDay().orElse(accommodationBookingToEdit
                 .getEndDay());
