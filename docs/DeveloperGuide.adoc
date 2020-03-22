@@ -301,7 +301,9 @@ After the creation of the `AddTransportBookingCommand` object, the `LogicManager
 
 The following steps describes the execution of the `AddTransportBookingCommand`:
 
-1.
+1.	In `Model`, the `AddTransportBookingCommand` checks the current transport booking list for duplicates before adding the new object into the transport booking list
+2. A `CommandResult` object which consists of a `MESSAGE_SUCCESS` is sent back to `LogicManager` if there is a successful addition of the transport booking into the transport booking list
+3.	After receiving the `CommandResult` from `AddTransportBookingCommand`, `LogicManager` will return the `CommandResult` back to “MainApp” where the updated transport booking list is shown.
 
 ==== Design Consideration
 
@@ -339,7 +341,9 @@ After the creation of the `AddAccommodationBookingCommand` object, the `LogicMan
 
 The following steps describes the execution of the `AddAccommodationBookingCommand`:
 
-1.
+1.	In `Model`, the `AddAccommodationBookingCommand` checks the current accommodation booking list for duplicates before adding the new object into the accommodation booking list
+2. A `CommandResult` object which consists of a `MESSAGE_SUCCESS` is sent back to `LogicManager` if there is a successful addition of the accommodation booking into the accommodation booking list
+3.	After receiving the `CommandResult` from `AddAccommodationBookingCommand`, `LogicManager` will return the `CommandResult` back to “MainApp” where the updated accommodation booking list is shown.
 
 ==== Design Consideration
 
