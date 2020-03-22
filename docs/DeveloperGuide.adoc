@@ -224,6 +224,63 @@ Pros:
 
 Easy to implement and understand. All command calls is similar to other commands in ET.
 
+
+// tag::TripManagement[]
+=== Trip Management feature
+*_E.T._* only allow the user to manage one trip at a time and is necessary to be used first before other commands are available. This is done using the `settrip` command which requires the user to specify the `title` of the trip, the `budget` of the trip and the `start date` and `end date` of the entire trip.
+For example, `settrip title/cheese land budget/2000 startdate/20-09-20 enddate/28-09-20` means that the trip with the title `cheese land` will be set with a budget of `2000` dollars and a duration of 8 days between `20-09-20' to `28-09-20`.
+
+
+==== Rationale
+The Trip Manager feature is the main driving feature that allows the users to set their trip schedule, budget as well
+as the duration of the trip.
+The Trip manager oversees the feature schedule and is essential to be set first before the user is allow to access any other features within the application. This is for the application to ensure that user must have a trip in mind before being allowed to plan for the trip.
+
+==== Current Implementation
+The keywords from the command given by user is parsed using `SetTripCommandParser` which converts the string
+variable of the `startDate` and `endDate` into a java `Date` object, the `title` into a `Title` object while the `budget` is converted into `Budget` objects.
+These objects are used to create the `SetTripCommand` object that can be execution to create the trip. Execution of this object would hence enable other features within the application.
+
+The sequence diagram below shows the creation of the `SetTripCommand` object:
+
+.Sequence diagram that describes the creation of the `SetTripCommand` from the input user command `settrip title/Hogwarts budget/100 startday/29-09-20 endday/03-10-20`.
+image::developer-guide/schedule-feature/ScheduleActivityCommandCreation.png[]
+
+After the creation of the `SetTripCommand` object, the `LogicManager` will proceed to call the `execute()` method of `SetTripCommand`.
+
+The following steps describes the execution of the `SetTripCommand`:
+
+1. The `Schedule` object, `Budget` object, `startDate` and `endDate` is passed into the `createTrip()` method of `Model` and parse into a `Trip` object.
+2. A new `Scheduler` will be created while `Budget` object, `startDate` and `endDate` object given by the `Trip object`  .
+3. The `trip` object will calculate and initialise the `duration` of the trip using the given `startDate` and `endDate`.
+4. `Trip` would enable access to other commands within application.
+
+The sequence diagram below shows the the execution of `ScheduleActivityCommand`:
+
+.Sequence diagram that describes the execution of ScheduleActivityCommand.
+image::developer-guide/schedule-feature/ScheduleActivityCommandExecution.png[Schedule Activity Command Execution]
+
+==== Design Consideration
+
+===== Aspect: Trip is isolated from any list manager
+
+* **Current Choice:** Trip is isolated from all list managing
+** Pros: Better user experience. Single Responsibility: only handles objects necessary for a `trip` to exist
+and be added into the schedule.
+** Cons: Complicated to implement and more likely to result in bugs.
+
+===== Aspect: Creation of trip is required before use of any other commands
+
+* **Current Choice:** A trip must be created before use of any other commands
+** Pros: Ensures that users cannot implement any activity or schedule without creation of an activity.
+
+===== Aspect: Creation of trip is required before use of any other commands
+
+* **Current Choice:** A trip must be created before use of any other commands
+** Pros: Ensures that users cannot implement any activity or schedule without creation of an activity.
+
+// end::Trip Management[]
+
 // tag::scheduleactivity[]
 === Schedule feature
 *_E.T._* allows the user to schedule an activity from the activity list to a specified time of a day.
@@ -459,64 +516,6 @@ The sequence diagram below shows the the execution of `AddItemCommand`:
 
 .Sequence diagram that describes the execution of AddItemCommand.
 image::developer-guide/schedule-feature/AddItemCommandExecution.png[Schedule Activity Command Execution]
-
-// tag::TripManagement[]
-=== Trip Management feature
-*_E.T._* only allow the user to manage one trip at a time and is necessary to be used first before other commands are available. This is done using the `settrip` command which requires the user to specify the `title` of the trip, the `budget` of the trip and the `start date` and `end date` of the entire trip.
-For example, `settrip title/cheese land budget/2000 startdate/20-09-20 enddate/28-09-20` means that the trip with the title `cheese land` will be set with a budget of `2000` dollars and a duration of 8 days between `20-09-20' to `28-09-20`.
-
-
-==== Rationale
-The Trip Manager feature is the main driving feature that allows the users to set their trip schedule, budget as well
-as the duration of the trip.
-The Trip manager oversees the feature schedule and is essential to be set first before the user is allow to access any other features within the application. This is for the application to ensure that user must have a trip in mind before being allowed to plan for the trip.
-
-==== Current Implementation
-The keywords from the command given by user is parsed using `SetTripCommandParser` which converts the string
-variable of the `startDate` and `endDate` into a java `Date` object, the `title` into a `Title` object while the `budget` is converted into `Budget` objects.
-These objects are used to create the `SetTripCommand` object that can be execution to create the trip. Execution of this object would hence enable other features within the application.
-
-The sequence diagram below shows the creation of the `SetTripCommand` object:
-
-.Sequence diagram that describes the creation of the `SetTripCommand` from the input user command `settrip title/Hogwarts budget/100 startday/29-09-20 endday/03-10-20`.
-image::developer-guide/schedule-feature/ScheduleActivityCommandCreation.png[]
-
-After the creation of the `SetTripCommand` object, the `LogicManager` will proceed to call the `execute()` method of `SetTripCommand`.
-
-The following steps describes the execution of the `SetTripCommand`:
-
-1. The `Schedule` object, `Budget` object, `startDate` and `endDate` is passed into the `createTrip()` method of `Model` and parse into a `Trip` object.
-2. A new `Scheduler` will be created while `Budget` object, `startDate` and `endDate` object given by the `Trip object`  .
-3. The `trip` object will calculate and initialise the `duration` of the trip using the given `startDate` and `endDate`.
-4. `Trip` would enable access to other commands within application.
-
-The sequence diagram below shows the the execution of `ScheduleActivityCommand`:
-
-.Sequence diagram that describes the execution of ScheduleActivityCommand.
-image::developer-guide/schedule-feature/ScheduleActivityCommandExecution.png[Schedule Activity Command Execution]
-
-==== Design Consideration
-
-===== Aspect: Trip is isolated from any list manager
-
-* **Current Choice:** Trip is isolated from all list managing
-** Pros: Better user experience. Single Responsibility: only handles objects necessary for a `trip` to exist
-and be added into the schedule.
-** Cons: Complicated to implement and more likely to result in bugs.
-
-===== Aspect: Creation of trip is required before use of any other commands
-
-* **Current Choice:** A trip must be created before use of any other commands
-** Pros: Ensures that users cannot implement any activity or schedule without creation of an activity.
-
-===== Aspect: Creation of trip is required before use of any other commands
-
-* **Current Choice:** A trip must be created before use of any other commands
-** Pros: Ensures that users cannot implement any activity or schedule without creation of an activity.
-
-// end::Trip Management[]
-
-
 // tag::undoredo[]
 
 === [Proposed] Undo/Redo feature
