@@ -2,7 +2,6 @@ package seedu.address.model.listmanagers;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAccommodations.ACCOMMODATION_BOOKING_HOSTEL;
 import static seedu.address.testutil.TypicalAccommodations.ACCOMMODATION_BOOKING_HOTEL;
 import static seedu.address.testutil.TypicalAccommodations.getTypicalAccommodationManager;
 
@@ -49,7 +48,7 @@ class AccommodationBookingManagerTest {
     }
 
     @Test
-    public void hasAccommodationBookingNullAccommodationBooking_throwsNullPointerException() {
+    public void hasAccommodationBookingNullAccommodationBookingThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> accommodationBookingManager
                 .hasAccommodationBooking(null));
     }
