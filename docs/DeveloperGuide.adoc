@@ -224,7 +224,6 @@ Pros:
 
 Easy to implement and understand. All command calls is similar to other commands in ET.
 
-
 // tag::TripManagement[]
 === Trip Management feature
 *_E.T._* only allow the user to manage one trip at a time and is necessary to be used first before other commands are available. This is done using the `settrip` command which requires the user to specify the `title` of the trip, the `budget` of the trip and the `start date` and `end date` of the entire trip.
@@ -282,7 +281,7 @@ and be added into the schedule.
 // end::Trip Management[]
 
 // tag::scheduleactivity[]
-=== Schedule feature
+==== Schedule feature
 *_E.T._* allows the user to schedule an activity from the activity list to a specified time of a day.
 This is done using the `schedule` command which requires the user to specify the `activity index` of an activity from
 the displayed activity list, the `day number` of the trip and the `start time` of the activity to be scheduled. For
@@ -416,7 +415,6 @@ The following steps describes the execution of the `AddAccommodationBookingComma
 // end::accommodationbooking[]
 
 // tag::activity[]
-
 === Activity Manager
 *_E.T._* allows the user to plan for their `activity` for a trip. The activity manager handles everything to do with manipulating of activities.
 
@@ -478,106 +476,89 @@ image::developer-guide/activity/DeleteActivityCommandExecution.png[Delete Activi
 ** Cons: {kiv}
 // end::activity[]
 
-// tag::trip[]
-// end::trip[]
-
 // tag::packinglist[]
+==== Packing List feature
+
+*_E.T._* allows the user to create a packing list. The packing list manager handles everything to do with manipulating of packing list items.
+
+This `additem` command requires the user to include the `item` name of an item, the `quantity` of the item , and the `category` of the item.
+
+==== Rationale
+The packing list feature is an important feature that allows the users to plan and pack for their trip. It ensures that the user did not forget to pack anything for their trip, providing convenience.
+
+==== Current Implementation
+
+The keywords from the command given by the user is parsed using `AddItemCommandParser` which converts the string variable `item name` into an `ItemName` object, `quantity` into a `Quantity` object, as well as `category` into a `ItemCategory` object.
+These objects are used to create the `AddItemCommand` object that will execute to create a packing list item.
+
+The sequence diagram below shows the creation of the `AddItemCommand` object:
+
+[KIV]
+Figure x.x: Sequence diagram of a Add Item command.
+
+After the creation of the `AddItemCommand` object, the `LogicManager` will proceed to call the `execute()` method of `AddItemCommand`.
+
+The following steps describes the execution of the `AddItemCommand`:
+
+1.	In `Model`, the `AddItemCommand` checks the current packing list for duplicates before adding the new object into the packing list
+2. A `CommandResult` object which consists of a `MESSAGE_SUCCESS` is sent back to `LogicManager` if there is a successful addition of the item into the packing list
+3.	After receiving the `CommandResult` from `AddItemCommand`, `LogicManager` will return the `CommandResult` back to “MainApp” where the updated packing list is shown
+
+==== Design Consideration
+
+===== Aspect:
+
+* **Current Choice:**
+** Pros:
+** Cons:
+
+* **Alternative:**
+** Pros:
+** Cons:
 // end::packinglist[]
 
 // tag::fixedexpense[]
+==== Fixed expense feature
+
+*_E.T._* allows the user to create a fixed expense. The fixed expense manager handles everything to do with manipulating of fixed expenses.
+
+This `addexpense` command requires the user to include the `amount` of the fixed expense, the `description` of the fixed expense , the `category` of the fixed expense, as well as the optional `amountSGD` and `amountOTHR`
+
+==== Rationale
+The fixed expense feature is an important feature that allows the users to plan financially for their trip. It allows the user keeps track of the amount spent on the big ticket items, such as plane tickets and accommodation bookings.
+
+==== Current Implementation
+
+The keywords from the command given by the user is parsed using `AddFixedExpenseCommandParser` which converts the string variable `amount` into an `Amount` object, `description` into a `Description` object, as well as `category` into a `Category` object.
+These objects are used to create the `AddFixedExpenseCommand` object that will execute to create a fixed expense.
+
+The sequence diagram below shows the creation of the `AddFixedExpenseCommand` object:
+
+[KIV]
+Figure x.x: Sequence diagram of a Add Fixed Expense command.
+
+After the creation of the `AddFixedExpenseCommand` object, the `LogicManager` will proceed to call the `execute()` method of `AddFixedExpenseCommand`.
+
+The following steps describes the execution of the `AddFixedExpenseCommand`:
+
+1.	In `Model`, the `AddFixedExpenseCommand` checks the current fixed expense for duplicates before adding the new object into the fixed expense list
+2. A `CommandResult` object which consists of a `MESSAGE_SUCCESS` is sent back to `LogicManager` if there is a successful addition of the fixed expense into the fixed expense list
+3.	After receiving the `CommandResult` from `AddFixedExpenseCommand`, `LogicManager` will return the `CommandResult` back to “MainApp” where the updated fixed expense list is shown
+
+==== Design Consideration
+
+===== Aspect:
+
+* **Current Choice:**
+** Pros:
+** Cons:
+
+* **Alternative:**
+** Pros:
+** Cons:
 // end::fixedexpense[]
 
-// tag::packinglistmanager[]
-=== Packing List Manager
-
-*_E.T._* allows the user to create a packing list. The packing list allows the user to create new packing list items,
-edit, delete, check and uncheck existing items.
-
-List of commands that helps with packing list management:
-
-* `additem item/ITEM quantity/QUANTITY category/CATEGORY`  -- Creates and loads a new packing list item with desired name, quantity and category.
-* `deleteitem index/INDEX`  -- Deletes packing list item using desired index
-* `edititem index/INDEX [item/ITEM] [quantity/QUANTITY] [category/CATEGORY]` -- Edits a packing list item with desired index
-* `checkitem index/INDEX` -- Marks a packing list with desired index as packed
-* `uncheckitem index/INDEX` -- Marks a packing list with desired index as unpacked
-
-==== Rationale
-The packing list feature is an important feature that allows the users to plan and pack for their trip.
-It ensures that the user did not forget to pack anything for their trip, providing convenience and a peace of mind.
-
-==== Current Implementation
-The keywords from the command given by user is parsed using `AddItemParser` which converts the string
-variable of the `item` into a java `ITEM` object, the string variable of the `quantity` into a java `QUANTITY` object, and the string
-variable of the `category` into a java `CATEGORY` object.
-These objects are used to create the `AddItemCommand` object that can be execution to create a packing list item.
-
-The sequence diagram below shows the creation of the `AddItemCommand` object:
-
-.Sequence diagram that describes the creation of the `AddItemCommand` from the input user command `schedule 1 day/2 starttime/13:00`.
-image::developer-guide/schedule-feature/ScheduleActivityCommandCreation.png[]
-
-After the creation of the `AddItemCommand` object, the `LogicManager` will proceed to call the `execute()` method of `AddIitemCommand`.
-
-The following steps describes the execution of the `AddItemCommand`:
-
-1. `Model` retrieves the packing list from the `UniqueList` that stores `PackingListItem` objects.
-2. The `activityIndex` is used to obtain the target `Activity` from the activity list.
-3. The `Activity` object, `dayIndex` and `startTime` is passed into the `AddItem()` method of `Model`.
-4. `Activity` is converted to a `Schedulee` object using the `startTime` from the `AddItemCommand`, the `title` and `duration` from the target `Activity`.
-5. The `Schedulee` object is added to the target day's `DaySchedule`.
-6. The list of `Schedulee` is sorted according to the `startTime`.
-
-The sequence diagram below shows the the execution of `AddItemCommand`:
-
-.Sequence diagram that describes the execution of AddItemCommand.
-image::developer-guide/schedule-feature/AddItemCommandExecution.png[Schedule Activity Command Execution]
-
-// tag::packinglistmanager[]
-=== Packing List Manager
-
-*_E.T._* allows the user to create a packing list. The packing list allows the user to create new packing list items,
-edit, delete, check and uncheck existing items.
-
-List of commands that helps with packing list management:
-
-* `additem item/ITEM quantity/QUANTITY category/CATEGORY`  -- Creates and loads a new packing list item with desired name, quantity and category.
-* `deleteitem index/INDEX`  -- Deletes packing list item using desired index
-* `edititem index/INDEX [item/ITEM] [quantity/QUANTITY] [category/CATEGORY]` -- Edits a packing list item with desired index
-* `checkitem index/INDEX` -- Marks a packing list with desired index as packed
-* `uncheckitem index/INDEX` -- Marks a packing list with desired index as unpacked
-
-==== Rationale
-The packing list feature is an important feature that allows the users to plan and pack for their trip.
-It ensures that the user did not forget to pack anything for their trip, providing convenience and a peace of mind.
-
-==== Current Implementation
-The keywords from the command given by user is parsed using `AddItemParser` which converts the string
-variable of the `item` into a java `ITEM` object, the string variable of the `quantity` into a java `QUANTITY` object, and the string
-variable of the `category` into a java `CATEGORY` object.
-These objects are used to create the `AddItemCommand` object that can be execution to create a packing list item.
-
-The sequence diagram below shows the creation of the `AddItemCommand` object:
-
-.Sequence diagram that describes the creation of the `AddItemCommand` from the input user command `schedule 1 day/2 starttime/13:00`.
-image::developer-guide/schedule-feature/ScheduleActivityCommandCreation.png[]
-
-After the creation of the `AddItemCommand` object, the `LogicManager` will proceed to call the `execute()` method of `AddIitemCommand`.
-
-The following steps describes the execution of the `AddItemCommand`:
-
-1. `Model` retrieves the packing list from the `UniqueList` that stores `PackingListItem` objects.
-2. The `activityIndex` is used to obtain the target `Activity` from the activity list.
-3. The `Activity` object, `dayIndex` and `startTime` is passed into the `AddItem()` method of `Model`.
-4. `Activity` is converted to a `Schedulee` object using the `startTime` from the `AddItemCommand`, the `title` and `duration` from the target `Activity`.
-5. The `Schedulee` object is added to the target day's `DaySchedule`.
-6. The list of `Schedulee` is sorted according to the `startTime`.
-
-The sequence diagram below shows the the execution of `AddItemCommand`:
-
-.Sequence diagram that describes the execution of AddItemCommand.
-image::developer-guide/schedule-feature/AddItemCommandExecution.png[Schedule Activity Command Execution]
 // tag::undoredo[]
-
 === [Proposed] Undo/Redo feature
 ==== Proposed Implementation
 
