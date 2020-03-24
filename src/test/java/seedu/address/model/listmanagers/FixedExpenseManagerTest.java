@@ -32,7 +32,7 @@ class FixedExpenseManagerTest {
 
     @Test
     public void resetDataNullThrowsNullPointerException() {
-        assertThrows(NullPointerException.class, ()-> fixedExpenseManager.resetData(null));
+        assertThrows(NullPointerException.class, () -> fixedExpenseManager.resetData(null));
     }
 
     @Test
@@ -46,7 +46,7 @@ class FixedExpenseManagerTest {
     public void resetDataWithDuplicateFixedExpenseThrowsDuplicateElementException() {
         List<FixedExpense> newFixedExpense = Arrays.asList(FIXED_EXPENSE_PLANE, FIXED_EXPENSE_PLANE);
         FixedExpenseManagerStub newData = new FixedExpenseManagerStub(newFixedExpense);
-        assertThrows(DuplicateElementException.class, ()-> fixedExpenseManager.resetData(newData));
+        assertThrows(DuplicateElementException.class, () -> fixedExpenseManager.resetData(newData));
     }
 
     @Test
@@ -73,7 +73,7 @@ class FixedExpenseManagerTest {
     }
 
     /**
-     * A stub ReadOnlyAccommodationBookingManager whose accommodation list can violate interface constraints.
+     * A stub ReadOnlyFixedExpenseManager whose accommodation list can violate interface constraints.
      */
     private static class FixedExpenseManagerStub implements ReadOnlyFixedExpenseManager {
         private final ObservableList<FixedExpense> fixedExpenses =
@@ -88,7 +88,6 @@ class FixedExpenseManagerTest {
             return fixedExpenses;
         }
     }
-
 
 
 }
