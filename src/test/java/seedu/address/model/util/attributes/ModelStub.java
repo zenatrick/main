@@ -20,6 +20,7 @@ import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
 import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 import seedu.address.model.listmanagers.transportbooking.TransportBooking;
 import seedu.address.model.person.Person;
+import seedu.address.model.trip.Trip;
 
 /**
  * A default model stub that have all of the methods failing.
@@ -298,6 +299,21 @@ public class ModelStub implements Model {
 
     @Override
     public void updateFilteredAccommodationBookingList(Predicate<AccommodationBooking> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasTrip() {
+        return false;
+    }
+
+    @Override
+    public void setTrip(Trip edited) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteTrip() {
         throw new AssertionError("This method should not be called.");
     }
 }

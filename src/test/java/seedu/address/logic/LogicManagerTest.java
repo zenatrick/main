@@ -26,6 +26,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.trip.TripManager;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -34,6 +35,7 @@ import seedu.address.storage.activity.JsonActivityManagerStorage;
 import seedu.address.storage.fixedexpense.JsonFixedExpenseStorage;
 import seedu.address.storage.packinglist.JsonPackingListStorage;
 import seedu.address.storage.transportbooking.JsonTransportBookingStorage;
+import seedu.address.storage.trip.JsonTripStorage;
 import seedu.address.testutil.PersonBuilder;
 
 public class LogicManagerTest {
@@ -62,13 +64,14 @@ public class LogicManagerTest {
         JsonAccommodationBookingStorage accommodationBookingStorage =
                 new JsonAccommodationBookingStorage(temporaryFolder
                 .resolve("accommodationbooking.json"));
+        JsonTripStorage tripStorage = new JsonTripStorage();
 
         StorageManager storage = new StorageManager(addressBookStorage,
                 transportBookingStorage,
                 fixedExpenseStorage,
                 activityManagerStorage,
                 accommodationBookingStorage,
-                packingListStorage,
+                packingListStorage, tripStorage,
                 userPrefsStorage);
 
         logic = new LogicManager(model, storage);
@@ -110,12 +113,13 @@ public class LogicManagerTest {
                 new JsonAccommodationBookingStorage(temporaryFolder.resolve("ioExceptionAccommodationBooking.json"));
         JsonPackingListStorage packingListStorage =
                 new JsonPackingListStorage(temporaryFolder.resolve("ioPackingListStorage.json"));
+        JsonTripStorage tripStorage = new JsonTripStorage();
         StorageManager storage = new StorageManager(addressBookStorage,
                 transportBookingStorage,
                 fixedExpenseStorage,
                 activityManagerStorage,
                 accommodationBookingStorage,
-                packingListStorage,
+                packingListStorage, tripStorage,
                 userPrefsStorage);
 
         logic = new LogicManager(model, storage);
@@ -178,7 +182,7 @@ public class LogicManagerTest {
         Model expectedModel = new ModelManager(model.getAddressBook(),
                 model.getTransportBookingManager(), model.getFixedExpenseManager(),
                 model.getPackingListManager(), model.getActivityManager(),
-                model.getAccommodationBookingManager(), model.getUserPrefs());
+                model.getAccommodationBookingManager(), new TripManager(), model.getUserPrefs());
 
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }

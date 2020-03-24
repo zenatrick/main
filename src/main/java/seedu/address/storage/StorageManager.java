@@ -15,11 +15,13 @@ import seedu.address.model.listmanagers.ReadOnlyPackingListManager;
 import seedu.address.model.listmanagers.ReadOnlyTransportBookingManager;
 import seedu.address.model.listmanagers.ReadOnlyUserPrefs;
 import seedu.address.model.listmanagers.UserPrefs;
+import seedu.address.model.trip.ReadOnlyTripManager;
 import seedu.address.storage.accommodationbooking.AccommodationBookingStorage;
 import seedu.address.storage.activity.ActivityManagerStorage;
 import seedu.address.storage.fixedexpense.FixedExpenseStorage;
 import seedu.address.storage.packinglist.PackingListStorage;
 import seedu.address.storage.transportbooking.TransportBookingStorage;
+import seedu.address.storage.trip.TripStorage;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -34,6 +36,7 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
     private ActivityManagerStorage activityManagerStorage;
     private PackingListStorage packingListStorage;
+    private TripStorage tripStorage;
 
     /**
      * Instantiates a new Storage manager.
@@ -51,7 +54,7 @@ public class StorageManager implements Storage {
                           FixedExpenseStorage fixedExpenseStorage,
                           ActivityManagerStorage activityManagerStorage,
                           AccommodationBookingStorage accommodationBookingStorage,
-                          PackingListStorage packingListStorage,
+                          PackingListStorage packingListStorage, TripStorage tripStorage,
                           UserPrefsStorage userPrefsStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
@@ -60,6 +63,7 @@ public class StorageManager implements Storage {
         this.activityManagerStorage = activityManagerStorage;
         this.accommodationBookingStorage = accommodationBookingStorage;
         this.packingListStorage = packingListStorage;
+        this.tripStorage = tripStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -267,5 +271,30 @@ public class StorageManager implements Storage {
     public void savePackingList(ReadOnlyPackingListManager packingList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         packingListStorage.savePackingList(packingList, filePath);
+    }
+
+    @Override
+    public Path getTripStorageFilePath() {
+        return null;
+    }
+
+    @Override
+    public Optional<ReadOnlyTripManager> readTrip() throws DataConversionException, IOException {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<ReadOnlyTripManager> readTripManager(Path filePath) throws DataConversionException, IOException {
+        return Optional.empty();
+    }
+
+    @Override
+    public void saveTrip(ReadOnlyTripManager tripManager) throws IOException {
+
+    }
+
+    @Override
+    public void saveTrip(ReadOnlyTripManager tripManager, Path filePath) throws IOException {
+
     }
 }

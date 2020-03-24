@@ -10,7 +10,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_PHONE = new Prefix("p/");
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
-    public static final Prefix PREFIX_TAG = new Prefix("t/");
+
 
     public static final Prefix PREFIX_AMOUNT = new Prefix("amount/");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("description/");
@@ -30,11 +30,17 @@ public class CliSyntax {
     public static final Prefix PREFIX_PRIORITY = new Prefix("priority/");
     public static final Prefix PREFIX_LOCATION = new Prefix("location/");
     public static final Prefix PREFIX_DURATION = new Prefix("duration/");
+    public static final Prefix PREFIX_TAG = new Prefix("t/");
 
     public static final Prefix PREFIX_ACCOMMODATION_NAME = new Prefix("name/");
     public static final Prefix PREFIX_ACCOMMODATION_LOCATION = new Prefix("loc/");
     public static final Prefix PREFIX_ACCOMMODATION_START_DAY = new Prefix("startday/");
     public static final Prefix PREFIX_ACCOMMODATION_END_DAY = new Prefix("endday/");
     public static final Prefix PREFIX_ACCOMMODATION_REMARK = new Prefix("remark/");
+
+    public static final Prefix PREFIX_TRIP_TITLE = new Prefix("remark/");
+    public static final Prefix PREFIX_TRIP_START_DATE = new Prefix("startdate/");
+    public static final Prefix PREFIX_TRIP_END_DATE = new Prefix("enddate/");
+    public static final Prefix PREFIX_TRIP_BUDGET = new Prefix("budget/");
 
 }

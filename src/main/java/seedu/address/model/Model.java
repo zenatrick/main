@@ -18,6 +18,7 @@ import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
 import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 import seedu.address.model.listmanagers.transportbooking.TransportBooking;
 import seedu.address.model.person.Person;
+import seedu.address.model.trip.Trip;
 
 /**
  * The API of the Model component.
@@ -436,5 +437,33 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredAccommodationBookingList(Predicate<AccommodationBooking> predicate);
+
+    // ========== Trip Manager ==========
+
+    /**
+     * Returns true if a trip that is the same as {@code target} exists in EzTravel.
+     *
+     * @return true if the given fixed expense already exist in the FixedExpenseManager.
+     */
+    boolean hasTrip();
+
+
+
+    /**
+     * Replaces the current trip with {@code edited}.
+     * {@code target} must exist in ez travel
+     *
+     * @param edited the given edited trip
+     */
+    void setTrip(Trip edited);
+
+
+    /**
+     * Deletes the trip
+     * The trip must exist.
+     *
+     */
+    void deleteTrip();
+
 
 }

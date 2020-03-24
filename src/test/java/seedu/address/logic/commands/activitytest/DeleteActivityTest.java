@@ -20,6 +20,7 @@ import seedu.address.model.listmanagers.FixedExpenseManager;
 import seedu.address.model.listmanagers.PackingListManager;
 import seedu.address.model.listmanagers.TransportBookingManager;
 import seedu.address.model.listmanagers.UserPrefs;
+import seedu.address.model.trip.TripManager;
 
 //import static seedu.address.logic.commands.CommandTestUtil.showActivityAtIndex;
 
@@ -33,6 +34,7 @@ public class DeleteActivityTest {
             new TransportBookingManager(), new FixedExpenseManager(), new PackingListManager(),
             new ActivityManager(),
             new AccommodationBookingManager(),
+            new TripManager(),
             new UserPrefs());
 
     //    @Test

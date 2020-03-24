@@ -30,6 +30,9 @@ import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
 import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 import seedu.address.model.listmanagers.transportbooking.TransportBooking;
 import seedu.address.model.person.Person;
+import seedu.address.model.trip.ReadOnlyTripManager;
+import seedu.address.model.trip.Trip;
+import seedu.address.model.trip.TripManager;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -44,6 +47,7 @@ public class ModelManager implements Model {
     private final ActivityManager activityManager;
     private final AccommodationBookingManager accommodationBookingManager;
     private final UserPrefs userPrefs;
+    private final TripManager tripManager;
 
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<TransportBooking> filteredTransportBookingList;
@@ -58,9 +62,11 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTransportBookingManager transportBookingManager,
                         ReadOnlyFixedExpenseManager fixedExpenseManager, ReadOnlyPackingListManager packingListManager,
                         ReadOnlyActivityManager activityManager,
-                        ReadOnlyAccommodationBookingManager accommodationBookingManager, ReadOnlyUserPrefs userPrefs) {
+                        ReadOnlyAccommodationBookingManager accommodationBookingManager,
+                        ReadOnlyTripManager tripManager, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, transportBookingManager, fixedExpenseManager,
+                packingListManager, activityManager, accommodationBookingManager, tripManager, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
@@ -70,6 +76,7 @@ public class ModelManager implements Model {
         this.packingListManager = new PackingListManager(packingListManager);
         this.activityManager = new ActivityManager(activityManager);
         this.accommodationBookingManager = new AccommodationBookingManager(accommodationBookingManager);
+        this.tripManager = new TripManager(tripManager);
         this.userPrefs = new UserPrefs(userPrefs);
 
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -83,17 +90,17 @@ public class ModelManager implements Model {
 
     public ModelManager() {
         this(new AddressBook(), new TransportBookingManager(), new FixedExpenseManager(), new PackingListManager(),
-                new ActivityManager(), new AccommodationBookingManager(), new UserPrefs());
+                new ActivityManager(), new AccommodationBookingManager(), new TripManager(), new UserPrefs());
     }
 
     // Temporary constructor
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTransportBookingManager transportBookingManager,
                         ReadOnlyFixedExpenseManager fixedExpenseManager,
                         ReadOnlyAccommodationBookingManager accommodationBookingManager,
-                        ReadOnlyPackingListManager packingListManager,
+                        ReadOnlyPackingListManager packingListManager, ReadOnlyTripManager tripManager,
                         ReadOnlyUserPrefs userPrefs) {
         this(addressBook, transportBookingManager, fixedExpenseManager, packingListManager,
-                new ActivityManager(), accommodationBookingManager, userPrefs);
+                new ActivityManager(), accommodationBookingManager, tripManager, userPrefs);
     }
 
     //=========== UserPrefs ==================================================================================
@@ -419,6 +426,23 @@ public class ModelManager implements Model {
     public void updateFilteredAccommodationBookingList(Predicate<AccommodationBooking> predicate) {
         requireNonNull(predicate);
         filteredAccommodationBookingList.setPredicate(predicate);
+    }
+
+    // --- Trip --  //
+
+    @Override
+    public boolean hasTrip() {
+        return tripManager.hasTrip();
+    }
+
+    @Override
+    public void setTrip(Trip toAdd) {
+        tripManager.setTrip(toAdd);
+    }
+
+    @Override
+    public void deleteTrip() {
+        tripManager.removeTrip();
     }
 
     @Override
