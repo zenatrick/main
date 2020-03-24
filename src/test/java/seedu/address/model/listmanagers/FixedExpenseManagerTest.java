@@ -73,7 +73,7 @@ class FixedExpenseManagerTest {
     }
 
     /**
-     * A stub ReadOnlyFixedExpenseManager whose accommodation list can violate interface constraints.
+     * A stub ReadOnlyFixedExpenseManager whose Fixed Expense list can violate interface constraints.
      */
     private static class FixedExpenseManagerStub implements ReadOnlyFixedExpenseManager {
         private final ObservableList<FixedExpense> fixedExpenses =
