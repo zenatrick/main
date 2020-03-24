@@ -1,6 +1,7 @@
 package seedu.address.model.listmanagers.accommodationbooking;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -137,9 +138,12 @@ class AccommodationBookingTest {
         AccommodationBooking identicalBooking = new AccommodationBooking(new AccommodationName("RitzCarlton"),
                 new Location("Marina Bay"), new Day(1), new Day(5), new Remark("Expensive Hotel"));
 
-        assertEquals(identicalBooking, accommodationBooking);
+        assertTrue(identicalBooking.isSame(accommodationBooking));
 
-        AccommodationBooking diffBooking
+        AccommodationBooking differentBooking = new AccommodationBooking(new AccommodationName("RitzCarlton"),
+                new Location("Marina Bay"), new Day(1), new Day(10), new Remark("Expensive Hotel"));
+
+        assertFalse(accommodationBooking.isSame(differentBooking));
 
 
     }
