@@ -4,14 +4,18 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.time.DateTime;
 import seedu.address.model.listmanagers.AccommodationBookingManager;
 import seedu.address.model.listmanagers.ActivityManager;
 import seedu.address.model.listmanagers.FixedExpenseManager;
@@ -30,9 +34,10 @@ import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
 import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 import seedu.address.model.listmanagers.transportbooking.TransportBooking;
 import seedu.address.model.person.Person;
-import seedu.address.model.trip.ReadOnlyTripManager;
+import seedu.address.model.trip.DayScheduleEntry;
 import seedu.address.model.trip.Trip;
 import seedu.address.model.trip.TripManager;
+import seedu.address.model.trip.exception.IllegalOperationException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -55,6 +60,7 @@ public class ModelManager implements Model {
     private final FilteredList<PackingListItem> filteredPackingList;
     private final FilteredList<Activity> filteredActivityList;
     private final FilteredList<AccommodationBooking> filteredAccommodationBookingList;
+    private final List<FilteredList<DayScheduleEntry>> filteredSchduleEntryLists;
 
     /**
      * Initializes a ModelManager with the given managers and userPrefs.
@@ -63,10 +69,10 @@ public class ModelManager implements Model {
                         ReadOnlyFixedExpenseManager fixedExpenseManager, ReadOnlyPackingListManager packingListManager,
                         ReadOnlyActivityManager activityManager,
                         ReadOnlyAccommodationBookingManager accommodationBookingManager,
-                        ReadOnlyTripManager tripManager, ReadOnlyUserPrefs userPrefs) {
+                        TripManager tripManager, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, transportBookingManager, fixedExpenseManager,
-                packingListManager, activityManager, accommodationBookingManager, userPrefs);
+                packingListManager, activityManager, accommodationBookingManager, tripManager, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
@@ -76,7 +82,7 @@ public class ModelManager implements Model {
         this.packingListManager = new PackingListManager(packingListManager);
         this.activityManager = new ActivityManager(activityManager);
         this.accommodationBookingManager = new AccommodationBookingManager(accommodationBookingManager);
-        this.tripManager = new TripManager();
+        this.tripManager = new TripManager(tripManager);
         this.userPrefs = new UserPrefs(userPrefs);
 
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -86,21 +92,12 @@ public class ModelManager implements Model {
         filteredActivityList = new FilteredList<>(this.activityManager.getActivityList());
         filteredAccommodationBookingList = new FilteredList<>((this.accommodationBookingManager
                 .getAccommodationBookingList()));
+        filteredSchduleEntryLists = new ArrayList<>();
     }
 
     public ModelManager() {
         this(new AddressBook(), new TransportBookingManager(), new FixedExpenseManager(), new PackingListManager(),
                 new ActivityManager(), new AccommodationBookingManager(), new TripManager(), new UserPrefs());
-    }
-
-    // Temporary constructor
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTransportBookingManager transportBookingManager,
-                        ReadOnlyFixedExpenseManager fixedExpenseManager,
-                        ReadOnlyAccommodationBookingManager accommodationBookingManager,
-                        ReadOnlyPackingListManager packingListManager, ReadOnlyTripManager tripManager,
-                        ReadOnlyUserPrefs userPrefs) {
-        this(addressBook, transportBookingManager, fixedExpenseManager, packingListManager,
-                new ActivityManager(), accommodationBookingManager, tripManager, userPrefs);
     }
 
     //=========== UserPrefs ==================================================================================
@@ -428,7 +425,7 @@ public class ModelManager implements Model {
         filteredAccommodationBookingList.setPredicate(predicate);
     }
 
-    // --- Trip --  //
+    // ========== TripManager ==========
 
     @Override
     public boolean hasTrip() {
@@ -436,14 +433,59 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setTrip(Trip toAdd) {
-        tripManager.setTrip(toAdd);
+    public void setTrip(Trip trip) {
+        tripManager.setTrip(trip);
+        filteredSchduleEntryLists.addAll(
+                tripManager.getDayScheduleEntryLists().stream().map(FilteredList::new).collect(Collectors.toList()));
     }
 
     @Override
     public void deleteTrip() {
-        tripManager.removeTrip();
+        if (!hasTrip()) {
+            throw new IllegalOperationException("Cannot delete trip before setting a trip");
+        }
+        tripManager.resetData(new TripManager());
+        transportBookingManager.resetData(new TransportBookingManager());
+        accommodationBookingManager.resetData(new AccommodationBookingManager());
+        packingListManager.resetData(new PackingListManager());
+        activityManager.resetData(new ActivityManager());
+        fixedExpenseManager.resetData(new FixedExpenseManager());
     }
+
+    @Override
+    public void scheduleActivity(int dayIndex, DateTime startTime, Activity toSchedule) {
+        tripManager.scheduleActivity(dayIndex, startTime, toSchedule);
+    }
+
+    @Override
+    public void unscheduleActivity(int dayIndex, DayScheduleEntry toDelete) {
+        tripManager.unscheduleActivity(dayIndex, toDelete);
+    }
+
+    @Override
+    public void scheduleTransport(TransportBooking toSchedule) {
+        tripManager.scheduleTransportBooking(toSchedule);
+    }
+
+    @Override
+    public void unscheduleTransport(DayScheduleEntry toDelete) {
+        tripManager.unscheduleTransportBooking(toDelete);
+    }
+
+    @Override
+    public int getTripNumDays() {
+        if (!hasTrip()) {
+            throw new IllegalOperationException("Cannot get number of days before setting a trip");
+        }
+        return tripManager.getTripNumDays();
+    }
+
+    @Override
+    public ObservableList<DayScheduleEntry> getDayScheduleEntryList(int dayIndex) {
+        return filteredSchduleEntryLists.get(dayIndex);
+    }
+
+    // ========== Utils ==========
 
     @Override
     public boolean equals(Object obj) {

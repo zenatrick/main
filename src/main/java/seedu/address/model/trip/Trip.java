@@ -2,10 +2,6 @@ package seedu.address.model.trip;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 import seedu.address.commons.core.time.Date;
 import seedu.address.model.util.attributes.Title;
 
@@ -16,12 +12,11 @@ import seedu.address.model.util.attributes.Title;
  */
 public class Trip {
 
-    // Needed Fields
+    // Trip data
     private final Title title;
     private final Date startDate;
     private final Date endDate;
     private final int numDays;
-    private final List<DaySchedule> daySchedules;
     private final Budget budget;
 
     /**
@@ -34,7 +29,6 @@ public class Trip {
         this.startDate = start;
         this.endDate = end;
         numDays = start.daysUntilInclusive(end);
-        daySchedules = IntStream.range(0, numDays).mapToObj(x -> new DaySchedule()).collect(Collectors.toList());
     }
 
     public Title getTitle() {
@@ -55,10 +49,6 @@ public class Trip {
 
     public Date getEndDate() {
         return endDate;
-    }
-
-    public DaySchedule getDaySchedule(int dayIndex) {
-        return daySchedules.get(dayIndex);
     }
 
     @Override

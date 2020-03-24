@@ -63,6 +63,7 @@ public class DaySchedule implements ReadOnlyDaySchedule {
      */
     public void addScheduleEntry(DayScheduleEntry scheduleEntry) {
         scheduleEntries.add(scheduleEntry);
+        scheduleEntries.sort((x, y) -> x.getStartDateTime().compareTo(y.getStartDateTime()));
     }
 
     /**

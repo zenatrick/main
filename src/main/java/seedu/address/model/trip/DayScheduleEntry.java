@@ -6,9 +6,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 import java.util.Optional;
 
-import seedu.address.commons.core.time.Time;
+import seedu.address.commons.core.time.DateTime;
 import seedu.address.model.listmanagers.activity.Activity;
 import seedu.address.model.listmanagers.transportbooking.TransportBooking;
+import seedu.address.model.trip.exception.IllegalOperationException;
 import seedu.address.model.util.attributes.Location;
 import seedu.address.model.util.attributes.Title;
 import seedu.address.model.util.uniquelist.UniqueListElement;
@@ -18,6 +19,11 @@ import seedu.address.model.util.uniquelist.UniqueListElement;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class DayScheduleEntry implements UniqueListElement {
+
+    private static final String MESSAGE_ERROR_GET_TRANSPORT_POINTER = "Cannot get transport booking pointer of a "
+            + "non-transport type schedule entry.";
+    private static final String MESSAGE_ERROR_GET_ACTIVITY_POINTER = "Cannot get activity pointer of a non-activity "
+            + " type schedule entry.";
 
     /**
      * Represents the type of schedule entry.
@@ -30,20 +36,20 @@ public class DayScheduleEntry implements UniqueListElement {
 
     private final Type type;
     private final Title title;
-    private final Time startTime;
-    private final Time endTime;
+    private final DateTime startDateTime;
+    private final DateTime endDateTime;
     private final long durationInHours;
     private final Location location;
     private final Optional<Activity> activityPointer;
     private final Optional<TransportBooking> transportBookingPointer;
 
     private DayScheduleEntry(
-            Type type, Title title, Time startTime, Time endTime, long durationInHours, Location location,
-            Optional<Activity> activityPointer, Optional<TransportBooking> transportBookingPointer) {
+            Type type, Title title, DateTime startDateTime, DateTime endDateTime, long durationInHours,
+            Location location, Optional<Activity> activityPointer, Optional<TransportBooking> transportBookingPointer) {
         this.type = type;
         this.title = title;
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
         this.durationInHours = durationInHours;
         this.location = location;
         this.activityPointer = activityPointer;
@@ -53,9 +59,9 @@ public class DayScheduleEntry implements UniqueListElement {
     /**
      * Returns a DayScheduleEntry given an activity and a startTime.
      */
-    public static DayScheduleEntry fromActivity(Activity activity, Time startTime) {
+    public static DayScheduleEntry fromActivity(Activity activity, DateTime startTime) {
         requireAllNonNull(activity, startTime);
-        Time endTime = startTime.plusHours(activity.getDuration().value);
+        DateTime endTime = startTime.plusHours(activity.getDuration().value);
         return new DayScheduleEntry(
                 Type.ACTIVITY, activity.getTitle(), startTime, endTime, activity.getDuration().value,
                 activity.getLocation(), Optional.of(activity), Optional.empty());
@@ -66,8 +72,8 @@ public class DayScheduleEntry implements UniqueListElement {
      */
     public static DayScheduleEntry fromTransportBooking(TransportBooking transportBooking) {
         requireNonNull(transportBooking);
-        Time startTime = transportBooking.getStartDateTime().getTime();
-        Time endTime = transportBooking.getEndDateTime().getTime();
+        DateTime startTime = transportBooking.getStartDateTime();
+        DateTime endTime = transportBooking.getEndDateTime();
         long durationInHours = startTime.hoursUntilExclusive(endTime);
         return new DayScheduleEntry(Type.TRANSPORT, new Title(transportBooking.getMode().value), startTime, endTime,
                 durationInHours, transportBooking.getStartLocation(), Optional.empty(), Optional.of(transportBooking));
@@ -89,12 +95,12 @@ public class DayScheduleEntry implements UniqueListElement {
         return title;
     }
 
-    public Time getStartTime() {
-        return startTime;
+    public DateTime getStartDateTime() {
+        return startDateTime;
     }
 
-    public Time getEndTime() {
-        return endTime;
+    public DateTime getEndDateTime() {
+        return endDateTime;
     }
 
     public long getDurationInHours() {
@@ -106,12 +112,16 @@ public class DayScheduleEntry implements UniqueListElement {
     }
 
     public Activity getActivityPointer() {
-        assert isActivity();
+        if (!isActivity()) {
+            throw new IllegalOperationException(MESSAGE_ERROR_GET_ACTIVITY_POINTER);
+        }
         return activityPointer.get();
     }
 
     public TransportBooking getTransportBookingPointer() {
-        assert isTransportBooking();
+        if (!isTransportBooking()) {
+            throw new IllegalOperationException(MESSAGE_ERROR_GET_TRANSPORT_POINTER);
+        }
         return transportBookingPointer.get();
     }
 
@@ -133,8 +143,8 @@ public class DayScheduleEntry implements UniqueListElement {
         DayScheduleEntry otherEntry = (DayScheduleEntry) o;
         return type.equals(otherEntry.type)
                 && title.equals(otherEntry.title)
-                && startTime.equals(otherEntry.startTime)
-                && endTime.equals(otherEntry.endTime)
+                && startDateTime.equals(otherEntry.startDateTime)
+                && endDateTime.equals(otherEntry.endDateTime)
                 && location.equals(otherEntry.location)
                 && durationInHours == otherEntry.durationInHours
                 && activityPointer.equals(otherEntry.activityPointer)
@@ -143,7 +153,7 @@ public class DayScheduleEntry implements UniqueListElement {
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, title, startTime, endTime, durationInHours, location, activityPointer,
+        return Objects.hash(type, title, startDateTime, endDateTime, durationInHours, location, activityPointer,
                 transportBookingPointer);
     }
 }

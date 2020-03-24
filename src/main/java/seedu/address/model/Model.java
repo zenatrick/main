@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.time.DateTime;
 import seedu.address.model.listmanagers.ReadOnlyAccommodationBookingManager;
 import seedu.address.model.listmanagers.ReadOnlyActivityManager;
 import seedu.address.model.listmanagers.ReadOnlyFixedExpenseManager;
@@ -18,6 +19,7 @@ import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
 import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 import seedu.address.model.listmanagers.transportbooking.TransportBooking;
 import seedu.address.model.person.Person;
+import seedu.address.model.trip.DayScheduleEntry;
 import seedu.address.model.trip.Trip;
 
 /**
@@ -53,7 +55,6 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<AccommodationBooking> PREDICATE_SHOW_ALL_ACCOMMODATION_BOOKINGS = unused -> true;
-
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -320,6 +321,7 @@ public interface Model {
     void updateFilteredPackingList(Predicate<PackingListItem> predicate);
 
     // ========== ActivityManager ==========
+
     /**
      * Returns the activityManager
      */
@@ -329,6 +331,7 @@ public interface Model {
      * Replaces activityManagerv data with the data in {@code activityManager}.
      */
     void setActivityManager(ReadOnlyActivityManager activityManager);
+
     /**
      * Returns true if a activity that is the same as {@code target} exists in the
      * ActivityManager.
@@ -441,29 +444,38 @@ public interface Model {
     // ========== Trip Manager ==========
 
     /**
-     * Returns true if a trip that is the same as {@code target} exists in EzTravel.
+     * Returns true if a trip is already set in EzTravel.
      *
-     * @return true if the given fixed expense already exist in the FixedExpenseManager.
+     * @return true if a trip is already set.
      */
     boolean hasTrip();
 
-
-
     /**
-     * Replaces the current trip with {@code edited}.
-     * {@code target} must exist in ez travel
-     *
-     * @param edited the given edited trip
+     * Set the current trip with give {@code trip}.
      */
-    void setTrip(Trip edited);
-
+    void setTrip(Trip trip);
 
     /**
      * Deletes the trip
      * The trip must exist.
-     *
      */
     void deleteTrip();
 
+    void scheduleActivity(int dayIndex, DateTime startTime, Activity toSchedule);
 
+    void unscheduleActivity(int dayIndex, DayScheduleEntry toDelete);
+
+    void scheduleTransport(TransportBooking toSchedule);
+
+    void unscheduleTransport(DayScheduleEntry toDelete);
+
+    /**
+     * Returns the number of days set for the trip.
+     */
+    int getTripNumDays();
+
+    /**
+     * Returns an unmodifiable view of the schedule entry list of a specified day.
+     */
+    ObservableList<DayScheduleEntry> getDayScheduleEntryList(int dayIndex);
 }

@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
-import javafx.beans.value.ObservableObjectValue;
 import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.LogsCenter;
@@ -32,8 +31,7 @@ import seedu.address.model.listmanagers.ReadOnlyTransportBookingManager;
 import seedu.address.model.listmanagers.ReadOnlyUserPrefs;
 import seedu.address.model.listmanagers.TransportBookingManager;
 import seedu.address.model.listmanagers.UserPrefs;
-import seedu.address.model.trip.ReadOnlyTripManager;
-import seedu.address.model.trip.Trip;
+import seedu.address.model.trip.TripManager;
 import seedu.address.model.util.sampledata.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -154,7 +152,7 @@ public class MainApp extends Application {
         ReadOnlyActivityManager activityManager = initActivityManager(storage);
         ReadOnlyAccommodationBookingManager accommodationBookingManager = initAccommodationBookingManager(storage);
         ReadOnlyPackingListManager packingListManager = initPackingListManager(storage);
-        ReadOnlyTripManager tripManager = initTripManager(storage);
+        TripManager tripManager = initTripManager(storage);
 
         return new ModelManager(initialData, transportBookingManager, fixedExpenseManager, packingListManager,
                 activityManager, accommodationBookingManager, tripManager, userPrefs);
@@ -414,19 +412,12 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ReadOnlyManager} with the data from {@code storage}'s transport bookings.
-     * The data from the sample transport bookings will be used instead
-     * if {@code storage}'s transport booking manager is not found,
-     * or an empty transport booking manager will be used instead if errors
+     * Returns a {@code TripManager} with the data from {@code storage}'s trip.
+     * An empty transport booking manager will be used instead if errors
      * occur when reading {@code storage}'s transport booking manager.
      */
-    private ReadOnlyTripManager initTripManager(Storage storage) {
-        return new ReadOnlyTripManager() {
-            @Override
-            public ObservableObjectValue<Trip> getTrip() {
-                return null;
-            }
-        };
+    private TripManager initTripManager(Storage storage) {
+        return new TripManager();
     }
 
     @Override
