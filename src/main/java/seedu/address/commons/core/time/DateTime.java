@@ -30,7 +30,7 @@ public class DateTime {
     /**
      * Compare this date-time with another date-time.
      * <p>
-     * The comparison is primarily based on the date-time, from earliest to latest. It is "consistent with equals",
+     * The comparison is primarily based on the date-time, from earliest to latest. It is consistent with equals(),
      * as defined by Comparable.
      */
     public int compareTo(DateTime other) {
@@ -44,8 +44,12 @@ public class DateTime {
         return dateTime.format(FORMAT_STORAGE);
     }
 
+    public Time getTime() {
+        return new Time(dateTime.toLocalTime());
+    }
+
     /**
-     * Creates a new {@code DateTime} from the given properly formatted {@code dataTimeString}.
+     * Creates a new {@code DateTime} from the given properly formatted {@code dateTimeString}.
      */
     public static DateTime fromString(String dateTimeString) {
         requireNonNull(dateTimeString);
