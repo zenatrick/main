@@ -112,7 +112,7 @@ class FixedExpenseTest {
     }
 
     @Test
-    public void isSameTest() {
+    public void testisSame() {
 
         FixedExpense fixedExpense = new FixedExpense(new Amount("100"), new Description("Test"),
                 new Category("Food"));

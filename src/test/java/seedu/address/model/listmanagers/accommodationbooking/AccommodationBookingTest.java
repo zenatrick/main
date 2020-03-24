@@ -18,6 +18,13 @@ class AccommodationBookingTest {
                     new Location("Marina Bay"), new Day(1), new Day(5), new Remark("Expensive Hotel"));
 
     @Test
+    public void constructorNullThrowsNullPointerException() {
+        assertThrows(NullPointerException.class, ()-> new AccommodationBooking(
+                null, null, null, null, null));
+    }
+
+
+    @Test
     public void constructorInvalidNameThrowsIllegalArgumentException() {
         String invalidName = "";
         Integer invalidStartDay = -100;
