@@ -1,8 +1,10 @@
 package seedu.address.model.listmanagers.fixedexpense;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +17,15 @@ class FixedExpenseTest {
         String invalidCategory = "";
         assertThrows(IllegalArgumentException.class, () -> new FixedExpense(new Amount(invalidAmount),
                 new Description(invalidDescription), new Category(invalidCategory)));
+    }
+
+    @Test
+    public void constructorHasOneInvalidNameThrowsIllegalArgumentException() {
+        String invalidAmount = "";
+        String description = "Food";
+        String category = "Food item";
+        assertThrows(IllegalArgumentException.class, ()-> new FixedExpense(new Amount(invalidAmount),
+                new Description(description), new Category(category)));
     }
 
     @Test
@@ -98,5 +109,18 @@ class FixedExpenseTest {
                         + " Amount: " + fixedExpense.getAmount().toString()
                         + " Category: " + fixedExpense.getCategory().toString());
 
+    }
+
+    @Test
+    public void isSameTest() {
+
+        FixedExpense fixedExpense = new FixedExpense(new Amount("100"), new Description("Test"),
+                new Category("Food"));
+
+        FixedExpense differentFixedExpense = new FixedExpense(new Amount("100"), new Description("Test"),
+                new Category("haha"));
+
+        assertTrue(fixedExpense.isSame(fixedExpense));
+        assertFalse(fixedExpense.isSame(differentFixedExpense));
     }
 }
