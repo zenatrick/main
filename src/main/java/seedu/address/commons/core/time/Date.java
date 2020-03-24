@@ -20,12 +20,12 @@ public class Date {
 
     private static final String MESSAGE_ERROR_UNTIL = "End date must not be earlier than current date.";
 
-    private final LocalDate date;
+    protected final LocalDate date;
 
     /**
      * Date can only be created by calling {@link #fromString(String)}.
      */
-    private Date(LocalDate date) {
+    protected Date(LocalDate date) {
         this.date = date;
     }
 

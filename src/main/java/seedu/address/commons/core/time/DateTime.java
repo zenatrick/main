@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Represents a DateTime object in ET which wraps around the java.time.LocalDateTime and provides basic
@@ -48,6 +49,24 @@ public class DateTime {
         return new Time(dateTime.toLocalTime());
     }
 
+    public Date getDate() {
+        return new Date(dateTime.toLocalDate());
+    }
+
+    /**
+     * Returns a copy of this Time with the specified number of hours added.
+     */
+    public DateTime plusHours(long hours) throws IllegalArgumentException {
+        return new DateTime(dateTime.plusHours(hours));
+    }
+
+    /**
+     * Returns the number of hours from this time till the specified end {@code Time} (inclusive).
+     */
+    public long hoursUntilExclusive(DateTime endExclusive) {
+        return dateTime.until(endExclusive.dateTime, ChronoUnit.HOURS);
+    }
+
     /**
      * Creates a new {@code DateTime} from the given properly formatted {@code dateTimeString}.
      */
@@ -55,6 +74,13 @@ public class DateTime {
         requireNonNull(dateTimeString);
         checkArgument(isValidDateTime(dateTimeString), MESSAGE_CONSTRAINTS);
         return new DateTime(LocalDateTime.parse(dateTimeString, FORMAT_INPUT));
+    }
+
+    /**
+     * Creates an instance of DateTime from the given Date and Time.
+     */
+    public static DateTime of(Date date, Time time) {
+        return new DateTime(LocalDateTime.of(date.date, time.time));
     }
 
     /**

@@ -22,7 +22,7 @@ public class Time {
     private static final String MESSAGE_ERROR_ADD = "%1$d hours cannot be added to %2$s";
     private static final String MESSAGE_ERROR_UNTIL = "End time must not be earlier than current time.";
 
-    private final LocalTime time;
+    protected final LocalTime time;
 
     /**
      * Time can only be created by calling {@link #fromString(String)}.
