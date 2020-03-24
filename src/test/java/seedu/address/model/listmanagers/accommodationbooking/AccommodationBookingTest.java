@@ -29,7 +29,7 @@ class AccommodationBookingTest {
     }
 
     @Test
-    public void getName() {
+    public void getAccommodationName() {
         // Correct case
         assertEquals(new AccommodationName("RitzCarlton"),
                 new AccommodationBooking(new AccommodationName("RitzCarlton"),
@@ -86,7 +86,7 @@ class AccommodationBookingTest {
     }
 
     @Test
-    public void testEquals() {
+    public void equals() {
         AccommodationBooking identicalBooking = new AccommodationBooking(new AccommodationName("RitzCarlton"),
                 new Location("Marina Bay"), new Day(1), new Day(5), new Remark("Expensive Hotel"));
 
@@ -130,5 +130,17 @@ class AccommodationBookingTest {
 
         //Different case
         assertNotEquals(accommodationBooking.toString(), differentBooking.toString());
+    }
+
+    @Test
+    public void isSame() {
+        AccommodationBooking identicalBooking = new AccommodationBooking(new AccommodationName("RitzCarlton"),
+                new Location("Marina Bay"), new Day(1), new Day(5), new Remark("Expensive Hotel"));
+
+        assertEquals(identicalBooking, accommodationBooking);
+
+        AccommodationBooking diffBooking
+
+
     }
 }
