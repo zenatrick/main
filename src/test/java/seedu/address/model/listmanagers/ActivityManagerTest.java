@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.listmanagers.accommodationbooking.AccommodationBooking;
 import seedu.address.model.listmanagers.activity.Activity;
 import seedu.address.model.util.uniquelist.exceptions.DuplicateElementException;
 
@@ -89,5 +88,4 @@ class ActivityManagerTest {
             return activityBookings;
         }
     }
-
 }

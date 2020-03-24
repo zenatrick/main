@@ -10,9 +10,12 @@ import seedu.address.model.listmanagers.packinglistitem.ItemName;
 import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 import seedu.address.model.listmanagers.packinglistitem.Quantity;
 
+/**
+ * A utility class containing a list of {@code PackingListItem} objects to be used in tests.
+ */
 public class TypicalPackingListItem {
 
-    public static final PackingListItem PACKING_LIST_SHIRT =  new PackingListItem(
+    public static final PackingListItem PACKING_LIST_SHIRT = new PackingListItem(
             new ItemName("Tshirt"), new Quantity(7), new ItemCategory("basics"), false);
 
     public static final PackingListItem PACKING_LIST_JEANS = new PackingListItem(
@@ -21,7 +24,8 @@ public class TypicalPackingListItem {
     public static final PackingListItem PACKING_LIST_UNDERWEAR = new PackingListItem(
             new ItemName("Underwear"), new Quantity(7), new ItemCategory("essentials"), false);
 
-    private TypicalPackingListItem() {}
+    private TypicalPackingListItem() {
+    }
 
     /**
      * Returns an {@code TypicalPackingListItem} with all the typical PackingListItem
@@ -29,7 +33,7 @@ public class TypicalPackingListItem {
 
     public static PackingListManager getTypicalPackingListManager() {
         PackingListManager pm = new PackingListManager();
-        for(PackingListItem packingListItem : getTypicalPackingListItems()) {
+        for (PackingListItem packingListItem : getTypicalPackingListItems()) {
             pm.addPackingListItem(packingListItem);
         }
         return pm;
@@ -39,7 +43,6 @@ public class TypicalPackingListItem {
         return new ArrayList<>(Arrays.asList(PACKING_LIST_UNDERWEAR, PACKING_LIST_SHIRT,
                 PACKING_LIST_JEANS));
     }
-
 
 
 }

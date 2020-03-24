@@ -1,6 +1,8 @@
 package seedu.address.model.listmanagers;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAccommodations.ACCOMMODATION_BOOKING_HOTEL;
 import static seedu.address.testutil.TypicalAccommodations.getTypicalAccommodationManager;
@@ -86,7 +88,4 @@ class AccommodationBookingManagerTest {
             return accommodationBookings;
         }
     }
-
-
-
 }

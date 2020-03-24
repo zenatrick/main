@@ -10,6 +10,9 @@ import seedu.address.model.listmanagers.transportbooking.Mode;
 import seedu.address.model.listmanagers.transportbooking.TransportBooking;
 import seedu.address.model.util.attributes.Location;
 
+/**
+ * A utility class containing a list of {@code TransportBooking} objects to be used in tests.
+ */
 public class TypicalTransportBooking {
 
     public static final TransportBooking TRANSPORT_BOOKING_TRAIN = new TransportBooking(
@@ -35,7 +38,7 @@ public class TypicalTransportBooking {
 
     public static TransportBookingManager getTypicalTransportBookingManager() {
         TransportBookingManager tb = new TransportBookingManager();
-        for(TransportBooking transportBooking: getTypicalTransportBookings()) {
+        for (TransportBooking transportBooking: getTypicalTransportBookings()) {
             tb.addTransportBooking(transportBooking);
         }
         return tb;

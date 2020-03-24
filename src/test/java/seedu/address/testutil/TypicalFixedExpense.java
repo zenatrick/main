@@ -10,6 +10,9 @@ import seedu.address.model.listmanagers.fixedexpense.Category;
 import seedu.address.model.listmanagers.fixedexpense.Description;
 import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
 
+/**
+ * A utility class containing a list of {@code FixedExpense} objects to be used in tests.
+ */
 public class TypicalFixedExpense {
 
     public static final FixedExpense FIXED_EXPENSE_PLANE = new FixedExpense(
@@ -32,7 +35,7 @@ public class TypicalFixedExpense {
 
     public static FixedExpenseManager getTypicalFixedExpenseManager() {
         FixedExpenseManager fe = new FixedExpenseManager();
-        for(FixedExpense fixedExpense: getTypicalFixedExpenses()) {
+        for (FixedExpense fixedExpense: getTypicalFixedExpenses()) {
             fe.addFixedExpense(fixedExpense);
         }
         return fe;

@@ -11,6 +11,9 @@ import seedu.address.model.listmanagers.accommodationbooking.Day;
 import seedu.address.model.listmanagers.accommodationbooking.Remark;
 import seedu.address.model.util.attributes.Location;
 
+/**
+ * A utility class containing a list of {@code Accommodations} objects to be used in tests.
+ */
 public class TypicalAccommodations {
 
     public static final AccommodationBooking ACCOMMODATION_BOOKING_HOTEL = new AccommodationBooking(
@@ -25,7 +28,8 @@ public class TypicalAccommodations {
             new AccommodationName("Backpacker"), new Location("Singapore"),
             new Day(5), new Day(7), new Remark("2 nights stay"));
 
-    private TypicalAccommodations() {}
+    private TypicalAccommodations() {
+    }
 
     /**
      * Returns an {@code TypicalAccommodations} with all the typical Accommodations.
@@ -33,7 +37,7 @@ public class TypicalAccommodations {
 
     public static AccommodationBookingManager getTypicalAccommodationManager() {
         AccommodationBookingManager am = new AccommodationBookingManager();
-        for(AccommodationBooking ab : getTypicalAccommodations()) {
+        for (AccommodationBooking ab : getTypicalAccommodations()) {
             am.addAccommodationBooking(ab);
         }
         return am;
@@ -41,8 +45,8 @@ public class TypicalAccommodations {
 
     public static List<AccommodationBooking> getTypicalAccommodations() {
         return new ArrayList<>(Arrays.asList(ACCOMMODATION_BOOKING_HOTEL,
-                ACCOMMODATION_BOOKING_BACKPACKER
-                , ACCOMMODATION_BOOKING_HOSTEL));
+                ACCOMMODATION_BOOKING_BACKPACKER,
+                ACCOMMODATION_BOOKING_HOSTEL));
     }
 
 }
