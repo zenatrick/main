@@ -10,7 +10,7 @@ import seedu.address.model.util.uniquelist.UniqueList;
 
 /**
  * Wraps all data at the TransportBookingManager level
- * Duplicates are not allowed (by .equals comparison)
+ * Duplicates are not allowed (by .isSame comparison)
  */
 public class TransportBookingManager implements ReadOnlyTransportBookingManager {
     private final UniqueList<TransportBooking> transportBookings;

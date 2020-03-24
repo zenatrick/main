@@ -14,6 +14,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.util.attributes.Location;
+import seedu.address.model.util.attributes.Title;
 import seedu.address.model.util.uniquelist.UniqueList;
 import seedu.address.model.util.uniquelist.exceptions.DuplicateElementException;
 import seedu.address.model.util.uniquelist.exceptions.ElementNotFoundException;

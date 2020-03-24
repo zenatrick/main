@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.util.attributes.Location;
+import seedu.address.model.util.attributes.Title;
 import seedu.address.model.util.attributes.tag.Tag;
 import seedu.address.model.util.uniquelist.UniqueListElement;
 

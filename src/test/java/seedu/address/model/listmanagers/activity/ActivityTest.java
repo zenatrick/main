@@ -11,6 +11,7 @@ import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.util.attributes.Location;
+import seedu.address.model.util.attributes.Title;
 
 class ActivityTest {
 

@@ -1,10 +1,10 @@
-package seedu.address.model.listmanagers.activity;
+package seedu.address.model.util.attributes;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Activity's title in the ActivityManager.
+ * Represents an Title for any model object.
  * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
  */
 public class Title {

@@ -16,7 +16,6 @@ import seedu.address.model.listmanagers.accommodationbooking.Day;
 import seedu.address.model.listmanagers.accommodationbooking.Remark;
 import seedu.address.model.listmanagers.activity.Duration;
 import seedu.address.model.listmanagers.activity.Priority;
-import seedu.address.model.listmanagers.activity.Title;
 import seedu.address.model.listmanagers.fixedexpense.Amount;
 import seedu.address.model.listmanagers.fixedexpense.Category;
 import seedu.address.model.listmanagers.fixedexpense.Description;
@@ -29,6 +28,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.util.attributes.Location;
+import seedu.address.model.util.attributes.Title;
 import seedu.address.model.util.attributes.tag.Tag;
 
 /**

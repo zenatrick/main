@@ -6,8 +6,8 @@ import java.util.Set;
 import seedu.address.model.listmanagers.activity.Activity;
 import seedu.address.model.listmanagers.activity.Duration;
 import seedu.address.model.listmanagers.activity.Priority;
-import seedu.address.model.listmanagers.activity.Title;
 import seedu.address.model.util.attributes.Location;
+import seedu.address.model.util.attributes.Title;
 import seedu.address.model.util.attributes.tag.Tag;
 import seedu.address.model.util.sampledata.SampleDataUtil;
 
