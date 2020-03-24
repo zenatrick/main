@@ -25,7 +25,7 @@ public class TripManager implements ReadOnlyTripManager {
      * Creates an TripManager using the Trip in the {@code} toBeCopied}
      */
     public TripManager(ReadOnlyTripManager toBeCopied) {
-        //resetData(toBeCopied);
+        resetData(toBeCopied);
     }
 
     /**
@@ -40,7 +40,7 @@ public class TripManager implements ReadOnlyTripManager {
      * Resets the existing data of this {@code TripManager} with {@code newData}
      */
     public void resetData(ReadOnlyTripManager newData) {
-       // requireNonNull(newData.getTrip());
+        requireNonNull(newData.getTrip());
         setTrip(newData.getTrip().get());
     }
 

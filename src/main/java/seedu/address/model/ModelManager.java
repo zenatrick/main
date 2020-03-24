@@ -66,7 +66,7 @@ public class ModelManager implements Model {
                         ReadOnlyTripManager tripManager, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, transportBookingManager, fixedExpenseManager,
-                packingListManager, activityManager, accommodationBookingManager, tripManager, userPrefs);
+                packingListManager, activityManager, accommodationBookingManager, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
@@ -76,7 +76,7 @@ public class ModelManager implements Model {
         this.packingListManager = new PackingListManager(packingListManager);
         this.activityManager = new ActivityManager(activityManager);
         this.accommodationBookingManager = new AccommodationBookingManager(accommodationBookingManager);
-        this.tripManager = new TripManager(tripManager);
+        this.tripManager = new TripManager();
         this.userPrefs = new UserPrefs(userPrefs);
 
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
