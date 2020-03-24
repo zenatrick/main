@@ -496,8 +496,8 @@ These objects are used to create the `AddItemCommand` object that will execute t
 
 The sequence diagram below shows the creation of the `AddItemCommand` object:
 
-[KIV]
-Figure x.x: Sequence diagram of a Add Item command.
+.Activity diagram showing the workflow of an `additem` command.
+image::developer-guide/packing-list/AddPackingListActivityDiagram.png[]
 
 After the creation of the `AddItemCommand` object, the `LogicManager` will proceed to call the `execute()` method of `AddItemCommand`.
 

@@ -1,0 +1,41 @@
+@startuml
+title Add Item to Packing List
+
+start
+
+:User executes ""additem"" command;
+note left
+  Arguments should contain
+  a name, quantity and category
+end note
+
+if () then ([is a valid command])
+
+
+    if () then ([no missing field])
+
+            :Return a
+            ""AddItemCommand"" object;
+
+            :Execute ""AddItemCommand"";
+
+            :Add a transport booking to
+            ""PackingListManager"";
+
+            :Show success message to the user;
+
+    else ([missing field])
+            : Throws an exception;
+
+            : Show error message to the user;
+    endif
+
+else ([not a valid command])
+    :Throw an exception;
+
+    :Show error message to the user;
+endif
+
+stop
+
+@enduml
