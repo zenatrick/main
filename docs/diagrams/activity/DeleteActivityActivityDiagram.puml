@@ -1,0 +1,37 @@
+@startuml
+title Delete Activity
+
+start
+
+:User executes ""deleteactivity"" command;
+
+if () then ([is a valid command])
+
+
+    if () then ([is a valid index])
+
+            :Return a
+            ""DeleteActivityCommand"" object;
+
+            :Execute ""DeleteActivityCommand"";
+
+            :Delete the activity of given
+            index in ""ActivityManager"";
+
+            :Show success message to the user;
+
+    else ([not a valid index])
+            : Throws an exception;
+
+            : Show error message to the user;
+    endif
+
+else ([not a valid command])
+    :Throw an exception;
+
+    :Show error message to the user;
+endif
+
+stop
+
+@enduml

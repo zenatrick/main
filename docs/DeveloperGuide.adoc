@@ -450,6 +450,9 @@ These objects are used to create the command object for their respective command
 
 e.g `DeleteActivity`
 
+.Activity diagram showing the workflow of a `deleteactivity` command.
+image::developer-guide/activity/DeleteActivityActivityDiagram.png[]
+
 The sequence diagram below shows the creation of the an ActivityCommand object:
 
 .Sequence diagram that describes the creation of the `deleteactivity` from the input user command `deleteactivity 1`.
