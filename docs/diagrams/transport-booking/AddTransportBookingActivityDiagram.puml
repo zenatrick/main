@@ -1,0 +1,43 @@
+@startuml
+title Add Transport Booking
+
+start
+
+:User executes ""addtransport"" command;
+note left
+  Arguments should
+  contain a valid mode,
+  start and end locations
+  and date times
+end note
+
+if () then ([is a valid command])
+
+
+    if () then ([no missing field])
+
+            :Return a
+            ""AddTransportReviewCommand"" object;
+
+            :Execute ""AddTransportReviewCommand"";
+
+            :Add a transport booking to
+            ""TransportBookingManager"";
+
+            :Show success message to the user;
+
+    else ([missing field])
+            : Throws an exception;
+
+            : Show error message to the user;
+    endif
+
+else ([not a valid command])
+    :Throw an exception;
+
+    :Show error message to the user;
+endif
+
+stop
+
+@enduml

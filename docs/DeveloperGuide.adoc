@@ -243,7 +243,7 @@ The following activity diagram shown in <<Figure x.x>> below, summarizes what ha
 command:
 
 
-.Activity diagram showing the workflow of a `checkstatus` command.
+.Sequence diagram showing the workflow of a `checkstatus` command.
 image::developer-guide/check-status-feature/CheckStatusCommandExecution.png[]
 
 In detail, whenever a “checkstatus” command is entered,
@@ -353,8 +353,8 @@ These objects are used to create the `AddTransportBookingCommand` object that wi
 
 The sequence diagram below shows the creation of the `AddTransportBookingCommand` object:
 
-[KIV]
-Figure x.x: Sequence diagram of a Add Transport Booking command.
+.Activity diagram showing the workflow of a `addtransport` command.
+image::developer-guide/transport-booking/AddTransportBookingActivityDiagram.png[]
 
 After the creation of the `AddTransportBookingCommand` object, the `LogicManager` will proceed to call the `execute()` method of `AddTransportBookingCommand`.
 
