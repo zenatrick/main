@@ -9,12 +9,9 @@ import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 import seedu.address.model.listmanagers.packinglistitem.Quantity;
 
 /**
- * The type Json adapted item.
+ * Jackson-friendly version of {@link PackingListItem}.
  */
-public class JsonAdaptedItem {
-    /**
-     * The constant MISSING_FIELD_MESSAGE_FORMAT.
-     */
+public class JsonAdaptedPackingListItem {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Item's %s field is missing!";
 
     private final String name;
@@ -23,17 +20,13 @@ public class JsonAdaptedItem {
     private final boolean isCheck;
 
     /**
-     * Instantiates a new Json adapted item.
-     *
-     * @param name     the name
-     * @param quantity the quantity
-     * @param isCheck  the is check
+     * Constructs a {@code JsonAdaptedPackingListItem} with the given details.
      */
     @JsonCreator
-    public JsonAdaptedItem(@JsonProperty("name") String name,
-                           @JsonProperty("quantity") Integer quantity,
-                           @JsonProperty("category") String category,
-                           @JsonProperty("isCheck") boolean isCheck) {
+    public JsonAdaptedPackingListItem(@JsonProperty("name") String name,
+                                      @JsonProperty("quantity") Integer quantity,
+                                      @JsonProperty("category") String category,
+                                      @JsonProperty("isCheck") boolean isCheck) {
         this.name = name;
         this.quantity = quantity;
         this.category = category;
@@ -41,22 +34,19 @@ public class JsonAdaptedItem {
     }
 
     /**
-     * Instantiates a new Json adapted item.
-     *
-     * @param source the source
+     * Converts a given {@code PackingListItem} into this class for Jackson use.
      */
-    public JsonAdaptedItem(PackingListItem source) {
+    public JsonAdaptedPackingListItem(PackingListItem source) {
         name = source.getItemName().value;
         quantity = source.getQuantity().value;
         category = source.getItemCategory().value;
-        isCheck = source.getChecked();
+        isCheck = source.getIsChecked();
     }
 
     /**
-     * To model type packing list item.
+     * Converts this Jackson-friendly adapted packing list item object into the model's {@code PackingListItem} object.
      *
-     * @return the packing list item
-     * @throws IllegalValueException the illegal value exception
+     * @throws IllegalValueException if there were any data constraints violated in the adapted packing list item.
      */
     public PackingListItem toModelType() throws IllegalValueException {
         if (name == null) {
@@ -77,8 +67,12 @@ public class JsonAdaptedItem {
         }
         final Quantity modelQuantity = new Quantity(quantity);
 
+        if (category == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ItemCategory.class.getSimpleName()));
+        }
         if (!ItemCategory.isValidItemCategory(category)) {
-            throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(ItemCategory.MESSAGE_CONSTRAINTS);
         }
         final ItemCategory modelCategory = new ItemCategory(category);
 

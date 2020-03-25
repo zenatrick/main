@@ -16,9 +16,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.listmanagers.fixedexpense.Amount;
-import seedu.address.model.listmanagers.fixedexpense.Category;
 import seedu.address.model.listmanagers.fixedexpense.Description;
 import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
+import seedu.address.model.listmanagers.fixedexpense.FixedExpenseCategory;
 
 /**
  * Edits the details of an existing fixed expense.
@@ -90,9 +90,10 @@ public class EditFixedExpenseCommand extends Command {
         Amount updatedAmount = editFixedExpenseDescriptor.getAmount().orElse(fixedExpenseToEdit.getAmount());
         Description updatedDescription = editFixedExpenseDescriptor
                 .getDescription().orElse(fixedExpenseToEdit.getDescription());
-        Category updatedCategory = editFixedExpenseDescriptor.getCategory().orElse(fixedExpenseToEdit.getCategory());
+        FixedExpenseCategory updatedFixedExpenseCategory = editFixedExpenseDescriptor.getFixedExpenseCategory()
+                .orElse(fixedExpenseToEdit.getFixedExpenseCategory());
 
-        return new FixedExpense(updatedAmount, updatedDescription, updatedCategory);
+        return new FixedExpense(updatedAmount, updatedDescription, updatedFixedExpenseCategory);
     }
 
     /**
@@ -102,7 +103,7 @@ public class EditFixedExpenseCommand extends Command {
     public static class EditFixedExpenseDescriptor {
         private Amount amount;
         private Description description;
-        private Category category;
+        private FixedExpenseCategory fixedExpenseCategory;
 
         public EditFixedExpenseDescriptor() {
         }
@@ -114,14 +115,14 @@ public class EditFixedExpenseCommand extends Command {
         public EditFixedExpenseDescriptor(EditFixedExpenseDescriptor toCopy) {
             setAmount(toCopy.amount);
             setDescription(toCopy.description);
-            setCategory(toCopy.category);
+            setFixedExpenseCategory(toCopy.fixedExpenseCategory);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(amount, description, category);
+            return CollectionUtil.isAnyNonNull(amount, description, fixedExpenseCategory);
         }
 
         public void setAmount(Amount amount) {
@@ -140,12 +141,12 @@ public class EditFixedExpenseCommand extends Command {
             return Optional.ofNullable(description);
         }
 
-        public void setCategory(Category category) {
-            this.category = category;
+        public void setFixedExpenseCategory(FixedExpenseCategory fixedExpenseCategory) {
+            this.fixedExpenseCategory = fixedExpenseCategory;
         }
 
-        public Optional<Category> getCategory() {
-            return Optional.ofNullable(category);
+        public Optional<FixedExpenseCategory> getFixedExpenseCategory() {
+            return Optional.ofNullable(fixedExpenseCategory);
         }
 
         @Override
@@ -165,7 +166,7 @@ public class EditFixedExpenseCommand extends Command {
 
             return getAmount().equals(e.getAmount())
                     && getDescription().equals(e.getDescription())
-                    && getCategory().equals(e.getCategory());
+                    && getFixedExpenseCategory().equals(e.getFixedExpenseCategory());
         }
     }
 }

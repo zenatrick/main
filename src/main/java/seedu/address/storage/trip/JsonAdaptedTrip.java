@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.core.time.Date;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
 import seedu.address.model.trip.Budget;
 import seedu.address.model.trip.Trip;
 import seedu.address.model.util.attributes.Title;
@@ -75,10 +74,10 @@ class JsonAdaptedTrip {
         final Date modelEndDate = Date.fromString(endDate);
 
         if (budget == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Budget.class.getSimpleName()));
         }
         if (!Budget.isValidBudget(budget)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Budget.MESSAGE_CONSTRAINTS);
         }
         final Budget modelBudget = new Budget(budget);
 

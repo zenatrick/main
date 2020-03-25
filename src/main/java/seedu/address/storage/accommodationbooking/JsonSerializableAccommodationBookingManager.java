@@ -20,7 +20,7 @@ import seedu.address.model.listmanagers.accommodationbooking.AccommodationBookin
 public class JsonSerializableAccommodationBookingManager {
 
     public static final String MESSAGE_DUPLICATE_ACCOMMODATION_BOOKING = "Accommodation booking list contains "
-            + "duplicate accommodation(s).";
+            + "duplicate accommodations.";
 
     private final List<JsonAdaptedAccommodationBooking> accommodationBookings = new ArrayList<>();
 

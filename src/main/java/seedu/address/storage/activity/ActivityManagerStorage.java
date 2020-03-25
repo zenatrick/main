@@ -7,6 +7,7 @@ import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.listmanagers.ActivityManager;
 import seedu.address.model.listmanagers.ReadOnlyActivityManager;
+
 /**
  * Represents a storage for {@link ActivityManager}.
  */
@@ -18,20 +19,22 @@ public interface ActivityManagerStorage {
     Path getActivityManagerStorageFilePath();
 
     /**
-     * Returns activity data as a {@link ReadOnlyActivityManager}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns ActivityManager data as a {@link ReadOnlyActivityManager}.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
      * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
+     * @throws IOException             if there was any problem when reading from the storage.
      */
     Optional<ReadOnlyActivityManager> readActivityManager() throws DataConversionException, IOException;
 
     /**
-     * @see #getActivityManagerStorageFilePath()
+     * @see #readActivityManager()
      */
     Optional<ReadOnlyActivityManager> readActivityManager(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyActivityManager} to the storage.
+     *
      * @param activityManager cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */

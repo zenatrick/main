@@ -28,7 +28,7 @@ public interface TransportBookingStorage {
     Optional<ReadOnlyTransportBookingManager> readTransportBookings() throws DataConversionException, IOException;
 
     /**
-     * @see #getTransportBookingStorageFilePath()
+     * @see #readTransportBookings()
      */
     Optional<ReadOnlyTransportBookingManager> readTransportBookings(Path filePath) throws DataConversionException,
             IOException;

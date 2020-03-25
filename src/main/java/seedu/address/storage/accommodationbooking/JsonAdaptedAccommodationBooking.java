@@ -27,9 +27,10 @@ public class JsonAdaptedAccommodationBooking {
      * Constructs a {@code JsonAdaptedAccommodationBooking} with the given details.
      */
     @JsonCreator
-    public JsonAdaptedAccommodationBooking(@JsonProperty("name") String name, @JsonProperty("location") String location,
-                             @JsonProperty("startDay") Integer startDay, @JsonProperty("endDay") Integer endDay,
-                             @JsonProperty("remark") String remark) {
+    public JsonAdaptedAccommodationBooking(
+            @JsonProperty("name") String name, @JsonProperty("location") String location,
+            @JsonProperty("startDay") Integer startDay, @JsonProperty("endDay") Integer endDay,
+            @JsonProperty("remark") String remark) {
         this.name = name;
         this.location = location;
         this.startDay = startDay;
@@ -52,7 +53,7 @@ public class JsonAdaptedAccommodationBooking {
      * Converts this Jackson-friendly adapted accommodation booking object into the
      * model's {@code AccommodationBooking} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted accommodation booking.
      */
     public AccommodationBooking toModelType() throws IllegalValueException {
         if (name == null) {

@@ -19,8 +19,8 @@ import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
 @JsonRootName(value = "fixedExpenseManager")
 class JsonSerializableFixedExpenseManager {
 
-    public static final String MESSAGE_DUPLICATE_TRANSPORT_BOOKING = "Fixed Expense list contains duplicate "
-            + "Fixed Expense(s).";
+    public static final String MESSAGE_DUPLICATE_TRANSPORT_BOOKING = "Fixed Expense list contains duplicate Fixed "
+            + "Expenses.";
 
     private final List<JsonAdaptedFixedExpense> fixedExpenses = new ArrayList<>();
 
@@ -41,9 +41,9 @@ class JsonSerializableFixedExpenseManager {
     public JsonSerializableFixedExpenseManager(ReadOnlyFixedExpenseManager source) {
         fixedExpenses.addAll(
                 source.getFixedExpenseList()
-                .stream()
-                .map(JsonAdaptedFixedExpense::new)
-                .collect(Collectors.toList()));
+                        .stream()
+                        .map(JsonAdaptedFixedExpense::new)
+                        .collect(Collectors.toList()));
     }
 
     /**

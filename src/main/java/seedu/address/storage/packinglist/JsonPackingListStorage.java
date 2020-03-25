@@ -15,27 +15,17 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.listmanagers.ReadOnlyPackingListManager;
 
 /**
- * The type Json packing list storage.
+ * A class to access JsonPackingListManager data stored as a json file on the hard disk.
  */
 public class JsonPackingListStorage implements PackingListStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonPackingListStorage.class);
 
     private Path filePath;
 
-    /**
-     * Instantiates a new Json packing list storage.
-     *
-     * @param filePath the file path
-     */
     public JsonPackingListStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    /**
-     * Gets packing list storage file path.
-     *
-     * @return the packing list storage file path
-     */
     public Path getPackingListStorageFilePath() {
         return filePath;
     }
@@ -45,6 +35,12 @@ public class JsonPackingListStorage implements PackingListStorage {
         return readPackingList(filePath);
     }
 
+    /**
+     * Similar to {@link #readPackingList()} ()}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     * @throws DataConversionException if the file is not in the correct format.
+     */
     @Override
     public Optional<ReadOnlyPackingListManager> readPackingList(
             Path filePath) throws DataConversionException {
@@ -69,6 +65,11 @@ public class JsonPackingListStorage implements PackingListStorage {
         savePackingList(packingListManager, filePath);
     }
 
+    /**
+     * Similar to {@link #savePackingList(ReadOnlyPackingListManager)}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     */
     @Override
     public void savePackingList(
             ReadOnlyPackingListManager packingListManager, Path filePath) throws IOException {

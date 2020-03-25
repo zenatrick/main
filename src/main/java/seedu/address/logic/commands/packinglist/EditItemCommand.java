@@ -109,7 +109,7 @@ public class EditItemCommand extends Command {
         ItemName updatedName = editItemDescriptor.getItemName().orElse(itemToEdit.getItemName());
         Quantity updatedQuantity = editItemDescriptor.getQuantity().orElse(itemToEdit.getQuantity());
         ItemCategory updatedCategory = editItemDescriptor.getItemCategory().orElse(itemToEdit.getItemCategory());
-        boolean isCheck = itemToEdit.getChecked();
+        boolean isCheck = itemToEdit.getIsChecked();
 
         return new PackingListItem(updatedName, updatedQuantity, updatedCategory, isCheck);
     }

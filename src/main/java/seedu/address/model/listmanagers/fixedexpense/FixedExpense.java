@@ -12,12 +12,12 @@ public class FixedExpense implements UniqueListElement {
 
     private final Amount amount;
     private final Description description;
-    private final Category category;
+    private final FixedExpenseCategory fixedExpenseCategory;
 
-    public FixedExpense(Amount amount, Description description, Category category) {
+    public FixedExpense(Amount amount, Description description, FixedExpenseCategory fixedExpenseCategory) {
         this.amount = amount;
         this.description = description;
-        this.category = category;
+        this.fixedExpenseCategory = fixedExpenseCategory;
     }
 
     public Amount getAmount() {
@@ -28,8 +28,8 @@ public class FixedExpense implements UniqueListElement {
         return description;
     }
 
-    public Category getCategory() {
-        return category;
+    public FixedExpenseCategory getFixedExpenseCategory() {
+        return fixedExpenseCategory;
     }
 
     /**
@@ -58,18 +58,18 @@ public class FixedExpense implements UniqueListElement {
         FixedExpense otherFixedExpense = (FixedExpense) other;
         return amount.equals(otherFixedExpense.amount)
                 && description.equals(otherFixedExpense.description)
-                && category.equals(otherFixedExpense.category);
+                && fixedExpenseCategory.equals(otherFixedExpense.fixedExpenseCategory);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(amount, description, category);
+        return Objects.hash(amount, description, fixedExpenseCategory);
     }
 
     @Override
     public String toString() {
         return "Fixed Expense Entry - Description: " + description
                 + " Amount: " + amount
-                + " Category: " + category;
+                + " Category: " + fixedExpenseCategory;
     }
 }

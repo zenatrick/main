@@ -53,11 +53,11 @@ class PackingListItemTest {
 
         // Correct case
         assertTrue(new PackingListItem(new ItemName("Shirt"),
-                new Quantity(10), new ItemCategory("Clothing"), true).getChecked());
+                new Quantity(10), new ItemCategory("Clothing"), true).getIsChecked());
 
         //Different case
         assertFalse(new PackingListItem(new ItemName("Shirt"),
-                new Quantity(10), new ItemCategory("Clothing"), false).getChecked());
+                new Quantity(10), new ItemCategory("Clothing"), false).getIsChecked());
     }
 
     @Test

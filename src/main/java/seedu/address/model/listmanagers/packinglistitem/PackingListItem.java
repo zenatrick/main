@@ -67,7 +67,7 @@ public class PackingListItem implements UniqueListElement {
      *
      * @return the boolean
      */
-    public boolean getChecked() {
+    public boolean getIsChecked() {
         return isChecked;
     }
 

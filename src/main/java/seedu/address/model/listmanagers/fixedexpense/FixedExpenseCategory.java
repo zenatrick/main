@@ -7,16 +7,16 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a FixedExpense's category in the FixedExpenseManager.
  * Guarantees: immutable; is valid as declared in {@link #isValidCategory(String)}
  */
-public class Category {
+public class FixedExpenseCategory {
     public static final String MESSAGE_CONSTRAINTS = "Category must be made up of a single alphanumeric word that is "
             + "less than 30 characters long.";
 
     // todo update regex to match constraints
     public static final String VALIDATION_REGEX = "^(?!\\s*$)[A-Za-z0-9\\s]{1,50}+";
 
-    private final String value;
+    public final String value;
 
-    public Category(String category) {
+    public FixedExpenseCategory(String category) {
         requireNonNull(category);
         checkArgument(isValidCategory(category), MESSAGE_CONSTRAINTS);
         value = category;
@@ -34,8 +34,8 @@ public class Category {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Category // instanceof handles nulls
-                && value.equals(((Category) other).value)); // state check
+                || (other instanceof FixedExpenseCategory // instanceof handles nulls
+                && value.equals(((FixedExpenseCategory) other).value)); // state check
     }
 
     @Override

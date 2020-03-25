@@ -29,7 +29,7 @@ public interface AccommodationBookingStorage {
             throws DataConversionException, IOException;
 
     /**
-     * @see #getAccommodationBookingStorageFilePath()
+     * @see #readAccommodationBookings()
      */
     Optional<ReadOnlyAccommodationBookingManager> readAccommodationBookings(Path filePath)
             throws DataConversionException, IOException;

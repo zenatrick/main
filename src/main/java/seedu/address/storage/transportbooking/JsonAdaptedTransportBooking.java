@@ -13,7 +13,6 @@ import seedu.address.model.util.attributes.Location;
  * Jackson-friendly version of {@link TransportBooking}.
  */
 class JsonAdaptedTransportBooking {
-
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "TransportBooking's %s field is missing!";
 
     private final String mode;
@@ -52,7 +51,7 @@ class JsonAdaptedTransportBooking {
     /**
      * Converts this Jackson-friendly adapted transport booking object into the model's {@code TransportBooking} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted transport booking.
      */
     public TransportBooking toModelType() throws IllegalValueException {
         if (mode == null) {

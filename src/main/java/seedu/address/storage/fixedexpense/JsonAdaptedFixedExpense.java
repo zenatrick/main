@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.listmanagers.fixedexpense.Amount;
-import seedu.address.model.listmanagers.fixedexpense.Category;
 import seedu.address.model.listmanagers.fixedexpense.Description;
 import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
+import seedu.address.model.listmanagers.fixedexpense.FixedExpenseCategory;
 
 /**
  * Jackson-friendly version of {@link FixedExpense}.
@@ -36,15 +36,15 @@ class JsonAdaptedFixedExpense {
      * Converts a given {@code FixedExpense} into this class for Jackson use.
      */
     public JsonAdaptedFixedExpense(FixedExpense source) {
-        amount = source.getAmount().toString();
-        description = source.getDescription().toString();
-        category = source.getCategory().toString();
+        amount = source.getAmount().value;
+        description = source.getDescription().value;
+        category = source.getFixedExpenseCategory().value;
     }
 
     /**
      * Converts this Jackson-friendly adapted fixed expense object into the model's {@code FixedExpense} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted fixed expense.
      */
     public FixedExpense toModelType() throws IllegalValueException {
         if (amount == null) {
@@ -66,14 +66,14 @@ class JsonAdaptedFixedExpense {
 
         if (category == null) {
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Category.class.getSimpleName()));
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, FixedExpenseCategory.class.getSimpleName()));
         }
-        if (!Category.isValidCategory(category)) {
-            throw new IllegalValueException(Category.MESSAGE_CONSTRAINTS);
+        if (!FixedExpenseCategory.isValidCategory(category)) {
+            throw new IllegalValueException(FixedExpenseCategory.MESSAGE_CONSTRAINTS);
         }
-        final Category modelCategory = new Category(category);
+        final FixedExpenseCategory modelFixedExpenseCategory = new FixedExpenseCategory(category);
 
-        return new FixedExpense(modelAmount, modelDescription, modelCategory);
+        return new FixedExpense(modelAmount, modelDescription, modelFixedExpenseCategory);
     }
 
 }

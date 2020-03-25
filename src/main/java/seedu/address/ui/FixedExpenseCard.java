@@ -40,7 +40,7 @@ public class FixedExpenseCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         description.setText(fixedExpense.getDescription().toString());
         amount.setText("Amount: $" + fixedExpense.getAmount().toString());
-        category.setText("Category: " + fixedExpense.getCategory().toString());
+        category.setText("Category: " + fixedExpense.getFixedExpenseCategory().toString());
     }
 
     @Override

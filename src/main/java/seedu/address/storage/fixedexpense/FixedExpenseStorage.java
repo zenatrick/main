@@ -28,7 +28,7 @@ public interface FixedExpenseStorage {
     Optional<ReadOnlyFixedExpenseManager> readFixedExpenses() throws DataConversionException, IOException;
 
     /**
-     * @see #getFixedExpenseStorageFilePath()
+     * @see #readFixedExpenses()
      */
     Optional<ReadOnlyFixedExpenseManager> readFixedExpenses(Path filePath) throws DataConversionException,
             IOException;

@@ -27,7 +27,7 @@ public class SortFixedExpenseCommand extends Command {
             + "[AMOUNT]" + "[DESCRIPTION]" + "[CATEGORY]\n"
             + "Example: " + COMMAND_WORD + " asc amount";
 
-    public static final String MESSAGE_SORT_FIXEDEXPENSE_SUCCESS = "Sorting of FixedExpense successful :)";
+    public static final String MESSAGE_SORT_FIXED_EXPENSE_SUCCESS = "Sorting of FixedExpense successful :)";
 
     public static final String SORT_DESCENDING = "des";
     public static final String SORT_ASCENDING = "asc";
@@ -56,34 +56,34 @@ public class SortFixedExpenseCommand extends Command {
         case "category":
             if (sortIdentifier.equals("des")) {
                 model.sortFixedExpenseList((x, y) -> y.getCategory().toString().compareTo(
-                        x.getCategory().toString()
+                        x.getFixedExpenseCategory().toString()
                 ));
-                return new CommandResult(String.format(MESSAGE_SORT_FIXEDEXPENSE_SUCCESS));
+                return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS);
 
             } else {
-                model.sortFixedExpenseList(Comparator.comparing(x -> x.getCategory().toString()));
-                return new CommandResult(String.format(MESSAGE_SORT_FIXEDEXPENSE_SUCCESS));
+                model.sortFixedExpenseList(Comparator.comparing(x -> x.getFixedExpenseCategory().toString()));
+                return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS);
             }
         case "amount":
             if (sortIdentifier.equals("des")) {
                 model.sortFixedExpenseList((x, y) -> (int) Math.signum(Double.parseDouble(y.getAmount().value)
                         - Double.parseDouble(x.getAmount().value)));
-                return new CommandResult(String.format(MESSAGE_SORT_FIXEDEXPENSE_SUCCESS));
+                return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS);
 
             } else {
                 model.sortFixedExpenseList((Comparator.comparing(x -> x.getAmount().value)));
-                return new CommandResult(String.format(MESSAGE_SORT_FIXEDEXPENSE_SUCCESS));
+                return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS);
             }
 
         case "description":
             if (sortIdentifier.equals("des")) {
                 model.sortFixedExpenseList((x, y) -> y.getDescription().toString().compareTo(
                         x.getDescription().toString()));
-                return new CommandResult(String.format(MESSAGE_SORT_FIXEDEXPENSE_SUCCESS));
+                return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS);
 
             } else {
                 model.sortFixedExpenseList(Comparator.comparing(x -> x.getDescription().toString()));
-                return new CommandResult(String.format(MESSAGE_SORT_FIXEDEXPENSE_SUCCESS));
+                return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS);
             }
 
         default:

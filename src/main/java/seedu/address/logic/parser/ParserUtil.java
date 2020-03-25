@@ -16,8 +16,8 @@ import seedu.address.model.listmanagers.accommodationbooking.Day;
 import seedu.address.model.listmanagers.accommodationbooking.Remark;
 import seedu.address.model.listmanagers.activity.Duration;
 import seedu.address.model.listmanagers.fixedexpense.Amount;
-import seedu.address.model.listmanagers.fixedexpense.Category;
 import seedu.address.model.listmanagers.fixedexpense.Description;
+import seedu.address.model.listmanagers.fixedexpense.FixedExpenseCategory;
 import seedu.address.model.listmanagers.packinglistitem.ItemCategory;
 import seedu.address.model.listmanagers.packinglistitem.ItemName;
 import seedu.address.model.listmanagers.packinglistitem.Quantity;
@@ -192,20 +192,20 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String category} into a {@code Category}.
+     * Parses a {@code String category} into a {@code FixedExpenseCategory}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @param category the category
      * @return the category
      * @throws ParseException if the given {@code category} is invalid.
      */
-    public static Category parseCategory(String category) throws ParseException {
+    public static FixedExpenseCategory parseCategory(String category) throws ParseException {
         requireNonNull(category);
         String trimmedCategory = category.trim();
-        if (!Category.isValidCategory(trimmedCategory)) {
-            throw new ParseException(Category.MESSAGE_CONSTRAINTS);
+        if (!FixedExpenseCategory.isValidCategory(trimmedCategory)) {
+            throw new ParseException(FixedExpenseCategory.MESSAGE_CONSTRAINTS);
         }
-        return new Category(trimmedCategory);
+        return new FixedExpenseCategory(trimmedCategory);
     }
 
     /**
@@ -348,7 +348,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String category} into a {@code Category}
+     * Parses a {@code String category} into a {@code FixedExpenseCategory}
      *
      * @param category the category
      * @return the item category
@@ -358,7 +358,7 @@ public class ParserUtil {
         requireNonNull(category);
         String trimmedCategory = category.trim();
         if (!ItemCategory.isValidItemCategory(trimmedCategory)) {
-            throw new ParseException(Category.MESSAGE_CONSTRAINTS);
+            throw new ParseException(FixedExpenseCategory.MESSAGE_CONSTRAINTS);
         }
         return new ItemCategory(trimmedCategory);
     }

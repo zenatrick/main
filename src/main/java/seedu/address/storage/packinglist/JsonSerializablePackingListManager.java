@@ -18,35 +18,27 @@ import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
  */
 @JsonRootName(value = "packingListManager")
 public class JsonSerializablePackingListManager {
-    /**
-     * The constant MESSAGE_DUPLICATE_ITEM.
-     */
-    public static final String MESSAGE_DUPLICATE_ITEM = "Packing list contains duplicate "
-            + "item(s).";
+    public static final String MESSAGE_DUPLICATE_ITEM = "Packing list contains duplicate items.";
 
-    private final List<JsonAdaptedItem> packingList = new ArrayList<>();
+    private final List<JsonAdaptedPackingListItem> packingList = new ArrayList<>();
 
     /**
-     * Instantiates a new Json serializable packing list manager.
-     *
-     * @param packingList the packing list
+     * Constructs a {@code JsonSerializablePackingListManager} with the given fixed expenses.
      */
     @JsonCreator
     public JsonSerializablePackingListManager(
-            @JsonProperty("packingList") List<JsonAdaptedItem> packingList) {
+            @JsonProperty("packingList") List<JsonAdaptedPackingListItem> packingList) {
         this.packingList.addAll(packingList);
     }
 
     /**
-     * Instantiates a new Json serializable packing list manager.
-     *
-     * @param source the source
+     * Converts a given {@code ReadOnlyPackingListManager} into this class for Jackson use.
      */
     public JsonSerializablePackingListManager(ReadOnlyPackingListManager source) {
         packingList.addAll(
                 source.getPackingList()
                         .stream()
-                        .map(JsonAdaptedItem::new)
+                        .map(JsonAdaptedPackingListItem::new)
                         .collect(Collectors.toList())
         );
     }
@@ -54,13 +46,12 @@ public class JsonSerializablePackingListManager {
     /**
      * Converts this JsonSerializablePackingListManager into the model's {@code PackingListManager} object.
      *
-     * @return the packing list manager
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public PackingListManager toModelType() throws IllegalValueException {
         PackingListManager packingListManager = new PackingListManager();
-        for (JsonAdaptedItem jsonAdaptedItem : packingList) {
-            PackingListItem item = jsonAdaptedItem.toModelType();
+        for (JsonAdaptedPackingListItem jsonAdaptedPackingListItem : packingList) {
+            PackingListItem item = jsonAdaptedPackingListItem.toModelType();
             if (packingListManager.hasPackingListItem(item)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ITEM);
             }

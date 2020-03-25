@@ -15,9 +15,9 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.listmanagers.fixedexpense.Amount;
-import seedu.address.model.listmanagers.fixedexpense.Category;
 import seedu.address.model.listmanagers.fixedexpense.Description;
 import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
+import seedu.address.model.listmanagers.fixedexpense.FixedExpenseCategory;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -43,9 +43,10 @@ public class AddFixedExpenseParser implements Parser<AddFixedExpenseCommand> {
 
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
+        FixedExpenseCategory fixedExpenseCategory =
+                ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
 
-        FixedExpense fixedExpense = new FixedExpense(amount, description, category);
+        FixedExpense fixedExpense = new FixedExpense(amount, description, fixedExpenseCategory);
 
         return new AddFixedExpenseCommand(fixedExpense);
     }

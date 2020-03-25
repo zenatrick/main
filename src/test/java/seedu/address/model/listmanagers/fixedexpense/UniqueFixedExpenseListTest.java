@@ -22,17 +22,17 @@ class UniqueFixedExpenseListTest {
     // Temporary fields that will be replaced by FixedExpenses made using a FixedExpenseBuilder.
     public static final FixedExpense FIXED_ACCOMMODATION_EXPENSE =
             new FixedExpense(new Amount("500.00"), new Description("Hotel"),
-                    new Category("Accommodation"));
+                    new FixedExpenseCategory("Accommodation"));
 
     public static final FixedExpense FIXED_ACTIVITY_EXPENSE =
             new FixedExpense(new Amount("100"), new Description("Disneyland"),
-                    new Category("Activity"));
+                    new FixedExpenseCategory("Activity"));
 
     private static final FixedExpense FIXED_TRANSPORTATION_EXPENSE =
             new FixedExpense(new Amount("1000"), new Description("Airplane"),
-                    new Category("Transportation"));
+                    new FixedExpenseCategory("Transportation"));
 
-    private final UniqueList<FixedExpense> uniqueFixedExpenseList = new UniqueList<FixedExpense>();
+    private final UniqueList<FixedExpense> uniqueFixedExpenseList = new UniqueList<>();
 
 
     @Test
@@ -57,7 +57,7 @@ class UniqueFixedExpenseListTest {
         //contains convention used for AB3 and for ours.
         uniqueFixedExpenseList.add(FIXED_ACCOMMODATION_EXPENSE);
         FixedExpense editedExpense = new FixedExpense(new Amount("500.00"),
-                new Description("hotel"), new Category("Accommodation"));
+                new Description("hotel"), new FixedExpenseCategory("Accommodation"));
         assertFalse(uniqueFixedExpenseList.contains(editedExpense));
     }
 
@@ -104,7 +104,7 @@ class UniqueFixedExpenseListTest {
     public void setFixedExpenseHasSameIdentitySuccess() {
         uniqueFixedExpenseList.add(FIXED_ACTIVITY_EXPENSE);
         FixedExpense editedExpense = new FixedExpense(new Amount("100"), new Description("Disneyland"),
-                new Category("Activity"));
+                new FixedExpenseCategory("Activity"));
         uniqueFixedExpenseList.setElement(FIXED_ACTIVITY_EXPENSE, editedExpense);
         UniqueList<FixedExpense> expectedUniqueFixedExpenseList = new UniqueList<>();
         expectedUniqueFixedExpenseList.add(editedExpense);

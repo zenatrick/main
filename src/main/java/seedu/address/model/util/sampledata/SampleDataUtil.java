@@ -26,9 +26,9 @@ import seedu.address.model.listmanagers.accommodationbooking.Remark;
 import seedu.address.model.listmanagers.activity.Activity;
 import seedu.address.model.listmanagers.activity.Duration;
 import seedu.address.model.listmanagers.fixedexpense.Amount;
-import seedu.address.model.listmanagers.fixedexpense.Category;
 import seedu.address.model.listmanagers.fixedexpense.Description;
 import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
+import seedu.address.model.listmanagers.fixedexpense.FixedExpenseCategory;
 import seedu.address.model.listmanagers.packinglistitem.ItemCategory;
 import seedu.address.model.listmanagers.packinglistitem.ItemName;
 import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
@@ -134,13 +134,13 @@ public class SampleDataUtil {
     public static FixedExpense[] getSampleFixedExpenses() {
         return new FixedExpense[]{
             new FixedExpense(new Amount("1000"), new Description("TestDescription"),
-                    new Category("TestCategory")),
+                    new FixedExpenseCategory("TestCategory")),
             new FixedExpense(new Amount("2000"), new Description("TestDescription"),
-                    new Category("TestCategory")),
+                    new FixedExpenseCategory("TestCategory")),
             new FixedExpense(new Amount("3000"), new Description("TestDescription"),
-                    new Category("TestCategory")),
+                    new FixedExpenseCategory("TestCategory")),
             new FixedExpense(new Amount("4000"), new Description("TestDescription"),
-                    new Category("TestCategory"))
+                    new FixedExpenseCategory("TestCategory"))
         };
     }
 

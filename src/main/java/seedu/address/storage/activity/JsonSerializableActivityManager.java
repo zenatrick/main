@@ -20,7 +20,7 @@ import seedu.address.model.listmanagers.activity.Activity;
 @JsonRootName(value = "activityManager")
 class JsonSerializableActivityManager {
 
-    public static final String MESSAGE_DUPLICATE_ACTIVITY = "Activity list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_ACTIVITY = "Activity list contains duplicate activities.";
 
     private final List<JsonAdaptedActivity> activities = new ArrayList<>();
 

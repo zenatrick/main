@@ -16,7 +16,7 @@ public class Description {
     // Spaces does not count.
     public static final String VALIDATION_REGEX = "^(?!\\s*$)[A-Za-z0-9\\s]{1,50}+";
 
-    private final String value;
+    public final String value;
 
     public Description(String description) {
         requireNonNull(description);
