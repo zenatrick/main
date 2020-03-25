@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,24 +24,24 @@ class UniqueActivityListTest {
 
     public static final Activity FIXED_ACTIVITY_1 =
             new Activity(new Title("Hot Spring"),
-                    new Priority(1),
                     new Duration(3),
                     new Location("Hokkaido"),
-                    new HashSet<>());
+                    new HashSet<>(),
+                    Optional.empty());
 
     public static final Activity FIXED_ACTIVITY_2 =
             new Activity(new Title("See Deers"),
-                    new Priority(1),
                     new Duration(1),
                     new Location("Nara"),
-                    new HashSet<>());
+                    new HashSet<>(),
+                    Optional.empty());
 
     private static final Activity FIXED_ACTIVITY_3 =
             new Activity(new Title("Eat Mochi"),
-                    new Priority(2),
                     new Duration(1),
                     new Location("Dazaifu"),
-                    new HashSet<>());
+                    new HashSet<>(),
+                    Optional.empty());
 
     private final UniqueList<Activity> uniqueActivityList = new UniqueList<>();
 
@@ -66,10 +67,10 @@ class UniqueActivityListTest {
         //contains convention used for AB3 and for ours.
         uniqueActivityList.add(FIXED_ACTIVITY_1);
         Activity activity = new Activity(new Title("Hot Spring"),
-                new Priority(1),
                 new Duration(3),
                 new Location("Hokkaido"),
-                new HashSet<>());
+                new HashSet<>(),
+                Optional.empty());
         assertTrue(uniqueActivityList.contains(activity));
     }
 
@@ -116,10 +117,10 @@ class UniqueActivityListTest {
     public void setActivityListHasSameIdentitySuccess() {
         uniqueActivityList.add(FIXED_ACTIVITY_1);
         Activity activity = new Activity(new Title("Hot Spring"),
-                new Priority(1),
                 new Duration(3),
                 new Location("Hokkaido"),
-                new HashSet<>());
+                new HashSet<>(),
+                Optional.empty());
         uniqueActivityList.setElement(FIXED_ACTIVITY_1, activity);
         UniqueList<Activity> expectedUniqueActivityList = new UniqueList<>();
         expectedUniqueActivityList.add(activity);

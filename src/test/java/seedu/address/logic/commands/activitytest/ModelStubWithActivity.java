@@ -2,8 +2,8 @@ package seedu.address.logic.commands.activitytest;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.model.ModelStub;
 import seedu.address.model.listmanagers.activity.Activity;
-import seedu.address.model.util.attributes.ModelStub;
 
 /**
  * A Model stub that contains a single person.

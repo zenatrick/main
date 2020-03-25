@@ -27,10 +27,11 @@ public class BudgetTest {
         // invalid phone numbers
         assertFalse(Budget.isValidBudget(-000000)); // negative 0s
         assertFalse(Budget.isValidBudget(-2)); // spaces only
+        assertFalse(Budget.isValidBudget(999999999)); // very big number
 
         // valid phone numbers
         assertTrue(Budget.isValidBudget(911)); // exactly 3 numbers
         assertTrue(Budget.isValidBudget(000000001)); //extra 0s
-        assertTrue(Budget.isValidBudget(999999999)); // very big number
+
     }
 }

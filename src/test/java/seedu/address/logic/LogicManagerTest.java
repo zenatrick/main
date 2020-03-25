@@ -35,7 +35,7 @@ import seedu.address.storage.activity.JsonActivityManagerStorage;
 import seedu.address.storage.fixedexpense.JsonFixedExpenseStorage;
 import seedu.address.storage.packinglist.JsonPackingListStorage;
 import seedu.address.storage.transportbooking.JsonTransportBookingStorage;
-import seedu.address.storage.trip.JsonTripStorage;
+import seedu.address.storage.trip.JsonTripManagerStorage;
 import seedu.address.testutil.PersonBuilder;
 
 public class LogicManagerTest {
@@ -64,7 +64,7 @@ public class LogicManagerTest {
         JsonAccommodationBookingStorage accommodationBookingStorage =
                 new JsonAccommodationBookingStorage(temporaryFolder
                 .resolve("accommodationbooking.json"));
-        JsonTripStorage tripStorage = new JsonTripStorage();
+        JsonTripManagerStorage tripStorage = new JsonTripManagerStorage(temporaryFolder.resolve("trip.json"));
 
         StorageManager storage = new StorageManager(addressBookStorage,
                 transportBookingStorage,
@@ -112,8 +112,9 @@ public class LogicManagerTest {
         JsonAccommodationBookingStorage accommodationBookingStorage =
                 new JsonAccommodationBookingStorage(temporaryFolder.resolve("ioExceptionAccommodationBooking.json"));
         JsonPackingListStorage packingListStorage =
-                new JsonPackingListStorage(temporaryFolder.resolve("ioPackingListStorage.json"));
-        JsonTripStorage tripStorage = new JsonTripStorage();
+                new JsonPackingListStorage(temporaryFolder.resolve("ioExceptionPackingListStorage.json"));
+        JsonTripManagerStorage tripStorage = new JsonTripManagerStorage(temporaryFolder.resolve(
+                "ioExceptionTripStorage.json"));
         StorageManager storage = new StorageManager(addressBookStorage,
                 transportBookingStorage,
                 fixedExpenseStorage,

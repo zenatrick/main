@@ -1,4 +1,4 @@
-package seedu.address.model.util.attributes;
+package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
@@ -6,8 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.commons.core.time.DateTime;
 import seedu.address.model.listmanagers.ReadOnlyAccommodationBookingManager;
 import seedu.address.model.listmanagers.ReadOnlyActivityManager;
 import seedu.address.model.listmanagers.ReadOnlyFixedExpenseManager;
@@ -20,7 +19,9 @@ import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
 import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 import seedu.address.model.listmanagers.transportbooking.TransportBooking;
 import seedu.address.model.person.Person;
+import seedu.address.model.trip.DayScheduleEntry;
 import seedu.address.model.trip.Trip;
+import seedu.address.model.trip.TripManager;
 
 /**
  * A default model stub that have all of the methods failing.
@@ -63,12 +64,12 @@ public class ModelStub implements Model {
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return null;
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public boolean hasPerson(Person person) {
-        return false;
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
@@ -88,7 +89,7 @@ public class ModelStub implements Model {
 
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        return null;
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
@@ -98,7 +99,7 @@ public class ModelStub implements Model {
 
     @Override
     public ReadOnlyTransportBookingManager getTransportBookingManager() {
-        return null;
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
@@ -108,7 +109,7 @@ public class ModelStub implements Model {
 
     @Override
     public boolean hasTransportBooking(TransportBooking target) {
-        return false;
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
@@ -128,7 +129,7 @@ public class ModelStub implements Model {
 
     @Override
     public ObservableList<TransportBooking> getFilteredTransportBookingList() {
-        return null;
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
@@ -138,7 +139,7 @@ public class ModelStub implements Model {
 
     @Override
     public ReadOnlyFixedExpenseManager getFixedExpenseManager() {
-        return null;
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
@@ -148,7 +149,7 @@ public class ModelStub implements Model {
 
     @Override
     public boolean hasFixedExpense(FixedExpense target) {
-        return false;
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
@@ -173,7 +174,7 @@ public class ModelStub implements Model {
 
     @Override
     public ObservableList<FixedExpense> getFilteredFixedExpenseList() {
-        return null;
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
@@ -183,7 +184,7 @@ public class ModelStub implements Model {
 
     @Override
     public ReadOnlyPackingListManager getPackingListManager() {
-        return null;
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
@@ -193,7 +194,7 @@ public class ModelStub implements Model {
 
     @Override
     public boolean hasPackingListItem(PackingListItem target) {
-        return false;
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
@@ -264,7 +265,7 @@ public class ModelStub implements Model {
 
     @Override
     public ReadOnlyAccommodationBookingManager getAccommodationBookingManager() {
-        return null;
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
@@ -274,7 +275,7 @@ public class ModelStub implements Model {
 
     @Override
     public boolean hasAccommodationBooking(AccommodationBooking target) {
-        return false;
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
@@ -294,7 +295,7 @@ public class ModelStub implements Model {
 
     @Override
     public ObservableList<AccommodationBooking> getFilteredAccommodationBookingList() {
-        return null;
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
@@ -303,8 +304,13 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public TripManager getTripManager() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public boolean hasTrip() {
-        return false;
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
@@ -314,6 +320,36 @@ public class ModelStub implements Model {
 
     @Override
     public void deleteTrip() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void scheduleActivity(int dayIndex, DateTime startTime, Activity toSchedule) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void unscheduleActivity(int dayIndex, DayScheduleEntry toDelete) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void scheduleTransport(TransportBooking toSchedule) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void unscheduleTransport(DayScheduleEntry toDelete) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public int getTripNumDays() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<DayScheduleEntry> getDayScheduleEntryList(int dayIndex) {
         throw new AssertionError("This method should not be called.");
     }
 }

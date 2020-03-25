@@ -49,8 +49,8 @@ import seedu.address.storage.packinglist.JsonPackingListStorage;
 import seedu.address.storage.packinglist.PackingListStorage;
 import seedu.address.storage.transportbooking.JsonTransportBookingStorage;
 import seedu.address.storage.transportbooking.TransportBookingStorage;
-import seedu.address.storage.trip.JsonTripStorage;
-import seedu.address.storage.trip.TripStorage;
+import seedu.address.storage.trip.JsonTripManagerStorage;
+import seedu.address.storage.trip.TripManagerStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -102,19 +102,23 @@ public class MainApp extends Application {
         FixedExpenseStorage fixedExpenseStorage =
                 new JsonFixedExpenseStorage(userPrefs.getFixedExpenseStorageFilePath());
         ActivityManagerStorage activityManagerStorage =
-                new JsonActivityManagerStorage(userPrefs.getActivityManagerStorageFilePath());
+                new JsonActivityManagerStorage(userPrefs.getActivityStorageFilePath());
         AccommodationBookingStorage accommodationBookingStorage =
                 new JsonAccommodationBookingStorage((userPrefs.getAccommodationBookingStorageFilePath()));
         PackingListStorage packingListStorage = new JsonPackingListStorage(userPrefs.getPackingListStorageFilePath());
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        TripStorage tripStorage = new JsonTripStorage();
-        storage = new StorageManager(addressBookStorage,
+        TripManagerStorage tripManagerStorage = new JsonTripManagerStorage(userPrefs.getTripStorageFilePath());
+
+        storage = new StorageManager(
+                addressBookStorage,
                 transportBookingStorage,
                 fixedExpenseStorage,
                 activityManagerStorage,
                 accommodationBookingStorage,
-                packingListStorage, tripStorage,
-                userPrefsStorage);
+                packingListStorage,
+                tripManagerStorage,
+                userPrefsStorage
+        );
 
         initLogging(config);
 
@@ -159,7 +163,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ReadOnlyManager} with the data from {@code storage}'s transport bookings.
+     * Returns a {@code ReadOnlyTransportBookingManager} with the data from {@code storage}'s transport bookings.
      * The data from the sample transport bookings will be used instead
      * if {@code storage}'s transport booking manager is not found,
      * or an empty transport booking manager will be used instead if errors
@@ -195,7 +199,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ReadOnlyManager} with the data from {@code storage}'s fixed expenses.
+     * Returns a {@code ReadOnlyFixedExpenseManager} with the data from {@code storage}'s fixed expenses.
      * The data from the sample fixed expenses will be used instead
      * if {@code storage}'s fixed expense manager is not found,
      * or an empty fixed expense manager will be used instead
@@ -230,7 +234,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ReadOnlyManager} with the data from {@code storage}'s activities.
+     * Returns a {@code ReadOnlyActivityManager} with the data from {@code storage}'s activities.
      * The data from the sample activities will be used instead if {@code storage}'s activities manager is not found,
      * or an empty activity manager will be used instead if errors occur when reading {@code storage}'s
      * activity manager.
@@ -265,8 +269,8 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ReadOnlyManager} with the data from {@code storage}'s accommodation bookings.
-     * The data from the sample accommodation bookings will be used instead
+     * Returns a {@code ReadOnlyAccommodationBookingManager} with the data from {@code storage}'s accommodation
+     * bookings. The data from the sample accommodation bookings will be used instead
      * if {@code storage}'s accommodation booking manager is not found,
      * or an empty accommodation booking manager will be used instead if errors occur when
      * reading {@code storage}'s accommodation booking manager.
@@ -302,7 +306,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ReadOnlyManager} with the data from {@code storage}'s packing list.
+     * Returns a {@code ReadOnlyPackingListManager} with the data from {@code storage}'s packing list.
      * The data from the sample packing list will be used instead if {@code storage}'s packing list
      * is not found, or an empty packing list will be used instead if errors occur when
      * reading {@code storage}'s packing list.
@@ -334,6 +338,41 @@ public class MainApp extends Application {
         }
 
         return packingListManager;
+    }
+
+    /**
+     * Returns a {@code TripManager} with the data from {@code storage}'s trip.
+     * An empty transport booking manager will be used instead if errors
+     * occur when reading {@code storage}'s transport booking manager.
+     */
+    private TripManager initTripManager(Storage storage) {
+        TripManager tripManager;
+        try {
+            Optional<TripManager> tripManagerOptional = storage.readTripManager();
+            if (tripManagerOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample TransportBookingManager.");
+                tripManager = new TripManager();
+            } else {
+                tripManager = tripManagerOptional.get();
+            }
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty"
+                    + "TripManager.");
+            tripManager = new TripManager();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty "
+                    + "TripManager.");
+            tripManager = new TripManager();
+        }
+
+        try {
+            storage.saveTripManager(tripManager);
+            logger.info("Saving initial data of TripManager.");
+        } catch (IOException e) {
+            logger.warning("Problem while saving to the file.");
+        }
+
+        return tripManager;
     }
 
     private void initLogging(Config config) {
@@ -409,15 +448,6 @@ public class MainApp extends Application {
         }
 
         return initializedPrefs;
-    }
-
-    /**
-     * Returns a {@code TripManager} with the data from {@code storage}'s trip.
-     * An empty transport booking manager will be used instead if errors
-     * occur when reading {@code storage}'s transport booking manager.
-     */
-    private TripManager initTripManager(Storage storage) {
-        return new TripManager();
     }
 
     @Override

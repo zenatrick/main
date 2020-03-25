@@ -12,8 +12,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.activity.AddActivityCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.ModelStub;
 import seedu.address.model.listmanagers.activity.Activity;
-import seedu.address.model.util.attributes.ModelStub;
 import seedu.address.testutil.ActivityBuilder;
 
 

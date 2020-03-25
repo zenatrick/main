@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.HashSet;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,22 +18,21 @@ class ActivityTest {
 
     private final Activity activity =
             new Activity(new Title("Hot Spring"),
-                    new Priority(1),
                     new Duration(3),
                     new Location("Hokkaido"),
-                    new HashSet<>());
+                    new HashSet<>(),
+                    Optional.empty());
 
     @Test
     public void constructorInvalidTitleThrowsIllegalArgumentException() {
         String invalidTitle = " ";
-        Integer invalidPriority = 0;
         Integer invalidDuration = 0;
 
         assertThrows(IllegalArgumentException.class, () -> new Activity(new Title(invalidTitle),
-                new Priority(invalidPriority),
                 new Duration(invalidDuration),
                 new Location(null),
-                new HashSet<>()));
+                new HashSet<>(),
+                Optional.empty()));
     }
 
     @Test
@@ -41,18 +41,18 @@ class ActivityTest {
         // Correct case
         assertEquals(new Title("Hot Spring"), new Activity(
                 new Title("Hot Spring"),
-                new Priority(1),
                 new Duration(3),
                 new Location("Hokkaido"),
-                new HashSet<>()).getTitle());
+                new HashSet<>(),
+                Optional.empty()).getTitle());
 
         //Different case
         assertNotEquals(new Title("Hot Hot"),
                 new Activity(new Title("Hot Spring"),
-                        new Priority(1),
                         new Duration(3),
                         new Location("Hokkaido"),
-                        new HashSet<>()).getTitle());
+                        new HashSet<>(),
+                        Optional.empty()).getTitle());
 
     }
 
@@ -62,39 +62,18 @@ class ActivityTest {
         // Correct case
         assertEquals(new Duration(3),
                 new Activity(new Title("Hot Spring"),
-                        new Priority(1),
                         new Duration(3),
                         new Location("Hokkaido"),
-                        new HashSet<>()).getDuration());
+                        new HashSet<>(),
+                        Optional.empty()).getDuration());
 
         //Different case
         assertNotEquals(new Duration(2),
                 new Activity(new Title("Hot Spring"),
-                        new Priority(1),
                         new Duration(3),
                         new Location("Hokkaido"),
-                        new HashSet<>()).getDuration());
-
-    }
-
-    @Test
-    public void getPriority() {
-
-        // Correct case
-        assertEquals(new Priority(3),
-                new Activity(new Title("Hot Spring"),
-                        new Priority(3),
-                        new Duration(3),
-                        new Location("Hokkaido"),
-                        new HashSet<>()).getPriority());
-
-        //Different case
-        assertNotEquals(new Priority(3),
-                new Activity(new Title("Hot Spring"),
-                        new Priority(1),
-                        new Duration(3),
-                        new Location("Hokkaido"),
-                        new HashSet<>()).getPriority());
+                        new HashSet<>(),
+                        Optional.empty()).getDuration());
 
     }
 
@@ -108,18 +87,18 @@ class ActivityTest {
 
         // different name and quantity -> returns false
         Activity editedActivity = new Activity(new Title("See Deers"),
-                new Priority(1),
                 new Duration(1),
                 new Location("Nara"),
-                new HashSet<>());
+                new HashSet<>(),
+                Optional.empty());
         assertFalse(editedActivity.isSame(activity));
 
         // different name -> returns false
         Activity secondEditedActivity = new Activity(new Title("Spring"),
-                new Priority(1),
                 new Duration(3),
                 new Location("Hokkaido"),
-                new HashSet<>());
+                new HashSet<>(),
+                Optional.empty());
         assertFalse(editedActivity.isSame(secondEditedActivity));
     }
 
@@ -127,18 +106,18 @@ class ActivityTest {
     public void testEquals() {
         // Same case
         Activity editedActivity = new Activity(new Title("Hot Spring"),
-                new Priority(1),
                 new Duration(3),
                 new Location("Hokkaido"),
-                new HashSet<>());
+                new HashSet<>(),
+                Optional.empty());
         assertEquals(activity, editedActivity);
 
         //Different case
         editedActivity = new Activity(new Title("See Deers"),
-                new Priority(1),
                 new Duration(1),
                 new Location("Nara"),
-                new HashSet<>());
+                new HashSet<>(),
+                Optional.empty());
         assertNotEquals(editedActivity, activity);
     }
 
@@ -147,18 +126,18 @@ class ActivityTest {
 
         //Same case
         Activity editedActivity = new Activity(new Title("Hot Spring"),
-                new Priority(1),
                 new Duration(3),
                 new Location("Hokkaido"),
-                new HashSet<>());
+                new HashSet<>(),
+                Optional.empty());
         assertEquals(editedActivity.hashCode(), activity.hashCode());
 
         //Different case
         editedActivity = new Activity(new Title("See Deers"),
-                new Priority(1),
                 new Duration(1),
                 new Location("Nara"),
-                new HashSet<>());
+                new HashSet<>(),
+                Optional.empty());
         assertNotEquals(editedActivity.hashCode(), activity.hashCode());
     }
 
@@ -166,18 +145,18 @@ class ActivityTest {
     public void testToString() {
         Activity editedActivity =
                 new Activity(new Title("Hot Spring"),
-                        new Priority(1),
                         new Duration(3),
                         new Location("Hokkaido"),
-                        new HashSet<>());
+                        new HashSet<>(),
+                        Optional.empty());
         assertEquals(activity.toString(), editedActivity.toString());
 
         editedActivity =
                 new Activity(new Title("See Deers"),
-                        new Priority(1),
                         new Duration(1),
                         new Location("Nara"),
-                        new HashSet<>());
+                        new HashSet<>(),
+                        Optional.empty());
         assertNotEquals(editedActivity.toString(), activity.toString());
 
     }
