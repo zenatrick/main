@@ -36,7 +36,7 @@ public class ActivityCard extends UiPart<Region> {
     @FXML
     private Label title;
     @FXML
-    private Label priority;
+    private Label scheduledTime;
     @FXML
     private Label activityLocation;
     @FXML
@@ -47,7 +47,11 @@ public class ActivityCard extends UiPart<Region> {
         this.activity = activity;
         id.setText(displayedIndex + ". ");
         title.setText("Title: " + activity.getTitle().toString());
-        priority.setText("Priority: " + activity.getPriority().toString());
+        if (activity.getScheduledDateTime().isPresent()) {
+            scheduledTime.setText("Scheduled timing: " + activity.getScheduledDateTime().get());
+        } else {
+            scheduledTime.setText("Not scheduled");
+        }
         duration.setText("Duration: " + activity.getDuration().toString() + " hours");
         activityLocation.setText("Location: " + activity.getLocation().toString());
         activity.getTags().stream()
