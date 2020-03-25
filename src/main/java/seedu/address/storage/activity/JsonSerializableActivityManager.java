@@ -20,15 +20,15 @@ import seedu.address.model.listmanagers.activity.Activity;
 @JsonRootName(value = "activityManager")
 class JsonSerializableActivityManager {
 
-    public static final String MESSAGE_DUPLICATE_ACTIVITY = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_ACTIVITY = "Activity list contains duplicate person(s).";
 
-    private final List<JsonAdaptedActivityManager> activities = new ArrayList<>();
+    private final List<JsonAdaptedActivity> activities = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableActivityManager} with the given activities.
      */
     @JsonCreator
-    public JsonSerializableActivityManager(@JsonProperty("activities") List<JsonAdaptedActivityManager> activities) {
+    public JsonSerializableActivityManager(@JsonProperty("activities") List<JsonAdaptedActivity> activities) {
         this.activities.addAll(activities);
     }
 
@@ -38,7 +38,7 @@ class JsonSerializableActivityManager {
      * @param source future changes to this will not affect the created {@code JsonSerializableActivityManager}.
      */
     public JsonSerializableActivityManager(ReadOnlyActivityManager source) {
-        activities.addAll(source.getActivityList().stream().map(JsonAdaptedActivityManager::new)
+        activities.addAll(source.getActivityList().stream().map(JsonAdaptedActivity::new)
                 .collect(Collectors.toList()));
     }
 
@@ -49,8 +49,8 @@ class JsonSerializableActivityManager {
      */
     public ActivityManager toModelType() throws IllegalValueException {
         ActivityManager activityManager = new ActivityManager();
-        for (JsonAdaptedActivityManager jsonAdaptedActivityManager : activities) {
-            Activity activity = jsonAdaptedActivityManager.toModelType();
+        for (JsonAdaptedActivity jsonAdaptedActivity : activities) {
+            Activity activity = jsonAdaptedActivity.toModelType();
             if (activityManager.hasActivity(activity)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ACTIVITY);
             }

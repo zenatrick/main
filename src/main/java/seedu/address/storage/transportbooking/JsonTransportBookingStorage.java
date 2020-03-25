@@ -27,6 +27,7 @@ public class JsonTransportBookingStorage implements TransportBookingStorage {
         this.filePath = filePath;
     }
 
+    @Override
     public Path getTransportBookingStorageFilePath() {
         return filePath;
     }
@@ -42,6 +43,7 @@ public class JsonTransportBookingStorage implements TransportBookingStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
+    @Override
     public Optional<ReadOnlyTransportBookingManager> readTransportBookings(
             Path filePath) throws DataConversionException {
         requireNonNull(filePath);
@@ -70,6 +72,7 @@ public class JsonTransportBookingStorage implements TransportBookingStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
+    @Override
     public void saveTransportBookings(
             ReadOnlyTransportBookingManager transportBookingManager, Path filePath) throws IOException {
         requireNonNull(transportBookingManager);

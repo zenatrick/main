@@ -15,13 +15,13 @@ import seedu.address.model.listmanagers.ReadOnlyPackingListManager;
 import seedu.address.model.listmanagers.ReadOnlyTransportBookingManager;
 import seedu.address.model.listmanagers.ReadOnlyUserPrefs;
 import seedu.address.model.listmanagers.UserPrefs;
-import seedu.address.model.trip.ReadOnlyTripManager;
+import seedu.address.model.trip.TripManager;
 import seedu.address.storage.accommodationbooking.AccommodationBookingStorage;
 import seedu.address.storage.activity.ActivityManagerStorage;
 import seedu.address.storage.fixedexpense.FixedExpenseStorage;
 import seedu.address.storage.packinglist.PackingListStorage;
 import seedu.address.storage.transportbooking.TransportBookingStorage;
-import seedu.address.storage.trip.TripStorage;
+import seedu.address.storage.trip.TripManagerStorage;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -36,7 +36,7 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
     private ActivityManagerStorage activityManagerStorage;
     private PackingListStorage packingListStorage;
-    private TripStorage tripStorage;
+    private TripManagerStorage tripManagerStorage;
 
     /**
      * Instantiates a new Storage manager.
@@ -54,16 +54,16 @@ public class StorageManager implements Storage {
                           FixedExpenseStorage fixedExpenseStorage,
                           ActivityManagerStorage activityManagerStorage,
                           AccommodationBookingStorage accommodationBookingStorage,
-                          PackingListStorage packingListStorage, TripStorage tripStorage,
+                          PackingListStorage packingListStorage,
+                          TripManagerStorage tripManagerStorage,
                           UserPrefsStorage userPrefsStorage) {
-        super();
         this.addressBookStorage = addressBookStorage;
         this.transportBookingStorage = transportBookingStorage;
         this.fixedExpenseStorage = fixedExpenseStorage;
         this.activityManagerStorage = activityManagerStorage;
         this.accommodationBookingStorage = accommodationBookingStorage;
         this.packingListStorage = packingListStorage;
-        this.tripStorage = tripStorage;
+        this.tripManagerStorage = tripManagerStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -273,28 +273,32 @@ public class StorageManager implements Storage {
         packingListStorage.savePackingList(packingList, filePath);
     }
 
+    //================ Packing List methods ==============================
+
     @Override
     public Path getTripStorageFilePath() {
-        return null;
+        return tripManagerStorage.getTripStorageFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyTripManager> readTrip() throws DataConversionException, IOException {
-        return Optional.empty();
+    public Optional<TripManager> readTripManager() throws DataConversionException, IOException {
+        return readTripManager(packingListStorage.getPackingListStorageFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyTripManager> readTripManager(Path filePath) throws DataConversionException, IOException {
-        return Optional.empty();
+    public Optional<TripManager> readTripManager(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return tripManagerStorage.readTripManager(filePath);
     }
 
     @Override
-    public void saveTrip(ReadOnlyTripManager tripManager) throws IOException {
-
+    public void saveTripManager(TripManager tripManager) throws IOException {
+        saveTripManager(tripManager, tripManagerStorage.getTripStorageFilePath());
     }
 
     @Override
-    public void saveTrip(ReadOnlyTripManager tripManager, Path filePath) throws IOException {
-
+    public void saveTripManager(TripManager tripManager, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        tripManagerStorage.saveTripManager(tripManager, filePath);
     }
 }
