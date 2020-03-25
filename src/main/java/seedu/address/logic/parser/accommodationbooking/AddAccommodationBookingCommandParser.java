@@ -52,18 +52,20 @@ public class AddAccommodationBookingCommandParser implements Parser<AddAccommoda
         Day startDay = ParserUtil.parseDay(argMultimap.getValue(PREFIX_ACCOMMODATION_START_DAY).get());
         Day endDay = ParserUtil.parseDay(argMultimap.getValue(PREFIX_ACCOMMODATION_END_DAY).get());
 
+        Remark remark;
         if (argMultimap.getValue(PREFIX_ACCOMMODATION_REMARK).isPresent()) {
-            Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_ACCOMMODATION_REMARK).get());
-            AccommodationBooking accommodationBooking = new AccommodationBooking(accommodationName,
-                    accommodationLocation, startDay, endDay, remark);
-            return new AddAccommodationBookingCommand(accommodationBooking);
+            remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_ACCOMMODATION_REMARK).get());
         } else {
-            Remark remark = new Remark(" ");
-            AccommodationBooking accommodationBooking = new AccommodationBooking(accommodationName,
-                    accommodationLocation, startDay, endDay, remark);
-            return new AddAccommodationBookingCommand(accommodationBooking);
+            remark = new Remark(" ");
         }
 
+        try {
+            AccommodationBooking accommodationBooking = new AccommodationBooking(accommodationName,
+                    accommodationLocation, startDay, endDay, remark);
+            return new AddAccommodationBookingCommand(accommodationBooking);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
+        }
     }
 
     /**

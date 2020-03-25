@@ -37,6 +37,7 @@ import seedu.address.logic.commands.transportbooking.AddTransportBookingCommand;
 import seedu.address.logic.commands.transportbooking.ClearTransportBookingCommand;
 import seedu.address.logic.commands.transportbooking.DeleteTransportBookingCommand;
 import seedu.address.logic.commands.transportbooking.EditTransportBookingCommand;
+import seedu.address.logic.commands.trip.SetTripCommand;
 import seedu.address.logic.parser.accommodationbooking.AddAccommodationBookingCommandParser;
 import seedu.address.logic.parser.accommodationbooking.DeleteAccommodationBookingCommandParser;
 import seedu.address.logic.parser.accommodationbooking.EditAccommodationBookingCommandParser;
@@ -56,6 +57,7 @@ import seedu.address.logic.parser.packinglist.UncheckItemParser;
 import seedu.address.logic.parser.transportbooking.AddTransportBookingCommandParser;
 import seedu.address.logic.parser.transportbooking.DeleteTransportBookingCommandParser;
 import seedu.address.logic.parser.transportbooking.EditTransportBookingCommandParser;
+import seedu.address.logic.parser.trip.SetTripCommandParser;
 
 /**
  * Parses user input.
@@ -83,7 +85,8 @@ public class EasyTravelParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-        // Address Book Commands
+
+        // ========================== Address Book Commands =========================
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
@@ -108,7 +111,7 @@ public class EasyTravelParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        // Fixed Expense Commands
+        // ========================== Fixed Expense Commands =========================
         case AddFixedExpenseCommand.COMMAND_WORD:
             return new AddFixedExpenseParser().parse(arguments);
 
@@ -124,7 +127,7 @@ public class EasyTravelParser {
         case SortFixedExpenseCommand.COMMAND_WORD:
             return new SortFixedExpenseCommandParser().parse(arguments);
 
-        // Transport Booking Commands
+        // ========================== Transport Booking Commands =========================
         case AddTransportBookingCommand.COMMAND_WORD:
             return new AddTransportBookingCommandParser().parse(arguments);
 
@@ -137,7 +140,7 @@ public class EasyTravelParser {
         case ClearTransportBookingCommand.COMMAND_WORD:
             return new ClearTransportBookingCommand();
 
-        // Packing List Commands
+        // ========================== Packing List Commands =========================
         case AddItemCommand.COMMAND_WORD:
             return new AddItemParser().parse(arguments);
 
@@ -153,7 +156,7 @@ public class EasyTravelParser {
         case UncheckItemCommand.COMMAND_WORD:
             return new UncheckItemParser().parse(arguments);
 
-        // Activity Manager Command
+        // ========================== Activity Commands =========================
         case AddActivityCommand.COMMAND_WORD:
             return new AddActivityParser().parse(arguments);
 
@@ -166,6 +169,7 @@ public class EasyTravelParser {
         case EditActivityCommand.COMMAND_WORD:
             return new EditActivityParser().parse(arguments);
 
+        // ========================== Accommodation Commands =========================
         case AddAccommodationBookingCommand.COMMAND_WORD:
             return new AddAccommodationBookingCommandParser().parse(arguments);
 
@@ -178,6 +182,11 @@ public class EasyTravelParser {
         case EditAccommodationBookingCommand.COMMAND_WORD:
             return new EditAccommodationBookingCommandParser().parse(arguments);
 
+        // ========================== Trip Commands =========================
+        case SetTripCommand.COMMAND_WORD:
+            return new SetTripCommandParser().parse(arguments);
+
+        // ========================== Invalid Commands =========================
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

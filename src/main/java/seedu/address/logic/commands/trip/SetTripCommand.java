@@ -23,16 +23,16 @@ public class SetTripCommand extends Command {
             + "Parameters: "
             + PREFIX_TRIP_TITLE + "TITLE "
             + PREFIX_TRIP_BUDGET + "BUDGET "
-            + PREFIX_TRIP_START_DATE + "STARTDATE "
-            + PREFIX_TRIP_END_DATE + "ENDDATE \n"
+            + PREFIX_TRIP_START_DATE + "START_DATE "
+            + PREFIX_TRIP_END_DATE + "END_DATE\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TRIP_TITLE + "Graduation Trip "
             + PREFIX_TRIP_BUDGET + "5000 "
-            + PREFIX_TRIP_START_DATE + "28-09-20 "
-            + PREFIX_TRIP_END_DATE + "5-10-20 ";
+            + PREFIX_TRIP_START_DATE + "28-09-2020 "
+            + PREFIX_TRIP_END_DATE + "05-10-2020";
 
-    public static final String MESSAGE_SUCCESS = "Trip creation success";
-    public static final String MESSAGE_DUPLICATE_TRIP = "You cannot have more than one trip";
+    public static final String MESSAGE_SUCCESS = "Trip is successfully set: %1$s";
+    public static final String MESSAGE_DUPLICATE_TRIP = "Trip is already set. You cannot set more than one trip!";
 
     private final Trip toAdd;
 

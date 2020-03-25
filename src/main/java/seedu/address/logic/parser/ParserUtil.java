@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.time.Date;
 import seedu.address.commons.core.time.DateTime;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.fixedexpense.SortFixedExpenseCommand;
@@ -26,6 +27,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.trip.Budget;
 import seedu.address.model.util.attributes.Location;
 import seedu.address.model.util.attributes.Title;
 import seedu.address.model.util.attributes.tag.Tag;
@@ -111,8 +113,6 @@ public class ParserUtil {
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @param email the email
-     * @return the email
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
@@ -128,8 +128,6 @@ public class ParserUtil {
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @param tag the tag
-     * @return the tag
      * @throws ParseException if the given {@code tag} is invalid.
      */
     public static Tag parseTag(String tag) throws ParseException {
@@ -144,8 +142,6 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      *
-     * @param tags the tags
-     * @return the set
      * @throws ParseException the parse exception
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
@@ -161,8 +157,6 @@ public class ParserUtil {
      * Parses a {@code String amount} into a {@code Amount}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @param amount the amount
-     * @return the amount
      * @throws ParseException if the given {@code amount} is invalid.
      */
     public static Amount parseAmount(String amount) throws ParseException {
@@ -178,8 +172,6 @@ public class ParserUtil {
      * Parses a {@code String description} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @param description the description
-     * @return the description
      * @throws ParseException if the given {@code description} is invalid.
      */
     public static Description parseDescription(String description) throws ParseException {
@@ -195,8 +187,6 @@ public class ParserUtil {
      * Parses a {@code String category} into a {@code FixedExpenseCategory}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @param category the category
-     * @return the category
      * @throws ParseException if the given {@code category} is invalid.
      */
     public static FixedExpenseCategory parseCategory(String category) throws ParseException {
@@ -212,8 +202,6 @@ public class ParserUtil {
      * Parses a {@code String sortIdentifier}
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @param sortIdentifier identifier to sort by ascending or descending order.
-     * @return the String
      * @throws ParseException if the given {@code sortIdentifier} is invalid.
      */
     public static String parseSortIdentifier(String sortIdentifier) throws ParseException {
@@ -234,8 +222,6 @@ public class ParserUtil {
      * Parses a {@code String sortParameters} into a {@code String}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @param sortParameters the sorting parameters
-     * @return the string
      * @throws ParseException if the given {@code sortParameters} is invalid.
      */
     public static String parseSortParameters(String sortParameters) throws ParseException {
@@ -262,8 +248,6 @@ public class ParserUtil {
      * Parses a {@code String mode} into an {@code Mode}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @param mode the mode
-     * @return the mode
      * @throws ParseException if the given {@code mode} is invalid.
      */
     public static Mode parseMode(String mode) throws ParseException {
@@ -279,8 +263,6 @@ public class ParserUtil {
      * Parses a {@code String location} into an {@code Location}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @param location the location
-     * @return the location
      * @throws ParseException if the given {@code location} is invalid.
      */
     public static Location parseLocation(String location) throws ParseException {
@@ -296,9 +278,7 @@ public class ParserUtil {
      * Parses a {@code String time} into an {@code DateTime}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @param dateTime the date time
-     * @return the date time
-     * @throws ParseException if the given {@code time} is invalid.
+     * @throws ParseException if the given {@code dateTime} is invalid.
      */
     public static DateTime parseDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);
@@ -310,10 +290,24 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into an {@code ItemName}
+     * Parses a {@code String time} into an {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
      *
-     * @param name the name
-     * @return the item name
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return Date.fromString(trimmedDate);
+    }
+
+    /**
+     * Parses a {@code String name} into an {@code ItemName}
+     * Leading and trailing whitespaces will be trimmed.
+     *
      * @throws ParseException the parse exception
      */
     public static ItemName parseItemName(String name) throws ParseException {
@@ -328,9 +322,8 @@ public class ParserUtil {
 
     /**
      * Parse {@code String quantity} into a {@code Quantity}
+     * Leading and trailing whitespaces will be trimmed.
      *
-     * @param quantity the quantity
-     * @return the quantity
      * @throws ParseException the parse exception
      */
     public static Quantity parseQuantity(String quantity) throws ParseException {
@@ -349,9 +342,8 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String category} into a {@code FixedExpenseCategory}
+     * Leading and trailing whitespaces will be trimmed.
      *
-     * @param category the category
-     * @return the item category
      * @throws ParseException the parse exception
      */
     public static ItemCategory parseItemCategory(String category) throws ParseException {
@@ -365,17 +357,21 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String Duration} into a {@code {Duration}}.
-     * Parses the string into an Integer
+     * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code duration} is invalid.
      */
     public static Duration parseDuration(String duration) throws ParseException {
         requireNonNull(duration);
-        Integer parseDuration = Integer.parseInt(duration);
-        if (!Duration.isValidDuration(parseDuration)) {
+        try {
+            Integer intDuration = Integer.parseInt(duration);
+            if (!Duration.isValidDuration(intDuration)) {
+                throw new ParseException(Duration.MESSAGE_CONSTRAINTS);
+            }
+            return new Duration(intDuration);
+        } catch (NumberFormatException e) {
             throw new ParseException(Duration.MESSAGE_CONSTRAINTS);
         }
-        return new Duration(parseDuration);
     }
 
     /**
@@ -395,9 +391,8 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String name} into an {@code AccommodationName}
+     * Leading and trailing whitespaces will be trimmed.
      *
-     * @param name the name
-     * @return the item name
      * @throws ParseException the parse exception
      */
     public static AccommodationName parseAccommodationName(String name) throws ParseException {
@@ -411,25 +406,28 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String day} into an {@code Day}
+     * Leading and trailing whitespaces will be trimmed.
      *
-     * @param day the day
-     * @return the day
      * @throws ParseException the parse exception
      */
     public static Day parseDay(String day) throws ParseException {
         requireNonNull(day);
         String trimmedDay = day.trim();
-        if (!Day.isValidDay(Integer.parseInt(trimmedDay))) {
+        try {
+            Integer intDay = Integer.parseInt(trimmedDay);
+            if (!Day.isValidDay(intDay)) {
+                throw new ParseException(Day.MESSAGE_CONSTRAINTS);
+            }
+            return new Day(intDay);
+        } catch (NumberFormatException e) {
             throw new ParseException(Day.MESSAGE_CONSTRAINTS);
         }
-        return new Day(Integer.parseInt(trimmedDay));
     }
 
     /**
      * Parses a {@code String remark} into an {@code Remark}
+     * Leading and trailing whitespaces will be trimmed.
      *
-     * @param remark the remark
-     * @return the remark
      * @throws ParseException the parse exception
      */
     public static Remark parseRemark(String remark) throws ParseException {
@@ -441,4 +439,23 @@ public class ParserUtil {
         return new Remark(trimmedRemark);
     }
 
+    /**
+     * Parses a {@code String budget} into an {@code Budget}
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException the parse exception
+     */
+    public static Budget parseBudget(String budget) throws ParseException {
+        requireNonNull(budget);
+        String trimmedBudget = budget.trim();
+        try {
+            Integer intBudget = Integer.parseInt(trimmedBudget);
+            if (!Day.isValidDay(intBudget)) {
+                throw new ParseException(Day.MESSAGE_CONSTRAINTS);
+            }
+            return new Budget(intBudget);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Day.MESSAGE_CONSTRAINTS);
+        }
+    }
 }

@@ -22,13 +22,13 @@ import seedu.address.model.listmanagers.transportbooking.TransportBooking;
 import seedu.address.model.util.attributes.Location;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddTransportBookingCommand object
  */
 public class AddTransportBookingCommandParser implements Parser<AddTransportBookingCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddTransportBookingCommand
+     * and returns an AddTransportBookingCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */

@@ -160,7 +160,6 @@ public class TripManager {
      */
     public void scheduleTransportBooking(TransportBooking transportBookingToSchedule) {
         DateTime startDateTime = transportBookingToSchedule.getStartDateTime();
-        DateTime endDateTime = transportBookingToSchedule.getEndDateTime();
         int dayIndex = getTripStartDate().daysUntilInclusive(startDateTime.getDate());
         DaySchedule daySchedule = daySchedules.get(dayIndex);
         DayScheduleEntry entry = DayScheduleEntry.fromTransportBooking(transportBookingToSchedule);
@@ -179,7 +178,7 @@ public class TripManager {
 
     @Override
     public String toString() {
-        return "TripManager - hasTrip: " + hasTrip + " " + trip;
+        return "TripManager - hasTrip: " + hasTrip + " trip: " + trip;
     }
 
     @Override

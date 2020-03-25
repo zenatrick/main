@@ -16,8 +16,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.transportbooking.EditTransportBookingCommand;
 import seedu.address.model.Model;
 import seedu.address.model.listmanagers.accommodationbooking.AccommodationBooking;
 import seedu.address.model.listmanagers.accommodationbooking.AccommodationName;
@@ -54,7 +54,7 @@ public class EditAccommodationBookingCommand extends Command {
     private final EditAccommodationBookingDescriptor editAccommodationBookingDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                              of the person in the filtered person list to edit
      * @param editAccommodationBookingDescriptor details to edit the person with
      */
     public EditAccommodationBookingCommand(Index index,
@@ -77,8 +77,14 @@ public class EditAccommodationBookingCommand extends Command {
         }
 
         AccommodationBooking accommodationBookingToEdit = lastShownList.get(index.getZeroBased());
-        AccommodationBooking editedAccommodationBooking = createEditedAccommodationBooking(accommodationBookingToEdit,
-                editAccommodationBookingDescriptor);
+
+        AccommodationBooking editedAccommodationBooking;
+        try {
+            editedAccommodationBooking = createEditedAccommodationBooking(accommodationBookingToEdit,
+                    editAccommodationBookingDescriptor);
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(e.getMessage());
+        }
 
         if (!accommodationBookingToEdit.isSame(editedAccommodationBooking)
                 && model.hasAccommodationBooking(editedAccommodationBooking)) {
@@ -121,7 +127,7 @@ public class EditAccommodationBookingCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditTransportBookingCommand)) {
             return false;
         }
 
@@ -142,7 +148,8 @@ public class EditAccommodationBookingCommand extends Command {
         private Day accommodationEndDay;
         private Remark accommodationRemark;
 
-        public EditAccommodationBookingDescriptor() {}
+        public EditAccommodationBookingDescriptor() {
+        }
 
         /**
          * Copy constructor.

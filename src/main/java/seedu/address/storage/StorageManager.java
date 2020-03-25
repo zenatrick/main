@@ -282,7 +282,7 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<TripManager> readTripManager() throws DataConversionException, IOException {
-        return readTripManager(packingListStorage.getPackingListStorageFilePath());
+        return readTripManager(tripManagerStorage.getTripStorageFilePath());
     }
 
     @Override
