@@ -17,9 +17,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private Path addressBookFilePath = DEFAULT_FOLDER_PATH.resolve("addressbook.json");
     private Path transportBookingStorageFilePath = DEFAULT_FOLDER_PATH.resolve("transportation.json");
     private Path fixedExpenseStorageFilePath = DEFAULT_FOLDER_PATH.resolve("expense.json");
-    private Path activityManagerStorageFilePath = DEFAULT_FOLDER_PATH.resolve("activity.json");
+    private Path activityStorageFilePath = DEFAULT_FOLDER_PATH.resolve("activity.json");
     private Path accommodationBookingStorageFilePath = DEFAULT_FOLDER_PATH.resolve("accommodation.json");
     private Path packingListStorageFilePath = DEFAULT_FOLDER_PATH.resolve("packinglist.json");
+    private Path tripStorageFilePath = DEFAULT_FOLDER_PATH.resolve("trip.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -42,11 +43,12 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
-        setActivityManagerStorageFilePath(newUserPrefs.getActivityManagerStorageFilePath());
+        setActivityStorageFilePath(newUserPrefs.getActivityStorageFilePath());
         setAccommodationBookingStorageFilePath(newUserPrefs.getAccommodationBookingStorageFilePath());
         setTransportBookingStorageFilePath(newUserPrefs.getTransportBookingStorageFilePath());
         setFixedExpenseStorageFilePath(newUserPrefs.getFixedExpenseStorageFilePath());
         setPackingListStorageFilePath(newUserPrefs.getPackingListStorageFilePath());
+
     }
 
     @Override
@@ -90,13 +92,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     @Override
-    public Path getActivityManagerStorageFilePath() {
-        return activityManagerStorageFilePath;
+    public Path getActivityStorageFilePath() {
+        return activityStorageFilePath;
     }
 
-    public void setActivityManagerStorageFilePath (Path activityManagerStorageFilePath) {
-        requireNonNull(activityManagerStorageFilePath);
-        this.activityManagerStorageFilePath = activityManagerStorageFilePath;
+    public void setActivityStorageFilePath(Path activityStorageFilePath) {
+        requireNonNull(activityStorageFilePath);
+        this.activityStorageFilePath = activityStorageFilePath;
     }
 
     @Override
@@ -120,6 +122,16 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     @Override
+    public Path getTripStorageFilePath() {
+        return tripStorageFilePath;
+    }
+
+    public void setTripStorageFilePath(Path tripStorageFilePath) {
+        requireNonNull(tripStorageFilePath);
+        this.tripStorageFilePath = tripStorageFilePath;
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -134,14 +146,14 @@ public class UserPrefs implements ReadOnlyUserPrefs {
                 && addressBookFilePath.equals(otherUserPrefs.addressBookFilePath)
                 && transportBookingStorageFilePath.equals(otherUserPrefs.transportBookingStorageFilePath)
                 && fixedExpenseStorageFilePath.equals(otherUserPrefs.fixedExpenseStorageFilePath)
-                && activityManagerStorageFilePath.equals(otherUserPrefs.activityManagerStorageFilePath)
+                && activityStorageFilePath.equals(otherUserPrefs.activityStorageFilePath)
                 && accommodationBookingStorageFilePath.equals(otherUserPrefs.accommodationBookingStorageFilePath);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(guiSettings, addressBookFilePath, transportBookingStorageFilePath,
-                fixedExpenseStorageFilePath, accommodationBookingStorageFilePath, activityManagerStorageFilePath);
+                fixedExpenseStorageFilePath, accommodationBookingStorageFilePath, activityStorageFilePath);
     }
 
     @Override
@@ -151,7 +163,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
                 + "\nTransport Bookings data file location : " + transportBookingStorageFilePath
                 + "\nFixed Expenses data file location : " + fixedExpenseStorageFilePath
                 + "\nAccommodation Bookings data file location : " + accommodationBookingStorageFilePath
-                + "\nActivities data file location: " + activityManagerStorageFilePath;
+                + "\nActivities data file location: " + activityStorageFilePath
+                + "\nTrip data file location: " + tripStorageFilePath;
     }
 
 }

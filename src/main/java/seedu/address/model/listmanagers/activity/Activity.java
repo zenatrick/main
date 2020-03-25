@@ -5,9 +5,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.time.DateTime;
 import seedu.address.model.util.attributes.Location;
 import seedu.address.model.util.attributes.Title;
 import seedu.address.model.util.attributes.tag.Tag;
@@ -25,27 +27,24 @@ public class Activity implements UniqueListElement {
     private final Location location;
 
     // Data fields
-    private final Priority priority;
     private final Set<Tag> tags = new HashSet<>();
+    private final Optional<DateTime> scheduledDateTime;
 
     /**
      * Every field must be present and not null.
      */
-    public Activity(Title title, Priority priority, Duration duration, Location location, Set<Tag> tags) {
-        requireAllNonNull(title, priority, duration, location, tags);
+    public Activity(Title title, Duration duration, Location location, Set<Tag> tags,
+                    Optional<DateTime> scheduledDateTime) {
+        requireAllNonNull(title, duration, location, tags, scheduledDateTime);
         this.title = title;
-        this.priority = priority;
         this.duration = duration;
         this.location = location;
         this.tags.addAll(tags);
+        this.scheduledDateTime = scheduledDateTime;
     }
 
     public Title getTitle() {
         return title;
-    }
-
-    public Priority getPriority() {
-        return priority;
     }
 
     public Duration getDuration() {
@@ -54,6 +53,11 @@ public class Activity implements UniqueListElement {
 
     public Location getLocation() {
         return location;
+    }
+
+
+    public Optional<DateTime> getScheduledDateTime() {
+        return scheduledDateTime;
     }
 
     /**
@@ -102,20 +106,20 @@ public class Activity implements UniqueListElement {
         return title.equals(otherActivity.title)
                 && duration.equals(otherActivity.duration)
                 && location.equals(otherActivity.location)
-                && priority.equals(otherActivity.priority)
-                && getTags().equals(otherActivity.getTags());
+                && getTags().equals(otherActivity.getTags())
+                && scheduledDateTime.equals(otherActivity.scheduledDateTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, priority, duration, location, tags);
+        return Objects.hash(title, duration, location, tags, scheduledDateTime);
     }
 
     @Override
     public String toString() {
         return "Activity - Title: " + title
-                + " Priority: " + priority
                 + " Duration: " + duration
+                + " Is Scheduled: " + scheduledDateTime.isPresent()
                 + " Tags: "
                 + getTags()
                 .stream()

@@ -12,17 +12,19 @@ import java.util.function.Predicate;
  */
 public class Budget {
 
-    public static final String MESSAGE_CONSTRAINTS = "Budget should be a whole number greater than 0";
+    public static final String MESSAGE_CONSTRAINTS = "Budget should be a whole number greater than 0 and less than or "
+            + "equal to 1,000,000";
 
     private static final int MIN_VALUE = 1;
-    public static final Predicate<Integer> VALIDATION_PREDICATE = i -> i >= MIN_VALUE;
+    private static final int MAX_VALUE = 1_000_000;
+    public static final Predicate<Integer> VALIDATION_PREDICATE = i -> i >= MIN_VALUE && i <= MAX_VALUE;
 
-    private final Integer amount;
+    public final Integer value;
 
     public Budget(Integer amount) {
         requireAllNonNull(amount);
         checkArgument(isValidBudget(amount), MESSAGE_CONSTRAINTS);
-        this.amount = amount;
+        value = amount;
     }
 
     /**
@@ -34,6 +36,6 @@ public class Budget {
 
     @Override
     public String toString() {
-        return amount.toString();
+        return value.toString();
     }
 }

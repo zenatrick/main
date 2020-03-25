@@ -21,6 +21,7 @@ import seedu.address.model.listmanagers.transportbooking.TransportBooking;
 import seedu.address.model.person.Person;
 import seedu.address.model.trip.DayScheduleEntry;
 import seedu.address.model.trip.Trip;
+import seedu.address.model.trip.TripManager;
 
 /**
  * The API of the Model component.
@@ -444,9 +445,12 @@ public interface Model {
     // ========== Trip Manager ==========
 
     /**
+     * Returns the TripManager.
+     */
+    TripManager getTripManager();
+
+    /**
      * Returns true if a trip is already set in EzTravel.
-     *
-     * @return true if a trip is already set.
      */
     boolean hasTrip();
 

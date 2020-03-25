@@ -15,7 +15,7 @@ public interface ReadOnlyUserPrefs {
 
     Path getTransportBookingStorageFilePath();
 
-    Path getActivityManagerStorageFilePath();
+    Path getActivityStorageFilePath();
 
     Path getFixedExpenseStorageFilePath();
 
@@ -23,4 +23,5 @@ public interface ReadOnlyUserPrefs {
 
     Path getPackingListStorageFilePath();
 
+    Path getTripStorageFilePath();
 }

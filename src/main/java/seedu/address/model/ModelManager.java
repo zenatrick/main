@@ -427,6 +427,12 @@ public class ModelManager implements Model {
 
     // ========== TripManager ==========
 
+
+    @Override
+    public TripManager getTripManager() {
+        return tripManager;
+    }
+
     @Override
     public boolean hasTrip() {
         return tripManager.hasTrip();

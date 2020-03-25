@@ -1,16 +1,18 @@
 package seedu.address.model.trip;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.commons.core.time.Date;
 import seedu.address.model.util.attributes.Title;
-
 
 /**
  * Represents a Trip in the EasyTravel
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Trip {
+
+    public static final String MESSAGE_TRIP_CONSTRAINTS = "Start date must not be after end date.";
 
     // Trip data
     private final Title title;
@@ -20,15 +22,17 @@ public class Trip {
     private final Budget budget;
 
     /**
+     * Creates an instance of a Trip.
      * Every field must be present and not null.
      */
-    public Trip(Title title, Date start, Date end, Budget budget) {
-        requireAllNonNull(title, start, end, budget);
+    public Trip(Title title, Date startDate, Date endDate, Budget budget) {
+        requireAllNonNull(title, startDate, endDate, budget);
+        checkArgument(isValidTrip(startDate, endDate), MESSAGE_TRIP_CONSTRAINTS);
         this.title = title;
         this.budget = budget;
-        this.startDate = start;
-        this.endDate = end;
-        numDays = start.daysUntilInclusive(end);
+        this.startDate = startDate;
+        this.endDate = endDate;
+        numDays = startDate.daysUntilInclusive(endDate);
     }
 
     public Title getTitle() {
@@ -49,6 +53,10 @@ public class Trip {
 
     public Date getEndDate() {
         return endDate;
+    }
+
+    public boolean isValidTrip(Date startDate, Date endDate) {
+        return startDate.compareTo(endDate) >= 0;
     }
 
     @Override

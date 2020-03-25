@@ -71,6 +71,13 @@ public class TripManager {
                 .collect(Collectors.toList());
     }
 
+    public Trip getTrip() {
+        if (!hasTrip) {
+            throw new IllegalOperationException(MESSAGE_ERROR_NO_TRIP);
+        }
+        return trip;
+    }
+
     public Title getTripTitle() {
         if (!hasTrip) {
             throw new IllegalOperationException(MESSAGE_ERROR_NO_TRIP);

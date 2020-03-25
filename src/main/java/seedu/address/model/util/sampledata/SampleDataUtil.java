@@ -2,6 +2,7 @@ package seedu.address.model.util.sampledata;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,7 +25,6 @@ import seedu.address.model.listmanagers.accommodationbooking.Day;
 import seedu.address.model.listmanagers.accommodationbooking.Remark;
 import seedu.address.model.listmanagers.activity.Activity;
 import seedu.address.model.listmanagers.activity.Duration;
-import seedu.address.model.listmanagers.activity.Priority;
 import seedu.address.model.listmanagers.fixedexpense.Amount;
 import seedu.address.model.listmanagers.fixedexpense.Category;
 import seedu.address.model.listmanagers.fixedexpense.Description;
@@ -164,8 +164,8 @@ public class SampleDataUtil {
      */
     public static Activity[] getSampleActivity() {
         return new Activity[]{
-            new Activity(new Title("Hot Spring"), new Priority(1), new Duration(3), new Location("Hokkaido"),
-                    new HashSet<>())
+            new Activity(new Title("Hot Spring"), new Duration(3), new Location("Hokkaido"),
+                    new HashSet<>(), Optional.empty())
         };
     }
 
