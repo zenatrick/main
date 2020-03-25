@@ -2,7 +2,7 @@ package seedu.address.logic.parser.packinglist;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEMCATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.util.stream.Stream;
@@ -32,9 +32,9 @@ public class AddItemParser implements Parser<AddItemCommand> {
      */
     public AddItemCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ITEM, PREFIX_QUANTITY, PREFIX_ITEMCATEGORY);
+                ArgumentTokenizer.tokenize(args, PREFIX_ITEM, PREFIX_QUANTITY, PREFIX_ITEM_CATEGORY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ITEM, PREFIX_QUANTITY, PREFIX_ITEMCATEGORY)
+        if (!arePrefixesPresent(argMultimap, PREFIX_ITEM, PREFIX_QUANTITY, PREFIX_ITEM_CATEGORY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddItemCommand.MESSAGE_USAGE));
@@ -42,7 +42,7 @@ public class AddItemParser implements Parser<AddItemCommand> {
 
         ItemName name = ParserUtil.parseItemName(argMultimap.getValue(PREFIX_ITEM).get());
         Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get());
-        ItemCategory category = ParserUtil.parseItemCategory(argMultimap.getValue(PREFIX_ITEMCATEGORY).get());
+        ItemCategory category = ParserUtil.parseItemCategory(argMultimap.getValue(PREFIX_ITEM_CATEGORY).get());
 
         PackingListItem packingListItem = new PackingListItem(name, quantity, category, false);
 

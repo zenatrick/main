@@ -54,6 +54,7 @@ public class LogicManager implements Logic {
             storage.saveTransportBookings(model.getTransportBookingManager());
             storage.saveActivityManager(model.getActivityManager());
             storage.savePackingList(model.getPackingListManager());
+            storage.saveTripManager(model.getTripManager());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

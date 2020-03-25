@@ -1,17 +1,17 @@
 package seedu.address.logic.commands.activity;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITY_DURATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITY_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITY_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITY_TITLE;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.listmanagers.activity.Activity;
+
 /**
  * Adds a Activity to the Activity manager.
  */
@@ -22,17 +22,15 @@ public class AddActivityCommand extends Command {
     public static final String MESSAGE_DUPLICATE_ACTIVITY = "This activity already exists in the scheduler";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an activity to the activity list"
             + "Parameters: "
-            + PREFIX_TITLE + "TITLE"
-            + PREFIX_PRIORITY + "PRIORITY"
-            + PREFIX_DURATION + "DURATION"
-            + PREFIX_TAG + "TAGS...\n "
+            + PREFIX_ACTIVITY_TITLE + "TITLE "
+            + PREFIX_ACTIVITY_DURATION + "DURATION "
+            + PREFIX_ACTIVITY_TAG + "TAGS...\n "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TITLE + "Osaka Castle View "
-            + PREFIX_PRIORITY + "1 "
-            + PREFIX_DURATION + "1 "
-            + PREFIX_LOCATION + "Osaka "
-            + PREFIX_TAG + "expensive "
-            + PREFIX_TAG + "weeb";;
+            + PREFIX_ACTIVITY_TITLE + "Osaka Castle View "
+            + PREFIX_ACTIVITY_DURATION + "1 "
+            + PREFIX_ACTIVITY_LOCATION + "Osaka "
+            + PREFIX_ACTIVITY_TAG + "expensive "
+            + PREFIX_ACTIVITY_TAG + "sightseeing";
 
     public static final String MESSAGE_SUCCESS = "New Activity added: %1$s";
     private final Activity toAdd;
@@ -57,6 +55,7 @@ public class AddActivityCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
 
     }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

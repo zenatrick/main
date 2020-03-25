@@ -2,11 +2,10 @@ package seedu.address.logic.parser.activity;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITY_DURATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITY_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITY_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITY_TITLE;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -30,13 +29,13 @@ public class EditActivityParser implements Parser<EditActivityCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditActivityCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE ,
-                        PREFIX_PRIORITY, PREFIX_DURATION, PREFIX_LOCATION, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
+                args, PREFIX_ACTIVITY_TITLE, PREFIX_ACTIVITY_DURATION, PREFIX_ACTIVITY_LOCATION, PREFIX_ACTIVITY_TAG);
 
         Index index;
 
@@ -50,23 +49,19 @@ public class EditActivityParser implements Parser<EditActivityCommand> {
         EditActivityCommand.EditActivityDescriptor editActivityDescriptor =
                 new EditActivityCommand.EditActivityDescriptor();
 
-        if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
+        if (argMultimap.getValue(PREFIX_ACTIVITY_TITLE).isPresent()) {
             editActivityDescriptor.setTitle(ParserUtil
-                    .parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
+                    .parseTitle(argMultimap.getValue(PREFIX_ACTIVITY_TITLE).get()));
         }
-        if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
-            editActivityDescriptor.setPriority(ParserUtil
-                    .parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get()));
-        }
-        if (argMultimap.getValue(PREFIX_DURATION).isPresent()) {
+        if (argMultimap.getValue(PREFIX_ACTIVITY_DURATION).isPresent()) {
             editActivityDescriptor.setDuration(ParserUtil
-                    .parseDuration(argMultimap.getValue(PREFIX_DURATION).get()));
+                    .parseDuration(argMultimap.getValue(PREFIX_ACTIVITY_DURATION).get()));
         }
-        if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
+        if (argMultimap.getValue(PREFIX_ACTIVITY_LOCATION).isPresent()) {
             editActivityDescriptor.setLocation(ParserUtil
-                    .parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
+                    .parseLocation(argMultimap.getValue(PREFIX_ACTIVITY_LOCATION).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editActivityDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_ACTIVITY_TAG)).ifPresent(editActivityDescriptor::setTags);
 
         if (!editActivityDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditActivityCommand.MESSAGE_NOT_EDITED);

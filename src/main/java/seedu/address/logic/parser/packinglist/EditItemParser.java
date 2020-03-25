@@ -3,7 +3,7 @@ package seedu.address.logic.parser.packinglist;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEMCATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import seedu.address.commons.core.index.Index;
@@ -23,7 +23,7 @@ public class EditItemParser implements Parser<EditItemCommand> {
     public EditItemCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ITEM, PREFIX_QUANTITY, PREFIX_ITEMCATEGORY);
+                ArgumentTokenizer.tokenize(args, PREFIX_ITEM, PREFIX_QUANTITY, PREFIX_ITEM_CATEGORY);
 
         Index index;
 
@@ -40,9 +40,9 @@ public class EditItemParser implements Parser<EditItemCommand> {
         if (argMultimap.getValue(PREFIX_QUANTITY).isPresent()) {
             editItemDescriptor.setQuantity(ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get()));
         }
-        if (argMultimap.getValue(PREFIX_ITEMCATEGORY).isPresent()) {
+        if (argMultimap.getValue(PREFIX_ITEM_CATEGORY).isPresent()) {
             editItemDescriptor.setItemCategory(ParserUtil.parseItemCategory
-                    (argMultimap.getValue(PREFIX_ITEMCATEGORY).get()));
+                    (argMultimap.getValue(PREFIX_ITEM_CATEGORY).get()));
         }
 
         if (!editItemDescriptor.isAnyFieldEdited()) {

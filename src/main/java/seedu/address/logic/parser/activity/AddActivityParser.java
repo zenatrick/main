@@ -1,12 +1,12 @@
 package seedu.address.logic.parser.activity;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITY_DURATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITY_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITY_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITY_TITLE;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -19,7 +19,6 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.listmanagers.activity.Activity;
 import seedu.address.model.listmanagers.activity.Duration;
-import seedu.address.model.listmanagers.activity.Priority;
 import seedu.address.model.util.attributes.Location;
 import seedu.address.model.util.attributes.Title;
 import seedu.address.model.util.attributes.tag.Tag;
@@ -38,23 +37,22 @@ public class AddActivityParser implements Parser<AddActivityCommand> {
 
     public AddActivityCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_PRIORITY,
-                        PREFIX_DURATION, PREFIX_LOCATION, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_ACTIVITY_TITLE,
+                        PREFIX_ACTIVITY_DURATION, PREFIX_ACTIVITY_LOCATION, PREFIX_ACTIVITY_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_PRIORITY, PREFIX_DURATION, PREFIX_LOCATION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_ACTIVITY_TITLE, PREFIX_ACTIVITY_DURATION, PREFIX_ACTIVITY_LOCATION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddActivityCommand.MESSAGE_USAGE));
         }
 
-        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
-        Priority priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
-        Duration duration = ParserUtil.parseDuration(argMultimap.getValue(PREFIX_DURATION).get());
-        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_ACTIVITY_TITLE).get());
+        Duration duration = ParserUtil.parseDuration(argMultimap.getValue(PREFIX_ACTIVITY_DURATION).get());
+        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_ACTIVITY_LOCATION).get());
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ACTIVITY_TAG));
 
 
-        Activity activity = new Activity(title, priority, duration, location, tagList);
+        Activity activity = new Activity(title, duration, location, tagList, Optional.empty());
 
         return new AddActivityCommand(activity);
     }

@@ -1,11 +1,10 @@
 package seedu.address.logic.commands.activity;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITY_DURATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITY_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITY_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITY_TITLE;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -22,7 +21,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.listmanagers.activity.Activity;
 import seedu.address.model.listmanagers.activity.Duration;
-import seedu.address.model.listmanagers.activity.Priority;
 import seedu.address.model.util.attributes.Location;
 import seedu.address.model.util.attributes.Title;
 import seedu.address.model.util.attributes.tag.Tag;
@@ -38,14 +36,13 @@ public class EditActivityCommand extends Command {
             + "by the index number used in the displayed list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TITLE + "TITLE] "
-            + "[" + PREFIX_DURATION + "DURATION] "
-            + "[" + PREFIX_PRIORITY + "PRIORITY] "
-            + "[" + PREFIX_LOCATION + "LOCATION] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_ACTIVITY_TITLE + "TITLE] "
+            + "[" + PREFIX_ACTIVITY_DURATION + "DURATION] "
+            + "[" + PREFIX_ACTIVITY_LOCATION + "LOCATION] "
+            + "[" + PREFIX_ACTIVITY_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TITLE + "I AM DUMB "
-            + PREFIX_DURATION + "2";
+            + PREFIX_ACTIVITY_TITLE + "Shopping "
+            + PREFIX_ACTIVITY_DURATION + "2";
 
     public static final String MESSAGE_EDIT_ACTIVITY_SUCCESS = "Edited Activity: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -55,7 +52,7 @@ public class EditActivityCommand extends Command {
     private final EditActivityDescriptor editActivityDescriptor;
 
     /**
-     * @param index                      of the activity in the filtered activity list to edit
+     * @param index                  of the activity in the filtered activity list to edit
      * @param editActivityDescriptor details to edit the activity with
      */
     public EditActivityCommand(Index index, EditActivityDescriptor editActivityDescriptor) {
@@ -92,16 +89,16 @@ public class EditActivityCommand extends Command {
      * edited with {@code editActivityDescriptor}
      */
     private static Activity createEditedActivity(Activity activityToEdit,
-                                                     EditActivityDescriptor editActivityDescriptor) {
+                                                 EditActivityDescriptor editActivityDescriptor) {
         assert activityToEdit != null;
 
         Title updatedTitle = editActivityDescriptor.getTitle().orElse(activityToEdit.getTitle());
         Duration updatedDuration = editActivityDescriptor.getDuration().orElse(activityToEdit.getDuration());
         Location updatedLocation = editActivityDescriptor.getLocation().orElse(activityToEdit.getLocation());
         Set<Tag> updatedTags = editActivityDescriptor.getTags().orElse(activityToEdit.getTags());
-        Priority updatedPriority = editActivityDescriptor.getPriority().orElse(activityToEdit.getPriority());
 
-        return new Activity(updatedTitle, updatedPriority, updatedDuration, updatedLocation, updatedTags);
+        return new Activity(updatedTitle, updatedDuration, updatedLocation, updatedTags,
+                activityToEdit.getScheduledDateTime());
     }
 
     /**
@@ -111,7 +108,6 @@ public class EditActivityCommand extends Command {
     public static class EditActivityDescriptor {
         private Title title;
         private Duration duration;
-        private Priority priority;
         private Location location;
         private Set<Tag> tags;
 
@@ -125,7 +121,6 @@ public class EditActivityCommand extends Command {
         public EditActivityDescriptor(EditActivityDescriptor toCopy) {
             setTitle(toCopy.title);
             setDuration(toCopy.duration);
-            setPriority(toCopy.priority);
             setLocation(toCopy.location);
             setTags(toCopy.tags);
         }
@@ -134,7 +129,7 @@ public class EditActivityCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, duration, priority);
+            return CollectionUtil.isAnyNonNull(title, duration, location, tags);
         }
 
         public void setTitle(Title title) {
@@ -151,14 +146,6 @@ public class EditActivityCommand extends Command {
 
         public Optional<Duration> getDuration() {
             return Optional.ofNullable(duration);
-        }
-
-        public void setPriority(Priority priority) {
-            this.priority = priority;
-        }
-
-        public Optional<Priority> getPriority() {
-            return Optional.ofNullable(priority);
         }
 
         public void setLocation(Location location) {
@@ -203,7 +190,6 @@ public class EditActivityCommand extends Command {
 
             return getTitle().equals(e.getTitle())
                     && getDuration().equals(e.getDuration())
-                    && getPriority().equals(e.getPriority())
                     && getLocation().equals(e.getLocation())
                     && getTags().equals(e.getTags());
         }

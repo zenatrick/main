@@ -15,7 +15,6 @@ import seedu.address.model.listmanagers.accommodationbooking.AccommodationName;
 import seedu.address.model.listmanagers.accommodationbooking.Day;
 import seedu.address.model.listmanagers.accommodationbooking.Remark;
 import seedu.address.model.listmanagers.activity.Duration;
-import seedu.address.model.listmanagers.activity.Priority;
 import seedu.address.model.listmanagers.fixedexpense.Amount;
 import seedu.address.model.listmanagers.fixedexpense.Category;
 import seedu.address.model.listmanagers.fixedexpense.Description;
@@ -220,7 +219,7 @@ public class ParserUtil {
     public static String parseSortIdentifier(String sortIdentifier) throws ParseException {
         requireNonNull(sortIdentifier);
 
-        switch(sortIdentifier) {
+        switch (sortIdentifier) {
         case SortFixedExpenseCommand.SORT_ASCENDING:
             return SortFixedExpenseCommand.SORT_ASCENDING;
         case SortFixedExpenseCommand.SORT_DESCENDING:
@@ -242,7 +241,7 @@ public class ParserUtil {
     public static String parseSortParameters(String sortParameters) throws ParseException {
         requireNonNull(sortParameters);
 
-        switch(sortParameters) {
+        switch (sortParameters) {
         case SortFixedExpenseCommand.AMOUNT:
             return SortFixedExpenseCommand.AMOUNT;
 
@@ -362,21 +361,6 @@ public class ParserUtil {
             throw new ParseException(Category.MESSAGE_CONSTRAINTS);
         }
         return new ItemCategory(trimmedCategory);
-    }
-
-    /**
-     * Parses a {@code String Priority} into a {@code {Priority}}.
-     * Parses the string into an Integer
-     *
-     * @throws ParseException if the given {@code priority} is invalid.
-     */
-    public static Priority parsePriority(String priority) throws ParseException {
-        requireNonNull(priority);
-        Integer parsedPriority = Integer.parseInt(priority);
-        if (!Priority.isValidPriority(parsedPriority)) {
-            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
-        }
-        return new Priority(parsedPriority);
     }
 
     /**

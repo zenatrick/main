@@ -18,7 +18,7 @@ public class CliSyntax {
 
     public static final Prefix PREFIX_ITEM = new Prefix("item/");
     public static final Prefix PREFIX_QUANTITY = new Prefix("quantity/");
-    public static final Prefix PREFIX_ITEMCATEGORY = new Prefix("category/");
+    public static final Prefix PREFIX_ITEM_CATEGORY = new Prefix("category/");
 
     public static final Prefix PREFIX_MODE = new Prefix("mode/");
     public static final Prefix PREFIX_START_LOCATION = new Prefix("startloc/");
@@ -26,11 +26,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_START_DATE_TIME = new Prefix("starttime/");
     public static final Prefix PREFIX_END_DATE_TIME = new Prefix("endtime/");
 
-    public static final Prefix PREFIX_TITLE = new Prefix("title/");
-    public static final Prefix PREFIX_PRIORITY = new Prefix("priority/");
-    public static final Prefix PREFIX_LOCATION = new Prefix("location/");
-    public static final Prefix PREFIX_DURATION = new Prefix("duration/");
-    public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_ACTIVITY_TITLE = new Prefix("title/");
+    public static final Prefix PREFIX_ACTIVITY_LOCATION = new Prefix("location/");
+    public static final Prefix PREFIX_ACTIVITY_DURATION = new Prefix("duration/");
+    public static final Prefix PREFIX_ACTIVITY_TAG = new Prefix("tag/");
 
     public static final Prefix PREFIX_ACCOMMODATION_NAME = new Prefix("name/");
     public static final Prefix PREFIX_ACCOMMODATION_LOCATION = new Prefix("loc/");
@@ -38,7 +37,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ACCOMMODATION_END_DAY = new Prefix("endday/");
     public static final Prefix PREFIX_ACCOMMODATION_REMARK = new Prefix("remark/");
 
-    public static final Prefix PREFIX_TRIP_TITLE = new Prefix("remark/");
+    public static final Prefix PREFIX_TRIP_TITLE = new Prefix("title/");
     public static final Prefix PREFIX_TRIP_START_DATE = new Prefix("startdate/");
     public static final Prefix PREFIX_TRIP_END_DATE = new Prefix("enddate/");
     public static final Prefix PREFIX_TRIP_BUDGET = new Prefix("budget/");
