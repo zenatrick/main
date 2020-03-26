@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+<<<<<<< HEAD:src/main/java/team/easytravel/model/Model.java
 import team.easytravel.commons.core.GuiSettings;
 import team.easytravel.model.listmanagers.ReadOnlyAccommodationBookingManager;
 import team.easytravel.model.listmanagers.ReadOnlyActivityManager;
@@ -21,6 +22,27 @@ import team.easytravel.model.person.Person;
 import team.easytravel.model.trip.DayScheduleEntry;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
+=======
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.listmanagers.AccommodationBookingManager;
+import seedu.address.model.listmanagers.FixedExpenseManager;
+import seedu.address.model.listmanagers.PackingListManager;
+import seedu.address.model.listmanagers.ReadOnlyAccommodationBookingManager;
+import seedu.address.model.listmanagers.ReadOnlyActivityManager;
+import seedu.address.model.listmanagers.ReadOnlyFixedExpenseManager;
+import seedu.address.model.listmanagers.ReadOnlyPackingListManager;
+import seedu.address.model.listmanagers.ReadOnlyTransportBookingManager;
+import seedu.address.model.listmanagers.ReadOnlyUserPrefs;
+import seedu.address.model.listmanagers.accommodationbooking.AccommodationBooking;
+import seedu.address.model.listmanagers.activity.Activity;
+import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
+import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
+import seedu.address.model.listmanagers.transportbooking.TransportBooking;
+import seedu.address.model.person.Person;
+import seedu.address.model.trip.DayScheduleEntry;
+import seedu.address.model.trip.Trip;
+import seedu.address.model.trip.TripManager;
+>>>>>>> Add CheckStatusCommand:src/main/java/seedu/address/model/Model.java
 
 /**
  * The API of the Model component.
@@ -438,6 +460,15 @@ public interface Model {
      */
     ObservableList<DayScheduleEntry> getDayScheduleEntryList(int dayIndex);
 
+<<<<<<< HEAD:src/main/java/team/easytravel/model/Model.java
     // ========== Util ==========
     void resetAllListManagers();
+=======
+    /**
+     * Returns the status of the trip preparedness
+     */
+    boolean isTripPrepared(FixedExpenseManager fixedExpenseManager,
+                        PackingListManager packingListManager,
+                        AccommodationBookingManager accommodationBookingManager);
+>>>>>>> Add CheckStatusCommand:src/main/java/seedu/address/model/Model.java
 }
