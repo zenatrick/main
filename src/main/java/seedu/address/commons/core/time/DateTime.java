@@ -54,7 +54,7 @@ public class DateTime {
     }
 
     /**
-     * Returns a copy of this Time with the specified number of hours added.
+     * Returns a copy of this DateTime with the specified number of hours added.
      */
     public DateTime plusHours(long hours) throws IllegalArgumentException {
         return new DateTime(dateTime.plusHours(hours));

@@ -351,4 +351,9 @@ public class ModelStub implements Model {
     public ObservableList<DayScheduleEntry> getDayScheduleEntryList(int dayIndex) {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public void resetAllListManagers() {
+        throw new AssertionError("This method should not be called.");
+    }
 }

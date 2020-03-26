@@ -151,12 +151,12 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
+        TripManager tripManager = initTripManager(storage);
         ReadOnlyTransportBookingManager transportBookingManager = initTransportBookingManager(storage);
         ReadOnlyFixedExpenseManager fixedExpenseManager = initFixedExpenseManager(storage);
         ReadOnlyActivityManager activityManager = initActivityManager(storage);
         ReadOnlyAccommodationBookingManager accommodationBookingManager = initAccommodationBookingManager(storage);
         ReadOnlyPackingListManager packingListManager = initPackingListManager(storage);
-        TripManager tripManager = initTripManager(storage);
 
         return new ModelManager(initialData, transportBookingManager, fixedExpenseManager, packingListManager,
                 activityManager, accommodationBookingManager, tripManager, userPrefs);

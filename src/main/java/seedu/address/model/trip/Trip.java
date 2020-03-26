@@ -56,7 +56,7 @@ public class Trip {
     }
 
     public boolean isValidTrip(Date startDate, Date endDate) {
-        return startDate.compareTo(endDate) < 0;
+        return startDate.compareTo(endDate) <= 0;
     }
 
     @Override

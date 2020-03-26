@@ -73,22 +73,25 @@ public class ModelManager implements Model {
         requireAllNonNull(addressBook, transportBookingManager, fixedExpenseManager,
                 packingListManager, activityManager, accommodationBookingManager, tripManager, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with Easy Travel: " + tripManager + " and user prefs " + userPrefs);
 
+        this.tripManager = new TripManager(tripManager);
         this.addressBook = new AddressBook(addressBook);
         this.transportBookingManager = new TransportBookingManager(transportBookingManager);
         this.fixedExpenseManager = new FixedExpenseManager(fixedExpenseManager);
         this.packingListManager = new PackingListManager(packingListManager);
         this.activityManager = new ActivityManager(activityManager);
         this.accommodationBookingManager = new AccommodationBookingManager(accommodationBookingManager);
-        this.tripManager = new TripManager(tripManager);
         this.userPrefs = new UserPrefs(userPrefs);
 
         if (tripManager.hasTrip()) {
-            this.activityManager.setAllAsNotScheduled();
-        } else {
+            this.transportBookingManager.removeInvalidTransportBookings(this.tripManager.getTripStartDate(),
+                    this.tripManager.getTripEndDate());
+            this.activityManager.clearInvalidScheduleTime(this.tripManager.getTripStartDate());
             this.tripManager.scheduleAll(this.activityManager.getActivityList(),
                     this.transportBookingManager.getTransportBookings());
+        } else {
+            resetAllListManagers();
         }
 
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -99,11 +102,6 @@ public class ModelManager implements Model {
         filteredAccommodationBookingList = new FilteredList<>((this.accommodationBookingManager
                 .getAccommodationBookingList()));
         filteredSchduleEntryLists = new ArrayList<>();
-    }
-
-    public ModelManager() {
-        this(new AddressBook(), new TransportBookingManager(), new FixedExpenseManager(), new PackingListManager(),
-                new ActivityManager(), new AccommodationBookingManager(), new TripManager(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -459,8 +457,7 @@ public class ModelManager implements Model {
         if (!hasTrip()) {
             throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
         }
-        tripManager.resetData(new TripManager());
-        activityManager.setAllAsNotScheduled();
+        resetAllListManagers();
     }
 
     @Override
@@ -511,7 +508,17 @@ public class ModelManager implements Model {
         return filteredSchduleEntryLists.get(dayIndex);
     }
 
-    // ========== Utils ==========
+    // ========== Util ==========
+
+    @Override
+    public void resetAllListManagers() {
+        tripManager.resetData(new TripManager());
+        this.fixedExpenseManager.resetData(new FixedExpenseManager());
+        this.packingListManager.resetData(new PackingListManager());
+        this.activityManager.resetData(new ActivityManager());
+        this.accommodationBookingManager.resetData(new AccommodationBookingManager());
+        this.transportBookingManager.resetData(new TransportBookingManager());
+    }
 
     @Override
     public boolean equals(Object obj) {

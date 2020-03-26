@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.time.Date;
 import seedu.address.model.listmanagers.activity.Activity;
 import seedu.address.model.util.uniquelist.UniqueList;
 
@@ -51,15 +52,20 @@ public class ActivityManager implements ReadOnlyActivityManager {
     }
 
     /**
-     * Sets all activities as not scheduled.
+     * Clears all invalid scheduled time for every activity.
+     * A scheduled time is invalid when it starts earlier than the given date.
      */
-    public void setAllAsNotScheduled() {
-        setActivities(getActivityList()
-                .stream()
-                .map(activity -> new Activity(activity.getTitle(), activity.getDuration(), activity.getLocation(),
-                        activity.getTags(), Optional.empty()))
-                .collect(Collectors.toList())
-        );
+    public void clearInvalidScheduleTime(Date tripStartDate) {
+        setActivities(getActivityList().stream()
+                .map(activity -> {
+                    if (activity.getScheduledDateTime().isPresent()
+                            && activity.getScheduledDateTime().get().getDate().compareTo(tripStartDate) < 0) {
+                        return new Activity(activity.getTitle(), activity.getDuration(), activity.getLocation(),
+                                activity.getTags(), Optional.empty());
+                    } else {
+                        return activity;
+                    }
+                }).collect(Collectors.toList()));
     }
 
     // Activity-level operations

@@ -493,4 +493,7 @@ public interface Model {
      * Returns an unmodifiable view of the schedule entry list of a specified day.
      */
     ObservableList<DayScheduleEntry> getDayScheduleEntryList(int dayIndex);
+
+    // ========== Util ==========
+    void resetAllListManagers();
 }

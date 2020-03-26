@@ -3,8 +3,10 @@ package seedu.address.model.listmanagers;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.time.Date;
 import seedu.address.model.listmanagers.transportbooking.TransportBooking;
 import seedu.address.model.util.uniquelist.UniqueList;
 
@@ -46,6 +48,19 @@ public class TransportBookingManager implements ReadOnlyTransportBookingManager 
     public void resetData(ReadOnlyTransportBookingManager newData) {
         requireNonNull(newData);
         setTransportBookings(newData.getTransportBookings());
+    }
+
+    /**
+     * Clears all invalid transport booking with a start and end date.
+     * A transport booking is invalid when it starts earlier than the given start date or end later than the given end
+     * date.
+     */
+    public void removeInvalidTransportBookings(Date tripStartDate, Date tripEndDate) {
+        setTransportBookings(getTransportBookings()
+                .stream()
+                .filter(transportBooking -> transportBooking.getStartDateTime().getDate().compareTo(tripStartDate) >= 0
+                        && transportBooking.getEndDateTime().getDate().compareTo(tripEndDate) <= 0)
+                .collect(Collectors.toList()));
     }
 
     // TransportBooking-level operations

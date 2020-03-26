@@ -57,6 +57,13 @@ public class Date {
     }
 
     /**
+     * Returns a copy of this Date with the specified number of days added.
+     */
+    public Date plusDays(long days) throws IllegalArgumentException {
+        return new Date(date.plusDays(days));
+    }
+
+    /**
      * Creates a new {@code Date} from the given properly formatted {@code dateString}.
      */
     public static Date fromString(String dateString) {
