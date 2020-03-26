@@ -6,6 +6,7 @@ import static team.easytravel.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Represents a Date object in ET which wraps around the java.time.LocalDate and provides basic
@@ -53,7 +54,7 @@ public class Date {
         if (date.compareTo(endInclusive.date) > 0) {
             throw new AssertionError(MESSAGE_ERROR_UNTIL);
         }
-        return date.until(endInclusive.date).getDays() + 1;
+        return (int) date.until(endInclusive.date, ChronoUnit.DAYS) + 1;
     }
 
     /**

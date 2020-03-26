@@ -12,7 +12,8 @@ import team.easytravel.model.util.attributes.Title;
  */
 public class Trip {
 
-    public static final String MESSAGE_TRIP_CONSTRAINTS = "Start date must not be after end date.";
+    public static final String MESSAGE_TRIP_CONSTRAINTS = "Start date must not be after end date and they should only "
+            + "be a maximum of 30 days apart.";
 
     // Trip data
     private final Title title;
@@ -55,8 +56,8 @@ public class Trip {
         return endDate;
     }
 
-    public boolean isValidTrip(Date startDate, Date endDate) {
-        return startDate.compareTo(endDate) <= 0;
+    public static boolean isValidTrip(Date startDate, Date endDate) {
+        return startDate.compareTo(endDate) <= 0 && startDate.daysUntilInclusive(endDate) <= 30;
     }
 
     @Override

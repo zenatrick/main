@@ -34,6 +34,7 @@ import team.easytravel.logic.commands.transportbooking.AddTransportBookingComman
 import team.easytravel.logic.commands.transportbooking.ClearTransportBookingCommand;
 import team.easytravel.logic.commands.transportbooking.DeleteTransportBookingCommand;
 import team.easytravel.logic.commands.transportbooking.EditTransportBookingCommand;
+import team.easytravel.logic.commands.trip.DeleteTripCommand;
 import team.easytravel.logic.commands.trip.SetTripCommand;
 import team.easytravel.logic.parser.accommodationbooking.AddAccommodationBookingCommandParser;
 import team.easytravel.logic.parser.accommodationbooking.DeleteAccommodationBookingCommandParser;
@@ -88,6 +89,16 @@ public class EasyTravelParser {
         // ========================== Easy Travel Commands =========================
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        // ========================== Trip Commands =========================
+        case SetTripCommand.COMMAND_WORD:
+            return new SetTripCommandParser().parse(arguments);
+
+        case DeleteTripCommand.COMMAND_WORD:
+            return new DeleteTripCommand();
+
+        case CheckStatusCommand.COMMAND_WORD:
+            return new CheckStatusCommand();
 
         // ========================== Fixed Expense Commands =========================
         case AddFixedExpenseCommand.COMMAND_WORD:
@@ -168,13 +179,6 @@ public class EasyTravelParser {
 
         case EditAccommodationBookingCommand.COMMAND_WORD:
             return new EditAccommodationBookingCommandParser().parse(arguments);
-
-        // ========================== Trip Commands =========================
-        case SetTripCommand.COMMAND_WORD:
-            return new SetTripCommandParser().parse(arguments);
-        case CheckStatusCommand.COMMAND_WORD:
-            return new CheckStatusCommand();
-
 
         // ========================== Invalid Commands =========================
         default:

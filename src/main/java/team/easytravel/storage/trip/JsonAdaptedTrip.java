@@ -73,6 +73,10 @@ class JsonAdaptedTrip {
         }
         final Date modelEndDate = Date.fromString(endDate);
 
+        if (!Trip.isValidTrip(modelStartDate, modelEndDate)) {
+            throw new IllegalValueException(Trip.MESSAGE_TRIP_CONSTRAINTS);
+        }
+
         if (budget == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Budget.class.getSimpleName()));
         }
