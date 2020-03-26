@@ -29,9 +29,11 @@ import team.easytravel.model.person.Email;
 import team.easytravel.model.person.Name;
 import team.easytravel.model.person.Phone;
 import team.easytravel.model.trip.Budget;
+import team.easytravel.model.trip.ExchangeRate;
 import team.easytravel.model.util.attributes.Location;
 import team.easytravel.model.util.attributes.Title;
 import team.easytravel.model.util.attributes.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -503,6 +505,27 @@ public class ParserUtil {
             return new Budget(intBudget);
         } catch (NumberFormatException e) {
             throw new ParseException(Budget.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String exchangeRate} into an {@code ExchangeRate}
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException the parse exception
+     */
+    public static ExchangeRate parseExchangeRate(String exchangeRate) throws ParseException {
+        requireNonNull(exchangeRate);
+        String trimmedExchangeRate = exchangeRate.trim();
+        try {
+            Double doubleExchangeRate = Double.parseDouble(trimmedExchangeRate);
+            if(!ExchangeRate.isValidExchangeRate(doubleExchangeRate)) {
+                throw new ParseException(ExchangeRate.MESSAGE_CONSTRAINTS);
+            }
+            return new ExchangeRate(doubleExchangeRate);
+        } catch (NumberFormatException e) {
+            throw new ParseException(ExchangeRate.MESSAGE_CONSTRAINTS);
+
         }
     }
 }

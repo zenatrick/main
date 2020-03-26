@@ -98,12 +98,21 @@ public class TripManager {
         return trip.getBudget();
     }
 
+
     public void setBudget(Budget editedBudget) {
         if (!hasTrip) {
             throw new IllegalOperationException(MESSAGE_ERROR_NO_TRIP);
         }
 
         this.trip.setBudget(editedBudget);
+    }
+
+    public ExchangeRate getTripExchangeRate() {
+        if(!hasTrip) {
+            throw new IllegalOperationException(MESSAGE_ERROR_NO_TRIP);
+        }
+        return trip.getExchangeRate();
+
     }
 
     public Date getTripStartDate() {

@@ -21,13 +21,13 @@ public class Trip {
     private final Date startDate;
     private final Date endDate;
     private final int numDays;
-
+    private final ExchangeRate exchangeRate;
 
     /**
      * Creates an instance of a Trip.
      * Every field must be present and not null.
      */
-    public Trip(Title title, Date startDate, Date endDate, Budget budget) {
+    public Trip(Title title, Date startDate, Date endDate, Budget budget, ExchangeRate exchangeRate) {
         requireAllNonNull(title, startDate, endDate, budget);
         checkArgument(isValidTrip(startDate, endDate), MESSAGE_TRIP_CONSTRAINTS);
         this.title = title;
@@ -35,6 +35,7 @@ public class Trip {
         this.startDate = startDate;
         this.endDate = endDate;
         numDays = startDate.daysUntilInclusive(endDate);
+        this.exchangeRate = exchangeRate;
     }
 
     public Title getTitle() {
@@ -61,9 +62,12 @@ public class Trip {
         return endDate;
     }
 
+
     public static boolean isValidTrip(Date startDate, Date endDate) {
         return startDate.compareTo(endDate) <= 0 && startDate.daysUntilInclusive(endDate) <= 30;
     }
+
+    public ExchangeRate getExchangeRate() {return exchangeRate;}
 
     @Override
     public String toString() {
@@ -71,7 +75,8 @@ public class Trip {
                 + " Start date: " + startDate
                 + " End date: " + endDate
                 + " Duration: " + numDays + " days"
-                + " Budget: " + budget;
+                + " Budget: " + budget
+                + " Exchange Rate: " + exchangeRate;
     }
 
 }

@@ -443,6 +443,11 @@ public interface Model {
     int getTripNumDays();
 
     /**
+     * Returns the budget of the trip
+     */
+    int getBudget();
+
+    /**
      * Returns an unmodifiable view of the schedule entry list of a specified day.
      */
     ObservableList<DayScheduleEntry> getDayScheduleEntryList(int dayIndex);

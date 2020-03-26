@@ -76,7 +76,9 @@ public class EditFixedExpenseCommand extends Command {
 
         model.setFixedExpense(fixedExpenseToEdit, editedExpense);
         model.updateFilteredFixedExpenseList(Model.PREDICATE_SHOW_ALL_FIXED_EXPENSES);
-        return new CommandResult(String.format(MESSAGE_EDIT_FIXEDEXPENSE_SUCCESS, editedExpense));
+        model.getBudget();
+        return new CommandResult(String.format(MESSAGE_EDIT_FIXEDEXPENSE_SUCCESS, editedExpense + "\n" +
+                "Your current budget left is " + model.getBudget()));
     }
 
     /**

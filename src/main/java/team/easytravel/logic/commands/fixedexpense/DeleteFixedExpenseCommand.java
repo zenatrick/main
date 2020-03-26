@@ -43,6 +43,7 @@ public class DeleteFixedExpenseCommand extends Command {
 
         FixedExpense fixedExpenseToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteFixedExpense(fixedExpenseToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_FIXEDEXPENSE_SUCCESS, fixedExpenseToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_FIXEDEXPENSE_SUCCESS, fixedExpenseToDelete + "\n"
+        + model.getBudget()));
     }
 }

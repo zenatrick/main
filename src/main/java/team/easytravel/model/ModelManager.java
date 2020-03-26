@@ -463,7 +463,6 @@ public class ModelManager implements Model {
         }
         return filteredScheduleEntryLists.get(dayIndex);
     }
-
     // ========== Util ==========
 
     @Override
@@ -475,6 +474,21 @@ public class ModelManager implements Model {
         this.accommodationBookingManager.resetData(new AccommodationBookingManager());
         this.transportBookingManager.resetData(new TransportBookingManager());
     }
+    @Override
+    public int getBudget() {
+        if(!hasTrip()) {
+            throw new IllegalOperationException("Cannot get budget before setting a trip");
+        }
+        int currentBudget = tripManager.getTripBudget().value;
+
+        for (FixedExpense fe : filteredFixedExpenseList) {
+            currentBudget -= Integer.parseInt(fe.getAmount().value);
+        }
+        return currentBudget;
+    }
+
+
+    // ========== Utils ==========
 
     @Override
     public String isTripPrepared() {
