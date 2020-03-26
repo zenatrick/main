@@ -24,9 +24,10 @@ public class SortFixedExpenseCommandParser implements Parser<SortFixedExpenseCom
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         SortFixedExpenseCommand.MESSAGE_USAGE));
             }
-            String parseSortIdentifier = ParserUtil.parseSortIdentifier(args.substring(1, 2));
-            String parseSortParameter = ParserUtil.parseSortParameters(args.substring(2).trim().toLowerCase());
-            return new SortFixedExpenseCommand(Integer.parseInt(parseSortIdentifier), parseSortParameter);
+            String parseSortIdentifier = ParserUtil.parseSortIdentifier(args.substring(1, 4));
+            String parseSortParameter = ParserUtil.parseSortParameters(args.substring(4).trim().toLowerCase());
+
+            return new SortFixedExpenseCommand((parseSortIdentifier), parseSortParameter);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortFixedExpenseCommand.MESSAGE_USAGE), pe);

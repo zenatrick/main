@@ -21,24 +21,24 @@ public class SortFixedExpenseCommand extends Command {
     public static final String COMMAND_WORD = "sortexpense";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": sorts the fixed expense identified by the command"
-            + " 0 or 1 in the displayed fixed expense list\n"
-            + "0 sorts by ascending order while 1 sorts by descending order\n"
-            + "Parameters : SORTIDENTIFIER (must be 0 or 1) "
+            + " asc or des in the displayed fixed expense list\n"
+            + "asc sorts by ascending order while des sorts by descending order\n"
+            + "Parameters : SORTIDENTIFIER (must be asc or des) "
             + "[AMOUNT]" + "[DESCRIPTION]" + "[CATEGORY]\n"
-            + "Example: " + COMMAND_WORD + " 1 amount";
+            + "Example: " + COMMAND_WORD + " asc amount";
 
     public static final String MESSAGE_SORT_FIXEDEXPENSE_SUCCESS = "Sorting of FixedExpense successful :)";
 
-    public static final String SORT_DESCENDING = "1";
-    public static final String SORT_ASCENDING = "0";
+    public static final String SORT_DESCENDING = "des";
+    public static final String SORT_ASCENDING = "asc";
     public static final String CATEGORY = "category";
     public static final String DESCRIPTION = "description";
     public static final String AMOUNT = "amount";
 
-    private final Integer sortIdentifier;
+    private final String sortIdentifier;
     private final String sortParameter;
 
-    public SortFixedExpenseCommand(Integer sortIdentifier, String sortParameter) {
+    public SortFixedExpenseCommand(String sortIdentifier, String sortParameter) {
         this.sortIdentifier = sortIdentifier;
         this.sortParameter = sortParameter;
     }
@@ -54,7 +54,7 @@ public class SortFixedExpenseCommand extends Command {
 
         switch (sortParameter) {
         case "category":
-            if (sortIdentifier == 1) {
+            if (sortIdentifier.equals("des")) {
                 model.sortFixedExpenseList((x, y) -> y.getCategory().toString().compareTo(
                         x.getCategory().toString()
                 ));
@@ -65,7 +65,7 @@ public class SortFixedExpenseCommand extends Command {
                 return new CommandResult(String.format(MESSAGE_SORT_FIXEDEXPENSE_SUCCESS));
             }
         case "amount":
-            if (sortIdentifier == 1) {
+            if (sortIdentifier.equals("des")) {
                 model.sortFixedExpenseList((x, y) -> (int) Math.signum(Double.parseDouble(y.getAmount().value)
                         - Double.parseDouble(x.getAmount().value)));
                 return new CommandResult(String.format(MESSAGE_SORT_FIXEDEXPENSE_SUCCESS));
@@ -76,7 +76,7 @@ public class SortFixedExpenseCommand extends Command {
             }
 
         case "description":
-            if (sortIdentifier == 1) {
+            if (sortIdentifier.equals("des")) {
                 model.sortFixedExpenseList((x, y) -> y.getDescription().toString().compareTo(
                         x.getDescription().toString()));
                 return new CommandResult(String.format(MESSAGE_SORT_FIXEDEXPENSE_SUCCESS));
