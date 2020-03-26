@@ -16,7 +16,7 @@ public class CheckStatusCommand extends Command {
             + "Example: " + COMMAND_WORD + " ";
 
     public static final String MESSAGE_READY = "You are prepared, everything has been checked";
-    public static final String MESSAGE_UNREADY = "You are not %d%% ready for the trip";
+    public static final String MESSAGE_UNREADY = "You are not ready for the trip";
     public static final String MESSAGE_SUCCESS = "Check status has commence";
 
 
