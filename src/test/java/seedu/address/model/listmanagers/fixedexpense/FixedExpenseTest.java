@@ -24,8 +24,8 @@ class FixedExpenseTest {
         String invalidAmount = "";
         String description = "Food";
         String category = "Food item";
-        assertThrows(IllegalArgumentException.class, ()-> new FixedExpense(new Amount(invalidAmount),
-                new Description(description), new Category(category)));
+        assertThrows(IllegalArgumentException.class, () -> new FixedExpense(new Amount(invalidAmount),
+                new Description(description), new FixedExpenseCategory(category)));
     }
 
     @Test
@@ -79,7 +79,7 @@ class FixedExpenseTest {
     public void testHashCode() {
         //Same case
         assertEquals(new FixedExpense(new Amount("12345"),
-                new Description("Foody"), new FixedExpenseCategory("Haha")).hashCode(),
+                        new Description("Foody"), new FixedExpenseCategory("Haha")).hashCode(),
                 new FixedExpense(new Amount("12345"), new Description("Foody"),
                         new FixedExpenseCategory("Haha")).hashCode());
         //Different Case
@@ -95,8 +95,8 @@ class FixedExpenseTest {
         FixedExpense fixedExpense = new FixedExpense(new Amount("100"),
                 new Description("Food"), new FixedExpenseCategory("Eating"));
         assertEquals("Fixed Expense Entry - Description: " + fixedExpense.getDescription().toString()
-                + " Amount: " + fixedExpense.getAmount().toString()
-                + " Category: " + fixedExpense.getFixedExpenseCategory().toString(),
+                        + " Amount: " + fixedExpense.getAmount().toString()
+                        + " Category: " + fixedExpense.getFixedExpenseCategory().toString(),
                 "Fixed Expense Entry - Description: " + fixedExpense.getDescription().toString()
                         + " Amount: " + fixedExpense.getAmount().toString()
                         + " Category: " + fixedExpense.getFixedExpenseCategory().toString());
@@ -115,10 +115,10 @@ class FixedExpenseTest {
     public void testisSame() {
 
         FixedExpense fixedExpense = new FixedExpense(new Amount("100"), new Description("Test"),
-                new Category("Food"));
+                new FixedExpenseCategory("Food"));
 
         FixedExpense differentFixedExpense = new FixedExpense(new Amount("100"), new Description("Test"),
-                new Category("haha"));
+                new FixedExpenseCategory("haha"));
 
         assertTrue(fixedExpense.isSame(fixedExpense));
         assertFalse(fixedExpense.isSame(differentFixedExpense));

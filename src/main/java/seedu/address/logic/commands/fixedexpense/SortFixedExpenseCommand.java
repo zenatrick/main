@@ -55,7 +55,7 @@ public class SortFixedExpenseCommand extends Command {
         switch (sortParameter) {
         case "category":
             if (sortIdentifier.equals("des")) {
-                model.sortFixedExpenseList((x, y) -> y.getCategory().toString().compareTo(
+                model.sortFixedExpenseList((x, y) -> y.getFixedExpenseCategory().toString().compareTo(
                         x.getFixedExpenseCategory().toString()
                 ));
                 return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS);
