@@ -12,18 +12,15 @@ import team.easytravel.commons.core.LogsCenter;
  */
 public class CheckStatusWindow extends UiPart<Stage> {
 
-    public static final String HELP_MESSAGE = "You can be more prepared by checking"
-            + " your packinglist, expenselist or accomodations";
+    public static final String HELP_MESSAGE = "Your status:";
 
-    private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
+    private static final Logger logger = LogsCenter.getLogger(CheckStatusWindow.class);
     private static final String FXML = "CheckStatusWindow.fxml";
-
-    private static String statusString;
 
     @FXML
     private Label statusMessage;
     @FXML
-    private Label helpMessage;
+    private Label infoMessage;
 
     /**
      * Creates a new HelpWindow.
@@ -32,8 +29,8 @@ public class CheckStatusWindow extends UiPart<Stage> {
      */
     public CheckStatusWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
-        statusMessage.setText(statusString); //need change here
+        root.setTitle("Check Status");
+        infoMessage.setText(HELP_MESSAGE);
     }
 
     /**
@@ -63,7 +60,7 @@ public class CheckStatusWindow extends UiPart<Stage> {
      */
     public void show(String status) {
         logger.fine("Showing the trip's status in preparedness");
-        this.statusString = status;
+        statusMessage.setText(status); //need change here
         getRoot().show();
         getRoot().centerOnScreen();
     }

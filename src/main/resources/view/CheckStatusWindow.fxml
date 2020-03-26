@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -14,8 +15,11 @@
         <Scene>
          <TilePane prefHeight="195.0" prefWidth="437.0">
             <children>
-               <Label fx:id="helpMessage" prefHeight="18.0" prefWidth="436.0" style="-fx-padding: 20;" text="Label" />
-               <Label fx:id="statusMessage" prefHeight="44.0" prefWidth="190.0" text="Label" />
+               <Label fx:id="infoMessage" prefHeight="18.0" prefWidth="436.0" style="-fx-padding: 20;" text="Label" />
+               <Label fx:id="statusMessage" alignment="CENTER" prefHeight="44.0" prefWidth="421.0" text="Label" textAlignment="CENTER">
+                  <TilePane.margin>
+                     <Insets top="30.0" />
+                  </TilePane.margin></Label>
             </children>
          </TilePane>
         </Scene>
