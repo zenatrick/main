@@ -10,6 +10,6 @@ import seedu.address.storage.trip.TripManagerStorage;
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, TransportBookingStorage, FixedExpenseStorage,
+public interface Storage extends TransportBookingStorage, FixedExpenseStorage,
         ActivityManagerStorage, AccommodationBookingStorage, PackingListStorage, TripManagerStorage, UserPrefsStorage {
 }

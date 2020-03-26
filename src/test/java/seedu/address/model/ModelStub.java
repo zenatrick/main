@@ -17,7 +17,6 @@ import seedu.address.model.listmanagers.activity.Activity;
 import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
 import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 import seedu.address.model.listmanagers.transportbooking.TransportBooking;
-import seedu.address.model.person.Person;
 import seedu.address.model.trip.DayScheduleEntry;
 import seedu.address.model.trip.Trip;
 import seedu.address.model.trip.TripManager;
@@ -43,47 +42,6 @@ public class ModelStub implements Model {
 
     @Override
     public Path getEasyTravelStorageFilePath() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public boolean hasPerson(Person person) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 

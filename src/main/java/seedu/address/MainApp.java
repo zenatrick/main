@@ -15,10 +15,8 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.listmanagers.AccommodationBookingManager;
 import seedu.address.model.listmanagers.ActivityManager;
 import seedu.address.model.listmanagers.FixedExpenseManager;
@@ -33,8 +31,6 @@ import seedu.address.model.listmanagers.TransportBookingManager;
 import seedu.address.model.listmanagers.UserPrefs;
 import seedu.address.model.trip.TripManager;
 import seedu.address.model.util.sampledata.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -106,11 +102,9 @@ public class MainApp extends Application {
         AccommodationBookingStorage accommodationBookingStorage =
                 new JsonAccommodationBookingStorage((userPrefs.getAccommodationBookingStorageFilePath()));
         PackingListStorage packingListStorage = new JsonPackingListStorage(userPrefs.getPackingListStorageFilePath());
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         TripManagerStorage tripManagerStorage = new JsonTripManagerStorage(userPrefs.getTripStorageFilePath());
 
         storage = new StorageManager(
-                addressBookStorage,
                 transportBookingStorage,
                 fixedExpenseStorage,
                 activityManagerStorage,
@@ -130,27 +124,11 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage} files and {@code userPrefs}. <br>
+     * The data from the sample Easy Travel will be used instead if {@code storage} files are not found,
+     * or an empty Easy Travel App will be used instead if errors occur when reading {@code storage} files.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
-        try {
-            addressBookOptional = storage.readAddressBook();
-            if (addressBookOptional.isEmpty()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
-            }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        }
-
         TripManager tripManager = initTripManager(storage);
         ReadOnlyTransportBookingManager transportBookingManager = initTransportBookingManager(storage);
         ReadOnlyFixedExpenseManager fixedExpenseManager = initFixedExpenseManager(storage);
@@ -158,7 +136,7 @@ public class MainApp extends Application {
         ReadOnlyAccommodationBookingManager accommodationBookingManager = initAccommodationBookingManager(storage);
         ReadOnlyPackingListManager packingListManager = initPackingListManager(storage);
 
-        return new ModelManager(initialData, transportBookingManager, fixedExpenseManager, packingListManager,
+        return new ModelManager(transportBookingManager, fixedExpenseManager, packingListManager,
                 activityManager, accommodationBookingManager, tripManager, userPrefs);
     }
 
@@ -436,7 +414,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty Easy Travel App");
             initializedPrefs = new UserPrefs();
         }
 

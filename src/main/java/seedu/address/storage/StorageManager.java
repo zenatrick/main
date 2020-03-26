@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.listmanagers.ReadOnlyAccommodationBookingManager;
 import seedu.address.model.listmanagers.ReadOnlyActivityManager;
 import seedu.address.model.listmanagers.ReadOnlyFixedExpenseManager;
@@ -24,12 +23,11 @@ import seedu.address.storage.transportbooking.TransportBookingStorage;
 import seedu.address.storage.trip.TripManagerStorage;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of Easy Travel's data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
     private TransportBookingStorage transportBookingStorage;
     private FixedExpenseStorage fixedExpenseStorage;
     private AccommodationBookingStorage accommodationBookingStorage;
@@ -41,7 +39,6 @@ public class StorageManager implements Storage {
     /**
      * Instantiates a new Storage manager.
      *
-     * @param addressBookStorage          the address book storage
      * @param transportBookingStorage     the transport booking storage
      * @param fixedExpenseStorage         the fixed expense storage
      * @param activityManagerStorage      the activity manager storage
@@ -49,15 +46,13 @@ public class StorageManager implements Storage {
      * @param packingListStorage          the packing list storage
      * @param userPrefsStorage            the user prefs storage
      */
-    public StorageManager(AddressBookStorage addressBookStorage,
-                          TransportBookingStorage transportBookingStorage,
+    public StorageManager(TransportBookingStorage transportBookingStorage,
                           FixedExpenseStorage fixedExpenseStorage,
                           ActivityManagerStorage activityManagerStorage,
                           AccommodationBookingStorage accommodationBookingStorage,
                           PackingListStorage packingListStorage,
                           TripManagerStorage tripManagerStorage,
                           UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
         this.transportBookingStorage = transportBookingStorage;
         this.fixedExpenseStorage = fixedExpenseStorage;
         this.activityManagerStorage = activityManagerStorage;
@@ -82,36 +77,6 @@ public class StorageManager implements Storage {
     @Override
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
         userPrefsStorage.saveUserPrefs(userPrefs);
-    }
-
-
-    // ================ AddressBook methods ==============================
-
-    @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
-    }
-
-    @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
-    }
-
-    @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
-    }
-
-    @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
-    }
-
-    @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
     // ================ TransportBookingManager methods ==============================

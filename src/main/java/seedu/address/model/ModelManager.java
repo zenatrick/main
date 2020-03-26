@@ -32,7 +32,6 @@ import seedu.address.model.listmanagers.activity.Activity;
 import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
 import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 import seedu.address.model.listmanagers.transportbooking.TransportBooking;
-import seedu.address.model.person.Person;
 import seedu.address.model.trip.DayScheduleEntry;
 import seedu.address.model.trip.Trip;
 import seedu.address.model.trip.TripManager;
@@ -44,7 +43,6 @@ import seedu.address.model.trip.exception.IllegalOperationException;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
     private final TransportBookingManager transportBookingManager;
     private final FixedExpenseManager fixedExpenseManager;
     private final PackingListManager packingListManager;
@@ -53,7 +51,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final TripManager tripManager;
 
-    private final FilteredList<Person> filteredPersons;
     private final FilteredList<TransportBooking> filteredTransportBookingList;
     private final FilteredList<FixedExpense> filteredFixedExpenseList;
     private final FilteredList<PackingListItem> filteredPackingList;
@@ -64,19 +61,18 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given managers and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTransportBookingManager transportBookingManager,
+    public ModelManager(ReadOnlyTransportBookingManager transportBookingManager,
                         ReadOnlyFixedExpenseManager fixedExpenseManager, ReadOnlyPackingListManager packingListManager,
                         ReadOnlyActivityManager activityManager,
                         ReadOnlyAccommodationBookingManager accommodationBookingManager,
                         TripManager tripManager, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, transportBookingManager, fixedExpenseManager,
+        requireAllNonNull(transportBookingManager, fixedExpenseManager,
                 packingListManager, activityManager, accommodationBookingManager, tripManager, userPrefs);
 
         logger.fine("Initializing with Easy Travel: " + tripManager + " and user prefs " + userPrefs);
 
         this.tripManager = new TripManager(tripManager);
-        this.addressBook = new AddressBook(addressBook);
         this.transportBookingManager = new TransportBookingManager(transportBookingManager);
         this.fixedExpenseManager = new FixedExpenseManager(fixedExpenseManager);
         this.packingListManager = new PackingListManager(packingListManager);
@@ -94,7 +90,6 @@ public class ModelManager implements Model {
             resetAllListManagers();
         }
 
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTransportBookingList = new FilteredList<>(this.transportBookingManager.getTransportBookings());
         filteredFixedExpenseList = new FilteredList<>(this.fixedExpenseManager.getFixedExpenseList());
         filteredPackingList = new FilteredList<>(this.packingListManager.getPackingList());
@@ -127,59 +122,6 @@ public class ModelManager implements Model {
         return userPrefs.getTripStorageFilePath();
     }
 
-    //=========== AddressBook ================================================================================
-
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
-    }
-
-    @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-        addressBook.setPerson(target, editedPerson);
-    }
-
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
-
-    // TODO: Implement the methods below
     // ========== TransportBookingManager ==========
 
     @Override
@@ -522,15 +464,19 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
+        return userPrefs.equals(other.userPrefs)
                 && transportBookingManager.equals(other.transportBookingManager)
+                && filteredTransportBookingList.equals(other.filteredTransportBookingList)
                 && fixedExpenseManager.equals(other.fixedExpenseManager)
+                && filteredFixedExpenseList.equals(other.filteredFixedExpenseList)
                 && packingListManager.equals(other.packingListManager)
+                && filteredPackingList.equals(other.filteredPackingList)
                 && activityManager.equals(other.activityManager)
+                && filteredActivityList.equals(other.filteredActivityList)
                 && accommodationBookingManager.equals(other.accommodationBookingManager)
-                && tripManager.equals(other.tripManager);
+                && filteredAccommodationBookingList.equals(other.filteredAccommodationBookingList)
+                && tripManager.equals(other.tripManager)
+                && filteredSchduleEntryLists.equals(other.filteredSchduleEntryLists);
     }
 
 }

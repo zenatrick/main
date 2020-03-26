@@ -14,7 +14,7 @@ import seedu.address.model.listmanagers.ReadOnlyAccommodationBookingManager;
 import seedu.address.model.listmanagers.accommodationbooking.AccommodationBooking;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable AccommodationBookingManager that is serializable to JSON format.
  */
 @JsonRootName(value = "accommodationBookingManager")
 public class JsonSerializableAccommodationBookingManager {
