@@ -24,11 +24,11 @@ import seedu.address.model.util.attributes.tag.Tag;
 /**
  * Parses input arguments and creates a new EditActivityCommand.
  */
-public class EditActivityParser implements Parser<EditActivityCommand> {
+public class EditActivityCommandParser implements Parser<EditActivityCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditActivityCommand
+     * and returns an EditActivityCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */

@@ -13,13 +13,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.EasyTravelParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.listmanagers.accommodationbooking.AccommodationBooking;
 import seedu.address.model.listmanagers.activity.Activity;
 import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
 import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 import seedu.address.model.listmanagers.transportbooking.TransportBooking;
-import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
 /**
@@ -48,13 +46,12 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
+            storage.saveTripManager(model.getTripManager());
             storage.saveAccommodationBookings(model.getAccommodationBookingManager());
-            storage.saveAddressBook(model.getAddressBook());
             storage.saveFixedExpenses(model.getFixedExpenseManager());
             storage.saveTransportBookings(model.getTransportBookingManager());
             storage.saveActivityManager(model.getActivityManager());
             storage.savePackingList(model.getPackingListManager());
-            storage.saveTripManager(model.getTripManager());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -63,19 +60,10 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
-    }
-
-    @Override
     public ObservableList<TransportBooking> getFilteredTransportBookingList() {
         return model.getFilteredTransportBookingList();
     }
+
     @Override
     public ObservableList<Activity> getFilteredActivityList() {
         return model.getFilteredActivityList();
@@ -97,8 +85,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getEasyTravelStorageFilePath() {
+        return model.getEasyTravelStorageFilePath();
     }
 
     @Override

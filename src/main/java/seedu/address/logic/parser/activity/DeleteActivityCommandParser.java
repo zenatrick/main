@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new DeleteActivityCommand.
  */
-public class DeleteActivityParser implements Parser<DeleteActivityCommand> {
+public class DeleteActivityCommandParser implements Parser<DeleteActivityCommand> {
 
     @Override
     public DeleteActivityCommand parse(String userInput) throws ParseException {

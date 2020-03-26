@@ -107,12 +107,6 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
-    }
-
-    @Override
     public ReadOnlyUserPrefs getUserPrefs() {
         return userPrefs;
     }
@@ -129,14 +123,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
-    }
-
-    @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public Path getEasyTravelStorageFilePath() {
+        return userPrefs.getTripStorageFilePath();
     }
 
     //=========== AddressBook ================================================================================

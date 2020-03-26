@@ -6,15 +6,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.accommodationbooking.AddAccommodationBookingCommand;
 import seedu.address.logic.commands.accommodationbooking.ClearAccommodationBookingCommand;
 import seedu.address.logic.commands.accommodationbooking.DeleteAccommodationBookingCommand;
@@ -43,13 +36,13 @@ import seedu.address.logic.commands.trip.SetTripCommand;
 import seedu.address.logic.parser.accommodationbooking.AddAccommodationBookingCommandParser;
 import seedu.address.logic.parser.accommodationbooking.DeleteAccommodationBookingCommandParser;
 import seedu.address.logic.parser.accommodationbooking.EditAccommodationBookingCommandParser;
-import seedu.address.logic.parser.activity.AddActivityParser;
-import seedu.address.logic.parser.activity.DeleteActivityParser;
-import seedu.address.logic.parser.activity.EditActivityParser;
+import seedu.address.logic.parser.activity.AddActivityCommandParser;
+import seedu.address.logic.parser.activity.DeleteActivityCommandParser;
+import seedu.address.logic.parser.activity.EditActivityCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.fixedexpense.AddFixedExpenseParser;
+import seedu.address.logic.parser.fixedexpense.AddFixedExpenseCommandParser;
 import seedu.address.logic.parser.fixedexpense.DeleteFixedExpenseCommandParser;
-import seedu.address.logic.parser.fixedexpense.EditFixedExpenseParser;
+import seedu.address.logic.parser.fixedexpense.EditFixedExpenseCommandParser;
 import seedu.address.logic.parser.fixedexpense.SortFixedExpenseCommandParser;
 import seedu.address.logic.parser.packinglist.AddItemParser;
 import seedu.address.logic.parser.packinglist.CheckItemParser;
@@ -90,34 +83,13 @@ public class EasyTravelParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        // ========================== Address Book Commands =========================
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
+        // ========================== Easy Travel Commands =========================
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
         // ========================== Fixed Expense Commands =========================
         case AddFixedExpenseCommand.COMMAND_WORD:
-            return new AddFixedExpenseParser().parse(arguments);
+            return new AddFixedExpenseCommandParser().parse(arguments);
 
         case ClearFixedExpenseCommand.COMMAND_WORD:
             return new ClearFixedExpenseCommand();
@@ -126,7 +98,7 @@ public class EasyTravelParser {
             return new DeleteFixedExpenseCommandParser().parse(arguments);
 
         case EditFixedExpenseCommand.COMMAND_WORD:
-            return new EditFixedExpenseParser().parse(arguments);
+            return new EditFixedExpenseCommandParser().parse(arguments);
 
         case SortFixedExpenseCommand.COMMAND_WORD:
             return new SortFixedExpenseCommandParser().parse(arguments);
@@ -168,16 +140,16 @@ public class EasyTravelParser {
 
         // ========================== Activity Commands =========================
         case AddActivityCommand.COMMAND_WORD:
-            return new AddActivityParser().parse(arguments);
+            return new AddActivityCommandParser().parse(arguments);
 
         case DeleteActivityCommand.COMMAND_WORD:
-            return new DeleteActivityParser().parse(arguments);
+            return new DeleteActivityCommandParser().parse(arguments);
 
         case ClearActivityCommand.COMMAND_WORD:
             return new ClearActivityCommand();
 
         case EditActivityCommand.COMMAND_WORD:
-            return new EditActivityParser().parse(arguments);
+            return new EditActivityCommandParser().parse(arguments);
 
         // ========================== Accommodation Commands =========================
         case AddAccommodationBookingCommand.COMMAND_WORD:

@@ -20,9 +20,9 @@ import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
 import seedu.address.model.listmanagers.fixedexpense.FixedExpenseCategory;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddFixedExpenseCommand object
  */
-public class AddFixedExpenseParser implements Parser<AddFixedExpenseCommand> {
+public class AddFixedExpenseCommandParser implements Parser<AddFixedExpenseCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddFixedExpenseCommand

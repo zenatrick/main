@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ACCOMMODATION_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACCOMMODATION_START_DAY;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.accommodationbooking.EditAccommodationBookingCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -25,6 +24,7 @@ public class EditAccommodationBookingCommandParser implements Parser<EditAccommo
     /**
      * Parses the given {@code String} of arguments in the context of the EditAccommodationBookingCommand
      * and returns an EditAccommodationBookingCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditAccommodationBookingCommand parse(String args) throws ParseException {
@@ -71,7 +71,7 @@ public class EditAccommodationBookingCommandParser implements Parser<EditAccommo
         }
 
         if (!editAccommodationBookingDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditAccommodationBookingCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditAccommodationBookingCommand(index, editAccommodationBookingDescriptor);

@@ -27,11 +27,6 @@ import seedu.address.model.trip.TripManager;
  */
 public class ModelStub implements Model {
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public ReadOnlyUserPrefs getUserPrefs() {
         throw new AssertionError("This method should not be called.");
     }
@@ -47,14 +42,10 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getEasyTravelStorageFilePath() {
         throw new AssertionError("This method should not be called.");
     }
 
-    @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        throw new AssertionError("This method should not be called.");
-    }
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {

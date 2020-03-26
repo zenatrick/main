@@ -41,7 +41,7 @@ public class AddAccommodationBookingCommand extends Command {
     private final AccommodationBooking toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddAccommodationBookingCommand to add the specified {@code AccommodationBooking}
      */
     public AddAccommodationBookingCommand(AccommodationBooking accommodationBooking) {
         requireNonNull(accommodationBooking);

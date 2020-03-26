@@ -450,12 +450,12 @@ public class ParserUtil {
         String trimmedBudget = budget.trim();
         try {
             Integer intBudget = Integer.parseInt(trimmedBudget);
-            if (!Day.isValidDay(intBudget)) {
-                throw new ParseException(Day.MESSAGE_CONSTRAINTS);
+            if (!Budget.isValidBudget(intBudget)) {
+                throw new ParseException(Budget.MESSAGE_CONSTRAINTS);
             }
             return new Budget(intBudget);
         } catch (NumberFormatException e) {
-            throw new ParseException(Day.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Budget.MESSAGE_CONSTRAINTS);
         }
     }
 }

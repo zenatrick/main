@@ -24,9 +24,9 @@ import seedu.address.model.util.attributes.Title;
 import seedu.address.model.util.attributes.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddActivityCommand object
  */
-public class AddActivityParser implements Parser<AddActivityCommand> {
+public class AddActivityCommandParser implements Parser<AddActivityCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddActivityCommand
