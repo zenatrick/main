@@ -28,6 +28,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX = "The activity "
             + "index provided is invalid";
 
+    public static final String MESSAGE_ACTIVITY_LISTED_OVERVIEW = "%1$d activities listed!";
+
     //--------Accommodation Booking Messages-----------//
     public static final String MESSAGE_INVALID_ACCOMMODATION_BOOKING_DISPLAYED_INDEX = "The Accommodation Booking "
             + "index provided is invalid";
