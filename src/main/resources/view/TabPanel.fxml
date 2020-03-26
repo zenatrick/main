@@ -8,20 +8,20 @@
     <Tab text="Schedule">
         <StackPane fx:id="schedulePanelPlaceholder"/>
     </Tab>
-    <Tab text="My Activities">
+    <Tab text="Activities">
         <StackPane fx:id="activityPanelPlaceholder"/>
     </Tab>
-    <Tab text="Transport Booking">
+    <Tab text="Accommodation">
+        <StackPane fx:id="accommodationListPanelPlaceholder"/>
+    </Tab>
+    <Tab text="Transportation">
         <StackPane fx:id="transportBookingPanelPlaceholder"/>
     </Tab>
-    <Tab text="Fixed Expenses">
-        <StackPane fx:id="fixedExpensePanelPlaceholder"/>
-    </Tab>
-    <Tab text = "Packing List">
+    <Tab text="Packing List">
         <StackPane fx:id="packingListPanelPlaceholder"/>
     </Tab>
-    <Tab text = "Accommodations">
-        <StackPane fx:id="accommodationListPanelPlaceholder"/>
+    <Tab text="Expenses">
+        <StackPane fx:id="fixedExpensePanelPlaceholder"/>
     </Tab>
 
 </TabPane>

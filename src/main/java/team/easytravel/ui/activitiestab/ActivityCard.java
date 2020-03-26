@@ -1,4 +1,4 @@
-package team.easytravel.ui;
+package team.easytravel.ui.activitiestab;
 
 import java.util.Comparator;
 
@@ -8,13 +8,14 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import team.easytravel.model.listmanagers.activity.Activity;
+import team.easytravel.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Activity}.
  */
 public class ActivityCard extends UiPart<Region> {
 
-    private static final String FXML = "ActivityCard.fxml";
+    private static final String FXML = "activitiestab/ActivityCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

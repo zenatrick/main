@@ -1,17 +1,18 @@
-package team.easytravel.ui;
+package team.easytravel.ui.packinglisttab;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
+import team.easytravel.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Item}.
  */
 public class PackingListCard extends UiPart<Region> {
 
-    private static final String FXML = "PackingListCard.fxml";
+    private static final String FXML = "packinglisttab/PackingListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

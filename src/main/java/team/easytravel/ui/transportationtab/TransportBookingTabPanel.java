@@ -1,4 +1,4 @@
-package team.easytravel.ui;
+package team.easytravel.ui.transportationtab;
 
 import java.util.logging.Logger;
 
@@ -9,19 +9,21 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import team.easytravel.commons.core.LogsCenter;
 import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
+import team.easytravel.ui.UiPart;
 
 /**
  * Panel containing the list of transportBookings.
  */
-public class TransportBookingPanel extends UiPart<Region> {
+public class TransportBookingTabPanel extends UiPart<Region> {
+    public static final String TAB_NAME = "Transportation Tab";
 
-    private static final String FXML = "TransportBookingPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(TransportBookingPanel.class);
+    private static final String FXML = "transportationtab/TransportBookingTabPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(TransportBookingTabPanel.class);
 
     @FXML
     private ListView<TransportBooking> transportBookingListView;
 
-    public TransportBookingPanel(ObservableList<TransportBooking> transportBookingList) {
+    public TransportBookingTabPanel(ObservableList<TransportBooking> transportBookingList) {
         super(FXML);
         transportBookingListView.setItems(transportBookingList);
         transportBookingListView.setCellFactory(listView -> new TransportListViewCell());

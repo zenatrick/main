@@ -1,4 +1,4 @@
-package team.easytravel.ui;
+package team.easytravel.ui.transportationtab;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -6,13 +6,14 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
+import team.easytravel.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Person}.
  */
 public class TransportBookingCard extends UiPart<Region> {
 
-    private static final String FXML = "TransportBookingCard.fxml";
+    private static final String FXML = "transportationtab/TransportBookingCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

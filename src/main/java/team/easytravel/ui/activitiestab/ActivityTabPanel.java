@@ -1,4 +1,4 @@
-package team.easytravel.ui;
+package team.easytravel.ui.activitiestab;
 
 import java.util.logging.Logger;
 
@@ -9,19 +9,21 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import team.easytravel.commons.core.LogsCenter;
 import team.easytravel.model.listmanagers.activity.Activity;
+import team.easytravel.ui.UiPart;
 
 /**
  * Panel containing the list of activityPanel.
  */
-public class ActivityPanel extends UiPart<Region> {
+public class ActivityTabPanel extends UiPart<Region> {
+    public static final String TAB_NAME = "Activities Tab";
 
-    private static final String FXML = "ActivityPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(ActivityPanel.class);
+    private static final String FXML = "activitiestab/ActivityTabPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(ActivityTabPanel.class);
 
     @FXML
     private ListView<Activity> activityListView;
 
-    public ActivityPanel(ObservableList<Activity> activityList) {
+    public ActivityTabPanel(ObservableList<Activity> activityList) {
         super(FXML);
         activityListView.setItems(activityList);
         activityListView.setCellFactory(listView -> new ActivityListViewCell());

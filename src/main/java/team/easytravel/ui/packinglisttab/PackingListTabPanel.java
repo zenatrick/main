@@ -1,4 +1,4 @@
-package team.easytravel.ui;
+package team.easytravel.ui.packinglisttab;
 
 import java.util.logging.Logger;
 
@@ -9,19 +9,21 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import team.easytravel.commons.core.LogsCenter;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
+import team.easytravel.ui.UiPart;
 
 /**
  * Panel containing the list of items.
  */
-public class PackingListPanel extends UiPart<Region> {
+public class PackingListTabPanel extends UiPart<Region> {
+    public static final String TAB_NAME = "Packing List Tab";
 
-    private static final String FXML = "PackingListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PackingListPanel.class);
+    private static final String FXML = "packinglisttab/PackingListTabPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(PackingListTabPanel.class);
 
     @FXML
     private ListView<PackingListItem> packingListView;
 
-    public PackingListPanel(ObservableList<PackingListItem> packingList) {
+    public PackingListTabPanel(ObservableList<PackingListItem> packingList) {
         super(FXML);
         packingListView.setItems(packingList);
         packingListView.setCellFactory(listView -> new PackingListViewCell());

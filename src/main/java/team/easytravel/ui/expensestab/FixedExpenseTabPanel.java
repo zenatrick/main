@@ -1,4 +1,4 @@
-package team.easytravel.ui;
+package team.easytravel.ui.expensestab;
 
 import java.util.logging.Logger;
 
@@ -9,19 +9,21 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import team.easytravel.commons.core.LogsCenter;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
+import team.easytravel.ui.UiPart;
 
 /**
  * Panel containing the list of fixedExpense.
  */
-public class FixedExpensePanel extends UiPart<Region> {
+public class FixedExpenseTabPanel extends UiPart<Region> {
+    public static final String TAB_NAME = "Fixed Expenses Tab";
 
-    private static final String FXML = "FixedExpensePanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(FixedExpensePanel.class);
+    private static final String FXML = "expensestab/FixedExpenseTabPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(FixedExpenseTabPanel.class);
 
     @FXML
     private ListView<FixedExpense> fixedExpenseListView;
 
-    public FixedExpensePanel(ObservableList<FixedExpense> fixedExpensesList) {
+    public FixedExpenseTabPanel(ObservableList<FixedExpense> fixedExpensesList) {
         super(FXML);
         fixedExpenseListView.setItems(fixedExpensesList);
         fixedExpenseListView.setCellFactory(listView -> new FixedListViewCell());

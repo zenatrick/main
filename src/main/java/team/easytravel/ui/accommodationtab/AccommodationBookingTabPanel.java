@@ -1,4 +1,4 @@
-package team.easytravel.ui;
+package team.easytravel.ui.accommodationtab;
 
 import java.util.logging.Logger;
 
@@ -9,19 +9,21 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import team.easytravel.commons.core.LogsCenter;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBooking;
+import team.easytravel.ui.UiPart;
 
 /**
  * Panel containing the list of accommodations.
  */
-public class AccommodationBookingPanel extends UiPart<Region> {
+public class AccommodationBookingTabPanel extends UiPart<Region> {
+    public static final String TAB_NAME = "Accommodation Tab";
 
-    private static final String FXML = "AccommodationBookingPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(AccommodationBookingPanel.class);
+    private static final String FXML = "accommodationtab/AccommodationBookingTabPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(AccommodationBookingTabPanel.class);
 
     @FXML
     private ListView<AccommodationBooking> accommodationBookingListView;
 
-    public AccommodationBookingPanel(ObservableList<AccommodationBooking> accommodationBookingList) {
+    public AccommodationBookingTabPanel(ObservableList<AccommodationBooking> accommodationBookingList) {
         super(FXML);
         accommodationBookingListView.setItems(accommodationBookingList);
         accommodationBookingListView.setCellFactory(listView -> new AccommodationBookingListViewCell());

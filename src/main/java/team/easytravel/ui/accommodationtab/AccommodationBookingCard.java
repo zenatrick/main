@@ -1,17 +1,18 @@
-package team.easytravel.ui;
+package team.easytravel.ui.accommodationtab;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBooking;
+import team.easytravel.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Accommodation}.
  */
 public class AccommodationBookingCard extends UiPart<Region> {
 
-    private static final String FXML = "AccommodationBookingCard.fxml";
+    private static final String FXML = "accommodationtab/AccommodationBookingCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
