@@ -32,6 +32,8 @@ import seedu.address.logic.commands.packinglist.AddItemCommand;
 import seedu.address.logic.commands.packinglist.CheckItemCommand;
 import seedu.address.logic.commands.packinglist.DeleteItemCommand;
 import seedu.address.logic.commands.packinglist.EditItemCommand;
+import seedu.address.logic.commands.packinglist.FindItemCategoryCommand;
+import seedu.address.logic.commands.packinglist.FindItemCommand;
 import seedu.address.logic.commands.packinglist.UncheckItemCommand;
 import seedu.address.logic.commands.transportbooking.AddTransportBookingCommand;
 import seedu.address.logic.commands.transportbooking.ClearTransportBookingCommand;
@@ -53,6 +55,8 @@ import seedu.address.logic.parser.packinglist.AddItemParser;
 import seedu.address.logic.parser.packinglist.CheckItemParser;
 import seedu.address.logic.parser.packinglist.DeleteItemParser;
 import seedu.address.logic.parser.packinglist.EditItemParser;
+import seedu.address.logic.parser.packinglist.FindItemCategoryParser;
+import seedu.address.logic.parser.packinglist.FindItemParser;
 import seedu.address.logic.parser.packinglist.UncheckItemParser;
 import seedu.address.logic.parser.transportbooking.AddTransportBookingCommandParser;
 import seedu.address.logic.parser.transportbooking.DeleteTransportBookingCommandParser;
@@ -152,6 +156,12 @@ public class EasyTravelParser {
 
         case EditItemCommand.COMMAND_WORD:
             return new EditItemParser().parse(arguments);
+
+        case FindItemCommand.COMMAND_WORD:
+            return new FindItemParser().parse(arguments);
+
+        case FindItemCategoryCommand.COMMAND_WORD:
+            return new FindItemCategoryParser().parse(arguments);
 
         case UncheckItemCommand.COMMAND_WORD:
             return new UncheckItemParser().parse(arguments);
