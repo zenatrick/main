@@ -12,7 +12,6 @@ import seedu.address.model.listmanagers.activity.Activity;
 import seedu.address.model.listmanagers.fixedexpense.FixedExpense;
 import seedu.address.model.listmanagers.packinglistitem.PackingListItem;
 import seedu.address.model.listmanagers.transportbooking.TransportBooking;
-import seedu.address.model.person.Person;
 
 /**
  * Panel containing the list of persons.
@@ -20,9 +19,6 @@ import seedu.address.model.person.Person;
 public class TabPanel extends UiPart<Region> {
     private static final String FXML = "TabPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TabPanel.class);
-
-    @FXML
-    private StackPane personListPanelPlaceholder;
 
     @FXML
     private StackPane transportBookingPanelPlaceholder;
@@ -40,15 +36,13 @@ public class TabPanel extends UiPart<Region> {
     private StackPane activityPanelPlaceholder;
 
 
-    public TabPanel(ObservableList<Person> personList,
-                    ObservableList<TransportBooking> transportList,
-                    ObservableList<FixedExpense>fixedExpenseList,
+    public TabPanel(ObservableList<TransportBooking> transportList,
+                    ObservableList<FixedExpense> fixedExpenseList,
                     ObservableList<PackingListItem> packingList,
                     ObservableList<AccommodationBooking> accommodationList,
                     ObservableList<Activity> activityList
-                    ) {
+    ) {
         super(FXML);
-        personListPanelPlaceholder.getChildren().add(new PersonListPanel(personList).getRoot());
         transportBookingPanelPlaceholder.getChildren().add(new TransportBookingPanel(transportList).getRoot());
         fixedExpensePanelPlaceholder.getChildren().add(new FixedExpensePanel(fixedExpenseList).getRoot());
         packingListPanelPlaceholder.getChildren().add(new PackingListPanel(packingList).getRoot());

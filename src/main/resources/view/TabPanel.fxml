@@ -5,8 +5,8 @@
 <?import javafx.scene.layout.StackPane?>
 <TabPane tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/10.0.2-internal"
          xmlns:fx="http://javafx.com/fxml/1">
-    <Tab text="AB3">
-        <StackPane fx:id="personListPanelPlaceholder"/>
+    <Tab text="Schedule">
+        <StackPane fx:id="schedulePanelPlaceholder"/>
     </Tab>
     <Tab text="My Activities">
         <StackPane fx:id="activityPanelPlaceholder"/>
