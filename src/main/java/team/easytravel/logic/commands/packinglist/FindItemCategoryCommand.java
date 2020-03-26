@@ -2,24 +2,19 @@ package team.easytravel.logic.commands.packinglist;
 
 import static java.util.Objects.requireNonNull;
 
-import team.easytravel.model.listmanagers.packinglistitem.ItemCategoryContainsKeywordsPredicate;
 import team.easytravel.commons.core.Messages;
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.model.Model;
+import team.easytravel.model.listmanagers.packinglistitem.ItemCategoryContainsKeywordsPredicate;
 
 /**
- * The type Find item category command.
+ * Finds and lists all items whose category contains any of the argument keywords.
+ * Keyword matching is case insensitive.
  */
 public class FindItemCategoryCommand extends Command {
-    /**
-     * The constant COMMAND_WORD.
-     */
     public static final String COMMAND_WORD = "finditemcategory";
 
-    /**
-     * The constant MESSAGE_USAGE.
-     */
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all items whose category contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
@@ -27,11 +22,6 @@ public class FindItemCategoryCommand extends Command {
 
     private final ItemCategoryContainsKeywordsPredicate predicate;
 
-    /**
-     * Instantiates a new Find item category command.
-     *
-     * @param predicate the predicate
-     */
     public FindItemCategoryCommand(ItemCategoryContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }

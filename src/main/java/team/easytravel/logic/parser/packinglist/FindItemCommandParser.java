@@ -2,16 +2,17 @@ package team.easytravel.logic.parser.packinglist;
 
 import java.util.Arrays;
 
-import team.easytravel.model.listmanagers.packinglistitem.ItemContainsKeywordsPredicate;
 import team.easytravel.commons.core.Messages;
 import team.easytravel.logic.commands.packinglist.FindItemCommand;
 import team.easytravel.logic.parser.Parser;
 import team.easytravel.logic.parser.exceptions.ParseException;
+import team.easytravel.model.listmanagers.packinglistitem.ItemContainsKeywordsPredicate;
 
 /**
- * The type Find item parser.
+ * Finds and lists all items whose name contains any of the argument keywords.
+ * Keyword matching is case insensitive.
  */
-public class FindItemParser implements Parser<FindItemCommand> {
+public class FindItemCommandParser implements Parser<FindItemCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindItemCommand
      * and returns a FindItemCommand object for execution.

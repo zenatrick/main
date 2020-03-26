@@ -22,7 +22,7 @@ import team.easytravel.model.listmanagers.packinglistitem.Quantity;
 /**
  * The type Add item parser.
  */
-public class AddItemParser implements Parser<AddItemCommand> {
+public class AddItemCommandParser implements Parser<AddItemCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddItemCommand

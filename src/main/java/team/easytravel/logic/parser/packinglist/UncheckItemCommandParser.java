@@ -10,7 +10,7 @@ import team.easytravel.logic.parser.exceptions.ParseException;
 /**
  * The type Uncheck item parser.
  */
-public class UncheckItemParser implements Parser<UncheckItemCommand> {
+public class UncheckItemCommandParser implements Parser<UncheckItemCommand> {
     @Override
     public UncheckItemCommand parse(String userInput) throws ParseException {
         try {

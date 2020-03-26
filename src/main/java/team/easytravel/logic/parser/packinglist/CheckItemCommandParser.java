@@ -12,7 +12,7 @@ import team.easytravel.logic.parser.exceptions.ParseException;
 /**
  * The type Check item parser.
  */
-public class CheckItemParser implements Parser<CheckItemCommand> {
+public class CheckItemCommandParser implements Parser<CheckItemCommand> {
     @Override
     public CheckItemCommand parse(String userInput) throws ParseException {
         try {

@@ -18,7 +18,7 @@ import team.easytravel.logic.parser.exceptions.ParseException;
 /**
  * The type Edit item parser.
  */
-public class EditItemParser implements Parser<EditItemCommand> {
+public class EditItemCommandParser implements Parser<EditItemCommand> {
     @Override
     public EditItemCommand parse(String args) throws ParseException {
         requireNonNull(args);

@@ -27,6 +27,7 @@ import team.easytravel.logic.commands.packinglist.DeleteItemCommand;
 import team.easytravel.logic.commands.packinglist.EditItemCommand;
 import team.easytravel.logic.commands.packinglist.FindItemCategoryCommand;
 import team.easytravel.logic.commands.packinglist.FindItemCommand;
+import team.easytravel.logic.commands.packinglist.ListItemCommand;
 import team.easytravel.logic.commands.packinglist.UncheckItemCommand;
 import team.easytravel.logic.commands.transportbooking.AddTransportBookingCommand;
 import team.easytravel.logic.commands.transportbooking.ClearTransportBookingCommand;
@@ -44,13 +45,13 @@ import team.easytravel.logic.parser.fixedexpense.AddFixedExpenseCommandParser;
 import team.easytravel.logic.parser.fixedexpense.DeleteFixedExpenseCommandParser;
 import team.easytravel.logic.parser.fixedexpense.EditFixedExpenseCommandParser;
 import team.easytravel.logic.parser.fixedexpense.SortFixedExpenseCommandParser;
-import team.easytravel.logic.parser.packinglist.AddItemParser;
-import team.easytravel.logic.parser.packinglist.CheckItemParser;
-import team.easytravel.logic.parser.packinglist.DeleteItemParser;
-import team.easytravel.logic.parser.packinglist.EditItemParser;
-import team.easytravel.logic.parser.packinglist.FindItemCategoryParser;
-import team.easytravel.logic.parser.packinglist.FindItemParser;
-import team.easytravel.logic.parser.packinglist.UncheckItemParser;
+import team.easytravel.logic.parser.packinglist.AddItemCommandParser;
+import team.easytravel.logic.parser.packinglist.CheckItemCommandParser;
+import team.easytravel.logic.parser.packinglist.DeleteItemCommandParser;
+import team.easytravel.logic.parser.packinglist.EditItemCommandParser;
+import team.easytravel.logic.parser.packinglist.FindItemCategoryCommandParser;
+import team.easytravel.logic.parser.packinglist.FindItemCommandParser;
+import team.easytravel.logic.parser.packinglist.UncheckItemCommandParser;
 import team.easytravel.logic.parser.transportbooking.AddTransportBookingCommandParser;
 import team.easytravel.logic.parser.transportbooking.DeleteTransportBookingCommandParser;
 import team.easytravel.logic.parser.transportbooking.EditTransportBookingCommandParser;
@@ -118,25 +119,28 @@ public class EasyTravelParser {
 
         // ========================== Packing List Commands =========================
         case AddItemCommand.COMMAND_WORD:
-            return new AddItemParser().parse(arguments);
+            return new AddItemCommandParser().parse(arguments);
 
         case CheckItemCommand.COMMAND_WORD:
-            return new CheckItemParser().parse(arguments);
+            return new CheckItemCommandParser().parse(arguments);
 
         case DeleteItemCommand.COMMAND_WORD:
-            return new DeleteItemParser().parse(arguments);
+            return new DeleteItemCommandParser().parse(arguments);
 
         case EditItemCommand.COMMAND_WORD:
-            return new EditItemParser().parse(arguments);
+            return new EditItemCommandParser().parse(arguments);
 
         case FindItemCommand.COMMAND_WORD:
-            return new FindItemParser().parse(arguments);
+            return new FindItemCommandParser().parse(arguments);
 
         case FindItemCategoryCommand.COMMAND_WORD:
-            return new FindItemCategoryParser().parse(arguments);
+            return new FindItemCategoryCommandParser().parse(arguments);
 
         case UncheckItemCommand.COMMAND_WORD:
-            return new UncheckItemParser().parse(arguments);
+            return new UncheckItemCommandParser().parse(arguments);
+
+        case ListItemCommand.COMMAND_WORD:
+            return new ListItemCommand();
 
         // ========================== Activity Commands =========================
         case AddActivityCommand.COMMAND_WORD:

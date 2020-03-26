@@ -11,7 +11,7 @@ import team.easytravel.logic.parser.exceptions.ParseException;
 /**
  * The type Delete item parser.
  */
-public class DeleteItemParser implements Parser<DeleteItemCommand> {
+public class DeleteItemCommandParser implements Parser<DeleteItemCommand> {
 
     @Override
     public DeleteItemCommand parse(String userInput) throws ParseException {
