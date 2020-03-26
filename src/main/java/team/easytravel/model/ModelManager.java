@@ -439,7 +439,6 @@ public class ModelManager implements Model {
         return filteredSchduleEntryLists.get(dayIndex);
     }
 
-<<<<<<< HEAD:src/main/java/team/easytravel/model/ModelManager.java
     // ========== Util ==========
 
     @Override
@@ -451,14 +450,9 @@ public class ModelManager implements Model {
         this.accommodationBookingManager.resetData(new AccommodationBookingManager());
         this.transportBookingManager.resetData(new TransportBookingManager());
     }
-=======
-
-
-    // ========== Utils ==========
->>>>>>> Add CheckStatusCommand:src/main/java/seedu/address/model/ModelManager.java
 
     @Override
-    public boolean isTripPrepared(FixedExpenseManager fixedExpenseManager, PackingListManager packingListManager, AccommodationBookingManager accommodationBookingManager) {
+    public boolean isTripPrepared() {
         return false;
     }
 

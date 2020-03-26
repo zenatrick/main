@@ -1,22 +1,24 @@
-package seedu.address.ui;
+package team.easytravel.ui;
 
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import seedu.address.commons.core.LogsCenter;
+import team.easytravel.commons.core.LogsCenter;
 
 /**
  * Controller for a help page
  */
 public class CheckStatusWindow extends UiPart<Stage> {
 
-    public static final String HELP_MESSAGE = "You can be more prepared by checking" +
-            " your packinglist, expenselist or accomodations";
+    public static final String HELP_MESSAGE = "You can be more prepared by checking"
+            + " your packinglist, expenselist or accomodations";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "CheckStatusWindow.fxml";
+
+    private static String statusString;
 
     @FXML
     private Label statusMessage;
@@ -31,7 +33,7 @@ public class CheckStatusWindow extends UiPart<Stage> {
     public CheckStatusWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
-        statusMessage.setText("You are set"); //need change here
+        statusMessage.setText(statusString); //need change here
     }
 
     /**
@@ -59,8 +61,9 @@ public class CheckStatusWindow extends UiPart<Stage> {
      *     </li>
      * </ul>
      */
-    public void show() {
+    public void show(String status) {
         logger.fine("Showing the trip's status in preparedness");
+        this.statusString = status;
         getRoot().show();
         getRoot().centerOnScreen();
     }

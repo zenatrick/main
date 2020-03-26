@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private TabPanel tabPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CheckStatusWindow checkStatusWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -63,6 +64,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        checkStatusWindow = new CheckStatusWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -151,6 +153,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the checkstatus window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleShowStatus(String status) {
+        if (!checkStatusWindow.isShowing()) {
+            checkStatusWindow.show(status);
+        } else {
+            checkStatusWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -184,6 +198,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isCheckStatus()) {
+                handleShowStatus(commandResult.getStatusFeedback());
             }
 
             if (commandResult.isExit()) {
