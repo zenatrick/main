@@ -15,7 +15,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.time.DateTime;
 import seedu.address.model.listmanagers.AccommodationBookingManager;
 import seedu.address.model.listmanagers.ActivityManager;
 import seedu.address.model.listmanagers.FixedExpenseManager;
@@ -40,7 +39,7 @@ import seedu.address.model.trip.TripManager;
 import seedu.address.model.trip.exception.IllegalOperationException;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the EasyTravel data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -84,6 +83,13 @@ public class ModelManager implements Model {
         this.accommodationBookingManager = new AccommodationBookingManager(accommodationBookingManager);
         this.tripManager = new TripManager(tripManager);
         this.userPrefs = new UserPrefs(userPrefs);
+
+        if (tripManager.hasTrip()) {
+            this.activityManager.setAllAsNotScheduled();
+        } else {
+            this.tripManager.scheduleAll(this.activityManager.getActivityList(),
+                    this.transportBookingManager.getTransportBookings());
+        }
 
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTransportBookingList = new FilteredList<>(this.transportBookingManager.getTransportBookings());
@@ -427,7 +433,6 @@ public class ModelManager implements Model {
 
     // ========== TripManager ==========
 
-
     @Override
     public TripManager getTripManager() {
         return tripManager;
@@ -440,7 +445,11 @@ public class ModelManager implements Model {
 
     @Override
     public void setTrip(Trip trip) {
+        if (hasTrip()) {
+            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_SET_TRIP);
+        }
         tripManager.setTrip(trip);
+        tripManager.scheduleAll(getFilteredActivityList(), getFilteredTransportBookingList());
         filteredSchduleEntryLists.addAll(
                 tripManager.getDayScheduleEntryLists().stream().map(FilteredList::new).collect(Collectors.toList()));
     }
@@ -448,33 +457,41 @@ public class ModelManager implements Model {
     @Override
     public void deleteTrip() {
         if (!hasTrip()) {
-            throw new IllegalOperationException("Cannot delete trip before setting a trip");
+            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
         }
         tripManager.resetData(new TripManager());
-        transportBookingManager.resetData(new TransportBookingManager());
-        accommodationBookingManager.resetData(new AccommodationBookingManager());
-        packingListManager.resetData(new PackingListManager());
-        activityManager.resetData(new ActivityManager());
-        fixedExpenseManager.resetData(new FixedExpenseManager());
+        activityManager.setAllAsNotScheduled();
     }
 
     @Override
-    public void scheduleActivity(int dayIndex, DateTime startTime, Activity toSchedule) {
-        tripManager.scheduleActivity(dayIndex, startTime, toSchedule);
+    public void scheduleActivity(Activity toSchedule) {
+        if (!hasTrip()) {
+            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+        tripManager.scheduleActivity(toSchedule);
     }
 
     @Override
-    public void unscheduleActivity(int dayIndex, DayScheduleEntry toDelete) {
-        tripManager.unscheduleActivity(dayIndex, toDelete);
+    public void unscheduleActivity(DayScheduleEntry toDelete) {
+        if (!hasTrip()) {
+            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+        tripManager.unscheduleActivity(toDelete);
     }
 
     @Override
     public void scheduleTransport(TransportBooking toSchedule) {
+        if (!hasTrip()) {
+            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
         tripManager.scheduleTransportBooking(toSchedule);
     }
 
     @Override
     public void unscheduleTransport(DayScheduleEntry toDelete) {
+        if (!hasTrip()) {
+            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
         tripManager.unscheduleTransportBooking(toDelete);
     }
 
@@ -488,6 +505,9 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<DayScheduleEntry> getDayScheduleEntryList(int dayIndex) {
+        if (!hasTrip()) {
+            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
         return filteredSchduleEntryLists.get(dayIndex);
     }
 
@@ -514,7 +534,8 @@ public class ModelManager implements Model {
                 && fixedExpenseManager.equals(other.fixedExpenseManager)
                 && packingListManager.equals(other.packingListManager)
                 && activityManager.equals(other.activityManager)
-                && accommodationBookingManager.equals(other.accommodationBookingManager);
+                && accommodationBookingManager.equals(other.accommodationBookingManager)
+                && tripManager.equals(other.tripManager);
     }
 
 }

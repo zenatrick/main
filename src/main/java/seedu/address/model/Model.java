@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.time.DateTime;
 import seedu.address.model.listmanagers.ReadOnlyAccommodationBookingManager;
 import seedu.address.model.listmanagers.ReadOnlyActivityManager;
 import seedu.address.model.listmanagers.ReadOnlyFixedExpenseManager;
@@ -465,12 +464,24 @@ public interface Model {
      */
     void deleteTrip();
 
-    void scheduleActivity(int dayIndex, DateTime startTime, Activity toSchedule);
+    /**
+     * Schedule an Activity into the schedule.
+     */
+    void scheduleActivity(Activity toSchedule);
 
-    void unscheduleActivity(int dayIndex, DayScheduleEntry toDelete);
+    /**
+     * Unschedule an Activity from the schedule.
+     */
+    void unscheduleActivity(DayScheduleEntry toDelete);
 
+    /**
+     * Schedule a TransportBooking into the schedule.
+     */
     void scheduleTransport(TransportBooking toSchedule);
 
+    /**
+     * Unschedule a TransportBooking from the schedule.
+     */
     void unscheduleTransport(DayScheduleEntry toDelete);
 
     /**

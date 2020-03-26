@@ -20,11 +20,10 @@ import seedu.address.model.util.attributes.Title;
  * Manages the trip of the application.
  */
 public class TripManager {
-
+    public static final String MESSAGE_ERROR_SET_TRIP = "Trip has already been set.";
+    public static final String MESSAGE_ERROR_NO_TRIP = "Trip has not been set.";
     private static final String MESSAGE_ERROR_SCHEDULE = "The ending time of the scheduled activity cannot go beyond "
             + "the scheduled day";
-    private static final String MESSAGE_ERROR_SET_TRIP = "Trip has already been set.";
-    private static final String MESSAGE_ERROR_NO_TRIP = "Trip has not been set.";
 
     private boolean hasTrip;
     private Trip trip;
@@ -135,11 +134,26 @@ public class TripManager {
     }
 
     /**
-     * Schedule an activity into a given day with a specified start time.
+     * Schedule all activities and transport booking into the shcedule.
      */
-    public void scheduleActivity(int dayIndex, DateTime startDateTime, Activity activityToSchedule) {
+    public void scheduleAll(List<Activity> activities, List<TransportBooking> transportBookings) {
+        if (!hasTrip()) {
+            throw new IllegalOperationException(MESSAGE_ERROR_NO_TRIP);
+        }
+        activities.stream().filter(activity -> activity.getScheduledDateTime().isPresent())
+                .forEach(this::scheduleActivity);
+        transportBookings.forEach(this::scheduleTransportBooking);
+    }
+
+    /**
+     * Schedule an activity into a into the schedule.
+     */
+    public void scheduleActivity(Activity activityToSchedule) {
+        DateTime startDateTime = activityToSchedule.getScheduledDateTime()
+                .orElseThrow(() -> new IllegalOperationException(DayScheduleEntry.MESSAGE_ERROR_ACTIVITY_SCHEDULING));
+        int dayIndex = getTripStartDate().daysUntilInclusive(startDateTime.getDate());
         DaySchedule daySchedule = daySchedules.get(dayIndex);
-        DayScheduleEntry entry = DayScheduleEntry.fromActivity(activityToSchedule, startDateTime);
+        DayScheduleEntry entry = DayScheduleEntry.fromActivity(activityToSchedule);
         DateTime endDateTime = entry.getEndDateTime();
         if (startDateTime.getDate().daysUntilInclusive(endDateTime.getDate()) > 0) {
             throw new IllegalOperationException(MESSAGE_ERROR_SCHEDULE);
@@ -148,9 +162,11 @@ public class TripManager {
     }
 
     /**
-     * Unschedule an activity from a given day.
+     * Unschedule an activity from the schedule.
      */
-    public void unscheduleActivity(int dayIndex, DayScheduleEntry toDelete) {
+    public void unscheduleActivity(DayScheduleEntry toDelete) {
+        DateTime startDateTime = toDelete.getStartDateTime();
+        int dayIndex = getTripStartDate().daysUntilInclusive(startDateTime.getDate());
         DaySchedule daySchedule = daySchedules.get(dayIndex);
         daySchedule.removeScheduleEntry(toDelete);
     }
@@ -167,7 +183,7 @@ public class TripManager {
     }
 
     /**
-     * Unschedule transport booking from the schedule.
+     * Unschedule a specified transport booking from the schedule.
      */
     public void unscheduleTransportBooking(DayScheduleEntry toDelete) {
         DateTime startDateTime = toDelete.getStartDateTime();
@@ -178,7 +194,7 @@ public class TripManager {
 
     @Override
     public String toString() {
-        return "TripManager - hasTrip: " + hasTrip + " trip: " + trip;
+        return "TripManager - hasTrip: " + hasTrip + " trip: {" + trip + "}";
     }
 
     @Override

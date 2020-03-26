@@ -3,6 +3,8 @@ package seedu.address.model.listmanagers;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.listmanagers.activity.Activity;
@@ -46,6 +48,18 @@ public class ActivityManager implements ReadOnlyActivityManager {
     public void resetData(ReadOnlyActivityManager newData) {
         requireNonNull(newData);
         setActivities(newData.getActivityList());
+    }
+
+    /**
+     * Sets all activities as not scheduled.
+     */
+    public void setAllAsNotScheduled() {
+        setActivities(getActivityList()
+                .stream()
+                .map(activity -> new Activity(activity.getTitle(), activity.getDuration(), activity.getLocation(),
+                        activity.getTags(), Optional.empty()))
+                .collect(Collectors.toList())
+        );
     }
 
     // Activity-level operations

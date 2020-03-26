@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.time.DateTime;
 import seedu.address.model.listmanagers.ReadOnlyAccommodationBookingManager;
 import seedu.address.model.listmanagers.ReadOnlyActivityManager;
 import seedu.address.model.listmanagers.ReadOnlyFixedExpenseManager;
@@ -324,12 +323,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void scheduleActivity(int dayIndex, DateTime startTime, Activity toSchedule) {
+    public void scheduleActivity(Activity toSchedule) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void unscheduleActivity(int dayIndex, DayScheduleEntry toDelete) {
+    public void unscheduleActivity(DayScheduleEntry toDelete) {
         throw new AssertionError("This method should not be called.");
     }
 

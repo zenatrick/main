@@ -1,7 +1,6 @@
 package seedu.address.model.trip;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -20,6 +19,8 @@ import seedu.address.model.util.uniquelist.UniqueListElement;
  */
 public class DayScheduleEntry implements UniqueListElement {
 
+    public static final String MESSAGE_ERROR_ACTIVITY_SCHEDULING = "Activity to be scheduled does not contain a start"
+            + " time.";
     private static final String MESSAGE_ERROR_GET_TRANSPORT_POINTER = "Cannot get transport booking pointer of a "
             + "non-transport type schedule entry.";
     private static final String MESSAGE_ERROR_GET_ACTIVITY_POINTER = "Cannot get activity pointer of a non-activity "
@@ -59,8 +60,10 @@ public class DayScheduleEntry implements UniqueListElement {
     /**
      * Returns a DayScheduleEntry given an activity and a startTime.
      */
-    public static DayScheduleEntry fromActivity(Activity activity, DateTime startTime) {
-        requireAllNonNull(activity, startTime);
+    public static DayScheduleEntry fromActivity(Activity activity) {
+        requireNonNull(activity);
+        DateTime startTime = activity.getScheduledDateTime().orElseThrow(() -> new IllegalOperationException(
+                MESSAGE_ERROR_ACTIVITY_SCHEDULING));
         DateTime endTime = startTime.plusHours(activity.getDuration().value);
         return new DayScheduleEntry(
                 Type.ACTIVITY, activity.getTitle(), startTime, endTime, activity.getDuration().value,
@@ -115,14 +118,16 @@ public class DayScheduleEntry implements UniqueListElement {
         if (!isActivity()) {
             throw new IllegalOperationException(MESSAGE_ERROR_GET_ACTIVITY_POINTER);
         }
-        return activityPointer.get();
+        return activityPointer.orElseThrow(() -> new AssertionError(
+                "Activity pointer in DayScheduleEntry will not be null"));
     }
 
     public TransportBooking getTransportBookingPointer() {
         if (!isTransportBooking()) {
             throw new IllegalOperationException(MESSAGE_ERROR_GET_TRANSPORT_POINTER);
         }
-        return transportBookingPointer.get();
+        return transportBookingPointer.orElseThrow(() -> new AssertionError(
+                "Transport booking pointer in DayScheduleEntry will not be null"));
     }
 
     @Override
