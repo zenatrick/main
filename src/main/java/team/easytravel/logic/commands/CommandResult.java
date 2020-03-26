@@ -42,6 +42,18 @@ public class CommandResult {
         this(feedbackToUser, false, false, false);
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, String checkStatusString) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.checkStatus = true;
+        this.checkStatusString = checkStatusString;
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
     }

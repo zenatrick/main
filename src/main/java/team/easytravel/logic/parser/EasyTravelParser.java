@@ -6,6 +6,7 @@ import static team.easytravel.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import team.easytravel.logic.commands.CheckStatusCommand;
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.HelpCommand;
 import team.easytravel.logic.commands.accommodationbooking.AddAccommodationBookingCommand;
@@ -171,6 +172,9 @@ public class EasyTravelParser {
         // ========================== Trip Commands =========================
         case SetTripCommand.COMMAND_WORD:
             return new SetTripCommandParser().parse(arguments);
+        case CheckStatusCommand.COMMAND_WORD:
+            return new CheckStatusCommand();
+
 
         // ========================== Invalid Commands =========================
         default:

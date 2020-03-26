@@ -305,4 +305,9 @@ public class ModelStub implements Model {
     public void resetAllListManagers() {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public boolean isTripPrepared() {
+        return false;
+    }
 }
