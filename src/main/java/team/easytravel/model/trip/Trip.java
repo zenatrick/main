@@ -20,7 +20,7 @@ public class Trip {
     private final Date startDate;
     private final Date endDate;
     private final int numDays;
-    private final Budget budget;
+    private static Budget budget;
 
     /**
      * Creates an instance of a Trip.
@@ -46,6 +46,10 @@ public class Trip {
 
     public Budget getBudget() {
         return budget;
+    }
+
+    public void setBudget(Budget newBudget) {
+        this.budget = newBudget;
     }
 
     public Date getStartDate() {

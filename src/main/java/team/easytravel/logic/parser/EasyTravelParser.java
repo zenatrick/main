@@ -40,6 +40,7 @@ import team.easytravel.logic.commands.transportbooking.ClearTransportBookingComm
 import team.easytravel.logic.commands.transportbooking.DeleteTransportBookingCommand;
 import team.easytravel.logic.commands.transportbooking.EditTransportBookingCommand;
 import team.easytravel.logic.commands.trip.DeleteTripCommand;
+import team.easytravel.logic.commands.trip.EditBudgetCommand;
 import team.easytravel.logic.commands.trip.SetTripCommand;
 import team.easytravel.logic.parser.accommodationbooking.AddAccommodationBookingCommandParser;
 import team.easytravel.logic.parser.accommodationbooking.DeleteAccommodationBookingCommandParser;
@@ -108,6 +109,8 @@ public class EasyTravelParser {
 
         case CheckStatusCommand.COMMAND_WORD:
             return new CheckStatusCommand();
+        case EditBudgetCommand.COMMAND_WORD:
+            return new EditBudgetCommand(arguments);
 
         // ========================== Fixed Expense Commands =========================
         case AddFixedExpenseCommand.COMMAND_WORD:
