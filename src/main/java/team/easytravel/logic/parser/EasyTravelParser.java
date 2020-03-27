@@ -24,6 +24,7 @@ import team.easytravel.logic.commands.fixedexpense.AddFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.ClearFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.DeleteFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.EditFixedExpenseCommand;
+import team.easytravel.logic.commands.fixedexpense.ObtainBudgetLeftCommand;
 import team.easytravel.logic.commands.fixedexpense.SortFixedExpenseCommand;
 import team.easytravel.logic.commands.packinglist.AddItemCommand;
 import team.easytravel.logic.commands.packinglist.AddPresetCommand;
@@ -115,7 +116,6 @@ public class EasyTravelParser {
 
         // ========================== Fixed Expense Commands =========================
         case AddFixedExpenseCommand.COMMAND_WORD:
-
             if (arguments.contains("amountOTHR")) {
                 return new AddOverseasFixedExpenseCommandParser().parse(arguments);
             } else {
@@ -130,6 +130,9 @@ public class EasyTravelParser {
 
         case EditFixedExpenseCommand.COMMAND_WORD:
             return new EditFixedExpenseCommandParser().parse(arguments);
+
+        case ObtainBudgetLeftCommand.COMMAND_WORD:
+            return new ObtainBudgetLeftCommand();
 
         case SortFixedExpenseCommand.COMMAND_WORD:
             return new SortFixedExpenseCommandParser().parse(arguments);

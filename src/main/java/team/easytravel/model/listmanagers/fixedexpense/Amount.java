@@ -32,7 +32,7 @@ public class Amount {
 
     @Override
     public String toString() {
-        return value;
+        return String.format("%.2f", Double.parseDouble(value));
     }
 
     @Override
