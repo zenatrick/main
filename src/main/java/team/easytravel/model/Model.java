@@ -185,6 +185,11 @@ public interface Model {
     void sortFixedExpenseList(Comparator<FixedExpense> cmp);
 
     /**
+     * Gets the sum of all fixed expenses.
+     */
+    double getOverallExpense();
+
+    /**
      * Returns an unmodifiable view of the filtered fixed expense list
      */
     ObservableList<FixedExpense> getFilteredFixedExpenseList();

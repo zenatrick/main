@@ -209,6 +209,15 @@ public class ModelManager implements Model {
         fixedExpenseManager.sortFixedExpenseList(cmp);
     }
 
+    @Override
+    public double getOverallExpense() {
+        double overallExpense = 0.0;
+        for (FixedExpense fixedExpense : fixedExpenseManager.getFixedExpenseList()) {
+            overallExpense += Double.parseDouble(fixedExpense.getAmount().value);
+        }
+        return overallExpense;
+    }
+
 
     @Override
     public ObservableList<FixedExpense> getFilteredFixedExpenseList() {

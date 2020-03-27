@@ -30,11 +30,11 @@ public class AddFixedExpenseCommand extends Command {
             + "Parameters: "
             + PREFIX_AMOUNT + "AMOUNT"
             + PREFIX_DESCRIPTION + "DESCRIPTION"
-            + PREFIX_CATEGORY + "CATEGORY...\n "
+            + PREFIX_CATEGORY + "CATEGORY...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_AMOUNT + "1500" + " "
             + PREFIX_DESCRIPTION + "Plane Tickets" + " "
-            + PREFIX_CATEGORY + "Flights";
+            + PREFIX_CATEGORY + "transport";
 
     public static final String MESSAGE_SUCCESS = "New Fixed Expense added: %1$s";
     private final FixedExpense toAdd;

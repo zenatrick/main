@@ -311,6 +311,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public double getOverallExpense() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public double getExchangeRate() {
         throw new AssertionError("This method should not be called");
     }
