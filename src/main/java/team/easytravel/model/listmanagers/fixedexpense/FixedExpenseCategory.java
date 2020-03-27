@@ -9,18 +9,22 @@ import team.easytravel.commons.util.AppUtil;
  * Guarantees: immutable; is valid as declared in {@link #isValidCategory(String)}
  */
 public class FixedExpenseCategory {
-    public static final String MESSAGE_CONSTRAINTS = "Category must be made up of a single alphanumeric word that is "
-            + "less than 30 characters long.";
+
+    // Flights, accommodations, transport, activities, others
+    public static final String MESSAGE_CONSTRAINTS = "Category should be one of the following words:  \"accommodations\", " +
+           "\"transport\", \"activities\", \"others\"";
+
+
 
     // todo update regex to match constraints
-    public static final String VALIDATION_REGEX = "^(?!\\s*$)[A-Za-z0-9\\s]{1,50}+";
+    public static final String VALIDATION_REGEX = "^(transport|accommodations|activities|others)$";
 
     public final String value;
 
     public FixedExpenseCategory(String category) {
         requireNonNull(category);
         AppUtil.checkArgument(isValidCategory(category), MESSAGE_CONSTRAINTS);
-        value = category;
+        value = category.toLowerCase();
     }
 
     public static boolean isValidCategory(String test) {

@@ -498,11 +498,11 @@ public class ParserUtil {
         requireNonNull(budget);
         String trimmedBudget = budget.trim();
         try {
-            Double doubleBudget = Double.parseDouble(trimmedBudget);
-            if (!Budget.isValidBudget(doubleBudget)) {
+            Integer intBudget = Integer.parseInt(trimmedBudget);
+            if (!Budget.isValidBudget(intBudget)) {
                 throw new ParseException(Budget.MESSAGE_CONSTRAINTS);
             }
-            return new Budget(doubleBudget);
+            return new Budget(intBudget);
         } catch (NumberFormatException e) {
             throw new ParseException(Budget.MESSAGE_CONSTRAINTS);
         }

@@ -20,7 +20,7 @@ class JsonAdaptedTrip {
     private final String title;
     private final String startDate;
     private final String endDate;
-    private final Double budget;
+    private final Integer budget;
     private final Double exchangeRate;
 
     /**
@@ -28,7 +28,7 @@ class JsonAdaptedTrip {
      */
     @JsonCreator
     public JsonAdaptedTrip(@JsonProperty("title") String title, @JsonProperty("startDate") String startDate,
-                           @JsonProperty("endDate") String endDate, @JsonProperty("budget") Double budget,
+                           @JsonProperty("endDate") String endDate, @JsonProperty("budget") Integer budget,
                            @JsonProperty("exchangeRate") Double exchangeRate) {
         this.title = title;
         this.startDate = startDate;
