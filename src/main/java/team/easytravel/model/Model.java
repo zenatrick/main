@@ -445,7 +445,12 @@ public interface Model {
     /**
      * Returns the budget of the trip
      */
-    int getBudget();
+    double getBudget();
+
+    /**
+     * Returns the exchange rate of the trip
+     */
+    double getExchangeRate();
 
     /**
      * Returns an unmodifiable view of the schedule entry list of a specified day.

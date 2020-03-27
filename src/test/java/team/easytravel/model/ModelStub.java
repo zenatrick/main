@@ -306,6 +306,16 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public double getBudget() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public double getExchangeRate() {
+        throw new AssertionError("This method should not be called");
+    }
+
+    @Override
     public ObservableList<DayScheduleEntry> getDayScheduleEntryList(int dayIndex) {
         throw new AssertionError("This method should not be called.");
     }

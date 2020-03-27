@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import team.easytravel.commons.core.time.Date;
 import team.easytravel.commons.exceptions.IllegalValueException;
 import team.easytravel.model.trip.Budget;
+import team.easytravel.model.trip.ExchangeRate;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.util.attributes.Title;
 
@@ -19,18 +20,21 @@ class JsonAdaptedTrip {
     private final String title;
     private final String startDate;
     private final String endDate;
-    private final Integer budget;
+    private final Double budget;
+    private final Double exchangeRate;
 
     /**
      * Constructs a {@code JsonAdaptedTrip} with the given trip details.
      */
     @JsonCreator
     public JsonAdaptedTrip(@JsonProperty("title") String title, @JsonProperty("startDate") String startDate,
-                           @JsonProperty("endDate") String endDate, @JsonProperty("budget") Integer budget) {
+                           @JsonProperty("endDate") String endDate, @JsonProperty("budget") Double budget,
+                           @JsonProperty("exchangeRate") Double exchangeRate) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
         this.budget = budget;
+        this.exchangeRate = exchangeRate;
     }
 
     /**
@@ -41,6 +45,7 @@ class JsonAdaptedTrip {
         startDate = source.getStartDate().getStorageFormat();
         endDate = source.getEndDate().getStorageFormat();
         budget = source.getBudget().value;
+        exchangeRate = source.getExchangeRate().value;
     }
 
     /**
@@ -85,7 +90,13 @@ class JsonAdaptedTrip {
         }
         final Budget modelBudget = new Budget(budget);
 
-        return new Trip(modelTitle, modelStartDate, modelEndDate, modelBudget);
+        if (exchangeRate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ExchangeRate.class.getSimpleName()));
+        }
+        final ExchangeRate modelExchangeRate = new ExchangeRate(exchangeRate);
+
+        return new Trip(modelTitle, modelStartDate, modelEndDate, modelBudget, modelExchangeRate);
     }
 
 }

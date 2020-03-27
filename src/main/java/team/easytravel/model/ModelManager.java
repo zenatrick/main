@@ -425,6 +425,27 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public double getBudget() {
+        if (!hasTrip()) {
+            throw new IllegalOperationException("Cannot get budget before setting a trip");
+        }
+        double currentBudget = tripManager.getTripBudget().value;
+
+        for (FixedExpense fe : filteredFixedExpenseList) {
+            currentBudget -= Double.parseDouble(fe.getAmount().value);
+        }
+        return currentBudget;
+    }
+
+    @Override
+    public double getExchangeRate() {
+        if (!hasTrip()) {
+            throw new IllegalOperationException("Cannot get exchange rate before setting a trip");
+        }
+        return tripManager.getTripExchangeRate().value;
+    }
+
+    @Override
     public void unscheduleActivity(DayScheduleEntry toDelete) {
         if (!hasTrip()) {
             throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
@@ -473,18 +494,6 @@ public class ModelManager implements Model {
         this.activityManager.resetData(new ActivityManager());
         this.accommodationBookingManager.resetData(new AccommodationBookingManager());
         this.transportBookingManager.resetData(new TransportBookingManager());
-    }
-    @Override
-    public int getBudget() {
-        if(!hasTrip()) {
-            throw new IllegalOperationException("Cannot get budget before setting a trip");
-        }
-        int currentBudget = tripManager.getTripBudget().value;
-
-        for (FixedExpense fe : filteredFixedExpenseList) {
-            currentBudget -= Integer.parseInt(fe.getAmount().value);
-        }
-        return currentBudget;
     }
 
 

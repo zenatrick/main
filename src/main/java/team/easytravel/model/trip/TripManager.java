@@ -108,7 +108,7 @@ public class TripManager {
     }
 
     public ExchangeRate getTripExchangeRate() {
-        if(!hasTrip) {
+        if (!hasTrip) {
             throw new IllegalOperationException(MESSAGE_ERROR_NO_TRIP);
         }
         return trip.getExchangeRate();

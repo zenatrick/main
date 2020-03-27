@@ -20,11 +20,13 @@ public class SetTripCommand extends Command {
             + "Parameters: "
             + CliSyntax.PREFIX_TRIP_TITLE + "TITLE "
             + CliSyntax.PREFIX_TRIP_BUDGET + "BUDGET "
+            + CliSyntax.PREFIX_TRIP_EXCHANGE_RATE + "EXCHANGE_RATE "
             + CliSyntax.PREFIX_TRIP_START_DATE + "START_DATE "
             + CliSyntax.PREFIX_TRIP_END_DATE + "END_DATE\n"
             + "Example: " + COMMAND_WORD + " "
             + CliSyntax.PREFIX_TRIP_TITLE + "Graduation Trip "
             + CliSyntax.PREFIX_TRIP_BUDGET + "5000 "
+            + CliSyntax.PREFIX_TRIP_EXCHANGE_RATE + "1.03 "
             + CliSyntax.PREFIX_TRIP_START_DATE + "28-09-2020 "
             + CliSyntax.PREFIX_TRIP_END_DATE + "05-10-2020";
 

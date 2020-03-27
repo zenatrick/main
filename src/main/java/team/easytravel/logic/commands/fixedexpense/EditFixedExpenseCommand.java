@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.fixedexpense;
 
 import static java.util.Objects.requireNonNull;
+
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -76,9 +77,8 @@ public class EditFixedExpenseCommand extends Command {
 
         model.setFixedExpense(fixedExpenseToEdit, editedExpense);
         model.updateFilteredFixedExpenseList(Model.PREDICATE_SHOW_ALL_FIXED_EXPENSES);
-        model.getBudget();
-        return new CommandResult(String.format(MESSAGE_EDIT_FIXEDEXPENSE_SUCCESS, editedExpense + "\n" +
-                "Your current budget left is " + model.getBudget()));
+        return new CommandResult(String.format(MESSAGE_EDIT_FIXEDEXPENSE_SUCCESS, editedExpense + "\n"
+                + "Your current budget left is " + model.getBudget()));
     }
 
     /**

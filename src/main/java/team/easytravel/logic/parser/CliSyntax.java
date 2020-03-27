@@ -13,6 +13,7 @@ public class CliSyntax {
 
 
     public static final Prefix PREFIX_AMOUNT = new Prefix("amount/");
+    public static final Prefix PREFIX_AMOUNT_OTHR = new Prefix("amountOTHR/");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("description/");
     public static final Prefix PREFIX_CATEGORY = new Prefix("category/");
 
@@ -41,5 +42,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_TRIP_START_DATE = new Prefix("startdate/");
     public static final Prefix PREFIX_TRIP_END_DATE = new Prefix("enddate/");
     public static final Prefix PREFIX_TRIP_BUDGET = new Prefix("budget/");
+    public static final Prefix PREFIX_TRIP_EXCHANGE_RATE = new Prefix("exchangerate/");
 
 }

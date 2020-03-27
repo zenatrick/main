@@ -63,11 +63,15 @@ public class Trip {
     }
 
 
+    public ExchangeRate getExchangeRate() {
+        return exchangeRate;
+    }
+
+
     public static boolean isValidTrip(Date startDate, Date endDate) {
         return startDate.compareTo(endDate) <= 0 && startDate.daysUntilInclusive(endDate) <= 30;
     }
 
-    public ExchangeRate getExchangeRate() {return exchangeRate;}
 
     @Override
     public String toString() {

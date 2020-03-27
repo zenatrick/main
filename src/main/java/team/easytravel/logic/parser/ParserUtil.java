@@ -498,11 +498,11 @@ public class ParserUtil {
         requireNonNull(budget);
         String trimmedBudget = budget.trim();
         try {
-            Integer intBudget = Integer.parseInt(trimmedBudget);
-            if (!Budget.isValidBudget(intBudget)) {
+            Double doubleBudget = Double.parseDouble(trimmedBudget);
+            if (!Budget.isValidBudget(doubleBudget)) {
                 throw new ParseException(Budget.MESSAGE_CONSTRAINTS);
             }
-            return new Budget(intBudget);
+            return new Budget(doubleBudget);
         } catch (NumberFormatException e) {
             throw new ParseException(Budget.MESSAGE_CONSTRAINTS);
         }
@@ -519,7 +519,7 @@ public class ParserUtil {
         String trimmedExchangeRate = exchangeRate.trim();
         try {
             Double doubleExchangeRate = Double.parseDouble(trimmedExchangeRate);
-            if(!ExchangeRate.isValidExchangeRate(doubleExchangeRate)) {
+            if (!ExchangeRate.isValidExchangeRate(doubleExchangeRate)) {
                 throw new ParseException(ExchangeRate.MESSAGE_CONSTRAINTS);
             }
             return new ExchangeRate(doubleExchangeRate);

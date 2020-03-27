@@ -52,6 +52,7 @@ import team.easytravel.logic.parser.activity.FindActivityCommandParser;
 import team.easytravel.logic.parser.activity.FindActivityTagCommandParser;
 import team.easytravel.logic.parser.exceptions.ParseException;
 import team.easytravel.logic.parser.fixedexpense.AddFixedExpenseCommandParser;
+import team.easytravel.logic.parser.fixedexpense.AddOverseasFixedExpenseCommandParser;
 import team.easytravel.logic.parser.fixedexpense.DeleteFixedExpenseCommandParser;
 import team.easytravel.logic.parser.fixedexpense.EditFixedExpenseCommandParser;
 import team.easytravel.logic.parser.fixedexpense.SortFixedExpenseCommandParser;
@@ -114,7 +115,12 @@ public class EasyTravelParser {
 
         // ========================== Fixed Expense Commands =========================
         case AddFixedExpenseCommand.COMMAND_WORD:
-            return new AddFixedExpenseCommandParser().parse(arguments);
+
+            if (arguments.contains("amountOTHR")) {
+                return new AddOverseasFixedExpenseCommandParser().parse(arguments);
+            } else {
+                return new AddFixedExpenseCommandParser().parse(arguments);
+            }
 
         case ClearFixedExpenseCommand.COMMAND_WORD:
             return new ClearFixedExpenseCommand();
@@ -127,6 +133,7 @@ public class EasyTravelParser {
 
         case SortFixedExpenseCommand.COMMAND_WORD:
             return new SortFixedExpenseCommandParser().parse(arguments);
+
 
         // ========================== Transport Booking Commands =========================
         case AddTransportBookingCommand.COMMAND_WORD:

@@ -1,7 +1,5 @@
 package team.easytravel.model.trip;
 
-
-
 import static team.easytravel.commons.util.AppUtil.checkArgument;
 import static team.easytravel.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -13,7 +11,8 @@ import java.util.function.Predicate;
  */
 public class ExchangeRate {
 
-    public static final String MESSAGE_CONSTRAINTS = "ExchangeRate should be a number greater than 0.0 and less than or "
+    public static final String MESSAGE_CONSTRAINTS =
+            "ExchangeRate should be a number greater than 0.0 and less than or "
             + "equal to 100.0";
 
     private static final double MIN_VALUE = 0.0;

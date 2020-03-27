@@ -15,13 +15,13 @@ public class Budget {
     public static final String MESSAGE_CONSTRAINTS = "Budget should be a whole number greater than 0 and less than or "
             + "equal to 1,000,000";
 
-    private static final int MIN_VALUE = 1;
-    private static final int MAX_VALUE = 1_000_000;
-    public static final Predicate<Integer> VALIDATION_PREDICATE = i -> i >= MIN_VALUE && i <= MAX_VALUE;
+    private static final double MIN_VALUE = 1;
+    private static final double MAX_VALUE = 1_000_000;
+    public static final Predicate<Double> VALIDATION_PREDICATE = i -> i >= MIN_VALUE && i <= MAX_VALUE;
 
-    public final Integer value;
+    public final Double value;
 
-    public Budget(Integer amount) {
+    public Budget(Double amount) {
         requireAllNonNull(amount);
         checkArgument(isValidBudget(amount), MESSAGE_CONSTRAINTS);
         value = amount;
@@ -30,7 +30,7 @@ public class Budget {
     /**
      * Returns true if a given Integer is a valid budget number.
      */
-    public static boolean isValidBudget(Integer test) {
+    public static boolean isValidBudget(Double test) {
         return VALIDATION_PREDICATE.test(test);
     }
 
