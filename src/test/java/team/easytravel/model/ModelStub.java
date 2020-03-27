@@ -317,6 +317,11 @@ public class ModelStub implements Model {
 
     @Override
     public String isTripPrepared() {
-        return "THis is not suppose to be called";
+        return "This is not suppose to be called";
+    }
+
+    @Override
+    public int getBudget() {
+        return 0;
     }
 }

@@ -16,11 +16,12 @@ public class Trip {
             + "be a maximum of 30 days apart.";
 
     // Trip data
-    private final Title title;
+    private static Budget budget;
+    private static Title title;
     private final Date startDate;
     private final Date endDate;
     private final int numDays;
-    private static Budget budget;
+
 
     /**
      * Creates an instance of a Trip.
