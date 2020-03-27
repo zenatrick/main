@@ -11,6 +11,7 @@ import team.easytravel.commons.core.time.Date;
 import team.easytravel.commons.core.time.DateTime;
 import team.easytravel.commons.util.StringUtil;
 import team.easytravel.logic.commands.fixedexpense.SortFixedExpenseCommand;
+import team.easytravel.logic.commands.packinglist.SortItemCommand;
 import team.easytravel.logic.parser.exceptions.ParseException;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationName;
 import team.easytravel.model.listmanagers.accommodationbooking.Day;
@@ -219,6 +220,27 @@ public class ParserUtil {
     }
 
     /**
+     * Parse sort item identifier string.
+     *
+     * @param sortIdentifier the sort identifier
+     * @return the string
+     * @throws ParseException the parse exception
+     */
+    public static String parseSortItemIdentifier(String sortIdentifier) throws ParseException {
+        requireNonNull(sortIdentifier);
+
+        switch (sortIdentifier) {
+            case SortItemCommand.SORT_ASCENDING:
+                return SortItemCommand.SORT_ASCENDING;
+            case SortItemCommand.SORT_DESCENDING:
+                return SortItemCommand.SORT_DESCENDING;
+            default:
+                throw new ParseException("String must consist of either high for descending order"
+                        + " or low for ascending order");
+        }
+    }
+
+    /**
      * Parses a {@code String sortParameters} into a {@code String}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -244,6 +266,31 @@ public class ParserUtil {
     }
 
 
+    /**
+     * Parse sort item parameters string.
+     *
+     * @param sortParameters the sort parameters
+     * @return the string
+     * @throws ParseException the parse exception
+     */
+    public static String parseSortItemParameters(String sortParameters) throws ParseException {
+        requireNonNull(sortParameters);
+
+        switch (sortParameters) {
+            case SortItemCommand.ITEM:
+                return SortItemCommand.ITEM;
+
+            case SortItemCommand.CATEGORY:
+                return SortItemCommand.CATEGORY;
+
+            case SortItemCommand.QUANTITY:
+                return SortItemCommand.QUANTITY;
+
+            default:
+                throw new ParseException("Parameters must consist of only item/quantity/category");
+        }
+
+    }
     /**
      * Parses a {@code String mode} into an {@code Mode}.
      * Leading and trailing whitespaces will be trimmed.
