@@ -19,6 +19,7 @@ import team.easytravel.logic.commands.activity.DeleteActivityCommand;
 import team.easytravel.logic.commands.activity.EditActivityCommand;
 import team.easytravel.logic.commands.activity.FindActivityCommand;
 import team.easytravel.logic.commands.activity.FindActivityTagCommand;
+import team.easytravel.logic.commands.activity.ListActivityCommand;
 import team.easytravel.logic.commands.fixedexpense.AddFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.ClearFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.DeleteFixedExpenseCommand;
@@ -181,6 +182,9 @@ public class EasyTravelParser {
 
         case FindActivityTagCommand.COMMAND_WORD:
             return new FindActivityTagCommandParser().parse(arguments);
+        case ListActivityCommand.COMMAND_WORD:
+            return new ListActivityCommand();
+
 
         // ========================== Accommodation Commands =========================
         case AddAccommodationBookingCommand.COMMAND_WORD:
