@@ -452,8 +452,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isTripPrepared() {
-        return false;
+    public String isTripPrepared() {
+        return "This project is not done";
     }
 
     @Override

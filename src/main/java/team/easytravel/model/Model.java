@@ -444,5 +444,5 @@ public interface Model {
     /**
      * Returns the status of the trip preparedness
      */
-    boolean isTripPrepared();
+    String isTripPrepared();
 }
