@@ -445,7 +445,7 @@ public interface Model {
     /**
      * Returns the budget of the trip
      */
-    double getBudget();
+    int getBudget();
 
     /**
      * Returns the exchange rate of the trip

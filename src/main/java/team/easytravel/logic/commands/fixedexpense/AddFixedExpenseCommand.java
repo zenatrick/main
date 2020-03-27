@@ -71,7 +71,7 @@ public class AddFixedExpenseCommand extends Command {
             model.addFixedExpense(toAdd);
         }
 
-        double currentBudget = model.getBudget();
+        int currentBudget = model.getBudget();
 
 
         if (currentBudget < 1) {

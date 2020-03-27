@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import team.easytravel.logic.commands.CheckStatusCommand;
 import team.easytravel.logic.commands.Command;
+import team.easytravel.logic.commands.ExitCommand;
 import team.easytravel.logic.commands.HelpCommand;
 import team.easytravel.logic.commands.accommodationbooking.AddAccommodationBookingCommand;
 import team.easytravel.logic.commands.accommodationbooking.ClearAccommodationBookingCommand;
@@ -101,6 +102,9 @@ public class EasyTravelParser {
         // ========================== Easy Travel Commands =========================
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
         // ========================== Trip Commands =========================
         case SetTripCommand.COMMAND_WORD:

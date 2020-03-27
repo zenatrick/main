@@ -425,11 +425,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public double getBudget() {
+    public int getBudget() {
         if (!hasTrip()) {
             throw new IllegalOperationException("Cannot get budget before setting a trip");
         }
-        double currentBudget = tripManager.getTripBudget().value;
+        int currentBudget = tripManager.getTripBudget().value;
 
         for (FixedExpense fe : filteredFixedExpenseList) {
             currentBudget -= Double.parseDouble(fe.getAmount().value);
