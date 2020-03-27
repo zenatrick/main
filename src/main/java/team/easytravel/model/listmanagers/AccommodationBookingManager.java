@@ -3,6 +3,7 @@ package team.easytravel.model.listmanagers;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 import javafx.collections.ObservableList;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBooking;
@@ -79,8 +80,39 @@ public class AccommodationBookingManager implements ReadOnlyAccommodationBooking
         accommodationBookings.setElement(target, editedAccommodationBooking);
     }
 
+    /**
+     * Sorts the accommodation bookings based on the start day.
+     */
     public void sortAccommodationBookings() {
         accommodationBookings.sort((x, y) -> (x.getStartDay().value - y.getStartDay().value));
+    }
+
+    /**
+     * Checks the accommodation booking if there are any missing days that have no acoommodation bookings.
+     * @param endDay the number of days of the trip
+     * @return the status for accommodation booking
+     */
+    public String checkAccommodationBookingStatus(int endDay) {
+        StringBuilder result = new StringBuilder("Accommodation for day");
+        boolean accommodationBookingIsOk = true;
+        boolean[] accommodationDayCheck = new boolean[endDay - 1];
+
+        getAccommodationBookingList()
+                .forEach(x -> IntStream.range(x.getStartDay().value, x.getEndDay().value)
+                        .forEach(y -> accommodationDayCheck[y - 1] = true));
+
+        for (int i = 0; i < endDay - 1; i++) {
+            if (!accommodationDayCheck[i]) {
+                accommodationBookingIsOk = false;
+                result.append(" ").append(i + 1).append(",");
+            }
+
+            if (accommodationBookingIsOk) {
+                return "Accommodation Booking is completed for all days.";
+            }
+        }
+
+        return result.append(" is/are missing").toString();
     }
 
     /**
