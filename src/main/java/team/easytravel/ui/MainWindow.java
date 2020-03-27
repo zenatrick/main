@@ -73,7 +73,7 @@ public class MainWindow extends UiPart<Stage> {
         checkStatusWindow = new CheckStatusWindow();
 
         // Set up the list panels
-        scheduleTabPanel = new ScheduleTabPanel();
+        scheduleTabPanel = new ScheduleTabPanel(logic.getScheduleList());
         activityTabPanel = new ActivityTabPanel(logic.getFilteredActivityList());
         accommodationBookingTabPanel = new AccommodationBookingTabPanel(logic.getFilteredAccommodationBookingList());
         transportBookingTabPanel = new TransportBookingTabPanel(logic.getFilteredTransportBookingList());

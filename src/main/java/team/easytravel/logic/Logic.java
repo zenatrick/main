@@ -1,6 +1,6 @@
 package team.easytravel.logic;
 
-import java.nio.file.Path;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import team.easytravel.commons.core.GuiSettings;
@@ -12,6 +12,7 @@ import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
 import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
+import team.easytravel.model.trip.DayScheduleEntry;
 
 /**
  * API of the Logic component
@@ -63,9 +64,11 @@ public interface Logic {
     ObservableList<PackingListItem> getFilteredPackingList();
 
     /**
-     * Returns the user prefs' trip storage file path.
+     * Returns an unmodifiable view of the schedule.
+     *
+     * @return the unmodifiable view of the schedule.
      */
-    Path getEasyTravelStorageFilePath();
+    List<ObservableList<DayScheduleEntry>> getScheduleList();
 
     /**
      * Returns the user prefs' GUI settings.

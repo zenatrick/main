@@ -2,6 +2,7 @@ package team.easytravel.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -461,6 +462,11 @@ public interface Model {
      * Returns an unmodifiable view of the schedule entry list of a specified day.
      */
     ObservableList<DayScheduleEntry> getDayScheduleEntryList(int dayIndex);
+
+    /**
+     * Returns an unmodifiable view of the schedule.
+     */
+    List<ObservableList<DayScheduleEntry>> getScheduleList();
 
     // ========== Util ==========
     void resetAllListManagers();

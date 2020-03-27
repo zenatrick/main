@@ -480,6 +480,20 @@ public class ModelManager implements Model {
         }
         return filteredScheduleEntryLists.get(dayIndex);
     }
+
+    @Override
+    public List<ObservableList<DayScheduleEntry>> getScheduleList() {
+        if (!hasTrip()) {
+            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+
+        List<ObservableList<DayScheduleEntry>> result = new ArrayList<>();
+        for (ObservableList<DayScheduleEntry> dayScheduleEntries : filteredSchduleEntryLists) {
+            result.add(dayScheduleEntries);
+        }
+        return result;
+    }
+
     // ========== Util ==========
 
     @Override
@@ -491,9 +505,6 @@ public class ModelManager implements Model {
         this.accommodationBookingManager.resetData(new AccommodationBookingManager());
         this.transportBookingManager.resetData(new TransportBookingManager());
     }
-
-
-    // ========== Utils ==========
 
     @Override
     public String isTripPrepared() {

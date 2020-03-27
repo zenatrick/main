@@ -1,7 +1,7 @@
 package team.easytravel.logic;
 
 import java.io.IOException;
-import java.nio.file.Path;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -18,6 +18,7 @@ import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
 import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
+import team.easytravel.model.trip.DayScheduleEntry;
 import team.easytravel.storage.Storage;
 
 /**
@@ -85,8 +86,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getEasyTravelStorageFilePath() {
-        return model.getEasyTravelStorageFilePath();
+    public List<ObservableList<DayScheduleEntry>> getScheduleList() {
+        return model.getScheduleList();
     }
 
     @Override
