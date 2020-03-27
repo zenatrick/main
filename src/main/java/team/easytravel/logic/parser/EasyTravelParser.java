@@ -26,6 +26,7 @@ import team.easytravel.logic.commands.fixedexpense.DeleteFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.EditFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.SortFixedExpenseCommand;
 import team.easytravel.logic.commands.packinglist.AddItemCommand;
+import team.easytravel.logic.commands.packinglist.AddPresetCommand;
 import team.easytravel.logic.commands.packinglist.CheckItemCommand;
 import team.easytravel.logic.commands.packinglist.DeleteItemCommand;
 import team.easytravel.logic.commands.packinglist.EditItemCommand;
@@ -54,6 +55,7 @@ import team.easytravel.logic.parser.fixedexpense.DeleteFixedExpenseCommandParser
 import team.easytravel.logic.parser.fixedexpense.EditFixedExpenseCommandParser;
 import team.easytravel.logic.parser.fixedexpense.SortFixedExpenseCommandParser;
 import team.easytravel.logic.parser.packinglist.AddItemCommandParser;
+import team.easytravel.logic.parser.packinglist.AddPresetCommandParser;
 import team.easytravel.logic.parser.packinglist.CheckItemCommandParser;
 import team.easytravel.logic.parser.packinglist.DeleteItemCommandParser;
 import team.easytravel.logic.parser.packinglist.EditItemCommandParser;
@@ -139,6 +141,9 @@ public class EasyTravelParser {
         // ========================== Packing List Commands =========================
         case AddItemCommand.COMMAND_WORD:
             return new AddItemCommandParser().parse(arguments);
+
+        case AddPresetCommand.COMMAND_WORD:
+            return new AddPresetCommandParser().parse(arguments);
 
         case CheckItemCommand.COMMAND_WORD:
             return new CheckItemCommandParser().parse(arguments);
