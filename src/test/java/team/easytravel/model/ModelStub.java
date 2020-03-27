@@ -307,7 +307,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public boolean isTripPrepared() {
-        return false;
+    public String isTripPrepared() {
+        return "THis is not suppose to be called";
     }
 }
