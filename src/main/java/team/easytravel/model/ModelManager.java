@@ -366,6 +366,11 @@ public class ModelManager implements Model {
         filteredAccommodationBookingList.setPredicate(predicate);
     }
 
+    @Override
+    public boolean isOverlappingWithOthers(AccommodationBooking toCheck) {
+        return getFilteredAccommodationBookingList().stream().anyMatch(x -> x.isOverlapping(toCheck));
+    }
+
     // ========== TripManager ==========
 
     @Override

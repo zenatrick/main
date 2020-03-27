@@ -37,6 +37,10 @@ public class AddAccommodationBookingCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New accommodation booking added: %1$s";
     public static final String MESSAGE_DUPLICATE_ACCOMMODATION_BOOKING = "This accommodation booking already exists "
             + "in the list";
+    public static final String MESSAGE_OVERLAPPING_ACCOMMODATION_BOOKING = "This accommodation booking overlaps with "
+            + "another booking in the list";
+    public static final String MESSAGE_INVALID_END_DAY = "The accommodation booking end day does not fall within "
+            + "the number of days in the trip";
 
     private final AccommodationBooking toAdd;
 
@@ -51,6 +55,14 @@ public class AddAccommodationBookingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (toAdd.getEndDay().value > model.getTripNumDays()) {
+            throw new CommandException(MESSAGE_INVALID_END_DAY);
+        }
+
+        if (model.isOverlappingWithOthers(toAdd)) {
+            throw new CommandException(MESSAGE_OVERLAPPING_ACCOMMODATION_BOOKING);
+        }
 
         if (model.hasAccommodationBooking(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ACCOMMODATION_BOOKING);

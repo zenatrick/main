@@ -49,6 +49,10 @@ public class EditAccommodationBookingCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ACCOMMODATION_BOOKING = "This Accommodation Booking already exists "
             + "in the accommodation booking list.";
+    public static final String MESSAGE_OVERLAPPING_ACCOMMODATION_BOOKING = "The edited accommodation booking overlaps "
+            + "with another booking in the list";
+    public static final String MESSAGE_INVALID_END_DAY = "The edited accommodation booking end day does not fall "
+            + "within the number of days in the trip";
 
     private final Index index;
     private final EditAccommodationBookingDescriptor editAccommodationBookingDescriptor;
@@ -84,6 +88,14 @@ public class EditAccommodationBookingCommand extends Command {
                     editAccommodationBookingDescriptor);
         } catch (IllegalArgumentException e) {
             throw new CommandException(e.getMessage());
+        }
+
+        if (editedAccommodationBooking.getEndDay().value > model.getTripNumDays()) {
+            throw new CommandException(MESSAGE_INVALID_END_DAY);
+        }
+
+        if (model.isOverlappingWithOthers(editedAccommodationBooking)) {
+            throw new CommandException(MESSAGE_OVERLAPPING_ACCOMMODATION_BOOKING);
         }
 
         if (!accommodationBookingToEdit.isSame(editedAccommodationBooking)

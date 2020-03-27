@@ -67,6 +67,18 @@ public class AccommodationBooking implements UniqueListElement {
         return endDay.value - startDay.value >= 0;
     }
 
+    public boolean isOverlapping (AccommodationBooking other) {
+        int otherStartDay = other.getStartDay().value;
+        int otherEndDay = other.getEndDay().value;
+        int thisStartDay = this.startDay.value;
+        int thisEndDay = this.endDay.value;
+
+        int max = Math.max(otherEndDay, thisEndDay);
+        int min = Math.min(otherStartDay, thisStartDay);
+
+        return (max - min) < ((thisEndDay - thisStartDay) + (otherEndDay - otherStartDay));
+    }
+
     /**
      * Returns true if both accommodation bookings has the same identity fields.
      * This defines a weaker notion of equality between two accommodation bookings.

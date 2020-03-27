@@ -387,6 +387,13 @@ public interface Model {
      */
     void updateFilteredAccommodationBookingList(Predicate<AccommodationBooking> predicate);
 
+    /**
+     * Updates the filter of the filtered accommodation booking list to filter by the given {@code predicate}.
+     *
+     * @param toCheck the given accommodation booking.
+     */
+    boolean isOverlappingWithOthers(AccommodationBooking toCheck);
+
     // ========== Trip Manager ==========
 
     /**
