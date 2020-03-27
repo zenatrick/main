@@ -9,7 +9,7 @@ import team.easytravel.model.Model;
 import team.easytravel.model.trip.Budget;
 
 /**
- * Edits the details of an existing fixed expense.
+ * Edits the details of an existing budget.
  */
 public class EditBudgetCommand extends Command {
 

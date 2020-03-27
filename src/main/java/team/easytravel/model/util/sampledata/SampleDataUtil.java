@@ -85,9 +85,9 @@ public class SampleDataUtil {
     public static FixedExpense[] getSampleFixedExpenses() {
         return new FixedExpense[]{
             new FixedExpense(new Amount("1000"), new Description("TestDescription"),
-                    new FixedExpenseCategory("TestCategory")),
+                    new FixedExpenseCategory("accommodations")),
             new FixedExpense(new Amount("2000"), new Description("TestDescription"),
-                    new FixedExpenseCategory("TestCategory"))
+                    new FixedExpenseCategory("transport"))
         };
     }
 

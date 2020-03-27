@@ -32,68 +32,68 @@ class FixedExpenseTest {
     public void getAmount() {
         // Correct case
         assertEquals(new Amount("100"), new FixedExpense(new Amount("100"),
-                new Description("Test"), new FixedExpenseCategory("Food")).getAmount());
+                new Description("Test"), new FixedExpenseCategory("transport")).getAmount());
 
         //Different case
         assertNotEquals(new Amount("500"), new FixedExpense(new Amount("100"),
-                new Description("Test"), new FixedExpenseCategory("Food")).getAmount());
+                new Description("Test"), new FixedExpenseCategory("transport")).getAmount());
     }
 
     @Test
     public void getDescription() {
         // Correct case
         assertEquals(new Description("Test"), new FixedExpense(new Amount("100"),
-                new Description("Test"), new FixedExpenseCategory("Food")).getDescription());
+                new Description("Test"), new FixedExpenseCategory("accommodations")).getDescription());
 
         //Different case
         assertNotEquals(new Description("50p"), new FixedExpense(new Amount("100"),
-                new Description("Test"), new FixedExpenseCategory("Food")).getDescription());
+                new Description("Test"), new FixedExpenseCategory("accommodations")).getDescription());
 
     }
 
     @Test
     public void getCategory() {
         // Correct case
-        assertEquals(new FixedExpenseCategory("Food"), new FixedExpense(new Amount("100"),
-                new Description("Test"), new FixedExpenseCategory("Food")).getFixedExpenseCategory());
+        assertEquals(new FixedExpenseCategory("activities"), new FixedExpense(new Amount("100"),
+                new Description("Test"), new FixedExpenseCategory("activities")).getFixedExpenseCategory());
 
         //Different case
-        assertNotEquals(new FixedExpenseCategory("Lala"), new FixedExpense(new Amount("100"),
-                new Description("Test"), new FixedExpenseCategory("Food")).getFixedExpenseCategory());
+        assertNotEquals(new FixedExpenseCategory("transport"), new FixedExpense(new Amount("100"),
+                new Description("Test"), new FixedExpenseCategory("activities")).getFixedExpenseCategory());
     }
 
     @Test
     public void testEquals() {
         //Same case
         assertEquals(new FixedExpense(new Amount("100"), new Description("Test"),
-                new FixedExpenseCategory("Food")), new FixedExpense(new Amount("100"),
-                new Description("Test"), new FixedExpenseCategory("Food")));
+                new FixedExpenseCategory("activities")), new FixedExpense(new Amount("100"),
+                new Description("Test"), new FixedExpenseCategory("activities")));
 
         //Different case
         assertNotEquals(new FixedExpense(new Amount("200"), new Description("Testy"),
-                new FixedExpenseCategory("Foody")), new FixedExpense(new Amount("100"),
-                new Description("Test"), new FixedExpenseCategory("Food")));
+                new FixedExpenseCategory("transport")), new FixedExpense(new Amount("100"),
+                new Description("Test"), new FixedExpenseCategory("transport")));
     }
 
     @Test
     public void testHashCode() {
         //Same case
         assertEquals(new FixedExpense(new Amount("12345"),
-                        new Description("Foody"), new FixedExpenseCategory("Haha")).hashCode(),
+                        new Description("Foody"), new FixedExpenseCategory("transport")).hashCode(),
                 new FixedExpense(new Amount("12345"), new Description("Foody"),
-                        new FixedExpenseCategory("Haha")).hashCode());
+                        new FixedExpenseCategory("transport")).hashCode());
         //Different Case
         assertNotEquals(new FixedExpense(new Amount("123456"),
-                        new Description("Food"), new FixedExpenseCategory("Hahas")).hashCode(),
+                        new Description("Food"), new FixedExpenseCategory("accommodations")).hashCode(),
                 new FixedExpense(new Amount("12345"), new Description("Foody"),
-                        new FixedExpenseCategory("Haha")).hashCode());
+                        new FixedExpenseCategory("accommodations")).hashCode());
     }
 
     @Test
     public void testToString() {
         //Same case
         FixedExpense fixedExpense = new FixedExpense(new Amount("100"),
-                new Description("Food"), new FixedExpenseCategory("Eating"));
+                new Description("Food"), new FixedExpenseCategory("others"));
         assertEquals("Fixed Expense Entry - Description: " + fixedExpense.getDescription().toString()
                         + " Amount: " + fixedExpense.getAmount().toString()
                         + " Category: " + fixedExpense.getFixedExpenseCategory().toString(),
@@ -115,10 +115,10 @@ class FixedExpenseTest {
     public void testisSame() {
 
         FixedExpense fixedExpense = new FixedExpense(new Amount("100"), new Description("Test"),
-                new FixedExpenseCategory("Food"));
+                new FixedExpenseCategory("others"));
 
         FixedExpense differentFixedExpense = new FixedExpense(new Amount("100"), new Description("Test"),
-                new FixedExpenseCategory("haha"));
+                new FixedExpenseCategory("accommodations"));
 
         assertTrue(fixedExpense.isSame(fixedExpense));
         assertFalse(fixedExpense.isSame(differentFixedExpense));

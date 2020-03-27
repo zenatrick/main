@@ -306,7 +306,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public double getBudget() {
+    public int getBudget() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -330,8 +330,4 @@ public class ModelStub implements Model {
         return "This is not suppose to be called";
     }
 
-    @Override
-    public int getBudget() {
-        return 0;
-    }
 }

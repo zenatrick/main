@@ -11,8 +11,9 @@ import team.easytravel.commons.util.AppUtil;
 public class FixedExpenseCategory {
 
     // Flights, accommodations, transport, activities, others
-    public static final String MESSAGE_CONSTRAINTS = "Category should be one of the following words:  \"accommodations\", " +
-           "\"transport\", \"activities\", \"others\"";
+    public static final String MESSAGE_CONSTRAINTS = "Category should be one "
+            + "of the following words:  \"accommodations\", "
+            + "\"transport\", \"activities\", \"others\"";
 
 
 
@@ -23,7 +24,7 @@ public class FixedExpenseCategory {
 
     public FixedExpenseCategory(String category) {
         requireNonNull(category);
-        AppUtil.checkArgument(isValidCategory(category), MESSAGE_CONSTRAINTS);
+        AppUtil.checkArgument(isValidCategory(category.toLowerCase()), MESSAGE_CONSTRAINTS);
         value = category.toLowerCase();
     }
 

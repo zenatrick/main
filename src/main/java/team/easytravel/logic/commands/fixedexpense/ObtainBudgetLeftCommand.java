@@ -7,6 +7,9 @@ import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
 
+/**
+ * Obtains the budget available.
+ */
 public class ObtainBudgetLeftCommand extends Command {
 
     public static final String COMMAND_WORD = "obtainbudget";

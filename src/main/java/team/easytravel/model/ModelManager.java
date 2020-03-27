@@ -425,19 +425,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public int getBudget() {
-        if (!hasTrip()) {
-            throw new IllegalOperationException("Cannot get budget before setting a trip");
-        }
-        int currentBudget = tripManager.getTripBudget().value;
-
-        for (FixedExpense fe : filteredFixedExpenseList) {
-            currentBudget -= Double.parseDouble(fe.getAmount().value);
-        }
-        return currentBudget;
-    }
-
-    @Override
     public double getExchangeRate() {
         if (!hasTrip()) {
             throw new IllegalOperationException("Cannot get exchange rate before setting a trip");

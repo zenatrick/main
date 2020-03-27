@@ -36,43 +36,44 @@ class FixedExpenseCategoryTest {
         assertFalse(FixedExpenseCategory.isValidCategory("Dog*")); // Contains non-alphanumeric characters.
 
         // valid category
-        assertTrue(FixedExpenseCategory.isValidCategory("Hello")); //Normal case
-        assertTrue(FixedExpenseCategory.isValidCategory("Hello1234")); // Contains alphanumeric characters.
+        assertTrue(FixedExpenseCategory.isValidCategory("transport")); //Normal case
+        assertTrue(FixedExpenseCategory.isValidCategory("accommodations")); // Contains alphanumeric characters.
         assertTrue(FixedExpenseCategory.isValidCategory(
-                "hellomynameisJohn123andIamADog")); //Contains 30 alphanumeric char.
+                "activities")); //Contains 30 alphanumeric char.
         assertTrue(FixedExpenseCategory.isValidCategory(
-                "yoursystemrunsf1234anyhowjustpress")); // Contains 34 characters.
+                "others")); // Contains 34 characters.
 
     }
 
     @Test
     public void testToString() {
-        assertEquals("1000", new FixedExpenseCategory("1000").toString());
-        assertEquals("HelloImaDog", new FixedExpenseCategory("HelloImaDog").toString());
-        assertEquals("1000Money", new FixedExpenseCategory("1000Money").toString());
+        assertEquals("others", new FixedExpenseCategory("others").toString());
+        assertEquals("transport", new FixedExpenseCategory("TRANSPORT").toString());
+        assertEquals("accommodations", new FixedExpenseCategory("AccOmmODATions").toString());
 
         //Wrong toString
-        assertNotEquals("Wrong", new FixedExpenseCategory("Hello").toString());
+        assertNotEquals("transport", new FixedExpenseCategory("accommodations").toString());
     }
 
     @Test
     public void testEquals() {
         //Equal FixedExpenseCategory Object
-        assertEquals(new FixedExpenseCategory("1000Hello"),
-                new FixedExpenseCategory("1000Hello")); // When two categories are the same.
+        assertEquals(new FixedExpenseCategory("others"),
+                new FixedExpenseCategory("others")); // When two categories are the same.
 
         //Non Equal FixedExpenseCategory Object
-        assertNotEquals(new FixedExpenseCategory("1000Bye"),
-                new FixedExpenseCategory("2000Hehe")); // When two categories are different.
+        assertNotEquals(new FixedExpenseCategory("transport"),
+                new FixedExpenseCategory("ACCOMMODATIONS")); // When two categories are different.
     }
 
     @Test
     public void testHashCode() {
         // Equal Hashcode
-        assertEquals(new FixedExpenseCategory("Hashcode").hashCode(), new FixedExpenseCategory("Hashcode").hashCode());
+        assertEquals(new FixedExpenseCategory("transport").hashCode(),
+                new FixedExpenseCategory("transport").hashCode());
 
         //Non Equal Hashcode
-        assertNotEquals(new FixedExpenseCategory("hashcode").hashCode(),
-                new FixedExpenseCategory("HashCode").hashCode());
+        assertNotEquals(new FixedExpenseCategory("ACCOMMOdAtions").hashCode(),
+                new FixedExpenseCategory("others").hashCode());
     }
 }

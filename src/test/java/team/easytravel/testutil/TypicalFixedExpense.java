@@ -16,15 +16,15 @@ import team.easytravel.model.listmanagers.fixedexpense.FixedExpenseCategory;
 public class TypicalFixedExpense {
 
     public static final FixedExpense FIXED_EXPENSE_PLANE = new FixedExpense(
-            new Amount("3000"), new Description("Flights"), new FixedExpenseCategory("Travel")
+            new Amount("3000"), new Description("Flights"), new FixedExpenseCategory("transport")
     );
 
     public static final FixedExpense FIXED_EXPENSE_WIFI = new FixedExpense(
-            new Amount("30"), new Description("Wifi"), new FixedExpenseCategory("Essential")
+            new Amount("30"), new Description("Wifi"), new FixedExpenseCategory("others")
     );
 
     public static final FixedExpense FIXED_EXPENSE_HOTELS = new FixedExpense(
-            new Amount("2500"), new Description("Price of hotel"), new FixedExpenseCategory("Hotels")
+            new Amount("2500"), new Description("Price of hotel"), new FixedExpenseCategory("accommodations")
     );
 
     private TypicalFixedExpense() {

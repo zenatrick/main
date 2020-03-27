@@ -465,8 +465,5 @@ public interface Model {
      */
     String isTripPrepared();
 
-    /**
-     * Returns the budget of the trip
-     */
-    int getBudget();
+
 }
