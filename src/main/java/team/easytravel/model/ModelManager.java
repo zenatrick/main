@@ -362,6 +362,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredAccommodationBookingList(Predicate<AccommodationBooking> predicate) {
+        accommodationBookingManager.sortAccommodationBookings();
         requireNonNull(predicate);
         filteredAccommodationBookingList.setPredicate(predicate);
     }

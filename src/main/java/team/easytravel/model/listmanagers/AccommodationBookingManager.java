@@ -79,6 +79,10 @@ public class AccommodationBookingManager implements ReadOnlyAccommodationBooking
         accommodationBookings.setElement(target, editedAccommodationBooking);
     }
 
+    public void sortAccommodationBookings() {
+        accommodationBookings.sort((x,y) -> (x.getStartDay().value - y.getStartDay().value));
+    }
+
     /**
      * Removes {@code key} from this {@code AccommodationBookingManager}.
      * {@code key} must exist in the AccommodationBookingManager.
