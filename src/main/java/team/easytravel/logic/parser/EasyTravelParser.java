@@ -18,6 +18,7 @@ import team.easytravel.logic.commands.activity.ClearActivityCommand;
 import team.easytravel.logic.commands.activity.DeleteActivityCommand;
 import team.easytravel.logic.commands.activity.EditActivityCommand;
 import team.easytravel.logic.commands.activity.FindActivityCommand;
+import team.easytravel.logic.commands.activity.FindActivityTagCommand;
 import team.easytravel.logic.commands.fixedexpense.AddFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.ClearFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.DeleteFixedExpenseCommand;
@@ -45,6 +46,7 @@ import team.easytravel.logic.parser.activity.AddActivityCommandParser;
 import team.easytravel.logic.parser.activity.DeleteActivityCommandParser;
 import team.easytravel.logic.parser.activity.EditActivityCommandParser;
 import team.easytravel.logic.parser.activity.FindActivityCommandParser;
+import team.easytravel.logic.parser.activity.FindActivityTagCommandParser;
 import team.easytravel.logic.parser.exceptions.ParseException;
 import team.easytravel.logic.parser.fixedexpense.AddFixedExpenseCommandParser;
 import team.easytravel.logic.parser.fixedexpense.DeleteFixedExpenseCommandParser;
@@ -176,6 +178,9 @@ public class EasyTravelParser {
 
         case FindActivityCommand.COMMAND_WORD:
             return new FindActivityCommandParser().parse(arguments);
+
+        case FindActivityTagCommand.COMMAND_WORD:
+            return new FindActivityTagCommandParser().parse(arguments);
 
         // ========================== Accommodation Commands =========================
         case AddAccommodationBookingCommand.COMMAND_WORD:
