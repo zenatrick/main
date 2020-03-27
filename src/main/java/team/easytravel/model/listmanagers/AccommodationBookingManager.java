@@ -80,7 +80,7 @@ public class AccommodationBookingManager implements ReadOnlyAccommodationBooking
     }
 
     public void sortAccommodationBookings() {
-        accommodationBookings.sort((x,y) -> (x.getStartDay().value - y.getStartDay().value));
+        accommodationBookings.sort((x, y) -> (x.getStartDay().value - y.getStartDay().value));
     }
 
     /**

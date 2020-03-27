@@ -67,6 +67,9 @@ public class AccommodationBooking implements UniqueListElement {
         return endDay.value - startDay.value >= 0;
     }
 
+    /**
+     * Returns true if an accommodation booking overlaps with another booking.
+     */
     public boolean isOverlapping (AccommodationBooking other) {
         int otherStartDay = other.getStartDay().value;
         int otherEndDay = other.getEndDay().value;

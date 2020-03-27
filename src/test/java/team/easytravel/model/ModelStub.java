@@ -256,6 +256,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean isOverlappingWithOthers(AccommodationBooking toCheck) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public TripManager getTripManager() {
         throw new AssertionError("This method should not be called.");
     }
