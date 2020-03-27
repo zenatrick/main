@@ -230,13 +230,13 @@ public class ParserUtil {
         requireNonNull(sortIdentifier);
 
         switch (sortIdentifier) {
-            case SortItemCommand.SORT_ASCENDING:
-                return SortItemCommand.SORT_ASCENDING;
-            case SortItemCommand.SORT_DESCENDING:
-                return SortItemCommand.SORT_DESCENDING;
-            default:
-                throw new ParseException("String must consist of either high for descending order"
-                        + " or low for ascending order");
+        case SortItemCommand.SORT_ASCENDING:
+            return SortItemCommand.SORT_ASCENDING;
+        case SortItemCommand.SORT_DESCENDING:
+            return SortItemCommand.SORT_DESCENDING;
+        default:
+            throw new ParseException("String must consist of either high for descending order"
+                    + " or low for ascending order");
         }
     }
 
@@ -277,17 +277,17 @@ public class ParserUtil {
         requireNonNull(sortParameters);
 
         switch (sortParameters) {
-            case SortItemCommand.ITEM:
-                return SortItemCommand.ITEM;
+        case SortItemCommand.ITEM:
+            return SortItemCommand.ITEM;
 
-            case SortItemCommand.CATEGORY:
-                return SortItemCommand.CATEGORY;
+        case SortItemCommand.CATEGORY:
+            return SortItemCommand.CATEGORY;
 
-            case SortItemCommand.QUANTITY:
-                return SortItemCommand.QUANTITY;
+        case SortItemCommand.QUANTITY:
+            return SortItemCommand.QUANTITY;
 
-            default:
-                throw new ParseException("Parameters must consist of only item/quantity/category");
+        default:
+            throw new ParseException("Parameters must consist of only item/quantity/category");
         }
 
     }

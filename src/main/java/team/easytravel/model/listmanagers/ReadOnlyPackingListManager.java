@@ -11,5 +11,5 @@ public interface ReadOnlyPackingListManager {
      * Returns an unmodifiable view of the packing list.
      * This list will not contain any duplicate items.
      */
-    ObservableList<PackingListItem> getPackingList();
+    ObservableList<PackingListItem> getUniquePackingList();
 }

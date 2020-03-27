@@ -10,7 +10,7 @@ import team.easytravel.logic.parser.exceptions.ParseException;
 /**
  * The type Sort item parser.
  */
-public class SortItemParser implements Parser<SortItemCommand> {
+public class SortItemCommandParser implements Parser<SortItemCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the SortItemCommand

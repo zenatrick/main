@@ -170,6 +170,10 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+    @Override
+    public void sortPackingList(Comparator<PackingListItem> cmp) {
+        throw new AssertionError("This method should not be called.");
+    }
 
     @Override
     public void addActivity(Activity activity) {

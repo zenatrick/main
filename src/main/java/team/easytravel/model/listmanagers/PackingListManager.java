@@ -2,6 +2,7 @@ package team.easytravel.model.listmanagers;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -14,13 +15,13 @@ import team.easytravel.model.util.uniquelist.UniqueList;
  * @author loycatherine
  */
 public class PackingListManager implements ReadOnlyPackingListManager {
-    private final UniqueList<PackingListItem> packingList;
+    private final UniqueList<PackingListItem> uniquePackingList;
 
     /**
      * Instantiates a new PackingListManager.
      */
     public PackingListManager() {
-        packingList = new UniqueList<>();
+        uniquePackingList = new UniqueList<>();
     }
 
     /**
@@ -29,7 +30,7 @@ public class PackingListManager implements ReadOnlyPackingListManager {
      * @param toBeCopied the to be copied
      */
     public PackingListManager(ReadOnlyPackingListManager toBeCopied) {
-        packingList = new UniqueList<>();
+        uniquePackingList = new UniqueList<>();
         resetData(toBeCopied);
     }
 
@@ -38,35 +39,44 @@ public class PackingListManager implements ReadOnlyPackingListManager {
     /**
      * Replaces the contents of the packing list with {@code packingListItems}.
      * {@code packingListItems} must not contain duplicate persons.
+     *
+     * @param packingListItems the packing list items
      */
     public void setPackingListItems(List<PackingListItem> packingListItems) {
-        this.packingList.setElements(packingListItems);
+        this.uniquePackingList.setElements(packingListItems);
     }
 
     /**
      * Resets the existing data of this {@code PackingManager} with {@code newData}.
+     *
+     * @param newData the new data
      */
     public void resetData(ReadOnlyPackingListManager newData) {
         requireNonNull(newData);
-        setPackingListItems(newData.getPackingList());
+        setPackingListItems(newData.getUniquePackingList());
     }
 
     // PackingListItem-level operations
 
     /**
      * Returns true if a contacts with the same identity as {@code contacts} exists in the address book.
+     *
+     * @param packingListItem the packing list item
+     * @return the boolean
      */
     public boolean hasPackingListItem(PackingListItem packingListItem) {
         requireNonNull(packingListItem);
-        return packingList.contains(packingListItem);
+        return uniquePackingList.contains(packingListItem);
     }
 
     /**
      * Adds a packing list item to the PackingListManager.
      * The packing list item must not already exist in the PackingListManager.
+     *
+     * @param packingListItem the packing list item
      */
     public void addPackingListItem(PackingListItem packingListItem) {
-        packingList.add(packingListItem);
+        uniquePackingList.add(packingListItem);
     }
 
     /**
@@ -74,42 +84,59 @@ public class PackingListManager implements ReadOnlyPackingListManager {
      * {@code target} must exist in the PackingListManager.
      * The packing list item identity of {@code editedPackingListItem} must not be the same as another existing
      * packing list item in the PackingListManager.
+     *
+     * @param target                the target
+     * @param editedPackingListItem the edited packing list item
      */
     public void setPackingListItem(PackingListItem target, PackingListItem editedPackingListItem) {
         requireNonNull(editedPackingListItem);
 
-        packingList.setElement(target, editedPackingListItem);
+        uniquePackingList.setElement(target, editedPackingListItem);
     }
 
     /**
      * Removes {@code key} from this {@code PackingListManager}.
      * {@code key} must exist in the PackingListManager.
+     *
+     * @param key the key
      */
     public void removePackingListItem(PackingListItem key) {
-        packingList.remove(key);
+        uniquePackingList.remove(key);
+    }
+
+
+    /**
+     * Sort packing list observable list.
+     *
+     * @param cmp the cmp
+     * @return the observable list
+     */
+    public ObservableList<PackingListItem> sortPackingList(Comparator<PackingListItem> cmp) {
+        uniquePackingList.sort(cmp);
+        return uniquePackingList.asUnmodifiableObservableList();
     }
 
     // Util methods
 
     @Override
     public String toString() {
-        return packingList.asUnmodifiableObservableList().size() + " packing list items";
+        return uniquePackingList.asUnmodifiableObservableList().size() + " packing list items";
     }
 
     @Override
-    public ObservableList<PackingListItem> getPackingList() {
-        return packingList.asUnmodifiableObservableList();
+    public ObservableList<PackingListItem> getUniquePackingList() {
+        return uniquePackingList.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PackingListManager // instanceof handles nulls
-                && packingList.equals(((PackingListManager) other).packingList));
+                && uniquePackingList.equals(((PackingListManager) other).uniquePackingList));
     }
 
     @Override
     public int hashCode() {
-        return packingList.hashCode();
+        return uniquePackingList.hashCode();
     }
 }

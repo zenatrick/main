@@ -29,6 +29,7 @@ import team.easytravel.logic.commands.packinglist.EditItemCommand;
 import team.easytravel.logic.commands.packinglist.FindItemCategoryCommand;
 import team.easytravel.logic.commands.packinglist.FindItemCommand;
 import team.easytravel.logic.commands.packinglist.ListItemCommand;
+import team.easytravel.logic.commands.packinglist.SortItemCommand;
 import team.easytravel.logic.commands.packinglist.UncheckItemCommand;
 import team.easytravel.logic.commands.transportbooking.AddTransportBookingCommand;
 import team.easytravel.logic.commands.transportbooking.ClearTransportBookingCommand;
@@ -53,6 +54,7 @@ import team.easytravel.logic.parser.packinglist.DeleteItemCommandParser;
 import team.easytravel.logic.parser.packinglist.EditItemCommandParser;
 import team.easytravel.logic.parser.packinglist.FindItemCategoryCommandParser;
 import team.easytravel.logic.parser.packinglist.FindItemCommandParser;
+import team.easytravel.logic.parser.packinglist.SortItemCommandParser;
 import team.easytravel.logic.parser.packinglist.UncheckItemCommandParser;
 import team.easytravel.logic.parser.transportbooking.AddTransportBookingCommandParser;
 import team.easytravel.logic.parser.transportbooking.DeleteTransportBookingCommandParser;
@@ -153,6 +155,9 @@ public class EasyTravelParser {
 
         case ListItemCommand.COMMAND_WORD:
             return new ListItemCommand();
+
+        case SortItemCommand.COMMAND_WORD:
+            return new SortItemCommandParser().parse(arguments);
 
         // ========================== Activity Commands =========================
         case AddActivityCommand.COMMAND_WORD:

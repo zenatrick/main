@@ -40,7 +40,7 @@ public class SortItemCommand extends Command {
     /**
      * The constant SORT_DESCENDING.
      */
-    public static final String SORT_DESCENDING = "desc";
+    public static final String SORT_DESCENDING = "des";
 
     /**
      * The constant SORT_ASCENDING.
@@ -84,7 +84,7 @@ public class SortItemCommand extends Command {
 
         switch (sortParameter) {
         case "item":
-            if (sortIdentifier.equals("desc")) {
+            if (sortIdentifier.equals("des")) {
                 model.sortPackingList((x, y) -> y.getItemName().toString().compareTo(
                         x.getItemName().toString()));
                 return new CommandResult(MESSAGE_SORT_ITEM_SUCCESS);
@@ -94,7 +94,7 @@ public class SortItemCommand extends Command {
             }
 
         case "category":
-            if (sortIdentifier.equals("desc")) {
+            if (sortIdentifier.equals("des")) {
                 model.sortPackingList((x, y) -> y.getItemCategory().toString().compareTo(
                         x.getItemCategory().toString()
                 ));
@@ -106,7 +106,7 @@ public class SortItemCommand extends Command {
             }
 
         case "quantity":
-            if (sortIdentifier.equals("desc")) {
+            if (sortIdentifier.equals("des")) {
                 model.sortPackingList((x, y) -> (int) Math.signum(y.getQuantity().value - x.getQuantity().value));
                 return new CommandResult(MESSAGE_SORT_ITEM_SUCCESS);
 

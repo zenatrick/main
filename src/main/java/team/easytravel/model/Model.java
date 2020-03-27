@@ -17,7 +17,6 @@ import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
 import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
-import team.easytravel.model.person.Person;
 import team.easytravel.model.trip.DayScheduleEntry;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
@@ -26,11 +25,6 @@ import team.easytravel.model.trip.TripManager;
  * The API of the Model component.
  */
 public interface Model {
-    /**
-     * {@code Predicate} that always evaluate to true
-     */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
     /**
      * {@code Predicate} that always evaluate to true
      */
@@ -265,6 +259,11 @@ public interface Model {
     void updateFilteredPackingList(Predicate<PackingListItem> predicate);
 
 
+    /**
+     * Sort packing list.
+     *
+     * @param cmp the cmp
+     */
     void sortPackingList(Comparator<PackingListItem> cmp);
 
     // ========== ActivityManager ==========
@@ -443,4 +442,9 @@ public interface Model {
 
     // ========== Util ==========
     void resetAllListManagers();
+
+    /**
+     * Returns the status of the trip preparedness
+     */
+    String isTripPrepared();
 }

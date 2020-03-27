@@ -36,7 +36,7 @@ public class JsonSerializablePackingListManager {
      */
     public JsonSerializablePackingListManager(ReadOnlyPackingListManager source) {
         packingList.addAll(
-                source.getPackingList()
+                source.getUniquePackingList()
                         .stream()
                         .map(JsonAdaptedPackingListItem::new)
                         .collect(Collectors.toList())

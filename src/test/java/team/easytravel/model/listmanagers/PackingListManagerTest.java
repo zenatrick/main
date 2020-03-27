@@ -24,7 +24,7 @@ class PackingListManagerTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), packingListManager.getPackingList());
+        assertEquals(Collections.emptyList(), packingListManager.getUniquePackingList());
     }
 
     @Test
@@ -67,7 +67,7 @@ class PackingListManagerTest {
     @Test
     public void getPackingListItemModifyListThrowsUnsupportedOperationException() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> packingListManager
-                .getPackingList().remove(0));
+                .getUniquePackingList().remove(0));
     }
 
     /**
@@ -83,7 +83,7 @@ class PackingListManagerTest {
         }
 
         @Override
-        public ObservableList<PackingListItem> getPackingList() {
+        public ObservableList<PackingListItem> getUniquePackingList() {
             return packingListItems;
         }
     }
