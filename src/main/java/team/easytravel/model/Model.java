@@ -454,4 +454,9 @@ public interface Model {
      * Returns the status of the trip preparedness
      */
     String isTripPrepared();
+
+    /**
+     * Returns the budget of the trip
+     */
+    int getBudget();
 }
