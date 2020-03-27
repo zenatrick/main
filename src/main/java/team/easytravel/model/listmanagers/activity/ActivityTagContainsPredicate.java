@@ -23,9 +23,8 @@ public class ActivityTagContainsPredicate implements Predicate<Activity> {
 
     @Override
     public boolean test(Activity activity) {
-        return keywords.stream()
-                .anyMatch(keyword -> activity.getTags().stream().
-                                anyMatch(tag ->StringUtil.containsWordIgnoreCase(tag.tagName, keyword)));
+        return keywords.stream().anyMatch(keyword -> activity.getTags().stream()
+                .anyMatch(tag ->StringUtil.containsWordIgnoreCase(tag.tagName, keyword)));
     }
 
 

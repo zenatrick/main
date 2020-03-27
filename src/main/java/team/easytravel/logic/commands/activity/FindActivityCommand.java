@@ -7,7 +7,6 @@ import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.model.Model;
 import team.easytravel.model.listmanagers.activity.ActivityContainKeywordPredicate;
-import team.easytravel.model.listmanagers.packinglistitem.ItemCategoryContainsKeywordsPredicate;
 
 /**
  * Finds and lists all items whose category contains any of the argument keywords.
