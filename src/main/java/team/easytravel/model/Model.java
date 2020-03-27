@@ -22,7 +22,6 @@ import team.easytravel.model.trip.DayScheduleEntry;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
 
-
 /**
  * The API of the Model component.
  */
@@ -265,6 +264,9 @@ public interface Model {
      */
     void updateFilteredPackingList(Predicate<PackingListItem> predicate);
 
+
+    void sortPackingList(Comparator<PackingListItem> cmp);
+
     // ========== ActivityManager ==========
 
     /**
@@ -438,11 +440,7 @@ public interface Model {
      * Returns an unmodifiable view of the schedule entry list of a specified day.
      */
     ObservableList<DayScheduleEntry> getDayScheduleEntryList(int dayIndex);
+
     // ========== Util ==========
     void resetAllListManagers();
-
-    /**
-     * Returns the status of the trip preparedness
-     */
-    String isTripPrepared();
 }

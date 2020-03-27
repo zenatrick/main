@@ -22,6 +22,8 @@ public class Messages {
 
     public static final String MESSAGE_ITEMS_LISTED_OVERVIEW = "%1$d items listed!";
 
+    public static final String MESSAGE_INVALID_EMPTY_PACKING_LIST = "The Packing List is empty";
+
     //--------Activity Messages-----------//
     public static final String MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX = "The activity "
             + "index provided is invalid";

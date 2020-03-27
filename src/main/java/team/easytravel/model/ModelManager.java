@@ -93,7 +93,7 @@ public class ModelManager implements Model {
 
         filteredTransportBookingList = new FilteredList<>(this.transportBookingManager.getTransportBookings());
         filteredFixedExpenseList = new FilteredList<>(this.fixedExpenseManager.getFixedExpenseList());
-        filteredPackingList = new FilteredList<>(this.packingListManager.getPackingList());
+        filteredPackingList = new FilteredList<>(this.packingListManager.getUniquePackingList());
         filteredActivityList = new FilteredList<>(this.activityManager.getActivityList());
         filteredAccommodationBookingList = new FilteredList<>((this.accommodationBookingManager
                 .getAccommodationBookingList()));
@@ -260,6 +260,12 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<PackingListItem> getFilteredPackingList() {
         return filteredPackingList;
+    }
+
+    @Override
+    public void sortPackingList(Comparator<PackingListItem> cmp) {
+        requireNonNull(cmp);
+        packingListManager.sortPackingList(cmp);
     }
 
     @Override
@@ -449,11 +455,6 @@ public class ModelManager implements Model {
         this.activityManager.resetData(new ActivityManager());
         this.accommodationBookingManager.resetData(new AccommodationBookingManager());
         this.transportBookingManager.resetData(new TransportBookingManager());
-    }
-
-    @Override
-    public String isTripPrepared() {
-        return "This project is not done";
     }
 
     @Override
