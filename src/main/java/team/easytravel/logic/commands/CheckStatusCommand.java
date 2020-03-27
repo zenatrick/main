@@ -15,7 +15,7 @@ public class CheckStatusCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Check the preparedness of trip. "
             + "Example: " + COMMAND_WORD + " ";
 
-    public static final String MESSAGE_SUCCESS = "Check status has commence";
+    public static final String MESSAGE_SUCCESS = "Check Status popup has been opened";
 
 
     @Override
