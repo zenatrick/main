@@ -8,6 +8,7 @@ import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.logic.parser.CliSyntax;
 import team.easytravel.model.Model;
 import team.easytravel.model.trip.Trip;
+import team.easytravel.model.trip.TripManager;
 
 /**
  * Adds a trip to Eztravel.
@@ -31,7 +32,6 @@ public class SetTripCommand extends Command {
             + CliSyntax.PREFIX_TRIP_END_DATE + "05-10-2020";
 
     public static final String MESSAGE_SUCCESS = "Trip is successfully set: %1$s";
-    public static final String MESSAGE_DUPLICATE_TRIP = "Trip is already set. You cannot set more than one trip!";
 
     private final Trip toAdd;
 
@@ -48,7 +48,7 @@ public class SetTripCommand extends Command {
         requireNonNull(model);
 
         if (model.hasTrip()) {
-            throw new CommandException(MESSAGE_DUPLICATE_TRIP);
+            throw new CommandException(TripManager.MESSAGE_ERROR_SET_TRIP);
         }
 
         model.setTrip(toAdd);

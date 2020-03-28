@@ -16,6 +16,7 @@ import team.easytravel.model.listmanagers.packinglistitem.ItemCategory;
 import team.easytravel.model.listmanagers.packinglistitem.ItemName;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
 import team.easytravel.model.listmanagers.packinglistitem.Quantity;
+import team.easytravel.model.trip.TripManager;
 
 /**
  * The type Uncheck item command.
@@ -64,6 +65,11 @@ public class UncheckItemCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasTrip()) {
+            throw new CommandException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+
         List<PackingListItem> lastShownList = model.getFilteredPackingList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -85,7 +91,7 @@ public class UncheckItemCommand extends Command {
     /**
      * Creates a new Packing List item with the new attributes.
      *
-     * @param itemToUncheck               of the Item in the filtered Item list to uncheck
+     * @param itemToUncheck         of the Item in the filtered Item list to uncheck
      * @param uncheckItemDescriptor details to check the Item with
      */
     private static PackingListItem createUncheckItem(PackingListItem itemToUncheck,
@@ -129,7 +135,8 @@ public class UncheckItemCommand extends Command {
         /**
          * Instantiates a new Uncheck item descriptor.
          */
-        public UncheckItemDescriptor() {}
+        public UncheckItemDescriptor() {
+        }
 
         /**
          * Copy constructor.

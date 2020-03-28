@@ -20,8 +20,9 @@ import team.easytravel.model.util.attributes.Title;
  * Manages the trip of the application.
  */
 public class TripManager {
-    public static final String MESSAGE_ERROR_SET_TRIP = "Trip has already been set.";
-    public static final String MESSAGE_ERROR_NO_TRIP = "Trip has not been set.";
+    public static final String MESSAGE_ERROR_SET_TRIP = "You cannot do this as a trip has already been set.";
+    public static final String MESSAGE_ERROR_NO_TRIP = "Trip has not been set. You need to first set a trip using "
+            + "the \"settrip\" command.";
     private static final String MESSAGE_ERROR_SCHEDULE = "The ending time of the scheduled activity cannot go beyond "
             + "the scheduled day";
 

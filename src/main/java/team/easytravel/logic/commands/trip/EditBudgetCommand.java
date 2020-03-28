@@ -2,8 +2,6 @@ package team.easytravel.logic.commands.trip;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.function.Predicate;
-
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
@@ -17,14 +15,11 @@ public class EditBudgetCommand extends Command {
 
     public static final String COMMAND_WORD = "editbudget";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the budget of the current trip"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the budget of the current trip."
             + "\nValues must be a number.\n"
             + "Example: " + COMMAND_WORD + " 1000 ";
 
-
     public static final String MESSAGE_EDIT_BUDGET_SUCCESS = "Edited Budget: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "Budget should not be blank";
-    public static final String MESSAGE_WRONG_FORMAT = "Budget should be an integer";
     public static final String MESSAGE_BUDGET_TOO_LOW = "Edited Budget should be more than expenses";
 
     private final String newBudget;
@@ -39,27 +34,24 @@ public class EditBudgetCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-
-        Predicate<Integer> lesserThan = (i) -> i < model.getOverallExpense();
         requireNonNull(model);
         Integer amount;
         try {
             amount = Integer.parseInt(newBudget);
-
         } catch (NumberFormatException e) {
-            return new CommandResult(String.format(MESSAGE_USAGE));
+            return new CommandResult(MESSAGE_USAGE);
         }
 
         if (!Budget.isValidBudget(amount)) {
-            return new CommandResult(String.format(Budget.MESSAGE_CONSTRAINTS));
+            return new CommandResult(Budget.MESSAGE_CONSTRAINTS);
         }
 
-        if (lesserThan.test(amount)) {
+        if (amount < model.getOverallExpense()) {
             return new CommandResult(String.format(MESSAGE_BUDGET_TOO_LOW));
         }
 
         Budget editedBudget = new Budget(amount);
-        model.getTripManager().setBudget(editedBudget);
+        model.setBudget(editedBudget);
         return new CommandResult(String.format(MESSAGE_EDIT_BUDGET_SUCCESS, amount));
     }
 

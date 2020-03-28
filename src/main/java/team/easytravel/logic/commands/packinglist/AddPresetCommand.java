@@ -3,11 +3,14 @@ package team.easytravel.logic.commands.packinglist;
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_CATEGORY;
 
+import java.util.Arrays;
+
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
+import team.easytravel.model.trip.TripManager;
 
 /**
  * The type Add preset command.
@@ -57,6 +60,11 @@ public class AddPresetCommand extends Command {
      */
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasTrip()) {
+            throw new CommandException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+
         for (PackingListItem item : toAdd) {
             if (model.hasPackingListItem(item)) {
                 continue;
@@ -70,6 +78,6 @@ public class AddPresetCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddPresetCommand // instanceof handles nulls
-                && toAdd.equals(((AddPresetCommand) other).toAdd));
+                && Arrays.equals(toAdd, ((AddPresetCommand) other).toAdd));
     }
 }

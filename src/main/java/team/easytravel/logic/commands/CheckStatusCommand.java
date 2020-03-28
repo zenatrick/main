@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
+import team.easytravel.model.trip.TripManager;
 
 /**
  * Adds a person to the address book.
@@ -21,9 +22,14 @@ public class CheckStatusCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasTrip()) {
+            return new CommandResult(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+
         String statusMessage = model.isTripPrepared();
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS), String.format(statusMessage));
+        return new CommandResult(MESSAGE_SUCCESS, statusMessage);
     }
 
 }

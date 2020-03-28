@@ -20,6 +20,7 @@ import team.easytravel.model.listmanagers.fixedexpense.Amount;
 import team.easytravel.model.listmanagers.fixedexpense.Description;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpenseCategory;
+import team.easytravel.model.trip.TripManager;
 
 /**
  * Edits the details of an existing fixed expense.
@@ -62,6 +63,11 @@ public class EditFixedExpenseCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasTrip()) {
+            throw new CommandException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+
         List<FixedExpense> lastShownList = model.getFilteredFixedExpenseList();
 
         if (index.getZeroBased() >= lastShownList.size()) {

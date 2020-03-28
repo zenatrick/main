@@ -11,6 +11,7 @@ import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
 import team.easytravel.model.listmanagers.activity.Activity;
+import team.easytravel.model.trip.TripManager;
 
 /**
  * Adds a Activity to the Activity manager.
@@ -46,6 +47,10 @@ public class AddActivityCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasTrip()) {
+            throw new CommandException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
 
         if (model.hasActivity(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ACTIVITY);

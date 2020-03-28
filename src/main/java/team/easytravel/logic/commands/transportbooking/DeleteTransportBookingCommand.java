@@ -11,6 +11,7 @@ import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
 import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
+import team.easytravel.model.trip.TripManager;
 
 /**
  * Deletes a TransportBooking identified using it's displayed index from the TransportBookingManager.
@@ -36,6 +37,11 @@ public class DeleteTransportBookingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasTrip()) {
+            throw new CommandException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+
         List<TransportBooking> lastShownList = model.getFilteredTransportBookingList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {

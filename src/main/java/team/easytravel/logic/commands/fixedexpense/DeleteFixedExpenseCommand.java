@@ -11,6 +11,7 @@ import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
+import team.easytravel.model.trip.TripManager;
 
 /**
  * Deletes a fixed expense in the list.
@@ -35,6 +36,11 @@ public class DeleteFixedExpenseCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasTrip()) {
+            throw new CommandException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+
         List<FixedExpense> lastShownList = model.getFilteredFixedExpenseList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {

@@ -33,6 +33,7 @@ import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
 import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
+import team.easytravel.model.trip.Budget;
 import team.easytravel.model.trip.DayScheduleEntry;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
@@ -423,6 +424,14 @@ public class ModelManager implements Model {
             currentBudget -= Double.parseDouble(fe.getAmount().value);
         }
         return currentBudget;
+    }
+
+    @Override
+    public void setBudget(Budget editedBudget) {
+        if (!hasTrip()) {
+            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+        tripManager.setBudget(editedBudget);
     }
 
     @Override

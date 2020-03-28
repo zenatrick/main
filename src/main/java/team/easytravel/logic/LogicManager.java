@@ -96,6 +96,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public boolean hasTrip() {
+        return model.hasTrip();
+    }
+
+    @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }

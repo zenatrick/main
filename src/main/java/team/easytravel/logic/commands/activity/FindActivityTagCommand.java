@@ -5,8 +5,10 @@ import static java.util.Objects.requireNonNull;
 import team.easytravel.commons.core.Messages;
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
+import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
 import team.easytravel.model.listmanagers.activity.ActivityTagContainsPredicate;
+import team.easytravel.model.trip.TripManager;
 
 /**
  * Finds all the activity tags
@@ -26,8 +28,13 @@ public class FindActivityTagCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasTrip()) {
+            throw new CommandException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+
         model.updateFilteredActivityList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_ACTIVITY_LISTED_OVERVIEW, model.getFilteredActivityList().size()));

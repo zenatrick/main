@@ -71,6 +71,13 @@ public interface Logic {
     List<ObservableList<DayScheduleEntry>> getScheduleList();
 
     /**
+     * Returns true if a trip is set. Else returns false.
+     *
+     * @return true if a trip is set.
+     */
+    boolean hasTrip();
+
+    /**
      * Returns the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();

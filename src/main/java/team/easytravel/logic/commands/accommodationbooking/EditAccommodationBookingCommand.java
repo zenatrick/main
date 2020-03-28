@@ -23,6 +23,7 @@ import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBook
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationName;
 import team.easytravel.model.listmanagers.accommodationbooking.Day;
 import team.easytravel.model.listmanagers.accommodationbooking.Remark;
+import team.easytravel.model.trip.TripManager;
 import team.easytravel.model.util.attributes.Location;
 
 /**
@@ -74,6 +75,11 @@ public class EditAccommodationBookingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasTrip()) {
+            throw new CommandException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+
         List<AccommodationBooking> lastShownList = model.getFilteredAccommodationBookingList();
 
         if (index.getZeroBased() >= lastShownList.size()) {

@@ -20,6 +20,7 @@ import team.easytravel.model.listmanagers.packinglistitem.ItemCategory;
 import team.easytravel.model.listmanagers.packinglistitem.ItemName;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
 import team.easytravel.model.listmanagers.packinglistitem.Quantity;
+import team.easytravel.model.trip.TripManager;
 
 /**
  * The type Edit item command.
@@ -78,6 +79,11 @@ public class EditItemCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasTrip()) {
+            throw new CommandException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+
         List<PackingListItem> lastShownList = model.getFilteredPackingList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -99,7 +105,7 @@ public class EditItemCommand extends Command {
     /**
      * Creates a new Packing List item with the new attributes.
      *
-     * @param itemToEdit               of the Item in the filtered Item list to edit
+     * @param itemToEdit         of the Item in the filtered Item list to edit
      * @param editItemDescriptor details to edit the Item with
      */
     private static PackingListItem createEditedItem(PackingListItem itemToEdit,
@@ -143,7 +149,8 @@ public class EditItemCommand extends Command {
         /**
          * Instantiates a new Edit item descriptor.
          */
-        public EditItemDescriptor() {}
+        public EditItemDescriptor() {
+        }
 
         /**
          * Copy constructor.

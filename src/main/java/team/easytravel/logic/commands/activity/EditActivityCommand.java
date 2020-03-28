@@ -18,6 +18,7 @@ import team.easytravel.logic.parser.CliSyntax;
 import team.easytravel.model.Model;
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.activity.Duration;
+import team.easytravel.model.trip.TripManager;
 import team.easytravel.model.util.attributes.Location;
 import team.easytravel.model.util.attributes.Title;
 import team.easytravel.model.util.attributes.tag.Tag;
@@ -63,6 +64,11 @@ public class EditActivityCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasTrip()) {
+            throw new CommandException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+
         List<Activity> lastShownList = model.getFilteredActivityList();
 
         if (index.getZeroBased() >= lastShownList.size()) {

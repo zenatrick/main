@@ -18,6 +18,7 @@ import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
 import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
+import team.easytravel.model.trip.Budget;
 import team.easytravel.model.trip.DayScheduleEntry;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
@@ -472,9 +473,12 @@ public interface Model {
     void resetAllListManagers();
 
     /**
-     * Returns the status of the trip preparedness
+     * Returns the status of the trip preparedness.
      */
     String isTripPrepared();
 
-
+    /**
+     * Sets the budget of the trip.
+     */
+    void setBudget(Budget editedBudget);
 }
