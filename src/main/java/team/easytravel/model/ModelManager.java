@@ -478,7 +478,8 @@ public class ModelManager implements Model {
 
     @Override
     public String isTripPrepared() {
-        return "This project is not done";
+        String numOfUnpackedItems = this.packingListManager.numOfUnpackedItems();
+        return numOfUnpackedItems;
     }
 
     @Override

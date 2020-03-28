@@ -80,11 +80,11 @@ public class PackingListManager implements ReadOnlyPackingListManager {
     }
 
     /**
-     * Num of uncheck items string.
+     * Num of unpacked items string.
      *
      * @return the string
      */
-    public String numOfUncheckItems() {
+    public String numOfUnpackedItems() {
         int counter = 0;
         int numOfItems = uniquePackingList.size();
         for (PackingListItem item : uniquePackingList) {
@@ -93,7 +93,7 @@ public class PackingListManager implements ReadOnlyPackingListManager {
             }
         }
         StringBuilder sb = new StringBuilder();
-        sb.append("" + counter + "/" + "" + numOfItems + " has not been packed.");
+        sb.append("Number of unpacked items in the packing list: " + "" + counter + "/" + "" + numOfItems);
         return sb.toString();
     }
 
