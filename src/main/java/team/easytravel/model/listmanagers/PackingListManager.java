@@ -80,6 +80,24 @@ public class PackingListManager implements ReadOnlyPackingListManager {
     }
 
     /**
+     * Num of uncheck items string.
+     *
+     * @return the string
+     */
+    public String numOfUncheckItems() {
+        int counter = 0;
+        int numOfItems = uniquePackingList.size();
+        for (PackingListItem item : uniquePackingList) {
+            if (item.getIsChecked() == false) {
+                counter++;
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("" + counter + "/" + "" + numOfItems + " has not been packed.");
+        return sb.toString();
+    }
+
+    /**
      * Replaces the given packing list item {@code target} in the list with {@code editedPackingListItem}.
      * {@code target} must exist in the PackingListManager.
      * The packing list item identity of {@code editedPackingListItem} must not be the same as another existing

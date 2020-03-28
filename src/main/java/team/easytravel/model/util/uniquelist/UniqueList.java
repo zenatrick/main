@@ -40,6 +40,15 @@ public class UniqueList<T extends UniqueListElement> implements Iterable<T> {
     }
 
     /**
+     * Size int.
+     *
+     * @return the int
+     */
+    public int size() {
+        return internalList.size();
+    }
+
+    /**
      * Adds an element to the list.
      * The element must not already exist in the list.
      */

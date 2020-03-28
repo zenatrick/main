@@ -57,7 +57,7 @@ public class ModelManager implements Model {
     private final FilteredList<PackingListItem> filteredPackingList;
     private final FilteredList<Activity> filteredActivityList;
     private final FilteredList<AccommodationBooking> filteredAccommodationBookingList;
-    private final List<FilteredList<DayScheduleEntry>> filteredSchduleEntryLists;
+    private final List<FilteredList<DayScheduleEntry>> filteredScheduleEntryLists;
 
     /**
      * Initializes a ModelManager with the given managers and userPrefs.
@@ -97,7 +97,7 @@ public class ModelManager implements Model {
         filteredActivityList = new FilteredList<>(this.activityManager.getActivityList());
         filteredAccommodationBookingList = new FilteredList<>((this.accommodationBookingManager
                 .getAccommodationBookingList()));
-        filteredSchduleEntryLists = new ArrayList<>();
+        filteredScheduleEntryLists = new ArrayList<>();
     }
 
     //=========== UserPrefs ==================================================================================
@@ -391,7 +391,7 @@ public class ModelManager implements Model {
         }
         tripManager.setTrip(trip);
         tripManager.scheduleAll(getFilteredActivityList(), getFilteredTransportBookingList());
-        filteredSchduleEntryLists.addAll(
+        filteredScheduleEntryLists.addAll(
                 tripManager.getDayScheduleEntryLists().stream().map(FilteredList::new).collect(Collectors.toList()));
     }
 
@@ -461,7 +461,7 @@ public class ModelManager implements Model {
         if (!hasTrip()) {
             throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
         }
-        return filteredSchduleEntryLists.get(dayIndex);
+        return filteredScheduleEntryLists.get(dayIndex);
     }
 
     // ========== Util ==========
@@ -507,7 +507,7 @@ public class ModelManager implements Model {
                 && accommodationBookingManager.equals(other.accommodationBookingManager)
                 && filteredAccommodationBookingList.equals(other.filteredAccommodationBookingList)
                 && tripManager.equals(other.tripManager)
-                && filteredSchduleEntryLists.equals(other.filteredSchduleEntryLists);
+                && filteredScheduleEntryLists.equals(other.filteredScheduleEntryLists);
     }
 
 }
