@@ -57,7 +57,7 @@ public class ModelManager implements Model {
     private final FilteredList<PackingListItem> filteredPackingList;
     private final FilteredList<Activity> filteredActivityList;
     private final FilteredList<AccommodationBooking> filteredAccommodationBookingList;
-    private final List<FilteredList<DayScheduleEntry>> filteredScheduleEntryLists;
+    private final List<ObservableList<DayScheduleEntry>> filteredScheduleEntryLists;
 
     /**
      * Initializes a ModelManager with the given managers and userPrefs.
@@ -95,9 +95,9 @@ public class ModelManager implements Model {
         filteredFixedExpenseList = new FilteredList<>(this.fixedExpenseManager.getFixedExpenseList());
         filteredPackingList = new FilteredList<>(this.packingListManager.getUniquePackingList());
         filteredActivityList = new FilteredList<>(this.activityManager.getActivityList());
-        filteredAccommodationBookingList = new FilteredList<>((this.accommodationBookingManager
-                .getAccommodationBookingList()));
-        filteredScheduleEntryLists = new ArrayList<>();
+        filteredAccommodationBookingList = new FilteredList<>(this.accommodationBookingManager
+                .getAccommodationBookingList());
+        filteredScheduleEntryLists = new ArrayList<>(this.tripManager.getDayScheduleEntryLists());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -487,11 +487,7 @@ public class ModelManager implements Model {
             throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
         }
 
-        List<ObservableList<DayScheduleEntry>> result = new ArrayList<>();
-        for (ObservableList<DayScheduleEntry> dayScheduleEntries : filteredSchduleEntryLists) {
-            result.add(dayScheduleEntries);
-        }
-        return result;
+        return filteredScheduleEntryLists;
     }
 
     // ========== Util ==========

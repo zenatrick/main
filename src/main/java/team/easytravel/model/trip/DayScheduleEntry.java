@@ -31,8 +31,19 @@ public class DayScheduleEntry implements UniqueListElement {
      * ACTIVITY represents a activity and TRANSPORT represents a transport booking.
      */
     private enum Type {
-        ACTIVITY,
-        TRANSPORT
+        ACTIVITY("Activity"),
+        TRANSPORT("Transport Booking");
+
+        private final String string;
+
+        Type(String string) {
+            this.string = string;
+        }
+
+        @Override
+        public String toString() {
+            return string;
+        }
     }
 
     private final Type type;
@@ -90,8 +101,8 @@ public class DayScheduleEntry implements UniqueListElement {
         return type.equals(Type.TRANSPORT);
     }
 
-    public Type getType() {
-        return type;
+    public String getType() {
+        return type.toString();
     }
 
     public Title getTitle() {
@@ -160,5 +171,19 @@ public class DayScheduleEntry implements UniqueListElement {
     public int hashCode() {
         return Objects.hash(type, title, startDateTime, endDateTime, durationInHours, location, activityPointer,
                 transportBookingPointer);
+    }
+
+    @Override
+    public String toString() {
+        return "DayScheduleEntry{"
+                + "type=" + type
+                + ", title=" + title
+                + ", startDateTime=" + startDateTime
+                + ", endDateTime=" + endDateTime
+                + ", durationInHours=" + durationInHours
+                + ", location=" + location
+                + ", activityPointer=" + activityPointer
+                + ", transportBookingPointer=" + transportBookingPointer
+                + '}';
     }
 }

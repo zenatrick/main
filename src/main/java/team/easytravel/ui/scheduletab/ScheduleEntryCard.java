@@ -12,7 +12,7 @@ import team.easytravel.ui.UiPart;
  */
 public class ScheduleEntryCard extends UiPart<Region> {
 
-    private static final String FXML = "scheduletab/ScheduleEntry.fxml";
+    private static final String FXML = "scheduletab/ScheduleEntryCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -29,6 +29,8 @@ public class ScheduleEntryCard extends UiPart<Region> {
     @FXML
     private Label title;
     @FXML
+    private Label type;
+    @FXML
     private Label id;
     @FXML
     private Label startTime;
@@ -42,6 +44,7 @@ public class ScheduleEntryCard extends UiPart<Region> {
         this.scheduleEntry = scheduleEntry;
         id.setText(displayedIndex + ". ");
         title.setText(scheduleEntry.getTitle().value);
+        type.setText(scheduleEntry.getType());
         startTime.setText("Start Time: " + scheduleEntry.getStartDateTime().toString());
         endTime.setText("End Time: " + scheduleEntry.getEndDateTime().toString());
         activityLocation.setText("Location: " + scheduleEntry.getLocation().value);

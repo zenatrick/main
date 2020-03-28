@@ -171,11 +171,11 @@ public class TripManager {
         if (startDateTime.getDate().compareTo(getTripStartDate()) < 0) {
             throw new IllegalOperationException("The activity to be scheduled starts earlier than the trip.");
         }
-        int dayIndex = getTripStartDate().daysUntilInclusive(startDateTime.getDate());
+        int dayIndex = getTripStartDate().daysUntilInclusive(startDateTime.getDate()) - 1;
         DaySchedule daySchedule = daySchedules.get(dayIndex);
         DayScheduleEntry entry = DayScheduleEntry.fromActivity(activityToSchedule);
         DateTime endDateTime = entry.getEndDateTime();
-        if (startDateTime.getDate().daysUntilInclusive(endDateTime.getDate()) > 0) {
+        if (startDateTime.getDate().daysUntilInclusive(endDateTime.getDate()) > 1) {
             throw new IllegalOperationException(MESSAGE_ERROR_SCHEDULE);
         }
         daySchedule.addScheduleEntry(entry);
@@ -203,7 +203,7 @@ public class TripManager {
         if (endDateTime.getDate().compareTo(getTripEndDate()) > 0) {
             throw new IllegalOperationException("The transport booking to be scheduled ends later than the trip.");
         }
-        int dayIndex = getTripStartDate().daysUntilInclusive(startDateTime.getDate());
+        int dayIndex = getTripStartDate().daysUntilInclusive(startDateTime.getDate()) - 1;
         DaySchedule daySchedule = daySchedules.get(dayIndex);
         DayScheduleEntry entry = DayScheduleEntry.fromTransportBooking(transportBookingToSchedule);
         daySchedule.addScheduleEntry(entry);

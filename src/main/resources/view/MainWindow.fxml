@@ -7,26 +7,28 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
-<fx:root minHeight="600.0" minWidth="700.0" onCloseRequest="#handleExit" title="Easy Travel" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="700" onCloseRequest="#handleExit" title="Easy Travel" type="javafx.stage.Stage"
+         xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/e_t_logo.png"/>
     </icons>
     <scene>
         <Scene>
             <stylesheets>
-                <URL value="@DarkTheme.css" />
-                <URL value="@Extensions.css" />
+                <URL value="@DarkTheme.css"/>
+                <URL value="@Extensions.css"/>
             </stylesheets>
 
             <AnchorPane styleClass="background">
-                <StackPane fx:id="sideTabsBarPlaceholder" maxWidth="80.0" prefHeight="80.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="50.0" />
-                 <StackPane fx:id="statusbarPlaceholder" prefHeight="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
-                    <VBox fx:id="personList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                        <StackPane fx:id="tabPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                    </VBox>
-                    <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" prefHeight="100" />
-                    <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER" />
+                <StackPane fx:id="sideTabsBarPlaceholder" maxWidth="80.0" prefHeight="80.0"
+                           AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="50.0"/>
+                <StackPane fx:id="statusbarPlaceholder" prefHeight="50.0" AnchorPane.leftAnchor="0.0"
+                           AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+                <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="0.0"
+                      AnchorPane.topAnchor="50.0">
+                    <StackPane fx:id="tabPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                    <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" prefHeight="100"/>
+                    <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER"/>
                 </VBox>
             </AnchorPane>
         </Scene>

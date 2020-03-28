@@ -60,7 +60,7 @@ public class SampleDataUtil {
     public static TransportBooking[] getSampleTransportBookings() {
         return new TransportBooking[]{
             new TransportBooking(new Mode("plane"), new Location("Singapore"), new Location("Japan"),
-                    DateTime.fromString("10-01-2020 10:15"), DateTime.fromString("20-01-2020 22:00"))
+                    DateTime.fromString("28-09-2020 10:15"), DateTime.fromString("28-09-2020 17:00"))
         };
     }
 
