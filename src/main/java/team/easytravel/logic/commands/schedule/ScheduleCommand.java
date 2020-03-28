@@ -18,6 +18,7 @@ import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.trip.TripManager;
+import team.easytravel.model.trip.exception.IllegalOperationException;
 
 /**
  * Schedule an Activity to the schedule.
@@ -78,7 +79,13 @@ public class ScheduleCommand extends Command {
         Date date = model.getTripManager().getTripStartDate().plusDays(dayIndex.getZeroBased());
         Activity scheduled = new Activity(toSchedule.getTitle(), toSchedule.getDuration(), toSchedule.getLocation(),
                 toSchedule.getTags(), Optional.of(DateTime.of(date, time)));
-        model.scheduleActivity(scheduled);
+
+        try {
+            model.scheduleActivity(scheduled);
+        } catch (IllegalOperationException e) {
+            throw new CommandException(e.getMessage());
+        }
+
         model.setActivity(toSchedule, scheduled);
         return new CommandResult(String.format(MESSAGE_SUCCESS, scheduled));
     }

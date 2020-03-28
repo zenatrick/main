@@ -31,6 +31,7 @@ public class UnscheduleCommand extends Command {
             + PREFIX_SCHEDULE_DAY + "1\n";
 
     public static final String MESSAGE_SUCCESS = "Activity unscheduled: %1$s";
+    public static final String MESSAGE_ERROR_TRANSPORT = "Cannot unschedule a transport booking.";
 
     private final Index activityIndex;
     private final Index dayIndex;
@@ -63,6 +64,11 @@ public class UnscheduleCommand extends Command {
         }
 
         DayScheduleEntry toUnscheduleEntry = lastShownList.get(activityIndex.getZeroBased());
+
+        if (toUnscheduleEntry.isTransportBooking()) {
+            throw new CommandException(MESSAGE_ERROR_TRANSPORT);
+        }
+
         Activity toUnscheduleActivity = toUnscheduleEntry.getActivityPointer();
         Activity unscheduled = new Activity(toUnscheduleActivity.getTitle(), toUnscheduleActivity.getDuration(),
                 toUnscheduleActivity.getLocation(), toUnscheduleActivity.getTags(), Optional.empty());

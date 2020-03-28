@@ -338,7 +338,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public String isTripPrepared() {
+    public String getStatus() {
         return "This is not suppose to be called";
     }
 

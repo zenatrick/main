@@ -47,12 +47,12 @@ public class CommandResult {
     public CommandResult(String feedbackToUser, String checkStatusString, boolean showHelp, boolean exit,
                          boolean isCheckStatus, boolean isSetTrip, boolean isDeleteTrip) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.checkStatusString = checkStatusString;
         this.showHelp = showHelp;
         this.exit = exit;
         this.isCheckStatus = isCheckStatus;
         this.isSetTrip = isSetTrip;
         this.isDeleteTrip = isDeleteTrip;
-        this.checkStatusString = null;
     }
 
     /**

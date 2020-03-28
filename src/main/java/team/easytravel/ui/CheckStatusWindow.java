@@ -66,6 +66,13 @@ public class CheckStatusWindow extends UiPart<Stage> {
     }
 
     /**
+     * Closes this window.
+     */
+    public void close() {
+        getRoot().close();
+    }
+
+    /**
      * Returns true if the window is currently being shown.
      */
     public boolean isShowing() {

@@ -389,6 +389,20 @@ public class ModelManager implements Model {
         return tripManager;
     }
 
+    /**
+     * Returns the status of the trip.
+     */
+    @Override
+    public String getStatus() {
+        if (!hasTrip()) {
+            return TripManager.MESSAGE_ERROR_NO_TRIP;
+        }
+        String scheduleStatus = "Schedule Status:\n" + tripManager.getScheduleStatus() + "\n";
+        String packingListManagerStatus = "Packing List Status:\n" + packingListManager.getStatus() + "\n";
+        return scheduleStatus
+                + packingListManagerStatus;
+    }
+
     @Override
     public boolean hasTrip() {
         return tripManager.hasTrip();
@@ -509,12 +523,6 @@ public class ModelManager implements Model {
         this.activityManager.resetData(new ActivityManager());
         this.accommodationBookingManager.resetData(new AccommodationBookingManager());
         this.transportBookingManager.resetData(new TransportBookingManager());
-    }
-
-    @Override
-    public String isTripPrepared() {
-        String numOfUnpackedItems = this.packingListManager.numOfUnpackedItems();
-        return numOfUnpackedItems;
     }
 
     @Override

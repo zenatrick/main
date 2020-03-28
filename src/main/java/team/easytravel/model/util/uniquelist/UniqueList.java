@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,12 +41,17 @@ public class UniqueList<T extends UniqueListElement> implements Iterable<T> {
     }
 
     /**
-     * Size int.
-     *
-     * @return the int
+     * Returns the size of the list.
      */
     public int size() {
         return internalList.size();
+    }
+
+    /**
+     * Returns a stream of this list elements.
+     */
+    public Stream<T> stream() {
+        return internalList.stream();
     }
 
     /**

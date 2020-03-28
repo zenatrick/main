@@ -141,6 +141,29 @@ public class DayScheduleEntry implements UniqueListElement {
                 "Transport booking pointer in DayScheduleEntry will not be null"));
     }
 
+    /**
+     * Returns true if this schedule entry overlaps with the other entry.
+     */
+    public boolean isOverlapping(DayScheduleEntry other) {
+        DateTime otherStartDateTime = other.getStartDateTime();
+        DateTime otherEndDateTime = other.getEndDateTime();
+
+        DateTime max = endDateTime;
+        if (otherEndDateTime.compareTo(max) > 0) {
+            max = otherEndDateTime;
+        }
+
+        DateTime min = startDateTime;
+        if (otherStartDateTime.compareTo(min) < 0) {
+            min = otherStartDateTime;
+        }
+        long thisRange = startDateTime.hoursUntilExclusive(endDateTime);
+        long otherRange = otherStartDateTime.hoursUntilExclusive(otherEndDateTime);
+        long allowedRange = min.hoursUntilExclusive(max);
+
+        return allowedRange < thisRange + otherRange;
+    }
+
     @Override
     public boolean isSame(UniqueListElement other) {
         return equals(other);

@@ -158,7 +158,8 @@ public class MainWindow extends UiPart<Stage> {
         if (!checkStatusWindow.isShowing()) {
             checkStatusWindow.show(status);
         } else {
-            checkStatusWindow.focus();
+            checkStatusWindow.close();
+            checkStatusWindow.show(status);
         }
     }
 

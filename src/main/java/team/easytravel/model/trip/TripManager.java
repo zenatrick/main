@@ -9,8 +9,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import javafx.collections.ObservableList;
+import team.easytravel.commons.core.index.Index;
 import team.easytravel.commons.core.time.Date;
 import team.easytravel.commons.core.time.DateTime;
+import team.easytravel.commons.core.time.Time;
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
 import team.easytravel.model.trip.exception.IllegalOperationException;
@@ -152,6 +154,36 @@ public class TripManager {
     }
 
     /**
+     * Returns the status of this trip's schedule.
+     */
+    public String getScheduleStatus() {
+        List<Index> daysWithOverlaps = new ArrayList<>();
+        int size = getTripNumDays();
+        for (int i = 0; i < size; i++) {
+            boolean isOverlapping = false;
+            List<DayScheduleEntry> dayScheduleEntryList = getDayScheduleEntryList(i);
+            for (DayScheduleEntry scheduleEntry : dayScheduleEntryList) {
+                if (dayScheduleEntryList.stream()
+                        .anyMatch(entry -> !scheduleEntry.equals(entry) && scheduleEntry.isOverlapping(entry))) {
+                    isOverlapping = true;
+                }
+            }
+            if (isOverlapping) {
+                daysWithOverlaps.add(Index.fromZeroBased(i));
+            }
+        }
+        if (daysWithOverlaps.isEmpty()) {
+            return "[✔] There is not overlapping programs in your schedule.";
+        }
+        return "[❌] Day(s) "
+                + daysWithOverlaps.stream()
+                .map(Index::getOneBased)
+                .map(Object::toString)
+                .collect(Collectors.joining(" "))
+                + " has/have overlapping program(s)";
+    }
+
+    /**
      * Schedule all activities and transport booking into the shcedule.
      */
     public void scheduleAll(List<Activity> activities, List<TransportBooking> transportBookings) {
@@ -176,7 +208,9 @@ public class TripManager {
         DaySchedule daySchedule = daySchedules.get(dayIndex);
         DayScheduleEntry entry = DayScheduleEntry.fromActivity(activityToSchedule);
         DateTime endDateTime = entry.getEndDateTime();
-        if (startDateTime.getDate().daysUntilInclusive(endDateTime.getDate()) > 1) {
+
+        int numDays = startDateTime.getDate().daysUntilInclusive(endDateTime.getDate());
+        if (!(numDays == 2 && endDateTime.getTime().equals(Time.fromString("00:00"))) && numDays != 1) {
             throw new IllegalOperationException(MESSAGE_ERROR_SCHEDULE);
         }
         daySchedule.addScheduleEntry(entry);

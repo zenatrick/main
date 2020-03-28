@@ -80,21 +80,16 @@ public class PackingListManager implements ReadOnlyPackingListManager {
     }
 
     /**
-     * Num of unpacked items string.
-     *
-     * @return the string
+     * Returns the status of the packing list preparation.
      */
-    public String numOfUnpackedItems() {
-        int counter = 0;
+    public String getStatus() {
         int numOfItems = uniquePackingList.size();
-        for (PackingListItem item : uniquePackingList) {
-            if (item.getIsChecked() == false) {
-                counter++;
-            }
+        if (numOfItems == 0) {
+            return "There is no items in the packing list. Please add items to you packing list using the \"additem\" "
+                    + "command.";
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append("Number of unpacked items in the packing list: " + "" + counter + "/" + "" + numOfItems);
-        return sb.toString();
+        long count = uniquePackingList.stream().filter(PackingListItem::getIsChecked).count();
+        return "Packed items: " + count + "/" + numOfItems;
     }
 
     /**
