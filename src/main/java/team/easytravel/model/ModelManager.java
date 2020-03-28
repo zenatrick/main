@@ -9,7 +9,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -88,8 +87,10 @@ public class ModelManager implements Model {
             this.activityManager.clearInvalidScheduleTime(this.tripManager.getTripStartDate());
             this.tripManager.scheduleAll(this.activityManager.getActivityList(),
                     this.transportBookingManager.getTransportBookings());
+            filteredScheduleEntryLists = new ArrayList<>(this.tripManager.getDayScheduleEntryLists());
         } else {
             resetAllListManagers();
+            filteredScheduleEntryLists = new ArrayList<>();
         }
 
         filteredTransportBookingList = new FilteredList<>(this.transportBookingManager.getTransportBookings());
@@ -98,7 +99,6 @@ public class ModelManager implements Model {
         filteredActivityList = new FilteredList<>(this.activityManager.getActivityList());
         filteredAccommodationBookingList = new FilteredList<>(this.accommodationBookingManager
                 .getAccommodationBookingList());
-        filteredScheduleEntryLists = new ArrayList<>(this.tripManager.getDayScheduleEntryLists());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -401,8 +401,7 @@ public class ModelManager implements Model {
         }
         tripManager.setTrip(trip);
         tripManager.scheduleAll(getFilteredActivityList(), getFilteredTransportBookingList());
-        filteredScheduleEntryLists.addAll(
-                tripManager.getDayScheduleEntryLists().stream().map(FilteredList::new).collect(Collectors.toList()));
+        filteredScheduleEntryLists.addAll(tripManager.getDayScheduleEntryLists());
     }
 
     @Override
@@ -411,6 +410,7 @@ public class ModelManager implements Model {
             throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
         }
         resetAllListManagers();
+        filteredScheduleEntryLists.clear();
     }
 
     @Override

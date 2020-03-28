@@ -36,12 +36,12 @@ public class MainWindow extends UiPart<Stage> {
     private CheckStatusWindow checkStatusWindow;
 
     // Individual list panels
-    private ScheduleTabPanel scheduleTabPanel;
-    private ActivityTabPanel activityTabPanel;
-    private AccommodationBookingTabPanel accommodationBookingTabPanel;
-    private TransportBookingTabPanel transportBookingTabPanel;
-    private PackingListTabPanel packingListTabPanel;
-    private FixedExpenseTabPanel fixedExpenseTabPanel;
+    private TabPanel scheduleTabPanel;
+    private TabPanel activityTabPanel;
+    private TabPanel accommodationBookingTabPanel;
+    private TabPanel transportBookingTabPanel;
+    private TabPanel packingListTabPanel;
+    private TabPanel fixedExpenseTabPanel;
 
     @FXML
     private StackPane sideTabsBarPlaceholder;
@@ -73,13 +73,12 @@ public class MainWindow extends UiPart<Stage> {
         checkStatusWindow = new CheckStatusWindow();
 
         // Set up the list panels
-        scheduleTabPanel = new ScheduleTabPanel(logic.getScheduleList());
-        activityTabPanel = new ActivityTabPanel(logic.getFilteredActivityList());
-        accommodationBookingTabPanel = new AccommodationBookingTabPanel(logic.getFilteredAccommodationBookingList());
-        transportBookingTabPanel = new TransportBookingTabPanel(logic.getFilteredTransportBookingList());
-        packingListTabPanel = new PackingListTabPanel(logic.getFilteredPackingList());
-        fixedExpenseTabPanel = new FixedExpenseTabPanel(logic.getFilteredFixedExpenseList(),
-                getWindowHeight(), getWindowWidth());
+        if (logic.hasTrip()) {
+            handleSetTrip();
+        } else {
+            handleDeleteTrip();
+        }
+
     }
 
     public Stage getPrimaryStage() {
@@ -91,7 +90,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        switchTab(ScheduleTabPanel.TAB_NAME);
         // Independent Ui parts residing in this Ui container
         sideTabsBarPlaceholder.getChildren().add(new SideTabsBar(this::switchTab).getRoot());
 
@@ -115,20 +113,31 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Gets the height of window based on {@code guiSettings}.
+     * Sets up the respective tabs when trip is set.
      */
-    private double getWindowHeight() {
-        return logic.getGuiSettings().getWindowHeight();
+    public void handleSetTrip() {
+        scheduleTabPanel = new ScheduleTabPanel(logic.getScheduleList());
+        activityTabPanel = new ActivityTabPanel(logic.getFilteredActivityList());
+        accommodationBookingTabPanel = new AccommodationBookingTabPanel(logic.getFilteredAccommodationBookingList());
+        transportBookingTabPanel = new TransportBookingTabPanel(logic.getFilteredTransportBookingList());
+        packingListTabPanel = new PackingListTabPanel(logic.getFilteredPackingList());
+        fixedExpenseTabPanel = new FixedExpenseTabPanel(logic.getFilteredFixedExpenseList(),
+                logic.getGuiSettings().getWindowHeight(), logic.getGuiSettings().getWindowWidth());
+        switchTab(ScheduleTabPanel.TAB_NAME);
     }
 
     /**
-     * Gets the width of window based on {@code guiSettings}.
+     * Tears down the respective tabs when trip is deleted.
      */
-    private double getWindowWidth() {
-        return logic.getGuiSettings().getWindowWidth();
+    public void handleDeleteTrip() {
+        scheduleTabPanel = new NoTripTabPanel();
+        activityTabPanel = new NoTripTabPanel();
+        accommodationBookingTabPanel = new NoTripTabPanel();
+        transportBookingTabPanel = new NoTripTabPanel();
+        packingListTabPanel = new NoTripTabPanel();
+        fixedExpenseTabPanel = new NoTripTabPanel();
+        switchTab(ScheduleTabPanel.TAB_NAME);
     }
-
-
 
     /**
      * Opens the help window or focuses on it if it's already opened.
@@ -145,7 +154,6 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Opens the checkstatus window or focuses on it if it's already opened.
      */
-    @FXML
     public void handleShowStatus(String status) {
         if (!checkStatusWindow.isShowing()) {
             checkStatusWindow.show(status);
@@ -223,6 +231,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isSetTrip()) {
+                handleSetTrip();
+            }
+
+            if (commandResult.isDeleteTrip()) {
+                handleDeleteTrip();
             }
 
             return commandResult;

@@ -11,27 +11,48 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
+    /**
+     * Help information should be shown to the user.
+     */
     private final boolean showHelp;
 
-    /** User want to check status */
-    private final boolean checkStatus;
+    /**
+     * True when user sets trip.
+     */
+    private final boolean isSetTrip;
 
-    /** Check Status Information should be shown to the user. */
+    /**
+     * True when user deletes trip.
+     */
+    private final boolean isDeleteTrip;
+
+    /**
+     * User want to check status
+     */
+    private final boolean isCheckStatus;
+
+    /**
+     * Check Status Information should be shown to the user.
+     */
     private final String checkStatusString;
 
-    /** The application should exit. */
+    /**
+     * The application should exit.
+     */
     private final boolean exit;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean checkStatus) {
+    public CommandResult(String feedbackToUser, String checkStatusString, boolean showHelp, boolean exit,
+                         boolean isCheckStatus, boolean isSetTrip, boolean isDeleteTrip) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.checkStatus = checkStatus;
-        this.checkStatusString = "";
+        this.isCheckStatus = isCheckStatus;
+        this.isSetTrip = isSetTrip;
+        this.isDeleteTrip = isDeleteTrip;
+        this.checkStatusString = null;
     }
 
     /**
@@ -39,7 +60,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, null, false, false, false, false, false);
     }
 
     /**
@@ -47,15 +68,19 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, String checkStatusString) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = false;
-        this.exit = false;
-        this.checkStatus = true;
-        this.checkStatusString = checkStatusString;
+        this(feedbackToUser, checkStatusString, false, false, true, false, false);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
+    }
+
+    public boolean isSetTrip() {
+        return isSetTrip;
+    }
+
+    public boolean isDeleteTrip() {
+        return isDeleteTrip;
     }
 
     public boolean isShowHelp() {
@@ -63,7 +88,7 @@ public class CommandResult {
     }
 
     public boolean isCheckStatus() {
-        return checkStatus;
+        return isCheckStatus;
     }
 
     public String getStatusFeedback() {

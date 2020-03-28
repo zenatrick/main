@@ -6,15 +6,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.Region;
 import team.easytravel.commons.core.LogsCenter;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBooking;
-import team.easytravel.ui.UiPart;
+import team.easytravel.ui.TabPanel;
 
 /**
  * Panel containing the list of accommodations.
  */
-public class AccommodationBookingTabPanel extends UiPart<Region> {
+public class AccommodationBookingTabPanel extends TabPanel {
     public static final String TAB_NAME = "Accommodation Tab";
 
     private static final String FXML = "accommodationtab/AccommodationBookingTabPanel.fxml";

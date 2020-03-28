@@ -12,16 +12,16 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
-import javafx.scene.layout.Region;
 import team.easytravel.commons.core.LogsCenter;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
-import team.easytravel.ui.UiPart;
+import team.easytravel.ui.TabPanel;
 
 /**
  * Panel containing the list of fixedExpense.
  */
-public class FixedExpenseTabPanel extends UiPart<Region> {
+public class FixedExpenseTabPanel extends TabPanel {
     public static final String TAB_NAME = "Fixed Expenses Tab";
+
     private static final String FXML = "expensestab/FixedExpenseTabPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(FixedExpenseTabPanel.class);
     private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
@@ -87,7 +87,6 @@ public class FixedExpenseTabPanel extends UiPart<Region> {
             if (empty || fixedExpense == null) {
                 setGraphic(null);
                 setText(null);
-
             } else {
                 setPieChart();
                 pieChart.setLabelsVisible(true);
@@ -96,6 +95,5 @@ public class FixedExpenseTabPanel extends UiPart<Region> {
             }
         }
     }
-
 
 }

@@ -10,16 +10,15 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import team.easytravel.commons.core.LogsCenter;
 import team.easytravel.model.trip.DayScheduleEntry;
-import team.easytravel.ui.UiPart;
+import team.easytravel.ui.TabPanel;
 
 /**
  * Panel containing the schedule.
  */
-public class ScheduleTabPanel extends UiPart<Region> {
+public class ScheduleTabPanel extends TabPanel {
     public static final String TAB_NAME = "Schedule Tab";
 
     private static final String FXML = "scheduletab/ScheduleTabPanel.fxml";

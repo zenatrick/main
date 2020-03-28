@@ -6,15 +6,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.Region;
 import team.easytravel.commons.core.LogsCenter;
 import team.easytravel.model.listmanagers.activity.Activity;
-import team.easytravel.ui.UiPart;
+import team.easytravel.ui.TabPanel;
 
 /**
  * Panel containing the list of activityPanel.
  */
-public class ActivityTabPanel extends UiPart<Region> {
+public class ActivityTabPanel extends TabPanel {
     public static final String TAB_NAME = "Activities Tab";
 
     private static final String FXML = "activitiestab/ActivityTabPanel.fxml";

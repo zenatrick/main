@@ -52,6 +52,6 @@ public class SetTripCommand extends Command {
         }
 
         model.setTrip(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), null, false, false, false, true, false);
     }
 }
