@@ -1,7 +1,6 @@
 package team.easytravel.ui.expensestab;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -9,18 +8,12 @@ import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
-import javafx.scene.control.TableCell;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import team.easytravel.commons.core.LogsCenter;
-import team.easytravel.logic.Logic;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
 import team.easytravel.ui.UiPart;
 
@@ -47,22 +40,20 @@ public class FixedExpenseTabPanel extends UiPart<Region> {
 
     public FixedExpenseTabPanel(ObservableList<FixedExpense> fixedExpensesList, double height, double width) {
         super(FXML);
-
-
         this.fixedExpenses = fixedExpensesList;
-        //Set the Pref Width and height here.
         splitPane.setPrefWidth(width);
-        fixedExpenseListView.setPrefWidth(width/2);
-        //fixedExpenseListView.setPrefSize(width/2, height-100);
-        pieChart.setPrefWidth(width/2);
-        //pieChart.setPrefSize(width/2, height-100);
-
+        fixedExpenseListView.setPrefWidth(0.75 * width);
+        pieChart.setPrefWidth(0.25 * width);
         fixedExpenseListView.setItems(fixedExpensesList);
         fixedExpenseListView.setCellFactory(listView -> new FixedListViewCell());
 
         pieChart.setTitle("Fixed Expenses Breakdown");
         setPieChart();
-        pieChart.getStylesheets().add("/view/expensestab/PieChartColor.css");
+        try {
+            pieChart.getStylesheets().add("view/expensestab/PieChartColor.css");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
 
     }
@@ -70,7 +61,6 @@ public class FixedExpenseTabPanel extends UiPart<Region> {
     private void setPieChart() {
         Map<String, Double> maps = new HashMap<>();
         for (FixedExpense fixedExpense : fixedExpenses) {
-            System.out.println("The size of fixed Expenses is " + fixedExpenses.size());
             maps.put(fixedExpense.getFixedExpenseCategory().value,
                     Double.parseDouble(fixedExpense.getAmount().value));
             pieChartData = maps.entrySet().stream()
@@ -80,8 +70,6 @@ public class FixedExpenseTabPanel extends UiPart<Region> {
 
         pieChart.setData(pieChartData);
     }
-
-
 
 
     /**
@@ -94,7 +82,6 @@ public class FixedExpenseTabPanel extends UiPart<Region> {
             if (fixedExpenses.isEmpty()) {
                 pieChart.setLegendVisible(false);
                 pieChart.setData(null);
-
             }
 
             if (empty || fixedExpense == null) {
@@ -103,6 +90,7 @@ public class FixedExpenseTabPanel extends UiPart<Region> {
 
             } else {
                 setPieChart();
+                pieChart.setLabelsVisible(true);
                 pieChart.setLegendVisible(true);
                 setGraphic(new FixedExpenseCard(fixedExpense, getIndex() + 1).getRoot());
             }
