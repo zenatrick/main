@@ -78,7 +78,8 @@ public class MainWindow extends UiPart<Stage> {
         accommodationBookingTabPanel = new AccommodationBookingTabPanel(logic.getFilteredAccommodationBookingList());
         transportBookingTabPanel = new TransportBookingTabPanel(logic.getFilteredTransportBookingList());
         packingListTabPanel = new PackingListTabPanel(logic.getFilteredPackingList());
-        fixedExpenseTabPanel = new FixedExpenseTabPanel(logic.getFilteredFixedExpenseList());
+        fixedExpenseTabPanel = new FixedExpenseTabPanel(logic.getFilteredFixedExpenseList(),
+                getWindowHeight(), getWindowWidth());
     }
 
     public Stage getPrimaryStage() {
@@ -112,6 +113,22 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
     }
+
+    /**
+     * Gets the height of window based on {@code guiSettings}.
+     */
+    private double getWindowHeight() {
+        return logic.getGuiSettings().getWindowHeight();
+    }
+
+    /**
+     * Gets the width of window based on {@code guiSettings}.
+     */
+    private double getWindowWidth() {
+        return logic.getGuiSettings().getWindowWidth();
+    }
+
+
 
     /**
      * Opens the help window or focuses on it if it's already opened.

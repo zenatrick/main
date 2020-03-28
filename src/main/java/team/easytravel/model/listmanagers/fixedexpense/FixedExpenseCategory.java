@@ -50,3 +50,8 @@ public class FixedExpenseCategory {
     }
 
 }
+
+enum FixedExpenseCategories
+{
+    transport, accommodations, activities, others
+}

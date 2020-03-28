@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.VBox?>
-<VBox xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-    <ListView fx:id="fixedExpenseListView" VBox.vgrow="ALWAYS"/>
-</VBox>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane fx:id="splitPane" xmlns:fx="http://javafx.com/fxml/1">
+    <items>
+        <VBox fx:id="vbox" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+        <ListView fx:id="fixedExpenseListView" VBox.vgrow="ALWAYS" />
+        </VBox>
+    </items>
+    <items>
+        <PieChart fx:id="pieChart" />
+    </items>
+</SplitPane>
