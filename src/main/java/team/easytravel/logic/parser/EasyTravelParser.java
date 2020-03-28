@@ -37,6 +37,8 @@ import team.easytravel.logic.commands.packinglist.FindItemCommand;
 import team.easytravel.logic.commands.packinglist.ListItemCommand;
 import team.easytravel.logic.commands.packinglist.SortItemCommand;
 import team.easytravel.logic.commands.packinglist.UncheckItemCommand;
+import team.easytravel.logic.commands.schedule.ScheduleCommand;
+import team.easytravel.logic.commands.schedule.UnscheduleCommand;
 import team.easytravel.logic.commands.transportbooking.AddTransportBookingCommand;
 import team.easytravel.logic.commands.transportbooking.ClearTransportBookingCommand;
 import team.easytravel.logic.commands.transportbooking.DeleteTransportBookingCommand;
@@ -66,6 +68,8 @@ import team.easytravel.logic.parser.packinglist.FindItemCategoryCommandParser;
 import team.easytravel.logic.parser.packinglist.FindItemCommandParser;
 import team.easytravel.logic.parser.packinglist.SortItemCommandParser;
 import team.easytravel.logic.parser.packinglist.UncheckItemCommandParser;
+import team.easytravel.logic.parser.schedule.ScheduleCommandParser;
+import team.easytravel.logic.parser.schedule.UnscheduleCommandParser;
 import team.easytravel.logic.parser.transportbooking.AddTransportBookingCommandParser;
 import team.easytravel.logic.parser.transportbooking.DeleteTransportBookingCommandParser;
 import team.easytravel.logic.parser.transportbooking.EditTransportBookingCommandParser;
@@ -116,6 +120,13 @@ public class EasyTravelParser {
             return new CheckStatusCommand();
         case EditBudgetCommand.COMMAND_WORD:
             return new EditBudgetCommand(arguments);
+
+        // ========================== Schedule Commands =========================
+        case ScheduleCommand.COMMAND_WORD:
+            return new ScheduleCommandParser().parse(arguments);
+
+        case UnscheduleCommand.COMMAND_WORD:
+            return new UnscheduleCommandParser().parse(arguments);
 
         // ========================== Fixed Expense Commands =========================
         case AddFixedExpenseCommand.COMMAND_WORD:

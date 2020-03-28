@@ -44,4 +44,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_TRIP_BUDGET = new Prefix("budget/");
     public static final Prefix PREFIX_TRIP_EXCHANGE_RATE = new Prefix("exchangerate/");
 
+    public static final Prefix PREFIX_SCHEDULE_DAY = new Prefix("day/");
+    public static final Prefix PREFIX_SCHEDULE_TIME = new Prefix("time/");
 }

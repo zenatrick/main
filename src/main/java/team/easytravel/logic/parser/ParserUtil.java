@@ -9,6 +9,7 @@ import java.util.Set;
 import team.easytravel.commons.core.index.Index;
 import team.easytravel.commons.core.time.Date;
 import team.easytravel.commons.core.time.DateTime;
+import team.easytravel.commons.core.time.Time;
 import team.easytravel.commons.util.StringUtil;
 import team.easytravel.logic.commands.fixedexpense.SortFixedExpenseCommand;
 import team.easytravel.logic.commands.packinglist.SortItemCommand;
@@ -349,7 +350,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String time} into an {@code DateTime}.
+     * Parses a {@code String dateTime} into an {@code DateTime}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code dateTime} is invalid.
@@ -364,7 +365,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String time} into an {@code Date}.
+     * Parses a {@code String date} into an {@code Date}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code date} is invalid.
@@ -376,6 +377,21 @@ public class ParserUtil {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
         return Date.fromString(trimmedDate);
+    }
+
+    /**
+     * Parses a {@code String time} into an {@code Time}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code time} is invalid.
+     */
+    public static Time parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        if (!Time.isValidTime(trimmedTime)) {
+            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+        }
+        return Time.fromString(trimmedTime);
     }
 
     /**
