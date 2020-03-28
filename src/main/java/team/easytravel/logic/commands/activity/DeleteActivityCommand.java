@@ -11,6 +11,7 @@ import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
 import team.easytravel.model.listmanagers.activity.Activity;
+import team.easytravel.model.trip.DayScheduleEntry;
 import team.easytravel.model.trip.TripManager;
 
 /**
@@ -48,6 +49,12 @@ public class DeleteActivityCommand extends Command {
         }
 
         Activity activityToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        if (activityToDelete.getScheduledDateTime().isPresent()) {
+            DayScheduleEntry entry = DayScheduleEntry.fromActivity(activityToDelete);
+            model.unscheduleActivity(entry);
+        }
+
         model.deleteActivity(activityToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_ACTIVITY_SUCCESS, activityToDelete));
     }

@@ -21,7 +21,9 @@ import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
 import team.easytravel.model.listmanagers.transportbooking.Mode;
 import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
+import team.easytravel.model.trip.DayScheduleEntry;
 import team.easytravel.model.trip.TripManager;
+import team.easytravel.model.trip.exception.IllegalOperationException;
 import team.easytravel.model.util.attributes.Location;
 
 /**
@@ -81,14 +83,27 @@ public class EditTransportBookingCommand extends Command {
         }
 
         TransportBooking transportBookingToEdit = lastShownList.get(index.getZeroBased());
-        TransportBooking editedTransportBooking =
-                createEditedTransportBooking(transportBookingToEdit, editTransportBookingDescriptor);
+        TransportBooking editedTransportBooking;
+
+        try {
+            editedTransportBooking = createEditedTransportBooking(transportBookingToEdit,
+                    editTransportBookingDescriptor);
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(e.getMessage());
+        }
 
         if (!transportBookingToEdit.isSame(editedTransportBooking)
                 && model.hasTransportBooking(editedTransportBooking)) {
             throw new CommandException(MESSAGE_DUPLICATE_TRANSPORT_BOOKING);
         }
 
+        DayScheduleEntry entry = DayScheduleEntry.fromTransportBooking(transportBookingToEdit);
+        try {
+            model.scheduleTransport(editedTransportBooking);
+        } catch (IllegalOperationException e) {
+            throw new CommandException(e.getMessage());
+        }
+        model.unscheduleActivity(entry);
         model.setTransportBooking(transportBookingToEdit, editedTransportBooking);
         model.updateFilteredTransportBookingList(PREDICATE_SHOW_ALL_TRANSPORT_BOOKINGS);
         return new CommandResult(String.format(MESSAGE_EDIT_TRANSPORT_BOOKING_SUCCESS, editedTransportBooking));
@@ -118,20 +133,9 @@ public class EditTransportBookingCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof EditTransportBookingCommand)) {
-            return false;
-        }
-
-        // state check
-        EditTransportBookingCommand e = (EditTransportBookingCommand) other;
-        return index.equals(e.index)
-                && editTransportBookingDescriptor.equals(e.editTransportBookingDescriptor);
+        return other == this // short circuit if same object
+                || (other instanceof EditTransportBookingCommand // instanceof handles nulls
+                && index.equals(((EditTransportBookingCommand) other).index)); // state check
     }
 
     /**
@@ -163,7 +167,7 @@ public class EditTransportBookingCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(mode, startLocation, endLocation, startLocation, endLocation);
+            return CollectionUtil.isAnyNonNull(mode, startLocation, endLocation, startDateTime, endDateTime);
         }
 
         public void setMode(Mode mode) {

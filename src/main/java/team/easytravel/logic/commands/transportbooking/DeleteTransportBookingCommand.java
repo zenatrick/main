@@ -11,6 +11,7 @@ import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
 import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
+import team.easytravel.model.trip.DayScheduleEntry;
 import team.easytravel.model.trip.TripManager;
 
 /**
@@ -50,6 +51,8 @@ public class DeleteTransportBookingCommand extends Command {
         }
 
         TransportBooking transportBookingToDelete = lastShownList.get(targetIndex.getZeroBased());
+        DayScheduleEntry entry = DayScheduleEntry.fromTransportBooking(transportBookingToDelete);
+        model.unscheduleTransport(entry);
         model.deleteTransportBooking(transportBookingToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_TRANSPORT_BOOKING_SUCCESS, transportBookingToDelete));
     }

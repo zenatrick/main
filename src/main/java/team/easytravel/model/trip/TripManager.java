@@ -187,7 +187,7 @@ public class TripManager {
      */
     public void unscheduleActivity(DayScheduleEntry toDelete) {
         DateTime startDateTime = toDelete.getStartDateTime();
-        int dayIndex = getTripStartDate().daysUntilInclusive(startDateTime.getDate());
+        int dayIndex = getTripStartDate().daysUntilInclusive(startDateTime.getDate()) - 1;
         DaySchedule daySchedule = daySchedules.get(dayIndex);
         daySchedule.removeScheduleEntry(toDelete);
     }
@@ -198,11 +198,11 @@ public class TripManager {
     public void scheduleTransportBooking(TransportBooking transportBookingToSchedule) {
         DateTime startDateTime = transportBookingToSchedule.getStartDateTime();
         if (startDateTime.getDate().compareTo(getTripStartDate()) < 0) {
-            throw new IllegalOperationException("The transport booking to be scheduled is earlier than the trip.");
+            throw new IllegalOperationException("The transport booking is earlier than the trip.");
         }
         DateTime endDateTime = transportBookingToSchedule.getEndDateTime();
         if (endDateTime.getDate().compareTo(getTripEndDate()) > 0) {
-            throw new IllegalOperationException("The transport booking to be scheduled ends later than the trip.");
+            throw new IllegalOperationException("The transport booking ends later than the trip.");
         }
         int dayIndex = getTripStartDate().daysUntilInclusive(startDateTime.getDate()) - 1;
         DaySchedule daySchedule = daySchedules.get(dayIndex);
@@ -215,7 +215,7 @@ public class TripManager {
      */
     public void unscheduleTransportBooking(DayScheduleEntry toDelete) {
         DateTime startDateTime = toDelete.getStartDateTime();
-        int dayIndex = getTripStartDate().daysUntilInclusive(startDateTime.getDate());
+        int dayIndex = getTripStartDate().daysUntilInclusive(startDateTime.getDate()) - 1;
         DaySchedule daySchedule = daySchedules.get(dayIndex);
         daySchedule.removeScheduleEntry(toDelete);
     }

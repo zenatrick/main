@@ -13,6 +13,7 @@ import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
 import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
 import team.easytravel.model.trip.TripManager;
+import team.easytravel.model.trip.exception.IllegalOperationException;
 
 /**
  * Adds a TransportBooking to the TransportBookingManager.
@@ -61,6 +62,11 @@ public class AddTransportBookingCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TRANSPORT_BOOKING);
         }
 
+        try {
+            model.scheduleTransport(toAdd);
+        } catch (IllegalOperationException e) {
+            throw new CommandException(e.getMessage());
+        }
         model.addTransportBooking(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

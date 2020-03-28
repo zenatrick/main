@@ -49,10 +49,13 @@ public class AddTransportBookingCommandParser implements Parser<AddTransportBook
         DateTime startDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_START_DATE_TIME).get());
         DateTime endDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_END_DATE_TIME).get());
 
-        TransportBooking transportBooking = new TransportBooking(mode, startLocation, endLocation, startDateTime,
-                endDateTime);
-
-        return new AddTransportBookingCommand(transportBooking);
+        try {
+            TransportBooking transportBooking = new TransportBooking(mode, startLocation, endLocation, startDateTime,
+                    endDateTime);
+            return new AddTransportBookingCommand(transportBooking);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
+        }
     }
 
     /**

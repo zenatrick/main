@@ -1,6 +1,10 @@
 package team.easytravel.logic.commands.activity;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_DURATION;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_LOCATION;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_TAG;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_TITLE;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,11 +18,12 @@ import team.easytravel.commons.util.CollectionUtil;
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
-import team.easytravel.logic.parser.CliSyntax;
 import team.easytravel.model.Model;
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.activity.Duration;
+import team.easytravel.model.trip.DayScheduleEntry;
 import team.easytravel.model.trip.TripManager;
+import team.easytravel.model.trip.exception.IllegalOperationException;
 import team.easytravel.model.util.attributes.Location;
 import team.easytravel.model.util.attributes.Title;
 import team.easytravel.model.util.attributes.tag.Tag;
@@ -34,13 +39,13 @@ public class EditActivityCommand extends Command {
             + "by the index number used in the displayed list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + CliSyntax.PREFIX_ACTIVITY_TITLE + "TITLE] "
-            + "[" + CliSyntax.PREFIX_ACTIVITY_DURATION + "DURATION] "
-            + "[" + CliSyntax.PREFIX_ACTIVITY_LOCATION + "LOCATION] "
-            + "[" + CliSyntax.PREFIX_ACTIVITY_TAG + "TAG]...\n"
+            + "[" + PREFIX_ACTIVITY_TITLE + "TITLE] "
+            + "[" + PREFIX_ACTIVITY_DURATION + "DURATION] "
+            + "[" + PREFIX_ACTIVITY_LOCATION + "LOCATION] "
+            + "[" + PREFIX_ACTIVITY_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + CliSyntax.PREFIX_ACTIVITY_TITLE + "Shopping "
-            + CliSyntax.PREFIX_ACTIVITY_DURATION + "2";
+            + PREFIX_ACTIVITY_TITLE + "Shopping "
+            + PREFIX_ACTIVITY_DURATION + "2";
 
     public static final String MESSAGE_EDIT_ACTIVITY_SUCCESS = "Edited Activity: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -82,6 +87,16 @@ public class EditActivityCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_ACTIVITY);
         }
 
+        if (activityToEdit.getScheduledDateTime().isPresent()) {
+            DayScheduleEntry entry = DayScheduleEntry.fromActivity(activityToEdit);
+
+            try {
+                model.scheduleActivity(editedActivity);
+            } catch (IllegalOperationException e) {
+                throw new CommandException(e.getMessage());
+            }
+            model.unscheduleActivity(entry);
+        }
         model.setActivity(activityToEdit, editedActivity);
         model.updateFilteredActivityList(Model.PREDICATE_SHOW_ALL_ACTIVITIES);
         return new CommandResult(String.format(MESSAGE_EDIT_ACTIVITY_SUCCESS, editedActivity));
@@ -102,6 +117,13 @@ public class EditActivityCommand extends Command {
 
         return new Activity(updatedTitle, updatedDuration, updatedLocation, updatedTags,
                 activityToEdit.getScheduledDateTime());
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EditActivityCommand // instanceof handles nulls
+                && index.equals(((EditActivityCommand) other).index)); // state check
     }
 
     /**

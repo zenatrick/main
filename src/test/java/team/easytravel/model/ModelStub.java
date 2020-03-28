@@ -2,6 +2,7 @@ package team.easytravel.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -17,6 +18,7 @@ import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
 import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
+import team.easytravel.model.trip.Budget;
 import team.easytravel.model.trip.DayScheduleEntry;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
@@ -326,6 +328,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public List<ObservableList<DayScheduleEntry>> getScheduleList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void resetAllListManagers() {
         throw new AssertionError("This method should not be called.");
     }
@@ -335,4 +342,8 @@ public class ModelStub implements Model {
         return "This is not suppose to be called";
     }
 
+    @Override
+    public void setBudget(Budget editedBudget) {
+
+    }
 }
