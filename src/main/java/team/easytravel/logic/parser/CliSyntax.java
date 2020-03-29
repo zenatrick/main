@@ -13,9 +13,9 @@ public class CliSyntax {
 
 
     public static final Prefix PREFIX_AMOUNT = new Prefix("amount/");
-    public static final Prefix PREFIX_AMOUNT_OTHR = new Prefix("amountOTHR/");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("description/");
     public static final Prefix PREFIX_CATEGORY = new Prefix("category/");
+    public static final Prefix PREFIX_CURRENCY = new Prefix("currency/");
 
     public static final Prefix PREFIX_ITEM = new Prefix("item/");
     public static final Prefix PREFIX_QUANTITY = new Prefix("quantity/");

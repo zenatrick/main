@@ -171,6 +171,31 @@ public class ParserUtil {
         return new Amount(trimmedAmount);
     }
 
+
+    /**
+     * Parses a {@code String currency} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed
+     *
+     * @throws ParseException if the given {@code currency is invalid}.
+     */
+    public static String parseCurrency(String currency) throws ParseException {
+        requireNonNull(currency);
+        String trimmedCurrency = currency.trim().toLowerCase();
+        String sgd = "sgd";
+        String other = "other";
+        switch (trimmedCurrency) {
+        case "sgd":
+            return sgd;
+
+        case "other":
+            return other;
+
+        default:
+            throw new ParseException("Currency should be in sgd or other");
+        }
+
+    }
+
     /**
      * Parses a {@code String description} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.

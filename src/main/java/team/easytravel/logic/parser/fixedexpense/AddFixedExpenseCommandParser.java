@@ -2,6 +2,7 @@ package team.easytravel.logic.parser.fixedexpense;
 
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_CURRENCY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import java.util.stream.Stream;
@@ -34,15 +35,16 @@ public class AddFixedExpenseCommandParser implements Parser<AddFixedExpenseComma
     public AddFixedExpenseCommand parse(String args) throws ParseException {
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_AMOUNT, PREFIX_DESCRIPTION, PREFIX_CATEGORY);
+                ArgumentTokenizer.tokenize(args, PREFIX_AMOUNT, PREFIX_CURRENCY, PREFIX_DESCRIPTION, PREFIX_CATEGORY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_AMOUNT, PREFIX_DESCRIPTION, PREFIX_CATEGORY)
+        if (!arePrefixesPresent(argMultimap, PREFIX_AMOUNT, PREFIX_CURRENCY, PREFIX_DESCRIPTION, PREFIX_CATEGORY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     AddFixedExpenseCommand.MESSAGE_USAGE));
         }
 
 
+        String currency = ParserUtil.parseCurrency(argMultimap.getValue(PREFIX_CURRENCY).get());
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         FixedExpenseCategory fixedExpenseCategory =
@@ -50,7 +52,11 @@ public class AddFixedExpenseCommandParser implements Parser<AddFixedExpenseComma
 
         FixedExpense fixedExpense = new FixedExpense(amount, description, fixedExpenseCategory);
 
-        return new AddFixedExpenseCommand(fixedExpense, false);
+        if (currency.equals("sgd")) {
+            return new AddFixedExpenseCommand(fixedExpense, false);
+        } else {
+            return new AddFixedExpenseCommand(fixedExpense, true);
+        }
     }
 
     /**

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.util.CollectionUtil.requireAllNonNull;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_CURRENCY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import java.text.DecimalFormat;
@@ -29,24 +30,26 @@ public class AddFixedExpenseCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a fixed expense to the fixed expense list"
             + "Parameters: "
             + PREFIX_AMOUNT + "AMOUNT"
+            + PREFIX_CURRENCY + "CURRENCY"
             + PREFIX_DESCRIPTION + "DESCRIPTION"
             + PREFIX_CATEGORY + "CATEGORY...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_AMOUNT + "1500" + " "
+            + PREFIX_CURRENCY + "sgd"
             + PREFIX_DESCRIPTION + "Plane Tickets" + " "
             + PREFIX_CATEGORY + "transport";
 
     public static final String MESSAGE_SUCCESS = "New Fixed Expense added: %1$s";
-    private final FixedExpense toAdd;
-    private boolean checkOverseasAmount;
+    private FixedExpense toAdd;
+    private boolean isOverseasAmount;
 
     /**
      * Creates an AddFixedExpenseCommand to the specied {@code FixedExpense}
      */
-    public AddFixedExpenseCommand(FixedExpense toAdd, boolean checkOverseasAmount) {
-        requireAllNonNull(toAdd, checkOverseasAmount);
+    public AddFixedExpenseCommand(FixedExpense toAdd, boolean isOverseasAmount) {
+        requireAllNonNull(toAdd, isOverseasAmount);
         this.toAdd = toAdd;
-        this.checkOverseasAmount = checkOverseasAmount;
+        this.isOverseasAmount = isOverseasAmount;
     }
 
     @Override
@@ -57,16 +60,16 @@ public class AddFixedExpenseCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EXPENSE);
         }
 
-        if (checkOverseasAmount) {
+        if (isOverseasAmount) {
             double exchangeRate = model.getExchangeRate();
             DecimalFormat decimalFormat = new DecimalFormat("#.##");
             Double amountInSgd = Double.parseDouble(toAdd.getAmount().value) * exchangeRate;
-            System.out.println(amountInSgd);
             // JPY -> SGD
             FixedExpense editedFixedExpense = new FixedExpense(new Amount(decimalFormat.format(amountInSgd)),
                     toAdd.getDescription(),
                     toAdd.getFixedExpenseCategory());
-            model.addFixedExpense(editedFixedExpense);
+            toAdd = editedFixedExpense;
+            model.addFixedExpense(toAdd);
         } else {
             model.addFixedExpense(toAdd);
         }
