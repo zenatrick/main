@@ -2,6 +2,8 @@ package team.easytravel.ui.packinglisttab;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
@@ -33,9 +35,12 @@ public class PackingListCard extends UiPart<Region> {
     @FXML
     private Label quantity;
     @FXML
-    private Label isChecked;
-    @FXML
     private Label itemCategory;
+    @FXML
+    private ImageView checkBox;
+    @FXML
+    private ImageView category;
+
 
     public PackingListCard(PackingListItem item, int displayedIndex) {
         super(FXML);
@@ -44,7 +49,46 @@ public class PackingListCard extends UiPart<Region> {
         itemName.setText(item.getItemName().toString());
         quantity.setText("Quantity: " + item.getQuantity().toString());
         itemCategory.setText("Category: " + item.getItemCategory().value);
-        isChecked.setText("Packed: " + item.getIsChecked());
+
+        Image image;
+
+        if (item.getIsChecked() == true) {
+            image = new Image("/images/tick.png");
+        } else {
+            image = new Image("/images/cross.png");
+        }
+
+        checkBox.setImage(image);
+
+        Image imageCategory;
+
+        if (item.getItemCategory().value.equals("swimming")) {
+            imageCategory = new Image("/images/swim.png");
+        } else if (item.getItemCategory().value.equals("clothes")) {
+            imageCategory = new Image("/images/clothes.png");
+        } else if (item.getItemCategory().value.equals("car")) {
+            imageCategory = new Image("/images/car.png");
+        } else if (item.getItemCategory().value.equals("camping")) {
+            imageCategory = new Image("/images/camping.png");
+        } else if (item.getItemCategory().value.equals("formalDinner")) {
+            imageCategory = new Image("/images/dress.png");
+        } else if (item.getItemCategory().value.equals("essentials")) {
+            imageCategory = new Image("/images/exclamation.png");
+        } else if (item.getItemCategory().value.equals("hiking")) {
+            imageCategory = new Image("/images/adventurer.png");
+        } else if (item.getItemCategory().value.equals("beach")) {
+            imageCategory = new Image("/images/beach.png");
+        } else if (item.getItemCategory().value.equals("toiletries")) {
+            imageCategory = new Image("/images/soap.png");
+        } else if (item.getItemCategory().value.equals("international")) {
+            imageCategory = new Image("/images/global.png");
+        } else if (item.getItemCategory().value.equals("work")) {
+            imageCategory = new Image("/images/portfolio.png");
+        } else {
+            imageCategory = new Image("/images/default.png");
+        }
+
+        category.setImage(imageCategory);
     }
 
     @Override
