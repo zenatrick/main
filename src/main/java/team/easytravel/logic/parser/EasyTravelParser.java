@@ -29,6 +29,7 @@ import team.easytravel.logic.commands.fixedexpense.SortFixedExpenseCommand;
 import team.easytravel.logic.commands.packinglist.AddItemCommand;
 import team.easytravel.logic.commands.packinglist.AddPresetCommand;
 import team.easytravel.logic.commands.packinglist.CheckItemCommand;
+import team.easytravel.logic.commands.packinglist.ClearItemCommand;
 import team.easytravel.logic.commands.packinglist.DeleteItemCommand;
 import team.easytravel.logic.commands.packinglist.EditItemCommand;
 import team.easytravel.logic.commands.packinglist.FindItemCategoryCommand;
@@ -170,6 +171,9 @@ public class EasyTravelParser {
 
         case CheckItemCommand.COMMAND_WORD:
             return new CheckItemCommandParser().parse(arguments);
+
+        case ClearItemCommand.COMMAND_WORD:
+            return new ClearItemCommand();
 
         case DeleteItemCommand.COMMAND_WORD:
             return new DeleteItemCommandParser().parse(arguments);

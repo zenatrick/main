@@ -235,8 +235,8 @@ public class ParserUtil {
         requireNonNull(sortParameters);
 
         switch (sortParameters) {
-        case SortItemCommand.ITEM:
-            return SortItemCommand.ITEM;
+        case SortItemCommand.ALPHABET:
+            return SortItemCommand.ALPHABET;
 
         case SortItemCommand.CATEGORY:
             return SortItemCommand.CATEGORY;

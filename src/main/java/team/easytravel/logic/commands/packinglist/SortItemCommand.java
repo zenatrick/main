@@ -58,7 +58,7 @@ public class SortItemCommand extends Command {
     /**
      * The constant ITEM.
      */
-    public static final String ITEM = "item";
+    public static final String ALPHABET = "alphabet";
 
     private final String sortIdentifier;
     private final String sortParameter;
@@ -89,7 +89,7 @@ public class SortItemCommand extends Command {
         }
 
         switch (sortParameter) {
-        case "item":
+        case "alphabet":
             if (sortIdentifier.equals("des")) {
                 model.sortPackingList((x, y) -> y.getItemName().toString().compareTo(
                         x.getItemName().toString()));

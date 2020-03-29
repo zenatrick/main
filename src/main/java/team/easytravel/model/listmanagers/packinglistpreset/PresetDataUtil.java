@@ -280,7 +280,7 @@ public class PresetDataUtil {
                     new ItemCategory("camping"), false),
             new PackingListItem(new ItemName("Headlamp"), new Quantity(1),
                     new ItemCategory("camping"), false),
-            new PackingListItem(new ItemName("Lighter/Matchstick"), new Quantity(1),
+            new PackingListItem(new ItemName("Matchstick"), new Quantity(1),
                     new ItemCategory("camping"), false),
             new PackingListItem(new ItemName("Long Underwear"), new Quantity(1),
                     new ItemCategory("camping"), false),
@@ -356,7 +356,7 @@ public class PresetDataUtil {
         return new PackingListItem[] {
             new PackingListItem(new ItemName("Dress"), new Quantity(1),
                     new ItemCategory("formalDinner"), false),
-            new PackingListItem(new ItemName("High-heels"), new Quantity(1),
+            new PackingListItem(new ItemName("High heels"), new Quantity(1),
                     new ItemCategory("formalDinner"), false),
             new PackingListItem(new ItemName("Evening Bag"), new Quantity(1),
                     new ItemCategory("formalDinner"), false),

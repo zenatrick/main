@@ -52,7 +52,7 @@ public class PackingListCard extends UiPart<Region> {
 
         Image image;
 
-        if (item.getIsChecked() == true) {
+        if (item.getIsChecked()) {
             image = new Image("/images/tick.png");
         } else {
             image = new Image("/images/cross.png");

@@ -6,11 +6,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.Region;
 import team.easytravel.commons.core.LogsCenter;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
 import team.easytravel.ui.TabPanel;
-import team.easytravel.ui.UiPart;
 
 /**
  * Panel containing the list of items.
