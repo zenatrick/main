@@ -1,6 +1,5 @@
 package team.easytravel.model;
 
-import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -52,6 +51,8 @@ public interface Model {
      */
     Predicate<AccommodationBooking> PREDICATE_SHOW_ALL_ACCOMMODATION_BOOKINGS = unused -> true;
 
+    // ========== UserPrefs ==========
+
     /**
      * Returns the user prefs.
      */
@@ -67,10 +68,83 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    // ========== Trip Manager ==========
+
     /**
-     * Returns the user prefs' trip storage file path.
+     * Returns the TripManager.
      */
-    Path getEasyTravelStorageFilePath();
+    TripManager getTripManager();
+
+    /**
+     * Returns true if a trip is already set in EzTravel.
+     */
+    boolean hasTrip();
+
+    /**
+     * Set the current trip with give {@code trip}.
+     */
+    void setTrip(Trip trip);
+
+    /**
+     * Deletes the trip
+     * The trip must exist.
+     */
+    void deleteTrip();
+
+    /**
+     * Schedule an Activity into the schedule.
+     */
+    void scheduleActivity(Activity toSchedule);
+
+    /**
+     * Unschedule an Activity from the schedule.
+     */
+    void unscheduleActivity(DayScheduleEntry toDelete);
+
+    /**
+     * Schedule a TransportBooking into the schedule.
+     */
+    void scheduleTransport(TransportBooking toSchedule);
+
+    /**
+     * Unschedule a TransportBooking from the schedule.
+     */
+    void unscheduleTransport(DayScheduleEntry toDelete);
+
+    /**
+     * Returns the number of days set for the trip.
+     */
+    int getTripNumDays();
+
+    /**
+     * Returns the budget of the trip
+     */
+    int getBudget();
+
+    /**
+     * Sets the budget of the trip.
+     */
+    void setBudget(Budget editedBudget);
+
+    /**
+     * Returns the status of the trip preparedness.
+     */
+    String getStatus();
+
+    /**
+     * Returns the exchange rate of the trip
+     */
+    double getExchangeRate();
+
+    /**
+     * Returns an unmodifiable view of the schedule entry list of a specified day.
+     */
+    ObservableList<DayScheduleEntry> getDayScheduleEntryList(int dayIndex);
+
+    /**
+     * Returns an unmodifiable view of the schedule.
+     */
+    List<ObservableList<DayScheduleEntry>> getScheduleList();
 
     // ========== TransportBookingManager ==========
 
@@ -189,7 +263,7 @@ public interface Model {
     /**
      * Gets the sum of all fixed expenses.
      */
-    double getOverallExpense();
+    double getTotalExpense();
 
     /**
      * Returns an unmodifiable view of the filtered fixed expense list
@@ -401,84 +475,11 @@ public interface Model {
      */
     boolean isOverlappingWithOthers(AccommodationBooking toCheck);
 
-    // ========== Trip Manager ==========
-
-    /**
-     * Returns the TripManager.
-     */
-    TripManager getTripManager();
-
-    /**
-     * Returns true if a trip is already set in EzTravel.
-     */
-    boolean hasTrip();
-
-    /**
-     * Set the current trip with give {@code trip}.
-     */
-    void setTrip(Trip trip);
-
-    /**
-     * Deletes the trip
-     * The trip must exist.
-     */
-    void deleteTrip();
-
-    /**
-     * Schedule an Activity into the schedule.
-     */
-    void scheduleActivity(Activity toSchedule);
-
-    /**
-     * Unschedule an Activity from the schedule.
-     */
-    void unscheduleActivity(DayScheduleEntry toDelete);
-
-    /**
-     * Schedule a TransportBooking into the schedule.
-     */
-    void scheduleTransport(TransportBooking toSchedule);
-
-    /**
-     * Unschedule a TransportBooking from the schedule.
-     */
-    void unscheduleTransport(DayScheduleEntry toDelete);
-
-    /**
-     * Returns the number of days set for the trip.
-     */
-    int getTripNumDays();
-
-    /**
-     * Returns the budget of the trip
-     */
-    int getBudget();
-
-    /**
-     * Returns the exchange rate of the trip
-     */
-    double getExchangeRate();
-
-    /**
-     * Returns an unmodifiable view of the schedule entry list of a specified day.
-     */
-    ObservableList<DayScheduleEntry> getDayScheduleEntryList(int dayIndex);
-
-    /**
-     * Returns an unmodifiable view of the schedule.
-     */
-    List<ObservableList<DayScheduleEntry>> getScheduleList();
 
     // ========== Util ==========
+
+    /**
+     * Resets all data.
+     */
     void resetAllListManagers();
-
-    /**
-     * Returns the status of the trip preparedness.
-     */
-    String getStatus();
-
-    /**
-     * Sets the budget of the trip.
-     */
-    void setBudget(Budget editedBudget);
 }

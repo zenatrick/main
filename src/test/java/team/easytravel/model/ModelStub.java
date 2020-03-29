@@ -1,6 +1,5 @@
 package team.easytravel.model;
 
-import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -39,11 +38,6 @@ public class ModelStub implements Model {
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public Path getEasyTravelStorageFilePath() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -313,7 +307,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public double getOverallExpense() {
+    public double getTotalExpense() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -339,11 +333,11 @@ public class ModelStub implements Model {
 
     @Override
     public String getStatus() {
-        return "This is not suppose to be called";
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public void setBudget(Budget editedBudget) {
-
+        throw new AssertionError("This method should not be called.");
     }
 }

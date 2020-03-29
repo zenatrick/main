@@ -25,7 +25,6 @@ import team.easytravel.logic.commands.fixedexpense.AddFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.ClearFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.DeleteFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.EditFixedExpenseCommand;
-import team.easytravel.logic.commands.fixedexpense.ObtainBudgetLeftCommand;
 import team.easytravel.logic.commands.fixedexpense.SortFixedExpenseCommand;
 import team.easytravel.logic.commands.packinglist.AddItemCommand;
 import team.easytravel.logic.commands.packinglist.AddPresetCommand;
@@ -43,6 +42,7 @@ import team.easytravel.logic.commands.transportbooking.AddTransportBookingComman
 import team.easytravel.logic.commands.transportbooking.ClearTransportBookingCommand;
 import team.easytravel.logic.commands.transportbooking.DeleteTransportBookingCommand;
 import team.easytravel.logic.commands.transportbooking.EditTransportBookingCommand;
+import team.easytravel.logic.commands.trip.CheckBudgetStatus;
 import team.easytravel.logic.commands.trip.DeleteTripCommand;
 import team.easytravel.logic.commands.trip.EditBudgetCommand;
 import team.easytravel.logic.commands.trip.SetTripCommand;
@@ -141,8 +141,8 @@ public class EasyTravelParser {
         case EditFixedExpenseCommand.COMMAND_WORD:
             return new EditFixedExpenseCommandParser().parse(arguments);
 
-        case ObtainBudgetLeftCommand.COMMAND_WORD:
-            return new ObtainBudgetLeftCommand();
+        case CheckBudgetStatus.COMMAND_WORD:
+            return new CheckBudgetStatus();
 
         case SortFixedExpenseCommand.COMMAND_WORD:
             return new SortFixedExpenseCommandParser().parse(arguments);

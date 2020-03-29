@@ -38,6 +38,4 @@ public class ExchangeRate {
     public String toString() {
         return value.toString();
     }
-
-
 }

@@ -7,6 +7,7 @@ import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
 import team.easytravel.model.trip.Budget;
+import team.easytravel.model.trip.TripManager;
 
 /**
  * Edits the details of an existing budget.
@@ -16,8 +17,8 @@ public class EditBudgetCommand extends Command {
     public static final String COMMAND_WORD = "editbudget";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the budget of the current trip."
-            + "\nValues must be a number.\n"
-            + "Example: " + COMMAND_WORD + " 1000 ";
+            + "Parameter: AMOUNT (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1000";
 
     public static final String MESSAGE_EDIT_BUDGET_SUCCESS = "Edited Budget: %1$s";
     public static final String MESSAGE_BUDGET_TOO_LOW = "Edited Budget should be more than expenses";
@@ -35,6 +36,11 @@ public class EditBudgetCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasTrip()) {
+            throw new CommandException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+
         Integer amount;
         try {
             amount = Integer.parseInt(newBudget);
@@ -46,8 +52,9 @@ public class EditBudgetCommand extends Command {
             return new CommandResult(Budget.MESSAGE_CONSTRAINTS);
         }
 
-        if (amount < model.getOverallExpense()) {
-            return new CommandResult(String.format(MESSAGE_BUDGET_TOO_LOW));
+        if (amount < model.getTotalExpense()) {
+            return new CommandResult(String.format(MESSAGE_EDIT_BUDGET_SUCCESS, amount) + "\n"
+                    + MESSAGE_BUDGET_TOO_LOW);
         }
 
         Budget editedBudget = new Budget(amount);

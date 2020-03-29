@@ -16,11 +16,11 @@ public class Trip {
             + "be a maximum of 30 days apart.";
 
     // Trip data
-    private static Budget budget;
-    private static Title title;
+    private final Title title;
     private final Date startDate;
     private final Date endDate;
     private final int numDays;
+    private Budget budget;
     private final ExchangeRate exchangeRate;
 
     /**
@@ -62,16 +62,13 @@ public class Trip {
         return endDate;
     }
 
-
     public ExchangeRate getExchangeRate() {
         return exchangeRate;
     }
 
-
     public static boolean isValidTrip(Date startDate, Date endDate) {
         return startDate.compareTo(endDate) <= 0 && startDate.daysUntilInclusive(endDate) <= 30;
     }
-
 
     @Override
     public String toString() {

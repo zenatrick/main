@@ -30,14 +30,14 @@ public class AddFixedExpenseCommand extends Command {
     public static final String MESSAGE_EXCEED_BUDGET = "Take note, you have exceeded your budget!";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a fixed expense to the fixed expense list"
             + "Parameters: "
-            + PREFIX_AMOUNT + "AMOUNT"
-            + PREFIX_CURRENCY + "CURRENCY"
-            + PREFIX_DESCRIPTION + "DESCRIPTION"
+            + PREFIX_AMOUNT + "AMOUNT "
+            + PREFIX_CURRENCY + "CURRENCY "
+            + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_CATEGORY + "CATEGORY...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_AMOUNT + "1500" + " "
-            + PREFIX_CURRENCY + "sgd"
-            + PREFIX_DESCRIPTION + "Plane Tickets" + " "
+            + PREFIX_AMOUNT + "1500 "
+            + PREFIX_CURRENCY + "sgd "
+            + PREFIX_DESCRIPTION + "Plane Tickets "
             + PREFIX_CATEGORY + "transport";
 
     public static final String MESSAGE_SUCCESS = "New Fixed Expense added: %1$s";
@@ -45,7 +45,7 @@ public class AddFixedExpenseCommand extends Command {
     private boolean isOverseasAmount;
 
     /**
-     * Creates an AddFixedExpenseCommand to the specied {@code FixedExpense}
+     * Creates an AddFixedExpenseCommand to the specified {@code FixedExpense}
      */
     public AddFixedExpenseCommand(FixedExpense toAdd, boolean isOverseasAmount) {
         requireAllNonNull(toAdd, isOverseasAmount);
@@ -70,19 +70,18 @@ public class AddFixedExpenseCommand extends Command {
             DecimalFormat decimalFormat = new DecimalFormat("#.##");
             Double amountInSgd = Double.parseDouble(toAdd.getAmount().value) * exchangeRate;
             // JPY -> SGD
-            FixedExpense editedFixedExpense = new FixedExpense(new Amount(decimalFormat.format(amountInSgd)),
+            toAdd = new FixedExpense(new Amount(decimalFormat.format(amountInSgd)),
                     toAdd.getDescription(),
                     toAdd.getFixedExpenseCategory());
-            toAdd = editedFixedExpense;
             model.addFixedExpense(toAdd);
         } else {
             model.addFixedExpense(toAdd);
         }
 
-        int currentBudget = model.getBudget();
+        double remainingBudget = model.getBudget() - model.getTotalExpense();
 
 
-        if (currentBudget < 1) {
+        if (remainingBudget < 1) {
             FixedExpense highestExpense = Collections.max(model.getFilteredFixedExpenseList(),
                     Comparator.comparingDouble(x -> Double.parseDouble(x.getAmount().value)));
 
@@ -91,8 +90,7 @@ public class AddFixedExpenseCommand extends Command {
                     + highestExpense));
         }
 
-
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd + "\n"
-                + "Your budget left is now " + currentBudget));
+                + "Your budget left is now " + remainingBudget));
     }
 }

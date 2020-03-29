@@ -1,11 +1,15 @@
 package team.easytravel.logic.commands.trip;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRIP_BUDGET;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRIP_END_DATE;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRIP_EXCHANGE_RATE;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRIP_START_DATE;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRIP_TITLE;
 
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
-import team.easytravel.logic.parser.CliSyntax;
 import team.easytravel.model.Model;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
@@ -19,17 +23,17 @@ public class SetTripCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a trip. "
             + "Parameters: "
-            + CliSyntax.PREFIX_TRIP_TITLE + "TITLE "
-            + CliSyntax.PREFIX_TRIP_BUDGET + "BUDGET "
-            + CliSyntax.PREFIX_TRIP_EXCHANGE_RATE + "EXCHANGE_RATE "
-            + CliSyntax.PREFIX_TRIP_START_DATE + "START_DATE "
-            + CliSyntax.PREFIX_TRIP_END_DATE + "END_DATE\n"
+            + PREFIX_TRIP_TITLE + "TITLE "
+            + PREFIX_TRIP_BUDGET + "BUDGET "
+            + PREFIX_TRIP_EXCHANGE_RATE + "EXCHANGE_RATE "
+            + PREFIX_TRIP_START_DATE + "START_DATE "
+            + PREFIX_TRIP_END_DATE + "END_DATE\n"
             + "Example: " + COMMAND_WORD + " "
-            + CliSyntax.PREFIX_TRIP_TITLE + "Graduation Trip "
-            + CliSyntax.PREFIX_TRIP_BUDGET + "5000 "
-            + CliSyntax.PREFIX_TRIP_EXCHANGE_RATE + "1.03 "
-            + CliSyntax.PREFIX_TRIP_START_DATE + "28-09-2020 "
-            + CliSyntax.PREFIX_TRIP_END_DATE + "05-10-2020";
+            + PREFIX_TRIP_TITLE + "Graduation Trip "
+            + PREFIX_TRIP_BUDGET + "5000 "
+            + PREFIX_TRIP_EXCHANGE_RATE + "1.03 "
+            + PREFIX_TRIP_START_DATE + "28-09-2020 "
+            + PREFIX_TRIP_END_DATE + "05-10-2020";
 
     public static final String MESSAGE_SUCCESS = "Trip is successfully set: %1$s";
 

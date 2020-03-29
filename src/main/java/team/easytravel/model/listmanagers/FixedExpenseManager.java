@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import team.easytravel.model.listmanagers.fixedexpense.Amount;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
 import team.easytravel.model.util.uniquelist.UniqueList;
 
@@ -91,17 +92,35 @@ public class FixedExpenseManager implements ReadOnlyFixedExpenseManager {
     }
 
     /**
-     * Sorts the fixed expense list
-     * @param cmp
-     * @return the sorted fixedexpense list
+     * Sorts the fixed expense list with the specified comparator.
      */
-    public ObservableList<FixedExpense> sortFixedExpenseList(Comparator<FixedExpense> cmp) {
+    public void sortFixedExpenseList(Comparator<FixedExpense> cmp) {
         uniqueFixedExpenseLists.sort(cmp);
-        return uniqueFixedExpenseLists.asUnmodifiableObservableList();
     }
 
 
     // Util methods
+
+    public String getStatus(double budget) {
+        int numOfExpense = uniqueFixedExpenseLists.size();
+        if (numOfExpense == 0) {
+            return "[❗] There is no expense entered. You can add expense using the \"addexpense\" command.";
+        }
+        double totalExpense = getTotalExpense();
+        if (totalExpense <= budget) {
+            return String.format("[✔] Your remaining budget is $%.2f.", budget - totalExpense);
+        } else {
+            return String.format("[❌] You have exceeded your budget by %.2f!", totalExpense - budget);
+        }
+    }
+
+    public double getTotalExpense() {
+        return uniqueFixedExpenseLists.stream()
+                .map(FixedExpense::getAmount)
+                .map(Amount::toString)
+                .mapToDouble(Double::parseDouble)
+                .sum();
+    }
 
     @Override
     public String toString() {

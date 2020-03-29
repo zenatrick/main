@@ -3,7 +3,6 @@ package team.easytravel.model;
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -101,7 +100,7 @@ public class ModelManager implements Model {
                 .getAccommodationBookingList());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // ========== UserPrefs ==========
 
     @Override
     public ReadOnlyUserPrefs getUserPrefs() {
@@ -119,9 +118,132 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
+    // ========== TripManager ==========
+
     @Override
-    public Path getEasyTravelStorageFilePath() {
-        return userPrefs.getTripStorageFilePath();
+    public TripManager getTripManager() {
+        return tripManager;
+    }
+
+    /**
+     * Returns the status of the trip.
+     */
+    @Override
+    public String getStatus() {
+        if (!hasTrip()) {
+            return TripManager.MESSAGE_ERROR_NO_TRIP;
+        }
+        String scheduleStatus = "Schedule Status:\n" + tripManager.getScheduleStatus() + "\n";
+        String packingListManagerStatus = "Packing List Status:\n" + packingListManager.getStatus() + "\n";
+        String fixedExpenseManagerStatus = "Expense Status:\n" + fixedExpenseManager.getStatus(getBudget()) + "\n";
+        return scheduleStatus
+                + packingListManagerStatus
+                + fixedExpenseManagerStatus;
+    }
+
+    @Override
+    public boolean hasTrip() {
+        return tripManager.hasTrip();
+    }
+
+    @Override
+    public void setTrip(Trip trip) {
+        if (hasTrip()) {
+            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_SET_TRIP);
+        }
+        tripManager.setTrip(trip);
+        tripManager.scheduleAll(getFilteredActivityList(), getFilteredTransportBookingList());
+        filteredScheduleEntryLists.addAll(tripManager.getDayScheduleEntryLists());
+    }
+
+    @Override
+    public void deleteTrip() {
+        if (!hasTrip()) {
+            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+        resetAllListManagers();
+        filteredScheduleEntryLists.clear();
+    }
+
+    @Override
+    public int getBudget() {
+        if (!hasTrip()) {
+            throw new IllegalOperationException("Cannot get budget before setting a trip");
+        }
+        return tripManager.getTripBudget().value;
+    }
+
+    @Override
+    public void setBudget(Budget editedBudget) {
+        if (!hasTrip()) {
+            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+        tripManager.setBudget(editedBudget);
+    }
+
+    @Override
+    public void scheduleActivity(Activity toSchedule) {
+        if (!hasTrip()) {
+            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+        tripManager.scheduleActivity(toSchedule);
+    }
+
+    @Override
+    public double getExchangeRate() {
+        if (!hasTrip()) {
+            throw new IllegalOperationException("Cannot get exchange rate before setting a trip");
+        }
+        return tripManager.getTripExchangeRate().value;
+    }
+
+    @Override
+    public void unscheduleActivity(DayScheduleEntry toDelete) {
+        if (!hasTrip()) {
+            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+        tripManager.unscheduleActivity(toDelete);
+    }
+
+    @Override
+    public void scheduleTransport(TransportBooking toSchedule) {
+        if (!hasTrip()) {
+            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+        tripManager.scheduleTransportBooking(toSchedule);
+    }
+
+    @Override
+    public void unscheduleTransport(DayScheduleEntry toDelete) {
+        if (!hasTrip()) {
+            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+        tripManager.unscheduleTransportBooking(toDelete);
+    }
+
+    @Override
+    public int getTripNumDays() {
+        if (!hasTrip()) {
+            throw new IllegalOperationException("Cannot get number of days before setting a trip");
+        }
+        return tripManager.getTripNumDays();
+    }
+
+    @Override
+    public ObservableList<DayScheduleEntry> getDayScheduleEntryList(int dayIndex) {
+        if (!hasTrip()) {
+            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+        return filteredScheduleEntryLists.get(dayIndex);
+    }
+
+    @Override
+    public List<ObservableList<DayScheduleEntry>> getScheduleList() {
+        if (!hasTrip()) {
+            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+
+        return filteredScheduleEntryLists;
     }
 
     // ========== TransportBookingManager ==========
@@ -211,14 +333,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public double getOverallExpense() {
-        double overallExpense = 0.0;
-        for (FixedExpense fixedExpense : fixedExpenseManager.getFixedExpenseList()) {
-            overallExpense += Double.parseDouble(fixedExpense.getAmount().value);
-        }
-        return overallExpense;
+    public double getTotalExpense() {
+        return fixedExpenseManager.getTotalExpense();
     }
-
 
     @Override
     public ObservableList<FixedExpense> getFilteredFixedExpenseList() {
@@ -380,137 +497,6 @@ public class ModelManager implements Model {
     @Override
     public boolean isOverlappingWithOthers(AccommodationBooking toCheck) {
         return getFilteredAccommodationBookingList().stream().anyMatch(x -> x.isOverlapping(toCheck));
-    }
-
-    // ========== TripManager ==========
-
-    @Override
-    public TripManager getTripManager() {
-        return tripManager;
-    }
-
-    /**
-     * Returns the status of the trip.
-     */
-    @Override
-    public String getStatus() {
-        if (!hasTrip()) {
-            return TripManager.MESSAGE_ERROR_NO_TRIP;
-        }
-        String scheduleStatus = "Schedule Status:\n" + tripManager.getScheduleStatus() + "\n";
-        String packingListManagerStatus = "Packing List Status:\n" + packingListManager.getStatus() + "\n";
-        return scheduleStatus
-                + packingListManagerStatus;
-    }
-
-    @Override
-    public boolean hasTrip() {
-        return tripManager.hasTrip();
-    }
-
-    @Override
-    public void setTrip(Trip trip) {
-        if (hasTrip()) {
-            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_SET_TRIP);
-        }
-        tripManager.setTrip(trip);
-        tripManager.scheduleAll(getFilteredActivityList(), getFilteredTransportBookingList());
-        filteredScheduleEntryLists.addAll(tripManager.getDayScheduleEntryLists());
-    }
-
-    @Override
-    public void deleteTrip() {
-        if (!hasTrip()) {
-            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
-        }
-        resetAllListManagers();
-        filteredScheduleEntryLists.clear();
-    }
-
-    @Override
-    public int getBudget() {
-        if (!hasTrip()) {
-            throw new IllegalOperationException("Cannot get budget before setting a trip");
-        }
-        int currentBudget = tripManager.getTripBudget().value;
-
-        for (FixedExpense fe : filteredFixedExpenseList) {
-            currentBudget -= Double.parseDouble(fe.getAmount().value);
-        }
-        return currentBudget;
-    }
-
-    @Override
-    public void setBudget(Budget editedBudget) {
-        if (!hasTrip()) {
-            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
-        }
-        tripManager.setBudget(editedBudget);
-    }
-
-    @Override
-    public void scheduleActivity(Activity toSchedule) {
-        if (!hasTrip()) {
-            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
-        }
-        tripManager.scheduleActivity(toSchedule);
-    }
-
-    @Override
-    public double getExchangeRate() {
-        if (!hasTrip()) {
-            throw new IllegalOperationException("Cannot get exchange rate before setting a trip");
-        }
-        return tripManager.getTripExchangeRate().value;
-    }
-
-    @Override
-    public void unscheduleActivity(DayScheduleEntry toDelete) {
-        if (!hasTrip()) {
-            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
-        }
-        tripManager.unscheduleActivity(toDelete);
-    }
-
-    @Override
-    public void scheduleTransport(TransportBooking toSchedule) {
-        if (!hasTrip()) {
-            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
-        }
-        tripManager.scheduleTransportBooking(toSchedule);
-    }
-
-    @Override
-    public void unscheduleTransport(DayScheduleEntry toDelete) {
-        if (!hasTrip()) {
-            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
-        }
-        tripManager.unscheduleTransportBooking(toDelete);
-    }
-
-    @Override
-    public int getTripNumDays() {
-        if (!hasTrip()) {
-            throw new IllegalOperationException("Cannot get number of days before setting a trip");
-        }
-        return tripManager.getTripNumDays();
-    }
-
-    @Override
-    public ObservableList<DayScheduleEntry> getDayScheduleEntryList(int dayIndex) {
-        if (!hasTrip()) {
-            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
-        }
-        return filteredScheduleEntryLists.get(dayIndex);
-    }
-
-    @Override
-    public List<ObservableList<DayScheduleEntry>> getScheduleList() {
-        if (!hasTrip()) {
-            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
-        }
-
-        return filteredScheduleEntryLists;
     }
 
     // ========== Util ==========
