@@ -41,7 +41,7 @@ public class ScheduleTabPanel extends TabPanel {
             VBox vBox = new VBox();
             scrollPane.setPrefHeight(height);
             scrollPane.setPrefWidth(width);
-            vBox.setPrefHeight(height );
+            vBox.setPrefHeight(height);
             vBox.setMinWidth(250);
             vBox.setPadding(new Insets(5, 10, 5, 0));
             ListView<DayScheduleEntry> listView = new ListView<>();
