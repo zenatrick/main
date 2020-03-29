@@ -116,7 +116,8 @@ public class MainWindow extends UiPart<Stage> {
      * Sets up the respective tabs when trip is set.
      */
     public void handleSetTrip() {
-        scheduleTabPanel = new ScheduleTabPanel(logic.getScheduleList());
+        scheduleTabPanel = new ScheduleTabPanel(logic.getScheduleList(), logic.getGuiSettings().getWindowHeight(),
+                logic.getGuiSettings().getWindowHeight());
         activityTabPanel = new ActivityTabPanel(logic.getFilteredActivityList());
         accommodationBookingTabPanel = new AccommodationBookingTabPanel(logic.getFilteredAccommodationBookingList());
         transportBookingTabPanel = new TransportBookingTabPanel(logic.getFilteredTransportBookingList());
