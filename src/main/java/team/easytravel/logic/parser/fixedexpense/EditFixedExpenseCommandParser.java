@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_CURRENCY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import team.easytravel.commons.core.index.Index;
@@ -27,9 +28,10 @@ public class EditFixedExpenseCommandParser implements Parser<EditFixedExpenseCom
     public EditFixedExpenseCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_AMOUNT, PREFIX_DESCRIPTION, PREFIX_CATEGORY);
+                ArgumentTokenizer.tokenize(args, PREFIX_AMOUNT, PREFIX_CURRENCY, PREFIX_DESCRIPTION, PREFIX_CATEGORY);
 
         Index index;
+        boolean isOverseasAmount = false;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -42,8 +44,21 @@ public class EditFixedExpenseCommandParser implements Parser<EditFixedExpenseCom
                 new EditFixedExpenseCommand.EditFixedExpenseDescriptor();
 
         if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
-            editFixedExpenseDescriptor.setAmount(ParserUtil
-                    .parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get()));
+
+            if (argMultimap.getValue(PREFIX_CURRENCY).isEmpty()) {
+                throw new ParseException(EditFixedExpenseCommand.MESSAGE_CURRENCY_NOT_PRESENT);
+            } else if (argMultimap.getValue(PREFIX_CURRENCY).get().equals("sgd")) {
+                editFixedExpenseDescriptor.setAmount(ParserUtil
+                        .parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get()));
+            } else if (argMultimap.getValue(PREFIX_CURRENCY).get().equals("other")) {
+                isOverseasAmount = true;
+                editFixedExpenseDescriptor.setAmount(ParserUtil
+                        .parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get()));
+            } else {
+                throw new ParseException(EditFixedExpenseCommand.MESSAGE_INVALID_CURRENCY);
+            }
+
+
         }
         if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
             editFixedExpenseDescriptor.setFixedExpenseCategory(ParserUtil
@@ -58,6 +73,6 @@ public class EditFixedExpenseCommandParser implements Parser<EditFixedExpenseCom
             throw new ParseException(EditFixedExpenseCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditFixedExpenseCommand(index, editFixedExpenseDescriptor);
+        return new EditFixedExpenseCommand(index, editFixedExpenseDescriptor, isOverseasAmount);
     }
 }

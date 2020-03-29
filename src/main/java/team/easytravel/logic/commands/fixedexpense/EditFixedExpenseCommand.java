@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_CURRENCY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,30 +36,39 @@ public class EditFixedExpenseCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_AMOUNT + "AMOUNT] "
+            + "[" + PREFIX_CURRENCY + "CURRENCY] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_CATEGORY + "EMAIL] \n"
+            + "[" + PREFIX_CATEGORY + "CATEGORY] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_AMOUNT + "3000 "
-            + PREFIX_DESCRIPTION + "SQ Flight";
+            + PREFIX_CURRENCY + "sgd "
+            + PREFIX_DESCRIPTION + "SQ Flight "
+            + PREFIX_CATEGORY + "transport";
 
     public static final String MESSAGE_EDIT_FIXEDEXPENSE_SUCCESS = "Edited Fixed Expense: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_FIXED_EXPENSE = "This Fixed Expense already exists in the "
-            + "address book.";
+            + "Fixed Expense List.";
+    public static final String MESSAGE_CURRENCY_NOT_PRESENT = "A currency field must be included when editing amount!";
+    public static final String MESSAGE_INVALID_CURRENCY = "Currency must be either sgd or other";
 
     private final Index index;
     private final EditFixedExpenseDescriptor editFixedExpenseDescriptor;
+    private final boolean isOverseasAmount;
 
     /**
      * @param index                      of the person in the filtered person list to edit
      * @param editFixedExpenseDescriptor details to edit the fixed expense with
      */
-    public EditFixedExpenseCommand(Index index, EditFixedExpenseDescriptor editFixedExpenseDescriptor) {
+    public EditFixedExpenseCommand(Index index, EditFixedExpenseDescriptor editFixedExpenseDescriptor,
+                                   boolean exchangeRate) {
         requireNonNull(index);
         requireNonNull(editFixedExpenseDescriptor);
+        requireNonNull(exchangeRate);
 
         this.index = index;
         this.editFixedExpenseDescriptor = new EditFixedExpenseDescriptor(editFixedExpenseDescriptor);
+        this.isOverseasAmount = exchangeRate;
     }
 
     @Override
@@ -69,13 +80,15 @@ public class EditFixedExpenseCommand extends Command {
         }
 
         List<FixedExpense> lastShownList = model.getFilteredFixedExpenseList();
+        Double exchangeRate = model.getExchangeRate();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_FIXEDEXPENSE_DISPLAYED_INDEX);
         }
 
         FixedExpense fixedExpenseToEdit = lastShownList.get(index.getZeroBased());
-        FixedExpense editedExpense = createEditedFixedExpense(fixedExpenseToEdit, editFixedExpenseDescriptor);
+        FixedExpense editedExpense = createEditedFixedExpense(fixedExpenseToEdit, editFixedExpenseDescriptor,
+                isOverseasAmount, exchangeRate);
 
         if (!fixedExpenseToEdit.isSame(editedExpense) && model.hasFixedExpense(editedExpense)) {
             throw new CommandException(MESSAGE_DUPLICATE_FIXED_EXPENSE);
@@ -92,10 +105,22 @@ public class EditFixedExpenseCommand extends Command {
      * edited with {@code editFixedExpenseDescriptor}
      */
     private static FixedExpense createEditedFixedExpense(FixedExpense fixedExpenseToEdit,
-                                                         EditFixedExpenseDescriptor editFixedExpenseDescriptor) {
+                                                         EditFixedExpenseDescriptor editFixedExpenseDescriptor,
+                                                         boolean isOverseasAmount,
+                                                         Double exchangeRate) {
         assert fixedExpenseToEdit != null;
 
-        Amount updatedAmount = editFixedExpenseDescriptor.getAmount().orElse(fixedExpenseToEdit.getAmount());
+        Amount updatedAmount;
+
+        if (isOverseasAmount) {
+            DecimalFormat decimalFormat = new DecimalFormat("#.##");
+            updatedAmount =
+                    new Amount(decimalFormat.format(Double.parseDouble(editFixedExpenseDescriptor.getAmount()
+                            .orElse(fixedExpenseToEdit.getAmount()).value) * exchangeRate));
+        } else {
+            updatedAmount = editFixedExpenseDescriptor.getAmount().orElse(fixedExpenseToEdit.getAmount());
+        }
+
         Description updatedDescription = editFixedExpenseDescriptor
                 .getDescription().orElse(fixedExpenseToEdit.getDescription());
         FixedExpenseCategory updatedFixedExpenseCategory = editFixedExpenseDescriptor.getFixedExpenseCategory()
@@ -124,6 +149,7 @@ public class EditFixedExpenseCommand extends Command {
             setAmount(toCopy.amount);
             setDescription(toCopy.description);
             setFixedExpenseCategory(toCopy.fixedExpenseCategory);
+
         }
 
         /**
@@ -131,6 +157,10 @@ public class EditFixedExpenseCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(amount, description, fixedExpenseCategory);
+        }
+
+        public void setAmount(Amount amount, boolean isOverseasCurrency) {
+            this.amount = amount;
         }
 
         public void setAmount(Amount amount) {
@@ -152,6 +182,7 @@ public class EditFixedExpenseCommand extends Command {
         public void setFixedExpenseCategory(FixedExpenseCategory fixedExpenseCategory) {
             this.fixedExpenseCategory = fixedExpenseCategory;
         }
+
 
         public Optional<FixedExpenseCategory> getFixedExpenseCategory() {
             return Optional.ofNullable(fixedExpenseCategory);
