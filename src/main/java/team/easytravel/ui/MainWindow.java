@@ -56,7 +56,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane dashboardPlaceholder;
 
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
@@ -92,6 +92,8 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         // Independent Ui parts residing in this Ui container
         sideTabsBarPlaceholder.getChildren().add(new SideTabsBar(this::switchTab).getRoot());
+
+        dashboardPlaceholder.getChildren().add(new DashBoardPanel(logic.getTrip()).getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -185,8 +187,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void switchTab(String tabName) {
         tabPanelPlaceholder.getChildren().clear();
-        statusbarPlaceholder.getChildren().clear();
-        statusbarPlaceholder.getChildren().add(new StatusBarFooter(tabName).getRoot());
 
         switch (tabName) {
         case ScheduleTabPanel.TAB_NAME:

@@ -19,6 +19,7 @@ import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
 import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
 import team.easytravel.model.trip.DayScheduleEntry;
+import team.easytravel.model.trip.Trip;
 import team.easytravel.storage.Storage;
 
 /**
@@ -98,6 +99,11 @@ public class LogicManager implements Logic {
     @Override
     public boolean hasTrip() {
         return model.hasTrip();
+    }
+
+    @Override
+    public Trip getTrip() {
+        return model.getTripManager().getTrip();
     }
 
     @Override

@@ -13,6 +13,7 @@ import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
 import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
 import team.easytravel.model.trip.DayScheduleEntry;
+import team.easytravel.model.trip.Trip;
 
 /**
  * API of the Logic component
@@ -76,6 +77,13 @@ public interface Logic {
      * @return true if a trip is set.
      */
     boolean hasTrip();
+
+    /**
+     * Returns a trip
+     *
+     * @return trip
+     */
+    Trip getTrip();
 
     /**
      * Returns the user prefs' GUI settings.

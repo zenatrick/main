@@ -12,7 +12,7 @@ import team.easytravel.model.trip.Trip;
  * Panel containing the list of persons.
  */
 public class DashBoardPanel extends UiPart<Region> {
-    private static final String FXML = "StatusBarFooter.fxml";
+    private static final String FXML = "DashBoardPanel.fxml";
 
     private final Logger logger = LogsCenter.getLogger(DashBoardPanel.class);
 
