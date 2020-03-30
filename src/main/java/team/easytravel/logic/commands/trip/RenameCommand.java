@@ -46,7 +46,15 @@ public class RenameCommand extends Command {
 
         Title editedTitle = new Title(newTitle);
         model.setTitle(editedTitle);
-        return new CommandResult(String.format(MESSAGE_EDIT_TITLE_SUCCESS, newTitle));
+
+        return new CommandResult(String.format(MESSAGE_EDIT_TITLE_SUCCESS, newTitle) ,
+                null,
+                false,
+                false,
+                false,
+                false,
+                false ,
+                true );
     }
 
 

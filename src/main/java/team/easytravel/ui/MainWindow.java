@@ -94,8 +94,6 @@ public class MainWindow extends UiPart<Stage> {
         // Independent Ui parts residing in this Ui container
         sideTabsBarPlaceholder.getChildren().add(new SideTabsBar(this::switchTab).getRoot());
 
-        dashboardPlaceholder.getChildren().add(new DashBoardPanel(logic.getTrip()).getRoot());
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -128,6 +126,7 @@ public class MainWindow extends UiPart<Stage> {
         fixedExpenseTabPanel = new FixedExpenseTabPanel(logic.getFilteredFixedExpenseList(),
                 logic.getGuiSettings().getWindowHeight(), logic.getGuiSettings().getWindowWidth());
         switchTab(ScheduleTabPanel.TAB_NAME);
+        dashboardPlaceholder.getChildren().add(new DashBoardPanel(logic.getTrip()).getRoot());
     }
 
     /**
@@ -141,6 +140,11 @@ public class MainWindow extends UiPart<Stage> {
         packingListTabPanel = new NoTripTabPanel();
         fixedExpenseTabPanel = new NoTripTabPanel();
         switchTab(ScheduleTabPanel.TAB_NAME);
+        dashboardPlaceholder.getChildren().add(new DashBoardPanel().getRoot());
+    }
+
+    public void handleUpdateTrip() {
+        dashboardPlaceholder.getChildren().add(new DashBoardPanel(logic.getTrip()).getRoot());
     }
 
     /**
@@ -242,6 +246,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isDeleteTrip()) {
                 handleDeleteTrip();
+            }
+
+            if(commandResult.isEditTrip()) {
+                handleUpdateTrip();
             }
 
             return commandResult;

@@ -28,6 +28,11 @@ public class CommandResult {
     private final boolean isDeleteTrip;
 
     /**
+     * True when user edits trip.
+     */
+    private final boolean isEditTrip;
+
+    /**
      * User want to check status
      */
     private final boolean isCheckStatus;
@@ -47,8 +52,10 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
+
     public CommandResult(String feedbackToUser, List<String> checkStatus, boolean showHelp, boolean exit,
-                         boolean isCheckStatus, boolean isSetTrip, boolean isDeleteTrip) {
+                         boolean isCheckStatus, boolean isSetTrip, boolean isDeleteTrip, boolean isEditTrip) {
+
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.checkStatus = checkStatus;
         this.showHelp = showHelp;
@@ -56,6 +63,7 @@ public class CommandResult {
         this.isCheckStatus = isCheckStatus;
         this.isSetTrip = isSetTrip;
         this.isDeleteTrip = isDeleteTrip;
+        this.isEditTrip = isEditTrip;
     }
 
     /**
@@ -63,7 +71,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, null, false, false, false, false, false);
+        this(feedbackToUser, null, false, false, false, false, false, false);
     }
 
     /**
@@ -71,7 +79,8 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, List<String> checkStatus) {
-        this(feedbackToUser, checkStatus, false, false, true, false, false);
+        this(feedbackToUser, checkStatus, false, false, true, false, false, false);
+
     }
 
     public String getFeedbackToUser() {
@@ -80,6 +89,10 @@ public class CommandResult {
 
     public boolean isSetTrip() {
         return isSetTrip;
+    }
+
+    public boolean isEditTrip() {
+        return isEditTrip;
     }
 
     public boolean isDeleteTrip() {

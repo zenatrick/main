@@ -59,7 +59,14 @@ public class EditBudgetCommand extends Command {
 
         Budget editedBudget = new Budget(amount);
         model.setBudget(editedBudget);
-        return new CommandResult(String.format(MESSAGE_EDIT_BUDGET_SUCCESS, amount));
+        return new CommandResult(String.format(MESSAGE_EDIT_BUDGET_SUCCESS, amount) ,
+                null,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true);
     }
 
 

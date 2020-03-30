@@ -33,6 +33,14 @@ public class DashBoardPanel extends UiPart<Region> {
         this.tripTitle.setText(triptoshow.getTitle().toString());
     }
 
+    public DashBoardPanel(){
+        super(FXML);
+        this.budget.setText(" ");
+        this.tripStartDate.setText("Hint: ");
+        this.tripEndDate.setText("Use settrip to start a trip");
+        this.tripTitle.setText("There is no trip set");
+    }
+
 
     /**
      * Updates the window
