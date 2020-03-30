@@ -47,7 +47,7 @@ public class ActivityCard extends UiPart<Region> {
         super(FXML);
         this.activity = activity;
         id.setText(displayedIndex + ". ");
-        title.setText("Title: " + activity.getTitle().toString());
+        title.setText(activity.getTitle().toString());
         if (activity.getScheduledDateTime().isPresent()) {
             scheduledTime.setText("Scheduled timing: " + activity.getScheduledDateTime().get());
         } else {
@@ -72,7 +72,7 @@ public class ActivityCard extends UiPart<Region> {
             return false;
         }
 
-        // state check
+        // state check of activity
         ActivityCard card = (ActivityCard) other;
         return id.getText().equals(card.id.getText())
                 && activity.equals(card.activity);

@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -9,33 +11,68 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/10.0.2-internal"
-      xmlns:fx="http://javafx.com/fxml/1">
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
             <padding>
-                <Insets bottom="5" left="15" right="5" top="5"/>
+                <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
             <HBox alignment="CENTER_LEFT" spacing="5">
                 <Label fx:id="id" styleClass="cell_big_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE"/>
+                        <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="title" styleClass="cell_big_label" text="\$first"/>
+                <Label fx:id="title" styleClass="cell_big_label" text="\$first" />
             </HBox>
-            <FlowPane fx:id="tags"/>
-            <Label fx:id="duration" styleClass="cell_small_label" text="\$email"/>
-            <Label fx:id="activityLocation" styleClass="cell_small_label" text="\$email"/>
-            <Label fx:id="scheduledTime" styleClass="cell_small_label" text="\$address"/>
-
+            <FlowPane fx:id="tags" />
+         <HBox layoutX="25.0" layoutY="43.0" prefHeight="17.0" prefWidth="129.0">
+            <children>
+               <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../images/hourglass.png" />
+                  </image>
+               </ImageView>
+               <Label fx:id="duration" styleClass="cell_small_label" text="\$email" />
+            </children>
+            <padding>
+               <Insets top="4.0" />
+            </padding>
+         </HBox>
+         <HBox prefHeight="17.0" prefWidth="129.0">
+            <children>
+               <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../images/map.png" />
+                  </image>
+               </ImageView>
+                  <Label fx:id="activityLocation" styleClass="cell_small_label" text="\$email" />
+            </children>
+            <padding>
+               <Insets top="4.0" />
+            </padding>
+         </HBox>
+         <HBox layoutX="25.0" layoutY="63.0" prefHeight="17.0" prefWidth="129.0">
+            <children>
+               <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../images/calendar2.png" />
+                  </image>
+               </ImageView>
+                  <Label fx:id="scheduledTime" styleClass="cell_small_label" text="\$address" />
+            </children>
+            <padding>
+               <Insets top="4.0" />
+            </padding>
+         </HBox>
         </VBox>
         <rowConstraints>
-            <RowConstraints/>
+            <RowConstraints />
         </rowConstraints>
     </GridPane>
 </HBox>
