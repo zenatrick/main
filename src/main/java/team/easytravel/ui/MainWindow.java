@@ -248,7 +248,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleDeleteTrip();
             }
 
-            if(commandResult.isEditTrip()) {
+            if (commandResult.isEditTrip()) {
                 handleUpdateTrip();
             }
 

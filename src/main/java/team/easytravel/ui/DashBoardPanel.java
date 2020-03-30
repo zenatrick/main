@@ -27,29 +27,19 @@ public class DashBoardPanel extends UiPart<Region> {
 
     public DashBoardPanel(Trip triptoshow) {
         super(FXML);
-        this.budget.setText(triptoshow.getBudget().toString());
-        this.tripStartDate.setText(triptoshow.getStartDate().toString());
-        this.tripEndDate.setText(triptoshow.getEndDate().toString());
-        this.tripTitle.setText(triptoshow.getTitle().toString());
+        this.budget.setText("");
+        this.budget.setText("Budget: " + triptoshow.getBudget().toString());
+        this.tripStartDate.setText("Start: " + triptoshow.getStartDate().toString());
+        this.tripEndDate.setText("End: " + triptoshow.getEndDate().toString());
+        this.tripTitle.setText("Title: " + triptoshow.getTitle().toString());
     }
 
-    public DashBoardPanel(){
+    public DashBoardPanel() {
         super(FXML);
         this.budget.setText(" ");
         this.tripStartDate.setText("Hint: ");
         this.tripEndDate.setText("Use settrip to start a trip");
         this.tripTitle.setText("There is no trip set");
-    }
-
-
-    /**
-     * Updates the window
-     */
-    public void update(Trip updated) {
-        this.budget.setText(updated.getBudget().toString());
-        this.tripStartDate.setText(updated.getStartDate().toString());
-        this.tripEndDate.setText(updated.getEndDate().toString());
-        this.tripTitle.setText(updated.getTitle().toString());
     }
 
 }

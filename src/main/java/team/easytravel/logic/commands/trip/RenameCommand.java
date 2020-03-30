@@ -20,7 +20,7 @@ public class RenameCommand extends Command {
             + "Parameter: TITLE (must be between 1 to 50 characters)\n"
             + "Example: " + COMMAND_WORD + " Awesome trip";
 
-    public static final String MESSAGE_EDIT_TITLE_SUCCESS = "The trip is now named: $s";
+    public static final String MESSAGE_EDIT_TITLE_SUCCESS = "The trip is now named: %s";
 
     private final String newTitle;
 
@@ -53,8 +53,7 @@ public class RenameCommand extends Command {
                 false,
                 false,
                 false,
-                false ,
-                true );
+                false, true);
     }
 
 
