@@ -36,6 +36,7 @@ import team.easytravel.model.trip.DayScheduleEntry;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
 import team.easytravel.model.trip.exception.IllegalOperationException;
+import team.easytravel.model.util.attributes.Title;
 
 /**
  * Represents the in-memory model of the EasyTravel data.
@@ -184,6 +185,14 @@ public class ModelManager implements Model {
             throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
         }
         tripManager.setBudget(editedBudget);
+    }
+
+    @Override
+    public void setTitle(Title editedTitle){
+        if (!hasTrip()) {
+            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
+        tripManager.setTripTitle(editedTitle);
     }
 
     @Override

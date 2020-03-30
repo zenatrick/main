@@ -21,6 +21,7 @@ import team.easytravel.model.trip.Budget;
 import team.easytravel.model.trip.DayScheduleEntry;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
+import team.easytravel.model.util.attributes.Title;
 
 /**
  * The API of the Model component.
@@ -135,6 +136,11 @@ public interface Model {
      * Returns the exchange rate of the trip
      */
     double getExchangeRate();
+
+    /**
+     * set the title of the trip
+     */
+    void setTitle(Title title);
 
     /**
      * Returns an unmodifiable view of the schedule entry list of a specified day.

@@ -87,6 +87,13 @@ public class TripManager {
         return trip.getTitle();
     }
 
+    public void setTripTitle(Title title) {
+        if (!hasTrip) {
+            throw new IllegalOperationException(MESSAGE_ERROR_NO_TRIP);
+        }
+        this.trip.setTitle(title);
+    }
+
     public int getTripNumDays() {
         if (!hasTrip) {
             throw new IllegalOperationException(MESSAGE_ERROR_NO_TRIP);

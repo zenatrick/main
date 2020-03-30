@@ -16,7 +16,7 @@ public class Trip {
             + "be a maximum of 30 days apart.";
 
     // Trip data
-    private final Title title;
+    private Title title;
     private final Date startDate;
     private final Date endDate;
     private final int numDays;
@@ -40,6 +40,10 @@ public class Trip {
 
     public Title getTitle() {
         return title;
+    }
+
+    public void setTitle(Title newTitle) {
+        this.title = newTitle;
     }
 
     public int getNumDays() {
