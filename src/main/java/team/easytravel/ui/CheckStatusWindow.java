@@ -71,7 +71,7 @@ public class CheckStatusWindow extends UiPart<Stage> {
         double nominator = Double.parseDouble(percentage.split("/")[0]);
         double denominator = Double.parseDouble(percentage.split("/")[1]);
         packingListIndicator.getStylesheets().add("view/CheckStatus.css");;
-        packingListIndicator.setProgress(nominator/denominator);
+        packingListIndicator.setProgress(nominator / denominator);
         getRoot().show();
         getRoot().centerOnScreen();
     }
