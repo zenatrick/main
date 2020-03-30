@@ -7,7 +7,9 @@
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -35,38 +37,74 @@
                                        <Font name="Ink Free" size="24.0" />
                                     </font>
                                  </Label>
-                                 <Label fx:id="scheduleMessage" prefHeight="73.0" prefWidth="438.0" text="Label">
-                                    <padding>
-                                       <Insets left="5.0" />
-                                    </padding>
-                                    <font>
-                                       <Font name="Ink Free" size="16.0" />
-                                    </font>
-                                 </Label>
-                                 <Label fx:id="packingListMessage" prefHeight="83.0" prefWidth="438.0" text="Label">
-                                    <padding>
-                                       <Insets left="5.0" />
-                                    </padding>
-                                    <font>
-                                       <Font name="Ink Free" size="16.0" />
-                                    </font>
-                                 </Label>
-                                 <Label>
-                                    <graphic>
-                                       <ProgressBar fx:id="packingListIndicator" prefHeight="18.0" prefWidth="280.0" progress="0.0">
+                                 <HBox prefHeight="83.0" prefWidth="438.0">
+                                    <children>
+                                       <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@../images/calendar1.png" />
+                                          </image>
+                                          <HBox.margin>
+                                             <Insets left="5.0" top="30.0" />
+                                          </HBox.margin>
+                                       </ImageView>
+                                       <Label fx:id="scheduleMessage" prefHeight="73.0" prefWidth="438.0" text="Label">
                                           <padding>
                                              <Insets left="5.0" />
-                                          </padding></ProgressBar>
-                                    </graphic>
-                                 </Label>
-                                 <Label fx:id="fixedExpenseMessage" prefHeight="77.0" prefWidth="438.0" text="Label">
+                                          </padding>
+                                          <font>
+                                             <Font name="Ink Free" size="16.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="83.0" prefWidth="438.0">
+                                    <children>
+                                       <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@../images/checklist.png" />
+                                          </image>
+                                          <HBox.margin>
+                                             <Insets left="5.0" top="30.0" />
+                                          </HBox.margin>
+                                       </ImageView>
+                                       <Label fx:id="packingListMessage" prefHeight="73.0" prefWidth="438.0" text="Label">
+                                          <padding>
+                                             <Insets left="5.0" />
+                                          </padding>
+                                          <font>
+                                             <Font name="Ink Free" size="16.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <ProgressBar fx:id="packingListIndicator" prefHeight="18.0" prefWidth="280.0" progress="0.0">
                                     <padding>
                                        <Insets left="5.0" />
                                     </padding>
-                                    <font>
-                                       <Font name="Ink Free" size="16.0" />
-                                    </font>
-                                 </Label>
+                                    <VBox.margin>
+                                       <Insets left="30.0" />
+                                    </VBox.margin>
+                                 </ProgressBar>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@../images/cost.png" />
+                                          </image>
+                                          <HBox.margin>
+                                             <Insets left="5.0" top="30.0" />
+                                          </HBox.margin>
+                                       </ImageView>
+                                       <Label fx:id="fixedExpenseMessage" prefHeight="77.0" prefWidth="438.0" text="Label">
+                                          <padding>
+                                             <Insets left="5.0" />
+                                          </padding>
+                                          <font>
+                                             <Font name="Ink Free" size="16.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
                               </children>
                            </VBox>
                         </children>
