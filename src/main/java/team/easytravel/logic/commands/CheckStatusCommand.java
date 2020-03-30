@@ -2,6 +2,8 @@ package team.easytravel.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
 
@@ -22,7 +24,7 @@ public class CheckStatusCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        String statusMessage = model.getStatus();
+        List<String> statusMessage = model.getStatus();
 
         return new CommandResult(MESSAGE_SUCCESS, statusMessage);
     }

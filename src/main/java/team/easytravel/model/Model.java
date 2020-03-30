@@ -129,7 +129,7 @@ public interface Model {
     /**
      * Returns the status of the trip preparedness.
      */
-    String getStatus();
+    List<String> getStatus();
 
     /**
      * Returns the exchange rate of the trip

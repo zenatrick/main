@@ -1,9 +1,11 @@
 package team.easytravel.ui;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
 import team.easytravel.commons.core.LogsCenter;
 
@@ -12,15 +14,17 @@ import team.easytravel.commons.core.LogsCenter;
  */
 public class CheckStatusWindow extends UiPart<Stage> {
 
-    public static final String HELP_MESSAGE = "Your status:";
-
     private static final Logger logger = LogsCenter.getLogger(CheckStatusWindow.class);
     private static final String FXML = "CheckStatusWindow.fxml";
 
     @FXML
-    private Label statusMessage;
+    private Label scheduleMessage;
     @FXML
-    private Label infoMessage;
+    private Label packingListMessage;
+    @FXML
+    private Label fixedExpenseMessage;
+    @FXML
+    private ProgressBar packingListIndicator;
 
     /**
      * Creates a new HelpWindow.
@@ -30,7 +34,6 @@ public class CheckStatusWindow extends UiPart<Stage> {
     public CheckStatusWindow(Stage root) {
         super(FXML, root);
         root.setTitle("Check Status");
-        infoMessage.setText(HELP_MESSAGE);
     }
 
     /**
@@ -58,9 +61,17 @@ public class CheckStatusWindow extends UiPart<Stage> {
      *     </li>
      * </ul>
      */
-    public void show(String status) {
+    public void show(List<String> status) {
         logger.fine("Showing the trip's status in preparedness");
-        statusMessage.setText(status); //need change here
+        scheduleMessage.setText(status.get(0));
+        packingListMessage.setText(status.get(1));
+        fixedExpenseMessage.setText(status.get(2));
+        String packingList = status.get(1);
+        String percentage = packingList.split(":")[2];
+        double nominator = Double.parseDouble(percentage.split("/")[0]);
+        double denominator = Double.parseDouble(percentage.split("/")[1]);
+        packingListIndicator.getStylesheets().add("view/CheckStatus.css");;
+        packingListIndicator.setProgress(nominator/denominator);
         getRoot().show();
         getRoot().centerOnScreen();
     }

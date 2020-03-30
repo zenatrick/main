@@ -2,6 +2,7 @@ package team.easytravel.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -34,7 +35,9 @@ public class CommandResult {
     /**
      * Check Status Information should be shown to the user.
      */
-    private final String checkStatusString;
+    //private final String checkStatusString;
+
+    private final List<String> checkStatus;
 
     /**
      * The application should exit.
@@ -44,10 +47,10 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, String checkStatusString, boolean showHelp, boolean exit,
+    public CommandResult(String feedbackToUser, List<String> checkStatus, boolean showHelp, boolean exit,
                          boolean isCheckStatus, boolean isSetTrip, boolean isDeleteTrip) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.checkStatusString = checkStatusString;
+        this.checkStatus = checkStatus;
         this.showHelp = showHelp;
         this.exit = exit;
         this.isCheckStatus = isCheckStatus;
@@ -67,8 +70,8 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser, String checkStatusString) {
-        this(feedbackToUser, checkStatusString, false, false, true, false, false);
+    public CommandResult(String feedbackToUser, List<String> checkStatus) {
+        this(feedbackToUser, checkStatus, false, false, true, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -91,8 +94,8 @@ public class CommandResult {
         return isCheckStatus;
     }
 
-    public String getStatusFeedback() {
-        return checkStatusString;
+    public List<String> getStatusFeedback() {
+        return checkStatus;
     }
 
     public boolean isExit() {

@@ -129,16 +129,21 @@ public class ModelManager implements Model {
      * Returns the status of the trip.
      */
     @Override
-    public String getStatus() {
+    public List<String> getStatus() {
+        List<String> list = new ArrayList<>();
         if (!hasTrip()) {
-            return TripManager.MESSAGE_ERROR_NO_TRIP;
+            throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
         }
         String scheduleStatus = "Schedule Status:\n" + tripManager.getScheduleStatus() + "\n";
         String packingListManagerStatus = "Packing List Status:\n" + packingListManager.getStatus() + "\n";
         String fixedExpenseManagerStatus = "Expense Status:\n" + fixedExpenseManager.getStatus(getBudget()) + "\n";
-        return scheduleStatus
-                + packingListManagerStatus
-                + fixedExpenseManagerStatus;
+
+        list.add(scheduleStatus);
+        list.add(packingListManagerStatus);
+        list.add(fixedExpenseManagerStatus);
+
+        return list;
+
     }
 
     @Override

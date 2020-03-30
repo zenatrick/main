@@ -1,5 +1,6 @@
 package team.easytravel.ui;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -157,7 +158,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Opens the checkstatus window or focuses on it if it's already opened.
      */
-    public void handleShowStatus(String status) {
+    public void handleShowStatus(List<String> status) {
         if (!checkStatusWindow.isShowing()) {
             checkStatusWindow.show(status);
         } else {

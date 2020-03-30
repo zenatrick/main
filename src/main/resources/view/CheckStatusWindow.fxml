@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
 <fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -13,16 +18,48 @@
     </icons>
     <scene>
         <Scene>
-            <Pane prefHeight="420.0" prefWidth="437.0">
+            <Pane prefHeight="420.0" prefWidth="437.0" style="-fx-background-color: #0073e6;">
             <children>
-               <VBox prefHeight="177.0" prefWidth="438.0">
-                  <children>
-                     <Label prefHeight="25.0" prefWidth="444.0" text="Status of Trip: " />
-                     <Label prefHeight="42.0" prefWidth="439.0" text="Label" />
-                     <Label prefHeight="42.0" prefWidth="447.0" text="Label" />
-                     <Label prefHeight="49.0" prefWidth="444.0" text="Label" />
-                  </children>
-               </VBox>
+               <ScrollPane prefHeight="421.0" prefWidth="438.0">
+                 <content>
+                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="421.0" prefWidth="438.0" styleClass="checkStatus.css">
+                        <children>
+                           <VBox prefHeight="420.0" prefWidth="438.0">
+                              <children>
+                                 <Label alignment="CENTER" prefHeight="25.0" prefWidth="444.0" text="Status of Trip: ">
+                                    <font>
+                                       <Font size="18.0" />
+                                    </font>
+                                 </Label>
+                                 <Label fx:id="scheduleMessage" prefHeight="73.0" prefWidth="438.0" text="Label">
+                                    <padding>
+                                       <Insets left="5.0" />
+                                    </padding>
+                                 </Label>
+                                 <Label fx:id="packingListMessage" prefHeight="83.0" prefWidth="438.0" text="Label">
+                                    <padding>
+                                       <Insets left="5.0" />
+                                    </padding>
+                                 </Label>
+                                 <Label>
+                                    <graphic>
+                                       <ProgressBar fx:id="packingListIndicator" prefHeight="18.0" prefWidth="280.0" progress="0.0">
+                                          <padding>
+                                             <Insets left="5.0" />
+                                          </padding></ProgressBar>
+                                    </graphic>
+                                 </Label>
+                                 <Label fx:id="fixedExpenseMessage" prefHeight="77.0" prefWidth="438.0" text="Label">
+                                    <padding>
+                                       <Insets left="5.0" />
+                                    </padding>
+                                 </Label>
+                              </children>
+                           </VBox>
+                        </children>
+                     </AnchorPane>
+                 </content>
+               </ScrollPane>
             </children>
             </Pane>
         </Scene>
