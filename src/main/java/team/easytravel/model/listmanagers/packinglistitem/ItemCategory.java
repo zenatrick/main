@@ -10,14 +10,14 @@ public class ItemCategory {
     /**
      * The constant MESSAGE_CONSTRAINTS.
      */
-    public static final String MESSAGE_CONSTRAINTS = "Category must be made up of a single alphanumeric word that is "
+    public static final String MESSAGE_CONSTRAINTS = "Category must be made up of alphanumeric words that is "
             + "less than 30 characters long.";
 
     /**
      * The constant VALIDATION_REGEX.
      */
     // todo update regex to match constraints
-    public static final String VALIDATION_REGEX = "\\p{Alnum}{1,30}+";
+    public static final String VALIDATION_REGEX = "(?!\\s*$)[A-Za-z0-9\\s]{1,30}";
 
     public final String value;
 

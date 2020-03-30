@@ -355,15 +355,32 @@ public class PresetDataUtil {
     public static PackingListItem[] formalDinnerFemalePreset() {
         return new PackingListItem[] {
             new PackingListItem(new ItemName("Dress"), new Quantity(1),
-                    new ItemCategory("formalDinner"), false),
+                    new ItemCategory("formal dinner"), false),
             new PackingListItem(new ItemName("High heels"), new Quantity(1),
-                    new ItemCategory("formalDinner"), false),
+                    new ItemCategory("formal dinner"), false),
             new PackingListItem(new ItemName("Evening Bag"), new Quantity(1),
-                    new ItemCategory("formalDinner"), false),
+                    new ItemCategory("formal dinner"), false),
             new PackingListItem(new ItemName("Jewellery"), new Quantity(1),
-                    new ItemCategory("formalDinner"), false),
+                    new ItemCategory("formal dinner"), false),
             new PackingListItem(new ItemName("Makeup Bag"), new Quantity(1),
-                    new ItemCategory("formalDinner"), false)
+                    new ItemCategory("formal dinner"), false)
+        };
+    }
+
+    public static PackingListItem[] formalDinnerMalePreset() {
+        return new PackingListItem[] {
+                new PackingListItem(new ItemName("Shirt"), new Quantity(1),
+                        new ItemCategory("formal dinner male"), false),
+                new PackingListItem(new ItemName("Suit Jacket"), new Quantity(1),
+                        new ItemCategory("formal dinner male"), false),
+                new PackingListItem(new ItemName("Tie"), new Quantity(1),
+                        new ItemCategory("formal dinner male"), false),
+                new PackingListItem(new ItemName("Work Belt"), new Quantity(1),
+                        new ItemCategory("formal dinner male"), false),
+                new PackingListItem(new ItemName("Work Pants"), new Quantity(1),
+                        new ItemCategory("formal dinner male"), false),
+                new PackingListItem(new ItemName("Work Shoes"), new Quantity(1),
+                        new ItemCategory("formal dinner male"), false)
         };
     }
 

@@ -52,8 +52,11 @@ public class AddPresetCommandParser implements Parser<AddPresetCommand> {
         case "swimming":
             addPresetCommand = new AddPresetCommand(PresetDataUtil.swimmingPreset(), category);
             break;
-        case "formalDinnerFemale":
+        case "formal dinner f":
             addPresetCommand = new AddPresetCommand(PresetDataUtil.formalDinnerFemalePreset(), category);
+            break;
+        case "formal dinner m":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.formalDinnerMalePreset(), category);
             break;
         case "beach":
             addPresetCommand = new AddPresetCommand(PresetDataUtil.beachPreset(), category);

@@ -30,7 +30,13 @@ public class ItemName {
     public ItemName(String name) {
         requireNonNull(name);
         AppUtil.checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        value = name;
+        String[] arr = name.split(" ");
+        String cap = "";
+        for (String str : arr) {
+            str = str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+            cap += str + " ";
+        }
+        value = cap.substring(0, cap.length() - 1);
     }
 
     public static boolean isValidName(String test) {
