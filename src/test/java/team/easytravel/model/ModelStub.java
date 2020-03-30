@@ -332,7 +332,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public String getStatus() {
+    public List<String> getStatus() {
         throw new AssertionError("This method should not be called.");
     }
 
