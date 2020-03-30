@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Label?>
@@ -18,28 +19,37 @@
     </icons>
     <scene>
         <Scene>
-            <Pane prefHeight="420.0" prefWidth="437.0" style="-fx-background-color: #0073e6;">
+            <Pane prefHeight="420.0" prefWidth="437.0">
             <children>
                <ScrollPane prefHeight="421.0" prefWidth="438.0">
                  <content>
-                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="421.0" prefWidth="438.0" styleClass="checkStatus.css">
+                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="421.0" prefWidth="438.0" styleClass="anchor">
+                       <stylesheets>
+                           <URL value="@CheckStatus.css" />
+                       </stylesheets>
                         <children>
                            <VBox prefHeight="420.0" prefWidth="438.0">
                               <children>
                                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="444.0" text="Status of Trip: ">
                                     <font>
-                                       <Font size="18.0" />
+                                       <Font name="Ink Free" size="24.0" />
                                     </font>
                                  </Label>
                                  <Label fx:id="scheduleMessage" prefHeight="73.0" prefWidth="438.0" text="Label">
                                     <padding>
                                        <Insets left="5.0" />
                                     </padding>
+                                    <font>
+                                       <Font name="Ink Free" size="16.0" />
+                                    </font>
                                  </Label>
                                  <Label fx:id="packingListMessage" prefHeight="83.0" prefWidth="438.0" text="Label">
                                     <padding>
                                        <Insets left="5.0" />
                                     </padding>
+                                    <font>
+                                       <Font name="Ink Free" size="16.0" />
+                                    </font>
                                  </Label>
                                  <Label>
                                     <graphic>
@@ -53,6 +63,9 @@
                                     <padding>
                                        <Insets left="5.0" />
                                     </padding>
+                                    <font>
+                                       <Font name="Ink Free" size="16.0" />
+                                    </font>
                                  </Label>
                               </children>
                            </VBox>

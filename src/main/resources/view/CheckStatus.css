@@ -3,3 +3,8 @@
             to right, #ff7f50, #6a5acd
     );
 }
+
+.anchor {
+    -fx-background-image: url("/images/background.png");
+    -fx-background-size: cover;
+}

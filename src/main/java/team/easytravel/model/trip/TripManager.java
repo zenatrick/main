@@ -173,7 +173,7 @@ public class TripManager {
             }
         }
         if (daysWithOverlaps.isEmpty()) {
-            return "[✔] There is not overlapping programs in your schedule.";
+            return "[✔] There are no overlapping programs in your schedule.";
         }
         return "[❌] Day(s) "
                 + daysWithOverlaps.stream()
