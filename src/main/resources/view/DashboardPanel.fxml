@@ -1,27 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="78.0" prefWidth="600.0" styleClass="status-bar" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="tripTitle" alignment="CENTER" prefHeight="17.0" prefWidth="653.0" text="Label" />
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox prefHeight="21.0" prefWidth="600.0">
          <children>
-            <VBox prefHeight="62.0" prefWidth="304.0">
-               <children>
-                  <Label fx:id="tripStartDate" alignment="CENTER" prefHeight="17.0" prefWidth="727.0" text="Label" />
-                  <Label fx:id="tripEndDate" alignment="CENTER" prefHeight="17.0" prefWidth="744.0" text="Label" />
-               </children>
-            </VBox>
-            <VBox prefHeight="62.0" prefWidth="165.0">
-               <children>
-                  <Label fx:id="budget" alignment="CENTER" prefHeight="17.0" prefWidth="123.0" text="Label" />
-               </children>
-            </VBox>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="225.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../images/flight.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="tripTitle" prefHeight="17.0" prefWidth="142.0" text="Label" />
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="10.0" prefHeight="21.0" prefWidth="600.0">
+         <children>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="145.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../images/calendar1.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="tripStartDate" prefHeight="17.0" prefWidth="727.0" text="Label" />
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="34.0" prefHeight="21.0" prefWidth="600.0">
+         <children>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="250.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../images/cost.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="budget" prefHeight="17.0" prefWidth="732.0" text="Label" />
          </children>
       </HBox>
    </children>
