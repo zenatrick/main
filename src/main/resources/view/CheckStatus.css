@@ -1,0 +1,5 @@
+.progress-bar > .bar {
+    -fx-background-color: linear-gradient(
+            to right, #ff7f50, #6a5acd
+    );
+}
