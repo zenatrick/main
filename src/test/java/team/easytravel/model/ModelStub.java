@@ -21,6 +21,7 @@ import team.easytravel.model.trip.Budget;
 import team.easytravel.model.trip.DayScheduleEntry;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
+import team.easytravel.model.util.attributes.Title;
 
 /**
  * A default model stub that have all of the methods failing.
@@ -313,6 +314,11 @@ public class ModelStub implements Model {
 
     @Override
     public double getExchangeRate() {
+        throw new AssertionError("This method should not be called");
+    }
+
+    @Override
+    public void setTitle(Title title) {
         throw new AssertionError("This method should not be called");
     }
 

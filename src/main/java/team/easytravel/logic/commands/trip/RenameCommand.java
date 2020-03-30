@@ -6,7 +6,6 @@ import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
-import team.easytravel.model.trip.Budget;
 import team.easytravel.model.trip.TripManager;
 import team.easytravel.model.util.attributes.Title;
 

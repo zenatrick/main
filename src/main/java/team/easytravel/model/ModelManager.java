@@ -188,7 +188,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setTitle(Title editedTitle){
+    public void setTitle(Title editedTitle) {
         if (!hasTrip()) {
             throw new IllegalOperationException(TripManager.MESSAGE_ERROR_NO_TRIP);
         }
