@@ -21,24 +21,22 @@ public class DashBoardPanel extends UiPart<Region> {
     @FXML
     private Label tripStartDate;
     @FXML
-    private Label tripEndDate;
-    @FXML
     private Label budget;
 
     public DashBoardPanel(Trip triptoshow) {
         super(FXML);
         this.budget.setText("");
         this.budget.setText("Budget: " + triptoshow.getBudget().toString());
-        this.tripStartDate.setText("Start: " + triptoshow.getStartDate().toString());
-        this.tripEndDate.setText("End: " + triptoshow.getEndDate().toString());
+        this.tripStartDate.setText(
+                "Duration of trip: " + triptoshow.getStartDate().toString() + " ~ "
+                        + triptoshow.getEndDate().toString());
         this.tripTitle.setText("Title: " + triptoshow.getTitle().toString());
     }
 
     public DashBoardPanel() {
         super(FXML);
         this.budget.setText(" ");
-        this.tripStartDate.setText("Hint: ");
-        this.tripEndDate.setText("Use settrip to start a trip");
+        this.tripStartDate.setText("Hint: Use settrip to start a trip");
         this.tripTitle.setText("There is no trip set");
     }
 
