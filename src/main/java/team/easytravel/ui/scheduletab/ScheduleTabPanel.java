@@ -23,8 +23,6 @@ public class ScheduleTabPanel extends TabPanel {
 
     private static final String FXML = "scheduletab/ScheduleTabPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ScheduleTabPanel.class);
-    private final double width;
-    private final double height;
 
     @FXML
     private ScrollPane scrollPane;
@@ -32,16 +30,11 @@ public class ScheduleTabPanel extends TabPanel {
     @FXML
     private HBox scheduleView;
 
-    public ScheduleTabPanel(List<ObservableList<DayScheduleEntry>> schedule, double width, double height) {
+    public ScheduleTabPanel(List<ObservableList<DayScheduleEntry>> schedule) {
         super(FXML);
-        this.width = width;
-        this.height = height;
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         schedule.forEach(daySchedule -> {
             VBox vBox = new VBox();
-            scrollPane.setPrefHeight(height);
-            scrollPane.setPrefWidth(width);
-            vBox.setPrefHeight(height);
             vBox.setMinWidth(250);
             vBox.setPadding(new Insets(5, 10, 5, 0));
             ListView<DayScheduleEntry> listView = new ListView<>();
