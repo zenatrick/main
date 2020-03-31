@@ -12,6 +12,7 @@ import team.easytravel.commons.core.time.DateTime;
 import team.easytravel.commons.core.time.Time;
 import team.easytravel.commons.util.StringUtil;
 import team.easytravel.logic.commands.accommodationbooking.SortAccommodationBookingCommand;
+import team.easytravel.logic.commands.activity.SortActivityCommand;
 import team.easytravel.logic.commands.fixedexpense.SortFixedExpenseCommand;
 import team.easytravel.logic.commands.packinglist.SortItemCommand;
 import team.easytravel.logic.parser.exceptions.ParseException;
@@ -294,6 +295,32 @@ public class ParserUtil {
             throw new ParseException(Mode.MESSAGE_CONSTRAINTS);
         }
         return new Mode(trimmedMode);
+    }
+
+    /**
+     * Parse sort item parameters string.
+     *
+     * @param sortParameters the sort parameters
+     * @return the string
+     * @throws ParseException the parse exception
+     */
+    public static String parseSortActivityParameters(String sortParameters) throws ParseException {
+        requireNonNull(sortParameters);
+
+        switch (sortParameters) {
+        case SortActivityCommand.TITLE:
+            return SortActivityCommand.TITLE;
+
+        case SortActivityCommand.LOCATION:
+            return SortActivityCommand.LOCATION;
+
+        case SortActivityCommand.DURATION:
+            return SortActivityCommand.DURATION;
+
+        default:
+            throw new ParseException("Parameters must consist of only title/location/duration");
+        }
+
     }
 
     /**
