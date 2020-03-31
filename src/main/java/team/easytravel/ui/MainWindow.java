@@ -162,6 +162,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Handle list preset.
+     */
     public void handleListPreset() {
         if (!listPresetWindow.isShowing()) {
             listPresetWindow.show();

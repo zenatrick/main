@@ -54,7 +54,8 @@ public class CommandResult {
      */
 
     public CommandResult(String feedbackToUser, List<String> checkStatus, boolean showHelp, boolean exit,
-                         boolean isCheckStatus, boolean isSetTrip, boolean isDeleteTrip, boolean isEditTrip, boolean isListPreset) {
+                         boolean isCheckStatus, boolean isSetTrip, boolean isDeleteTrip,
+                         boolean isEditTrip, boolean isListPreset) {
 
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.checkStatus = checkStatus;
