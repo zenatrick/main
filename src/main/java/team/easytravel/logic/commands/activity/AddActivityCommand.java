@@ -25,6 +25,7 @@ public class AddActivityCommand extends Command {
             + "Parameters: "
             + PREFIX_ACTIVITY_TITLE + "TITLE "
             + PREFIX_ACTIVITY_DURATION + "DURATION "
+            + PREFIX_ACTIVITY_LOCATION + "LOCATION "
             + PREFIX_ACTIVITY_TAG + "TAGS...\n "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ACTIVITY_TITLE + "Osaka Castle View "
