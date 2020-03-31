@@ -128,7 +128,8 @@ public class MainWindow extends UiPart<Stage> {
         fixedExpenseTabPanel = new FixedExpenseTabPanel(logic.getFilteredFixedExpenseList(),
                 logic.getGuiSettings().getWindowHeight(), logic.getGuiSettings().getWindowWidth());
         switchTab(ScheduleTabPanel.TAB_NAME);
-        dashboardPlaceholder.getChildren().add(new DashBoardPanel(logic.getTrip()).getRoot());
+        dashboardPlaceholder.getChildren().clear();
+        dashboardPlaceholder.getChildren().add(new DashboardPanel(logic.getTrip()).getRoot());
     }
 
     /**
@@ -142,11 +143,16 @@ public class MainWindow extends UiPart<Stage> {
         packingListTabPanel = new NoTripTabPanel();
         fixedExpenseTabPanel = new NoTripTabPanel();
         switchTab(ScheduleTabPanel.TAB_NAME);
-        dashboardPlaceholder.getChildren().add(new DashBoardPanel().getRoot());
+        dashboardPlaceholder.getChildren().clear();
+        dashboardPlaceholder.getChildren().add(new DashboardPanel().getRoot());
     }
 
+    /**
+     * Handles the UI when trip is updated.
+     */
     public void handleUpdateTrip() {
-        dashboardPlaceholder.getChildren().add(new DashBoardPanel(logic.getTrip()).getRoot());
+        dashboardPlaceholder.getChildren().clear();
+        dashboardPlaceholder.getChildren().add(new DashboardPanel(logic.getTrip()).getRoot());
     }
 
     /**

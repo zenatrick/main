@@ -11,10 +11,10 @@ import team.easytravel.model.trip.Trip;
 /**
  * Panel containing the list of persons.
  */
-public class DashBoardPanel extends UiPart<Region> {
-    private static final String FXML = "DashBoardPanel.fxml";
+public class DashboardPanel extends UiPart<Region> {
+    private static final String FXML = "DashboardPanel.fxml";
 
-    private final Logger logger = LogsCenter.getLogger(DashBoardPanel.class);
+    private final Logger logger = LogsCenter.getLogger(DashboardPanel.class);
 
     @FXML
     private Label tripTitle;
@@ -23,7 +23,7 @@ public class DashBoardPanel extends UiPart<Region> {
     @FXML
     private Label budget;
 
-    public DashBoardPanel(Trip triptoshow) {
+    public DashboardPanel(Trip triptoshow) {
         super(FXML);
         this.budget.setText("");
         this.budget.setText("Budget: $" + triptoshow.getBudget().toString());
@@ -33,7 +33,7 @@ public class DashBoardPanel extends UiPart<Region> {
         this.tripTitle.setText("Title: " + triptoshow.getTitle().toString());
     }
 
-    public DashBoardPanel() {
+    public DashboardPanel() {
         super(FXML);
         this.budget.setText(" ");
         this.tripStartDate.setText("Hint: Use settrip to start a trip");
