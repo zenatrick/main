@@ -1,8 +1,8 @@
 package team.easytravel.logic.commands.packinglist;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.commons.core.Messages.MESSAGE_ITEMS_LISTED_OVERVIEW;
 
-import team.easytravel.commons.core.Messages;
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
@@ -38,7 +38,7 @@ public class FindItemCategoryCommand extends Command {
 
         model.updateFilteredPackingList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW, model.getFilteredPackingList().size()));
+                String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, model.getFilteredPackingList().size(), "item(s)"));
     }
 
     @Override

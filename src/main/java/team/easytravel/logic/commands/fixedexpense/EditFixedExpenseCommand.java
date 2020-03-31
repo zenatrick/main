@@ -1,7 +1,7 @@
 package team.easytravel.logic.commands.fixedexpense;
 
 import static java.util.Objects.requireNonNull;
-
+import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_CURRENCY;
@@ -11,7 +11,6 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Optional;
 
-import team.easytravel.commons.core.Messages;
 import team.easytravel.commons.core.index.Index;
 import team.easytravel.commons.util.CollectionUtil;
 import team.easytravel.logic.commands.Command;
@@ -64,7 +63,6 @@ public class EditFixedExpenseCommand extends Command {
                                    boolean exchangeRate) {
         requireNonNull(index);
         requireNonNull(editFixedExpenseDescriptor);
-        requireNonNull(exchangeRate);
 
         this.index = index;
         this.editFixedExpenseDescriptor = new EditFixedExpenseDescriptor(editFixedExpenseDescriptor);
@@ -83,7 +81,7 @@ public class EditFixedExpenseCommand extends Command {
         Double exchangeRate = model.getExchangeRate();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_FIXEDEXPENSE_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "fixed expense"));
         }
 
         FixedExpense fixedExpenseToEdit = lastShownList.get(index.getZeroBased());

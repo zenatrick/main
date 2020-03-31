@@ -1,12 +1,12 @@
 package team.easytravel.logic.commands.accommodationbooking;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.commons.core.Messages.MESSAGE_EMPTY_LIST_FORMAT;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Comparator;
 import java.util.List;
 
-import team.easytravel.commons.core.Messages;
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
@@ -53,7 +53,7 @@ public class SortAccommodationBookingCommand extends Command {
         List<AccommodationBooking> lastShownList = model.getFilteredAccommodationBookingList();
 
         if (lastShownList.size() < 1) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EMPTY_ACCOMMODATION_LIST);
+            throw new CommandException(String.format(MESSAGE_EMPTY_LIST_FORMAT, "accommodation booking"));
         }
 
         switch (sortParameter) {

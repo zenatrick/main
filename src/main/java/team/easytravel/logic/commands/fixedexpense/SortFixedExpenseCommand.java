@@ -1,12 +1,13 @@
 package team.easytravel.logic.commands.fixedexpense;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.commons.core.Messages.MESSAGE_EMPTY_LIST_FORMAT;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static team.easytravel.commons.core.Messages.MESSAGE_SORT_SUCCESS;
 
 import java.util.Comparator;
 import java.util.List;
 
-import team.easytravel.commons.core.Messages;
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
@@ -28,7 +29,8 @@ public class SortFixedExpenseCommand extends Command {
             + "[AMOUNT]" + "[DESCRIPTION]" + "[CATEGORY]\n"
             + "Example: " + COMMAND_WORD + " asc amount";
 
-    public static final String MESSAGE_SORT_FIXED_EXPENSE_SUCCESS = "Sorting of FixedExpense successful :)";
+    public static final String MESSAGE_SORT_FIXED_EXPENSE_SUCCESS = String.format(
+            MESSAGE_SORT_SUCCESS, "Fixed expenses");
 
     public static final String SORT_DESCENDING = "des";
     public static final String SORT_ASCENDING = "asc";
@@ -55,7 +57,7 @@ public class SortFixedExpenseCommand extends Command {
         List<FixedExpense> lastShownList = model.getFilteredFixedExpenseList();
 
         if (lastShownList.size() < 1) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EMPTY_FIXEDEXPENSE_LIST);
+            throw new CommandException(String.format(MESSAGE_EMPTY_LIST_FORMAT, "fixed expense"));
         }
 
         switch (sortParameter) {

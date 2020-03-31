@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.activity;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_DURATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_LOCATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_TAG;
@@ -12,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import team.easytravel.commons.core.Messages;
 import team.easytravel.commons.core.index.Index;
 import team.easytravel.commons.util.CollectionUtil;
 import team.easytravel.logic.commands.Command;
@@ -77,7 +77,7 @@ public class EditActivityCommand extends Command {
         List<Activity> lastShownList = model.getFilteredActivityList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "activity"));
         }
 
         Activity activityToEdit = lastShownList.get(index.getZeroBased());

@@ -1,11 +1,11 @@
 package team.easytravel.logic.commands.packinglist;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
 import static team.easytravel.model.Model.PREDICATE_SHOW_ALL_PACKING_LIST_ITEMS;
 
 import java.util.List;
 
-import team.easytravel.commons.core.Messages;
 import team.easytravel.commons.core.index.Index;
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
@@ -51,7 +51,8 @@ public class CheckItemCommand extends Command {
         List<PackingListItem> lastShownList = model.getFilteredPackingList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT,
+                    "packing list item"));
         }
 
         PackingListItem itemToCheck = lastShownList.get(index.getZeroBased());

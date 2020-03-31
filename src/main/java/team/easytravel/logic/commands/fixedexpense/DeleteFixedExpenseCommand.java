@@ -1,10 +1,10 @@
 package team.easytravel.logic.commands.fixedexpense;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
 
 import java.util.List;
 
-import team.easytravel.commons.core.Messages;
 import team.easytravel.commons.core.index.Index;
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
@@ -44,7 +44,8 @@ public class DeleteFixedExpenseCommand extends Command {
         List<FixedExpense> lastShownList = model.getFilteredFixedExpenseList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT,
+                    "transport booking"));
         }
 
         int currentBudget = model.getBudget();
@@ -52,6 +53,6 @@ public class DeleteFixedExpenseCommand extends Command {
         int updatedBudget = (int) (currentBudget - Double.parseDouble(fixedExpenseToDelete.getAmount().value));
         model.deleteFixedExpense(fixedExpenseToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_FIXEDEXPENSE_SUCCESS, fixedExpenseToDelete + "\n"
-        + "Your remaining budget is: " + updatedBudget));
+                + "Your remaining budget is: " + updatedBudget));
     }
 }

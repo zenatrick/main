@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.accommodationbooking;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACCOMMODATION_END_DAY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACCOMMODATION_LOCATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACCOMMODATION_NAME;
@@ -11,13 +12,11 @@ import static team.easytravel.model.Model.PREDICATE_SHOW_ALL_ACCOMMODATION_BOOKI
 import java.util.List;
 import java.util.Optional;
 
-import team.easytravel.commons.core.Messages;
 import team.easytravel.commons.core.index.Index;
 import team.easytravel.commons.util.CollectionUtil;
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
-import team.easytravel.logic.commands.transportbooking.EditTransportBookingCommand;
 import team.easytravel.model.Model;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBooking;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationName;
@@ -83,7 +82,7 @@ public class EditAccommodationBookingCommand extends Command {
         List<AccommodationBooking> lastShownList = model.getFilteredAccommodationBookingList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ACCOMMODATION_BOOKING_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "accommodation booking"));
         }
 
         AccommodationBooking accommodationBookingToEdit = lastShownList.get(index.getZeroBased());
@@ -142,20 +141,12 @@ public class EditAccommodationBookingCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
+        return other == this // short circuit if same object
+                || (other instanceof EditAccommodationBookingCommand // instanceof handles nulls
+                && index.equals(((EditAccommodationBookingCommand) other).index))
+                && editAccommodationBookingDescriptor.equals(((EditAccommodationBookingCommand) other)
+                .editAccommodationBookingDescriptor); // state check
 
-        // instanceof handles nulls
-        if (!(other instanceof EditTransportBookingCommand)) {
-            return false;
-        }
-
-        // state check
-        EditAccommodationBookingCommand e = (EditAccommodationBookingCommand) other;
-        return index.equals(e.index)
-                && editAccommodationBookingDescriptor.equals(e.editAccommodationBookingDescriptor);
     }
 
     /**

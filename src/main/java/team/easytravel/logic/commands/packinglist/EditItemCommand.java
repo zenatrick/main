@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.packinglist;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_QUANTITY;
@@ -9,7 +10,6 @@ import static team.easytravel.model.Model.PREDICATE_SHOW_ALL_PACKING_LIST_ITEMS;
 import java.util.List;
 import java.util.Optional;
 
-import team.easytravel.commons.core.Messages;
 import team.easytravel.commons.core.index.Index;
 import team.easytravel.commons.util.CollectionUtil;
 import team.easytravel.logic.commands.Command;
@@ -87,7 +87,8 @@ public class EditItemCommand extends Command {
         List<PackingListItem> lastShownList = model.getFilteredPackingList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT,
+                    "packing list item"));
         }
 
         PackingListItem itemToEdit = lastShownList.get(index.getZeroBased());

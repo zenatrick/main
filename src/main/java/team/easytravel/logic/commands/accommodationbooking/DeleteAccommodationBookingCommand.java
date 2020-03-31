@@ -1,10 +1,10 @@
 package team.easytravel.logic.commands.accommodationbooking;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
 
 import java.util.List;
 
-import team.easytravel.commons.core.Messages;
 import team.easytravel.commons.core.index.Index;
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
@@ -45,7 +45,7 @@ public class DeleteAccommodationBookingCommand extends Command {
         List<AccommodationBooking> lastShownList = model.getFilteredAccommodationBookingList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ACCOMMODATION_BOOKING_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "accommodation booking"));
         }
 
         AccommodationBooking accommodationBookingToDelete = lastShownList.get(targetIndex.getZeroBased());
