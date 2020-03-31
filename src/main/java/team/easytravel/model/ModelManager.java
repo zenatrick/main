@@ -574,5 +574,4 @@ public class ModelManager implements Model {
                 && tripManager.equals(other.tripManager)
                 && filteredScheduleEntryLists.equals(other.filteredScheduleEntryLists);
     }
-
 }

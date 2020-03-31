@@ -98,12 +98,14 @@ public class EditTransportBookingCommand extends Command {
         }
 
         DayScheduleEntry entry = DayScheduleEntry.fromTransportBooking(transportBookingToEdit);
+        model.unscheduleTransport(entry);
         try {
             model.scheduleTransport(editedTransportBooking);
         } catch (IllegalOperationException e) {
+            model.scheduleTransport(transportBookingToEdit);
             throw new CommandException(e.getMessage());
         }
-        model.unscheduleActivity(entry);
+
         model.setTransportBooking(transportBookingToEdit, editedTransportBooking);
         model.updateFilteredTransportBookingList(PREDICATE_SHOW_ALL_TRANSPORT_BOOKINGS);
         return new CommandResult(String.format(MESSAGE_EDIT_TRANSPORT_BOOKING_SUCCESS, editedTransportBooking));

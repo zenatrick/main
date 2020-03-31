@@ -89,13 +89,13 @@ public class EditActivityCommand extends Command {
 
         if (activityToEdit.getScheduledDateTime().isPresent()) {
             DayScheduleEntry entry = DayScheduleEntry.fromActivity(activityToEdit);
-
+            model.unscheduleActivity(entry);
             try {
                 model.scheduleActivity(editedActivity);
             } catch (IllegalOperationException e) {
+                model.scheduleActivity(activityToEdit);
                 throw new CommandException(e.getMessage());
             }
-            model.unscheduleActivity(entry);
         }
         model.setActivity(activityToEdit, editedActivity);
         model.updateFilteredActivityList(Model.PREDICATE_SHOW_ALL_ACTIVITIES);
