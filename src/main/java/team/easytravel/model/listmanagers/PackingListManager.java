@@ -85,8 +85,7 @@ public class PackingListManager implements ReadOnlyPackingListManager {
     public String getStatus() {
         int numOfItems = uniquePackingList.size();
         if (numOfItems == 0) {
-            return "[❗] There is no item in the packing list. You can add items to your packing list using the "
-                    + "\"additem\" command.";
+            return "[❗] Packed items: " + "0/0";
         }
         long count = uniquePackingList.stream().filter(PackingListItem::getIsChecked).count();
         if (count == numOfItems) {

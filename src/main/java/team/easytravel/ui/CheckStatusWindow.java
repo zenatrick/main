@@ -66,15 +66,22 @@ public class CheckStatusWindow extends UiPart<Stage> {
     public void show(List<String> status) {
         logger.fine("Showing the trip's status in preparedness");
         scheduleMessage.setText(status.get(0));
-        packingListMessage.setText(status.get(1));
         fixedExpenseMessage.setText(status.get(2));
         accommodationMessage.setText(status.get(3));
-        //String packingList = status.get(1);
-        //String percentage = packingList.split(":")[2];
-        //double nominator = Double.parseDouble(percentage.split("/")[0]);
-        //double denominator = Double.parseDouble(percentage.split("/")[1]);
+
+        String packingList = status.get(1);
+        String percentage = packingList.split(":")[2];
+        double nominator = Double.parseDouble(percentage.split("/")[0]);
+        double denominator = Double.parseDouble(percentage.split("/")[1]);
         packingListIndicator.getStylesheets().add("view/CheckStatus.css");
-        //packingListIndicator.setProgress(nominator / denominator);
+
+        if (denominator == 0.0) {
+            packingListMessage.setText("[❗] There are no items in the packing list. "
+                    + "You can add items to your packing list using the " + "\"additem\" command.");
+        } else {
+            packingListMessage.setText(status.get(1));
+            packingListIndicator.setProgress(nominator / denominator);
+        }
         getRoot().show();
         getRoot().centerOnScreen();
     }

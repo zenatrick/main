@@ -21,18 +21,18 @@
     </icons>
     <scene>
         <Scene>
-            <Pane prefHeight="420.0" prefWidth="437.0">
+            <Pane minHeight="480" minWidth="480">
             <children>
-               <ScrollPane prefHeight="421.0" prefWidth="438.0">
+               <ScrollPane prefHeight="480.0" prefWidth="481.0">
                  <content>
-                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="421.0" prefWidth="438.0" styleClass="anchor">
+                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="480.0" prefWidth="480.0" styleClass="anchor">
                        <stylesheets>
                            <URL value="@CheckStatus.css" />
                        </stylesheets>
                         <children>
-                           <VBox prefHeight="420.0" prefWidth="438.0">
+                           <VBox prefHeight="480.0" prefWidth="480.0">
                               <children>
-                                 <Label alignment="CENTER" prefHeight="25.0" prefWidth="444.0" text="Status of Trip: ">
+                                 <Label alignment="CENTER" prefHeight="30.0" prefWidth="467.0" text="Status of Trip: ">
                                     <font>
                                        <Font name="Bell MT" size="24.0" />
                                     </font>
@@ -44,10 +44,10 @@
                                              <Image url="@../images/calendar1.png" />
                                           </image>
                                           <HBox.margin>
-                                             <Insets left="5.0" top="30.0" />
+                                             <Insets left="10.0" top="30.0" />
                                           </HBox.margin>
                                        </ImageView>
-                                       <Label fx:id="scheduleMessage" prefHeight="73.0" prefWidth="438.0" text="Label" wrapText="true">
+                                       <Label fx:id="scheduleMessage" prefHeight="83.0" prefWidth="440.0" text="Label" wrapText="true">
                                           <padding>
                                              <Insets left="5.0" />
                                           </padding>
@@ -64,10 +64,10 @@
                                              <Image url="@../images/checklist.png" />
                                           </image>
                                           <HBox.margin>
-                                             <Insets left="5.0" top="30.0" />
+                                             <Insets left="10.0" top="30.0" />
                                           </HBox.margin>
                                        </ImageView>
-                                       <Label fx:id="packingListMessage" prefHeight="73.0" prefWidth="438.0" text="Label" wrapText="true">
+                                       <Label fx:id="packingListMessage" prefHeight="98.0" prefWidth="409.0" text="Label" wrapText="true">
                                           <padding>
                                              <Insets left="5.0" />
                                           </padding>
@@ -78,44 +78,44 @@
                                     </children>
                                  </HBox>
                                  <ProgressBar fx:id="packingListIndicator" prefHeight="18.0" prefWidth="280.0" progress="0.0">
-                                    <padding>
-                                       <Insets left="5.0" />
-                                    </padding>
                                     <VBox.margin>
-                                       <Insets left="30.0" />
+                                       <Insets bottom="20.0" left="38.0" />
                                     </VBox.margin>
                                  </ProgressBar>
-                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <HBox prefHeight="79.0" prefWidth="480.0">
                                     <children>
                                        <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                           <image>
                                              <Image url="@../images/cost.png" />
                                           </image>
                                           <HBox.margin>
-                                             <Insets left="5.0" top="30.0" />
+                                             <Insets left="10.0" top="30.0" />
                                           </HBox.margin>
                                        </ImageView>
-                                       <Label fx:id="fixedExpenseMessage" prefHeight="77.0" prefWidth="438.0" text="Label" wrapText="true">
+                                       <Label fx:id="fixedExpenseMessage" prefHeight="93.0" prefWidth="409.0" text="Label" wrapText="true">
                                           <padding>
                                              <Insets left="5.0" />
                                           </padding>
                                           <font>
                                              <Font name="Bell MT" size="16.0" />
                                           </font>
+                                          <HBox.margin>
+                                             <Insets />
+                                          </HBox.margin>
                                        </Label>
                                     </children>
                                  </HBox>
-                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <HBox prefHeight="83.0" prefWidth="438.0">
                                     <children>
                                        <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                           <image>
-                                             <Image url="@../images/cost.png" />
+                                             <Image url="@../images/hotel.png" />
                                           </image>
                                           <HBox.margin>
-                                             <Insets left="5.0" top="30.0" />
+                                             <Insets left="10.0" top="30.0" />
                                           </HBox.margin>
                                        </ImageView>
-                                       <Label fx:id="accommodationMessage" prefHeight="77.0" prefWidth="438.0" text="Label" wrapText="true">
+                                       <Label fx:id="accommodationMessage" prefHeight="89.0" prefWidth="409.0" text="Label" wrapText="true">
                                           <padding>
                                              <Insets left="5.0" />
                                           </padding>

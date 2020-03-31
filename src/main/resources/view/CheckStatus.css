@@ -5,7 +5,8 @@
 }
 
 .anchor {
-    -fx-background-image: url("/images/background.png");
+    /*-fx-background-image: url("/images/background.png");*/
+    -fx-background-color: #E6D7BE;
     -fx-background-size: cover;
     -fx-background-attachment: fixed;
 }
