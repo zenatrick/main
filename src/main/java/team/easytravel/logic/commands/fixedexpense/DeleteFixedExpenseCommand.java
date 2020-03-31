@@ -47,9 +47,11 @@ public class DeleteFixedExpenseCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
         }
 
+        int currentBudget = model.getBudget();
         FixedExpense fixedExpenseToDelete = lastShownList.get(targetIndex.getZeroBased());
+        int updatedBudget = (int) (currentBudget - Double.parseDouble(fixedExpenseToDelete.getAmount().value));
         model.deleteFixedExpense(fixedExpenseToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_FIXEDEXPENSE_SUCCESS, fixedExpenseToDelete + "\n"
-        + model.getBudget()));
+        + "Your remaining budget is: " + updatedBudget));
     }
 }
