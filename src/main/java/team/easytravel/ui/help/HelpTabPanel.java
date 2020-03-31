@@ -17,8 +17,6 @@ public class HelpTabPanel extends TabPanel {
 
     private static final String FXML = "helptab/HelpPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TransportBookingTabPanel.class);
-    private static final String USERGUIDE_URL =
-            "https://github.com/AY1920S2-CS2103T-W17-3/main/blob/master/docs/UserGuide.adoc";
 
     @FXML
     private ListView<String> helpListView;

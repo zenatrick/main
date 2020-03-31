@@ -35,7 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    //private HelpWindow helpWindow;
     private CheckStatusWindow checkStatusWindow;
     private ListPresetWindow listPresetWindow;
 
@@ -74,7 +74,7 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
 
-        helpWindow = new HelpWindow();
+        //helpWindow = new HelpWindow();
         checkStatusWindow = new CheckStatusWindow();
         listPresetWindow = new ListPresetWindow();
 
@@ -145,9 +145,11 @@ public class MainWindow extends UiPart<Stage> {
         transportBookingTabPanel = new NoTripTabPanel();
         packingListTabPanel = new NoTripTabPanel();
         fixedExpenseTabPanel = new NoTripTabPanel();
+        helpTabPanel = new HelpTabPanel(logic.getHelpQuestions());
         switchTab(ScheduleTabPanel.TAB_NAME);
         dashboardPlaceholder.getChildren().clear();
         dashboardPlaceholder.getChildren().add(new DashboardPanel().getRoot());
+
     }
 
     /**
@@ -158,17 +160,17 @@ public class MainWindow extends UiPart<Stage> {
         dashboardPlaceholder.getChildren().add(new DashboardPanel(logic.getTrip()).getRoot());
     }
 
-    /**
-     * Opens the help window or focuses on it if it's already opened.
-     */
-    @FXML
-    public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-        } else {
-            helpWindow.focus();
-        }
-    }
+//    /**
+//     * Opens the help window or focuses on it if it's already opened.
+//     */
+//    @FXML
+//    public void handleHelp() {
+//        if (!helpWindow.isShowing()) {
+//            helpWindow.show();
+//        } else {
+//            helpWindow.focus();
+//        }
+//    }
 
     /**
      * Handle list preset.
@@ -205,7 +207,7 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        helpWindow.hide();
+       //helpWindow.hide();
         primaryStage.hide();
     }
 
@@ -214,7 +216,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void switchTab(String tabName) {
         tabPanelPlaceholder.getChildren().clear();
-
         switch (tabName) {
         case ScheduleTabPanel.TAB_NAME:
             tabPanelPlaceholder.getChildren().add(scheduleTabPanel.getRoot());
@@ -256,7 +257,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
-                handleHelp();
+                switchTab(HelpTabPanel.TAB_NAME);
             }
 
             if (commandResult.isCheckStatus()) {

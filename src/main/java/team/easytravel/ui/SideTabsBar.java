@@ -60,5 +60,7 @@ public class SideTabsBar extends UiPart<Region> {
     }
 
     @FXML
-    private void handleSwitchToHelpTab() {consumer.accept(HelpTabPanel.TAB_NAME);}
+    private void handleSwitchToHelpTab() {
+        consumer.accept(HelpTabPanel.TAB_NAME);
+    }
 }
