@@ -66,7 +66,8 @@ public class EditBudgetCommand extends Command {
                 false,
                 false,
                 false,
-                true);
+                true,
+                false);
     }
 
 

@@ -15,6 +15,7 @@ import team.easytravel.logic.parser.exceptions.ParseException;
 import team.easytravel.ui.accommodationtab.AccommodationBookingTabPanel;
 import team.easytravel.ui.activitiestab.ActivityTabPanel;
 import team.easytravel.ui.expensestab.FixedExpenseTabPanel;
+import team.easytravel.ui.packinglisttab.ListPresetWindow;
 import team.easytravel.ui.packinglisttab.PackingListTabPanel;
 import team.easytravel.ui.scheduletab.ScheduleTabPanel;
 import team.easytravel.ui.transportationtab.TransportBookingTabPanel;
@@ -35,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private CheckStatusWindow checkStatusWindow;
+    private ListPresetWindow listPresetWindow;
 
     // Individual list panels
     private TabPanel scheduleTabPanel;
@@ -72,6 +74,7 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         checkStatusWindow = new CheckStatusWindow();
+        listPresetWindow = new ListPresetWindow();
 
         // Set up the list panels
         if (logic.hasTrip()) {
@@ -159,6 +162,14 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    public void handleListPreset() {
+        if (!listPresetWindow.isShowing()) {
+            listPresetWindow.show();
+        } else {
+            listPresetWindow.focus();
+        }
+    }
+
     /**
      * Opens the checkstatus window or focuses on it if it's already opened.
      */
@@ -234,6 +245,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isCheckStatus()) {
                 handleShowStatus(commandResult.getStatusFeedback());
+            }
+
+            if (commandResult.isListPreset()) {
+                handleListPreset();
             }
 
             if (commandResult.isExit()) {

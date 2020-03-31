@@ -40,8 +40,6 @@ public class CommandResult {
     /**
      * Check Status Information should be shown to the user.
      */
-    //private final String checkStatusString;
-
     private final List<String> checkStatus;
 
     /**
@@ -49,12 +47,14 @@ public class CommandResult {
      */
     private final boolean exit;
 
+    private final boolean isListPreset;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
 
     public CommandResult(String feedbackToUser, List<String> checkStatus, boolean showHelp, boolean exit,
-                         boolean isCheckStatus, boolean isSetTrip, boolean isDeleteTrip, boolean isEditTrip) {
+                         boolean isCheckStatus, boolean isSetTrip, boolean isDeleteTrip, boolean isEditTrip, boolean isListPreset) {
 
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.checkStatus = checkStatus;
@@ -64,6 +64,7 @@ public class CommandResult {
         this.isSetTrip = isSetTrip;
         this.isDeleteTrip = isDeleteTrip;
         this.isEditTrip = isEditTrip;
+        this.isListPreset = isListPreset;
     }
 
     /**
@@ -71,7 +72,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, null, false, false, false, false, false, false);
+        this(feedbackToUser, null, false, false, false, false, false, false, false);
     }
 
     /**
@@ -79,7 +80,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, List<String> checkStatus) {
-        this(feedbackToUser, checkStatus, false, false, true, false, false, false);
+        this(feedbackToUser, checkStatus, false, false, true, false, false, false, false);
 
     }
 
@@ -105,6 +106,10 @@ public class CommandResult {
 
     public boolean isCheckStatus() {
         return isCheckStatus;
+    }
+
+    public boolean isListPreset() {
+        return isListPreset;
     }
 
     public List<String> getStatusFeedback() {

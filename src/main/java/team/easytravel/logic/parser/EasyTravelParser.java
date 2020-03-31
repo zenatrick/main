@@ -37,6 +37,7 @@ import team.easytravel.logic.commands.packinglist.EditItemCommand;
 import team.easytravel.logic.commands.packinglist.FindItemCategoryCommand;
 import team.easytravel.logic.commands.packinglist.FindItemCommand;
 import team.easytravel.logic.commands.packinglist.ListItemCommand;
+import team.easytravel.logic.commands.packinglist.ListPresetCommand;
 import team.easytravel.logic.commands.packinglist.SortItemCommand;
 import team.easytravel.logic.commands.packinglist.UncheckItemCommand;
 import team.easytravel.logic.commands.schedule.ScheduleCommand;
@@ -204,6 +205,9 @@ public class EasyTravelParser {
 
         case ListItemCommand.COMMAND_WORD:
             return new ListItemCommand();
+
+        case ListPresetCommand.COMMAND_WORD:
+            return new ListPresetCommand();
 
         case SortItemCommand.COMMAND_WORD:
             return new SortItemCommandParser().parse(arguments);

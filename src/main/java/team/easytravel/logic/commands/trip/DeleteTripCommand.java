@@ -25,6 +25,6 @@ public class DeleteTripCommand extends Command {
         }
 
         model.deleteTrip();
-        return new CommandResult(MESSAGE_SUCCESS, null, false, false, false, false, true , false);
+        return new CommandResult(MESSAGE_SUCCESS, null, false, false, false, false, true , false, false);
     }
 }

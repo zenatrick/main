@@ -53,7 +53,7 @@ public class RenameCommand extends Command {
                 false,
                 false,
                 false,
-                false, true);
+                false, true, false);
     }
 
 
