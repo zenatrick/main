@@ -189,7 +189,7 @@ public class TripManager {
         if (daysWithOverlaps.isEmpty()) {
             return "[✔] There are no overlapping programs in your schedule.";
         }
-        return "[❌] Day(s) "
+        return "[❌] Day "
                 + daysWithOverlaps.stream()
                 .map(Index::getOneBased)
                 .map(Object::toString)

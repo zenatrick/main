@@ -85,7 +85,7 @@ public class AccommodationBookingManager implements ReadOnlyAccommodationBooking
      * Sorts the accommodation bookings based on the start day.
      */
     public void sortAccommodationBookings() {
-        accommodationBookings.sort((x, y) -> (x.getStartDay().value - y.getStartDay().value));
+        accommodationBookings.sort(Comparator.comparingInt(x -> x.getStartDay().value));
     }
 
     /**
@@ -101,7 +101,7 @@ public class AccommodationBookingManager implements ReadOnlyAccommodationBooking
      * @return the status for accommodation booking
      */
     public String getStatus(int endDay) {
-        StringBuilder result = new StringBuilder("[❌] Accommodation for day");
+        StringBuilder result = new StringBuilder("[❌] Accommodation for night");
         boolean accommodationBookingIsOk = true;
         boolean[] accommodationDayCheck = new boolean[endDay - 1];
 
@@ -116,7 +116,7 @@ public class AccommodationBookingManager implements ReadOnlyAccommodationBooking
             }
 
             if (accommodationBookingIsOk) {
-                return "[✔] Accommodation Booking is completed for all days.";
+                return "[✔] Accommodation Booking is completed for all nights.";
             }
         }
 
