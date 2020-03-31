@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import team.easytravel.commons.core.GuiSettings;
 import team.easytravel.commons.core.LogsCenter;
 import team.easytravel.logic.Logic;
+import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.logic.parser.exceptions.ParseException;
