@@ -15,6 +15,7 @@ import team.easytravel.logic.commands.accommodationbooking.SortAccommodationBook
 import team.easytravel.logic.commands.activity.SortActivityCommand;
 import team.easytravel.logic.commands.fixedexpense.SortFixedExpenseCommand;
 import team.easytravel.logic.commands.packinglist.SortItemCommand;
+import team.easytravel.logic.commands.transportbooking.SortTransportBookingCommand;
 import team.easytravel.logic.parser.exceptions.ParseException;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationName;
 import team.easytravel.model.listmanagers.accommodationbooking.Day;
@@ -319,6 +320,32 @@ public class ParserUtil {
 
         default:
             throw new ParseException("Parameters must consist of only title/location/duration");
+        }
+
+    }
+
+    /**
+     * Parse sort item parameters string.
+     *
+     * @param sortParameters the sort parameters
+     * @return the string
+     * @throws ParseException the parse exception
+     */
+    public static String parseSortTransportParameters(String sortParameters) throws ParseException {
+        requireNonNull(sortParameters);
+
+        switch (sortParameters) {
+        case SortTransportBookingCommand.MODE:
+            return SortTransportBookingCommand.MODE;
+
+        case SortTransportBookingCommand.STARTLOCATION:
+            return SortTransportBookingCommand.STARTLOCATION;
+
+        case SortTransportBookingCommand.ENDLOCATION:
+            return SortTransportBookingCommand.ENDLOCATION;
+
+        default:
+            throw new ParseException("Parameters must consist of only Mode/startlocation/endlocation");
         }
 
     }

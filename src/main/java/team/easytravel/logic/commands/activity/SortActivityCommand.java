@@ -25,8 +25,8 @@ public class SortActivityCommand extends Command {
             + " asc or des in the displayed activity\n"
             + "asc sorts by ascending order while des sorts by descending order\n"
             + "Parameters : SORTIDENTIFIER (must be asc or des) "
-            + "[name] " + "[location] \n"
-            + "Example: " + COMMAND_WORD + " asc name";
+            + "[title] " + "[location] [duration] \n"
+            + "Example: " + COMMAND_WORD + " asc title";
 
     public static final String MESSAGE_SORT_ACTIVITY_SUCCESS = "Sorting of Activity successful :)";
 

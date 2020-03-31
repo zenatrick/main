@@ -309,6 +309,12 @@ public class ModelManager implements Model {
         filteredTransportBookingList.setPredicate(predicate);
     }
 
+    @Override
+    public void sortTransportList(Comparator<TransportBooking> cmp) {
+        requireNonNull(cmp);
+        transportBookingManager.sortTransportList(cmp);
+    }
+
     // ========== FixedExpenseManager ==========
 
     @Override

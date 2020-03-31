@@ -2,11 +2,13 @@ package team.easytravel.model.listmanagers;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import team.easytravel.commons.core.time.Date;
+import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
 import team.easytravel.model.util.uniquelist.UniqueList;
 
@@ -40,6 +42,13 @@ public class TransportBookingManager implements ReadOnlyTransportBookingManager 
      */
     public void setTransportBookings(List<TransportBooking> transportBookings) {
         this.transportBookings.setElements(transportBookings);
+    }
+
+    /**
+     * Sorts the fixed expense list with the specified comparator.
+     */
+    public void sortTransportList(Comparator<TransportBooking> cmp) {
+        transportBookings.sort(cmp);
     }
 
     /**

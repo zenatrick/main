@@ -212,6 +212,13 @@ public interface Model {
      */
     void updateFilteredTransportBookingList(Predicate<TransportBooking> predicate);
 
+    /**
+     * Sorts the given transport list.
+     *
+     * @param cmp the given target transport.
+     */
+    void sortTransportList(Comparator<TransportBooking> cmp);
+
     // ========== FixedExpenseManager ==========
 
     /**
