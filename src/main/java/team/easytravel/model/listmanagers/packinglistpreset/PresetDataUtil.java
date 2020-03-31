@@ -100,15 +100,15 @@ public class PresetDataUtil {
      */
     public static PackingListItem[] swimmingPreset() {
         return new PackingListItem[] {
+            new PackingListItem(new ItemName("Goggles"), new Quantity(1),
+                    new ItemCategory("swimming"), false),
+            new PackingListItem(new ItemName("Sandals"), new Quantity(1),
+                    new ItemCategory("swimming"), false),
             new PackingListItem(new ItemName("Swimsuit"), new Quantity(1),
                     new ItemCategory("swimming"), false),
             new PackingListItem(new ItemName("Swimsuit Coverup"), new Quantity(1),
                     new ItemCategory("swimming"), false),
-            new PackingListItem(new ItemName("Sandals"), new Quantity(1),
-                    new ItemCategory("swimming"), false),
-            new PackingListItem(new ItemName("Goggles"), new Quantity(1),
-                    new ItemCategory("swimming"), false),
-            new PackingListItem(new ItemName("Beach towel"), new Quantity(1),
+            new PackingListItem(new ItemName("Towel"), new Quantity(1),
                     new ItemCategory("swimming"), false)
         };
     }

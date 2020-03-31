@@ -6,6 +6,7 @@ import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
+import team.easytravel.model.trip.TripManager;
 
 public class ListPresetCommand extends Command {
     public static final String COMMAND_WORD = "listpreset";
@@ -18,6 +19,10 @@ public class ListPresetCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasTrip()) {
+            throw new CommandException(TripManager.MESSAGE_ERROR_NO_TRIP);
+        }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS), null, false, false, false, false, false, false, true);
     }
