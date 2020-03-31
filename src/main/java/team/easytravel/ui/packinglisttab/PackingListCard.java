@@ -74,6 +74,10 @@ public class PackingListCard extends UiPart<Region> {
             imageCategory = new Image("/images/dress.png");
         } else if (item.getItemCategory().value.equals("formal dinner male")) {
             imageCategory = new Image("/images/suit.png");
+        } else if (item.getItemCategory().value.equals("snow")) {
+            imageCategory = new Image("/images/snow.png");
+        } else if (item.getItemCategory().value.equals("gym")) {
+            imageCategory = new Image("/images/gym.png");
         } else if (item.getItemCategory().value.equals("essentials")) {
             imageCategory = new Image("/images/exclamation.png");
         } else if (item.getItemCategory().value.equals("hiking")) {

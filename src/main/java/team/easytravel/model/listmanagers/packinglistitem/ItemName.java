@@ -33,7 +33,7 @@ public class ItemName {
         String[] arr = name.split(" ");
         String cap = "";
         for (String str : arr) {
-            str = str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+            str = str.substring(0, 1).toUpperCase() + str.substring(1);
             cap += str + " ";
         }
         value = cap.substring(0, cap.length() - 1);

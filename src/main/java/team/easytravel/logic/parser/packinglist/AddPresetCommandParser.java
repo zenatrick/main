@@ -40,10 +40,10 @@ public class AddPresetCommandParser implements Parser<AddPresetCommand> {
         case "hiking":
             addPresetCommand = new AddPresetCommand(PresetDataUtil.hikingPreset(), category);
             break;
-        case "clothesFemale":
+        case "clothes female":
             addPresetCommand = new AddPresetCommand(PresetDataUtil.clothesFemalePreset(), category);
             break;
-        case "clothesMale":
+        case "clothes male":
             addPresetCommand = new AddPresetCommand(PresetDataUtil.clothesMalePreset(), category);
             break;
         case "toiletries":
@@ -84,6 +84,12 @@ public class AddPresetCommandParser implements Parser<AddPresetCommand> {
             break;
         case "camping":
             addPresetCommand = new AddPresetCommand(PresetDataUtil.campingPreset(), category);
+            break;
+        case "snow":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.snowPreset(), category);
+            break;
+        case "gym":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.gymPreset(), category);
             break;
         default:
             throw new ParseException(String.format("Sorry! Preset does not exist."));

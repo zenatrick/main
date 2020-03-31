@@ -81,9 +81,10 @@ class ItemNameTest {
         // Equal Hashcode
         assertEquals(new ItemName("Hashcode").hashCode(), new ItemName("Hashcode").hashCode());
 
-        //Non Equal Hashcode
+        //Equal Hashcode
+        assertEquals(new ItemName("hashcode").hashCode(), new ItemName("Hashcode").hashCode());
+
+        //Not Equal Hashcode
         assertNotEquals(new ItemName("hashcode").hashCode(), new ItemName("HashCode").hashCode());
-
-
     }
 }

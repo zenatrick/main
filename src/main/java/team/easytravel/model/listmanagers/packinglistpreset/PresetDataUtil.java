@@ -367,20 +367,91 @@ public class PresetDataUtil {
         };
     }
 
+    /**
+     * Formal dinner male preset packing list item [ ].
+     *
+     * @return the packing list item [ ]
+     */
     public static PackingListItem[] formalDinnerMalePreset() {
         return new PackingListItem[] {
-                new PackingListItem(new ItemName("Shirt"), new Quantity(1),
-                        new ItemCategory("formal dinner male"), false),
-                new PackingListItem(new ItemName("Suit Jacket"), new Quantity(1),
-                        new ItemCategory("formal dinner male"), false),
-                new PackingListItem(new ItemName("Tie"), new Quantity(1),
-                        new ItemCategory("formal dinner male"), false),
-                new PackingListItem(new ItemName("Work Belt"), new Quantity(1),
-                        new ItemCategory("formal dinner male"), false),
-                new PackingListItem(new ItemName("Work Pants"), new Quantity(1),
-                        new ItemCategory("formal dinner male"), false),
-                new PackingListItem(new ItemName("Work Shoes"), new Quantity(1),
-                        new ItemCategory("formal dinner male"), false)
+            new PackingListItem(new ItemName("Shirt"), new Quantity(1),
+                    new ItemCategory("formal dinner male"), false),
+            new PackingListItem(new ItemName("Suit Jacket"), new Quantity(1),
+                    new ItemCategory("formal dinner male"), false),
+            new PackingListItem(new ItemName("Tie"), new Quantity(1),
+                    new ItemCategory("formal dinner male"), false),
+            new PackingListItem(new ItemName("Work Belt"), new Quantity(1),
+                    new ItemCategory("formal dinner male"), false),
+            new PackingListItem(new ItemName("Work Pants"), new Quantity(1),
+                    new ItemCategory("formal dinner male"), false),
+            new PackingListItem(new ItemName("Work Shoes"), new Quantity(1),
+                    new ItemCategory("formal dinner male"), false)
+        };
+    }
+
+    /**
+     * Snow preset packing list item [ ].
+     *
+     * @return the packing list item [ ]
+     */
+    public static PackingListItem[] snowPreset() {
+        return new PackingListItem[] {
+            new PackingListItem(new ItemName("Helmet"), new Quantity(1),
+                    new ItemCategory("snow"), false),
+            new PackingListItem(new ItemName("Lip Balm"), new Quantity(3),
+                    new ItemCategory("snow"), false),
+            new PackingListItem(new ItemName("Long Johns"), new Quantity(2),
+                    new ItemCategory("snow"), false),
+            new PackingListItem(new ItemName("Long sleeved Shirt"), new Quantity(3),
+                    new ItemCategory("snow"), false),
+            new PackingListItem(new ItemName("Scarf"), new Quantity(1),
+                    new ItemCategory("snow"), false),
+            new PackingListItem(new ItemName("Ski Poles"), new Quantity(1),
+                    new ItemCategory("snow"), false),
+            new PackingListItem(new ItemName("Ski Snowboard Rental"),
+                    new Quantity(1), new ItemCategory("snow"), false),
+            new PackingListItem(new ItemName("Snow Gear Rental"), new Quantity(1),
+                    new ItemCategory("snow"), false),
+            new PackingListItem(new ItemName("Snow Gloves"), new Quantity(1),
+                    new ItemCategory("snow"), false),
+            new PackingListItem(new ItemName("Snow Goggles"), new Quantity(1),
+                    new ItemCategory("snow"), false),
+            new PackingListItem(new ItemName("Snow Hat"), new Quantity(1),
+                    new ItemCategory("snow"), false),
+            new PackingListItem(new ItemName("Snow Jacket"), new Quantity(1),
+                    new ItemCategory("snow"), false),
+            new PackingListItem(new ItemName("Snow Pants"), new Quantity(1),
+                    new ItemCategory("snow"), false),
+            new PackingListItem(new ItemName("Sunscreen"), new Quantity(1),
+                    new ItemCategory("snow"), false),
+            new PackingListItem(new ItemName("Winter boots"), new Quantity(1),
+                    new ItemCategory("snow"), false)
+        };
+    }
+
+    /**
+     * Gym preset packing list item [ ].
+     *
+     * @return the packing list item [ ]
+     */
+    public static PackingListItem[] gymPreset() {
+        return new PackingListItem[] {
+            new PackingListItem(new ItemName("Gym Bag"), new Quantity(1),
+                    new ItemCategory("gym"), false),
+            new PackingListItem(new ItemName("Gym Shoes"), new Quantity(1),
+                new ItemCategory("gym"), false),
+            new PackingListItem(new ItemName("Gym Shorts"), new Quantity(1),
+                    new ItemCategory("gym"), false),
+            new PackingListItem(new ItemName("Gym Tshirt"), new Quantity(1),
+                    new ItemCategory("gym"), false),
+            new PackingListItem(new ItemName("Gym Towel"), new Quantity(1),
+                    new ItemCategory("gym"), false),
+            new PackingListItem(new ItemName("Headphone"), new Quantity(1),
+                    new ItemCategory("gym"), false),
+            new PackingListItem(new ItemName("Padlock"), new Quantity(1),
+                    new ItemCategory("gym"), false),
+            new PackingListItem(new ItemName("Water Bottle"), new Quantity(1),
+                    new ItemCategory("gym"), false)
         };
     }
 
