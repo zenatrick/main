@@ -1,7 +1,8 @@
-package team.easytravel.logic.parser.fixedexpense;
+package team.easytravel.logic.parser.accommodationbooking;
+
 
 import team.easytravel.commons.core.Messages;
-import team.easytravel.logic.commands.fixedexpense.SortFixedExpenseCommand;
+import team.easytravel.logic.commands.accommodationbooking.SortAccommodationBookingCommand;
 import team.easytravel.logic.parser.Parser;
 import team.easytravel.logic.parser.ParserUtil;
 import team.easytravel.logic.parser.exceptions.ParseException;
@@ -9,7 +10,7 @@ import team.easytravel.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a SortFixedExpenseCommand.
  */
-public class SortFixedExpenseCommandParser implements Parser<SortFixedExpenseCommand> {
+public class SortAccommodationBookingParser implements Parser<SortAccommodationBookingCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the SortFixedExpenseCommand
@@ -17,19 +18,19 @@ public class SortFixedExpenseCommandParser implements Parser<SortFixedExpenseCom
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public SortFixedExpenseCommand parse(String args) throws ParseException {
+    public SortAccommodationBookingCommand parse(String args) throws ParseException {
         try {
-            if (args.length() < 1) { //The case where nothing is placed after sortexpense
+            if (args.length() < 1) { //The case where nothing is placed after sortacc
                 throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                        SortFixedExpenseCommand.MESSAGE_USAGE));
+                        SortAccommodationBookingCommand.MESSAGE_USAGE));
             }
             String parseSortIdentifier = ParserUtil.parseSortIdentifier(args.substring(1, 4));
-            String parseSortParameter = ParserUtil.parseSortExpParameters(args.substring(4).trim().toLowerCase());
+            String parseSortParameter = ParserUtil.parseSortAccParameters(args.substring(4).trim().toLowerCase());
 
-            return new SortFixedExpenseCommand((parseSortIdentifier), parseSortParameter);
+            return new SortAccommodationBookingCommand((parseSortIdentifier), parseSortParameter);
         } catch (ParseException pe) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    SortFixedExpenseCommand.MESSAGE_USAGE), pe);
+                    SortAccommodationBookingCommand.MESSAGE_USAGE), pe);
         }
     }
 

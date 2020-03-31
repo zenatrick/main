@@ -414,6 +414,13 @@ public interface Model {
 
     void updateFilteredActivityList(Predicate<Activity> predicate);
 
+    /**
+     * Sorts the given activity list.
+     *
+     * @param cmp the given target activity.
+     */
+    void sortActivityList(Comparator<Activity> cmp);
+
     // ========== AccommodationBookingManager ==========
 
     /**
@@ -480,6 +487,13 @@ public interface Model {
      * @param toCheck the given accommodation booking.
      */
     boolean isOverlappingWithOthers(AccommodationBooking toCheck);
+
+    /**
+     * Sorts the given accommodation list.
+     *
+     * @param cmp the given target accommodation.
+     */
+    void sortAccommodationList(Comparator<AccommodationBooking> cmp);
 
 
     // ========== Util ==========

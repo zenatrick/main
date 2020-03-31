@@ -30,7 +30,11 @@ public class Messages {
 
     public static final String MESSAGE_ACTIVITY_LISTED_OVERVIEW = "%1$d activities listed!";
 
+    public static final String MESSAGE_INVALID_EMPTY_ACTIVITY_LIST = "The Activity List is empty";
+
     //--------Accommodation Booking Messages-----------//
     public static final String MESSAGE_INVALID_ACCOMMODATION_BOOKING_DISPLAYED_INDEX = "The Accommodation Booking "
             + "index provided is invalid";
+
+    public static final String MESSAGE_INVALID_EMPTY_ACCOMMODATION_LIST = "The Accommodation List is empty";
 }

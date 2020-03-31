@@ -11,6 +11,7 @@ import team.easytravel.commons.core.time.Date;
 import team.easytravel.commons.core.time.DateTime;
 import team.easytravel.commons.core.time.Time;
 import team.easytravel.commons.util.StringUtil;
+import team.easytravel.logic.commands.accommodationbooking.SortAccommodationBookingCommand;
 import team.easytravel.logic.commands.fixedexpense.SortFixedExpenseCommand;
 import team.easytravel.logic.commands.packinglist.SortItemCommand;
 import team.easytravel.logic.parser.exceptions.ParseException;
@@ -204,7 +205,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code sortParameters} is invalid.
      */
-    public static String parseSortParameters(String sortParameters) throws ParseException {
+    public static String parseSortExpParameters(String sortParameters) throws ParseException {
         requireNonNull(sortParameters);
 
         switch (sortParameters) {
@@ -217,8 +218,38 @@ public class ParserUtil {
         case SortFixedExpenseCommand.DESCRIPTION:
             return SortFixedExpenseCommand.DESCRIPTION;
 
+        case SortAccommodationBookingCommand.LOCATION:
+            return SortAccommodationBookingCommand.LOCATION;
+
+        case SortAccommodationBookingCommand.NAME:
+            return SortAccommodationBookingCommand.NAME;
+
+
         default:
             throw new ParseException("Parameters must consist of only amount/description/category");
+        }
+
+    }
+
+    /**
+     * Parses a {@code String sortParameters} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code sortParameters} is invalid.
+     */
+    public static String parseSortAccParameters(String sortParameters) throws ParseException {
+        requireNonNull(sortParameters);
+
+        switch (sortParameters) {
+        case SortAccommodationBookingCommand.LOCATION:
+            return SortAccommodationBookingCommand.LOCATION;
+
+        case SortAccommodationBookingCommand.NAME:
+            return SortAccommodationBookingCommand.NAME;
+
+
+        default:
+            throw new ParseException("Parameters must consist of only name/location");
         }
 
     }

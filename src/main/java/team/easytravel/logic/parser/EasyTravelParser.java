@@ -14,6 +14,7 @@ import team.easytravel.logic.commands.accommodationbooking.AddAccommodationBooki
 import team.easytravel.logic.commands.accommodationbooking.ClearAccommodationBookingCommand;
 import team.easytravel.logic.commands.accommodationbooking.DeleteAccommodationBookingCommand;
 import team.easytravel.logic.commands.accommodationbooking.EditAccommodationBookingCommand;
+import team.easytravel.logic.commands.accommodationbooking.SortAccommodationBookingCommand;
 import team.easytravel.logic.commands.activity.AddActivityCommand;
 import team.easytravel.logic.commands.activity.ClearActivityCommand;
 import team.easytravel.logic.commands.activity.DeleteActivityCommand;
@@ -51,6 +52,7 @@ import team.easytravel.logic.commands.trip.SetTripCommand;
 import team.easytravel.logic.parser.accommodationbooking.AddAccommodationBookingCommandParser;
 import team.easytravel.logic.parser.accommodationbooking.DeleteAccommodationBookingCommandParser;
 import team.easytravel.logic.parser.accommodationbooking.EditAccommodationBookingCommandParser;
+import team.easytravel.logic.parser.accommodationbooking.SortAccommodationBookingParser;
 import team.easytravel.logic.parser.activity.AddActivityCommandParser;
 import team.easytravel.logic.parser.activity.DeleteActivityCommandParser;
 import team.easytravel.logic.parser.activity.EditActivityCommandParser;
@@ -234,6 +236,9 @@ public class EasyTravelParser {
 
         case EditAccommodationBookingCommand.COMMAND_WORD:
             return new EditAccommodationBookingCommandParser().parse(arguments);
+
+        case SortAccommodationBookingCommand.COMMAND_WORD:
+            return new SortAccommodationBookingParser().parse(arguments);
 
         // ========================== Invalid Commands =========================
         default:

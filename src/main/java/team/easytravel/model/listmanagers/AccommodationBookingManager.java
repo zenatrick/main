@@ -2,11 +2,13 @@ package team.easytravel.model.listmanagers;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.IntStream;
 
 import javafx.collections.ObservableList;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBooking;
+import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.util.uniquelist.UniqueList;
 
 /**
@@ -85,6 +87,13 @@ public class AccommodationBookingManager implements ReadOnlyAccommodationBooking
      */
     public void sortAccommodationBookings() {
         accommodationBookings.sort((x, y) -> (x.getStartDay().value - y.getStartDay().value));
+    }
+
+    /**
+     * Sorts the fixed expense list with the specified comparator.
+     */
+    public void sortAccommodationBookings(Comparator<AccommodationBooking> cmp) {
+        accommodationBookings.sort(cmp);
     }
 
     /**

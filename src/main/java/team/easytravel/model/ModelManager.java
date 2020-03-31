@@ -464,6 +464,12 @@ public class ModelManager implements Model {
         filteredActivityList.setPredicate(predicate);
     }
 
+    @Override
+    public void sortActivityList(Comparator<Activity> cmp) {
+        requireNonNull(cmp);
+        activityManager.sortActivityList(cmp);
+    }
+
     // ========== AccommodationBookingManager ==========
 
     @Override
@@ -514,6 +520,12 @@ public class ModelManager implements Model {
     @Override
     public boolean isOverlappingWithOthers(AccommodationBooking toCheck) {
         return getFilteredAccommodationBookingList().stream().anyMatch(x -> x.isOverlapping(toCheck));
+    }
+
+    @Override
+    public void sortAccommodationList(Comparator<AccommodationBooking> cmp) {
+        requireNonNull(cmp);
+        accommodationBookingManager.sortAccommodationBookings(cmp);
     }
 
     // ========== Util ==========

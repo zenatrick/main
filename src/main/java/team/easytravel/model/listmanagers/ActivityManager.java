@@ -2,6 +2,7 @@ package team.easytravel.model.listmanagers;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -9,6 +10,7 @@ import java.util.stream.Collectors;
 import javafx.collections.ObservableList;
 import team.easytravel.commons.core.time.Date;
 import team.easytravel.model.listmanagers.activity.Activity;
+import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
 import team.easytravel.model.util.uniquelist.UniqueList;
 
 /**
@@ -49,6 +51,12 @@ public class ActivityManager implements ReadOnlyActivityManager {
     public void resetData(ReadOnlyActivityManager newData) {
         requireNonNull(newData);
         setActivities(newData.getActivityList());
+    }
+    /**
+     * Sorts the fixed expense list with the specified comparator.
+     */
+    public void sortActivityList(Comparator<Activity> cmp) {
+        activities.sort(cmp);
     }
 
     /**
