@@ -98,4 +98,3 @@ public class SortActivityCommand extends Command {
 
     }
 }
-

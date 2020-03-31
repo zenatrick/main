@@ -1,6 +1,5 @@
 package team.easytravel.logic.parser.accommodationbooking;
 
-
 import team.easytravel.commons.core.Messages;
 import team.easytravel.logic.commands.accommodationbooking.SortAccommodationBookingCommand;
 import team.easytravel.logic.parser.Parser;

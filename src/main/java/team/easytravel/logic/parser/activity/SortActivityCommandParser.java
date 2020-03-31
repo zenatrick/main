@@ -1,6 +1,5 @@
 package team.easytravel.logic.parser.activity;
 
-
 import team.easytravel.commons.core.Messages;
 import team.easytravel.logic.commands.activity.SortActivityCommand;
 import team.easytravel.logic.parser.Parser;

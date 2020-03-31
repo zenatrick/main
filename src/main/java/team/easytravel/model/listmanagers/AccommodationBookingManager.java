@@ -8,7 +8,6 @@ import java.util.stream.IntStream;
 
 import javafx.collections.ObservableList;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBooking;
-import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.util.uniquelist.UniqueList;
 
 /**

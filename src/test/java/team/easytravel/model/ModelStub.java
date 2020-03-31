@@ -213,6 +213,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void sortActivityList(Comparator<Activity> cmp) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ReadOnlyAccommodationBookingManager getAccommodationBookingManager() {
         throw new AssertionError("This method should not be called.");
     }
@@ -254,6 +259,11 @@ public class ModelStub implements Model {
 
     @Override
     public boolean isOverlappingWithOthers(AccommodationBooking toCheck) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void sortAccommodationList(Comparator<AccommodationBooking> cmp) {
         throw new AssertionError("This method should not be called.");
     }
 

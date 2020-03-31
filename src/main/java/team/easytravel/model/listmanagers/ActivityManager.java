@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import javafx.collections.ObservableList;
 import team.easytravel.commons.core.time.Date;
 import team.easytravel.model.listmanagers.activity.Activity;
-import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
 import team.easytravel.model.util.uniquelist.UniqueList;
 
 /**

@@ -37,4 +37,7 @@ public class Messages {
             + "index provided is invalid";
 
     public static final String MESSAGE_INVALID_EMPTY_ACCOMMODATION_LIST = "The Accommodation List is empty";
+
+    //--------Transport Booking Messages-----------//
+    public static final String MESSAGE_INVALID_EMPTY_TRANSPORT_LIST = "The Activity List is empty";
 }
