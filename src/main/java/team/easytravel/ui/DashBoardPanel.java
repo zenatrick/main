@@ -26,7 +26,7 @@ public class DashBoardPanel extends UiPart<Region> {
     public DashBoardPanel(Trip triptoshow) {
         super(FXML);
         this.budget.setText("");
-        this.budget.setText("Budget: " + triptoshow.getBudget().toString());
+        this.budget.setText("Budget: $" + triptoshow.getBudget().toString());
         this.tripStartDate.setText(
                 "Duration of trip: " + triptoshow.getStartDate().toString() + " ~ "
                         + triptoshow.getEndDate().toString());
