@@ -138,10 +138,13 @@ public class ModelManager implements Model {
         String scheduleStatus = "Schedule Status:\n" + tripManager.getScheduleStatus() + "\n";
         String packingListManagerStatus = "Packing List Status:\n" + packingListManager.getStatus() + "\n";
         String fixedExpenseManagerStatus = "Expense Status:\n" + fixedExpenseManager.getStatus(getBudget()) + "\n";
+        String accomodationManagerStatus = "Accommodation Status: \n" +
+                accommodationBookingManager.getStatus(tripManager.getDuration()) + "\n";
 
         list.add(scheduleStatus);
         list.add(packingListManagerStatus);
         list.add(fixedExpenseManagerStatus);
+        list.add(accomodationManagerStatus);
 
         return list;
 

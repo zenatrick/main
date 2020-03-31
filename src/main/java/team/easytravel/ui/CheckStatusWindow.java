@@ -25,6 +25,8 @@ public class CheckStatusWindow extends UiPart<Stage> {
     private Label fixedExpenseMessage;
     @FXML
     private ProgressBar packingListIndicator;
+    @FXML
+    private Label accommodationMessage;
 
     /**
      * Creates a new HelpWindow.
@@ -66,12 +68,13 @@ public class CheckStatusWindow extends UiPart<Stage> {
         scheduleMessage.setText(status.get(0));
         packingListMessage.setText(status.get(1));
         fixedExpenseMessage.setText(status.get(2));
-        String packingList = status.get(1);
-        String percentage = packingList.split(":")[2];
-        double nominator = Double.parseDouble(percentage.split("/")[0]);
-        double denominator = Double.parseDouble(percentage.split("/")[1]);
+        accommodationMessage.setText(status.get(3));
+        //String packingList = status.get(1);
+        //String percentage = packingList.split(":")[2];
+        //double nominator = Double.parseDouble(percentage.split("/")[0]);
+        //double denominator = Double.parseDouble(percentage.split("/")[1]);
         packingListIndicator.getStylesheets().add("view/CheckStatus.css");
-        packingListIndicator.setProgress(nominator / denominator);
+        //packingListIndicator.setProgress(nominator / denominator);
         getRoot().show();
         getRoot().centerOnScreen();
     }

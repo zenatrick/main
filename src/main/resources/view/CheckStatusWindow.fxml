@@ -34,7 +34,7 @@
                               <children>
                                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="444.0" text="Status of Trip: ">
                                     <font>
-                                       <Font name="Ink Free" size="24.0" />
+                                       <Font name="Bell MT" size="24.0" />
                                     </font>
                                  </Label>
                                  <HBox prefHeight="83.0" prefWidth="438.0">
@@ -47,12 +47,12 @@
                                              <Insets left="5.0" top="30.0" />
                                           </HBox.margin>
                                        </ImageView>
-                                       <Label fx:id="scheduleMessage" prefHeight="73.0" prefWidth="438.0" text="Label">
+                                       <Label fx:id="scheduleMessage" prefHeight="73.0" prefWidth="438.0" text="Label" wrapText="true">
                                           <padding>
                                              <Insets left="5.0" />
                                           </padding>
                                           <font>
-                                             <Font name="Ink Free" size="16.0" />
+                                             <Font name="Bell MT" size="16.0" />
                                           </font>
                                        </Label>
                                     </children>
@@ -67,12 +67,12 @@
                                              <Insets left="5.0" top="30.0" />
                                           </HBox.margin>
                                        </ImageView>
-                                       <Label fx:id="packingListMessage" prefHeight="73.0" prefWidth="438.0" text="Label">
+                                       <Label fx:id="packingListMessage" prefHeight="73.0" prefWidth="438.0" text="Label" wrapText="true">
                                           <padding>
                                              <Insets left="5.0" />
                                           </padding>
                                           <font>
-                                             <Font name="Ink Free" size="16.0" />
+                                             <Font name="Bell MT" size="16.0" />
                                           </font>
                                        </Label>
                                     </children>
@@ -95,12 +95,32 @@
                                              <Insets left="5.0" top="30.0" />
                                           </HBox.margin>
                                        </ImageView>
-                                       <Label fx:id="fixedExpenseMessage" prefHeight="77.0" prefWidth="438.0" text="Label">
+                                       <Label fx:id="fixedExpenseMessage" prefHeight="77.0" prefWidth="438.0" text="Label" wrapText="true">
                                           <padding>
                                              <Insets left="5.0" />
                                           </padding>
                                           <font>
-                                             <Font name="Ink Free" size="16.0" />
+                                             <Font name="Bell MT" size="16.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@../images/cost.png" />
+                                          </image>
+                                          <HBox.margin>
+                                             <Insets left="5.0" top="30.0" />
+                                          </HBox.margin>
+                                       </ImageView>
+                                       <Label fx:id="accommodationMessage" prefHeight="77.0" prefWidth="438.0" text="Label" wrapText="true">
+                                          <padding>
+                                             <Insets left="5.0" />
+                                          </padding>
+                                          <font>
+                                             <Font name="Bell MT" size="16.0" />
                                           </font>
                                        </Label>
                                     </children>

@@ -92,8 +92,8 @@ public class AccommodationBookingManager implements ReadOnlyAccommodationBooking
      * @param endDay the number of days of the trip
      * @return the status for accommodation booking
      */
-    public String checkAccommodationBookingStatus(int endDay) {
-        StringBuilder result = new StringBuilder("Accommodation for day");
+    public String getStatus(int endDay) {
+        StringBuilder result = new StringBuilder("[❌] Accommodation for day");
         boolean accommodationBookingIsOk = true;
         boolean[] accommodationDayCheck = new boolean[endDay - 1];
 
@@ -108,7 +108,7 @@ public class AccommodationBookingManager implements ReadOnlyAccommodationBooking
             }
 
             if (accommodationBookingIsOk) {
-                return "Accommodation Booking is completed for all days.";
+                return "[✔] Accommodation Booking is completed for all days.";
             }
         }
 

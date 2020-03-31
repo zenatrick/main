@@ -161,6 +161,13 @@ public class TripManager {
     }
 
     /**
+     * Returns the duration of the trip
+     */
+    public int getDuration() {
+        return this.trip.getNumDays();
+    }
+
+    /**
      * Returns the status of this trip's schedule.
      */
     public String getScheduleStatus() {
