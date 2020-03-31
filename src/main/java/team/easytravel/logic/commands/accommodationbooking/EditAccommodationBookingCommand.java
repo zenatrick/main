@@ -100,16 +100,19 @@ public class EditAccommodationBookingCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_END_DAY);
         }
 
-        if (model.isOverlappingWithOthers(editedAccommodationBooking)) {
-            throw new CommandException(MESSAGE_OVERLAPPING_ACCOMMODATION_BOOKING);
-        }
-
         if (!accommodationBookingToEdit.isSame(editedAccommodationBooking)
                 && model.hasAccommodationBooking(editedAccommodationBooking)) {
             throw new CommandException(MESSAGE_DUPLICATE_ACCOMMODATION_BOOKING);
         }
 
-        model.setAccommodationBooking(accommodationBookingToEdit, editedAccommodationBooking);
+        model.deleteAccommodationBooking(accommodationBookingToEdit);
+        if (model.isOverlappingWithOthers(editedAccommodationBooking)) {
+            model.addAccommodationBooking(accommodationBookingToEdit);
+            throw new CommandException(MESSAGE_OVERLAPPING_ACCOMMODATION_BOOKING);
+        } else {
+            model.addAccommodationBooking(editedAccommodationBooking);
+        }
+
         model.updateFilteredAccommodationBookingList(PREDICATE_SHOW_ALL_ACCOMMODATION_BOOKINGS);
         return new CommandResult(String.format(MESSAGE_EDIT_ACCOMMODATION_BOOKING_SUCCESS, editedAccommodationBooking));
     }
