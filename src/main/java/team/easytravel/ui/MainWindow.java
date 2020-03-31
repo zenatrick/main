@@ -16,6 +16,7 @@ import team.easytravel.ui.accommodationtab.AccommodationBookingTabPanel;
 import team.easytravel.ui.activitiestab.ActivityTabPanel;
 import team.easytravel.ui.expensestab.FixedExpenseTabPanel;
 import team.easytravel.ui.packinglisttab.ListPresetWindow;
+import team.easytravel.ui.help.HelpTabPanel;
 import team.easytravel.ui.packinglisttab.PackingListTabPanel;
 import team.easytravel.ui.scheduletab.ScheduleTabPanel;
 import team.easytravel.ui.transportationtab.TransportBookingTabPanel;
@@ -45,6 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private TabPanel transportBookingTabPanel;
     private TabPanel packingListTabPanel;
     private TabPanel fixedExpenseTabPanel;
+    private TabPanel helpTabPanel;
 
     @FXML
     private StackPane sideTabsBarPlaceholder;
@@ -127,6 +129,7 @@ public class MainWindow extends UiPart<Stage> {
         packingListTabPanel = new PackingListTabPanel(logic.getFilteredPackingList());
         fixedExpenseTabPanel = new FixedExpenseTabPanel(logic.getFilteredFixedExpenseList(),
                 logic.getGuiSettings().getWindowHeight(), logic.getGuiSettings().getWindowWidth());
+        helpTabPanel = new HelpTabPanel(logic.getHelpQuestions());
         switchTab(ScheduleTabPanel.TAB_NAME);
         dashboardPlaceholder.getChildren().clear();
         dashboardPlaceholder.getChildren().add(new DashboardPanel(logic.getTrip()).getRoot());
@@ -231,6 +234,11 @@ public class MainWindow extends UiPart<Stage> {
         case FixedExpenseTabPanel.TAB_NAME:
             tabPanelPlaceholder.getChildren().add(fixedExpenseTabPanel.getRoot());
             break;
+
+        case HelpTabPanel.TAB_NAME:
+            tabPanelPlaceholder.getChildren().add(helpTabPanel.getRoot());
+            break;
+
         default:
             throw new AssertionError("No such tab name: " + tabName);
         }

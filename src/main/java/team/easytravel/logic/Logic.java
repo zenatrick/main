@@ -51,6 +51,13 @@ public interface Logic {
     ObservableList<AccommodationBooking> getFilteredAccommodationBookingList();
 
     /**
+     * Returns an unmodifiable view of the filtered list of Help Questions.
+     *
+     * @return the unmodifiable view of the filtered list of Help Questions.
+     */
+    ObservableList<String> getHelpQuestions();
+
+    /**
      * Returns an unmodifiable view of the filtered list of fixed expenses.
      *
      * @return the unmodifiable view of the filtered list of fixed expenses.

@@ -9,6 +9,7 @@ import team.easytravel.commons.core.LogsCenter;
 import team.easytravel.ui.accommodationtab.AccommodationBookingTabPanel;
 import team.easytravel.ui.activitiestab.ActivityTabPanel;
 import team.easytravel.ui.expensestab.FixedExpenseTabPanel;
+import team.easytravel.ui.help.HelpTabPanel;
 import team.easytravel.ui.packinglisttab.PackingListTabPanel;
 import team.easytravel.ui.scheduletab.ScheduleTabPanel;
 import team.easytravel.ui.transportationtab.TransportBookingTabPanel;
@@ -57,4 +58,7 @@ public class SideTabsBar extends UiPart<Region> {
     private void handleSwitchToFixedExpensesTab() {
         consumer.accept(FixedExpenseTabPanel.TAB_NAME);
     }
+
+    @FXML
+    private void handleSwitchToHelpTab() {consumer.accept(HelpTabPanel.TAB_NAME);}
 }
