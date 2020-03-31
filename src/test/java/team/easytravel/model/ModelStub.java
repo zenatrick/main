@@ -83,6 +83,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void sortTransportList(Comparator<TransportBooking> cmp) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ReadOnlyFixedExpenseManager getFixedExpenseManager() {
         throw new AssertionError("This method should not be called.");
     }

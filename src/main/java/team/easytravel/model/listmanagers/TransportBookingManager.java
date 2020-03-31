@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import team.easytravel.commons.core.time.Date;
-import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
 import team.easytravel.model.util.uniquelist.UniqueList;
 
