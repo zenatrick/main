@@ -2,7 +2,7 @@ package team.easytravel.logic.commands.packinglist;
 
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import team.easytravel.logic.commands.Command;
@@ -26,11 +26,11 @@ public class AddItemCommand extends Command {
      */
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an item to the packing list. "
             + "Parameters: "
-            + PREFIX_ITEM + "NAME "
+            + PREFIX_ITEM_NAME + "NAME "
             + PREFIX_QUANTITY + "QUANTITY "
             + PREFIX_CATEGORY + "CATEGORY \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ITEM + "Tshirts "
+            + PREFIX_ITEM_NAME + "Tshirts "
             + PREFIX_QUANTITY + 5 + " "
             + PREFIX_CATEGORY + "basics";
 

@@ -2,7 +2,7 @@ package team.easytravel.logic.commands.packinglist;
 
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static team.easytravel.model.Model.PREDICATE_SHOW_ALL_PACKING_LIST_ITEMS;
 
@@ -39,7 +39,7 @@ public class EditItemCommand extends Command {
             + "by the index number used in the displayed packing list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_ITEM + "NAME] "
+            + "[" + PREFIX_ITEM_NAME + "NAME] "
             + "[" + PREFIX_QUANTITY + "QUANTITY] "
             + "[" + PREFIX_CATEGORY + "CATEGORY] "
             + "Example: " + COMMAND_WORD + " 1 "
