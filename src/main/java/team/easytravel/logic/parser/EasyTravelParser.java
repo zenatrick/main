@@ -82,6 +82,7 @@ import team.easytravel.logic.parser.transportbooking.AddTransportBookingCommandP
 import team.easytravel.logic.parser.transportbooking.DeleteTransportBookingCommandParser;
 import team.easytravel.logic.parser.transportbooking.EditTransportBookingCommandParser;
 import team.easytravel.logic.parser.transportbooking.SortTransportBookingCommandParser;
+import team.easytravel.logic.parser.trip.EditBudgetCommandParser;
 import team.easytravel.logic.parser.trip.RenameCommandParser;
 import team.easytravel.logic.parser.trip.SetTripCommandParser;
 
@@ -130,7 +131,7 @@ public class EasyTravelParser {
             return new CheckStatusCommand();
 
         case EditBudgetCommand.COMMAND_WORD:
-            return new EditBudgetCommand(arguments);
+            return new EditBudgetCommandParser().parse(arguments);
 
         case RenameCommand.COMMAND_WORD:
             return new RenameCommandParser().parse(arguments);

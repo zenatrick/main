@@ -23,14 +23,14 @@ public class EditBudgetCommand extends Command {
     public static final String MESSAGE_EDIT_BUDGET_SUCCESS = "Edited Budget: %1$s";
     public static final String MESSAGE_BUDGET_TOO_LOW = "Edited Budget should be more than expenses";
 
-    private final String newBudget;
+    private final Budget newBudget;
 
     /**
      * @param budget details to edit the current budget with
      */
-    public EditBudgetCommand(String budget) {
+    public EditBudgetCommand(Budget budget) {
         requireNonNull(budget);
-        this.newBudget = budget.trim();
+        this.newBudget = budget;
     }
 
     @Override
@@ -40,26 +40,15 @@ public class EditBudgetCommand extends Command {
         if (!model.hasTrip()) {
             throw new CommandException(TripManager.MESSAGE_ERROR_NO_TRIP);
         }
-
-        Integer amount;
-        try {
-            amount = Integer.parseInt(newBudget);
-        } catch (NumberFormatException e) {
-            return new CommandResult(MESSAGE_USAGE);
-        }
-
-        if (!Budget.isValidBudget(amount)) {
-            return new CommandResult(Budget.MESSAGE_CONSTRAINTS);
-        }
+        Integer amount = newBudget.value;
 
         if (amount < model.getTotalExpense()) {
             throw new CommandException(String.format(MESSAGE_EDIT_BUDGET_SUCCESS, amount) + "\n"
                     + MESSAGE_BUDGET_TOO_LOW);
         }
 
-        Budget editedBudget = new Budget(amount);
-        model.setBudget(editedBudget);
-        return new CommandResult(String.format(MESSAGE_EDIT_BUDGET_SUCCESS, amount) ,
+        model.setBudget(newBudget);
+        return new CommandResult(String.format(MESSAGE_EDIT_BUDGET_SUCCESS, newBudget) ,
                 null,
                 false,
                 false,

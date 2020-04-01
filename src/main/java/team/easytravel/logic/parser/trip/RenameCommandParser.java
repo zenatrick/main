@@ -1,23 +1,19 @@
 package team.easytravel.logic.parser.trip;
 
-import java.util.stream.Stream;
-
 import team.easytravel.commons.core.Messages;
 import team.easytravel.logic.commands.trip.RenameCommand;
-import team.easytravel.logic.parser.ArgumentMultimap;
 import team.easytravel.logic.parser.Parser;
-import team.easytravel.logic.parser.Prefix;
 import team.easytravel.logic.parser.exceptions.ParseException;
 import team.easytravel.model.util.attributes.Title;
 
 /**
- * Parses input arguments and creates a new SetTripCommand object
+ * Parses input arguments and creates a new RenameCommand object
  */
 public class RenameCommandParser implements Parser<RenameCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the SetTripCommand
-     * and returns an SetTripCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the RenameCommand
+     * and returns an RenameCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
