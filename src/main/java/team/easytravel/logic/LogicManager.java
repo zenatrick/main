@@ -120,7 +120,7 @@ public class LogicManager implements Logic {
         ArrayList<String> questions = new ArrayList<>();
         questions.add(HELP_MESSAGE);
         questions.add("Set Trip : settrip title/TITLE start/START_DATE end/END_DATE location/LOCATION\n\n"
-                + "Example: settrip title/Graduation Trip start/28-09-2020 end/28-10-2020 location/Japan" );
+                + "Example: settrip title/Graduation Trip start/28-09-2020 end/28-10-2020 location/Japan");
         questions.add("Edit Trip : edittrip [title/TITLE] [start/START_DATE] [end/END_DATE][country/COUNTRY]\n\n"
                 + "Example: edittrip title/not a graduation trip country/Singapore\n");
         questions.add("Delete Trip : deletetrip\n\n"
@@ -134,7 +134,7 @@ public class LogicManager implements Logic {
 
 
         questions.add("Add Activity : addactivity title/TITLE duration/DURATION location/LOCATION [t/tag]...\n\n"
-                + "Example: addactivity title/Going to the beach duration/4 location/Hakone t/sea t/ocean\n" );
+                + "Example: addactivity title/Going to the beach duration/4 location/Hakone t/sea t/ocean\n");
         questions.add("Edit Activity : editactivity index [title/NAME] [duration/DURATION] [location/LOCATION] "
                 + "[t/tag]\n\n"
                 + "Example: editactivity 1 name/Go to an aquarium\n"

@@ -19,7 +19,7 @@
                <font>
                   <Font size="8.0" />
                </font></Label>
-            <Hyperlink fx:id="hyperlink" onMouseClicked="#copyURL" />
+            <Hyperlink fx:id="hyperlink" onMouseClicked="#copyUrl" />
             </HBox>
         </VBox>
         <rowConstraints>

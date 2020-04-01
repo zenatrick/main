@@ -53,7 +53,7 @@ public class EditBudgetCommand extends Command {
         }
 
         if (amount < model.getTotalExpense()) {
-            return new CommandResult(String.format(MESSAGE_EDIT_BUDGET_SUCCESS, amount) + "\n"
+            throw new CommandException(String.format(MESSAGE_EDIT_BUDGET_SUCCESS, amount) + "\n"
                     + MESSAGE_BUDGET_TOO_LOW);
         }
 

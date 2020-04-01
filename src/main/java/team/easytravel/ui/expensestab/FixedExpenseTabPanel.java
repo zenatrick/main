@@ -45,6 +45,7 @@ public class FixedExpenseTabPanel extends TabPanel {
         fixedExpenseListView.setPrefWidth(0.75 * width);
         pieChart.setPrefWidth(0.25 * width);
         fixedExpenseListView.setItems(fixedExpensesList);
+        setPieChart();
         fixedExpenseListView.setCellFactory(listView -> new FixedListViewCell());
 
         pieChart.setTitle("Fixed Expenses Breakdown");
@@ -61,8 +62,16 @@ public class FixedExpenseTabPanel extends TabPanel {
     private void setPieChart() {
         Map<String, Double> maps = new HashMap<>();
         for (FixedExpense fixedExpense : fixedExpenses) {
-            maps.put(fixedExpense.getFixedExpenseCategory().value,
-                    Double.parseDouble(fixedExpense.getAmount().value));
+
+            if (maps.containsKey(fixedExpense.getFixedExpenseCategory().value)) {
+                double currentExpense = maps.get(fixedExpense.getFixedExpenseCategory().value);
+                maps.put(fixedExpense.getFixedExpenseCategory().value,
+                        currentExpense
+                                + Double.parseDouble(fixedExpense.getAmount().value));
+            } else {
+                maps.put(fixedExpense.getFixedExpenseCategory().value,
+                        Double.parseDouble(fixedExpense.getAmount().value));
+            }
             pieChartData = maps.entrySet().stream()
                     .map(entry -> new PieChart.Data(entry.getKey(), entry.getValue()))
                     .collect(Collectors.toCollection(FXCollections::observableArrayList));
@@ -79,16 +88,17 @@ public class FixedExpenseTabPanel extends TabPanel {
         @Override
         protected void updateItem(FixedExpense fixedExpense, boolean empty) {
             super.updateItem(fixedExpense, empty);
+            setPieChart();
             if (fixedExpenses.isEmpty()) {
                 pieChart.setLegendVisible(false);
-                pieChart.setData(null);
+                pieChart.setLabelsVisible(false);
+                pieChart.getData().clear();
             }
 
             if (empty || fixedExpense == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setPieChart();
                 pieChart.setLabelsVisible(true);
                 pieChart.setLegendVisible(true);
                 setGraphic(new FixedExpenseCard(fixedExpense, getIndex() + 1).getRoot());

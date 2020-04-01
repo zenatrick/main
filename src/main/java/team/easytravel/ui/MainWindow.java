@@ -9,15 +9,14 @@ import javafx.stage.Stage;
 import team.easytravel.commons.core.GuiSettings;
 import team.easytravel.commons.core.LogsCenter;
 import team.easytravel.logic.Logic;
-import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.logic.parser.exceptions.ParseException;
 import team.easytravel.ui.accommodationtab.AccommodationBookingTabPanel;
 import team.easytravel.ui.activitiestab.ActivityTabPanel;
 import team.easytravel.ui.expensestab.FixedExpenseTabPanel;
-import team.easytravel.ui.packinglisttab.ListPresetWindow;
 import team.easytravel.ui.help.HelpTabPanel;
+import team.easytravel.ui.packinglisttab.ListPresetWindow;
 import team.easytravel.ui.packinglisttab.PackingListTabPanel;
 import team.easytravel.ui.scheduletab.ScheduleTabPanel;
 import team.easytravel.ui.transportationtab.TransportBookingTabPanel;
@@ -161,18 +160,6 @@ public class MainWindow extends UiPart<Stage> {
         dashboardPlaceholder.getChildren().add(new DashboardPanel(logic.getTrip()).getRoot());
     }
 
-//    /**
-//     * Opens the help window or focuses on it if it's already opened.
-//     */
-//    @FXML
-//    public void handleHelp() {
-//        if (!helpWindow.isShowing()) {
-//            helpWindow.show();
-//        } else {
-//            helpWindow.focus();
-//        }
-//    }
-
     /**
      * Handle list preset.
      */
@@ -208,7 +195,6 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-       //helpWindow.hide();
         primaryStage.hide();
     }
 
