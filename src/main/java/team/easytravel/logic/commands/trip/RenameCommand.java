@@ -22,14 +22,14 @@ public class RenameCommand extends Command {
 
     public static final String MESSAGE_EDIT_TITLE_SUCCESS = "The trip is now named: %s";
 
-    private final String newTitle;
+    private final Title newTitle;
 
     /**
      * @param title details to edit the current budget with
      */
-    public RenameCommand(String title) {
+    public RenameCommand(Title title) {
         requireNonNull(title);
-        this.newTitle = title.trim();
+        this.newTitle = title;
     }
 
     @Override
@@ -40,12 +40,8 @@ public class RenameCommand extends Command {
             throw new CommandException(TripManager.MESSAGE_ERROR_NO_TRIP);
         }
 
-        if (!Title.isValidTitle(newTitle)) {
-            return new CommandResult(Title.MESSAGE_CONSTRAINTS);
-        }
 
-        Title editedTitle = new Title(newTitle);
-        model.setTitle(editedTitle);
+        model.setTitle(newTitle);
 
         return new CommandResult(String.format(MESSAGE_EDIT_TITLE_SUCCESS, newTitle) ,
                 null,
