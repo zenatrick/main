@@ -9,31 +9,39 @@ note left
   a category
 end note
 
-if () then ([is a valid command])
+if () then ([trip is set])
+
+    if () then ([is a valid command identifier])
 
 
-    if () then ([no missing field])
+        if () then ([no missing field])
 
-            :Return a
-            ""AddPresetCommand"" object;
+                :Return a
+                ""AddPresetCommand"" object;
 
-            :Execute ""AddPresetCommand"";
+                :Execute ""AddPresetCommand"";
 
-            :Add a preset to
-            ""PackingListManager"";
+                :Add a preset to
+                ""PackingListManager"";
 
-            :Show success message to the user;
+                :User receives a command
+                success message;
 
-    else ([missing field])
-            : Throws an exception;
+        else ([else])
+                :User receives invalid
+                command format message;
+        endif
 
-            : Show error message to the user;
+    else ([else])
+        :User receives unknown
+        command message;
+
     endif
 
-else ([not a valid command])
-    :Throw an exception;
+else ([else])
+    : User receives no trip
+    set message;
 
-    :Show error message to the user;
 endif
 
 stop
