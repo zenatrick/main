@@ -1,12 +1,12 @@
 @startuml
-title Add Fixed Expense to Fixed Expense Manager
+title Sort Fixed Expense to Fixed Expense Manager
 
 start
 
-:User executes ""additem"" command;
+:User executes ""sortexpense"" command;
 note left
   Arguments should contain
-  a name, quantity and category
+  an order and criteria
 end note
 
 if () then ([is a valid command])
@@ -15,14 +15,13 @@ if () then ([is a valid command])
     if () then ([no missing field])
 
             :Return a
-            ""AddItemCommand"" object;
+            ""SortFixedExpenseCommand"" object;
 
-            :Execute ""AddItemCommand"";
+            :Execute
+            ""SortFixedExpenseCommand"";
 
-            :Add a transport booking to
-            ""PackingListManager"";
-
-            :Show success message to the user;
+            :Show sorted fixed expense
+            list to the user;
 
     else ([missing field])
             : Throws an exception;

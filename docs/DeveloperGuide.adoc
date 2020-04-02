@@ -537,40 +537,41 @@ The following steps describes the execution of the `AddPresetCommand`:
 
 *_E.T._* allows the user to create a fixed expense. The fixed expense manager handles everything to do with manipulating of fixed expenses.
 
-This `addexpense` command requires the user to include the `amount` of the fixed expense, the `description` of the fixed expense , the `category` of the fixed expense, as well as the optional `amountSGD` and `amountOTHR`
+This `sortexpense` command requires the user to include the `order` of the sorting, which is either ascending or descending, and the `criteria` of the sorting, which is either amount, blah or category.
+For example, `sortexpense asc amount` sorts the fixed expense list in ascending order, according to the amount of the fixed expenses.
 
 ==== Rationale
 The fixed expense feature is an important feature that allows the users to plan financially for their trip. It allows the user keeps track of the amount spent on the big ticket items, such as plane tickets and accommodation bookings.
 
 ==== Current Implementation
 
-The keywords from the command given by the user is parsed using `AddFixedExpenseCommandParser` which converts the string variable `amount` into an `Amount` object, `description` into a `Description` object, as well as `category` into a `Category` object.
-These objects are used to create the `AddFixedExpenseCommand` object that will execute to create a fixed expense.
+The keywords from the command given by the user is parsed using `SortFixedExpenseCommandParser` which converts the retrieves the order of the sort, and the sorting criteria.
+These objects are used to create the `SortFixedExpenseCommand` object that will execute the sorting of the fixed expense list according to the given order and criteria.
 
-The sequence diagram below shows the creation of the `AddFixedExpenseCommand` object:
+The sequence diagram below shows the creation of the `SortFixedExpenseCommand` object:
 
 [KIV]
-Figure x.x: Sequence diagram of a Add Fixed Expense command.
+Figure x.x: Sequence diagram of a Sort Fixed Expense command.
 
-After the creation of the `AddFixedExpenseCommand` object, the `LogicManager` will proceed to call the `execute()` method of `AddFixedExpenseCommand`.
+After the creation of the `SortFixedExpenseCommand` object, the `LogicManager` will proceed to call the `execute()` method of `SortFixedExpenseCommand`.
 
-The following steps describes the execution of the `AddFixedExpenseCommand`:
+The following steps describes the execution of the `SortFixedExpenseCommand`:
 
-1.	In `Model`, the `AddFixedExpenseCommand` checks the current fixed expense for duplicates before adding the new object into the fixed expense list
-2. A `CommandResult` object which consists of a `MESSAGE_SUCCESS` is sent back to `LogicManager` if there is a successful addition of the fixed expense into the fixed expense list
-3.	After receiving the `CommandResult` from `AddFixedExpenseCommand`, `LogicManager` will return the `CommandResult` back to “MainApp” where the updated fixed expense list is shown
+1.	In `Model`, the `SortFixedExpenseCommand` sorts the current fixed expense list according to an order and criteria.
+2. A `CommandResult` object which consists of a `MESSAGE_SUCCESS` is sent back to `LogicManager` if there is a successful sorting of the fixed expense list.
+3.	After receiving the `CommandResult` from `SortFixedExpenseCommand`, `LogicManager` will return the `CommandResult` back to “MainApp” where the sorted fixed expense list is shown.
 
 ==== Design Consideration
 
 ===== Aspect:
 
-* **Current Choice:** Category can only be `accommodation`, `activities`, `transport` or `others`
-** **Pros:** Keeps the implementation simple, and since a pie chart will be shown, the pie chart will be kept simple and clean as well.
-** **Cons:** Restricts the user on the categories they can use, prevents them from customising the category to suit their expenses.
+* **Current Choice:** Sorting criteria can only be `amount`, `description` or `category`
+** **Pros:** Keeps the implementation simple, as well as the fields of fixed expense only contain the above criteria
+** **Cons:** Restricts the user on the criteria they can use, prevents them from customising the sorting of their fixed expense list.
 
-* **Alternative:** Category can be any user input
-** **Pros:** Not restricted to a fixed category, gives the user freedom to choose and customise their fixed expenses.
-** **Cons:** The pie chart shown will look messy, not visually pleasing to the user.
+* **Alternative:** Sorting criteria can be anything the user inputs
+** **Pros:** Not restricted to a fixed criteria, gives the user freedom to choose and customise their sorting criteria.
+** **Cons:** Difficult to implement, too many criteria to consider.
 // end::fixedexpense[]
 
 // tag::undoredo[]
