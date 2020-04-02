@@ -1,12 +1,12 @@
 @startuml
-title Add Item to Packing List
+title Add Preset to Packing List
 
 start
 
-:User executes ""additem"" command;
+:User executes ""addpreset"" command;
 note left
   Arguments should contain
-  a name, quantity and category
+  a category
 end note
 
 if () then ([is a valid command])
@@ -15,11 +15,11 @@ if () then ([is a valid command])
     if () then ([no missing field])
 
             :Return a
-            ""AddItemCommand"" object;
+            ""AddPresetCommand"" object;
 
-            :Execute ""AddItemCommand"";
+            :Execute ""AddPresetCommand"";
 
-            :Add a transport booking to
+            :Add a preset to
             ""PackingListManager"";
 
             :Show success message to the user;

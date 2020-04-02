@@ -156,8 +156,15 @@ This section describes some noteworthy details on how certain features are imple
 
 === Trip Management
 *_E.T._* only allow the user to manage one trip at a time and is necessary to be used first before other commands are available. This is done using the `settrip` command which requires the user to specify the `title` of the trip, the `budget` of the trip and the `start date` and `end date` of the entire trip.
-For example, `settrip title/cheese budget/2000 startdate/20-09-20 enddate/28-09-20` means that the trip with the title `cheese land` will be set with a budget of `2000` dollars and a duration of 8 days between `20-09-20' to `28-09-20`.
+For example, `settrip title/cheese land budget/2000 startdate/20-09-20 enddate/28-09-20` means that the trip with the title `cheese land` will be set with a budget of `2000` dollars and a duration of 8 days between `20-09-20` to `28-09-20`.
 
+** title = cheese land
+
+** budget = 2000
+
+** start date = 20-09-20
+
+** end date = 28-09-20
 
 ==== Rationale
 The Trip Manager feature is the main driving feature that allows the users to set their trip schedule, budget as well
@@ -183,7 +190,7 @@ The following steps describes the execution of the `SetTripCommand`:
 3. The `trip` object will calculate and initialise the `duration` of the trip using the given `startDate` and `endDate`.
 4. `Trip` would enable access to other commands within application.
 
-The sequence diagram below shows the the execution of `ScheduleActivityCommand`:
+The sequence diagram below shows the the execution of `SetTripCommand`:
 
 .Sequence diagram that describes the execution of ScheduleActivityCommand.
 image::developer-guide/trip/f.png[SetTrip Command Execution PlaceHolder]
@@ -201,12 +208,11 @@ and be added into the schedule.
 
 * **Current Choice:** A trip must be created before use of any other commands
 ** Pros: Ensures that users cannot implement any activity or schedule without creation of an activity.
-
-===== Aspect: Creation of trip is required before use of any other commands
-
-* **Current Choice:** A trip must be created before use of any other commands
-** Pros: Ensures that users cannot implement any activity or schedule without creation of an activity.
 ** Cons: Complicate to implement and likely result in dependency issues
+
+* **Alternative:** A trip can be created after the use of any other commands
+** Pros: Gives the user the freedom to use commands before the trip is set, such as the budgeting and packing list.
+** Cons: Defeats the purpose of planning the trip from top down, starting from the trip being set first.
 // end::Trip Management[]
 
 
@@ -247,23 +253,19 @@ command:
 image::developer-guide/check-status-feature/CheckStatusCommandExecution.png[]
 
 In detail, whenever a “checkstatus” command is entered,
-the command will be identified by E.T by parsing it through the `eTParser` through the `Logic` component.
+the command will be identified by E.T by parsing it through the `EasyTravelParser` through the `Logic` component.
 A `CheckStatusCommand` will be created.
 E.T will then check against the hard-coded database and generate a checklist of what the
 user might have forgotten to prepare for their upcoming trip.
 The following sequence diagram shown in <<Figure x.x>> below,
 summarizes the sequence flow when a user enters a valid `checkstatus` command:
 
-
-[KIV]
-Figure x.x: Sequence diagram of a “checkstatus” command.
-
 From the sequence diagram:
 
 ****
 1.	When the `LogicManager` receives the “execute” command from `MainApp`, it will call the `parseCommand` method of
-`eTParser`.
-2.	`eTParser` will receive `checkstatus` as the command type and instantiate `CheckStatusCommand`
+`EasyTravelParser`.
+2.	`EasyTravelParser` will receive `checkstatus` as the command type and instantiate `CheckStatusCommand`
 3.	Through `Model”, the `CheckStatusCommand` will check the individual lists
 against the hard-coded database in `Storage` to ensure that the user had made sufficient planning for the trip.
 4. A `CommandResult` object which consists of a `MESSAGE_SUCCESS` back to `LogicManager` if the user had made
@@ -276,12 +278,17 @@ return the `CommandResult` back to “MainApp” where the checklist will be sho
 
 ===== Aspect: Access to all list
 
-*** Choice 1: Check status has access to all list
+* **Current Choice:** Check status has access to all lists
 
-** Pros: Easy to implement and understand. Check status can call and access all variables from the lists.
+** **Pros:** Easy to implement and understand. Check status can call and access all variables from the lists.
 
-** Cons: There might be dependency issues.
+** **Cons:** There might be dependency issues.
 
+* **Alternative:** User will have to check each list one by one
+
+** **Pros:** No dependency issues, as all lists are kept separated.
+
+** **Cons:** Troublesome for the user to check each list one by one.
 
 // tag::scheduleactivity[]
 === Schedule feature
@@ -351,9 +358,9 @@ This feature also allows the user to schedule their activities while taking the 
 The keywords from the command given by the user is parsed using `AddTransportBookingCommandParser` which converts the string variable `mode` into a `Mode` object, `start location` and `end location` into a `Location` objects, as well as `start time` and `end time` into `Time` objects.
 These objects are used to create the `AddTransportBookingCommand` object that will execute to create a transport booking.
 
-The sequence diagram below shows the creation of the `AddTransportBookingCommand` object:
+The activity diagram below shows the creation of the `AddTransportBookingCommand` object:
 
-.Activity diagram showing the workflow of a `addtransport` command.
+.Activity diagram showing the workflow of a `AddTransportBooking` command.
 image::developer-guide/transport-booking/AddTransportBookingActivityDiagram.png[]
 
 After the creation of the `AddTransportBookingCommand` object, the `LogicManager` will proceed to call the `execute()` method of `AddTransportBookingCommand`.
@@ -369,12 +376,12 @@ The following steps describes the execution of the `AddTransportBookingCommand`:
 ===== Aspect:
 
 * **Current Choice:**
-** Pros:
-** Cons:
+** **Pros:**
+** **Cons:**
 
 * **Alternative:**
-** Pros:
-** Cons:
+** **Pros:**
+** **Cons:**
 // end::transportbooking[]
 
 // tag::accommodationbooking[]
@@ -409,12 +416,12 @@ The following steps describes the execution of the `AddAccommodationBookingComma
 ===== Aspect:
 
 * **Current Choice:**
-** Pros:
-** Cons:
+** **Pros:**
+** **Cons:**
 
 * **Alternative:**
-** Pros:
-** Cons:
+** **Pros:**
+** **Cons:**
 // end::accommodationbooking[]
 
 // tag::activity[]
@@ -478,8 +485,8 @@ image::developer-guide/activity/DeleteActivityCommandExecution.png[Delete Activi
 ===== Aspect: Activity does not keep track of the day
 
 * **Current Choice:** Days is being tracked by scheduler
-** Pros: Separation of concerns: Only the scheduler should know which day the activity is held on.
-** Cons: {kiv}
+** **Pros:** Separation of concerns: Only the scheduler should know which day the activity is held on.
+** **Cons:** {kiv}
 // end::activity[]
 
 // tag::packinglist[]
@@ -487,40 +494,42 @@ image::developer-guide/activity/DeleteActivityCommandExecution.png[Delete Activi
 
 *_E.T._* allows the user to create a packing list. The packing list manager handles everything to do with manipulating of packing list items.
 
-This `additem` command requires the user to include the `item` name of an item, the `quantity` of the item , and the `category` of the item.
+The `addpreset` command requires the user to include the `category` of the preset they want to add into the packing list.
+For example, `addpreset swimming` means that the preset called `swimming` will be be added into the user's packing list.
+Only pre-existing presets can be added into the user's packing list.
 
 ==== Rationale
 The packing list feature is an important feature that allows the users to plan and pack for their trip. It ensures that the user did not forget to pack anything for their trip, providing convenience.
 
 ==== Current Implementation
 
-The keywords from the command given by the user is parsed using `AddItemCommandParser` which converts the string variable `item name` into an `ItemName` object, `quantity` into a `Quantity` object, as well as `category` into a `ItemCategory` object.
-These objects are used to create the `AddItemCommand` object that will execute to create a packing list item.
+The keywords from the command given by the user is parsed using `AddPresetCommandParser` which converts the string variable `category` into a `ItemCategory` object.
+These objects are used to create the `AddPresetCommand` object that will execute to create a packing list item.
 
-The sequence diagram below shows the creation of the `AddItemCommand` object:
+The sequence diagram below shows the creation of the `AddPresetCommand` object:
 
-.Activity diagram showing the workflow of an `additem` command.
+.Activity diagram showing the workflow of an `addpreset` command.
 image::developer-guide/packing-list/AddPackingListActivityDiagram.png[]
 
-After the creation of the `AddItemCommand` object, the `LogicManager` will proceed to call the `execute()` method of `AddItemCommand`.
+After the creation of the `AddPresetCommand` object, the `LogicManager` will proceed to call the `execute()` method of `AddPresetCommand`.
 
-The following steps describes the execution of the `AddItemCommand`:
+The following steps describes the execution of the `AddPresetCommand`:
 
-1.	In `Model`, the `AddItemCommand` checks the current packing list for duplicates before adding the new object into the packing list
-2. A `CommandResult` object which consists of a `MESSAGE_SUCCESS` is sent back to `LogicManager` if there is a successful addition of the item into the packing list
-3.	After receiving the `CommandResult` from `AddItemCommand`, `LogicManager` will return the `CommandResult` back to “MainApp” where the updated packing list is shown
+1.	In `Model`, the `AddPresetCommand` adds a list of pre-existing list of items under a category into the packing list. If it encounters duplicates, it will skip the duplicate, and continue adding the rest of the items in the preset into the packing list.
+2. A `CommandResult` object which consists of a `MESSAGE_SUCCESS` is sent back to `LogicManager` if there is a successful addition of the items into the packing list.
+3.	After receiving the `CommandResult` from `AddPresetCommand`, `LogicManager` will return the `CommandResult` back to “MainApp” where the updated packing list is shown.
 
 ==== Design Consideration
 
 ===== Aspect:
 
-* **Current Choice:**
-** Pros:
-** Cons:
+* **Current Choice:** Users choose a preset list of items under a category
+** **Pros:** Gives the user more convenience; allows them to add a list of items at one go, instead of adding an item each time.
+** **Cons:** Users are only able to choose from the pre-existing list of presets, hence not a lot of freedom to create their own preset.
 
-* **Alternative:**
-** Pros:
-** Cons:
+* **Alternative:** Users create their own presets
+** **Pros:** Gives the user a lot of freedom to customise their presets and packing list, making it user focused.
+** **Cons:** Difficult to implement
 // end::packinglist[]
 
 // tag::fixedexpense[]
@@ -555,13 +564,13 @@ The following steps describes the execution of the `AddFixedExpenseCommand`:
 
 ===== Aspect:
 
-* **Current Choice:**
-** Pros:
-** Cons:
+* **Current Choice:** Category can only be `accommodation`, `activities`, `transport` or `others`
+** **Pros:** Keeps the implementation simple, and since a pie chart will be shown, the pie chart will be kept simple and clean as well.
+** **Cons:** Restricts the user on the categories they can use, prevents them from customising the category to suit their expenses.
 
-* **Alternative:**
-** Pros:
-** Cons:
+* **Alternative:** Category can be any user input
+** **Pros:** Not restricted to a fixed category, gives the user freedom to choose and customise their fixed expenses.
+** **Cons:** The pie chart shown will look messy, not visually pleasing to the user.
 // end::fixedexpense[]
 
 // tag::undoredo[]
