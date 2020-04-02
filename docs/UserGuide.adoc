@@ -773,20 +773,76 @@ Example:
 == *FAQ*
 *pass:[<u>TO BE EDITED</u>]*
 
-*Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
+*Q*: How many trips am I able to set in E.T.?
+*A*: Users are only able to set 1 trip in E.T.
+*Q*: What happens if 2 of my activities clash? Will E.T detect it?
+*A*: E.T. will allow the scheduling of overlapping activities. However, when you check the status of your plan using the status command, E.T. will notify you the days of the trip with clashes in timings.
+*Q*: How do I transfer my data to another Computer?
+*A*: By default, E.T. save all your data in a folder named data in the same directory as the application. You can copy and transfer the data folder into the same directory as E.T. on your other computer and E.T. will automatically load your data when you open the application.
+
 
 == *Command Summary*
 *pass:[<u>TO BE EDITED</u>]*
 
-* *Add* `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
-e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-* *Clear* : `clear`
-* *Delete* : `delete INDEX` +
-e.g. `delete 3`
-* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
-e.g. `edit 2 n/James Lee e/jameslee@example.com`
-* *Find* : `find KEYWORD [MORE_KEYWORDS]` +
-e.g. `find James Jake`
-* *List* : `list`
-* *Help* : `help`
+=== Trip Commands
+
+|===
+|Command |Example
+
+|*Set Trip* : `settrip title/TITLE start/START_DATE end/END_DATE location/LOCATION``
+|`settrip title/Graduation Trip start/28-09-2020 end/28-10-2020 location/Japan`
+
+|*Edit Trip* : `edittrip [title/TITLE] [start/START_DATE] [end/END_DATE][country/COUNTRY]`
+|`edittrip title/not a graduation trip country/Singapore`
+
+|`*Delete Trip* : deletetrip`
+|`deletetrip`
+
+|*Clear Trip* : `cleartrip`
+|`cleartrip`
+
+|*View Itinerary* : `view`
+|`view`
+
+|*Check Preparation* : `status`
+|`status`
+
+|===
+
+=== Activity Command
+
+|===
+|Command |Example
+
+|*Add Activity* : `addactivity title/TITLE duration/DURATION location/LOCATION [t/tag]...`, row 1
+|`addactivity title/Going to the beach duration/4 location/Hakone t/sea t/ocean`
+
+|*Edit Activity* : `editactivity index [title/NAME] [duration/DURATION] [location/LOCATION] [t/tag]`
+|`editactivity 1 name/Go to an aquarium`
+
+|*Delete Activity* : `deleteactivity index`
+|`deleteactivity 1`
+
+|*Clear Activity* : `clearactivity`
+|`clearactivity`
+|===
+
+
+=== Transportion Booking Command
+
+|===
+|Command |Example
+
+|*Add Transport Booking* : `addtransport mode/MODE startloc/START_LOCATION endloc/END_LOCATION starttime/DATE_TIME_OF_DEPARTURE endtime/DATE_TIME_OF_ARRIVAL`
+|`addtransport mode/plane startloc/Singapore endloc/Japan starttime/22-04-2021 09:00 endtime/22-04-2021 16:00`
+
+|*Edit Transportation Booking* : `edittransport INDEX [mode/MODE] [startloc/START_LOCATION] [endloc/END_LOCATION] [starttime/DATE_TIME_OF_DEPARTURE] [endtime/DATE_TIME_OF_ARRIVAL]`
+|`edittransport 2 starttime/22-04-2021 10:00`
+
+|*Delete transportation Booking* : `deletetransport INDEX`
+|`deletetransport 1`
+
+|*Clear Transportation Bookings* : `cleartransport`
+|*cleartransport*
+|===
+
