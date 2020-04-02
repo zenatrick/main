@@ -540,7 +540,7 @@ Let’s say you want to delete the first item in the packing list. You may delet
 ****
 To delete an item:
 
-1. Type ` deleteitem 1` into the command box, and press `Enter` to execute it.
+1. Type `deleteitem 1` into the command box, and press `Enter` to execute it.
 
 2. The result box will display the message `Deleted Item: Packing list item - Item Name: Swimsuit Quantity: 1 Category: swimming Is Checked: true`
 
@@ -572,7 +572,7 @@ Let’s say you want to mark the first item in the packing list as packed. You m
 ****
 To mark an item as packed:
 
-1. Type ` checkitem 1` into the command box, and press `Enter` to execute it.
+1. Type `checkitem 1` into the command box, and press `Enter` to execute it.
 
 2. The result box will display the message `Packed Item: Packing list item - Item Name: Swimsuit Coverup Quantity: 1 Category: swimming Is Checked: true`
 
@@ -664,7 +664,7 @@ Let’s say you want to find items that contain either shampoo or hairbrush in i
 ****
 To find items in the packing list:
 
-1. Type ` finditem shampoo hairbrush` into the command box, and press `Enter` to execute it.
+1. Type `finditem shampoo hairbrush` into the command box, and press `Enter` to execute it.
 
 2. The result box will display the message `2 items listed!`
 
@@ -708,18 +708,18 @@ Figure 31: After find item category command
 
 This command lists items in the packing list.
 
-Format: `listpreset`
+Format: `listitem`
 
 Examples:
 
-`listpreset` +
+`listitem` +
 
 Let's say you want to display the original packing list, after executing the `finditem` or `finditemcategory`.
 
 ****
 To show the original packing list:
 
-1. Type `listpreset` into the command box, and press `Enter` to execute it.
+1. Type `listitem` into the command box, and press `Enter` to execute it.
 
 2. The result box will display the message `Listed all packing list items.`
 
@@ -760,11 +760,11 @@ To add a pre-existing preset:
 
 Figure 33: After add preset command
 
-===== Listing all the presets in the packing list: `listpresets`
+===== Listing all the presets in the packing list: `listpreset`
 
 This command lists all the presets available for use.
 
-Format: `listpresets`
+Format: `listpreset`
 
 [NOTE]
 =====
@@ -774,7 +774,7 @@ Format: `listpresets`
 
 Examples:
 
-* `listpresets` +
+* `listpreset` +
 Let’s say you want to add a list of items under a pre-existing category, but you are not sure of the available presets you can use. You may find the pre-existing categories by executing the `addpreset` command.
 
 ****
@@ -782,7 +782,7 @@ To show all the available presets:
 
 1. Type `listpreset` into the command box, and press `Enter` to execute it.
 
-2. This will open the pop up window called `List Presets`.
+2. This will open the pop up window called `List Preset`.
 
 3. You can see icons and names of all the available pre-existing presets in the pop up window
 ****
