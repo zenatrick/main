@@ -11,31 +11,36 @@ note left
   and date times
 end note
 
-if () then ([is a valid command])
+if () then ([trip is set])
 
+    if () then ([is a valid command identifier])
 
-    if () then ([no missing field])
+        if () then ([no missing field])
 
-            :Return a
-            ""AddTransportReviewCommand"" object;
+                :Return a
+                ""AddTransportReviewCommand"" object;
 
-            :Execute ""AddTransportReviewCommand"";
+                :Execute ""AddTransportReviewCommand"";
 
-            :Add a transport booking to
-            ""TransportBookingManager"";
+                :Add a transport booking to
+                ""TransportBookingManager"";
 
-            :Show success message to the user;
+                :Show success message to the user;
 
-    else ([missing field])
-            : Throws an exception;
+        else ([missing field])
+                :User receives invalid
+                command format message;
+        endif
 
-            : Show error message to the user;
+    else ([not a valid command])
+        :User receives unknown
+        command message;
     endif
 
-else ([not a valid command])
-    :Throw an exception;
+else ([else])
+    : User receives no trip
+    set message;
 
-    :Show error message to the user;
 endif
 
 stop
