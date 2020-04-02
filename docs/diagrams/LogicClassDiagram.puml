@@ -19,6 +19,7 @@ Class Prefix
 
 package Command {
 Class XYZCommand
+note right of XYZCommand: XYZCommand = AddItemCommand,\nDeleteActivityCommand, etc
 Class CommandResult
 Class "{abstract}\nCommand" as Command
 }
