@@ -1022,15 +1022,19 @@ This feature would allow users to undo or redo certain commands which are accide
 *pass:[<u>TO BE EDITED</u>]*
 
 *Q*: How many trips am I able to set in E.T.?
+
 *A*: Users are only able to set 1 trip in E.T.
+
 *Q*: What happens if 2 of my activities clash? Will E.T detect it?
+
 *A*: E.T. will allow the scheduling of overlapping activities. However, when you check the status of your plan using the status command, E.T. will notify you the days of the trip with clashes in timings.
+
 *Q*: How do I transfer my data to another Computer?
+
 *A*: By default, E.T. save all your data in a folder named data in the same directory as the application. You can copy and transfer the data folder into the same directory as E.T. on your other computer and E.T. will automatically load your data when you open the application.
 
 
 == *Command Summary*
-*pass:[<u>TO BE EDITED</u>]*
 
 === Trip Commands
 
@@ -1058,11 +1062,10 @@ This feature would allow users to undo or redo certain commands which are accide
 |===
 
 === Activity Command
-
 |===
 |Command |Example
 
-|*Add Activity* : `addactivity title/TITLE duration/DURATION location/LOCATION [t/tag]...`, row 1
+|*Add Activity* : `addactivity title/TITLE duration/DURATION location/LOCATION [t/tag]...`
 |`addactivity title/Going to the beach duration/4 location/Hakone t/sea t/ocean`
 
 |*Edit Activity* : `editactivity index [title/NAME] [duration/DURATION] [location/LOCATION] [t/tag]`
@@ -1076,12 +1079,11 @@ This feature would allow users to undo or redo certain commands which are accide
 |===
 
 
-=== Transportion Booking Command
-
+=== Transportation Booking Command
 |===
 |Command |Example
 
-|*Add Transport Booking* : `addtransport mode/MODE startloc/START_LOCATION endloc/END_LOCATION starttime/DATE_TIME_OF_DEPARTURE endtime/DATE_TIME_OF_ARRIVAL`
+|*Add Transport Booking* : `=addtransport mode/MODE startloc/START_LOCATION endloc/END_LOCATION starttime/DATE_TIME_OF_DEPARTURE endtime/DATE_TIME_OF_ARRIVAL`
 |`addtransport mode/plane startloc/Singapore endloc/Japan starttime/22-04-2021 09:00 endtime/22-04-2021 16:00`
 
 |*Edit Transportation Booking* : `edittransport INDEX [mode/MODE] [startloc/START_LOCATION] [endloc/END_LOCATION] [starttime/DATE_TIME_OF_DEPARTURE] [endtime/DATE_TIME_OF_ARRIVAL]`
@@ -1091,6 +1093,63 @@ This feature would allow users to undo or redo certain commands which are accide
 |`deletetransport 1`
 
 |*Clear Transportation Bookings* : `cleartransport`
-|*cleartransport*
+|`cleartransport`
+|===
+
+=== Packing List Commands
+|===
+|Command |Example
+
+|*Add Preset Category* : `addpreset preset/PRESET_NAME`
+|`addpreset beach`
+
+|*List all Presets in Packing List*: `listpresets`
+|`listpresets`
+
+|*Add Item in Packing List* : `additem item/ITEM quantity/QUANTITY`
+|`additem item/underwear quantity/5`
+
+|*Edit Item in Packing List* : `edititem INDEX [i/item] [q/quantity]`
+|`edititem 1 item/shirt quantity/5`
+
+|*Delete item in Packing List* : `deleteitem INDEX`
+|`deleteitem 1`
+
+|*Mark Item as packed in Packing List* :  `checkitem INDEX`
+|`checkitem 1`
+
+|*Mark Item as unpacked in Packing List* : `uncheckitem INDEX`
+|`uncheckitem 1`
+
+|*Sort Items in Packing List* : `sortitem order criteria`
+|`sortitem asc alphabet`
+
+|*Find items in Packing List*: `finditem`
+|`finditem car shampoo`
+
+|*Find items in Packing List under category*: `finditemcategory`
+|`finditemcategory swimming clothes`
+|===
+
+=== Fixed Expense Commands
+|===
+|Command |Example
+
+|*Add Fixed Expense* :  `addexpense amount/AMOUNT currency/CURRENCY
+description/DESCRIPTION category/CATEGORY`
+|`addexpense amount/1100 currency/SGD description/SQ Tickets category/Flights`
+
+|*Edit Fixed Expense* : `editexpense INDEX amount/AMOUNT currency/CURRENCY [description/DESCRIPTION] [category/CATEGORY]`
+|`editexpense 1 amount/3000 currency/other description/Cathay Pacific Flight`
+
+
+|*Delete Fixed Expense* : `deleteexpense INDEX`
+|`deleteexpense 1`
+
+|*Clear Fixed Expenses* : `clearexpense`
+|`clearexpense`
+
+|*Sort Fixed Expenses* : `sortexpense SORTIDENTIFIER [AMOUNT] [DESCRIPTION] [CATEGORY]`
+|`sortexpense 1 amount`
 |===
 
