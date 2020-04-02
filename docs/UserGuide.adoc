@@ -14,7 +14,7 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level3
+:repoURL: https://github.com/AY1920S2-CS2103T-W17-3/main
 
 By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
 
@@ -263,146 +263,163 @@ Figure 12.2: After findactivity command
 
 === Transportation Booking Management
 
-The following sections [3.2.1 to 3.2.3] allows the user to manage transportation bookings for the trip.
+The following sections [4.3.1 to 4.3.3] allows the user to manage transportation bookings for the trip.
 
 ==== Create new transportation booking: `addtransport`
 
-Creates a new transportation booking for the trip. +
-Format: `addtransport mode/MODE startloc/START_LOCATION endloc/END_LOCATION starttime/DATE_TIME_OF_DEPARTURE
-endtime/DATE_TIME_OF_ARRIVAL`
+If you have a new transportation booking, you can use this command to store the information and it will store the booking into a list.
 
-****
-* `MODE` can be one of the following: `plane`, `bus`, `car`, `train`, `others`.
-* `DATE_TIME_OF_DEPARTURE` and `DATE_TIME_OF_ARRIVAL` needs to be in the format `dd-MM-yyyy HH:mm`. `HH:mm` is the 24hr format time.
-****
+Format: `addtransport mode/MODE startloc/START_LOCATION endloc/END_LOCATION starttime/DATE_TIME_OF_DEPARTURE endtime/DATE_TIME_OF_ARRIVAL`
+
+[NOTE]
+====
+- `MODE` can be one of the following: `plane`, `bus`, `car`, `train`, `others`.
+- `DATE_TIME_OF_DEPARTURE` and `DATE_TIME_OF_ARRIVAL` needs to be in the format `dd-MM-yyyy HH:mm`. `HH:mm` is the 24hr format time.
+====
 
 Examples:
 
-* `addtransport mode/plane startloc/Singapore endloc/Japan starttime/22-04-2021 09:00 endtime/22-04-2021 16:00` +
-Creates a plane booking that starts at 22 Apr 2021 0900hr and ends at 22 Apr 2021 1600hr.
-The location starting from Singapore and ending in Japan.
+`addtransport mode/plane startloc/Singapore endloc/Japan starttime/22-04-2021 09:00 endtime/22-04-2021 16:00`
+
+If you have a plane booking, you can use `addtransport` to add the booking with the start location, end location, start time and end time.
 
 ==== Edit transportation booking: `edittransport`
 
-Edits a transportation booking at the specified `INDEX` of the displayed transport booking list. +
-Format: `edittransport INDEX [mode/MODE] [startloc/START_LOCATION] [endloc/END_LOCATION] [starttime/DATE_TIME_OF_DEPARTURE]
-[endtime/DATE_TIME_OF_ARRIVAL]`
+If you have details for a given transport booking, you can use this command to edit certain details of the booking.
 
-****
-* `INDEX` refers to the index number shown in the displayed transport booking list. `INDEX` *must be a positive integer* 1, 2, 3, ...
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* `MODE` can take one of the following values: `plane`, `bus`, `car`, `train`, `others`.
-* `DATE_TIME_OF_DEPARTURE` and `DATE_TIME_OF_ARRIVAL` needs to be in the format `dd-MM-yyyy HH:mm`. `HH:mm` is the 24hr format time.
-****
+Format: `edittransport INDEX [mode/MODE] [startloc/START_LOCATION] [endloc/END_LOCATION] [starttime/DATE_TIME_OF_DEPARTURE] [endtime/DATE_TIME_OF_ARRIVAL]`
+
+[NOTE]
+====
+- `INDEX` refers to the index number shown in the displayed transport booking list. `INDEX` *must be a positive integer* 1, 2, 3, ...
+- At least one of the optional fields must be provided.
+- Existing values will be updated to the input values.
+- `MODE` can take one of the following values: `plane`, `bus`, `car`, `train`, `others`.
+- `DATE_TIME_OF_DEPARTURE` and `DATE_TIME_OF_ARRIVAL` needs to be in the format `dd-MM-yyyy HH:mm`. `HH:mm` is the 24hr format time.
+====
 
 Examples:
 
-* `edittransport 2 starttime/22-04-2021 10:00`
-Changes the start time of the second transportation booking in the displayed list to 22 Apr 2021 1000hr.
-* `edittransport 4 mode/plane endloc/Italy` +
-Changes the mode of the fourth transportation booking in the displayed transport booking list to plane and end location to Italy.
+`edittransport 2 starttime/22-04-2021 10:00`
+
+In the case that the start time has changed to 22 April 2021 1000hr, you can use `editcommand` to change it.
+
+`edittransport 4 mode/plane endloc/Italy`
+
+In the case that you want to change the end location and mode of transport, you can use `editcommand` to change it.
 
 ==== Delete transportation booking: `deletetransport`
 
-Deletes an existing transportation booking at the specified `INDEX` of the displayed transport booking list. +
+In the case that you want to remove the transport booking, you can use this command to remove it from the list.
+
 Format: `deletetransport INDEX`
 
-****
-* `INDEX` refers to the index number shown in the displayed transport booking list. `INDEX` *must be a positive integer* 1, 2, 3, ...
-****
+[NOTE]
+`INDEX` refers to the index number shown in the displayed transport booking list. `INDEX` *must be a positive integer* 1, 2, 3, ...
 
 Examples:
 
-* `deletetransport 1` +
-Deletes the first transport booking in the displayed transport booking list.
+`deletetransport 1`
 
-==== Accommodation Bookings
+You can delete a transport booking by using the `deletetransport` command
 
-The following sections [3.2.2.1 to 3.2.2.3] allows the user to set and modify accommodation bookings in the trip.
+==== Clear transportation booking: `cleartransport`
 
-===== Create new accommodation booking: `addhotel`
+If you want to remove all the transportation bookings that you have made, this command will return an empty list for you to start working with again.
 
-Creates a new accommodation booking for the trip.
+Format: `cleartransport`
 
-Format: `addhotel address/ADDRESS [phone/PHONE] startday/START_DAY endday/END_DAY [remark/REMARK]`
+[IMPORTANT]
+This command will remove all the transportation booking that is in your current list
 
-****
-* `START_DAY` and `END_DAY` needs to be *positive integers* within the number of days of the given trip.
-****
+Example:
 
-Examples:
+ cleartransport
 
-* `addhotel address/JW Marriott Hotel startday/2 endday/7` +
-Creates an accommodation booking on the 2nd to 7th day at JW Marriott Hotel.
+You can use `cleartransport` to clear all transportation bookings in the list
 
-* `addhotel address/JW Marriott phone/+60 3-2715 9000 Hotel startday/2 endday/7` +
-Creates an accommodation booking on the 2nd to 7th day at JW Marriott Hotel.
-Adds a phone number +60 3-2715 9000 for contact purposes.
+=== Accommodation Booking
 
-===== Edit accommodation booking: `edithotel`
+The following sections [4.4.1 to 4.4.3] allows the user to set and modify accommodation bookings in the trip.
 
-Edits an accommodation booking in the trip.
+===== Create a new accommodation booking: `addacc`
 
-Format: `edithotel INDEX [address/ADDRESS] [phone/PHONE] [startday/START_DAY] [endday/END_DAY] [remark/REMARK]`
+If you have made an accommodation booking, you can use this command to store it into a list and be able to keep track of it.
 
-****
-* `START_DAY` and `END_DAY` needs to be *positive integers* within the number of days of the given trip.
-****
+Format: `addacc name/NAME loc/LOCATION startday/START_DAY endday/END_DAY [remark/REMARK]`
 
-Examples:
-
-* `edithotel 2 startday/4 endday/6` +
-Changes the start day of the second accommodation booking in the list to 4th day and the end day to 6th day.
-
-* `edithotel 3 address/Hilton KL remark/Check-in at 2pm` +
-Changes the address of the third accommodation booking in the list to Hilton KL and change the remark to Check-in at 2pm.
-
-
-===== Delete accommodation booking: `deletehotel`
-
-Deletes an accommodation booking in the trip.
-
-Format: `deletehotel INDEX`
+[NOTE]
+====
+- `NAME` and `LOCATION` must be made of alphanumeric characters, and it must be less than 50 characters long
+- `START_DAY` and `END_DAY` needs to be positive integers
+- `START_DAY` refers to the day that you check in
+- `END_DAY` refers to the day that you check out
+- `REMARK` must be less than 150 characters long
+====
 
 Examples:
 
-* `deletehotel 2` +
-Deletes the second accommodation booking.
+`addacc name/JW Marriott Hotel loc/KL startday/2 endday/4`
 
-===== Ignore accommodation for some days: `ignore`
+If you have a new accommodation booking for JW Marriott Hotel at KL on the 2nd day to the 4th day, you can create it using the `addacc` command
 
-Ignores the accommodation bookings for certain days in the trip.
-Would be useful if user does not want to list any accommodation booking in the given days.
+==== Edit accommodation booking: `editacc`
 
-Format: `ignorehotel startday/START_DAY endday/END_DAY`
+If you have to adjust the details of the accommodation booking and you wish to make changes, you can use this command to edit the necessary information.
 
-****
-* `START_DAY` and `END_DAY` needs to be *positive integers* within the number of days of the given trip.
-****
+Format: `editacc INDEX [name/NAME] [loc/LOCATION] [startday/START_DAY] [endday/END_DAY] [remark/REMARK]`
 
-Examples:
-
-* `ignorehotel startday/2 endday/3` +
-Ignores any accommodation booking from day 2 to 3.
-
-==== Insurance
-
-===== Change insurance status: `insurance`
-
-Changes the status of whether the insurance has been bought or not.
-
-Format: `insurance STATUS` +
-`STATUS: yes, no`
-
-****
-* By default, insurance status will be set to no (not bought).
-****
+[NOTE]
+====
+- `INDEX` refers to the index number shown in the displayed transport booking list. `INDEX` *must be a positive integer* 1, 2, 3, ...
+- `NAME` and `LOCATION` must be made of alphanumeric characters, and it must be less than 50 characters long
+- `START_DAY` and `END_DAY` needs to be positive integers
+- `START_DAY` refers to the day that you check in
+- `END_DAY` refers to the day that you check out
+- `REMARK` must be less than 150 characters long
+====
 
 Examples:
 
-* `insurance yes` +
-Sets the insurance status to bought.
+`edithotel 2 startday/4 endday/6`
+
+In the case that you want to change the start day and end day of the 2nd accommodation, you can use `editacc` command.
+
+`edithotel 3 address/Hilton KL remark/Check-in at 2pm`
+
+You can also use this command to change the third accommodation booking in the list to Hilton, set the location to KL and change the remark to check in at 2pm.
+
+
+==== Delete accommodation booking: `deletehotel`
+
+Assuming you have another accommodation booking and plan to delete the previous one that you set on the same days, you can use this command to remove it.
+
+Format: `deleteacc INDEX`
+
+[NOTE]
+`INDEX` refers to the index number shown in the displayed transport booking list. `INDEX` *must be a positive integer* 1, 2, 3, ...
+
+Examples:
+
+`deletehotel 2`
+
+You can use `deleteacc` to delete the second accommodation booking.
+
+==== Clear accommodation booking: `clearacc`
+
+If you want to remove all the accommodation bookings that you have made, this command will return an empty list for you to start working with again.
+
+Format: `clearacc`
+
+[IMPORTANT]
+This command will remove all the accommodation bookings that is in your current list
+
+Example:
+
+ clearacc
+
+You can use `clearacc` to clear all accommodation bookings in the list
+
 
 === Packing List
 
