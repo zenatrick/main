@@ -39,7 +39,8 @@ To get started with using **E.T.**, you can follow these steps:
 
 Refer to +++<u>Section 4.3 - Command Syntaxes and Usages</u>+++ on how to use commands and +++<u>Section 5 - Features</u>+++ on the commands you can use for each feature.
 
-Figure X
+.Main UI
+image::user-guide/MainUI.png[]
 
 == *About*
 === Structure of this document
@@ -59,7 +60,8 @@ However, before moving on to the next section, you may want to familiarise yours
 ==== Terminology related to the GUI.
 The following figure shows how E.T. looks like.
 
-Figure X
+.Main page of E.T
+image::user-guide/MainPage.png[]
 
 ==== General Symbols and Syntax
 Table 1 below explains the general symbols and syntax used throughout the document.
@@ -219,8 +221,8 @@ This would create a trip titled “Graduation trip” with a start day of 28 Sep
 
 After successfully setting a trip, you would see as shown in figure X below.
 
-Figure 2: Message after successfully setting a trip.
-
+.Message after successfully setting a trip
+image::user-guide/SetTrip.png[]
 
 ===== Rename your trip: `rename`
 
@@ -238,8 +240,8 @@ This changes the name of the trip to “Not a graduation trip” as shown in the
 Expected output:
 `Trip has been named: Not a graduation trip`
 
-Figure 3: After renaming the trip
-
+.After renaming the trip
+image::user-guide/RenameTrip.png[]
 
 ===== Editing your  trip’s budget: `editbudget`
 
@@ -261,7 +263,8 @@ Example:
 
 E.T. will reflect the new budget in the trip info as shown in the figure below.
 
-Figure 4: After editing budget to 3000
+.After editing budget to 3000
+image::user-guide/EditBudget.png[]
 
 ===== Delete your trip: `deletetrip`
 
@@ -282,22 +285,14 @@ Deleting the trip would result in E.T. showing an empty screen as shown in figur
 
 Allow users to manage the activities in the trip
 
-
-===== View all your itinerary: `view`
-
-Shows the entire itinerary
-
-Format: `view`
-
-Figure 6: After view command
-
 ===== Check how prepared you are: `status`
 
 Assume you are not sure if you have already fully prepared for the trip, using the status command would confirm any fears and doubts about your preparation as well as warn you if you have any forgotten item that is not taken care of.
 
 Using the status command would create a pop-up window as shown in figure 4.
 
-Figure 7: The pop-up after using status command
+.The pop-up after using status command
+image::user-guide/Status.png[]
 
 [NOTE]
 ====
@@ -320,7 +315,8 @@ Format: `addactivity title/TITLE duration/DURATION location/LOCATION [tag/tag]..
 Example:
 `addactivity title/Going to the beach duration/4 location/Hakone tag/sea tag/ocean`
 
-Figure 8: After add activity command
+.After add activity command
+image::user-guide/AddActivity.png[]
 
 This would create and add an activity titled “Going to the beach" with a duration of 4 hours. The location of this activity is set to  “Hakone”, and has the tags “sea” and “ocean”.
 
@@ -333,7 +329,8 @@ Format: `editactivity INDEX [title/NAME][duration/DURATION][location/LOCATION][t
 Example:
 `editactivity 1 title/Go to an aquarium`
 
-Figure 9: After edit activity command
+.After edit activity command
+image::user-guide/EditActivity.png[]
 
 In this example, this command will edit an existing activity at the index 1 ‘s title to “Go to an aquarium”. The other fields will stay the same.
 
@@ -347,7 +344,8 @@ Format: `deleteactivity index`
 Example:
 `deleteactivity 1`
 
-Figure 10: After delete activity command
+.After delete activity command
+image::user-guide/DeleteActivity.png[]
 
 In this example, you would delete an activity at the index 1
 
@@ -365,7 +363,8 @@ Format: `clearactivity`
 Example:
 `clearactivity`
 
-Figure 11: After clear activity command
+.After clear activity command
+image::user-guide/ClearActivity.png[]
 
 [NOTE]
 ====
@@ -384,9 +383,10 @@ Format: `findactivitytag tag`
 Example:
 `findactivitytag expensive`
 
-This would show you the activities that have the tag expensive as shown in the figure 12.1.
+This would show you the activities that have the tag expensive as shown in the figure 11.
 
-Figure 12.1: After findactivitytag command
+.After find activity category command
+image::user-guide/FindActivityCategory.png[]
 
 Let's say rather than finding by tags, you decided to search by keywords. You can use the `findactivity` to find base on the keywords you provided.
 
@@ -395,9 +395,10 @@ Format: `findactivity keyword`
 Example:
 `findactivity Osaka`
 
-This would search for all activities with “Osaka” in it as shown in the figure 12.2
+This would search for all activities with “Osaka” in it as shown in the figure 12
 
-Figure 12.2: After findactivity command
+.After find activity command
+image::user-guide/FindActivity.png[]
 
 
 === Transportation Booking Management
@@ -422,6 +423,9 @@ Examples:
 
 If you have a plane booking, you can use `addtransport` to add the booking with the start location, end location, start time and end time.
 
+.After add transport booking command
+image::user-guide/AddTransportBooking.png[]
+
 ==== Edit transportation booking: `edittransport`
 
 If you have details for a given transport booking, you can use this command to edit certain details of the booking.
@@ -443,9 +447,15 @@ Examples:
 
 In the case that the start time has changed to 22 April 2021 1000hr, you can use `editcommand` to change it.
 
+.After edit transport booking command
+image::user-guide/EditTransportBooking.png[]
+
 `edittransport 4 mode/plane endloc/Italy`
 
 In the case that you want to change the end location and mode of transport, you can use `editcommand` to change it.
+
+.After edit transport booking command
+image::user-guide/EditTransportBooking2.png[]
 
 ==== Delete transportation booking: `deletetransport`
 
@@ -462,6 +472,9 @@ Examples:
 
 You can delete a transport booking by using the `deletetransport` command
 
+.After delete transport booking command
+image::user-guide/DeleteTransportBooking.png[]
+
 ==== Clear transportation booking: `cleartransport`
 
 If you want to remove all the transportation bookings that you have made, this command will return an empty list for you to start working with again.
@@ -476,6 +489,9 @@ Example:
  cleartransport
 
 You can use `cleartransport` to clear all transportation bookings in the list
+
+.After edit transport booking command
+image::user-guide/ClearTransportBooking.png[]
 
 === Accommodation Booking
 
@@ -502,6 +518,9 @@ Examples:
 
 If you have a new accommodation booking for JW Marriott Hotel at KL on the 2nd day to the 4th day, you can create it using the `addacc` command
 
+.After add accommodation booking command
+image::user-guide/AddAccommodationBooking.png[]
+
 ==== Edit accommodation booking: `editacc`
 
 If you have to adjust the details of the accommodation booking and you wish to make changes, you can use this command to edit the necessary information.
@@ -524,9 +543,15 @@ Examples:
 
 In the case that you want to change the start day and end day of the 2nd accommodation, you can use `editacc` command.
 
+.After edit accommodation booking command
+image::user-guide/EditAccommodationBooking.png[]
+
 `edithotel 3 address/Hilton KL remark/Check-in at 2pm`
 
 You can also use this command to change the third accommodation booking in the list to Hilton, set the location to KL and change the remark to check in at 2pm.
+
+.After edit accommodation booking command
+image::user-guide/EditAccommodationBooking2.png[]
 
 
 ==== Delete accommodation booking: `deletehotel`
@@ -544,6 +569,9 @@ Examples:
 
 You can use `deleteacc` to delete the second accommodation booking.
 
+.After delete accommodation booking command
+image::user-guide/DeleteAccommodationBooking.png[]
+
 ==== Clear accommodation booking: `clearacc`
 
 If you want to remove all the accommodation bookings that you have made, this command will return an empty list for you to start working with again.
@@ -558,6 +586,9 @@ Example:
  clearacc
 
 You can use `clearacc` to clear all accommodation bookings in the list
+
+.After clear accommodation booking command
+image::user-guide/ClearAccommodationBooking.png[]
 
 
 === Packing List
@@ -603,7 +634,8 @@ To add a new item:
 3. You can check that the new packing list item is visible in the list.
 ****
 
-Figure 23: After add item command
+.After add item command
+image::user-guide/AddItem.png[]
 
 ===== Editing an item in the packing list: `edititem`
 
@@ -639,8 +671,8 @@ To edit an item:
 3. And you can see that the item will change from `Underwear` to `Boxer`.
 ****
 
-
-Figure 24: After edit item command
+.After edit item command
+image::user-guide/EditItem.png[]
 
 
 `edititem 5 item/boxer quantity/3 category/essentials` +
@@ -657,7 +689,8 @@ To edit an item:
 3. You can see that the item will change from `Underwear` to `Boxer`, quantity will change from `5` to `3`, and the category will change from `clothes` to `essentials`
 ****
 
-Figure 25: After edit item command
+.After edit item command
+image::user-guide/EditItem2.png[]
 
 ===== Deleting an item in the packing list: `deleteitem`
 
@@ -686,9 +719,8 @@ To delete an item:
 3. You can see that the item at index 1 is deleted.
 ****
 
-
-Figure 26: After delete item command
-
+.After delete item command
+image::user-guide/DeleteItem.png[]
 
 ===== Marking an item as packed in the packing list: `checkitem`
 
@@ -718,7 +750,8 @@ To mark an item as packed:
 3. You can see that the item is marked as packed.
 ****
 
-Figure 27: After check item command
+.After check item command
+image::user-guide/CheckItem.png[]
 
 ===== Marking an item as unpacked in the packing list: `uncheckitem`
 
@@ -748,7 +781,8 @@ To mark an item as packed:
 3. You can see the item at index 2 is marked as unpacked
 ****
 
-Figure 28: After uncheck item command
+.After uncheck item command
+image::user-guide/UncheckItem.png[]
 
 ===== Sorting items in the packing list: `sort`
 
@@ -779,8 +813,8 @@ To sort the packing list:
 3. You can see that the packing list items are sorted in ascending order, according to their category.
 ****
 
-Figure 29: After sort item command
-
+.After sort item command
+image::user-guide/SortItem.png[]
 
 ===== Finding items in the packing list: `finditem`
 
@@ -810,8 +844,8 @@ To find items in the packing list:
 3. You can see all the packing list items that contain either shampoo or hairbrush will be listed in the packing list.
 ****
 
-Figure 30: After find item command
-
+.After find item command
+image::user-guide/FindItem.png[]
 
 ===== Finding item categories in the packing list: `finditemcategory`
 
@@ -841,7 +875,8 @@ To find items in the packing list under categories:
 3. You can now see the displayed packing list items that are either in the swimming category or in the clothes category
 ****
 
-Figure 31: After find item category command
+.After find item category command
+image::user-guide/FindItemCategory.png[]
 
 ===== Listing items in the packing list: `listitem`
 
@@ -865,7 +900,8 @@ To show the original packing list:
 3. You can now see the original packing list.
 ****
 
-Figure 32: After the list item command
+.After the list item command
+image::user-guide/ListItem.png[]
 
 ===== Adding a preset category: `addpreset`
 
@@ -897,7 +933,8 @@ To add a pre-existing preset:
 4. As you can see, it is just a preset. Feel free to customize your packing list by adding in other items in the packing list through the `additem` command (see Section 4.5.1) and editing the sample list of items provided through the `edititem` command (see Section 4.5.2)
 ****
 
-Figure 33: After add preset command
+.After add preset command
+image::user-guide/AddPreset.png[]
 
 ===== Listing all the presets in the packing list: `listpreset`
 
@@ -926,11 +963,9 @@ To show all the available presets:
 3. You can see icons and names of all the available pre-existing presets in the pop up window
 ****
 
-Figure 33: After list preset command
+.After list preset command
+image::user-guide/ListPreset.png[]
 
-===== Create a smart packing list: `createlist` [coming in v2.0]
-
-===== Export the packing list as a txt file: `export` [coming in v2.0]
 
 === Fixed Expense Manager
 
@@ -983,8 +1018,8 @@ Expected output:
 `New Fixed Expense added: Fixed Expense Entry - Description: Plane Tickets Amount: 1500.00 Category: transport
 Your budget left is now 3500`
 
-[KIV]
-Figure X: After successfully adding a fixed expense.
+.After successfully adding a fixed expense
+image::user-guide/AddFixedExpense.png[]
 
 ===== Editing a fixed expense: `editexpense`
 
@@ -1021,8 +1056,8 @@ Expected output: +
 `Edited Fixed Expense: Fixed Expense Entry - Description: Edited Amount: 1236.00 Category: others
 Your current budget left is 5000`
 
-[KIV]
-Figure 35: After successfully editing  a fixed expense.
+.After successfully editing a fixed expense
+image::user-guide/EditFixedExpense.png[]
 
 
 ===== Deleting a fixed expense: `deleteexpense`
@@ -1047,8 +1082,8 @@ Expected output: +
 `Deleted Fixed Expense: Fixed Expense Entry - Description: haha Amount: 1500.00 Category: transport
 Your remaining budget is 3500`
 
-[KIV]
-Figure 36: After successfully deleting a fixed expense.
+.After successfully deleting a fixed expense
+image::user-guide/DeleteFixedExpense.png[]
 
 ===== Clearing a fixed expense: `clearexpense`
 
@@ -1066,10 +1101,8 @@ You can see that the fixed expenses you currently have in the list will be clear
 Expected output: +
 `Fixed Expenses has been cleared!`
 
-
-[KIV]
-Figure 37: After successfully clearing all fixed expense.
-
+.After successfully clearing all fixed expense
+image::user-guide/ClearFixedExpense.png[]
 
 ===== Sort fixed expenses according to amount spent: `sortexpense`
 
@@ -1100,10 +1133,8 @@ You can see that the fixed expense will be sorted according to what you have cho
 Expected output: +
 `Sorting of FixedExpense successful :)`
 
-[KIV]
-Figure 38: After successful sorting of fixed expense.
-
-
+.After successful sorting of fixed expense
+image::user-guide/SortFixedExpense.png[]
 
 === Features coming in Version 2.0
 
