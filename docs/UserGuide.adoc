@@ -20,155 +20,245 @@ By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
 
 == *Introduction*
 
-Welcome to the user guide for E.T.
+Welcome to the User Guide of **Easy Travel (E.T.)**!
 
-Easy Travel (E.T.) is tailored towards travellers who prefer to use a desktop app to manage their trip planning through the use of inbuilt sample packing list, an expense tracker to note down expenses and a diary to log down places went and the amount spent in each location. Easy Tracker also provides a checklist to ensure users do not forget anything necessary for their trip.
+Do you enjoy going on overseas trips, but dislike or have trouble planning for it? Fret not, our application, **E.T.**, will help reduce the amount of stress and anxiety when planning for a trip. **E.T.** is a desktop application that helps travellers **manage and plan for their trips**. This application uses a Command Line Interface (CLI); this means that you operate the application by typing commands into a Command Box. If you are fast at typing, you can manage your trips faster than other Graphical User Interface (GUI) applications; GUI applications allow users to interact with the application through graphical icons such as buttons.
 
-E.T. 2.0 is well suited for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are comfortable with typing and can do it quickly, you can manage your trips quicker than comparable GUI applications. If you are interested, continue reading on to get started. Enjoy!
+The purpose of this user guide is to provide you with in-depth documentation on how to install and use our application. What are you waiting for? Head on to __Section 2 - Quick Start to get started.__
 
 == *Quick Start*
 
-.  Ensure you have Java `11` or above installed in your Computer.
-.  Download the latest `E.T.jar` link:{repoURL}/releases[This link have to change].
-.  Copy the file to the folder you want to use as the home folder for your Easy Travel.
-.  Double-click the file to start the app. The GUI should appear in a few seconds.
+To get started with using **E.T.**, you can follow these steps:
 
-+
-image::Ui.png[width="790"]
-+
-.  Type the command in the command box and press kbd:[Enter] to execute it. +
-e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
-.  Some example commands you can try:
+. Ensure that you have Java _11_ or above installed in your Computer. If you don’t you can install it using the link to Oracle https://www.oracle.com/java/technologies/javase-jdk11-downloads.html[here]
+. Download the latest version of **E.T.** found https://github.com/AY1920S2-CS2103T-W17-3/main/releases[here].
+. Copy the file to the folder you want to use as the home folder for **E.T.**.
+. Double-click the file to start the app. The GUI shown in +++<u>Figure 1</u>+++ should appear in a few seconds.
+. You are now on the main page of **E.T.**.
+. At the bottom of the screen, type your command in the Command Box (label in +++<u>Figure 1</u>+++) and press <Enter> on your keyboard to execute it. E.g. typing `help` and pressing <Enter> will open the help window.
 
-* *`list`* : lists all contacts
-* **`add`**`(insert your add command here)` : adds a trip named `Japan` to the list.
-* **`delete`**`3` : deletes the 3rd trip in the list
-* *`exit`* : exits the app
+Refer to +++<u>Section 4.3 - Command Syntaxes and Usages</u>+++ on how to use commands and +++<u>Section 5 - Features</u>+++ on the commands you can use for each feature.
 
-.  Refer to <<Features>> for details of each command.
+
+== *About*
+=== Structure of this document
+There are many things you can do with **E.T.**. Thus, we have structured this User Guide in such a way that you can easily find what you need. The next section, +++<u>Section 5 - Features</u>+++ will document the seven main features of **E.T.** and their commands:
+
 
 [[Features]]
 == *Features*
+This section contains all the information you need to know about the features of E.T.. To use each feature or sub-feature, you will need to enter a command into the Command Box.
 
-====
-*Command Format*
-
-
-*pass:[<u>TO BE EDITED</u>]*
-
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `addactivity title/TITLE`, `TITLE` is a parameter which can be used as `addactivity title/Sightseeing`.
-* Items in square brackets are optional e.g `name/NAME [remark/REMARK]` can be used as `name/Four Seasons Hotel remark/Check-in at 3pm` or as `name/Four Seasons Hotel`.
-* Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/sightseeing`, `t/sightseeing t/countryside` etc.
-* Parameters can be in any order e.g. if the command specifies `title/TITLE location/LOCATION`, `location/LOCATION title/TITLE` is also acceptable.
-====
 
 === Trip Planner
 
 The main feature of the app. Handles all trip and activity management.
 
-==== Trip list
+==== Trip Management
+This section contains the commands for the Trip Planner.
 
-===== Create new trip
-Format: `new NAME start/START_DATE end/END_DATE country/COUNTRY`
+WARNING: A trip is required to be set before other features are unlocked
 
-[.small]#Example: +
- `new Graduation Trip start/28-09-2020 end/28-10-2020 country/Japan` +
- Creates a new graduation trip starting from 28 September 2020 to 28 October 2020 in the country Japn#
-****
-** start and end date must be a valid date
-****
+===== Create your brand new trip: `settrip`
 
-===== Edit an existing trip
+Format: `settrip title/TITLE start/START_DATE end/END_DATE location/LOCATION budget/BUDGET exchangerate/EXCHANGERATE`
 
-Format: `edit INDEX [name/NAME] [start/START_DATE] [end/END_DATE][country/COUNTRY]`
+[IMPORTANT]
+====
+- There must not be a pre-existing trip set.
+- Start and end dates must be a valid date.
+- Title cannot exceed 50 characters.
+- Budget must be a valid positive Integer from 0 to 1,000,000
+- Exchange Rate must be a valid positive double from 0 to 100.
+====
 
-[.small]#Example: +
- `edit 1 name/not a graduation trip country/Singapore` +
- edits the trip 1, changing the name into "not a graduation trip" in the country singapore#
+Let’s say you have an upcoming Graduation Trip and you are planning for it. You can execute a command as shown in the example below:
 
-[.small]#Expected output: +
-`Trip 1 has been edited`#
+`settrip title/Graduation Trip start/28-09-2020 end/28-10-2020 location/Japan budget/5000 exchangerate/1.03`
 
-===== Delete and existing trip
+This would create a trip titled “Graduation trip” with a start day of 28 September 2020 to 28 October 2020. The budget set is $5000 with the exchangerate of 1.03
 
-Format: `delete INDEX`
+After successfully setting a trip, you would see as shown in figure X below.
 
-[.small]#Example: +
-`delete 1`#
+Figure 2: Message after successfully setting a trip.
 
-[.small]#Expected output: +
-`Trip 1 has been deleted`#
 
-===== Opens a trip
-Format: `open INDEX`
+===== Rename your trip: `rename`
 
-Open the trip fir editing and viewing
+Assume that you have accidentally titled the trip wrongly, you can execute the rename command to reverse any damages done as shown below
 
-[.small]#Example: +
- `open 1` +
- Opens the trip 1#
 
-****
-** Index must correspond to a existing trip
-****
+Format: `rename TITLE`
+
+Example:
+
+`rename Not a graduation trip.`
+
+This changes the name of the trip to “Not a graduation trip” as shown in the figure below.
+
+Expected output:
+`Trip has been named: Not a graduation trip`
+
+Figure 3: After renaming the trip
+
+
+===== Editing your  trip’s budget: `editbudget`
+
+Let’s say after planning your expenses, you realised that you would want to change the amount of money used for the trip. Using the editbudget command, you can edit the overall budget for your trip
+
+Format: `editbudget AMOUNT`
+
+[IMPORTANT]
+====
+- There must be a pre-existing trip set.
+- The budget set must not be lesser than your total expenses.
+====
+
+For example, we want to decrease the budget for this trip from $5000 to $3000.
+
+Example:
+
+`Editbudget 3000`
+
+E.T. will reflect the new budget in the trip info as shown in the figure below.
+
+Figure 4: After editing budget to 3000
+
+===== Delete your trip: `deletetrip`
+
+Assuming that you have finished with your trip and would like to start planning for a new one, executing the deletetrip command would remove all traces of your previous trip and set a new clean space for you to start planning for the next one.
+
+Format: `deletetrip`
+
+Example:
+`deletetrip`
+
+Expected output:
+`Trip has been deleted. All lists have been cleared!`
+
+Deleting the trip would result in E.T. showing an empty screen as shown in figure 3. Execute the settrip to start another trip.
+
 
 ==== Scheduler (after opening a trip)
 
 Allow users to manage the activities in the trip
 
-===== Add activity
-Format: `addactivity DAY name/NAME starttime/START_TIME endtime/END_TIME location/LOCATION`
 
-Adds an activity to the specific day indicated.
+===== View all your itinerary: `view`
 
-[.small]#Example: +
- `addactivity 1 name/Going to the beach starttime/4 endtime/5 location/Hakone` +
- Adds an activity to day 1 named "Going to the beach" which starts from 4 and ends at 5. Location of this activity is Hakone.#
-
-****
-** Day cannot exceed the end date
-****
-===== Edit activity
-Format: `editactivity DAY [name/NAME] [starttime/START_TIME] [endtime/END_TIME] [location/LOCATION]`
-
-Edits the activity that is being set previously
-
-[.small]#Example: +
-`editactivity 1 name/Go to an aquarium` +
-Edits a previously existing activity to be named "Go to an aquarium"#
-
-****
-** The activity must exist to be edited
-****
-===== Deleting an activity
-
-Format: `deleteactivity DAY`
-
-
-[.small]#Example: +
-`deleteactivity 1`#
-
-===== View all itinerary: `view`
 Shows the entire itinerary
 
-==== Navigate to other tabs within a trip
-Format: `goto TABNAME`
+Format: `view`
+
+Figure 6: After view command
+
+===== Check how prepared you are: `status`
+
+Assume you are not sure if you have already fully prepared for the trip, using the status command would confirm any fears and doubts about your preparation as well as warn you if you have any forgotten item that is not taken care of.
+
+Using the status command would create a pop-up window as shown in figure 4.
+
+Figure 7: The pop-up after using status command
+
+[NOTE]
+====
+The pop-up would show you major warnings such as
+
+- No expense/packing list item set
+- Collisions in activities
+- Over expenditure on budget
+- Unchecked items in packing list
+====
+
+=== Activity Management
+This section allows users to manage the activities in the trip.
+
+==== Add your activity: `addactivity`
+Lets say you wish to add in a new activity that you decided to do on the trip. Using the `addactivitiy` command would create and add your activity into the list.
+
+Format: `addactivity title/TITLE duration/DURATION location/LOCATION [tag/tag]...`
+
+Example:
+`addactivity title/Going to the beach duration/4 location/Hakone tag/sea tag/ocean`
+
+Figure 8: After add activity command
+
+This would create and add an activity titled “Going to the beach" with a duration of 4 hours. The location of this activity is set to  “Hakone”, and has the tags “sea” and “ocean”.
+
+==== Editing your activity: `editactivity`
+
+Assume you have accidentally made a mistake in the spelling or the location of the activity and wish to change it. Running the `editactivity` command will allow you to make any changes to previously set activities.
+
+Format: `editactivity INDEX [title/NAME][duration/DURATION][location/LOCATION][t/tag]...`
+
+Example:
+`editactivity 1 title/Go to an aquarium`
+
+Figure 9: After edit activity command
+
+In this example, this command will edit an existing activity at the index 1 ‘s title to “Go to an aquarium”. The other fields will stay the same.
+
+IMPORTANT: The activity must exist to be edited
+
+==== Deleting your activity: `deleteactivity`
+
+Perhaps you decided that previously set activities are unviable and wish to remove it. Using the `deleteactivity` command would remove any activities that you do not want.
+
+Format: `deleteactivity index`
+Example:
+`deleteactivity 1`
+
+Figure 10: After delete activity command
+
+In this example, you would delete an activity at the index 1
+
+[IMPORTANT]
+=====
+The activity at that index must exist before deleting is allowed
+=====
+
+==== Clearing your planned activities: `clearactivity`
+
+Perhaps you decided that all the activities you had planned before are not needed and want to start the activity list on a clean slate. Using the `clearactivity` command would clear any existing activities and replace your list with a brand new empty list.
+
+Format: `clearactivity`
+
+Example:
+`clearactivity`
+
+Figure 11: After clear activity command
+
+[NOTE]
+====
+You can use this to delete all your activities at once
+====
+
+====  Find your activities
+Let say you had added a bunch of activities and wished to search for a specific one. You can do it by using the find command to search through based on tags or by keyword.
+
+`Findactivitytag` allows you to search by tags while `findactivity` command allows you to search by keyword.
+
+Format: `findactivitytag tag`
 
 
-[.small]#TABNAME: `schedule` `pretrip` `packlist` `expense` `diary`#
 
-==== Check preparation status: `checkstatus`
-Shows how prepared the user is for the trip
+Example:
+`findactivitytag expensive`
 
-==== Set reminder
-Reminds the user to do something at the time
+This would show you the activities that have the tag expensive as shown in the figure 12.1.
 
-Format: `setreminder event/NAME at/time`
+Figure 12.1: After findactivitytag command
 
-[.small]#Example: +
- `setreminder event/Book tickets at/4` +
- Sets an reminder named "Book tickets" at 4pm.#
+Let's say rather than finding by tags, you decided to search by keywords. You can use the `findactivity` to find base on the keywords you provided.
+
+Format: `findactivity keyword`
+
+Example:
+`findactivity Osaka`
+
+This would search for all activities with “Osaka” in it as shown in the figure 12.2
+
+Figure 12.2: After findactivity command
 
 
 === Transportation Booking Management
