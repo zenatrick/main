@@ -26,9 +26,8 @@ public class AddPresetCommand extends Command {
      */
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a preset to the packing list. "
             + "Parameters: "
-            + PREFIX_ITEM_CATEGORY + "CATEGORY \n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ITEM_CATEGORY + "swimming";
+            + "CATEGORY\n"
+            + "Example: " + COMMAND_WORD + " swimming";
 
     /**
      * The constant MESSAGE_SUCCESS.
