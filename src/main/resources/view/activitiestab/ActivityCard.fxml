@@ -37,6 +37,9 @@
                   <image>
                      <Image url="@../../images/hourglass.png" />
                   </image>
+                  <HBox.margin>
+                     <Insets right="2.0" />
+                  </HBox.margin>
                </ImageView>
                <Label fx:id="duration" styleClass="cell_small_label" text="\$email" />
             </children>
@@ -50,6 +53,9 @@
                   <image>
                      <Image url="@../../images/map.png" />
                   </image>
+                  <HBox.margin>
+                     <Insets right="2.0" />
+                  </HBox.margin>
                </ImageView>
                   <Label fx:id="activityLocation" styleClass="cell_small_label" text="\$email" />
             </children>
@@ -63,8 +69,11 @@
                   <image>
                      <Image url="@../../images/calendar2.png" />
                   </image>
+                  <HBox.margin>
+                     <Insets right="2.0" />
+                  </HBox.margin>
                </ImageView>
-                  <Label fx:id="scheduledTime" styleClass="cell_small_label" text="\$address" />
+                  <Label fx:id="scheduledTime" alignment="CENTER" styleClass="cell_small_label" text="\$address" />
             </children>
             <padding>
                <Insets top="4.0" />
