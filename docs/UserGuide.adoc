@@ -808,143 +808,213 @@ Examples of Fixed Expenses include,
 
 ==== Modifying expenses
 
-The following sections [3.4.4.1 - 3.4.4.4] allows a user to set and modify fixed expenses prior to the trip.
+The following sections [4.6.1.1 - 4.6.1.5] allows a user to set and modify fixed expenses before the trip.
 
 ===== Adding a new fixed expense: `addexpense`
 
-Allow the user to add a new expense.
+Given that you want to add a new fixed expense for your trip, you could use the `addexpense` command to add your fixed expense into the list.
 
-Format: `addexpense amount/AMOUNT description/DESCRIPTION category/CATEGORY
-[amountSGD/AMOUNT/SGD] [amountOTHR/AMOUNTOTHR]`
+Format: `addexpense amount/AMOUNT currency/CURRENCY description/DESCRIPTION category/CATEGORY `
+[NOTE]
+====
+- Adds a new fixed expense for the upcoming trip.
 
-****
-* Adds a new fixed expense for the upcoming trip.
-* The amount *must be a positive integer*
-* Both the `Description` and `Category` *must be alphanumeric word* and contains 50 and 30 characters respectively.
-* At least one of the optional fields must be provided.
-* If the user enters the expense in other currency, the amount will be automatically converted to SGD using the *exchange rate* provided.
-****
+- Only one amount must be provided and *must be a positive integer*
+
+- Both the `Description` and `Category` fields *must be alphanumeric word* and contains 50 and 30 characters respectively.
+
+- At least one of the optional fields must be provided.
+
+- If the user enters the expense in other currency, which is identified through typing `OTHER` in the `CURRENCY`
+field, the amount will be automatically converted to SGD using the exchange rate provided.
+====
 
 Examples:
 
-* `addexpense amount/1100 description/SQ Tickets category/Flights` +
+* `addexpense amount/1100 description/SQ Tickets category/Flights  currency/SGD` +
 Adds a fixed expense of $1100SGD, for `SQ Tickets` of category `Flights`.
 
-* `addexpense amount/300 description/Bullet Train category/Transportation` +
+* `addexpense amount/300 currency/other description/Bullet Train category/Transportation` +
 Adds a fixed expense of $300SGD for `Bullet Train` of category `Transportation`.
+
+After successfully adding the fixed expense, you would be able to see the expected output below along with the details of the fixed expense you have just added and your remaining budget for the trip.
+
+Expected output:
+
+`New Fixed Expense added: Fixed Expense Entry - Description: Plane Tickets Amount: 1500.00 Category: transport
+Your budget left is now 3500`
+
+[KIV]
+Figure X: After successfully adding a fixed expense.
 
 ===== Editing a fixed expense: `editexpense`
 
-Allow the user to edit a fixed expense. The expense must have been already added to the fixed expense tracker.
+Given that you wish to edit your fixed expense as there are some changes to your fixed expenses, you could do so with ease through the `editexpense` command.
 
-Format: `editexpense INDEX amount/AMOUNT [description/DESCRIPTION] [category/CATEGORY] [amountSGD/AMOUNTSGD] [amountOTHR/AMOUNTOTHR]`
+Format: `editexpense INDEX [amount/AMOUNT] [currency/CURRENCY]  [description/DESCRIPTION] [category/CATEGORY]`
 
-****
-* Edits the expense at the specified `INDEX`. The index refers to the index number shown in the displayed fixed expense
+[NOTE]
+====
+- Edits the expense at the specified `INDEX`. The index refers to the index number shown in the displayed fixed expense
 list. The index *must be a positive integer* 1, 2, 3, ...
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* An *exchange rate* is required if the user is entering the amount in another currency.
-* If the user enters the expense in other currency,
-the amount will be automatically converted to SGD using the *exchange rate* provided.
-****
+- At least one of the optional fields must be provided.
+- Existing values will be updated to the input values.
+- If the user wishes to change the amount, they must indicate what currency the edited amount is in.
+- Both currency and amount fields must exist for a successful edit.
+- If the user enters the expense in other currency, the amount will be automatically converted to SGD using the exchange rate provided.
+- A *warning* will be shown to you if you have edited an expense such that you have overshot your budget.
+====
 
 Examples:
 
 * `editexpense 1 amount/3000 description/Cathay Pacific Flight` +
 Edit the details and amount paid in SGD of the 1st fixed expense to be `Cathay Pacific Flight` and `$3000 SGD` respectively.
 
-* `editexpense 1 amountOTHR/3000 description/Business Class Flight category/Flight Ticket` +
+* `editexpense 1 amount/3000 currency/other description/Business Class Flight category/Flight Ticket` +
 Edit the details and amount paid in other currency of the 1st fixed expense to be
 `Business Class Flight` and `$3000` respectively.
 The amount will be automatically converted to SGD using *exchange rate* provided.
 
+
+You can see your edited fixed expense in the list after successfully editing the fixed expense. You will also receive the expected output message shown below.
+
+Expected output: +
+`Edited Fixed Expense: Fixed Expense Entry - Description: Edited Amount: 1236.00 Category: others
+Your current budget left is 5000`
+
+[KIV]
+Figure 35: After successfully editing  a fixed expense.
+
+
 ===== Deleting a fixed expense: `deleteexpense`
 
-Allow the user to delete a fixed expense. The expense must be already added to the fixed expense list.
+Given that you wish to delete your fixed expense as it might not be relevant to your trip anymore,
+you could do so with ease through the `deleteexpense` command.
 
 Format: `deleteexpense INDEX`
 
+[NOTE]
+====
+- You must include an index equivalent to the number of fixed expenses in the list.
+====
+
 Examples:
-* deleteexpense 1 +
+`deleteexpense 1` +
 Delete the 1st item in the fixed expense list.
+
+You can see that the fixed expense you have deleted is not in the list after successfully deleting the fixed expense. You will also receive the expected output message shown below.
+
+Expected output: +
+`Deleted Fixed Expense: Fixed Expense Entry - Description: haha Amount: 1500.00 Category: transport
+Your remaining budget is 3500`
+
+[KIV]
+Figure 36: After successfully deleting a fixed expense.
 
 ===== Clearing a fixed expense: `clearexpense`
 
-Allow the user to clear the fixed expense in the list.
+Given that you have reached an irrevocable amount of editing with your fixed expense list and would like to start
+afresh, you could do so with ease through the `clearexpense` command.
 
-Format: `clearexpense INDEX`
+Format: `clearexpense`
 
 Example:
-* clearexpense +
+`clearexpense` +
 Clears the fixed expense in the list
 
-==== Setting conversion rates: `conversion`
+You can see that the fixed expenses you currently have in the list will be cleared after successfully executing the command. You will also receive the expected output message shown below.
 
-Allow the user to set conversion rates to allow for automatic conversion to SGD for any expenses incurred during the trip.
+Expected output: +
+`Fixed Expenses has been cleared!`
 
-Format: `conversion rate/RATE`
 
-****
-* Sets a conversion rate from their currency to SGD.
-* `RATE` must be a positive real number.
-* Any expenses entered by the user during the trip would be automatically converted to SGD.
-****
+[KIV]
+Figure 37: After successfully clearing all fixed expense.
 
 
 ===== Sort fixed expenses according to amount spent: `sortexpense`
 
-Allow the user to sort their fixed expense in the list.
+Given that you have too many fixed expenses and wish to know the smallest or largest expense, you could simply do so
+through the `sortexpense` command.
 
 Format: `sortexpense SORTIDENTIFIER [AMOUNT] [DESCRIPTION] [CATEGORY]`
 
-****
+[NOTE]
+====
 * Sorts all fixed expense in ascending or descending order dependent on `SORTIDENTIFIER`.
-* The list will be sorted in ascending order if `SORTIDENTIFIER` is 0 and descending order if `SORTIDENTIFIER` is 1.
-* Only one of the optional fields [AMOUNT] [DESCRIPTION] [CATEGORY] must be provided and will sort the
+* The list will be sorted in ascending order if `SORTIDENTIFIER` is `ASC` and descending order if `SORTIDENTIFIER` is `DES`.
+* Only one of the optional fields `[AMOUNT]` `[DESCRIPTION]` `[CATEGORY]` must be provided and will sort the
 list in ascending or descending order dependent on what needs to be sorted.
 * The list must not be empty.
-****
+====
 
 Examples:
 
-* `sortexpense 1 amount` +
+* `sortexpense des amount` +
 Sorts all fixed expense in descending order of amount.
 
-* `sortexpense 0 description` +
+* `sortexpense asc description` +
 Sorts all fixed expense in lexicographical order.
 
+You can see that the fixed expense will be sorted according to what you have chosen. You will also receive the expected output message shown below.
 
-==== Recommend ways to save money based on prevailing usage [Coming in v2.0]
+Expected output: +
+`Sorting of FixedExpense successful :)`
 
-Use complex algorithms to monitor and track the user's spending habits. Recommend ways to save money on certain items.
+[KIV]
+Figure 38: After successful sorting of fixed expense.
 
-==== Automatically keep track of expenses [Coming in v2.0]
 
-Avoid requiring the user to enter their expenses on the application. Instead, all their expenses will be automatically entered into the app for them.
 
-==== Export the diary to pdf file [Coming in V2.0]
+=== Features coming in Version 2.0
 
-=== Undo-Redo
-Allows the user to revert their actions quickly and conveniently.
+The following sections [4.7.1 - 4.7.3] describes the various features that will be implemented in Version 2.0 of E.T.
 
-==== Undo an action: `undo`
-Undo an undoable command entered by the user. +
-Format: `undo`
+==== Packing List Manager
+The following sections [4.7.1.1 - 4.7.1.2] describes the additional features which would be added to the *Packing List Manager* in version 2.0 of E.T.
 
-Example:
+===== Create a smart packing list: `createlist`
+This feature allows users to create a smart packing list. The motivation behind it is to allow inexperienced users.
 
-* `undo`
+[NOTE]
+====
+- Creates a list based on the information given by the user.
+- Useful for inexperienced users, as they do not know what to pack or the quantity to pack.
+- `DAYS`, `ADULT`, `CHILDREN` must be a positive integer *1,2,3....*.
+- `SEASON` must be in `Spring`, `Summer`, `Autumn`, `Winter`.
+====
 
-==== Redo an action: `redo`
-Redo an undone action after using the command `undo`. +
-Format: `redo`
+Examples: +
+`createlist d/7, m/1, f/1, c/2, s/Summer`
 
-Example:
+If you are planning a trip is 7 days, with 1 male and 1 female,
+this command will create a packing list based on the information provided.
+7 sets of adult and child summer clothing will be added into the packing list, along with toys for the children.
 
-* `redo`
+==== Export the packing list as a text file: `export`
+This feature would allow users to export their existing packing list into a formatted text file.
+The motivation behind it is to enable users to share their packing lists among each other freely.
+This will give inexperienced users a template to refer to while planning for their upcoming trips.
 
-=== Auto-Complete [Coming in V2.0]
+=== Fixed Expense Manager
+The following sections [4.7.2.1-4.7.2.2] describes the additional features which would be added to the packing list manager
+in Version 2.0 of E.T.
+
+==== Recommend ways to save money based on prevailing usage
+Use complex algorithms to monitor and track the user's spending habits.
+Recommend ways to save money on certain items.
+
+==== Automatically keep track of expenses
+Avoid requiring the user to enter their expenses on the application. Instead, all their expenses will be automatically entered into E.T.
+
+=== Improvements to E.T. Interface
+The following sections [4.7.3.1 - 4.7.3.2] describes the additional features which would be added to the general E.T. interface to make E.T. more user friendly.
+
+==== Auto-Complete
+This feature would allow users who are unfamiliar with E.T to type part of a command instead of the whole command.
+
+==== Undo/Redo
+This feature would allow users to undo or redo certain commands which are accidentally done.
 
 === Import and export of data [Coming in V2.0]
 
