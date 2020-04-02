@@ -20,17 +20,17 @@ By: `Team ET`      Since: `Jun 2016`      Licence: `MIT`
 
 == *Introduction*
 
-Welcome to the User Guide of **Easy Travel (E.T.)**!
+Welcome to the User Guide of *Easy Travel (E.T.)*!
 
 Do you enjoy going on overseas trips, but dislike or have trouble planning for it? Fret not, our application, **E.T.**, will help reduce the amount of stress and anxiety when planning for a trip. **E.T.** is a desktop application that helps travellers **manage and plan for their trips**. This application uses a Command Line Interface (CLI); this means that you operate the application by typing commands into a Command Box. If you are fast at typing, you can manage your trips faster than other Graphical User Interface (GUI) applications; GUI applications allow users to interact with the application through graphical icons such as buttons.
 
-The purpose of this user guide is to provide you with in-depth documentation on how to install and use our application. What are you waiting for? Head on to __Section 2 - Quick Start to get started.__
+The purpose of this user guide is to provide you with in-depth documentation on how to install and use our application. What are you waiting for? Head on to +++<u>Section 2 - Quick Start to get started</u>+++.
 
 == *Quick Start*
 
 To get started with using **E.T.**, you can follow these steps:
 
-. Ensure that you have Java _11_ or above installed in your Computer. If you don’t you can install it using the link to Oracle https://www.oracle.com/java/technologies/javase-jdk11-downloads.html[here]
+. Ensure that you have _Java 11_ or above installed in your Computer. If you don’t you can install it using the link to _Oracle_ https://www.oracle.com/java/technologies/javase-jdk11-downloads.html[here]
 . Download the latest version of **E.T.** found https://github.com/AY1920S2-CS2103T-W17-3/main/releases[here].
 . Copy the file to the folder you want to use as the home folder for **E.T.**.
 . Double-click the file to start the app. The GUI shown in +++<u>Figure 1</u>+++ should appear in a few seconds.
@@ -39,12 +39,151 @@ To get started with using **E.T.**, you can follow these steps:
 
 Refer to +++<u>Section 4.3 - Command Syntaxes and Usages</u>+++ on how to use commands and +++<u>Section 5 - Features</u>+++ on the commands you can use for each feature.
 
+Figure X
 
 == *About*
 === Structure of this document
-There are many things you can do with **E.T.**. Thus, we have structured this User Guide in such a way that you can easily find what you need. The next section, +++<u>Section 5 - Features</u>+++ will document the seven main features of **E.T.** and their commands:
+There are many things you can do with **E.T.**. Thus, we have structured this User Guide in such a way that you can easily find what you need. In the next subsection, +++<u>Section 3.2 Reading this Document</u>+++, you will find useful tips on reading this document. It is then followed by Section 4 - Features where the seven main features of E.T. and their commands are documented:
+
+- Trip Planner
+- Scheduler
+- Activity manager
+- Transportation Booking Manager
+- Accommodation Booking Manager
+- Packing list Manager
+- Fixed Expense Manager
+
+=== Reading this Document
+However, before moving on to the next section, you may want to familiarise yourself with some technical terms, symbols and syntax that are used throughout the document. In this subsection, you can find all the information you need to know when reading this document.
+
+==== Terminology related to the GUI.
+The following figure shows how E.T. looks like.
+
+Figure X
+
+==== General Symbols and Syntax
+Table 1 below explains the general symbols and syntax used throughout the document.
+
+|===
+|Symbol/syntax |What does it mean?
+
+|_italics_,
+|Italicised text indicates that the text has a definition that is specific to the application. Look out for the definitions of these words in the same paragraph or in the glossary.
+
+|`command`
+|A grey highlight (called a code-block markup) indicates that this is a command that can be typed into the command box and executed by the application.
+
+|💡
+|A light bulb indicates that the enclosed text is a tip.
+
+|⚠
+|A warning sign indicates that the enclosed text is important.
+|===
+
+Table 1. General symbols and syntax
+
+==== Command Syntaxes and Usages
+
+Since *E.T.* is a CLI application, knowing how to use commands is very important. The following subsection will teach you how to read and use commands in *E.T.*. All commands in *E.T.* follow similar formats as described below and examples will be provided to help you understand their usage. Examples of commands and their formats will be written in `code-blocks`.
+
+Table 2 below explains some important technical terms. An example will be provided to help you visualize these terms.
 
 
+|===
+|Technical Term |What does it mean?
+
+|Command word
+|The first word of a command. It determines the action that E.T. should perform.
+
+|Parameter
+|The word or group of words following the command word. They are values given to a command to perform the specified action.
+
+|Prefix
+|The word that at the start of a parameter. It distinguishes one parameter from another.
+|===
+
+Table 2. Commands technical terms
+
+Example:
+
+
+    additem name/NAME quantity/QUANTITY category/CATEGORY
+
+
+Breakdown:
+
+*Command Word* - `additem`
+
+*Parameters* - `NAME`, `QUANTITY`, `CATEGORY`
+
+*Prefix* -  `name/`, `quantity/`, `category/`
+
+The following points explain how you can use a command with the provided format. More examples will be provided for each command in +++<u>Section 5 - Features</u>+++.
+Words in the upper case are the parameters to be supplied by you.
+
+- Words in the *upper case* are the parameters to be supplied by you.
+
+Example:
+|===
+|Format given |Example of user input
+
+|`deletetransport INDEX`
+|`deletetransport 1`
+|===
+
+`INDEX` is a parameter that you supply.
+
+In this example, the user supplied `1` as the `INDEX`.
+
+- Items in *square brackets* are optional.
+
+Example:
+|===
+|Format given |Example of user input
+
+|`edititem INDEX [name/NAME] [quantity/QUANTITY] [category/CATEGORY]`
+|`edititem 1 quantity/5`
+|===
+`INDEX` is compulsory as it is not in a pair of *square brackets*.
+
+`[name/NAME]` on the other hand is optional as it is in a pair of *square brackets*.
+
+The same rule applies to the rest of the parameters.
+
+In the example above, the user supplied the compulsory parameter `INDEX` and only one optional parameter `[quantity/QUANTITY]`.
+
+- Items with `...` after them can be used zero or multiple times.
+
+Example:
+|===
+|Format given |Example of user input
+
+|`addactivity title/TITLE location/LOCATION duration/DURATION tag/TAG...`
+|`addactivity title/Shopping location/Treasure Factory duration/2 tag/shopping tag/tokyo`
+
+| _Same as above_
+|`addactivity title/Osaka Castle View location/Treasure Factory duration/2 duration/1`
+|===
+In the first example above, the user supplied 2 `tag/TAG` parameters.
+
+In the second example above, the user did not supply any `tag/TAG` parameters.
+
+- Parameters can be supplied in any order
+
+Example:
+|===
+|Format given |Example of user input
+
+|`addactivity title/TITLE location/LOCATION duration/DURATION tag/TAG... `
+|`addactivity title/Shopping location/Treasure Factory duration/2 tag/shopping tag/tokyo`
+
+| _Same as above_
+|`addactivity duration/2 tag/shopping location/Treasure Factory tag/tokyo title/Shopping`
+|===
+
+The above user input command examples are equivalent even though the order of the parameters supplied are different.
+
+With the above information, you can now move on to Section 5 - Feature to learn all the features of the application and start using the commands.
 [[Features]]
 == *Features*
 This section contains all the information you need to know about the features of E.T.. To use each feature or sub-feature, you will need to enter a command into the Command Box.
