@@ -799,7 +799,7 @@ Format: `sortitem order criteria`
 
 Examples:
 
-`sort asc alphabet` +
+`sortitem asc alphabet` +
 
 Let’s say you want to sort the packing list alphabetically. You may do so by executing the `sortitem` command.
 
