@@ -1,7 +1,6 @@
 package team.easytravel.logic.commands.packinglist;
 
 import static java.util.Objects.requireNonNull;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_CATEGORY;
 
 import java.util.Arrays;
 

@@ -29,62 +29,62 @@ public class AddPresetCommandParser implements Parser<AddPresetCommand> {
             String category = args.substring(1);
             AddPresetCommand addPresetCommand;
             switch (category) {
-                case "hiking":
-                    addPresetCommand = new AddPresetCommand(PresetDataUtil.hikingPreset(), category);
-                    break;
-                case "clothes female":
-                    addPresetCommand = new AddPresetCommand(PresetDataUtil.clothesFemalePreset(), category);
-                    break;
-                case "clothes male":
-                    addPresetCommand = new AddPresetCommand(PresetDataUtil.clothesMalePreset(), category);
-                    break;
-                case "toiletries":
-                    addPresetCommand = new AddPresetCommand(PresetDataUtil.toiletriesPreset(), category);
-                    break;
-                case "swimming":
-                    addPresetCommand = new AddPresetCommand(PresetDataUtil.swimmingPreset(), category);
-                    break;
-                case "formal dinner f":
-                    addPresetCommand = new AddPresetCommand(PresetDataUtil.formalDinnerFemalePreset(), category);
-                    break;
-                case "formal dinner m":
-                    addPresetCommand = new AddPresetCommand(PresetDataUtil.formalDinnerMalePreset(), category);
-                    break;
-                case "beach":
-                    addPresetCommand = new AddPresetCommand(PresetDataUtil.beachPreset(), category);
-                    break;
-                case "aeroplane":
-                    addPresetCommand = new AddPresetCommand(PresetDataUtil.aeroplanePreset(), category);
-                    break;
-                case "car":
-                    addPresetCommand = new AddPresetCommand(PresetDataUtil.carPreset(), category);
-                    break;
-                case "boat":
-                    addPresetCommand = new AddPresetCommand(PresetDataUtil.boatPreset(), category);
-                    break;
-                case "train":
-                    addPresetCommand = new AddPresetCommand(PresetDataUtil.trainPreset(), category);
-                    break;
-                case "work":
-                    addPresetCommand = new AddPresetCommand(PresetDataUtil.workPreset(), category);
-                    break;
-                case "essentials":
-                    addPresetCommand = new AddPresetCommand(PresetDataUtil.essentialsPreset(), category);
-                    break;
-                case "international":
-                    addPresetCommand = new AddPresetCommand(PresetDataUtil.internationalPreset(), category);
-                    break;
-                case "camping":
-                    addPresetCommand = new AddPresetCommand(PresetDataUtil.campingPreset(), category);
-                    break;
-                case "snow":
-                    addPresetCommand = new AddPresetCommand(PresetDataUtil.snowPreset(), category);
-                    break;
-                case "gym":
-                    addPresetCommand = new AddPresetCommand(PresetDataUtil.gymPreset(), category);
-                    break;
-                default:
-                    throw new ParseException("Sorry! Preset does not exist.");
+            case "hiking":
+                addPresetCommand = new AddPresetCommand(PresetDataUtil.hikingPreset(), category);
+                break;
+            case "clothes female":
+                addPresetCommand = new AddPresetCommand(PresetDataUtil.clothesFemalePreset(), category);
+                break;
+            case "clothes male":
+                addPresetCommand = new AddPresetCommand(PresetDataUtil.clothesMalePreset(), category);
+                break;
+            case "toiletries":
+                addPresetCommand = new AddPresetCommand(PresetDataUtil.toiletriesPreset(), category);
+                break;
+            case "swimming":
+                addPresetCommand = new AddPresetCommand(PresetDataUtil.swimmingPreset(), category);
+                break;
+            case "formal dinner f":
+                addPresetCommand = new AddPresetCommand(PresetDataUtil.formalDinnerFemalePreset(), category);
+                break;
+            case "formal dinner m":
+                addPresetCommand = new AddPresetCommand(PresetDataUtil.formalDinnerMalePreset(), category);
+                break;
+            case "beach":
+                addPresetCommand = new AddPresetCommand(PresetDataUtil.beachPreset(), category);
+                break;
+            case "aeroplane":
+                addPresetCommand = new AddPresetCommand(PresetDataUtil.aeroplanePreset(), category);
+                break;
+            case "car":
+                addPresetCommand = new AddPresetCommand(PresetDataUtil.carPreset(), category);
+                break;
+            case "boat":
+                addPresetCommand = new AddPresetCommand(PresetDataUtil.boatPreset(), category);
+                break;
+            case "train":
+                addPresetCommand = new AddPresetCommand(PresetDataUtil.trainPreset(), category);
+                break;
+            case "work":
+                addPresetCommand = new AddPresetCommand(PresetDataUtil.workPreset(), category);
+                break;
+            case "essentials":
+                addPresetCommand = new AddPresetCommand(PresetDataUtil.essentialsPreset(), category);
+                break;
+            case "international":
+                addPresetCommand = new AddPresetCommand(PresetDataUtil.internationalPreset(), category);
+                break;
+            case "camping":
+                addPresetCommand = new AddPresetCommand(PresetDataUtil.campingPreset(), category);
+                break;
+            case "snow":
+                addPresetCommand = new AddPresetCommand(PresetDataUtil.snowPreset(), category);
+                break;
+            case "gym":
+                addPresetCommand = new AddPresetCommand(PresetDataUtil.gymPreset(), category);
+                break;
+            default:
+                throw new ParseException("Sorry! Preset does not exist.");
             }
             return addPresetCommand;
         } catch (ParseException pe) {
