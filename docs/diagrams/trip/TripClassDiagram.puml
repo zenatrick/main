@@ -4,7 +4,7 @@
 interface ReadOnlyDaySchedule
 
 Trip "1  "<.. TripManager
-DaySchedule"0..*  " <.. TripManager : < contains
+DaySchedule"0..*  " <.left. TripManager : contains <
 ReadOnlyDaySchedule <|.. DaySchedule
 
 class TripManager {

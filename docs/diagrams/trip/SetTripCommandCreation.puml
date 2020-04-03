@@ -8,20 +8,19 @@ participant "**:SetTripCommandParser**" as SetTripCommandParser LOGIC_COLOR
 participant "**:SetTripCommand**" as SetTripCommand LOGIC_COLOR
 end box
 
-[-> LogicManager : execute("settrip title/cheese budget/2000 startdate/20-09-20 enddate/28-09-20")
+[-> LogicManager : execute("settrip title/graduation trip \n budget/2000 exchangerate/1.02 \nstartdate/20-09-20 enddate/28-09-20")
 activate LogicManager
 
-LogicManager -> EtParser : parseCommand("settrip title/cheese budget/2000 startdate/20-09-20 enddate/28-09-20")
+LogicManager-> EtParser : execute("settrip title/graduation trip \n budget/2000 exchangerate/1.02 \nstartdate/20-09-20 enddate/28-09-20")
 activate EtParser
 
 create SetTripCommandParser
-EtParser -> SetTripCommandParser
-activate SetTripCommandParser
 
-SetTripCommand --> EtParser
+EtParser -> SetTripCommandParser
+
 deactivate SetTripCommand
 
-EtParser -> SetTripCommandParser : parse("settrip title/cheese budget/2000 startdate/20-09-20 enddate/28-09-20")
+EtParser -> SetTripCommandParser : parse("settrip title/graduation trip \n budget/2000 exchangerate/1.02 \n startdate/20-09-20 enddate/28-09-20")
 activate SetTripCommandParser
 
 create SetTripCommand
@@ -44,11 +43,9 @@ deactivate EtParser
 LogicManager -> SetTripCommand : execute()
 activate SetTripCommand
 
-ref over SetTripCommand : Creates an trip
-
 SetTripCommand --> LogicManager : result
 deactivate SetTripCommand
 
-[<--LogicManager
+[<--LogicManager : result
 deactivate LogicManager
 @enduml
