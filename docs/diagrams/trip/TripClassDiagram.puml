@@ -23,18 +23,18 @@ DaySchedule" *   " <.left. TripManager : contains <
 ReadOnlyDaySchedule <|.. DaySchedule
 
 class TripManager {
-    - boolean hasTrip
-    - Trip trip
-    + hasTrip()
+    - hasTrip:boolean
+    - trip:Trip
+    + hasTrip(): boolean
 }
 
 class Trip {
-    - Title:title
-    - Date:startDate
-    - Date:endDate
-    - int:numDays
-    - Budget:budget
-    - ExchangeRate: exchangeRate
+    - title:Title
+    - startDate:Date
+    - endDate:Date
+    - numDays:int
+    - budget:Budget
+    - exchangeRate:ExchangeRate
 }
 
 show members
