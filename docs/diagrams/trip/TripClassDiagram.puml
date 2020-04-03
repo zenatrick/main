@@ -1,24 +1,42 @@
 @startuml
+!include ../style.puml
+skinparam backgroundColor #EEEBDC
+skinparam arrowThickness 1.5
+skinparam arrowColor MediumSpringGreen
+skinparam classBackgroundColor MediumAquaMarine
+skinparam classAttributeIconSize 0
+skinparam classAttributeFontColor DarkSlateBlue
 
+skinparam Class {
+    FontColor MidnightBlue
+    BorderThickness 1
+    BorderColor MidnightBlue
+    StereotypeFontColor #FFFFFF
+    FontName Impact
+}
 
-interface ReadOnlyDaySchedule
+interface ReadOnlyDaySchedule <<interface>>
+
 
 Trip "1  "<.. TripManager
-DaySchedule"0..*  " <.left. TripManager : contains <
+DaySchedule" *   " <.left. TripManager : contains <
 ReadOnlyDaySchedule <|.. DaySchedule
 
 class TripManager {
-boolean hasTrip
-Trip trip
+    - boolean hasTrip
+    - Trip trip
+    + hasTrip()
 }
 
 class Trip {
-    Title title
-    Date startDate
-    Date endDate
-    int numDays
-    Budget budget
-    ExchangeRate exchangeRate
+    - Title:title
+    - Date:startDate
+    - Date:endDate
+    - int:numDays
+    - Budget:budget
+    - ExchangeRate: exchangeRate
 }
+
+show members
 
 @enduml
