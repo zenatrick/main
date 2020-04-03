@@ -1,14 +1,13 @@
 @startuml
 
+
 interface ReadOnlyDaySchedule
 
-Trip <.. TripManager
-DaySchedule <.. TripManager
-DaySchedule <.. UniqueList
+Trip "1  "<.. TripManager
+DaySchedule"0..*  " <.. TripManager : < contains
 ReadOnlyDaySchedule <|.. DaySchedule
 
 class TripManager {
-List<DaySchedule> daySchedules
 boolean hasTrip
 Trip trip
 }
@@ -20,10 +19,6 @@ class Trip {
     int numDays
     Budget budget
     ExchangeRate exchangeRate
-}
-
-
-class UniqueList {
 }
 
 @enduml
