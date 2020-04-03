@@ -608,7 +608,7 @@ Format: `additem name/NAME quantity/QUANTITY category/CATEGORY`
 =====
 - `NAME` must be made of alphanumeric characters, and it must be less than 50 characters long
 - `NAME` can be made up of multiple words
-- `QUANTITY` must be a positive integer 1,2,3…
+- `QUANTITY` must be a positive integer 1,2,3… and must be less than 1000
 - `CATEGORY` must be made of alphanumeric characters, and it must be less than 30 characters long
 - `CATEGORY` can be made up of multiple words
 - If a duplicated item is added, it will let the user know that the item is already in the list.
@@ -647,9 +647,9 @@ Format: `edititem INDEX [name/NAME] [quantity/QUANTITY] [category/CATEGORY]`
 =====
 - Existing values will be updated to the input values.
 - Command can only be used if an item has been added.
-- `NAME` must be made of alphanumeric characters, and it must be less than 50 characters long
+- `NAME` must be made of alphanumeric characters, and it must be less than 30 characters long
 - `NAME` can be made up of multiple words
-- `QUANTITY` must be a positive integer 1,2,3…
+- `QUANTITY` must be a positive integer 1,2,3… and must be less than 1000
 - `CATEGORY` must be made of alphanumeric characters, and it must be less than 30 characters long
 - `CATEGORY` can be made up of multiple words
 - If the item is marked as packed initially, it will not change after you edit the item. Likewise the same for an item that is marked as unpacked.
@@ -784,7 +784,7 @@ To mark an item as packed:
 .After uncheck item command
 image::user-guide/UncheckItem.png[]
 
-===== Sorting items in the packing list: `sort`
+===== Sorting items in the packing list: `sortitem`
 
 This command sorts items in the packing list
 
@@ -1147,7 +1147,7 @@ The following sections [4.7.1 - 4.7.3] describes the various features that will 
 The following sections [4.7.1.1 - 4.7.1.2] describes the additional features which would be added to the *Packing List Manager* in version 2.0 of E.T.
 
 ===== Create a smart packing list: `createlist`
-This feature allows users to create a smart packing list. The motivation behind it is to allow inexperienced users.
+This feature allows users to create a smart packing list. The motivation behind it is to help inexperienced users with their packing list.
 
 [NOTE]
 ====
