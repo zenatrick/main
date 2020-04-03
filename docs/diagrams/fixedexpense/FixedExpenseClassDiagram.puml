@@ -1,0 +1,75 @@
+@startuml
+!include ../style.puml
+skinparam backgroundColor #EEEBDC
+skinparam arrowThickness 1.5
+skinparam arrowColor MediumSpringGreen
+skinparam classBackgroundColor MediumAquaMarine
+skinparam classAttributeIconSize 0
+skinparam classAttributeFontColor DarkSlateBlue
+
+skinparam Class {
+    FontColor MidnightBlue
+    BorderThickness 1
+    BorderColor MidnightBlue
+    StereotypeFontColor #FFFFFF
+    FontName Impact
+}
+
+Interface Logic <<Interface>> {
+execute()
+}
+
+Class LogicManager {
+execute()
+}
+
+Class FixedExpense {
+ - Amount : amount
+ - Description : description
+ - FixedExpenseCategory : fixedExpenseCategory
+ + getAmount()
+ + getDescription()
+ + getFixedExpenseCategory()
+}
+
+
+
+Interface Model <<Interface>> {
++ getBudget()
++ setBudget(Budget)
+}
+
+Class ModelManager{
++ setBudget(Budget)
++ getBudget()
+}
+
+Class FixedExpenseManager{
+UniqueList<FixedExpenseManager> uniqueFixedExpenseLists
++ addFixedExpenses()
++ getFixedExpenseList()
+}
+
+Class TripManager{
+Trip trip
++ getBudget()
++ setBudget(Budget)
+}
+
+Class Trip{
+- Budget: budget
+- ExchangeRate: exchangeRate
++ getBudget()
++ setBudget(Budget)
++ getExchangeRate()
+}
+LogicManager .up-|> Logic
+ModelManager .up-|> Model
+ModelManager -down-> FixedExpenseManager
+FixedExpenseManager -right-> FixedExpense
+LogicManager -down-> Model
+ModelManager -right-> TripManager
+TripManager -right-> Trip
+
+show members
+@enduml

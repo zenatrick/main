@@ -10,7 +10,7 @@ note left
   category
 end note
 
-if () then ([hasTrip])
+if () then ([trip is set])
 
 if () then ([is a valid command])
 
@@ -20,6 +20,21 @@ if () then ([is a valid command])
             ""AddFixedExpenseCommand"" object;
 
             :Execute ""AddFixedExpenseCommand"";
+
+    if() then ([Fixed Expense
+    in other
+    currency]
+    )
+
+            :Convert FixedExpense to
+            Singapore Dollars using
+            preset exchange rate;
+
+
+    else ([else])
+
+    endif
+
 
             :Add a Fixed Expense to
             ""FixedExpenseManager"";

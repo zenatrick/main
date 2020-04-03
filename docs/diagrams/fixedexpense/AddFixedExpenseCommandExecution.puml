@@ -2,7 +2,7 @@
 !include ../style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":**CheckStatusCommand**" as CheckStatusCommand LOGIC_COLOR
+participant ":**AddExpenseCommand**" as CheckStatusCommand LOGIC_COLOR
 participant "**:CommandResult**" as CommandResult LOGIC_COLOR
 end box
 
