@@ -1,0 +1,69 @@
+@startuml
+!include ../style.puml
+skinparam backgroundColor #EEEBDC
+skinparam arrowThickness 1.5
+skinparam arrowColor MidnightBlue
+skinparam classBackgroundColor MidnightBlue
+skinparam classAttributeIconSize 0
+skinparam classAttributeFontColor White
+
+skinparam Class {
+    FontColor White
+    BorderThickness 1
+    BorderColor White
+    StereotypeFontColor #FFFFFF
+    FontName Impact
+}
+
+interface ReadOnlyActivityManger <<interface>>
+
+interface UniqueListElement <<interface>>
+
+ReadOnlyActivityManger <|.. ActivityManager
+ActivityManager --> UniqueList
+UniqueList ..> UniqueListElement
+UniqueListElement <|..Activity
+Activity " *   " <.right. UniqueList
+
+interface ReadOnlyActivityManger {
++ getActivityList() : ObservableList<Activity>
+}
+
+class ActivityManager {
++ addActivity(activity : Activity)
++ hasActivity(activity: Activity) : boolean
++ setActivity(target : Activity, editedActivity : Activity)
++ sortActivityList(cmp : Comparator<Activity>)
++ removeActivity(key : Activity)
+}
+
+class UniqueList {
+    - internalList : ObservableList<T>
+    - internalUnmodifiableList : ObservableList<T>
+    + contains(T toCheck) : boolean
+    + add(toAdd : T)
+    + sort(cmp : Comparator<T>)
+    + setElement(target : T, edited : T)
+    + remove(toRemove : T)
+}
+
+interface UniqueListElement {
++ isSame() : boolean
+}
+
+class Activity {
+-title : Title
+-duration : Duration
+-location : Location
+-tags : Set<Tag>
+-scheduledDateTime : Optional<DateTime>
++getTitle() : Title
++getDuration() : Duration
++getLocation() : Location
++getScheduledDateTime() : Optional<DateTime>
++getTags() : Set<Tag>
+}
+
+show members
+
+@enduml

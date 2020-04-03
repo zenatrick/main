@@ -826,6 +826,7 @@ Format: `finditem keyword`
 =====
 - Command can only be used if there is at least 1 item in the packing list.
 - If packing list does not contain any of the keywords, then it will display an empty list.
+- If you want to return to the packing list after using the `finditem` command, use the `listitem` command. (see Section 4.5.9)
 =====
 
 Examples:
@@ -856,7 +857,8 @@ Format: `finditemcategory keyword`
 [NOTE]
 =====
 - Command can only be used if there is at least 1 item in the packing list.
-- If packing list does not contain any of the keywords, then it will display an empty list.
+- If packing list does not contain any of the keywords, then it will display an empty list
+- If you want to return to the packing list after using the `finditemcategory` command, use the `listitem` command. (see Section 4.5.9)
 =====
 
 Examples:
@@ -907,12 +909,13 @@ image::user-guide/ListItem.png[]
 
 This command adds a pre-existing list of items under a category into the packing list.
 
-Format: `addpreset preset/PRESET_NAME`
+Format: `addpreset category/PRESET_NAME`
 
 [NOTE]
 =====
 - If the preset contains an item that is already in the packing list, it will not add that item in. It will add the rest of the items in the preset into the packing list.
 - You can only add in pre-existing presets. If you add in other presets, then you will receive the message, "Sorry! This preset does not exist."
+- To see all the available presets, use the `listpreset` command. (see Section 4.5.11)
 =====
 
 Examples:
@@ -951,7 +954,7 @@ Format: `listpreset`
 Examples:
 
 * `listpreset` +
-Let’s say you want to add a list of items under a pre-existing category, but you are not sure of the available presets you can use. You may find the pre-existing categories by executing the `addpreset` command.
+Let’s say you want to add a list of items under a pre-existing category, but you are not sure of the available presets you can use. You may find the pre-existing categories by executing the `listpreset` command.
 
 ****
 To show all the available presets:
