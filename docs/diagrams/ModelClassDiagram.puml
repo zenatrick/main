@@ -8,14 +8,11 @@ Package Model <<Rectangle>> {
 Interface ReadOnlyXYZ <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class DukeCooks
+Class XYZManager
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
-
-Package BlackBox {
-}
 
 }
 
@@ -23,13 +20,12 @@ Package BlackBox {
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-DukeCooks .up.|> ReadOnlyXYZ
+XYZManager .up.|> ReadOnlyXYZ
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" DukeCooks
+ModelManager o--> "6" XYZManager
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-DukeCooks *--> BlackBox
 @enduml
