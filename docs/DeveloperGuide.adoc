@@ -387,7 +387,15 @@ The following steps describes the execution of the `AddTransportBookingCommand`:
 // tag::accommodationbooking[]
 === Accommodation Booking feature
 
-E.T. allows the user to add an accommodation booking. This is done using the schedule command which requires the user to specify the accommodation name, location, start day, end day and a remark.
+E.T. allows the user to add an accommodation booking. This is done using the schedule command which requires the user to specify the accommodation name, location, start day, end day and a remark. This feature also prevents the user from having an overlap of accommodation.
+
+The activity contains the following fields:
+
+* `accommodation name`
+* `location`
+* `start day`
+* `end day`
+* `remarks`
 
 ==== Rationale
 
@@ -395,33 +403,35 @@ The accommodation booking feature is an important feature that allows the user t
 
 ==== Current Implementation
 
-The keywords from the command given by the user is parsed using `AddTransportBookingCommandParser` which converts the string variable `accommodation name` into a `AccommodationName` object, `location` into a `Location` object, `start day` and `end day` into `Day` objects, as well as `remark` into a `Remark` object.
-These objects are used to create the `AddAccommodationBookingCommand` object that will execute to create an accommodation booking.
+When a user adds an accommodation booking using the `AddAccommodationBookingCommandParser`, an `AddAccommodationBookingCommand` object is created that will execute to create an accommodation booking. When the `execute()` method is called, a method `isOverlappingWithOthers()` will check if there is an overlap of the new accommodation booking with the other bookings.
 
-The sequence diagram below shows the creation of the `AddAccommodationBookingCommand` object:
+Using a stream, the new accommodation booking will be against all other bookings in the list to find look for any overlaps. The activity diagram shows how 2 bookings are checked if there is an overlap:
 
-[KIV]
-Figure x.x: Sequence diagram of a Add Accommodation Booking command.
+.Activity diagram of check overlap for 2 accommodation bookings
+image::developer-guide/accommodation-booking/FindOverlapActivityDiagram.png[]
 
-After the creation of the `AddAccommodationBookingCommand` object, the `LogicManager` will proceed to call the `execute()` method of `AddAccommodationBookingCommand`.
+The following steps describes the process of the check overlap method:
 
-The following steps describes the execution of the `AddAccommodationBookingCommand`:
-
-1.	In `Model`, the `AddAccommodationBookingCommand` checks the current accommodation booking list for duplicates before adding the new object into the accommodation booking list
-2. A `CommandResult` object which consists of a `MESSAGE_SUCCESS` is sent back to `LogicManager` if there is a successful addition of the accommodation booking into the accommodation booking list
-3.	After receiving the `CommandResult` from `AddAccommodationBookingCommand`, `LogicManager` will return the `CommandResult` back to “MainApp” where the updated accommodation booking list is shown.
+. The start day and end day of both bookings are retrieved using `getStartDay()` and `getEndDay()`
+. The largest end day and smallest start day is calculated and the difference of the largest and smallest is calculated
+. The duration of both bookings is calculated by adding the difference of the end day and start day of both bookings
+. If the difference of the largest end day and smallest start day is greater than the duration of both bookings, there is no overlap. The accommodation booking will then be added into the list.
+. If there is an overlap, user will receive a message that informs that there is the new accommodation booking has an overlap with another booking.
 
 ==== Design Consideration
 
-===== Aspect:
+===== Aspect: Calculating overlap of the new accommodation booking with the other accommodation bookings in the list
 
-* **Current Choice:**
-** **Pros:**
-** **Cons:**
+|===
+| |Pros |Cons
+|Current Choice : Using stream to compare the accommodation bookings
+|Few lines of codes needed to compare the bookings, follows the KISS principle
+|Difficult for beginner users to understand our code
 
-* **Alternative:**
-** **Pros:**
-** **Cons:**
+|Alternative Choice: Using an arraylist of days to track accommodations
+|Easy to use and understand
+|Requires many lines of code, may become difficult to read
+|===
 // end::accommodationbooking[]
 
 // tag::activity[]
