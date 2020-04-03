@@ -513,8 +513,25 @@ image::developer-guide/activity/DeleteActivityCommandExecution.png[Delete Activi
 
 *_E.T._* allows the user to create a packing list. The packing list manager handles everything to do with manipulating of packing list items.
 
-The `addpreset` command requires the user to include the `category` of the preset they want to add into the packing list.
-For example, `addpreset swimming` means that the preset called `swimming` will be be added into the user's packing list.
+The packing list item contains the following fields:
+
+* `itemName`
+* `quantity`
+* `itemCategory`
+
+`PackingListManager` has commands other than the basic CRUD commands, such as:
+
+* `finditem`
+** Finds packing list items based on the keywords given by the user
+* `finditemcategory`
+** Finds packing list items in the categories given by the user
+* `addpreset`
+** Adds a pre-existing list of items in a category into the current packing list
+* `listpreset`
+** Shows the available presets that the user can add into the packing list
+
+I will be focusing on the `addpreset` command here. The `addpreset` command requires the user to include the `category` of the preset they want to add into the packing list.
+For example, `addpreset swimming` means that the preset called `swimming` will be added into the user's packing list.
 Only pre-existing presets can be added into the user's packing list.
 
 ==== Rationale
@@ -523,7 +540,7 @@ The packing list feature is an important feature that allows the users to plan a
 ==== Current Implementation
 
 The keywords from the command given by the user is parsed using `AddPresetCommandParser` which converts the string variable `category` into a `ItemCategory` object.
-These objects are used to create the `AddPresetCommand` object that will execute to create a packing list item.
+These objects are used to create the `AddPresetCommand` object that will execute to create a list of packing list items.
 
 The sequence diagram below shows the creation of the `AddPresetCommand` object:
 
@@ -535,7 +552,7 @@ After the creation of the `AddPresetCommand` object, the `LogicManager` will pro
 The following steps describes the execution of the `AddPresetCommand`:
 
 1.	In `Model`, the `AddPresetCommand` adds a list of pre-existing list of items under a category into the packing list. If it encounters duplicates, it will skip the duplicate, and continue adding the rest of the items in the preset into the packing list.
-2. A `CommandResult` object which consists of a `MESSAGE_SUCCESS` is sent back to `LogicManager` if there is a successful addition of the items into the packing list.
+2. A `CommandResult` object which consists of a `MESSAGE_SUCCESS` is sent back to `LogicManager` if there is a successful addition of the preset items into the packing list.
 3.	After receiving the `CommandResult` from `AddPresetCommand`, `LogicManager` will return the `CommandResult` back to “MainApp” where the updated packing list is shown.
 
 ==== Design Consideration
