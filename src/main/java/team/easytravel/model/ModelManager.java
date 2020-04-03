@@ -211,7 +211,7 @@ public class ModelManager implements Model {
         if (!hasTrip()) {
             throw new IllegalOperationException("Cannot get exchange rate before setting a trip");
         }
-        return tripManager.getTripExchangeRate().value;
+        return tripManager.getExchangeRate().value;
     }
 
     @Override

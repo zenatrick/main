@@ -117,7 +117,7 @@ public class TripManager {
         this.trip.setBudget(editedBudget);
     }
 
-    public ExchangeRate getTripExchangeRate() {
+    public ExchangeRate getExchangeRate() {
         if (!hasTrip) {
             throw new IllegalOperationException(MESSAGE_ERROR_NO_TRIP);
         }

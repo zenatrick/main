@@ -2,59 +2,91 @@
 !include ../style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":**AddExpenseCommand**" as CheckStatusCommand LOGIC_COLOR
+participant ":**AddFixedExpenseCommand**" as AddFixedExpenseCommand LOGIC_COLOR
 participant "**:CommandResult**" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
+participant "**toAdd:FixedExpense**" as FixedExpense MODEL_COLOR
 participant "**:ModelManager**" as ModelManager MODEL_COLOR
-participant "**:FixedExpenseManager**" as ExpenseManager MODEL_COLOR
-participant "**:AccommodationBookingManager**" as AccManager MODEL_COLOR
-participant "**:TransportBookingManager**" as TransportManager MODEL_COLOR
-participant "**:PackingListManager**" as PackingListManager MODEL_COLOR
+participant "**:TripManager**" as TripManager MODEL_COLOR
+participant "**FixedExpenseManager**" as FixedExpenseManager MODEL_COLOR
+
+
+
 end box
 
-[-> CheckStatusCommand : execute()
-activate CheckStatusCommand
+[-> AddFixedExpenseCommand : execute()
+activate AddFixedExpenseCommand
 
-CheckStatusCommand -> ModelManager : getStatus()
+AddFixedExpenseCommand-> ModelManager : getExchangeRate()
 activate ModelManager
 
-ModelManager -> ExpenseManager : getStatus()
-activate ExpenseManager
+ModelManager -> TripManager : getExchangeRate()
+activate TripManager
 
-ExpenseManager --> ModelManager
-deactivate ExpenseManager
+TripManager --> ModelManager
+deactivate TripManager
 
-ModelManager -> AccManager : getStatus()
-activate AccManager
-
-AccManager --> ModelManager
-deactivate AccManager
-
-ModelManager -> TransportManager : getStatus()
-activate TransportManager
-
-TransportManager --> ModelManager
-deactivate TransportManager
-
-ModelManager -> PackingListManager : getStatus()
-activate PackingListManager
-
-PackingListManager --> ModelManager
-deactivate PackingListManager
-
-ModelManager --> CheckStatusCommand
+ModelManager --> AddFixedExpenseCommand
 deactivate ModelManager
 
+create FixedExpense
+AddFixedExpenseCommand -> FixedExpense : new FixedExpense(amount, \nfixedExpenseCategory, description)
+activate FixedExpense
+note left: Parameters: Amount,\n FixedExpenseCategory, \nDescription
+
+FixedExpense --> AddFixedExpenseCommand
+deactivate FixedExpense
+
+AddFixedExpenseCommand -> ModelManager : addFixedExpense()
+activate ModelManager
+
+ModelManager -> FixedExpenseManager : addFixedExpense()
+activate FixedExpenseManager
+
+FixedExpenseManager --> ModelManager
+deactivate FixedExpenseManager
+
+ModelManager --> AddFixedExpenseCommand
+deactivate ModelManager
+
+
+
+AddFixedExpenseCommand -> ModelManager : getTotalExpense()
+activate ModelManager
+
+ModelManager -> FixedExpenseManager : getTotalExpense()
+activate FixedExpenseManager
+
+FixedExpenseManager --> ModelManager
+deactivate FixedExpenseManager
+
+ModelManager --> AddFixedExpenseCommand
+deactivate ModelManager
+
+
+AddFixedExpenseCommand -> ModelManager : getBudget()
+activate ModelManager
+
+ModelManager -> TripManager :getBudget()
+activate TripManager
+
+TripManager --> ModelManager
+deactivate TripManager
+
+ModelManager --> AddFixedExpenseCommand
+deactivate ModelManager
+
+
 create CommandResult
-CheckStatusCommand -> CommandResult
+AddFixedExpenseCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> CheckStatusCommand
+CommandResult --> AddFixedExpenseCommand
 deactivate CommandResult
 
-[<-- CheckStatusCommand : result
-deactivate CheckStatusCommand
+[<-- AddFixedExpenseCommand : result
+deactivate AddFixedExpenseCommand
 
 @enduml

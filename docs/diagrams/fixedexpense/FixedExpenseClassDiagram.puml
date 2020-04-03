@@ -16,52 +16,52 @@ skinparam Class {
 }
 
 Interface Logic <<Interface>> {
-execute()
++ execute() : CommandResult
 }
 
 Class LogicManager {
-execute()
++ execute() : CommandResult
 }
 
 Class FixedExpense {
- - Amount : amount
- - Description : description
- - FixedExpenseCategory : fixedExpenseCategory
- + getAmount()
- + getDescription()
- + getFixedExpenseCategory()
+ - amount : Amount
+ - description : Description
+ - fixedExpenseCategory : FixedExpenseCategory
+ + getAmount() : Amount
+ + getDescription() : Description
+ + getFixedExpenseCategory() : FixedExpenseCategory
 }
 
 
 
 Interface Model <<Interface>> {
-+ getBudget()
++ getBudget() : Budget
 + setBudget(Budget)
 }
 
 Class ModelManager{
 + setBudget(Budget)
-+ getBudget()
++ getBudget() : Budget
 }
 
 Class FixedExpenseManager{
-UniqueList<FixedExpenseManager> uniqueFixedExpenseLists
-+ addFixedExpenses()
-+ getFixedExpenseList()
+uniqueFixedExpensesLists : UniqueList<FixedExpenseManager>
++ addFixedExpense(FixedExpense)
++ getFixedExpenseList() : ObservableList<FixedExpense>
 }
 
 Class TripManager{
-Trip trip
-+ getBudget()
+trip: Trip
++ getBudget() : Budget
 + setBudget(Budget)
 }
 
 Class Trip{
-- Budget: budget
-- ExchangeRate: exchangeRate
-+ getBudget()
+- budget: Budget
+- exchangeRate: ExchangeRate
++ getBudget() : Budget
 + setBudget(Budget)
-+ getExchangeRate()
++ getExchangeRate() :ExchangeRate
 }
 LogicManager .up-|> Logic
 ModelManager .up-|> Model
