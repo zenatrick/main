@@ -6,32 +6,23 @@ start
 :System starts the
 checking for overlap;
 
-fork
-    :System gets booking 1
-    start day;
-fork again
-    :System gets booking 1
-    end day;
-fork again
-    :System gets booking 2
-    start day;
-fork again
-    :System gets booking 1
-    end day;
-end fork
+:System gets booking 1
+start day and end day;
 
-fork
-    :Calculate duration
-    of both booking;
-fork again
-    :Get maximum end day
-    of both booking;
-fork again
-    :Get minimum end day
-    of both booking;
-end fork
+:System gets booking 2
+start day and end day;
 
-if () then ([maximum - minimum < duration of both bookings])
+:Calculate duration
+of both booking;
+
+:Get largest end day
+of both booking;
+
+:Get smallest start day
+of both booking;
+
+if () then ([largest end day - smallest start day
+< duration of both bookings])
 
     :User receive overlap message;
 
@@ -42,5 +33,4 @@ else ([else])
 endif
 
 stop
-
 @enduml
