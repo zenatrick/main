@@ -1,45 +1,39 @@
 @startuml
+!include ../style.puml
 title Add Transport Booking
 
 start
 
-:User executes ""addtransport"" command;
-note left
-  Arguments should
-  contain a valid mode,
-  start and end locations
-  and date times
-end note
+:User wants to add a ""TransportBooking""
+into the ""TransportBookingManager"";
 
-if () then ([trip is set])
+if () then ([is a valid transport booking])
 
-    if () then ([is a valid command identifier])
+    :Creates a corresponding
+    ""DayScheduleEntry"";
 
-        if () then ([no missing field])
+    :Calculates the day to
+    schedule the transport
+    booking;
 
-                :Return a
-                ""AddTransportReviewCommand"" object;
+    if () then ([is a valid day])
 
-                :Execute ""AddTransportReviewCommand"";
+        :Adds ""DayScheduleEntry""
+        into the schedule;
 
-                :Add a transport booking to
-                ""TransportBookingManager"";
+        :Adds ""TransportBooking"" into
+        the ""TransportBookingManager"";
 
-                :Show success message to the user;
+    else ([else])
+        :User receives invalid
+        date and time error
+        message;
 
-        else ([missing field])
-                :User receives invalid
-                command format message;
-        endif
-
-    else ([not a valid command])
-        :User receives unknown
-        command message;
     endif
 
 else ([else])
-    : User receives no trip
-    set message;
+    :User receives relevant
+    error message;
 
 endif
 

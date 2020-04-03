@@ -1,0 +1,93 @@
+@startuml
+!include ../style.puml
+
+
+note right of N
+The attributes of trip and
+""DayScheduleEntry"" objects
+are simplified into primitive
+types and ""String""s as they
+are not the main point of
+discussion.
+end note
+
+Object "__trip:Trip__" as Trip #E2BC0F {
+    -  title = "Graduation Trip"
+    - startDate = "5 May 2020"
+    - endDate = "7 May 2020"
+    - numDays = 3
+    - budget = 5000
+    - exchangeRate = 1.3
+}
+
+Object "__:TripManager__" as TripManager #E16171 {
+    -  hasTrip = true
+}
+
+Object "__: DaySchedule__" as DaySchedule1 #C589E8
+Object "__: DaySchedule__" as DaySchedule2 #C589E8
+Object "__: DaySchedule__" as DaySchedule3 #C589E8
+
+Object "__: DayScheduleEntry__" as DayScheduleEntry1 #3BB3CC {
+- type = TRANSPORT
+- title = "plane"
+- startDateTime = "5 May 2020 05: 00"
+- endDateTime = "5 May 2020 12: 00"
+- durationInHours = 7
+- location = "Osaka Japan"
+}
+
+Object "__: DayScheduleEntry__" as DayScheduleEntry2 #3BB3CC {
+- type = ACTIVITY
+- title = "Osaka Castle View"
+- startDateTime = "5 May 2020 13: 00"
+- endDateTime = "5 May 2020 15: 00"
+- durationInHours = 2
+- location = "Osakajo, Chuo Ward"
+}
+
+Object "__: DayScheduleEntry__" as DayScheduleEntry3 #3BB3CC {
+- type = TRANSPORT
+- title = "train"
+- startDateTime = "6 May 2020 13: 00"
+- endDateTime = "6 May 2020 16: 00"
+- durationInHours = 3
+- location = "Tokyo"
+}
+
+Object "__: DayScheduleEntry__" as DayScheduleEntry4 #3BB3CC {
+- type = ACTIVITY
+- title = "Shopping"
+- startDateTime = "7 May 2020 12: 00"
+- endDateTime = "7 May 2020 13: 00"
+- durationInHours = 1
+- location = "FutakoTamagawa Rise Mall"
+}
+
+Object "__: DayScheduleEntry__" as DayScheduleEntry5 #3BB3CC {
+- type = TRANSPORT
+- title = "plane"
+- startDateTime = "7 May 2020 16: 00"
+- endDateTime = "7 May 2020 22: 00"
+- durationInHours = 6
+- location = "Singapore"
+}
+
+TripManager -up- Trip
+
+TripManager -left- DaySchedule1
+TripManager -down- DaySchedule2
+TripManager -right- DaySchedule3
+
+DaySchedule1 -left- DayScheduleEntry1
+DaySchedule1 -down- DayScheduleEntry2
+DaySchedule2 -down- DayScheduleEntry3
+DaySchedule3 -down- DayScheduleEntry4
+DaySchedule3 -right- DayScheduleEntry5
+
+Trip - A
+A - N
+hide A
+hide N
+
+@enduml
