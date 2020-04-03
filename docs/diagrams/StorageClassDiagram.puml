@@ -7,7 +7,7 @@ skinparam classBackgroundColor STORAGE_COLOR
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
 Interface XYZStorage <<Interface>>
-note left: XYZ refers to individual\ncomponents in EasyTravel
+note left: XYZ refers to individual storage\ncomponents in EasyTravel
 
 Class StorageManager
 Class JsonUserPrefsStorage

@@ -10,7 +10,7 @@ Participant ":Storage" as storage STORAGE_COLOR
 user -[USER_COLOR]> ui : "deleteitem 1"
 activate ui UI_COLOR
 
-ui -[UI_COLOR]> logic : execute("deletetransport 1")
+ui -[UI_COLOR]> logic : execute("deleteitem 1")
 activate logic LOGIC_COLOR
 
 logic -[LOGIC_COLOR]> model : deletePackingListItem(i)
@@ -24,9 +24,9 @@ activate storage STORAGE_COLOR
 
 storage -[STORAGE_COLOR]> storage : Save to file
 activate storage STORAGE_COLOR_T1
-deactivate storage
-
+return
 storage --[STORAGE_COLOR]> logic
+deactivate storage
 deactivate storage
 
 logic --[LOGIC_COLOR]> ui
