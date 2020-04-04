@@ -3,8 +3,13 @@ package team.easytravel.logic.parser.packinglist;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import team.easytravel.logic.commands.packinglist.AddPresetCommand;
+import team.easytravel.logic.commands.packinglist.EditItemCommand;
+import team.easytravel.logic.parser.ArgumentMultimap;
+import team.easytravel.logic.parser.ArgumentTokenizer;
 import team.easytravel.logic.parser.Parser;
+import team.easytravel.logic.parser.ParserUtil;
 import team.easytravel.logic.parser.exceptions.ParseException;
+import team.easytravel.model.listmanagers.packinglistitem.ItemCategory;
 import team.easytravel.model.listmanagers.packinglistpreset.PresetDataUtil;
 
 /**
@@ -19,77 +24,74 @@ public class AddPresetCommandParser implements Parser<AddPresetCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddPresetCommand parse(String args) throws ParseException {
-        System.out.println(args);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
+        ItemCategory itemCategory;
         try {
-            if (args.length() < 1) { //The case where nothing is placed after packing list item
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        AddPresetCommand.MESSAGE_USAGE));
-            }
-
-            String category = args.substring(1);
-            AddPresetCommand addPresetCommand;
-            switch (category) {
-            case "hiking":
-                addPresetCommand = new AddPresetCommand(PresetDataUtil.hikingPreset(), category);
-                break;
-            case "clothes female":
-                addPresetCommand = new AddPresetCommand(PresetDataUtil.clothesFemalePreset(), category);
-                break;
-            case "clothes male":
-                addPresetCommand = new AddPresetCommand(PresetDataUtil.clothesMalePreset(), category);
-                break;
-            case "toiletries":
-                addPresetCommand = new AddPresetCommand(PresetDataUtil.toiletriesPreset(), category);
-                break;
-            case "swimming":
-                addPresetCommand = new AddPresetCommand(PresetDataUtil.swimmingPreset(), category);
-                break;
-            case "formal dinner f":
-                addPresetCommand = new AddPresetCommand(PresetDataUtil.formalDinnerFemalePreset(), category);
-                break;
-            case "formal dinner m":
-                addPresetCommand = new AddPresetCommand(PresetDataUtil.formalDinnerMalePreset(), category);
-                break;
-            case "beach":
-                addPresetCommand = new AddPresetCommand(PresetDataUtil.beachPreset(), category);
-                break;
-            case "aeroplane":
-                addPresetCommand = new AddPresetCommand(PresetDataUtil.aeroplanePreset(), category);
-                break;
-            case "car":
-                addPresetCommand = new AddPresetCommand(PresetDataUtil.carPreset(), category);
-                break;
-            case "boat":
-                addPresetCommand = new AddPresetCommand(PresetDataUtil.boatPreset(), category);
-                break;
-            case "train":
-                addPresetCommand = new AddPresetCommand(PresetDataUtil.trainPreset(), category);
-                break;
-            case "work":
-                addPresetCommand = new AddPresetCommand(PresetDataUtil.workPreset(), category);
-                break;
-            case "essentials":
-                addPresetCommand = new AddPresetCommand(PresetDataUtil.essentialsPreset(), category);
-                break;
-            case "international":
-                addPresetCommand = new AddPresetCommand(PresetDataUtil.internationalPreset(), category);
-                break;
-            case "camping":
-                addPresetCommand = new AddPresetCommand(PresetDataUtil.campingPreset(), category);
-                break;
-            case "snow":
-                addPresetCommand = new AddPresetCommand(PresetDataUtil.snowPreset(), category);
-                break;
-            case "gym":
-                addPresetCommand = new AddPresetCommand(PresetDataUtil.gymPreset(), category);
-                break;
-            default:
-                throw new ParseException("Sorry! Preset does not exist.");
-            }
-            return addPresetCommand;
+            itemCategory = ParserUtil.parseItemCategory(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddPresetCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditItemCommand.MESSAGE_USAGE), pe);
         }
+
+        String category = itemCategory.value;
+        AddPresetCommand addPresetCommand;
+        switch (category) {
+        case "hiking":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.hikingPreset(), category);
+            break;
+        case "clothes female":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.clothesFemalePreset(), category);
+            break;
+        case "clothes male":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.clothesMalePreset(), category);
+            break;
+        case "toiletries":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.toiletriesPreset(), category);
+            break;
+        case "swimming":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.swimmingPreset(), category);
+            break;
+        case "formal dinner f":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.formalDinnerFemalePreset(), category);
+            break;
+        case "formal dinner m":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.formalDinnerMalePreset(), category);
+            break;
+        case "beach":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.beachPreset(), category);
+            break;
+        case "aeroplane":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.aeroplanePreset(), category);
+            break;
+        case "car":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.carPreset(), category);
+            break;
+        case "boat":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.boatPreset(), category);
+            break;
+        case "train":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.trainPreset(), category);
+            break;
+        case "work":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.workPreset(), category);
+            break;
+        case "essentials":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.essentialsPreset(), category);
+            break;
+        case "international":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.internationalPreset(), category);
+            break;
+        case "camping":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.campingPreset(), category);
+            break;
+        case "snow":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.snowPreset(), category);
+            break;
+        case "gym":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.gymPreset(), category);
+            break;
+        default:
+            throw new ParseException("Sorry! Preset does not exist.");
+        }
+        return addPresetCommand;
     }
 }
