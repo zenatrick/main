@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_EMPTY_LIST_FORMAT;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_CRITERIA;
+
 import java.util.Comparator;
 import java.util.List;
 
@@ -30,8 +32,8 @@ public class SortItemCommand extends Command {
             + " asc or des in the displayed packing list\n"
             + "asc sorts by ascending order while des sorts by descending order\n"
             + "Parameters : SORTIDENTIFIER (must be asc or des) "
-            + "[ITEM]" + "[QUANTITY]" + "[CATEGORY]\n"
-            + "Example: " + COMMAND_WORD + " asc category";
+            + "[" + PREFIX_ITEM_CRITERIA + "]" + "[ALPHABET]" + "[QUANTITY]" + "[CATEGORY]\n"
+            + "Example: " + COMMAND_WORD + " asc criteria/category";
 
     /**
      * The constant MESSAGE_SORT_ITEM_SUCCESS.

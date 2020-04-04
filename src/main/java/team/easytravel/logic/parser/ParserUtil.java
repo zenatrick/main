@@ -278,7 +278,7 @@ public class ParserUtil {
             return SortItemCommand.QUANTITY;
 
         default:
-            throw new ParseException("Parameters must consist of only item/quantity/category");
+            throw new ParseException("Parameters must consist of only alphabet/quantity/category");
         }
 
     }
