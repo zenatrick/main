@@ -37,14 +37,14 @@ To get started with using **E.T.**, you can follow these steps:
 . You are now on the main page of **E.T.**.
 . At the bottom of the screen, type your command in the Command Box (label in +++<u>Figure 1</u>+++) and press <Enter> on your keyboard to execute it. E.g. typing `help` and pressing <Enter> will open the help window.
 
-Refer to +++<u>Section 4.3 - Command Syntaxes and Usages</u>+++ on how to use commands and +++<u>Section 5 - Features</u>+++ on the commands you can use for each feature.
+Refer to +++<u>Section 3.2.3 - Command Syntaxes and Usages</u>+++ on how to use commands and +++<u>Section 4 - Features</u>+++ on the commands you can use for each feature.
 
 .Main UI
 image::user-guide/MainUI.png[]
 
 == *About*
 === Structure of this document
-There are many things you can do with **E.T.**. Thus, we have structured this User Guide in such a way that you can easily find what you need. In the next subsection, +++<u>Section 3.2 Reading this Document</u>+++, you will find useful tips on reading this document. It is then followed by Section 4 - Features where the seven main features of E.T. and their commands are documented:
+There are many things you can do with **E.T.**. Thus, we have structured this User Guide in such a way that you can easily find what you need. In the next subsection, +++<u>Section 3.2 Reading this Document</u>+++, you will find useful tips on reading this document. It is then followed by +++<u>Section 4 - Features</u>+++ where the seven main features of E.T. and their commands are documented:
 
 - Trip Planner
 - Scheduler
@@ -120,7 +120,7 @@ Breakdown:
 
 *Prefix* -  `name/`, `quantity/`, `category/`
 
-The following points explain how you can use a command with the provided format. More examples will be provided for each command in +++<u>Section 5 - Features</u>+++.
+The following points explain how you can use a command with the provided format. More examples will be provided for each command in +++<u>Section 4 - Features</u>+++.
 Words in the upper case are the parameters to be supplied by you.
 
 - Words in the *upper case* are the parameters to be supplied by you.
@@ -202,20 +202,21 @@ WARNING: A trip is required to be set before other features are unlocked
 
 ===== Create your brand new trip: `settrip`
 
-Format: `settrip title/TITLE start/START_DATE end/END_DATE location/LOCATION budget/BUDGET exchangerate/EXCHANGERATE`
+Format: `settrip title/TITLE start/START_DATE end/END_DATE budget/BUDGET exchangerate/EXCHANGERATE`
 
 [IMPORTANT]
 ====
 - There must not be a pre-existing trip set.
 - Start and end dates must be a valid date.
 - Title cannot exceed 50 characters.
+- Trip must be within 30 days
 - Budget must be a valid positive Integer from 0 to 1,000,000
 - Exchange Rate must be a valid positive double from 0 to 100.
 ====
 
 Let’s say you have an upcoming Graduation Trip and you are planning for it. You can execute a command as shown in the example below:
 
-`settrip title/Graduation Trip start/28-09-2020 end/28-10-2020 location/Japan budget/5000 exchangerate/1.03`
+`settrip title/Graduation Trip start/28-09-2020 end/28-10-2020 budget/5000 exchangerate/1.03`
 
 This would create a trip titled “Graduation trip” with a start day of 28 September 2020 to 28 October 2020. The budget set is $5000 with the exchangerate of 1.03
 
@@ -259,7 +260,7 @@ For example, we want to decrease the budget for this trip from $5000 to $3000.
 
 Example:
 
-`Editbudget 3000`
+`editbudget 3000`
 
 E.T. will reflect the new budget in the trip info as shown in the figure below.
 
@@ -324,7 +325,7 @@ This would create and add an activity titled “Going to the beach" with a durat
 
 Assume you have accidentally made a mistake in the spelling or the location of the activity and wish to change it. Running the `editactivity` command will allow you to make any changes to previously set activities.
 
-Format: `editactivity INDEX [title/NAME][duration/DURATION][location/LOCATION][t/tag]...`
+Format: `editactivity INDEX [title/NAME][duration/DURATION][location/LOCATION][tag/tag]...`
 
 Example:
 `editactivity 1 title/Go to an aquarium`
@@ -445,14 +446,14 @@ Examples:
 
 `edittransport 2 starttime/22-04-2021 10:00`
 
-In the case that the start time has changed to 22 April 2021 1000hr, you can use `editcommand` to change it.
+In the case that the start time has changed to 22 April 2021 1000hr, you can use `edittransport` to change it.
 
 .After edit transport booking command
 image::user-guide/EditTransportBooking.png[]
 
 `edittransport 4 mode/plane endloc/Italy`
 
-In the case that you want to change the end location and mode of transport, you can use `editcommand` to change it.
+In the case that you want to change the end location and mode of transport, you can use `edittransport` to change it.
 
 .After edit transport booking command
 image::user-guide/EditTransportBooking2.png[]
@@ -539,14 +540,14 @@ Format: `editacc INDEX [name/NAME] [loc/LOCATION] [startday/START_DAY] [endday/E
 
 Examples:
 
-`edithotel 2 startday/4 endday/6`
+`editacc 2 startday/4 endday/6`
 
 In the case that you want to change the start day and end day of the 2nd accommodation, you can use `editacc` command.
 
 .After edit accommodation booking command
 image::user-guide/EditAccommodationBooking.png[]
 
-`edithotel 3 address/Hilton KL remark/Check-in at 2pm`
+`editacc 3 address/Hilton KL remark/Check-in at 2pm`
 
 You can also use this command to change the third accommodation booking in the list to Hilton, set the location to KL and change the remark to check in at 2pm.
 
@@ -554,7 +555,7 @@ You can also use this command to change the third accommodation booking in the l
 image::user-guide/EditAccommodationBooking2.png[]
 
 
-==== Delete accommodation booking: `deletehotel`
+==== Delete accommodation booking: `deleteacc`
 
 Assuming you have another accommodation booking and plan to delete the previous one that you set on the same days, you can use this command to remove it.
 
@@ -565,7 +566,7 @@ Format: `deleteacc INDEX`
 
 Examples:
 
-`deletehotel 2`
+`deleteacc 2`
 
 You can use `deleteacc` to delete the second accommodation booking.
 
@@ -1004,6 +1005,8 @@ Format: `addexpense amount/AMOUNT currency/CURRENCY description/DESCRIPTION cate
 
 - If the user enters the expense in other currency, which is identified through typing `OTHER` in the `CURRENCY`
 field, the amount will be automatically converted to SGD using the exchange rate provided.
+
+- `Category` s is should only be  `accommodation`, `transport`, `activities` and `others`
 ====
 
 Examples:
@@ -1214,17 +1217,17 @@ This feature would allow users to undo or redo certain commands which are accide
 |===
 |Command |Example
 
-|*Set Trip* : `settrip title/TITLE start/START_DATE end/END_DATE location/LOCATION``
-|`settrip title/Graduation Trip start/28-09-2020 end/28-10-2020 location/Japan`
+|*Set Trip* : `settrip title/TITLE startdate/START_DATE enddate/END_DATE budget/BUDGET exchangerate/EXCHANGERATE`
+|`settrip title/Graduation Trip start/28-09-2020 end/28-10-2020 budget/1000 exchangerate/1.40`
 
-|*Edit Trip* : `edittrip [title/TITLE] [start/START_DATE] [end/END_DATE][country/COUNTRY]`
-|`edittrip title/not a graduation trip country/Singapore`
-
-|`*Delete Trip* : deletetrip`
+|*Delete Trip* : `deletetrip`
 |`deletetrip`
 
-|*Clear Trip* : `cleartrip`
-|`cleartrip`
+|*Rename a Trip* : `rename`
+|`rename Not a graduation Trip`
+
+|`*Edit Budget for Trip* : editbudget BUDGET`
+|`editbudget 1000`
 
 |*View Itinerary* : `view`
 |`view`
@@ -1238,8 +1241,8 @@ This feature would allow users to undo or redo certain commands which are accide
 |===
 |Command |Example
 
-|*Add Activity* : `addactivity title/TITLE duration/DURATION location/LOCATION [t/tag]...`
-|`addactivity title/Going to the beach duration/4 location/Hakone t/sea t/ocean`
+|*Add Activity* : `addactivity title/TITLE duration/DURATION location/LOCATION [tag/TAG]...`
+|`addactivity title/Going to the beach duration/4 location/Hakone tag/sea tag/ocean`
 
 |*Edit Activity* : `editactivity index [title/NAME] [duration/DURATION] [location/LOCATION] [t/tag]`
 |`editactivity 1 name/Go to an aquarium`
@@ -1323,6 +1326,6 @@ description/DESCRIPTION category/CATEGORY`
 |`clearexpense`
 
 |*Sort Fixed Expenses* : `sortexpense SORTIDENTIFIER [AMOUNT] [DESCRIPTION] [CATEGORY]`
-|`sortexpense 1 amount`
+|`sortexpense asc amount`
 |===
 
