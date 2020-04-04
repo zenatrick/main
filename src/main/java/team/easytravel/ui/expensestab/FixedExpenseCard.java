@@ -2,6 +2,8 @@ package team.easytravel.ui.expensestab;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
@@ -34,6 +36,8 @@ public class FixedExpenseCard extends UiPart<Region> {
     private Label description;
     @FXML
     private Label category;
+    @FXML
+    private ImageView imageViewCategory;
 
     public FixedExpenseCard(FixedExpense fixedExpense, int displayedIndex) {
         super(FXML);
@@ -42,6 +46,20 @@ public class FixedExpenseCard extends UiPart<Region> {
         description.setText(fixedExpense.getDescription().toString());
         amount.setText("Amount: $" + fixedExpense.getAmount().toString());
         category.setText("Category: " + fixedExpense.getFixedExpenseCategory().toString());
+
+        Image imageCategory;
+
+        if (fixedExpense.getFixedExpenseCategory().value.equals("activities")) {
+            imageCategory = new Image("/images/activities.png");
+        } else if (fixedExpense.getFixedExpenseCategory().value.equals("accommodations")) {
+            imageCategory = new Image("/images/hotel.png");
+        } else if (fixedExpense.getFixedExpenseCategory().value.equals("transport")) {
+            imageCategory = new Image("/images/plane.png");
+        } else {
+            imageCategory = new Image("/images/default.png");
+        }
+
+        imageViewCategory.setImage(imageCategory);
     }
 
     @Override
