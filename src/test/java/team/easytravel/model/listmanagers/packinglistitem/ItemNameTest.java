@@ -40,14 +40,15 @@ class ItemNameTest {
         assertFalse(ItemName.isValidName("Dog*")); // Contains non-alphanumeric characters.
         assertFalse(ItemName.isValidName("yoursystemrunsf1234anyhowjustpresswhymylifesobadnow"
                 + "IwanttowithdrawfromNUS")); // Contains 74 characters.
+        assertFalse(ItemName.isValidName("hellomynameisJ ohn12"
+                + "Doghahahahahhacsgohehelaaldota")); //Contains 50 alphanumeric char with spaces.
 
         // Valid name
         assertTrue(ItemName.isValidName("Hello ")); //Normal case
         assertTrue(ItemName.isValidName("Hello1234")); // Contains alphanumeric characters.
-        assertTrue(ItemName.isValidName("hellomynameisJ ohn12"
-                + "Doghahahahahhacsgohehelaaldota")); //Contains 50 alphanumeric char with spaces.
         assertTrue(ItemName.isValidName("yoursystemrunsf1234anyhow"
-                + "justpress")); // Contains 34 characters.
+                + "justp")); // Contains 30 characters.
+        assertTrue(ItemName.isValidName("ahaha56789j  " + "cjeudhwny7p")); // Contains 24 characters.
 
 
     }

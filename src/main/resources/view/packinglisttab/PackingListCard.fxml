@@ -28,11 +28,11 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="itemName" styleClass="cell_big_label" text="\$first">
+                <Label fx:id="itemName" styleClass="cell_big_label" text="\$name">
                <font>
                   <Font size="16.0" />
                </font></Label>
-            <ImageView fx:id="category" fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="category" fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" />
             </HBox>
             <HBox prefHeight="1.0" prefWidth="129.0">
                 <children>
@@ -54,7 +54,7 @@
                 <children>
                     <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                            <Image url="@../../images/interface.png" />
+                            <Image url="@../../images/category.png" />
                         </image>
                   <HBox.margin>
                      <Insets left="2.0" right="2.0" />
