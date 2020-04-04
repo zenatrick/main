@@ -27,6 +27,7 @@ public class ListActivityCommand extends Command {
         }
 
         model.updateFilteredActivityList(PREDICATE_SHOW_ALL_ACTIVITIES);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, null, false, false, false, false, false,
+                false, false, true, false, false, false, false, false);
     }
 }

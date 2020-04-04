@@ -271,6 +271,34 @@ public class MainWindow extends UiPart<Stage> {
                 handleUpdateTrip();
             }
 
+            if (commandResult.isActivity()) {
+                switchTab(ActivityTabPanel.TAB_NAME);
+            }
+
+            if (commandResult.isTransportation()) {
+                switchTab(TransportBookingTabPanel.TAB_NAME);
+            }
+
+            if (commandResult.isAccommodation()) {
+                switchTab(AccommodationBookingTabPanel.TAB_NAME);
+            }
+
+            if (commandResult.isPackingList()) {
+                switchTab(PackingListTabPanel.TAB_NAME);
+            }
+
+            if (commandResult.isFixedExpense()) {
+                switchTab(FixedExpenseTabPanel.TAB_NAME);
+            }
+
+            if (commandResult.isSchedule()) {
+                switchTab(ScheduleTabPanel.TAB_NAME);
+            }
+
+
+
+
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

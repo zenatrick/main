@@ -14,6 +14,7 @@ import team.easytravel.logic.commands.accommodationbooking.AddAccommodationBooki
 import team.easytravel.logic.commands.accommodationbooking.ClearAccommodationBookingCommand;
 import team.easytravel.logic.commands.accommodationbooking.DeleteAccommodationBookingCommand;
 import team.easytravel.logic.commands.accommodationbooking.EditAccommodationBookingCommand;
+import team.easytravel.logic.commands.accommodationbooking.ListAccommodationBookingCommand;
 import team.easytravel.logic.commands.accommodationbooking.SortAccommodationBookingCommand;
 import team.easytravel.logic.commands.activity.AddActivityCommand;
 import team.easytravel.logic.commands.activity.ClearActivityCommand;
@@ -27,6 +28,7 @@ import team.easytravel.logic.commands.fixedexpense.AddFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.ClearFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.DeleteFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.EditFixedExpenseCommand;
+import team.easytravel.logic.commands.fixedexpense.ListFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.SortFixedExpenseCommand;
 import team.easytravel.logic.commands.packinglist.AddItemCommand;
 import team.easytravel.logic.commands.packinglist.AddPresetCommand;
@@ -40,12 +42,14 @@ import team.easytravel.logic.commands.packinglist.ListItemCommand;
 import team.easytravel.logic.commands.packinglist.ListPresetCommand;
 import team.easytravel.logic.commands.packinglist.SortItemCommand;
 import team.easytravel.logic.commands.packinglist.UncheckItemCommand;
+import team.easytravel.logic.commands.schedule.ListScheduleCommand;
 import team.easytravel.logic.commands.schedule.ScheduleCommand;
 import team.easytravel.logic.commands.schedule.UnscheduleCommand;
 import team.easytravel.logic.commands.transportbooking.AddTransportBookingCommand;
 import team.easytravel.logic.commands.transportbooking.ClearTransportBookingCommand;
 import team.easytravel.logic.commands.transportbooking.DeleteTransportBookingCommand;
 import team.easytravel.logic.commands.transportbooking.EditTransportBookingCommand;
+import team.easytravel.logic.commands.transportbooking.ListTransportBookingCommand;
 import team.easytravel.logic.commands.transportbooking.SortTransportBookingCommand;
 import team.easytravel.logic.commands.trip.CheckBudgetStatus;
 import team.easytravel.logic.commands.trip.DeleteTripCommand;
@@ -142,6 +146,9 @@ public class EasyTravelParser {
         case UnscheduleCommand.COMMAND_WORD:
             return new UnscheduleCommandParser().parse(arguments);
 
+        case ListScheduleCommand.COMMAND_WORD:
+            return new ListScheduleCommand();
+
         // ========================== Fixed Expense Commands =========================
         case AddFixedExpenseCommand.COMMAND_WORD:
             return new AddFixedExpenseCommandParser().parse(arguments);
@@ -161,6 +168,8 @@ public class EasyTravelParser {
         case SortFixedExpenseCommand.COMMAND_WORD:
             return new SortFixedExpenseCommandParser().parse(arguments);
 
+        case ListFixedExpenseCommand.COMMAND_WORD:
+            return new ListFixedExpenseCommand();
 
         // ========================== Transport Booking Commands =========================
         case AddTransportBookingCommand.COMMAND_WORD:
@@ -177,6 +186,10 @@ public class EasyTravelParser {
 
         case SortTransportBookingCommand.COMMAND_WORD:
             return new SortTransportBookingCommandParser().parse(arguments);
+
+        case ListTransportBookingCommand.COMMAND_WORD:
+            return new ListTransportBookingCommand();
+
         // ========================== Packing List Commands =========================
         case AddItemCommand.COMMAND_WORD:
             return new AddItemCommandParser().parse(arguments);
@@ -214,6 +227,7 @@ public class EasyTravelParser {
         case SortItemCommand.COMMAND_WORD:
             return new SortItemCommandParser().parse(arguments);
 
+
         // ========================== Activity Commands =========================
         case AddActivityCommand.COMMAND_WORD:
             return new AddActivityCommandParser().parse(arguments);
@@ -232,12 +246,12 @@ public class EasyTravelParser {
 
         case FindActivityTagCommand.COMMAND_WORD:
             return new FindActivityTagCommandParser().parse(arguments);
+
         case ListActivityCommand.COMMAND_WORD:
             return new ListActivityCommand();
 
         case SortActivityCommand.COMMAND_WORD:
             return new SortActivityCommandParser().parse(arguments);
-
 
         // ========================== Accommodation Commands =========================
         case AddAccommodationBookingCommand.COMMAND_WORD:
@@ -254,6 +268,9 @@ public class EasyTravelParser {
 
         case SortAccommodationBookingCommand.COMMAND_WORD:
             return new SortAccommodationBookingParser().parse(arguments);
+
+        case ListAccommodationBookingCommand.COMMAND_WORD:
+            return new ListAccommodationBookingCommand();
 
         // ========================== Invalid Commands =========================
         default:

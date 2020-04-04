@@ -27,6 +27,7 @@ public class ListFixedExpenseCommand extends Command {
         }
 
         model.updateFilteredFixedExpenseList(PREDICATE_SHOW_ALL_FIXED_EXPENSES);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, null, false, false, false, false, false, false,
+                false, false, false, false, false, true, false);
     }
 }

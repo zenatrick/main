@@ -27,6 +27,7 @@ public class ListAccommodationBookingCommand extends Command {
         }
 
         model.updateFilteredAccommodationBookingList(PREDICATE_SHOW_ALL_ACCOMMODATION_BOOKINGS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, null, false, false, false, false, false,
+                false, false, false, false, true, false, false, false);
     }
 }

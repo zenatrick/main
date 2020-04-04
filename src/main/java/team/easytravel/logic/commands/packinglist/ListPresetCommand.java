@@ -37,6 +37,7 @@ public class ListPresetCommand extends Command {
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS), null, false, false,
-                false, false, false, false, true);
+                false, false, false, false, true, false,
+                false, false, false, false, false);
     }
 }

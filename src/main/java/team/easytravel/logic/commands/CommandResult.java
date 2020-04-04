@@ -50,12 +50,29 @@ public class CommandResult {
     private final boolean isListPreset;
 
     /**
+     * Check if which screen the user is listing to
+     */
+    private final boolean isActivity;
+
+    private final boolean isTransportation;
+
+    private final boolean isAccommodation;
+
+    private final boolean isPackingList;
+
+    private final boolean isFixedExpense;
+
+    private final boolean isSchedule;
+
+    /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
 
     public CommandResult(String feedbackToUser, List<String> checkStatus, boolean showHelp, boolean exit,
                          boolean isCheckStatus, boolean isSetTrip, boolean isDeleteTrip,
-                         boolean isEditTrip, boolean isListPreset) {
+                         boolean isEditTrip, boolean isListPreset, boolean isActivity,
+                         boolean isTransportation, boolean isAccommodation, boolean isPackingList,
+                         boolean isFixedExpense, boolean isSchedule) {
 
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.checkStatus = checkStatus;
@@ -66,6 +83,12 @@ public class CommandResult {
         this.isDeleteTrip = isDeleteTrip;
         this.isEditTrip = isEditTrip;
         this.isListPreset = isListPreset;
+        this.isActivity = isActivity;
+        this.isTransportation = isTransportation;
+        this.isAccommodation = isAccommodation;
+        this.isPackingList = isPackingList;
+        this.isFixedExpense = isFixedExpense;
+        this.isSchedule = isSchedule;
     }
 
     /**
@@ -73,7 +96,8 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, null, false, false, false, false, false, false, false);
+        this(feedbackToUser, null, false, false, false, false, false,
+                false, false, false, false, false, false, false, false);
     }
 
     /**
@@ -81,7 +105,8 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, List<String> checkStatus) {
-        this(feedbackToUser, checkStatus, false, false, true, false, false, false, false);
+        this(feedbackToUser, checkStatus, false, false, true, false, false, false, false,
+                false, false, false, false, false, false);
 
     }
 
@@ -119,6 +144,30 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isActivity() {
+        return isActivity;
+    }
+
+    public boolean isTransportation() {
+        return isTransportation;
+    }
+
+    public boolean isAccommodation() {
+        return isAccommodation;
+    }
+
+    public boolean isPackingList() {
+        return isPackingList;
+    }
+
+    public boolean isFixedExpense() {
+        return isFixedExpense;
+    }
+
+    public boolean isSchedule() {
+        return isSchedule;
     }
 
     @Override

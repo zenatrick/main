@@ -27,6 +27,7 @@ public class ListTransportBookingCommand extends Command {
         }
 
         model.updateFilteredTransportBookingList(PREDICATE_SHOW_ALL_TRANSPORT_BOOKINGS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, null, false, false, false, false,
+                false, false, false, false, true, false, false, false, false);
     }
 }
