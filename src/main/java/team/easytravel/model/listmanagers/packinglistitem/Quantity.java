@@ -15,9 +15,9 @@ public class Quantity {
      * The constant MESSAGE_CONSTRAINTS.
      */
     public static final String MESSAGE_CONSTRAINTS =
-            "Quantity should only be a positive integer, from 1 onwards, and at maximum 1000";
+            "Quantity should only be a positive integer, from 1 onwards, and at maximum 100000";
 
-    private static final int MAX_VALUE = 1000;
+    private static final int MAX_VALUE = 100000;
     private static final int MIN_VALUE = 1;
     public static final Predicate<Integer> VALIDATION_PREDICATE = i -> i >= MIN_VALUE && i <= MAX_VALUE;
 

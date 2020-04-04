@@ -606,9 +606,9 @@ Format: `additem name/NAME quantity/QUANTITY category/CATEGORY`
 
 [NOTE]
 =====
-- `NAME` must be made of alphanumeric characters, and it must be less than 50 characters long
+- `NAME` must be made of alphanumeric characters, and it must be less than 30 characters long
 - `NAME` can be made up of multiple words
-- `QUANTITY` must be a positive integer 1,2,3… and must be less than 1000
+- `QUANTITY` must be a positive integer 1,2,3… and must be less than 100000
 - `CATEGORY` must be made of alphanumeric characters, and it must be less than 30 characters long
 - `CATEGORY` can be made up of multiple words
 - If a duplicated item is added, it will let the user know that the item is already in the list.
@@ -649,7 +649,7 @@ Format: `edititem INDEX [name/NAME] [quantity/QUANTITY] [category/CATEGORY]`
 - Command can only be used if an item has been added.
 - `NAME` must be made of alphanumeric characters, and it must be less than 30 characters long
 - `NAME` can be made up of multiple words
-- `QUANTITY` must be a positive integer 1,2,3… and must be less than 1000
+- `QUANTITY` must be a positive integer 1,2,3… and must be less than 100000
 - `CATEGORY` must be made of alphanumeric characters, and it must be less than 30 characters long
 - `CATEGORY` can be made up of multiple words
 - If the item is marked as packed initially, it will not change after you edit the item. Likewise the same for an item that is marked as unpacked.
@@ -788,7 +788,7 @@ image::user-guide/UncheckItem.png[]
 
 This command sorts items in the packing list
 
-Format: `sortitem order criteria`
+Format: `sortitem order criteria/CRITERIA`
 
 [NOTE]
 =====
@@ -799,7 +799,7 @@ Format: `sortitem order criteria`
 
 Examples:
 
-`sortitem asc alphabet` +
+`sortitem asc criteria/alphabet` +
 
 Let’s say you want to sort the packing list alphabetically. You may do so by executing the `sortitem` command.
 
@@ -909,7 +909,7 @@ image::user-guide/ListItem.png[]
 
 This command adds a pre-existing list of items under a category into the packing list.
 
-Format: `addpreset category/PRESET_NAME`
+Format: `addpreset PRESET_NAME`
 
 [NOTE]
 =====
@@ -920,14 +920,14 @@ Format: `addpreset category/PRESET_NAME`
 
 Examples:
 
-* `addpreset category/beach` +
+* `addpreset beach` +
 
 Let’s say you will be going to the beach during your trip, but you are too lazy to add a packing list item one-by-one. You want to add all the items in the beach category into your packing list. You may do so by executing the `addpreset` command.
 
 ****
 To add a pre-existing preset:
 
-1. Type `addpreset category/beach` into the command box, and press `Enter` to execute it.
+1. Type `addpreset beach` into the command box, and press `Enter` to execute it.
 
 2. The result box will display the message `New preset added: beach`
 
