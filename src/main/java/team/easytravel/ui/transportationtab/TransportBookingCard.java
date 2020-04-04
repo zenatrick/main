@@ -2,6 +2,8 @@ package team.easytravel.ui.transportationtab;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -41,16 +43,34 @@ public class TransportBookingCard extends UiPart<Region> {
     private Label endDateTime;
     @FXML
     private FlowPane tags;
+    @FXML
+    private ImageView imageViewMode;
 
     public TransportBookingCard(TransportBooking transportBooking, int displayedIndex) {
         super(FXML);
         this.transportBooking = transportBooking;
         id.setText(displayedIndex + ". ");
         mode.setText(transportBooking.getMode().value);
-        startLocation.setText("Start location is: " + transportBooking.getStartLocation().value);
-        endLocation.setText("End location is: " + transportBooking.getEndLocation().value);
-        startDateTime.setText("Start time is: " + transportBooking.getStartDateTime().toString());
-        endDateTime.setText("End time is: " + transportBooking.getEndDateTime().toString());
+        startLocation.setText("Start location: " + transportBooking.getStartLocation().value);
+        endLocation.setText("End location: " + transportBooking.getEndLocation().value);
+        startDateTime.setText("Start time: " + transportBooking.getStartDateTime().toString());
+        endDateTime.setText("End time: " + transportBooking.getEndDateTime().toString());
+
+        Image imageMode;
+
+        if (transportBooking.getMode().value.equals("plane")) {
+            imageMode = new Image("/images/plane.png");
+        } else if (transportBooking.getMode().value.equals("bus")) {
+            imageMode = new Image("/images/bus.png");
+        } else if (transportBooking.getMode().value.equals("train")) {
+            imageMode = new Image("/images/train.png");
+        } else if (transportBooking.getMode().value.equals("car")) {
+            imageMode = new Image("/images/car.png");
+        } else {
+            imageMode = new Image("/images/default.png");
+        }
+
+        imageViewMode.setImage(imageMode);
     }
 
     @Override

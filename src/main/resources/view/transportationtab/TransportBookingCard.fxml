@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -26,22 +28,96 @@
                     </minWidth>
                 </Label>
                 <Label fx:id="mode" styleClass="cell_big_label" text="\\$mode" />
+            <ImageView fx:id="imageViewMode" fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" />
             </HBox>
          <HBox prefHeight="52.0" prefWidth="651.0">
             <children>
                <VBox prefHeight="59.0" prefWidth="263.0">
                   <children>
-                        <Label fx:id="startLocation" styleClass="cell_small_label" text="\\$startlocation" />
-                        <Label fx:id="endLocation" styleClass="cell_small_label" text="\\$endlocation" />
+                     <HBox prefHeight="11.0" prefWidth="263.0">
+                        <children>
+                           <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../../images/a.png" />
+                              </image>
+                              <HBox.margin>
+                                 <Insets right="2.0" />
+                              </HBox.margin>
+                           </ImageView>
+                              <Label fx:id="startLocation" alignment="CENTER" contentDisplay="CENTER" styleClass="cell_small_label" text="\\$startlocation">
+                              <HBox.margin>
+                                 <Insets top="2.0" />
+                              </HBox.margin>
+                           </Label>
+                        </children>
+                     </HBox>
+                     <HBox layoutX="10.0" layoutY="10.0" prefHeight="11.0" prefWidth="263.0">
+                        <children>
+                           <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../../images/b.png" />
+                              </image>
+                              <HBox.margin>
+                                 <Insets right="2.0" />
+                              </HBox.margin>
+                           </ImageView>
+                              <Label fx:id="endLocation" styleClass="cell_small_label" text="\\$endlocation">
+                              <HBox.margin>
+                                 <Insets top="2.0" />
+                              </HBox.margin>
+                           </Label>
+                        </children>
+                        <VBox.margin>
+                           <Insets top="2.0" />
+                        </VBox.margin>
+                     </HBox>
                   </children>
                </VBox>
                <VBox prefHeight="78.0" prefWidth="291.0">
                   <children>
-                        <Label fx:id="startDateTime" styleClass="cell_small_label" text="\\$starttime" />
-                        <Label fx:id="endDateTime" styleClass="cell_small_label" text="\\$endtime" />
+                     <HBox prefHeight="11.0" prefWidth="263.0">
+                        <children>
+                           <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../../images/start.png" />
+                              </image>
+                              <HBox.margin>
+                                 <Insets right="2.0" />
+                              </HBox.margin>
+                           </ImageView>
+                              <Label fx:id="startDateTime" styleClass="cell_small_label" text="\\$starttime">
+                              <HBox.margin>
+                                 <Insets top="2.0" />
+                              </HBox.margin>
+                           </Label>
+                        </children>
+                     </HBox>
+                     <HBox layoutX="10.0" layoutY="10.0" prefHeight="11.0" prefWidth="263.0">
+                        <children>
+                           <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../../images/end.png" />
+                              </image>
+                              <HBox.margin>
+                                 <Insets right="2.0" />
+                              </HBox.margin>
+                           </ImageView>
+                              <Label fx:id="endDateTime" styleClass="cell_small_label" text="\\$endtime">
+                              <HBox.margin>
+                                 <Insets top="2.0" />
+                              </HBox.margin>
+                           </Label>
+                        </children>
+                        <VBox.margin>
+                           <Insets top="2.0" />
+                        </VBox.margin>
+                     </HBox>
                   </children>
                </VBox>
             </children>
+            <VBox.margin>
+               <Insets top="3.0" />
+            </VBox.margin>
          </HBox>
         </VBox>
         <rowConstraints>
