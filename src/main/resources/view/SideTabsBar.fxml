@@ -72,7 +72,7 @@
         </padding>
         <graphic>
             <ImageView fitHeight="60.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../images/fixedexpenses.png" />
+                <Image url="@../images/question2.png" />
             </ImageView>
         </graphic>
     </Button>
