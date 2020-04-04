@@ -2,6 +2,8 @@ package team.easytravel.ui.scheduletab;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import team.easytravel.model.trip.DayScheduleEntry;
@@ -38,6 +40,8 @@ public class ScheduleEntryCard extends UiPart<Region> {
     private Label endTime;
     @FXML
     private Label activityLocation;
+    @FXML
+    private ImageView imageViewType;
 
     public ScheduleEntryCard(DayScheduleEntry scheduleEntry, int displayedIndex) {
         super(FXML);
@@ -48,6 +52,18 @@ public class ScheduleEntryCard extends UiPart<Region> {
         startTime.setText("Start Time: " + scheduleEntry.getStartDateTime().toString());
         endTime.setText("End Time: " + scheduleEntry.getEndDateTime().toString());
         activityLocation.setText("Location: " + scheduleEntry.getLocation().value);
+
+        Image imageType;
+
+        if (scheduleEntry.getType().equals("Transport Booking")) {
+            imageType = new Image("/images/plane.png");
+        } else if (scheduleEntry.getType().equals("Activity")) {
+            imageType = new Image("/images/activities.png");
+        } else {
+            imageType = new Image("/images/default.png");
+        }
+
+        imageViewType.setImage(imageType);
     }
 
     @Override
