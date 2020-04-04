@@ -62,7 +62,7 @@ skinparam Participant {
 
 skinparam Title {
     FontColor MAIN_DARK_COLOR
-    FontName Impact
+    FontName Arial
     FontSize 22
 }
 
@@ -86,7 +86,7 @@ skinparam Class {
     AttributeIconSize 0
     StereotypeFontColor MAIN_DARK_COLOR
     StereotypeFontStyle normal
-    FontName Impact
+    FontName Arial
 }
 
 skinparam Object {
@@ -97,7 +97,7 @@ skinparam Object {
     AttributeIconSize 0
     StereotypeFontColor MAIN_DARK_COLOR
     StereotypeFontStyle normal
-    FontName Impact
+    FontName Arial
 }
 
 skinparam Actor {
@@ -117,7 +117,7 @@ skinparam Sequence {
     TitleFontColor MAIN_DARK_COLOR
     StereotypeFontStyle normal
     BoxFontSize 22
-    BoxFontName Impact
+    BoxFontName Arial
     BoxFontStyle normal
     BoxPadding 0
     BoxBorderColor BACKGROUND_COLOR
