@@ -68,7 +68,8 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
 
-    public CommandResult(String feedbackToUser, List<String> checkStatus, boolean showHelp, boolean exit,
+    public CommandResult(String feedbackToUser, List<String> checkStatus,
+                         boolean showHelp, boolean exit,
                          boolean isCheckStatus, boolean isSetTrip, boolean isDeleteTrip,
                          boolean isEditTrip, boolean isListPreset, boolean isActivity,
                          boolean isTransportation, boolean isAccommodation, boolean isPackingList,
@@ -107,8 +108,8 @@ public class CommandResult {
     public CommandResult(String feedbackToUser, List<String> checkStatus) {
         this(feedbackToUser, checkStatus, false, false, true, false, false, false, false,
                 false, false, false, false, false, false);
-
     }
+
 
     public String getFeedbackToUser() {
         return feedbackToUser;

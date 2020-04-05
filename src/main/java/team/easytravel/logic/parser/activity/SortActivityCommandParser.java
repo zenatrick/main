@@ -23,8 +23,9 @@ public class SortActivityCommandParser implements Parser<SortActivityCommand> {
                 throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                         SortActivityCommand.MESSAGE_USAGE));
             }
-            String parseSortIdentifier = ParserUtil.parseSortIdentifier(args.substring(1, 4));
-            String parseSortParameter = ParserUtil.parseSortActivityParameters(args.substring(4).trim().toLowerCase());
+            String[] sortIdentifiers = ParserUtil.parseSortArgumentString(args);
+            String parseSortIdentifier = ParserUtil.parseSortIdentifier(sortIdentifiers[0].toLowerCase());
+            String parseSortParameter = ParserUtil.parseSortActivityParameters(sortIdentifiers[1].toLowerCase());
 
             return new SortActivityCommand((parseSortIdentifier), parseSortParameter);
         } catch (ParseException pe) {

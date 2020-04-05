@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
 import static team.easytravel.model.Model.PREDICATE_SHOW_ALL_PACKING_LIST_ITEMS;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,20 +46,20 @@ public class UncheckItemCommand extends Command {
      */
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the packing list.";
 
-    private final Index index;
+    private final List<Index> indexes;
     private final UncheckItemDescriptor uncheckItemDescriptor;
 
     /**
      * Instantiates a new Edit item command.
      *
-     * @param index                 of the Item in the filtered Item list to edit
+     * @param indexes               of the Item in the filtered Item list to edit
      * @param uncheckItemDescriptor details to edit the Item with
      */
-    public UncheckItemCommand(Index index, UncheckItemDescriptor uncheckItemDescriptor) {
-        requireNonNull(index);
+    public UncheckItemCommand(List<Index> indexes, UncheckItemDescriptor uncheckItemDescriptor) {
+        requireNonNull(indexes);
         requireNonNull(uncheckItemDescriptor);
 
-        this.index = index;
+        this.indexes = indexes;
         this.uncheckItemDescriptor = new UncheckItemDescriptor(uncheckItemDescriptor);
     }
 
@@ -71,22 +72,41 @@ public class UncheckItemCommand extends Command {
         }
 
         List<PackingListItem> lastShownList = model.getFilteredPackingList();
+        List<PackingListItem> editedItems = new ArrayList<>();
+        List<Index> invalidIndexes = new ArrayList<>();
+        StringBuilder sb = new StringBuilder().append("Checked items \n");
+        StringBuilder invalidIndex = new StringBuilder().append("Invalid Indexes are: ");
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        for (Index index : indexes) {
+
+            if (index.getZeroBased() >= lastShownList.size()) {
+                invalidIndexes.add(index);
+                invalidIndex.append(index.toString()).append(" ");
+                continue;
+            }
+
+            PackingListItem itemToCheck = lastShownList.get(index.getZeroBased());
+            PackingListItem checkItem = createUncheckItem(itemToCheck, uncheckItemDescriptor);
+
+            if (!itemToCheck.isSame(checkItem) && model.hasPackingListItem(checkItem)) {
+                throw new CommandException(MESSAGE_DUPLICATE_ITEM);
+            }
+
+            sb.append(checkItem.toString()).append("\n");
+
+            model.setPackingListItem(itemToCheck, checkItem);
+            editedItems.add(checkItem);
+        }
+        model.updateFilteredPackingList(PREDICATE_SHOW_ALL_PACKING_LIST_ITEMS);
+
+        if (editedItems.isEmpty() && !invalidIndexes.isEmpty()) {
             throw new CommandException(String.format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT,
                     "packing list item"));
+        } else if (invalidIndexes.isEmpty() && !editedItems.isEmpty()) {
+            // Event where there are no invalid indexes and items were edited
+            return new CommandResult(String.format(MESSAGE_PACKED_ITEM_SUCCESS, sb));
         }
-
-        PackingListItem itemToCheck = lastShownList.get(index.getZeroBased());
-        PackingListItem checkItem = createUncheckItem(itemToCheck, uncheckItemDescriptor);
-
-        if (!itemToCheck.isSame(checkItem) && model.hasPackingListItem(checkItem)) {
-            throw new CommandException(MESSAGE_DUPLICATE_ITEM);
-        }
-
-        model.setPackingListItem(itemToCheck, checkItem);
-        model.updateFilteredPackingList(PREDICATE_SHOW_ALL_PACKING_LIST_ITEMS);
-        return new CommandResult(String.format(MESSAGE_PACKED_ITEM_SUCCESS, checkItem));
+        return new CommandResult(String.format(MESSAGE_PACKED_ITEM_SUCCESS, sb.append("\n").append(invalidIndex)));
     }
 
     /**
@@ -123,7 +143,7 @@ public class UncheckItemCommand extends Command {
 
         // state check
         UncheckItemCommand e = (UncheckItemCommand) other;
-        return index.equals(e.index)
+        return indexes.equals(e.indexes)
                 && uncheckItemDescriptor.equals(e.uncheckItemDescriptor);
     }
 

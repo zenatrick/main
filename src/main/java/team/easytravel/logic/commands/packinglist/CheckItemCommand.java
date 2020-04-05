@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
 import static team.easytravel.model.Model.PREDICATE_SHOW_ALL_PACKING_LIST_ITEMS;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import team.easytravel.commons.core.index.Index;
@@ -27,17 +28,16 @@ public class CheckItemCommand extends Command {
 
     public static final String MESSAGE_PACKED_ITEM_SUCCESS = "Packed Item: %1$s";
 
-    private final Index index;
+    private final List<Index> indexes;
 
     /**
      * Instantiates a new Check item command.
      *
-     * @param index of the Item in the filtered Item list to check
+     * @param indexes of the Item in the filtered Item list to check
      */
-    public CheckItemCommand(Index index) {
-        requireNonNull(index);
-
-        this.index = index;
+    public CheckItemCommand(List<Index> indexes) {
+        requireNonNull(indexes);
+        this.indexes = indexes;
     }
 
     @Override
@@ -49,25 +49,45 @@ public class CheckItemCommand extends Command {
         }
 
         List<PackingListItem> lastShownList = model.getFilteredPackingList();
+        List<PackingListItem> editedItems = new ArrayList<>();
+        List<Index> invalidIndexes = new ArrayList<>();
+        StringBuilder sb = new StringBuilder().append("Checked items \n");
+        StringBuilder invalidIndex = new StringBuilder().append("Invalid Indexes are: ");
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(String.format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT,
-                    "packing list item"));
+        for (Index i : indexes) {
+            if (i.getZeroBased() >= lastShownList.size()) {
+                invalidIndexes.add(i);
+                invalidIndex.append(i.toString()).append(" ");
+                continue;
+            }
+            PackingListItem itemToCheck = lastShownList.get(i.getZeroBased());
+            PackingListItem checkedItem = new PackingListItem(itemToCheck.getItemName(), itemToCheck.getQuantity(),
+                    itemToCheck.getItemCategory(), true);
+
+            sb.append(checkedItem.toString()).append("\n");
+
+            model.setPackingListItem(itemToCheck, checkedItem);
+            editedItems.add(checkedItem);
         }
 
-        PackingListItem itemToCheck = lastShownList.get(index.getZeroBased());
-        PackingListItem checkedItem = new PackingListItem(itemToCheck.getItemName(), itemToCheck.getQuantity(),
-                itemToCheck.getItemCategory(), true);
-
-        model.setPackingListItem(itemToCheck, checkedItem);
         model.updateFilteredPackingList(PREDICATE_SHOW_ALL_PACKING_LIST_ITEMS);
-        return new CommandResult(String.format(MESSAGE_PACKED_ITEM_SUCCESS, checkedItem));
+
+        if (editedItems.isEmpty() && !invalidIndexes.isEmpty()) {
+            throw new CommandException(String.format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT,
+                    "packing list item"));
+        } else if (invalidIndexes.isEmpty() && !editedItems.isEmpty()) {
+            // Event where there are no invalid indexes and items were edited
+            return new CommandResult(String.format(MESSAGE_PACKED_ITEM_SUCCESS, sb));
+        }
+        return new CommandResult(String.format(MESSAGE_PACKED_ITEM_SUCCESS, sb.append("\n").append(invalidIndex)));
+
     }
+
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof CheckItemCommand // instanceof handles nulls
-                && index.equals(((CheckItemCommand) other).index)); // state check
+                && indexes.equals(((CheckItemCommand) other).indexes)); // state check
     }
 }

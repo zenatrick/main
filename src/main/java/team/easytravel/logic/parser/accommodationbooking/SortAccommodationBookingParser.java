@@ -23,8 +23,12 @@ public class SortAccommodationBookingParser implements Parser<SortAccommodationB
                 throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                         SortAccommodationBookingCommand.MESSAGE_USAGE));
             }
-            String parseSortIdentifier = ParserUtil.parseSortIdentifier(args.substring(1, 4));
-            String parseSortParameter = ParserUtil.parseSortAccParameters(args.substring(4).trim().toLowerCase());
+
+            String[] sortIdentifiers = ParserUtil.parseSortArgumentString(args);
+
+            String parseSortIdentifier = ParserUtil.parseSortIdentifier(sortIdentifiers[0].toLowerCase());
+            String parseSortParameter = ParserUtil.parseSortExpParameters(sortIdentifiers[1].toLowerCase());
+
 
             return new SortAccommodationBookingCommand((parseSortIdentifier), parseSortParameter);
         } catch (ParseException pe) {

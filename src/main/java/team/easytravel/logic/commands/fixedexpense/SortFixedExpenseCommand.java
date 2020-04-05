@@ -79,7 +79,8 @@ public class SortFixedExpenseCommand extends Command {
                 return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS);
 
             } else {
-                model.sortFixedExpenseList((Comparator.comparing(x -> x.getAmount().value)));
+                model.sortFixedExpenseList((x, y) -> (int) Math.signum(Double.parseDouble(x.getAmount().value)
+                        - Double.parseDouble(y.getAmount().value)));
                 return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS);
             }
 

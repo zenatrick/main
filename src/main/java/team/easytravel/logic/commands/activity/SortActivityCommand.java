@@ -31,6 +31,7 @@ public class SortActivityCommand extends Command {
     public static final String MESSAGE_SORT_ACTIVITY_SUCCESS = "Sorting of Activity successful :)";
 
     public static final String SORT_DESCENDING = "des";
+    public static final String SORT_ASCENDING = "asc";
     public static final String TITLE = "title";
     public static final String LOCATION = "location";
     public static final String DURATION = "duration";

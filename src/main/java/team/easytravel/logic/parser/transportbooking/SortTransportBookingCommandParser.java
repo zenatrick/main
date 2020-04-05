@@ -23,8 +23,10 @@ public class SortTransportBookingCommandParser implements Parser<SortTransportBo
                 throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                         SortTransportBookingCommand.MESSAGE_USAGE));
             }
-            String parseSortIdentifier = ParserUtil.parseSortIdentifier(args.substring(1, 4));
-            String parseSortParameter = ParserUtil.parseSortTransportParameters(args.substring(4).trim().toLowerCase());
+
+            String[] sortIdentifiers = ParserUtil.parseSortArgumentString(args);
+            String parseSortIdentifier = ParserUtil.parseSortIdentifier(sortIdentifiers[0].toLowerCase());
+            String parseSortParameter = ParserUtil.parseSortActivityParameters(sortIdentifiers[1].toLowerCase());
 
             return new SortTransportBookingCommand((parseSortIdentifier), parseSortParameter);
         } catch (ParseException pe) {

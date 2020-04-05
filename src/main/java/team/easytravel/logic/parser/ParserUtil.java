@@ -2,10 +2,13 @@ package team.easytravel.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import team.easytravel.commons.core.Messages;
 import team.easytravel.commons.core.index.Index;
 import team.easytravel.commons.core.time.Date;
 import team.easytravel.commons.core.time.DateTime;
@@ -59,6 +62,28 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+
+    /**
+     * Parses {@code userInput} into an {@code List<Index>} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @param userInput the user's input
+     * @return a list of index
+     * @throws ParseException
+     */
+    public static List<Index> parseMultipleIndex (String userInput) throws ParseException {
+
+        List<Index> indexes = new ArrayList<>();
+        String[] trimmedIndexes = userInput.trim().split("\\s+");
+
+        for (String s : trimmedIndexes) {
+            if (!StringUtil.isNonZeroUnsignedInteger(s)) {
+                throw new ParseException(MESSAGE_INVALID_INDEX);
+            }
+            indexes.add(Index.fromOneBased(Integer.parseInt(s)));
+        }
+        return indexes;
     }
 
     /**
@@ -178,6 +203,23 @@ public class ParserUtil {
             throw new ParseException("String must consist of either high for descending order"
                     + " or low for ascending order");
         }
+    }
+
+    /**
+     * Parses a {@code String sortArgumentString}
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code sortArgumentString} is invalid.
+     */
+    public static String[] parseSortArgumentString(String sortArgumentString) throws ParseException {
+        requireNonNull(sortArgumentString);
+
+        String[] sortIdentifiers = sortArgumentString.trim().split("\\s+");
+        if (sortIdentifiers.length != 2) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    SortFixedExpenseCommand.MESSAGE_USAGE));
+        }
+        return sortIdentifiers;
     }
 
     /**
