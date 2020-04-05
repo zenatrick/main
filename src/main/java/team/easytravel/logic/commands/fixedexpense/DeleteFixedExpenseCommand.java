@@ -2,6 +2,7 @@ package team.easytravel.logic.commands.fixedexpense;
 
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
+import static team.easytravel.model.trip.TripManager.MESSAGE_ERROR_NO_TRIP;
 
 import java.util.List;
 
@@ -11,7 +12,6 @@ import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
-import team.easytravel.model.trip.TripManager;
 
 /**
  * Deletes a fixed expense in the list.
@@ -38,7 +38,7 @@ public class DeleteFixedExpenseCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasTrip()) {
-            throw new CommandException(TripManager.MESSAGE_ERROR_NO_TRIP);
+            throw new CommandException(MESSAGE_ERROR_NO_TRIP);
         }
 
         List<FixedExpense> lastShownList = model.getFilteredFixedExpenseList();
