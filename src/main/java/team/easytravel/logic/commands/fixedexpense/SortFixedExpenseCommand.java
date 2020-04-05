@@ -22,8 +22,8 @@ public class SortFixedExpenseCommand extends Command {
 
     public static final String COMMAND_WORD = "sortexpense";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": sorts the fixed expense identified by the command"
-            + " asc or des in the displayed fixed expense list\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the fixed expense list in ascending "
+            + "or descending order depending on amount, description or category\n"
             + "asc sorts by ascending order while des sorts by descending order\n"
             + "Parameters : SORTIDENTIFIER (must be asc or des) "
             + "[AMOUNT]" + "[DESCRIPTION]" + "[CATEGORY]\n"

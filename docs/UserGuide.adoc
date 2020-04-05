@@ -1017,11 +1017,11 @@ field, the amount will be automatically converted to SGD using the exchange rate
 
 Examples:
 
-* `addexpense amount/1100 description/SQ Tickets category/Flights  currency/SGD` +
-Adds a fixed expense of $1100SGD, for `SQ Tickets` of category `Flights`.
+* `addexpense amount/1100 currency/SGD description/SQ Tickets category/transport` +
+Adds a fixed expense of $1100SGD, for `SQ Tickets` of category `transport`.
 
-* `addexpense amount/300 currency/other description/Bullet Train category/Transportation` +
-Adds a fixed expense of $300SGD for `Bullet Train` of category `Transportation`.
+* `addexpense amount/300 currency/other description/Bullet Train category/transport` +
+Adds a fixed expense of $300SGD for `Bullet Train` of category `transport`.
 
 After successfully adding the fixed expense, you would be able to see the expected output below along with the details of the fixed expense you have just added and your remaining budget for the trip.
 
@@ -1053,12 +1053,12 @@ list. The index *must be a positive integer* 1, 2, 3, ...
 
 Examples:
 
-* `editexpense 1 amount/3000 description/Cathay Pacific Flight` +
-Edit the details and amount paid in SGD of the 1st fixed expense to be `Cathay Pacific Flight` and `$3000 SGD` respectively.
+* `editexpense 1 amount/3000 currency/SGD description/Cathay Pacific Flight` +
+Edit the description and amount of the 1st fixed expense to be `Cathay Pacific Flight` and `$3000 SGD` respectively.
 
-* `editexpense 1 amount/3000 currency/other description/Business Class Flight category/Flight Ticket` +
-Edit the details and amount paid in other currency of the 1st fixed expense to be
-`Business Class Flight` and `$3000` respectively.
+* `editexpense 1 amount/3000 currency/other description/Business Class Flight category/Transport` +
+Edit the description, currency, amount, category  of the 1st fixed expense to be
+`Business Class Flight` , `other`, `$3000`, `Transport` respectively.
 The amount will be automatically converted to SGD using *exchange rate* provided.
 
 
@@ -1327,11 +1327,10 @@ This feature would allow users to undo or redo certain commands which are accide
 
 |*Add Fixed Expense* :  `addexpense amount/AMOUNT currency/CURRENCY
 description/DESCRIPTION category/CATEGORY`
-|`addexpense amount/1100 currency/SGD description/SQ Tickets category/Flights`
+|`addexpense amount/1500 currency/sgd description/Plane Tickets category/transport`
 
 |*Edit Fixed Expense* : `editexpense INDEX amount/AMOUNT currency/CURRENCY [description/DESCRIPTION] [category/CATEGORY]`
-|`editexpense 1 amount/3000 currency/other description/Cathay Pacific Flight`
-
+|`editexpense 1 amount/3000 currency/sgd description/SQ Flight category/transport`
 
 |*Delete Fixed Expense* : `deleteexpense INDEX`
 |`deleteexpense 1`

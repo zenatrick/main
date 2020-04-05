@@ -47,10 +47,10 @@ public class EditFixedExpenseCommandParser implements Parser<EditFixedExpenseCom
 
             if (argMultimap.getValue(PREFIX_CURRENCY).isEmpty()) {
                 throw new ParseException(EditFixedExpenseCommand.MESSAGE_CURRENCY_NOT_PRESENT);
-            } else if (argMultimap.getValue(PREFIX_CURRENCY).get().equals("sgd")) {
+            } else if (argMultimap.getValue(PREFIX_CURRENCY).get().toLowerCase().equals("sgd")) {
                 editFixedExpenseDescriptor.setAmount(ParserUtil
                         .parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get()));
-            } else if (argMultimap.getValue(PREFIX_CURRENCY).get().equals("other")) {
+            } else if (argMultimap.getValue(PREFIX_CURRENCY).get().toLowerCase().equals("other")) {
                 isOverseasAmount = true;
                 editFixedExpenseDescriptor.setAmount(ParserUtil
                         .parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get()));

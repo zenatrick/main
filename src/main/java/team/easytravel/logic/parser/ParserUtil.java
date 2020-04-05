@@ -163,7 +163,7 @@ public class ParserUtil {
      */
     public static Description parseDescription(String description) throws ParseException {
         requireNonNull(description);
-        String trimmedDescription = description.trim();
+        String trimmedDescription = description.trim().toLowerCase();
         if (!Description.isValidDescription(trimmedDescription)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
@@ -178,7 +178,7 @@ public class ParserUtil {
      */
     public static FixedExpenseCategory parseCategory(String category) throws ParseException {
         requireNonNull(category);
-        String trimmedCategory = category.trim();
+        String trimmedCategory = category.trim().toLowerCase();
         if (!FixedExpenseCategory.isValidCategory(trimmedCategory)) {
             throw new ParseException(FixedExpenseCategory.MESSAGE_CONSTRAINTS);
         }
