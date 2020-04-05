@@ -24,7 +24,10 @@ public class ActivityContainKeywordPredicate implements Predicate<Activity> {
     @Override
     public boolean test(Activity activity) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(activity.getTitle().value, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(activity.getTitle().value, keyword) ||
+                        StringUtil.containsWordIgnoreCase(activity.getLocation().value,keyword) ||
+                        StringUtil.containsWordIgnoreCase(Integer.toString(activity.getDuration().value),keyword));
+
     }
 
     @Override
