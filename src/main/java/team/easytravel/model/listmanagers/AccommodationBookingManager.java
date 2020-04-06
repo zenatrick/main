@@ -96,7 +96,7 @@ public class AccommodationBookingManager implements ReadOnlyAccommodationBooking
     }
 
     /**
-     * Checks the accommodation booking if there are any missing days that have no acoommodation bookings.
+     * Checks the accommodation booking if there are any missing days that have no accommodation bookings.
      * @param endDay the number of days of the trip
      * @return the status for accommodation booking
      */
@@ -114,10 +114,10 @@ public class AccommodationBookingManager implements ReadOnlyAccommodationBooking
                 accommodationBookingIsOk = false;
                 result.append(" ").append(i + 1).append(",");
             }
+        }
 
-            if (accommodationBookingIsOk) {
-                return "[✔] Accommodation Booking is completed for all nights.";
-            }
+        if (accommodationBookingIsOk) {
+            return "[✔] Accommodation Booking is completed for all nights.";
         }
 
         return result.append(" is/are missing").toString();
