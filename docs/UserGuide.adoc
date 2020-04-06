@@ -225,6 +225,8 @@ After successfully setting a trip, you would see as shown in figure X below.
 .Message after successfully setting a trip
 image::user-guide/SetTrip.png[]
 
+WARNING: Ensure that your date is correct before planning as E.T does not allow editing of dates
+
 ===== Rename your trip: `rename`
 
 Assume that you have accidentally titled the trip wrongly, you can execute the rename command to reverse any damages done as shown below
@@ -1200,6 +1202,14 @@ This feature would allow users to undo or redo certain commands which are accide
 *Q*: How many trips am I able to set in E.T.?
 
 *A*: Users are only able to set 1 trip in E.T.
+
+*Q*: Why aren't I allowed to edit my date for the trip?
+
+*A*: Editing the date would cause conflicts if there were any plans before hand
+
+*Q*: What do I do if I want to change my date?
+
+*A*: Unfortunately, you would have to delete the trip and restart planning.
 
 *Q*: What happens if 2 of my activities clash? Will E.T detect it?
 
