@@ -212,6 +212,7 @@ Format: `settrip title/TITLE start/START_DATE end/END_DATE budget/BUDGET exchang
 - Trip must be within 30 days
 - Budget must be a valid positive Integer from 0 to 1,000,000
 - Exchange Rate must be a valid positive double from 0 to 100.
+- Date must include the departure and arrival date.
 ====
 
 Let’s say you have an upcoming Graduation Trip and you are planning for it. You can execute a command as shown in the example below:
@@ -225,7 +226,7 @@ After successfully setting a trip, you would see as shown in figure X below.
 .Message after successfully setting a trip
 image::user-guide/SetTrip.png[]
 
-WARNING: Ensure that your date is correct before planning as E.T does not allow editing of dates
+WARNING: Ensure that your date is correct as E.T. does not allow editing of dates once set.
 
 ===== Rename your trip: `rename`
 
