@@ -404,6 +404,9 @@ This would search for all activities with “Osaka” in it as shown in the figu
 .After find activity command
 image::user-guide/FindActivity.png[]
 
+[NOTE]
+`FindActivity` only searches location and activity titles
+
 
 === Transportation Booking Management
 
