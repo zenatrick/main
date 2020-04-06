@@ -37,7 +37,8 @@ public class FindActivityTagCommand extends Command {
 
         model.updateFilteredActivityList(predicate);
         return new CommandResult(
-                String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, model.getFilteredActivityList().size(), "activities"));
+                String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, model.getFilteredActivityList().size(), "activities"
+                        + "found.\n Use command listactivity to show all activities"));
     }
 
     @Override
