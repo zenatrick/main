@@ -21,7 +21,7 @@ public class ClearActivityCommand extends Command {
     /**
      * The constant MESSAGE_SUCCESS.
      */
-    public static final String MESSAGE_SUCCESS = "The activity List has been clear";
+    public static final String MESSAGE_SUCCESS = "The activity list has been cleared";
 
 
     @Override
