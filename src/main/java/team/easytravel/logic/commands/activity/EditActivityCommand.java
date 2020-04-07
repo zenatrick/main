@@ -2,6 +2,7 @@ package team.easytravel.logic.commands.activity;
 
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_ACTIVITY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_DURATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_LOCATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_TAG;
@@ -99,7 +100,7 @@ public class EditActivityCommand extends Command {
         }
         model.setActivity(activityToEdit, editedActivity);
         model.updateFilteredActivityList(Model.PREDICATE_SHOW_ALL_ACTIVITIES);
-        return new CommandResult(String.format(MESSAGE_EDIT_ACTIVITY_SUCCESS, editedActivity));
+        return new CommandResult(String.format(MESSAGE_EDIT_ACTIVITY_SUCCESS, editedActivity), SWITCH_TAB_ACTIVITY);
     }
 
     /**

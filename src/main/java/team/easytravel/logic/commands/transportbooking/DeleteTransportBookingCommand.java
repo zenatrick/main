@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.transportbooking;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_TRANSPORT;
 
 import java.util.List;
 
@@ -54,7 +55,8 @@ public class DeleteTransportBookingCommand extends Command {
         DayScheduleEntry entry = DayScheduleEntry.fromTransportBooking(transportBookingToDelete);
         model.unscheduleTransport(entry);
         model.deleteTransportBooking(transportBookingToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_TRANSPORT_BOOKING_SUCCESS, transportBookingToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_TRANSPORT_BOOKING_SUCCESS, transportBookingToDelete),
+                SWITCH_TAB_TRANSPORT);
     }
 
     @Override

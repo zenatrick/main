@@ -2,6 +2,7 @@ package team.easytravel.logic.commands.activity;
 
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_ITEMS_LISTED_OVERVIEW;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_ACTIVITY;
 
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
@@ -39,7 +40,7 @@ public class FindActivityCommand extends Command {
         model.updateFilteredActivityList(predicate);
         return new CommandResult(
                 String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, model.getFilteredActivityList().size(), "activities "
-                        + "found.\n Use command listactivity to show all activities"));
+                        + "found.\n Use command listactivity to show all activities"), SWITCH_TAB_ACTIVITY);
     }
 
     @Override

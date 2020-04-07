@@ -1,9 +1,12 @@
-package team.easytravel.logic.commands;
+package team.easytravel.logic.commands.trip;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.logic.commands.CommandResult.Action.STATUS;
 
 import java.util.List;
 
+import team.easytravel.logic.commands.Command;
+import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
 import team.easytravel.model.trip.TripManager;
@@ -31,7 +34,7 @@ public class CheckStatusCommand extends Command {
 
         List<String> statusMessage = model.getStatus();
 
-        return new CommandResult(MESSAGE_SUCCESS, statusMessage);
+        return new CommandResult(MESSAGE_SUCCESS, statusMessage, STATUS);
     }
 
 }

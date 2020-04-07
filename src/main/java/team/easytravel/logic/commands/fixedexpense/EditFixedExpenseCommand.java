@@ -2,6 +2,7 @@ package team.easytravel.logic.commands.fixedexpense;
 
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_FIXED_EXPENSE;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_CURRENCY;
@@ -97,7 +98,7 @@ public class EditFixedExpenseCommand extends Command {
         int currentBudget = model.getBudget();
         int newBudget = (int) (currentBudget - Double.parseDouble(editedExpense.getAmount().value));
         return new CommandResult(String.format(MESSAGE_EDIT_FIXEDEXPENSE_SUCCESS, editedExpense + "\n"
-                + "Your current budget left is " + newBudget));
+                + "Your current budget left is " + newBudget), SWITCH_TAB_FIXED_EXPENSE);
     }
 
     /**

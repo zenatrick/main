@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.transportbooking;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_TRANSPORT;
 
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
@@ -26,6 +27,6 @@ public class ClearTransportBookingCommand extends Command {
         }
 
         model.setTransportBookingManager(new TransportBookingManager());
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, SWITCH_TAB_TRANSPORT);
     }
 }

@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.trip;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.logic.commands.CommandResult.Action.TRIP_DELETE;
 
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
@@ -25,7 +26,6 @@ public class DeleteTripCommand extends Command {
         }
 
         model.deleteTrip();
-        return new CommandResult(MESSAGE_SUCCESS, null, false, false, false, false, true , false, false,
-                false, false, false, false, false, false);
+        return new CommandResult(MESSAGE_SUCCESS, TRIP_DELETE);
     }
 }

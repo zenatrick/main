@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.transportbooking;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_TRANSPORT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_END_LOCATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_MODE;
@@ -108,7 +109,8 @@ public class EditTransportBookingCommand extends Command {
 
         model.setTransportBooking(transportBookingToEdit, editedTransportBooking);
         model.updateFilteredTransportBookingList(PREDICATE_SHOW_ALL_TRANSPORT_BOOKINGS);
-        return new CommandResult(String.format(MESSAGE_EDIT_TRANSPORT_BOOKING_SUCCESS, editedTransportBooking));
+        return new CommandResult(String.format(MESSAGE_EDIT_TRANSPORT_BOOKING_SUCCESS, editedTransportBooking),
+                SWITCH_TAB_TRANSPORT);
     }
 
     /**

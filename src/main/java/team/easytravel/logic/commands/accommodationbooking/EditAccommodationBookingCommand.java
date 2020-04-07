@@ -2,6 +2,7 @@ package team.easytravel.logic.commands.accommodationbooking;
 
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_ACCOMMODATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACCOMMODATION_END_DAY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACCOMMODATION_LOCATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACCOMMODATION_NAME;
@@ -113,7 +114,8 @@ public class EditAccommodationBookingCommand extends Command {
         }
 
         model.updateFilteredAccommodationBookingList(PREDICATE_SHOW_ALL_ACCOMMODATION_BOOKINGS);
-        return new CommandResult(String.format(MESSAGE_EDIT_ACCOMMODATION_BOOKING_SUCCESS, editedAccommodationBooking));
+        return new CommandResult(String.format(MESSAGE_EDIT_ACCOMMODATION_BOOKING_SUCCESS,
+                editedAccommodationBooking), SWITCH_TAB_ACCOMMODATION);
     }
 
     /**

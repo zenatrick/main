@@ -2,6 +2,7 @@ package team.easytravel.logic.commands.packinglist;
 
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_PACKING_LIST;
 import static team.easytravel.model.Model.PREDICATE_SHOW_ALL_PACKING_LIST_ITEMS;
 
 import java.util.ArrayList;
@@ -77,9 +78,10 @@ public class CheckItemCommand extends Command {
                     "packing list item"));
         } else if (invalidIndexes.isEmpty() && !editedItems.isEmpty()) {
             // Event where there are no invalid indexes and items were edited
-            return new CommandResult(String.format(MESSAGE_PACKED_ITEM_SUCCESS, sb));
+            return new CommandResult(String.format(MESSAGE_PACKED_ITEM_SUCCESS, sb), SWITCH_TAB_PACKING_LIST);
         }
-        return new CommandResult(String.format(MESSAGE_PACKED_ITEM_SUCCESS, sb.append("\n").append(invalidIndex)));
+        return new CommandResult(String.format(MESSAGE_PACKED_ITEM_SUCCESS, sb.append("\n").append(invalidIndex)),
+                SWITCH_TAB_PACKING_LIST);
 
     }
 

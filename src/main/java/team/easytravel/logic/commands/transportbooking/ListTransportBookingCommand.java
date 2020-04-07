@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.transportbooking;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_TRANSPORT;
 import static team.easytravel.model.Model.PREDICATE_SHOW_ALL_TRANSPORT_BOOKINGS;
 
 import team.easytravel.logic.commands.Command;
@@ -27,7 +28,6 @@ public class ListTransportBookingCommand extends Command {
         }
 
         model.updateFilteredTransportBookingList(PREDICATE_SHOW_ALL_TRANSPORT_BOOKINGS);
-        return new CommandResult(MESSAGE_SUCCESS, null, false, false, false, false,
-                false, false, false, false, true, false, false, false, false);
+        return new CommandResult(MESSAGE_SUCCESS, SWITCH_TAB_TRANSPORT);
     }
 }

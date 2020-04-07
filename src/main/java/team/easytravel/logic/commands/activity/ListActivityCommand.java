@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.activity;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_ACTIVITY;
 import static team.easytravel.model.Model.PREDICATE_SHOW_ALL_ACTIVITIES;
 
 import team.easytravel.logic.commands.Command;
@@ -27,7 +28,6 @@ public class ListActivityCommand extends Command {
         }
 
         model.updateFilteredActivityList(PREDICATE_SHOW_ALL_ACTIVITIES);
-        return new CommandResult(MESSAGE_SUCCESS, null, false, false, false, false, false,
-                false, false, true, false, false, false, false, false);
+        return new CommandResult(MESSAGE_SUCCESS, SWITCH_TAB_ACTIVITY);
     }
 }

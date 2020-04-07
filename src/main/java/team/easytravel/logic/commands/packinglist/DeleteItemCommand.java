@@ -2,6 +2,7 @@ package team.easytravel.logic.commands.packinglist;
 
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_PACKING_LIST;
 
 import java.util.List;
 
@@ -63,6 +64,7 @@ public class DeleteItemCommand extends Command {
 
         PackingListItem packingListItemToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePackingListItem(packingListItemToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_ITEM_SUCCESS, packingListItemToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_ITEM_SUCCESS, packingListItemToDelete),
+                SWITCH_TAB_PACKING_LIST);
     }
 }

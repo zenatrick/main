@@ -2,6 +2,7 @@ package team.easytravel.logic.commands.fixedexpense;
 
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.util.CollectionUtil.requireAllNonNull;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_FIXED_EXPENSE;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_CURRENCY;
@@ -87,10 +88,10 @@ public class AddFixedExpenseCommand extends Command {
 
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd + "\n"
                     + MESSAGE_EXCEED_BUDGET + "\n Currently, your Highest expense is "
-                    + highestExpense));
+                    + highestExpense), SWITCH_TAB_FIXED_EXPENSE);
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd + "\n"
-                + "Your budget left is now " + remainingBudget));
+                + "Your budget left is now " + remainingBudget), SWITCH_TAB_FIXED_EXPENSE);
     }
 }

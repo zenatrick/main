@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.transportbooking;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_TRANSPORT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_END_LOCATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_MODE;
@@ -68,7 +69,7 @@ public class AddTransportBookingCommand extends Command {
             throw new CommandException(e.getMessage());
         }
         model.addTransportBooking(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), SWITCH_TAB_TRANSPORT);
     }
 
     @Override

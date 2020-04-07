@@ -3,6 +3,7 @@ package team.easytravel.logic.commands.transportbooking;
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_EMPTY_LIST_FORMAT;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_TRANSPORT;
 
 import java.util.Comparator;
 import java.util.List;
@@ -63,32 +64,32 @@ public class SortTransportBookingCommand extends Command {
                 model.sortTransportList((x, y) -> y.getMode().toString().compareTo(
                         x.getMode().toString()
                 ));
-                return new CommandResult(MESSAGE_SORT_TRANSPORT_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_TRANSPORT_SUCCESS, SWITCH_TAB_TRANSPORT);
 
             } else {
                 model.sortTransportList(Comparator.comparing(x -> x.getMode().toString()));
-                return new CommandResult(MESSAGE_SORT_TRANSPORT_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_TRANSPORT_SUCCESS, SWITCH_TAB_TRANSPORT);
             }
         case "startlocation":
             if (sortIdentifier.equals("des")) {
                 model.sortTransportList((x, y) -> y.getStartLocation().toString().compareTo(
                         x.getStartLocation().toString()));
-                return new CommandResult(MESSAGE_SORT_TRANSPORT_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_TRANSPORT_SUCCESS, SWITCH_TAB_TRANSPORT);
 
             } else {
                 model.sortTransportList(Comparator.comparing(x -> x.getStartLocation().toString()));
-                return new CommandResult(MESSAGE_SORT_TRANSPORT_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_TRANSPORT_SUCCESS, SWITCH_TAB_TRANSPORT);
             }
 
         case "endlocation":
             if (sortIdentifier.equals("des")) {
                 model.sortTransportList((x, y) -> y.getEndLocation().toString().compareTo(
                         x.getEndLocation().toString()));
-                return new CommandResult(MESSAGE_SORT_TRANSPORT_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_TRANSPORT_SUCCESS, SWITCH_TAB_TRANSPORT);
 
             } else {
                 model.sortTransportList(Comparator.comparing(x -> x.getEndLocation().toString()));
-                return new CommandResult(MESSAGE_SORT_TRANSPORT_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_TRANSPORT_SUCCESS, SWITCH_TAB_TRANSPORT);
             }
 
         default:

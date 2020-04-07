@@ -2,6 +2,7 @@ package team.easytravel.logic.commands.accommodationbooking;
 
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_ACCOMMODATION;
 
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class DeleteAccommodationBookingCommand extends Command {
         AccommodationBooking accommodationBookingToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteAccommodationBooking(accommodationBookingToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_ACCOMMODATION_BOOKING_SUCCESS,
-                accommodationBookingToDelete));
+                accommodationBookingToDelete), SWITCH_TAB_ACCOMMODATION);
     }
 
 }

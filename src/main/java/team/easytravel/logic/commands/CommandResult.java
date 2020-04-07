@@ -1,6 +1,6 @@
 package team.easytravel.logic.commands;
 
-import static java.util.Objects.requireNonNull;
+import static team.easytravel.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Objects;
@@ -10,165 +10,108 @@ import java.util.Objects;
  */
 public class CommandResult {
 
+    /**
+     * Represents the action to be taken by the UI component.
+     */
+    public enum Action {
+        NONE,
+        HELP,
+        TRIP_SET,
+        TRIP_DELETE,
+        TRIP_EDIT,
+        STATUS,
+        EXIT,
+        PRESET,
+        SWITCH_TAB_SCHEDULE,
+        SWITCH_TAB_ACTIVITY,
+        SWITCH_TAB_ACCOMMODATION,
+        SWITCH_TAB_TRANSPORT,
+        SWITCH_TAB_PACKING_LIST,
+        SWITCH_TAB_FIXED_EXPENSE
+    }
+
     private final String feedbackToUser;
 
-    /**
-     * Help information should be shown to the user.
-     */
-    private final boolean showHelp;
-
-    /**
-     * True when user sets trip.
-     */
-    private final boolean isSetTrip;
-
-    /**
-     * True when user deletes trip.
-     */
-    private final boolean isDeleteTrip;
-
-    /**
-     * True when user edits trip.
-     */
-    private final boolean isEditTrip;
-
-    /**
-     * User want to check status
-     */
-    private final boolean isCheckStatus;
-
-    /**
-     * Check Status Information should be shown to the user.
-     */
     private final List<String> checkStatus;
 
-    /**
-     * The application should exit.
-     */
-    private final boolean exit;
-
-    private final boolean isListPreset;
-
-    /**
-     * Check if which screen the user is listing to
-     */
-    private final boolean isActivity;
-
-    private final boolean isTransportation;
-
-    private final boolean isAccommodation;
-
-    private final boolean isPackingList;
-
-    private final boolean isFixedExpense;
-
-    private final boolean isSchedule;
+    private final Action action;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-
-    public CommandResult(String feedbackToUser, List<String> checkStatus,
-                         boolean showHelp, boolean exit,
-                         boolean isCheckStatus, boolean isSetTrip, boolean isDeleteTrip,
-                         boolean isEditTrip, boolean isListPreset, boolean isActivity,
-                         boolean isTransportation, boolean isAccommodation, boolean isPackingList,
-                         boolean isFixedExpense, boolean isSchedule) {
-
-        this.feedbackToUser = requireNonNull(feedbackToUser);
+    public CommandResult(String feedbackToUser, List<String> checkStatus, Action action) {
+        requireAllNonNull(feedbackToUser, action);
+        this.feedbackToUser = feedbackToUser;
         this.checkStatus = checkStatus;
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.isCheckStatus = isCheckStatus;
-        this.isSetTrip = isSetTrip;
-        this.isDeleteTrip = isDeleteTrip;
-        this.isEditTrip = isEditTrip;
-        this.isListPreset = isListPreset;
-        this.isActivity = isActivity;
-        this.isTransportation = isTransportation;
-        this.isAccommodation = isAccommodation;
-        this.isPackingList = isPackingList;
-        this.isFixedExpense = isFixedExpense;
-        this.isSchedule = isSchedule;
+        this.action = action;
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
+     * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, null, false, false, false, false, false,
-                false, false, false, false, false, false, false, false);
+    public CommandResult(String feedbackToUser, Action action) {
+        this(feedbackToUser, null, action);
     }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
-     */
-    public CommandResult(String feedbackToUser, List<String> checkStatus) {
-        this(feedbackToUser, checkStatus, false, false, true, false, false, false, false,
-                false, false, false, false, false, false);
-    }
-
 
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
     public boolean isSetTrip() {
-        return isSetTrip;
+        return action.equals(Action.TRIP_SET);
     }
 
     public boolean isEditTrip() {
-        return isEditTrip;
+        return action.equals(Action.TRIP_EDIT);
     }
 
     public boolean isDeleteTrip() {
-        return isDeleteTrip;
+        return action.equals(Action.TRIP_DELETE);
     }
 
     public boolean isShowHelp() {
-        return showHelp;
+        return action.equals(Action.HELP);
     }
 
     public boolean isCheckStatus() {
-        return isCheckStatus;
+        return action.equals(Action.STATUS);
     }
 
     public boolean isListPreset() {
-        return isListPreset;
+        return action.equals(Action.PRESET);
     }
 
     public List<String> getStatusFeedback() {
+        assert isCheckStatus();
         return checkStatus;
     }
 
     public boolean isExit() {
-        return exit;
+        return action.equals(Action.EXIT);
     }
 
     public boolean isActivity() {
-        return isActivity;
+        return action.equals(Action.SWITCH_TAB_ACTIVITY);
     }
 
     public boolean isTransportation() {
-        return isTransportation;
+        return action.equals(Action.SWITCH_TAB_TRANSPORT);
     }
 
     public boolean isAccommodation() {
-        return isAccommodation;
+        return action.equals(Action.SWITCH_TAB_ACCOMMODATION);
     }
 
     public boolean isPackingList() {
-        return isPackingList;
+        return action.equals(Action.SWITCH_TAB_PACKING_LIST);
     }
 
     public boolean isFixedExpense() {
-        return isFixedExpense;
+        return action.equals(Action.SWITCH_TAB_FIXED_EXPENSE);
     }
 
     public boolean isSchedule() {
-        return isSchedule;
+        return action.equals(Action.SWITCH_TAB_SCHEDULE);
     }
 
     @Override
@@ -184,13 +127,13 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && checkStatus.equals(otherCommandResult.checkStatus)
+                && action.equals(otherCommandResult.action);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, checkStatus, action);
     }
 
 }

@@ -3,6 +3,7 @@ package team.easytravel.logic.commands.activity;
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_EMPTY_LIST_FORMAT;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_ACTIVITY;
 
 import java.util.Comparator;
 import java.util.List;
@@ -64,32 +65,32 @@ public class SortActivityCommand extends Command {
                 model.sortActivityList((x, y) -> y.getLocation().toString().compareTo(
                         x.getLocation().toString()
                 ));
-                return new CommandResult(MESSAGE_SORT_ACTIVITY_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_ACTIVITY_SUCCESS, SWITCH_TAB_ACTIVITY);
 
             } else {
                 model.sortActivityList(Comparator.comparing(x -> x.getLocation().toString()));
-                return new CommandResult(MESSAGE_SORT_ACTIVITY_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_ACTIVITY_SUCCESS, SWITCH_TAB_ACTIVITY);
             }
         case "title":
             if (sortIdentifier.equals("des")) {
                 model.sortActivityList((x, y) -> y.getTitle().toString().compareTo(
                         x.getTitle().toString()));
-                return new CommandResult(MESSAGE_SORT_ACTIVITY_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_ACTIVITY_SUCCESS, SWITCH_TAB_ACTIVITY);
 
             } else {
                 model.sortActivityList(Comparator.comparing(x -> x.getTitle().toString()));
-                return new CommandResult(MESSAGE_SORT_ACTIVITY_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_ACTIVITY_SUCCESS, SWITCH_TAB_ACTIVITY);
             }
 
         case "duration":
             if (sortIdentifier.equals("des")) {
                 model.sortActivityList((x, y) -> (int) Math.signum(y.getDuration().value)
                         - x.getDuration().value);
-                return new CommandResult(MESSAGE_SORT_ACTIVITY_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_ACTIVITY_SUCCESS, SWITCH_TAB_ACTIVITY);
 
             } else {
                 model.sortActivityList((Comparator.comparing(x -> x.getDuration().value)));
-                return new CommandResult(MESSAGE_SORT_ACTIVITY_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_ACTIVITY_SUCCESS, SWITCH_TAB_ACTIVITY);
             }
 
         default:

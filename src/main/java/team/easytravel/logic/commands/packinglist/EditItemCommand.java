@@ -2,6 +2,7 @@ package team.easytravel.logic.commands.packinglist;
 
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_PACKING_LIST;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_CATEGORY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_QUANTITY;
@@ -100,7 +101,7 @@ public class EditItemCommand extends Command {
 
         model.setPackingListItem(itemToEdit, editedItem);
         model.updateFilteredPackingList(PREDICATE_SHOW_ALL_PACKING_LIST_ITEMS);
-        return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
+        return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem), SWITCH_TAB_PACKING_LIST);
     }
 
     /**

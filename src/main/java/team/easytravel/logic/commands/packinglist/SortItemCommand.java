@@ -3,7 +3,7 @@ package team.easytravel.logic.commands.packinglist;
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_EMPTY_LIST_FORMAT;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_PACKING_LIST;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_CRITERIA;
 
 import java.util.Comparator;
@@ -95,10 +95,10 @@ public class SortItemCommand extends Command {
             if (sortIdentifier.equals("des")) {
                 model.sortPackingList((x, y) -> y.getItemName().toString().compareTo(
                         x.getItemName().toString()));
-                return new CommandResult(MESSAGE_SORT_ITEM_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_ITEM_SUCCESS, SWITCH_TAB_PACKING_LIST);
             } else {
                 model.sortPackingList(Comparator.comparing(x -> x.getItemName().toString()));
-                return new CommandResult(MESSAGE_SORT_ITEM_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_ITEM_SUCCESS, SWITCH_TAB_PACKING_LIST);
             }
 
         case "category":
@@ -106,21 +106,21 @@ public class SortItemCommand extends Command {
                 model.sortPackingList((x, y) -> y.getItemCategory().toString().compareTo(
                         x.getItemCategory().toString()
                 ));
-                return new CommandResult(MESSAGE_SORT_ITEM_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_ITEM_SUCCESS, SWITCH_TAB_PACKING_LIST);
 
             } else {
                 model.sortPackingList(Comparator.comparing(x -> x.getItemCategory().toString()));
-                return new CommandResult(MESSAGE_SORT_ITEM_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_ITEM_SUCCESS, SWITCH_TAB_PACKING_LIST);
             }
 
         case "quantity":
             if (sortIdentifier.equals("des")) {
                 model.sortPackingList((x, y) -> (int) Math.signum(y.getQuantity().value - x.getQuantity().value));
-                return new CommandResult(MESSAGE_SORT_ITEM_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_ITEM_SUCCESS, SWITCH_TAB_PACKING_LIST);
 
             } else {
                 model.sortPackingList((Comparator.comparing(x -> x.getQuantity().value)));
-                return new CommandResult(MESSAGE_SORT_ITEM_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_ITEM_SUCCESS, SWITCH_TAB_PACKING_LIST);
             }
 
         default:

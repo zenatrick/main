@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.packinglist;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_PACKING_LIST;
 import static team.easytravel.model.Model.PREDICATE_SHOW_ALL_PACKING_LIST_ITEMS;
 
 import team.easytravel.logic.commands.Command;
@@ -27,8 +28,7 @@ public class ListItemCommand extends Command {
         }
 
         model.updateFilteredPackingList(PREDICATE_SHOW_ALL_PACKING_LIST_ITEMS);
-        return new CommandResult(MESSAGE_SUCCESS, null, false, false, false, false, false,
-                false, false, false, false, false, true, false, false);
+        return new CommandResult(MESSAGE_SUCCESS, SWITCH_TAB_PACKING_LIST);
 
     }
 }

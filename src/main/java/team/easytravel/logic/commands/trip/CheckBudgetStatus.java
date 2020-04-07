@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.trip;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.logic.commands.CommandResult.Action.NONE;
 
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
@@ -29,7 +30,7 @@ public class CheckBudgetStatus extends Command {
 
         double remainingBudget = model.getBudget() - model.getTotalExpense();
         return new CommandResult(String.format(MESSAGE_SUCCESS,
-                (double) model.getBudget(), model.getTotalExpense(), remainingBudget));
+                (double) model.getBudget(), model.getTotalExpense(), remainingBudget), NONE);
 
     }
 }

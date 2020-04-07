@@ -2,6 +2,7 @@ package team.easytravel.logic.commands.packinglist;
 
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_ITEMS_LISTED_OVERVIEW;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_PACKING_LIST;
 
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
@@ -38,7 +39,8 @@ public class FindItemCommand extends Command {
 
         model.updateFilteredPackingList(predicate);
         return new CommandResult(
-                String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, model.getFilteredPackingList().size(), "items"));
+                String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, model.getFilteredPackingList().size(), "items"),
+                SWITCH_TAB_PACKING_LIST);
     }
 
     @Override

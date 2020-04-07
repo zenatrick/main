@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.accommodationbooking;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_ACCOMMODATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACCOMMODATION_END_DAY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACCOMMODATION_LOCATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACCOMMODATION_NAME;
@@ -74,7 +75,7 @@ public class AddAccommodationBookingCommand extends Command {
         }
 
         model.addAccommodationBooking(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), SWITCH_TAB_ACCOMMODATION);
     }
 
     @Override

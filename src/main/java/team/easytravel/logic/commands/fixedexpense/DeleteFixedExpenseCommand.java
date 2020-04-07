@@ -2,6 +2,7 @@ package team.easytravel.logic.commands.fixedexpense;
 
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_FIXED_EXPENSE;
 import static team.easytravel.model.trip.TripManager.MESSAGE_ERROR_NO_TRIP;
 
 import java.util.List;
@@ -53,6 +54,6 @@ public class DeleteFixedExpenseCommand extends Command {
         int updatedBudget = (int) (currentBudget - Double.parseDouble(fixedExpenseToDelete.getAmount().value));
         model.deleteFixedExpense(fixedExpenseToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_FIXEDEXPENSE_SUCCESS, fixedExpenseToDelete + "\n"
-                + "Your remaining budget is: " + updatedBudget));
+                + "Your remaining budget is: " + updatedBudget), SWITCH_TAB_FIXED_EXPENSE);
     }
 }

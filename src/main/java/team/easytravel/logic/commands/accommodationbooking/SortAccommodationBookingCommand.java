@@ -3,6 +3,7 @@ package team.easytravel.logic.commands.accommodationbooking;
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_EMPTY_LIST_FORMAT;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_ACCOMMODATION;
 
 import java.util.Comparator;
 import java.util.List;
@@ -62,21 +63,21 @@ public class SortAccommodationBookingCommand extends Command {
                 model.sortAccommodationList((x, y) -> y.getLocation().toString().compareTo(
                         x.getLocation().toString()
                 ));
-                return new CommandResult(MESSAGE_SORT_ACCOMMODATION_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_ACCOMMODATION_SUCCESS, SWITCH_TAB_ACCOMMODATION);
 
             } else {
                 model.sortAccommodationList(Comparator.comparing(x -> x.getLocation().toString()));
-                return new CommandResult(MESSAGE_SORT_ACCOMMODATION_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_ACCOMMODATION_SUCCESS, SWITCH_TAB_ACCOMMODATION);
             }
         case "name":
             if (sortIdentifier.equals("des")) {
                 model.sortAccommodationList((x, y) -> y.getAccommodationName().toString().compareTo(
                         x.getAccommodationName().toString()));
-                return new CommandResult(MESSAGE_SORT_ACCOMMODATION_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_ACCOMMODATION_SUCCESS, SWITCH_TAB_ACCOMMODATION);
 
             } else {
                 model.sortAccommodationList(Comparator.comparing(x -> x.getAccommodationName().toString()));
-                return new CommandResult(MESSAGE_SORT_ACCOMMODATION_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_ACCOMMODATION_SUCCESS, SWITCH_TAB_ACCOMMODATION);
             }
 
         default:

@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.packinglist;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_PACKING_LIST;
 
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
@@ -24,6 +25,6 @@ public class ClearItemCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setPackingListManager(new PackingListManager());
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, SWITCH_TAB_PACKING_LIST);
     }
 }

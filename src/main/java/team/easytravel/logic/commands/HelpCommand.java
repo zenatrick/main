@@ -1,5 +1,7 @@
 package team.easytravel.logic.commands;
 
+import static team.easytravel.logic.commands.CommandResult.Action.HELP;
+
 import team.easytravel.model.Model;
 
 /**
@@ -16,7 +18,6 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, null, true, false, false, false, false,
-                false, false, false, false, false, false, false, false);
+        return new CommandResult(SHOWING_HELP_MESSAGE, HELP);
     }
 }

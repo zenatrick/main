@@ -1,9 +1,12 @@
 package team.easytravel.ui;
 
+import static team.easytravel.ui.SideTabsBar.STYLE_BUTTON_SELECTED;
+
 import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import team.easytravel.commons.core.GuiSettings;
@@ -26,7 +29,6 @@ import team.easytravel.ui.transportationtab.TransportBookingTabPanel;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -35,9 +37,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     private ResultDisplay resultDisplay;
-    //private HelpWindow helpWindow;
     private CheckStatusWindow checkStatusWindow;
     private ListPresetWindow listPresetWindow;
+    private SideTabsBar sideTabsBar;
 
     // Individual list panels
     private TabPanel scheduleTabPanel;
@@ -73,10 +75,9 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
-
-        //helpWindow = new HelpWindow();
         checkStatusWindow = new CheckStatusWindow();
         listPresetWindow = new ListPresetWindow();
+        sideTabsBar = new SideTabsBar(tabName -> clearFunction -> button -> switchTab(tabName, clearFunction, button));
 
         // Set up the list panels
         if (logic.hasTrip()) {
@@ -97,7 +98,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         // Independent Ui parts residing in this Ui container
-        sideTabsBarPlaceholder.getChildren().add(new SideTabsBar(this::switchTab).getRoot());
+        sideTabsBarPlaceholder.getChildren().add(sideTabsBar.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -130,9 +131,8 @@ public class MainWindow extends UiPart<Stage> {
         fixedExpenseTabPanel = new FixedExpenseTabPanel(logic.getFilteredFixedExpenseList(),
                 logic.getGuiSettings().getWindowHeight(), logic.getGuiSettings().getWindowWidth());
         helpTabPanel = new HelpTabPanel(logic.getHelpQuestions());
-        switchTab(ScheduleTabPanel.TAB_NAME);
-        dashboardPlaceholder.getChildren().clear();
-        dashboardPlaceholder.getChildren().add(new DashboardPanel(logic.getTrip()).getRoot());
+        sideTabsBar.handleSwitchToScheduleTab();
+        handleUpdateTrip(true);
     }
 
     /**
@@ -146,18 +146,21 @@ public class MainWindow extends UiPart<Stage> {
         packingListTabPanel = new NoTripTabPanel();
         fixedExpenseTabPanel = new NoTripTabPanel();
         helpTabPanel = new HelpTabPanel(logic.getHelpQuestions());
-        switchTab(ScheduleTabPanel.TAB_NAME);
-        dashboardPlaceholder.getChildren().clear();
-        dashboardPlaceholder.getChildren().add(new DashboardPanel().getRoot());
+        sideTabsBar.handleSwitchToScheduleTab();
+        handleUpdateTrip(false);
 
     }
 
     /**
      * Handles the UI when trip is updated.
      */
-    public void handleUpdateTrip() {
+    public void handleUpdateTrip(boolean hasTrip) {
         dashboardPlaceholder.getChildren().clear();
-        dashboardPlaceholder.getChildren().add(new DashboardPanel(logic.getTrip()).getRoot());
+        if (hasTrip) {
+            dashboardPlaceholder.getChildren().add(new DashboardPanel(logic.getTrip()).getRoot());
+        } else {
+            dashboardPlaceholder.getChildren().add(new DashboardPanel().getRoot());
+        }
     }
 
     /**
@@ -175,12 +178,10 @@ public class MainWindow extends UiPart<Stage> {
      * Opens the checkstatus window or focuses on it if it's already opened.
      */
     public void handleShowStatus(List<String> status) {
-        if (!checkStatusWindow.isShowing()) {
-            checkStatusWindow.show(status);
-        } else {
+        if (checkStatusWindow.isShowing()) {
             checkStatusWindow.close();
-            checkStatusWindow.show(status);
         }
+        checkStatusWindow.show(status);
     }
 
     void show() {
@@ -201,7 +202,9 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Switches tab to the specified tab name.
      */
-    private void switchTab(String tabName) {
+    private void switchTab(String tabName, Runnable clearFormat, Button buttonToFormat) {
+        clearFormat.run();
+        buttonToFormat.getStyleClass().add(STYLE_BUTTON_SELECTED);
         tabPanelPlaceholder.getChildren().clear();
         switch (tabName) {
         case ScheduleTabPanel.TAB_NAME:
@@ -244,7 +247,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
-                switchTab(HelpTabPanel.TAB_NAME);
+                sideTabsBar.handleSwitchToHelpTab();
             }
 
             if (commandResult.isCheckStatus()) {
@@ -268,37 +271,32 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isEditTrip()) {
-                handleUpdateTrip();
+                handleUpdateTrip(true);
             }
 
             if (commandResult.isActivity()) {
-                switchTab(ActivityTabPanel.TAB_NAME);
+                sideTabsBar.handleSwitchToActivitiesTab();
             }
 
             if (commandResult.isTransportation()) {
-                switchTab(TransportBookingTabPanel.TAB_NAME);
+                sideTabsBar.handleSwitchToTransportationTab();
             }
 
             if (commandResult.isAccommodation()) {
-                switchTab(AccommodationBookingTabPanel.TAB_NAME);
+                sideTabsBar.handleSwitchToAccommodationTab();
             }
 
             if (commandResult.isPackingList()) {
-                switchTab(PackingListTabPanel.TAB_NAME);
+                sideTabsBar.handleSwitchToPackingListTab();
             }
 
             if (commandResult.isFixedExpense()) {
-                switchTab(FixedExpenseTabPanel.TAB_NAME);
+                sideTabsBar.handleSwitchToFixedExpensesTab();
             }
 
             if (commandResult.isSchedule()) {
-                switchTab(ScheduleTabPanel.TAB_NAME);
+                sideTabsBar.handleSwitchToScheduleTab();
             }
-
-
-
-
-
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

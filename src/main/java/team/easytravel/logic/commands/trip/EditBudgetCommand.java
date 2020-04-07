@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.trip;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.logic.commands.CommandResult.Action.TRIP_EDIT;
 
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
@@ -48,21 +49,7 @@ public class EditBudgetCommand extends Command {
         }
 
         model.setBudget(newBudget);
-        return new CommandResult(String.format(MESSAGE_EDIT_BUDGET_SUCCESS, newBudget) ,
-                null,
-                false,
-                false,
-                false,
-                false,
-                false,
-                true,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false);
+        return new CommandResult(String.format(MESSAGE_EDIT_BUDGET_SUCCESS, newBudget), TRIP_EDIT);
     }
 
 

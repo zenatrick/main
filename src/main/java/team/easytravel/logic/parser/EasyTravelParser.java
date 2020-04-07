@@ -6,7 +6,6 @@ import static team.easytravel.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import team.easytravel.logic.commands.CheckStatusCommand;
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.ExitCommand;
 import team.easytravel.logic.commands.HelpCommand;
@@ -52,6 +51,7 @@ import team.easytravel.logic.commands.transportbooking.EditTransportBookingComma
 import team.easytravel.logic.commands.transportbooking.ListTransportBookingCommand;
 import team.easytravel.logic.commands.transportbooking.SortTransportBookingCommand;
 import team.easytravel.logic.commands.trip.CheckBudgetStatus;
+import team.easytravel.logic.commands.trip.CheckStatusCommand;
 import team.easytravel.logic.commands.trip.DeleteTripCommand;
 import team.easytravel.logic.commands.trip.EditBudgetCommand;
 import team.easytravel.logic.commands.trip.RenameCommand;

@@ -2,6 +2,7 @@ package team.easytravel.logic.commands.schedule;
 
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_SCHEDULE;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_SCHEDULE_DAY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_SCHEDULE_TIME;
 
@@ -87,7 +88,7 @@ public class ScheduleCommand extends Command {
         }
 
         model.setActivity(toSchedule, scheduled);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, scheduled));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, scheduled), SWITCH_TAB_SCHEDULE);
     }
 
     @Override

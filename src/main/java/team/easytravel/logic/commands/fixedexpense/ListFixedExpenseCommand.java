@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.fixedexpense;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_FIXED_EXPENSE;
 import static team.easytravel.model.Model.PREDICATE_SHOW_ALL_FIXED_EXPENSES;
 
 import team.easytravel.logic.commands.Command;
@@ -27,7 +28,6 @@ public class ListFixedExpenseCommand extends Command {
         }
 
         model.updateFilteredFixedExpenseList(PREDICATE_SHOW_ALL_FIXED_EXPENSES);
-        return new CommandResult(MESSAGE_SUCCESS, null, false, false, false, false, false, false,
-                false, false, false, false, false, true, false);
+        return new CommandResult(MESSAGE_SUCCESS, SWITCH_TAB_FIXED_EXPENSE);
     }
 }

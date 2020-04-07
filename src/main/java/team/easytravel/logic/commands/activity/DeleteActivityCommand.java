@@ -2,6 +2,7 @@ package team.easytravel.logic.commands.activity;
 
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_ACTIVITY;
 
 import java.util.List;
 
@@ -56,7 +57,7 @@ public class DeleteActivityCommand extends Command {
         }
 
         model.deleteActivity(activityToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_ACTIVITY_SUCCESS, activityToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_ACTIVITY_SUCCESS, activityToDelete), SWITCH_TAB_ACTIVITY);
     }
 
     @Override

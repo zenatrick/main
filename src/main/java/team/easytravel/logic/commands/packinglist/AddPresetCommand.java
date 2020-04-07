@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.packinglist;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_PACKING_LIST;
 
 import java.util.Arrays;
 
@@ -69,7 +70,7 @@ public class AddPresetCommand extends Command {
             }
             model.addPackingListItem(item);
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, presetCategory));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, presetCategory), SWITCH_TAB_PACKING_LIST);
     }
 
     @Override

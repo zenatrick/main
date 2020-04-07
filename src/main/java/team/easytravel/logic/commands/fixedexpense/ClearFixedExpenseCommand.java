@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.fixedexpense;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_FIXED_EXPENSE;
 
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
@@ -26,7 +27,7 @@ public class ClearFixedExpenseCommand extends Command {
         }
 
         model.setFixedExpenseManager(new FixedExpenseManager());
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, SWITCH_TAB_FIXED_EXPENSE);
     }
 
 }

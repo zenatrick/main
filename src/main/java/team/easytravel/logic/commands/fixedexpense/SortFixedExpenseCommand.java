@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_EMPTY_LIST_FORMAT;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static team.easytravel.commons.core.Messages.MESSAGE_SORT_SUCCESS;
+import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_FIXED_EXPENSE;
 
 import java.util.Comparator;
 import java.util.List;
@@ -66,33 +67,33 @@ public class SortFixedExpenseCommand extends Command {
                 model.sortFixedExpenseList((x, y) -> y.getFixedExpenseCategory().toString().compareTo(
                         x.getFixedExpenseCategory().toString()
                 ));
-                return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS, SWITCH_TAB_FIXED_EXPENSE);
 
             } else {
                 model.sortFixedExpenseList(Comparator.comparing(x -> x.getFixedExpenseCategory().toString()));
-                return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS, SWITCH_TAB_FIXED_EXPENSE);
             }
         case "amount":
             if (sortIdentifier.equals("des")) {
                 model.sortFixedExpenseList((x, y) -> (int) Math.signum(Double.parseDouble(y.getAmount().value)
                         - Double.parseDouble(x.getAmount().value)));
-                return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS, SWITCH_TAB_FIXED_EXPENSE);
 
             } else {
                 model.sortFixedExpenseList((x, y) -> (int) Math.signum(Double.parseDouble(x.getAmount().value)
                         - Double.parseDouble(y.getAmount().value)));
-                return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS, SWITCH_TAB_FIXED_EXPENSE);
             }
 
         case "description":
             if (sortIdentifier.equals("des")) {
                 model.sortFixedExpenseList((x, y) -> y.getDescription().toString().compareTo(
                         x.getDescription().toString()));
-                return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS, SWITCH_TAB_FIXED_EXPENSE);
 
             } else {
                 model.sortFixedExpenseList(Comparator.comparing(x -> x.getDescription().toString()));
-                return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS);
+                return new CommandResult(MESSAGE_SORT_FIXED_EXPENSE_SUCCESS, SWITCH_TAB_FIXED_EXPENSE);
             }
 
         default:

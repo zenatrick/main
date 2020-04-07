@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.trip;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.logic.commands.CommandResult.Action.TRIP_SET;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRIP_BUDGET;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRIP_END_DATE;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRIP_EXCHANGE_RATE;
@@ -56,8 +57,6 @@ public class SetTripCommand extends Command {
         }
 
         model.setTrip(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), null, false,
-                false, false, true, false, false, false, false, false,
-                false, false, false, false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TRIP_SET);
     }
 }
