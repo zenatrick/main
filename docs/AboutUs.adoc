@@ -45,7 +45,7 @@ Components: Logic, Model
 
 === Joshua Wee
 image::jwee97.png[width="150", align="left"]
-{empty}[http://github.com/jwee97[github]] [<<johndoe#, portfolio>>]
+{empty}[http://github.com/jwee97[github]] [<<jwee97#, portfolio>>]
 
 Role: Developer +
 Feature: Pre-Trip Manager +
