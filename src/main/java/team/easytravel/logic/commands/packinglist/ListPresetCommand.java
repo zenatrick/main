@@ -1,7 +1,7 @@
 package team.easytravel.logic.commands.packinglist;
 
 import static java.util.Objects.requireNonNull;
-import static team.easytravel.logic.commands.CommandResult.Action.NONE;
+import static team.easytravel.logic.commands.CommandResult.Action.PRESET;
 
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
@@ -37,6 +37,6 @@ public class ListPresetCommand extends Command {
             throw new CommandException(TripManager.MESSAGE_ERROR_NO_TRIP);
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS), NONE);
+        return new CommandResult(MESSAGE_SUCCESS, PRESET);
     }
 }
