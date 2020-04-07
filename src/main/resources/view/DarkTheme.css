@@ -306,3 +306,7 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+.button-selected {
+    -fx-background-color: derive(-color-medium2, 50%);
+}

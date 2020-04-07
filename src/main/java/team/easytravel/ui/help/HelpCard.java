@@ -8,7 +8,6 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import team.easytravel.ui.UiPart;
-import team.easytravel.ui.transportationtab.TransportBookingCard;
 
 /**
  * An UI component that displays information of a {@code String}.
@@ -17,10 +16,8 @@ public class HelpCard extends UiPart<Region> {
 
 
     private static final String FXML = "helptab/HelpCard.fxml";
-    private static final String USERGUIDE_URL =
+    private static final String USER_GUIDE_URL =
             "https://github.com/AY1920S2-CS2103T-W17-3/main/blob/master/docs/UserGuide.adoc";
-
-    private final String helpInString;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -40,9 +37,8 @@ public class HelpCard extends UiPart<Region> {
 
     public HelpCard(String helpInString) {
         super(FXML);
-        this.helpInString = helpInString;
         if (helpInString.equals("Refer to the user guide: ")) {
-            hyperlink.setText(USERGUIDE_URL);
+            hyperlink.setText(USER_GUIDE_URL);
         }
 
         mode.setText(helpInString);
@@ -56,7 +52,7 @@ public class HelpCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TransportBookingCard)) {
+        if (!(other instanceof HelpCard)) {
             return false;
         }
 
@@ -72,7 +68,7 @@ public class HelpCard extends UiPart<Region> {
     private void copyUrl() {
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent url = new ClipboardContent();
-        url.putString(USERGUIDE_URL);
+        url.putString(USER_GUIDE_URL);
         clipboard.setContent(url);
     }
 }
