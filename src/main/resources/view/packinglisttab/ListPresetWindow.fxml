@@ -14,7 +14,7 @@
 
 <fx:root resizable="false" title="List Preset" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
-        <Image url="@/images/tick1.png" />
+        <Image url="@/images/checklist.png" />
     </icons>
     <scene>
         <Scene>
@@ -95,7 +95,7 @@
                                  </ImageView>
                                  <ImageView fitHeight="82.0" fitWidth="84.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                       <Image url="@../../images/dress-big.png" />
+                                       <Image url="@../../images/cruise-big.png" />
                                     </image>
                                     <HBox.margin>
                                        <Insets left="30.0" top="25.0" />
@@ -103,7 +103,7 @@
                                  </ImageView>
                                  <ImageView fitHeight="82.0" fitWidth="89.0" layoutX="174.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                       <Image url="@../../images/suit-big.png" />
+                                       <Image url="@../../images/dress-big.png" />
                                     </image>
                                     <HBox.margin>
                                        <Insets left="30.0" top="25.0" />
@@ -119,8 +119,8 @@
                                     </HBox.margin>
                                  </Label>
                                  <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="15.0" prefHeight="17.0" prefWidth="107.0" text="clothes male" />
-                                 <Label alignment="CENTER_RIGHT" layoutX="99.0" layoutY="15.0" prefHeight="17.0" prefWidth="118.0" text="formal dinner f" />
-                                 <Label alignment="CENTER_RIGHT" layoutX="189.0" layoutY="15.0" prefHeight="17.0" prefWidth="116.0" text="formal dinner m" />
+                                 <Label alignment="CENTER_RIGHT" layoutX="99.0" layoutY="15.0" prefHeight="17.0" prefWidth="95.0" text="cruise" />
+                                 <Label alignment="CENTER_RIGHT" layoutX="189.0" layoutY="15.0" prefHeight="17.0" prefWidth="136.0" text="formal dinner f" />
                               </children>
                               <padding>
                                  <Insets top="5.0" />
@@ -129,6 +129,14 @@
                            <HBox layoutX="10.0" layoutY="162.0" prefHeight="83.0" prefWidth="487.0">
                               <children>
                                  <ImageView fitHeight="82.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../../images/suit-big.png" />
+                                    </image>
+                                    <HBox.margin>
+                                       <Insets left="30.0" top="25.0" />
+                                    </HBox.margin>
+                                 </ImageView>
+                                 <ImageView fitHeight="82.0" fitWidth="84.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../images/exclamation.png" />
                                     </image>
@@ -144,17 +152,9 @@
                                        <Insets left="30.0" top="25.0" />
                                     </HBox.margin>
                                  </ImageView>
-                                 <ImageView fitHeight="82.0" fitWidth="84.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../images/yacht.png" />
-                                    </image>
-                                    <HBox.margin>
-                                       <Insets left="30.0" top="25.0" />
-                                    </HBox.margin>
-                                 </ImageView>
                                  <ImageView fitHeight="82.0" fitWidth="89.0" layoutX="174.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                       <Image url="@../../images/train-big.png" />
+                                       <Image url="@../../images/adventurer-big.png" />
                                     </image>
                                     <HBox.margin>
                                        <Insets left="30.0" top="25.0" />
@@ -164,14 +164,14 @@
                            </HBox>
                            <HBox layoutX="10.0" layoutY="269.0" prefHeight="22.0" prefWidth="487.0">
                               <children>
-                                 <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="77.0" text="essentials">
+                                 <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="94.0" text="formal dinner m">
                                     <HBox.margin>
                                        <Insets left="20.0" />
                                     </HBox.margin>
                                  </Label>
-                                 <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="15.0" prefHeight="17.0" prefWidth="99.0" text="gym" />
-                                 <Label alignment="CENTER_RIGHT" layoutX="99.0" layoutY="15.0" prefHeight="17.0" prefWidth="114.0" text="boat" />
-                                 <Label alignment="CENTER_RIGHT" layoutX="207.0" layoutY="15.0" prefHeight="17.0" prefWidth="110.0" text="train" />
+                                 <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="15.0" prefHeight="17.0" prefWidth="95.0" text="essentials" />
+                                 <Label alignment="CENTER_RIGHT" layoutX="99.0" layoutY="15.0" prefHeight="17.0" prefWidth="99.0" text="gym" />
+                                 <Label alignment="CENTER_RIGHT" layoutX="207.0" layoutY="15.0" prefHeight="17.0" prefWidth="119.0" text="hiking" />
                               </children>
                               <padding>
                                  <Insets top="5.0" />
@@ -181,7 +181,7 @@
                               <children>
                                  <ImageView fitHeight="82.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                       <Image url="@../../images/work-big.png" />
+                                       <Image url="@../../images/music-big.png" />
                                     </image>
                                     <HBox.margin>
                                        <Insets left="30.0" top="15.0" />
@@ -189,7 +189,7 @@
                                  </ImageView>
                                  <ImageView fitHeight="82.0" fitWidth="84.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                       <Image url="@../../images/soap-big.png" />
+                                       <Image url="@../../images/camera-big.png" />
                                     </image>
                                     <HBox.margin>
                                        <Insets left="30.0" top="15.0" />
@@ -215,14 +215,67 @@
                            </HBox>
                            <HBox layoutX="10.0" layoutY="399.0" prefHeight="22.0" prefWidth="487.0">
                               <children>
-                                 <Label alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="67.0" text="work">
+                                 <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="87.0" text="music festival">
                                     <HBox.margin>
                                        <Insets left="20.0" />
                                     </HBox.margin>
                                  </Label>
-                                 <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="15.0" prefHeight="17.0" prefWidth="116.0" text="toiletries" />
-                                 <Label alignment="CENTER_RIGHT" layoutX="99.0" layoutY="15.0" prefHeight="19.0" prefWidth="106.0" text="snow" />
+                                 <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="15.0" prefHeight="17.0" prefWidth="109.0" text="photography" />
+                                 <Label alignment="CENTER_RIGHT" layoutX="99.0" layoutY="15.0" prefHeight="17.0" prefWidth="95.0" text="snow" />
                                  <Label alignment="CENTER_RIGHT" layoutX="207.0" layoutY="15.0" prefHeight="17.0" prefWidth="125.0" text="swimming" />
+                              </children>
+                              <padding>
+                                 <Insets top="5.0" />
+                              </padding>
+                           </HBox>
+                           <HBox layoutX="10.0" layoutY="422.0" prefHeight="83.0" prefWidth="487.0">
+                              <children>
+                                 <ImageView fitHeight="82.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../../images/soap-big.png" />
+                                    </image>
+                                    <HBox.margin>
+                                       <Insets left="30.0" top="15.0" />
+                                    </HBox.margin>
+                                 </ImageView>
+                                 <ImageView fitHeight="82.0" fitWidth="84.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../../images/train-big.png" />
+                                    </image>
+                                    <HBox.margin>
+                                       <Insets left="30.0" top="15.0" />
+                                    </HBox.margin>
+                                 </ImageView>
+                                 <ImageView fitHeight="82.0" fitWidth="84.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../../images/work-big.png" />
+                                    </image>
+                                    <HBox.margin>
+                                       <Insets left="30.0" top="15.0" />
+                                    </HBox.margin>
+                                 </ImageView>
+                              </children>
+                           </HBox>
+                           <HBox layoutX="10.0" layoutY="515.0" prefHeight="22.0" prefWidth="487.0">
+                              <children>
+                                 <Label alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="67.0" text="toiletries">
+                                    <HBox.margin>
+                                       <Insets left="25.0" />
+                                    </HBox.margin>
+                                 </Label>
+                                 <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="15.0" prefHeight="17.0" prefWidth="116.0" text="train">
+                                    <padding>
+                                       <Insets right="12.0" />
+                                    </padding>
+                                 </Label>
+                                 <Label alignment="CENTER_RIGHT" layoutX="99.0" layoutY="15.0" prefHeight="19.0" prefWidth="106.0" text="work">
+                                    <HBox.margin>
+                                       <Insets />
+                                    </HBox.margin>
+                                    <padding>
+                                       <Insets right="5.0" />
+                                    </padding>
+                                 </Label>
                               </children>
                               <padding>
                                  <Insets top="5.0" />

@@ -148,12 +148,12 @@ public class PresetDataUtil {
      *
      * @return the packing list item [ ]
      */
-    public static PackingListItem[] boatPreset() {
+    public static PackingListItem[] cruisePreset() {
         return new PackingListItem[] {
-            new PackingListItem(new ItemName("Boat Tickets"), new Quantity(1),
-                    new ItemCategory("boat"), false),
+            new PackingListItem(new ItemName("Cruise Tickets"), new Quantity(1),
+                    new ItemCategory("cruise"), false),
             new PackingListItem(new ItemName("Seasickness Pills"), new Quantity(1),
-                    new ItemCategory("boat"), false)
+                    new ItemCategory("cruise"), false)
         };
     }
 
@@ -212,8 +212,8 @@ public class PresetDataUtil {
                     new ItemCategory("essentials"), false),
             new PackingListItem(new ItemName("Flashlight"), new Quantity(1),
                     new ItemCategory("essentials"), false),
-            new PackingListItem(new ItemName("Backpack"), new Quantity(1), new
-                    ItemCategory("essentials"), false),
+            new PackingListItem(new ItemName("Backpack"), new Quantity(1),
+                    new ItemCategory("essentials"), false),
             new PackingListItem(new ItemName("Headache Pills"), new Quantity(1),
                     new ItemCategory("essentials"), false),
             new PackingListItem(new ItemName("House Key"), new Quantity(1),
@@ -480,6 +480,58 @@ public class PresetDataUtil {
                     new ItemCategory("beach"), false),
             new PackingListItem(new ItemName("Swimsuit Coverup"), new Quantity(1),
                     new ItemCategory("beach"), false)
+        };
+    }
+
+    /**
+     * Music festival preset packing list item [ ].
+     *
+     * @return the packing list item [ ]
+     */
+    public static PackingListItem[] musicFestivalPreset() {
+        return new PackingListItem[] {
+            new PackingListItem(new ItemName("Bandana"), new Quantity(1),
+                    new ItemCategory("music festival"), false),
+            new PackingListItem(new ItemName("Ear Plugs"), new Quantity(1),
+                    new ItemCategory("music festival"), false),
+            new PackingListItem(new ItemName("Fanny Pack"), new Quantity(1),
+                    new ItemCategory("music festival"), false),
+            new PackingListItem(new ItemName("Festival Outfit"), new Quantity(1),
+                    new ItemCategory("music festival"), false),
+            new PackingListItem(new ItemName("Food"), new Quantity(1),
+                    new ItemCategory("music festival"), false),
+            new PackingListItem(new ItemName("ID"), new Quantity(1),
+                    new ItemCategory("music festival"), false),
+            new PackingListItem(new ItemName("Money"), new Quantity(1),
+                    new ItemCategory("music festival"), false),
+            new PackingListItem(new ItemName("Shoes"), new Quantity(1),
+                    new ItemCategory("music festival"), false),
+            new PackingListItem(new ItemName("Tissues"), new Quantity(1),
+                    new ItemCategory("music festival"), false),
+        };
+    }
+
+    /**
+     * Photography preset packing list item [ ].
+     *
+     * @return the packing list item [ ]
+     */
+    public static PackingListItem[] photographyPreset() {
+        return new PackingListItem[] {
+            new PackingListItem(new ItemName("Batteries"), new Quantity(2),
+                    new ItemCategory("photography"), false),
+            new PackingListItem(new ItemName("Battery Charger"), new Quantity(1),
+                    new ItemCategory("photography"), false),
+            new PackingListItem(new ItemName("Camera"), new Quantity(1),
+                    new ItemCategory("photography"), false),
+            new PackingListItem(new ItemName("Camera Bag"), new Quantity(1),
+                    new ItemCategory("photography"), false),
+            new PackingListItem(new ItemName("Lenses"), new Quantity(1),
+                    new ItemCategory("photography"), false),
+            new PackingListItem(new ItemName("Memory Cards"), new Quantity(3),
+                    new ItemCategory("photography"), false),
+            new PackingListItem(new ItemName("Tripod"), new Quantity(1),
+                    new ItemCategory("photography"), false),
         };
     }
 }

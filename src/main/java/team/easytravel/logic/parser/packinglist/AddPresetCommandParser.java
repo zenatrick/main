@@ -65,8 +65,8 @@ public class AddPresetCommandParser implements Parser<AddPresetCommand> {
         case "car":
             addPresetCommand = new AddPresetCommand(PresetDataUtil.carPreset(), category);
             break;
-        case "boat":
-            addPresetCommand = new AddPresetCommand(PresetDataUtil.boatPreset(), category);
+        case "cruise":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.cruisePreset(), category);
             break;
         case "train":
             addPresetCommand = new AddPresetCommand(PresetDataUtil.trainPreset(), category);
@@ -88,6 +88,12 @@ public class AddPresetCommandParser implements Parser<AddPresetCommand> {
             break;
         case "gym":
             addPresetCommand = new AddPresetCommand(PresetDataUtil.gymPreset(), category);
+            break;
+        case "photography":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.photographyPreset(), category);
+            break;
+        case "music festival":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.musicFestivalPreset(), category);
             break;
         default:
             throw new ParseException("Sorry! Preset does not exist.");

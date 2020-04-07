@@ -84,8 +84,8 @@ public class PackingListCard extends UiPart<Region> {
             imageCategory = new Image("/images/adventurer.png");
         } else if (item.getItemCategory().value.equals("train")) {
             imageCategory = new Image("/images/train.png");
-        } else if (item.getItemCategory().value.equals("boat")) {
-            imageCategory = new Image("/images/yacht.png");
+        } else if (item.getItemCategory().value.equals("cruise")) {
+            imageCategory = new Image("/images/cruise.png");
         } else if (item.getItemCategory().value.equals("beach")) {
             imageCategory = new Image("/images/beach.png");
         } else if (item.getItemCategory().value.equals("toiletries")) {
@@ -94,6 +94,10 @@ public class PackingListCard extends UiPart<Region> {
             imageCategory = new Image("/images/global.png");
         } else if (item.getItemCategory().value.equals("work")) {
             imageCategory = new Image("/images/portfolio.png");
+        } else if (item.getItemCategory().value.equals("photography")) {
+            imageCategory = new Image("/images/camera.png");
+        } else if (item.getItemCategory().value.equals("music festival")) {
+            imageCategory = new Image("/images/music.png");
         } else {
             imageCategory = new Image("/images/default.png");
         }
