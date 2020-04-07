@@ -99,19 +99,4 @@ public class CheckStatusWindow extends UiPart<Stage> {
     public boolean isShowing() {
         return getRoot().isShowing();
     }
-
-    /**
-     * Hides the window.
-     */
-    public void hide() {
-        getRoot().hide();
-    }
-
-    /**
-     * Focuses on the window.
-     */
-    public void focus() {
-        getRoot().requestFocus();
-    }
-
 }

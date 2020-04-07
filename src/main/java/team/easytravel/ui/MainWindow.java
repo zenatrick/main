@@ -78,7 +78,7 @@ public class MainWindow extends UiPart<Stage> {
         checkStatusWindow = new CheckStatusWindow();
         listPresetWindow = new ListPresetWindow();
         sideTabsBar = new SideTabsBar(tabName -> clearFunction -> button -> switchTab(tabName, clearFunction, button));
-
+        helpTabPanel = new HelpTabPanel(logic.getHelpQuestions());
         // Set up the list panels
         if (logic.hasTrip()) {
             handleSetTrip();
@@ -130,7 +130,7 @@ public class MainWindow extends UiPart<Stage> {
         packingListTabPanel = new PackingListTabPanel(logic.getFilteredPackingList());
         fixedExpenseTabPanel = new FixedExpenseTabPanel(logic.getFilteredFixedExpenseList(),
                 logic.getGuiSettings().getWindowHeight(), logic.getGuiSettings().getWindowWidth());
-        helpTabPanel = new HelpTabPanel(logic.getHelpQuestions());
+
         sideTabsBar.handleSwitchToScheduleTab();
         handleUpdateTrip(true);
     }
@@ -145,7 +145,6 @@ public class MainWindow extends UiPart<Stage> {
         transportBookingTabPanel = new NoTripTabPanel();
         packingListTabPanel = new NoTripTabPanel();
         fixedExpenseTabPanel = new NoTripTabPanel();
-        helpTabPanel = new HelpTabPanel(logic.getHelpQuestions());
         sideTabsBar.handleSwitchToScheduleTab();
         handleUpdateTrip(false);
 
