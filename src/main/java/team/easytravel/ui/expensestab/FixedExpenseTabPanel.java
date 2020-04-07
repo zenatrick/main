@@ -45,18 +45,9 @@ public class FixedExpenseTabPanel extends TabPanel {
         fixedExpenseListView.setPrefWidth(0.75 * width);
         pieChart.setPrefWidth(0.25 * width);
         fixedExpenseListView.setItems(fixedExpensesList);
-        setPieChart();
         fixedExpenseListView.setCellFactory(listView -> new FixedListViewCell());
-
         pieChart.setTitle("Fixed Expenses Breakdown");
         setPieChart();
-        try {
-            pieChart.getStylesheets().add("view/expensestab/PieChartColor.css");
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-
-
     }
 
     private void setPieChart() {

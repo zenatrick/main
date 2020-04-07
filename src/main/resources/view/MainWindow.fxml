@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
-<fx:root minHeight="600" minWidth="700" onCloseRequest="#handleExit" title="Easy Travel" type="javafx.stage.Stage"
+<fx:root minHeight="650" minWidth="800" onCloseRequest="#handleExit" title="Easy Travel" type="javafx.stage.Stage"
          xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/e_t_logo.png"/>
@@ -24,7 +24,7 @@
                            AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0"/>
                 <StackPane fx:id="dashboardPlaceholder" prefHeight="100.0" prefWidth="82.0" AnchorPane.leftAnchor="0.0"
                            AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
-                <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="0.0"
+                <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="0.0"
                       AnchorPane.topAnchor="100.0">
                     <StackPane fx:id="tabPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                     <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" prefHeight="100"/>
