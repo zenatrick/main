@@ -1,23 +1,9 @@
 @startuml
 !include ../style.puml
-skinparam backgroundColor #EEEBDC
-skinparam arrowThickness 1.5
-skinparam arrowColor MidnightBlue
-skinparam classBackgroundColor MidnightBlue
-skinparam classAttributeIconSize 0
-skinparam classAttributeFontColor White
 
-skinparam Class {
-    FontColor White
-    BorderThickness 1
-    BorderColor White
-    StereotypeFontColor #FFFFFF
-    FontName Impact
-}
+class ReadOnlyActivityManger <<interface>>
 
-interface ReadOnlyActivityManger <<interface>>
-
-interface UniqueListElement <<interface>>
+class UniqueListElement <<interface>>
 
 ReadOnlyActivityManger <|.. ActivityManager
 ActivityManager --> UniqueList
@@ -25,7 +11,7 @@ UniqueList ..> UniqueListElement
 UniqueListElement <|..Activity
 Activity " *   " <.right. UniqueList
 
-interface ReadOnlyActivityManger {
+class ReadOnlyActivityManger {
 + getActivityList() : ObservableList<Activity>
 }
 
@@ -47,7 +33,7 @@ class UniqueList {
     + remove(toRemove : T)
 }
 
-interface UniqueListElement {
+class UniqueListElement {
 + isSame() : boolean
 }
 

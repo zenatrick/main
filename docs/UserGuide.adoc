@@ -813,7 +813,7 @@ Let’s say you want to sort the packing list alphabetically. You may do so by e
 ****
 To sort the packing list:
 
-1. Type `sortitem asc alphabet` into the command box, and press `Enter` to execute it.
+1. Type `sortitem asc criteria/alphabet` into the command box, and press `Enter` to execute it.
 
 2. The result box will display the message `Sorting of Item successful :)`
 

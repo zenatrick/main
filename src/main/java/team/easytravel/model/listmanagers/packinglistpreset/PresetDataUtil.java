@@ -355,15 +355,15 @@ public class PresetDataUtil {
     public static PackingListItem[] formalDinnerFemalePreset() {
         return new PackingListItem[] {
             new PackingListItem(new ItemName("Dress"), new Quantity(1),
-                    new ItemCategory("formal dinner"), false),
+                    new ItemCategory("formal dinner female"), false),
             new PackingListItem(new ItemName("High heels"), new Quantity(1),
-                    new ItemCategory("formal dinner"), false),
+                    new ItemCategory("formal dinner female"), false),
             new PackingListItem(new ItemName("Evening Bag"), new Quantity(1),
-                    new ItemCategory("formal dinner"), false),
+                    new ItemCategory("formal dinner female"), false),
             new PackingListItem(new ItemName("Jewellery"), new Quantity(1),
-                    new ItemCategory("formal dinner"), false),
+                    new ItemCategory("formal dinner female"), false),
             new PackingListItem(new ItemName("Makeup Bag"), new Quantity(1),
-                    new ItemCategory("formal dinner"), false)
+                    new ItemCategory("formal dinner female"), false)
         };
     }
 
@@ -518,7 +518,7 @@ public class PresetDataUtil {
      */
     public static PackingListItem[] photographyPreset() {
         return new PackingListItem[] {
-            new PackingListItem(new ItemName("Batteries"), new Quantity(2),
+            new PackingListItem(new ItemName("Battery"), new Quantity(2),
                     new ItemCategory("photography"), false),
             new PackingListItem(new ItemName("Battery Charger"), new Quantity(1),
                     new ItemCategory("photography"), false),
@@ -528,7 +528,7 @@ public class PresetDataUtil {
                     new ItemCategory("photography"), false),
             new PackingListItem(new ItemName("Lenses"), new Quantity(1),
                     new ItemCategory("photography"), false),
-            new PackingListItem(new ItemName("Memory Cards"), new Quantity(3),
+            new PackingListItem(new ItemName("Memory Card"), new Quantity(3),
                     new ItemCategory("photography"), false),
             new PackingListItem(new ItemName("Tripod"), new Quantity(1),
                     new ItemCategory("photography"), false),

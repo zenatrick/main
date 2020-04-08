@@ -3,7 +3,6 @@ package team.easytravel.logic.parser.packinglist;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import team.easytravel.logic.commands.packinglist.AddPresetCommand;
-import team.easytravel.logic.commands.packinglist.EditItemCommand;
 import team.easytravel.logic.parser.ArgumentMultimap;
 import team.easytravel.logic.parser.ArgumentTokenizer;
 import team.easytravel.logic.parser.Parser;
@@ -29,7 +28,7 @@ public class AddPresetCommandParser implements Parser<AddPresetCommand> {
         try {
             itemCategory = ParserUtil.parseItemCategory(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditItemCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPresetCommand.MESSAGE_USAGE), pe);
         }
 
         String category = itemCategory.value;
