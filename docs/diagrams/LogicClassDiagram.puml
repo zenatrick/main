@@ -1,38 +1,44 @@
 @startuml
 !include style.puml
-skinparam arrowThickness 1.1
-skinparam arrowColor LOGIC_COLOR_T4
-skinparam classBackgroundColor LOGIC_COLOR
+
+hide member
+skinparam Class {
+    BorderColor BACKGROUND_COLOR
+    FontColor BACKGROUND_COLOR
+    BackgroundColor LOGIC_COLOR_T2
+    StereotypeFontColor BACKGROUND_COLOR
+}
+skinparam ArrowColor LOGIC_COLOR_T2
 
 package Logic {
 
 package Parser {
-Interface Parser <<Interface>>
-Class EasyTravelParser
-Class XYZCommandParser
-Class CliSyntax
-Class ParserUtil
-Class ArgumentMultimap
-Class ArgumentTokenizer
-Class Prefix
+    Class Parser <<Interface>>
+    Class EasyTravelParser
+    Class XYZCommandParser
+    Class CliSyntax
+    Class ParserUtil
+    Class ArgumentMultimap
+    Class ArgumentTokenizer
+    Class Prefix
 }
 
 package Command {
 Class XYZCommand
-note right of XYZCommand: XYZCommand = AddItemCommand,\nDeleteActivityCommand, etc
+note right of XYZCommand: ""XYZCommand"" = ""AddItemCommand"",\n""DeleteActivityCommand"", etc
 Class CommandResult
 Class "{abstract}\nCommand" as Command
 }
 
-Interface Logic <<Interface>>
+Class Logic <<Interface>>
 Class LogicManager
 }
 
 package Model{
-Class HiddenModel #FFFFFF
+Class HiddenModel BACKGROUND_COLOR
 }
 
-Class HiddenOutside #FFFFFF
+Class HiddenOutside BACKGROUND_COLOR
 HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
