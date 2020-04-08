@@ -1,5 +1,7 @@
 @startuml
 !include style.puml
+
+hide member
 skinparam Class {
     BorderColor BACKGROUND_COLOR
     FontColor BACKGROUND_COLOR
@@ -7,6 +9,7 @@ skinparam Class {
     StereotypeFontColor BACKGROUND_COLOR
 }
 skinparam ArrowColor MODEL_COLOR_T2
+
 Class HiddenOutside BACKGROUND_COLOR
 
 Package Model <<Rectangle>> {
@@ -18,24 +21,14 @@ Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
-class HiddenClass
-
 }
 
-hide HiddenClass
-hide member
-
-Class HiddenOutside BACKGROUND_COLOR
 HiddenOutside ..> Model
 
-XYZManager .up.|> ReadOnlyXYZ
-
+XYZManager .|> ReadOnlyXYZ
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o-down-> "6" XYZManager
-ModelManager o-left-> "1" UserPrefs
-UserPrefs .up.|> HiddenClass
+ModelManager o--> "6 " XYZManager
+ModelManager o-left-> " 1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
-
-
 @enduml
