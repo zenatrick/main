@@ -1,12 +1,18 @@
 @startuml
 !include style.puml
-skinparam arrowThickness 1.1
-skinparam arrowColor STORAGE_COLOR
-skinparam classBackgroundColor STORAGE_COLOR
 
-Interface Storage <<Interface>>
-Interface UserPrefsStorage <<Interface>>
-Interface XYZStorage <<Interface>>
+skinparam Class {
+    BorderColor BACKGROUND_COLOR
+    FontColor BACKGROUND_COLOR
+    BackgroundColor STORAGE_COLOR_T3
+    StereotypeFontColor BACKGROUND_COLOR
+}
+skinparam arrowColor STORAGE_COLOR_T3
+hide member
+
+Class Storage <<Interface>>
+Class UserPrefsStorage <<Interface>>
+Class XYZStorage <<Interface>>
 note left: XYZ refers to individual storage\ncomponents in EasyTravel
 
 Class StorageManager

@@ -1,11 +1,19 @@
 @startuml
 !include style.puml
-skinparam arrowThickness 1.1
-skinparam arrowColor UI_COLOR_T4
-skinparam classBackgroundColor UI_COLOR
+
+skinparam Class {
+    BorderColor BACKGROUND_COLOR
+    FontColor BACKGROUND_COLOR
+    BackgroundColor UI_COLOR_T3
+    StereotypeFontColor BACKGROUND_COLOR
+}
+skinparam ArrowColor UI_COLOR_T3
+Class HiddenOutside BACKGROUND_COLOR
+
+hide member
 
 package UI <<Rectangle>>{
-Interface Ui <<Interface>>
+Class Ui <<Interface>>
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
@@ -19,14 +27,14 @@ Class CommandBox
 }
 
 package Model <<Rectangle>> {
-Class HiddenModel #FFFFFF
+Class HiddenModel BACKGROUND_COLOR
 }
 
 package Logic <<Rectangle>> {
-Class HiddenLogic #FFFFFF
+Class HiddenLogic BACKGROUND_COLOR
 }
 
-Class HiddenOutside #FFFFFF
+Class HiddenOutside BACKGROUND_COLOR
 HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
