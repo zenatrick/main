@@ -48,7 +48,7 @@ public class AddFixedExpenseCommandParser implements Parser<AddFixedExpenseComma
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         FixedExpenseCategory fixedExpenseCategory =
-                ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
+                ParserUtil.parseFixedExpenseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
 
         FixedExpense fixedExpense = new FixedExpense(amount, description, fixedExpenseCategory);
 

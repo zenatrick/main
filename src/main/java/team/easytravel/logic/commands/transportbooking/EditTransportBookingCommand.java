@@ -44,8 +44,7 @@ public class EditTransportBookingCommand extends Command {
             + "[" + PREFIX_START_DATE_TIME + "START_TIME] "
             + "[" + PREFIX_END_DATE_TIME + "END_TIME]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_END_LOCATION + "Italy "
-            + PREFIX_END_DATE_TIME + "31-03-2020 22:00";
+            + PREFIX_END_LOCATION + "Italy";
 
     public static final String MESSAGE_EDIT_TRANSPORT_BOOKING_SUCCESS = "Edited Transport Booking: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

@@ -68,11 +68,10 @@ public class ParserUtil {
     /**
      * Parses {@code userInput} into an {@code List<Index>} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     * @param userInput the user's input
-     * @return a list of index
-     * @throws ParseException
+     *
+     * @throws ParseException if any index is a non-zero unsigned integer.
      */
-    public static List<Index> parseMultipleIndex (String userInput) throws ParseException {
+    public static List<Index> parseMultipleIndex(String userInput) throws ParseException {
 
         List<Index> indexes = new ArrayList<>();
         String[] trimmedIndexes = userInput.trim().split("\\s+");
@@ -140,19 +139,16 @@ public class ParserUtil {
     public static String parseCurrency(String currency) throws ParseException {
         requireNonNull(currency);
         String trimmedCurrency = currency.trim().toLowerCase();
-        String sgd = "sgd";
-        String other = "other";
+        final String sgd = "sgd";
+        final String other = "other";
         switch (trimmedCurrency) {
-        case "sgd":
-            return sgd;
-
-        case "other":
-            return other;
+        case sgd:
+        case other:
+            return trimmedCurrency;
 
         default:
-            throw new ParseException("Currency should be in sgd or other");
+            throw new ParseException("Currency should be \"sgd\" or \"other\"");
         }
-
     }
 
     /**
@@ -176,7 +172,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code category} is invalid.
      */
-    public static FixedExpenseCategory parseCategory(String category) throws ParseException {
+    public static FixedExpenseCategory parseFixedExpenseCategory(String category) throws ParseException {
         requireNonNull(category);
         String trimmedCategory = category.trim().toLowerCase();
         if (!FixedExpenseCategory.isValidCategory(trimmedCategory)) {
@@ -196,9 +192,9 @@ public class ParserUtil {
 
         switch (sortIdentifier) {
         case SortFixedExpenseCommand.SORT_ASCENDING:
-            return SortFixedExpenseCommand.SORT_ASCENDING;
         case SortFixedExpenseCommand.SORT_DESCENDING:
-            return SortFixedExpenseCommand.SORT_DESCENDING;
+            return sortIdentifier;
+
         default:
             throw new ParseException("String must consist of either high for descending order"
                     + " or low for ascending order");

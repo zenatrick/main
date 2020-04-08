@@ -1,13 +1,13 @@
 package team.easytravel.logic.parser.transportbooking;
 
 import static java.util.Objects.requireNonNull;
-import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_END_LOCATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_MODE;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_START_LOCATION;
 
+import team.easytravel.commons.core.Messages;
 import team.easytravel.commons.core.index.Index;
 import team.easytravel.logic.commands.transportbooking.EditTransportBookingCommand;
 import team.easytravel.logic.commands.transportbooking.EditTransportBookingCommand.EditTransportBookingDescriptor;
@@ -39,8 +39,8 @@ public class EditTransportBookingCommandParser implements Parser<EditTransportBo
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditTransportBookingCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT,
+                    "transport booking"), pe);
         }
 
         EditTransportBookingDescriptor editTransportBookingDescriptor = new EditTransportBookingDescriptor();

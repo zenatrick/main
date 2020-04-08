@@ -62,7 +62,7 @@ public class EditFixedExpenseCommandParser implements Parser<EditFixedExpenseCom
         }
         if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
             editFixedExpenseDescriptor.setFixedExpenseCategory(ParserUtil
-                    .parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get()));
+                    .parseFixedExpenseCategory(argMultimap.getValue(PREFIX_CATEGORY).get()));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editFixedExpenseDescriptor.setDescription(ParserUtil
