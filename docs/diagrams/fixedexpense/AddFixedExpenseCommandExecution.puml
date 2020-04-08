@@ -3,12 +3,12 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":**AddFixedExpenseCommand**" as AddFixedExpenseCommand LOGIC_COLOR
-participant "**:CommandResult**" as CommandResult LOGIC_COLOR
+participant "**r:CommandResult**" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant "**toAdd:FixedExpense**" as FixedExpense MODEL_COLOR
-participant "**:ModelManager**" as ModelManager MODEL_COLOR
+participant "**m:ModelManager**" as ModelManager MODEL_COLOR
 participant "**:TripManager**" as TripManager MODEL_COLOR
 participant "**FixedExpenseManager**" as FixedExpenseManager MODEL_COLOR
 
@@ -16,7 +16,7 @@ participant "**FixedExpenseManager**" as FixedExpenseManager MODEL_COLOR
 
 end box
 
-[-> AddFixedExpenseCommand : execute()
+[-> AddFixedExpenseCommand : execute(m)
 activate AddFixedExpenseCommand
 
 AddFixedExpenseCommand-> ModelManager : getExchangeRate()
@@ -36,13 +36,13 @@ AddFixedExpenseCommand -> FixedExpense : new FixedExpense(amount, \nfixedExpense
 activate FixedExpense
 note left: Parameters: Amount,\n FixedExpenseCategory, \nDescription
 
-FixedExpense --> AddFixedExpenseCommand
+FixedExpense --> AddFixedExpenseCommand : toAdd
 deactivate FixedExpense
 
-AddFixedExpenseCommand -> ModelManager : addFixedExpense()
+AddFixedExpenseCommand -> ModelManager : addFixedExpense(toAdd)
 activate ModelManager
 
-ModelManager -> FixedExpenseManager : addFixedExpense()
+ModelManager -> FixedExpenseManager : addFixedExpense(toAdd)
 activate FixedExpenseManager
 
 FixedExpenseManager --> ModelManager
@@ -50,7 +50,6 @@ deactivate FixedExpenseManager
 
 ModelManager --> AddFixedExpenseCommand
 deactivate ModelManager
-
 
 
 AddFixedExpenseCommand -> ModelManager : getTotalExpense()
@@ -78,15 +77,17 @@ deactivate TripManager
 ModelManager --> AddFixedExpenseCommand
 deactivate ModelManager
 
-
 create CommandResult
 AddFixedExpenseCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> AddFixedExpenseCommand
+CommandResult --> AddFixedExpenseCommand :r
 deactivate CommandResult
 
-[<-- AddFixedExpenseCommand : result
+[<-- AddFixedExpenseCommand : r
 deactivate AddFixedExpenseCommand
+
+AddFixedExpenseCommand -[hidden]> CommandResult
+destroy AddFixedExpenseCommand
 
 @enduml

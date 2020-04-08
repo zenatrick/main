@@ -12,6 +12,7 @@ import team.easytravel.model.listmanagers.ReadOnlyFixedExpenseManager;
 import team.easytravel.model.listmanagers.ReadOnlyPackingListManager;
 import team.easytravel.model.listmanagers.ReadOnlyTransportBookingManager;
 import team.easytravel.model.listmanagers.ReadOnlyUserPrefs;
+import team.easytravel.model.listmanagers.UserPrefs;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBooking;
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
@@ -59,6 +60,10 @@ public interface Model {
      */
     ReadOnlyUserPrefs getUserPrefs();
 
+    /**
+     * Sets the user prefs.
+     */
+    void setUserPrefs(UserPrefs userPrefs);
     /**
      * Returns the user prefs' GUI settings.
      */

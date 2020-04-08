@@ -91,7 +91,7 @@ public class FixedExpenseTabPanel extends TabPanel {
                 setText(null);
             } else {
                 pieChart.setLabelsVisible(true);
-                pieChart.setLegendVisible(true);
+                pieChart.setLegendVisible(false);
                 setGraphic(new FixedExpenseCard(fixedExpense, getIndex() + 1).getRoot());
             }
         }

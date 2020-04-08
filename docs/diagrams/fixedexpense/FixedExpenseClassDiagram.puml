@@ -1,21 +1,8 @@
 @startuml
 !include ../style.puml
-skinparam backgroundColor #EEEBDC
-skinparam arrowThickness 1.5
-skinparam arrowColor MediumSpringGreen
-skinparam classBackgroundColor MediumAquaMarine
-skinparam classAttributeIconSize 0
-skinparam classAttributeFontColor DarkSlateBlue
 
-skinparam Class {
-    FontColor MidnightBlue
-    BorderThickness 1
-    BorderColor MidnightBlue
-    StereotypeFontColor #FFFFFF
-    FontName Impact
-}
 
-Interface Logic <<Interface>> {
+Class Logic <<Interface>> {
 + execute() : CommandResult
 }
 
@@ -34,7 +21,7 @@ Class FixedExpense {
 
 
 
-Interface Model <<Interface>> {
+Class Model <<Interface>> {
 + getBudget() : Budget
 + setBudget(Budget)
 }

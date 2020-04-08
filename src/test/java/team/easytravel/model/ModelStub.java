@@ -12,6 +12,7 @@ import team.easytravel.model.listmanagers.ReadOnlyFixedExpenseManager;
 import team.easytravel.model.listmanagers.ReadOnlyPackingListManager;
 import team.easytravel.model.listmanagers.ReadOnlyTransportBookingManager;
 import team.easytravel.model.listmanagers.ReadOnlyUserPrefs;
+import team.easytravel.model.listmanagers.UserPrefs;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBooking;
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
@@ -32,6 +33,10 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+    @Override
+    public void setUserPrefs(UserPrefs userPrefs) {
+        throw new AssertionError("This method should not be called.");
+    }
     @Override
     public GuiSettings getGuiSettings() {
         throw new AssertionError("This method should not be called.");

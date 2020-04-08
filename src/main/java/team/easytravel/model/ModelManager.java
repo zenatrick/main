@@ -109,6 +109,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setUserPrefs(UserPrefs userPrefs) {
+        this.userPrefs.resetData(userPrefs);
+    }
+
+    @Override
     public GuiSettings getGuiSettings() {
         return userPrefs.getGuiSettings();
     }
@@ -283,11 +288,13 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteTransportBooking(TransportBooking toDelete) {
+        requireNonNull(toDelete);
         transportBookingManager.removeTransportBooking(toDelete);
     }
 
     @Override
     public void addTransportBooking(TransportBooking toAdd) {
+        requireNonNull(toAdd);
         transportBookingManager.addTransportBooking(toAdd);
         updateFilteredTransportBookingList(PREDICATE_SHOW_ALL_TRANSPORT_BOOKINGS);
     }
@@ -323,6 +330,7 @@ public class ModelManager implements Model {
     }
 
     public void setFixedExpenseManager(ReadOnlyFixedExpenseManager fixedExpenseManager) {
+        requireNonNull(fixedExpenseManager);
         this.fixedExpenseManager.resetData(fixedExpenseManager);
     }
 
@@ -334,11 +342,13 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteFixedExpense(FixedExpense toDelete) {
+        requireNonNull(toDelete);
         fixedExpenseManager.removeFixedExpense(toDelete);
     }
 
     @Override
     public void addFixedExpense(FixedExpense toAdd) {
+        requireNonNull(toAdd);
         fixedExpenseManager.addFixedExpense(toAdd);
         updateFilteredFixedExpenseList(PREDICATE_SHOW_ALL_FIXED_EXPENSES);
     }
@@ -392,11 +402,13 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePackingListItem(PackingListItem toDelete) {
+        requireNonNull(toDelete);
         packingListManager.removePackingListItem(toDelete);
     }
 
     @Override
     public void addPackingListItem(PackingListItem toAdd) {
+        requireNonNull(toAdd);
         packingListManager.addPackingListItem(toAdd);
         updateFilteredPackingList(PREDICATE_SHOW_ALL_PACKING_LIST_ITEMS);
     }
@@ -432,6 +444,7 @@ public class ModelManager implements Model {
     }
 
     public void setActivityManager(ReadOnlyActivityManager activityManager) {
+        requireNonNull(activityManager);
         this.activityManager.resetData(activityManager);
     }
 
@@ -443,12 +456,14 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteActivity(Activity toDelete) {
+        requireNonNull(toDelete);
         activityManager.removeActivity(toDelete);
 
     }
 
     @Override
     public void addActivity(Activity toAdd) {
+        requireNonNull(toAdd);
         activityManager.addActivity(toAdd);
         updateFilteredActivityList(PREDICATE_SHOW_ALL_ACTIVITIES);
     }
@@ -485,6 +500,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setAccommodationBookingManager(ReadOnlyAccommodationBookingManager accommodationBookingManager) {
+        requireNonNull(accommodationBookingManager);
         this.accommodationBookingManager.resetData(accommodationBookingManager);
     }
 
@@ -496,11 +512,13 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteAccommodationBooking(AccommodationBooking toDelete) {
+        requireNonNull(toDelete);
         accommodationBookingManager.removeAccommodationBooking(toDelete);
     }
 
     @Override
     public void addAccommodationBooking(AccommodationBooking toAdd) {
+        requireNonNull(toAdd);
         accommodationBookingManager.addAccommodationBooking(toAdd);
         updateFilteredAccommodationBookingList(PREDICATE_SHOW_ALL_ACCOMMODATION_BOOKINGS);
     }
