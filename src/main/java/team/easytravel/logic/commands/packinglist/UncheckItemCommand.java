@@ -40,7 +40,7 @@ public class UncheckItemCommand extends Command {
     /**
      * The constant MESSAGE_DELETE_ITEM_SUCCESS.
      */
-    public static final String MESSAGE_PACKED_ITEM_SUCCESS = "Unpacked Item: %1$s";
+    public static final String MESSAGE_PACKED_ITEM_SUCCESS = "Unpacked Item(s): %1$s";
 
     /**
      * The constant MESSAGE_DUPLICATE_ITEM.
@@ -75,7 +75,7 @@ public class UncheckItemCommand extends Command {
         List<PackingListItem> lastShownList = model.getFilteredPackingList();
         List<PackingListItem> editedItems = new ArrayList<>();
         List<Index> invalidIndexes = new ArrayList<>();
-        StringBuilder sb = new StringBuilder().append("Checked items \n");
+        StringBuilder sb = new StringBuilder().append("Unchecked items \n");
         StringBuilder invalidIndex = new StringBuilder().append("Invalid Indexes are: ");
 
         for (Index index : indexes) {
@@ -86,17 +86,18 @@ public class UncheckItemCommand extends Command {
                 continue;
             }
 
-            PackingListItem itemToCheck = lastShownList.get(index.getZeroBased());
-            PackingListItem checkItem = createUncheckItem(itemToCheck, uncheckItemDescriptor);
+            PackingListItem itemToUncheck = lastShownList.get(index.getZeroBased());
+            PackingListItem uncheckItem = new PackingListItem(itemToUncheck.getItemName(), itemToUncheck.getQuantity(),
+                    itemToUncheck.getItemCategory(), false);
 
-            if (!itemToCheck.isSame(checkItem) && model.hasPackingListItem(checkItem)) {
+            if (!itemToUncheck.isSame(uncheckItem) && model.hasPackingListItem(uncheckItem)) {
                 throw new CommandException(MESSAGE_DUPLICATE_ITEM);
             }
 
-            sb.append(checkItem.toString()).append("\n");
+            sb.append(uncheckItem.toString()).append("\n");
 
-            model.setPackingListItem(itemToCheck, checkItem);
-            editedItems.add(checkItem);
+            model.setPackingListItem(itemToUncheck, uncheckItem);
+            editedItems.add(uncheckItem);
         }
         model.updateFilteredPackingList(PREDICATE_SHOW_ALL_PACKING_LIST_ITEMS);
 
@@ -109,25 +110,6 @@ public class UncheckItemCommand extends Command {
         }
         return new CommandResult(String.format(MESSAGE_PACKED_ITEM_SUCCESS, sb.append("\n").append(invalidIndex)),
                 SWITCH_TAB_PACKING_LIST);
-    }
-
-    /**
-     * Creates a new Packing List item with the new attributes.
-     *
-     * @param itemToUncheck         of the Item in the filtered Item list to uncheck
-     * @param uncheckItemDescriptor details to check the Item with
-     */
-    private static PackingListItem createUncheckItem(PackingListItem itemToUncheck,
-                                                     UncheckItemDescriptor uncheckItemDescriptor) {
-        assert itemToUncheck != null;
-
-        ItemName updatedName = itemToUncheck.getItemName();
-        Quantity updatedQuantity = itemToUncheck.getQuantity();
-        ItemCategory updatedCategory = itemToUncheck.getItemCategory();
-
-        boolean isPacked = uncheckItemDescriptor.getUnpacked().get();
-
-        return new PackingListItem(updatedName, updatedQuantity, updatedCategory, isPacked);
     }
 
     @Override

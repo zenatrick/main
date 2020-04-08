@@ -27,7 +27,7 @@ public class CheckItemCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_PACKED_ITEM_SUCCESS = "Packed Item: %1$s";
+    public static final String MESSAGE_PACKED_ITEM_SUCCESS = "Packed Item(s): %1$s";
 
     private final List<Index> indexes;
 

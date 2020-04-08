@@ -603,7 +603,7 @@ image::user-guide/ClearAccommodationBooking.png[]
 Allow the user to have a packing list for the trip +
 Format: `list`
 
-The following sections [4.5.1. - 4.5.11] allows the user to set and modify the packing list for their trip.
+The following sections [4.5.1. - 4.5.12] allows the user to set and modify the packing list for their trip.
 
 ===== Adding an item in the packing list: `additem`
 
@@ -679,7 +679,7 @@ To edit an item:
 ****
 
 .After edit item command
-image::user-guide/EditItem.png[]
+image::user-guide/EditItem 1.png[]
 
 
 `edititem 5 item/boxer quantity/3 category/essentials` +
@@ -697,7 +697,7 @@ To edit an item:
 ****
 
 .After edit item command
-image::user-guide/EditItem2.png[]
+image::user-guide/EditItem 2.png[]
 
 ===== Deleting an item in the packing list: `deleteitem`
 
@@ -726,19 +726,26 @@ To delete an item:
 3. You can see that the item at index 1 is deleted.
 ****
 
+.Before delete item command
+image::user-guide/DeleteItem 1.png[]
+
 .After delete item command
-image::user-guide/DeleteItem.png[]
+image::user-guide/DeleteItem 2.png[]
 
 ===== Marking an item as packed in the packing list: `checkitem`
 
 This command marks an item as packed in the packing list.
 
-Format: `checkitem INDEX`
+Format: `checkitem INDEX [MORE_INDEXES]...`
 
 [NOTE]
 =====
 - Command can only be used if there is at least 1 item in the packing list
 - If item is already packed, then it will just remain packed
+- The result box will display the checked item(s)
+- You are able to mark multiple items as packed in one command
+- If there is one invalid index given in the command, for example `checkitem 1 3 1000 5`, and 1000 is the invalid index, then the items at index 1, 3 and 5 will be marked as packed, but not 1000.
+- However, if a negative index is given, such as `checkitem 1 3 -2 5`, no matter the position of the negative index, the whole command will be deemed as invalid, and every item at the indicated indexes will remain as unchecked.
 =====
 
 Examples:
@@ -752,24 +759,53 @@ To mark an item as packed:
 
 1. Type `checkitem 1` into the command box, and press `Enter` to execute it.
 
-2. The result box will display the message `Packed Item: Packing list item - Item Name: Swimsuit Coverup Quantity: 1 Category: swimming Is Checked: true`
+2. The result box will display the message `Packed Item: Packing list item - Item Name: Cruise tickets Quantity: 1 Category: cruise Is Checked: true`
 
 3. You can see that the item is marked as packed.
 ****
 
 .After check item command
-image::user-guide/CheckItem.png[]
+image::user-guide/CheckItem 1.png[]
+
+`checkitem 1 3 5 6` +
+
+Let’s say you want to mark the first, third, fifth and sixth items in the packing list as packed. You may do so by executing the checkitem command.
+
+****
+To mark an item as packed:
+
+1. Type `checkitem 1 3 5 6` into the command box, and press `Enter` to execute it.
+
+2. The result box will display the message
+“Packed Item: Checked items
+- Packing list item - Item Name: Cruise Tickets Quantity: 1 Category: cruise Is Checked: true
+- Packing list item - Item Name: Belt Quantity: 1 Category: clothes Is Checked: true
+- Packing list item - Item Name: Jacket Quantity: 2 Category: clothes Is Checked: true
+- Packing list item - Item Name: Jeans Quantity: 3 Category: clothes Is Checked: true”
+
+3. You can see that now the items indicated by the user are marked as packed, from a cross, to a tick next to the item.
+****
+
+.After check item command part 1
+image::user-guide/CheckItem 2.png[]
+
+.After check item command part 2
+image::user-guide/CheckItem 3.png[]
 
 ===== Marking an item as unpacked in the packing list: `uncheckitem`
 
 This command marks an item as packed in the packing list
 
-Format: `uncheckitem INDEX`
+Format: `uncheckitem INDEX [MORE_INDEXES]...`
 
 [NOTE]
 =====
 - Command can only be used if there is at least 1 item in the packing list
 - If item is already unpacked, then it will just remain unpacked
+- The result box will display the unchecked item(s)
+- You are able to mark multiple items as unpacked in one command
+- If there is one invalid index given in the command, for example `uncheckitem 1 3 1000 5`, and 1000 is the invalid index, then the items at index 1, 3 and 5 will be marked as unpacked, but not 1000.
+- However, if a negative index is given, such as   `uncheckitem 1 3 -2 5`, no matter the position of the negative index, the whole command will be deemed as invalid, and every item at the indicated indexes will remain as checked.
 =====
 
 Examples:
@@ -779,17 +815,53 @@ Examples:
 Let’s say you want to mark the second item in the packing list as unpacked. You may do so by executing the `uncheckitem` command.
 
 ****
-To mark an item as packed:
+To mark an item as unpacked:
 
 1. Type `uncheckitem 2` into the command box, and press `Enter` to execute it.
 
-2. The result box will display the message `Unpacked Item: Packing list item - Item Name: Sandals Quantity: 1 Category: swimming Is Checked: false`
+2. The result box will display the message
+`Unpacked Item(s): Unchecked items`
+- `Packing list item - Item Name: Sandals Quantity: 1 Category: swimming Is Checked: false`
 
 3. You can see the item at index 2 is marked as unpacked
 ****
 
 .After uncheck item command
-image::user-guide/UncheckItem.png[]
+image::user-guide/UncheckItem 1.png[]
+
+`uncheckitem 1 4 7 13 16` +
+
+Let’s say you want to mark the first, fourth, seventh, thirteenth and sixteenth items in the packing list as unpacked. You may do so by executing the uncheckitem command.
+
+****
+To mark an item as unpacked:
+
+1. Type `uncheckitem 1 4 7 13 16` into the command box, and press `Enter` to execute it.
+
+2. The result box will display the message
+`Unpacked Item(s): Unchecked items`
+
+- `Packing list item - Item Name: Cruise Tickets Quantity: 1 Category: cruise Is Checked: false`
+
+- `Packing list item - Item Name: Dress Quantity: 3 Category: clothes Is Checked: false`
+
+- `Packing list item - Item Name: Pyjamas Quantity: 5 Category: clothes Is Checked: false`
+
+- `Packing list item - Item Name: Underwear Quantity: 7 Category: clothes Is Checked: false`
+
+- `Packing list item - Item Name: Fanny Pack Quantity: 1 Category: music festival Is Checked: false`
+
+3. You can see that now the items indicated by the user are marked as unpacked, from a tick, to a cross next to the item.
+****
+
+.After uncheck item command part 1
+image::user-guide/UncheckItem 2.png[]
+
+.After uncheck item command part 2
+image::user-guide/UncheckItem 3.png[]
+
+.After uncheck item command part 3
+image::user-guide/UncheckItem 4.png[]
 
 ===== Sorting items in the packing list: `sortitem`
 
@@ -820,20 +892,24 @@ To sort the packing list:
 3. You can see that the packing list items are sorted in ascending order, according to their category.
 ****
 
-.After sort item command
-image::user-guide/SortItem.png[]
+.After sort item command part 1
+image::user-guide/SortItem 1.png[]
+
+.After sort item command part 2
+image::user-guide/SortItem 2.png[]
 
 ===== Finding items in the packing list: `finditem`
 
 This command finds items in the packing list according to keywords in the items’ names.
 
-Format: `finditem keyword`
+Format: `finditem KEYWORD [MORE_KEYWORDS]...`
 
 [NOTE]
 =====
 - Command can only be used if there is at least 1 item in the packing list.
 - If packing list does not contain any of the keywords, then it will display an empty list.
 - If you want to return to the packing list after using the `finditem` command, use the `listitem` command. (see Section 4.5.9)
+- The result box will display the number of items that contains the keyword(s).
 =====
 
 Examples:
@@ -845,11 +921,11 @@ Let’s say you want to find items that contain either shampoo or hairbrush in i
 ****
 To find items in the packing list:
 
-1. Type `finditem shampoo hairbrush` into the command box, and press `Enter` to execute it.
+1. Type `finditem shampoo dress` into the command box, and press `Enter` to execute it.
 
 2. The result box will display the message `2 items listed!`
 
-3. You can see all the packing list items that contain either shampoo or hairbrush will be listed in the packing list.
+3. You can see all the packing list items that contain either shampoo or dress will be listed in the packing list.
 ****
 
 .After find item command
@@ -859,29 +935,30 @@ image::user-guide/FindItem.png[]
 
 This command find items in the packing list according to keywords that are categories.
 
-Format: `finditemcategory keyword`
+Format: `finditemcategory KEYWORD [MORE_KEYWORDS]...`
 
 [NOTE]
 =====
 - Command can only be used if there is at least 1 item in the packing list.
 - If packing list does not contain any of the keywords, then it will display an empty list
 - If you want to return to the packing list after using the `finditemcategory` command, use the `listitem` command. (see Section 4.5.9)
+- The result box will display the number of items that is in the categories of the given keyword(s).
 =====
 
 Examples:
 
-`finditemcategory swimming clothes` +
+`finditemcategory international clothes` +
 
 Let’s say you want to find items that are either in the swimming or clothes category. You may do so by executing the `finditemcategory` command.
 
 ****
 To find items in the packing list under categories:
 
-1. Type `finditemcategory swimming clothes` into the command box, and press `Enter` to execute it.
+1. Type `finditemcategory international clothes` into the command box, and press `Enter` to execute it.
 
-2. The result box will display the message `16 items listed!`
+2. The result box will display the message `20 item(s) listed!`
 
-3. You can now see the displayed packing list items that are either in the swimming category or in the clothes category
+3. You can now see the displayed packing list items that are either in the international category or in the clothes category
 ****
 
 .After find item category command
@@ -911,6 +988,31 @@ To show the original packing list:
 
 .After the list item command
 image::user-guide/ListItem.png[]
+
+===== Clearing items in the packing list: `clearitem`
+
+This command lists items in the packing list.
+
+Format: `clearitem`
+
+Examples:
+
+`clearitem` +
+
+Let's say you want to delete all the items in your packing list, to start from an empty packing list. You may do so by executing the clearitem command
+
+****
+To clear all items:
+
+1. Type `clearitem` into the command box, and press `Enter` to execute it.
+
+2. The result box will display the message `Packing List has been cleared!`
+
+3.You can now see an empty packing list.
+****
+
+.After the clear item command
+image::user-guide/ClearItem.png[]
 
 ===== Adding a preset category: `addpreset`
 
