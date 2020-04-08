@@ -1,11 +1,15 @@
 @startuml
 !include style.puml
 
+skinparam ParticipantFontColor BACKGROUND_COLOR
+!define LOGIC_COLOR LOGIC_COLOR_T2
+!define MODEL_COLOR MODEL_COLOR_T2
+
 Actor User as user USER_COLOR
-Participant ":UI" as ui UI_COLOR
-Participant ":Logic" as logic LOGIC_COLOR
-Participant ":Model" as model MODEL_COLOR
-Participant ":Storage" as storage STORAGE_COLOR
+Participant "**:UI**" as ui UI_COLOR
+Participant "**:Logic**" as logic LOGIC_COLOR
+Participant "**:Model**" as model MODEL_COLOR
+Participant "**:Storage**" as storage STORAGE_COLOR
 
 user -[USER_COLOR]> ui : "deleteitem 1"
 activate ui UI_COLOR
@@ -23,7 +27,7 @@ logic -[LOGIC_COLOR]> storage : savePackingList(packingListManager)
 activate storage STORAGE_COLOR
 
 storage -[STORAGE_COLOR]> storage : Save to file
-activate storage STORAGE_COLOR_T1
+activate storage STORAGE_COLOR_T2
 return
 storage --[STORAGE_COLOR]> logic
 deactivate storage
