@@ -1,17 +1,10 @@
-/'
- 'Commonly used styles and colors across diagrams.
- 'Refer to https://plantuml-documentation.readthedocs.io/en/latest for a more
- 'comprehensive list of skinparams.
- '/
-
-
-'T1 through T4 are shades of the original color from lightest to darkest
 !define BACKGROUND_COLOR #EEEBDC
 !define MAIN_DARK_COLOR #171D40
 !define MAIN_MEDIUM_DARK_COLOR MidNightBlue
-!define MAIN_MEDIUM_COLOR MediumAquaMarine
+!define MAIN_MEDIUM_COLOR #A2E5F9
 !define MAIN_LIGHT_COLOR #C6EAE3
 
+'T1 through T4 are shades of the original color from lightest to darkest
 !define UI_COLOR #1D8900
 !define UI_COLOR_T1 #83E769
 !define UI_COLOR_T2 #3FC71B
@@ -51,7 +44,7 @@ skinparam PackageStyle Rectangle
 
 skinparam Default {
     FontColor MAIN_DARK_COLOR
-    FontName Malgun Gothic
+    FontName Arial
     TextAlignment center
 }
 
