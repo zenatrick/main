@@ -1,10 +1,7 @@
 @startuml
 !include ../style.puml
-skinparam arrowThickness 1.1
-skinparam arrowColor LOGIC_COLOR_T4
-skinparam classBackgroundColor LOGIC_COLOR
 
-interface ReadOnlyDaySchedule <<interface>>
+class ReadOnlyDaySchedule <<interface>>
 
 
 Trip "1  "<.. TripManager
