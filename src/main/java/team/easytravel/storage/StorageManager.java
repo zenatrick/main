@@ -16,7 +16,7 @@ import team.easytravel.model.listmanagers.ReadOnlyUserPrefs;
 import team.easytravel.model.listmanagers.UserPrefs;
 import team.easytravel.model.trip.TripManager;
 import team.easytravel.storage.accommodationbooking.AccommodationBookingStorage;
-import team.easytravel.storage.activity.ActivityManagerStorage;
+import team.easytravel.storage.activity.ActivityStorage;
 import team.easytravel.storage.fixedexpense.FixedExpenseStorage;
 import team.easytravel.storage.packinglist.PackingListStorage;
 import team.easytravel.storage.transportbooking.TransportBookingStorage;
@@ -32,7 +32,7 @@ public class StorageManager implements Storage {
     private FixedExpenseStorage fixedExpenseStorage;
     private AccommodationBookingStorage accommodationBookingStorage;
     private UserPrefsStorage userPrefsStorage;
-    private ActivityManagerStorage activityManagerStorage;
+    private ActivityStorage activityStorage;
     private PackingListStorage packingListStorage;
     private TripManagerStorage tripManagerStorage;
 
@@ -41,21 +41,21 @@ public class StorageManager implements Storage {
      *
      * @param transportBookingStorage     the transport booking storage
      * @param fixedExpenseStorage         the fixed expense storage
-     * @param activityManagerStorage      the activity manager storage
+     * @param activityStorage      the activity manager storage
      * @param accommodationBookingStorage the accommodation booking storage
      * @param packingListStorage          the packing list storage
      * @param userPrefsStorage            the user prefs storage
      */
     public StorageManager(TransportBookingStorage transportBookingStorage,
                           FixedExpenseStorage fixedExpenseStorage,
-                          ActivityManagerStorage activityManagerStorage,
+                          ActivityStorage activityStorage,
                           AccommodationBookingStorage accommodationBookingStorage,
                           PackingListStorage packingListStorage,
                           TripManagerStorage tripManagerStorage,
                           UserPrefsStorage userPrefsStorage) {
         this.transportBookingStorage = transportBookingStorage;
         this.fixedExpenseStorage = fixedExpenseStorage;
-        this.activityManagerStorage = activityManagerStorage;
+        this.activityStorage = activityStorage;
         this.accommodationBookingStorage = accommodationBookingStorage;
         this.packingListStorage = packingListStorage;
         this.tripManagerStorage = tripManagerStorage;
@@ -147,32 +147,32 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getActivityManagerStorageFilePath() {
-        return activityManagerStorage.getActivityManagerStorageFilePath();
+        return activityStorage.getActivityManagerStorageFilePath();
     }
 
     @Override
     public Optional<ReadOnlyActivityManager> readActivityManager() throws DataConversionException,
             IOException {
-        return readActivityManager(activityManagerStorage.getActivityManagerStorageFilePath());
+        return readActivityManager(activityStorage.getActivityManagerStorageFilePath());
     }
 
     @Override
     public Optional<ReadOnlyActivityManager> readActivityManager(
             Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return activityManagerStorage.readActivityManager(filePath);
+        return activityStorage.readActivityManager(filePath);
     }
 
     @Override
     public void saveActivityManager(ReadOnlyActivityManager activityManager) throws IOException {
-        saveActivityManager(activityManager, activityManagerStorage.getActivityManagerStorageFilePath());
+        saveActivityManager(activityManager, activityStorage.getActivityManagerStorageFilePath());
     }
 
     @Override
     public void saveActivityManager(
             ReadOnlyActivityManager activityManager, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        activityManagerStorage.saveActivityManager(activityManager, filePath);
+        activityStorage.saveActivityManager(activityManager, filePath);
     }
 
     // ================ AccommodationBookingManager methods ==============================

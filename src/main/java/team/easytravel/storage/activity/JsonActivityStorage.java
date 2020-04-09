@@ -17,13 +17,13 @@ import team.easytravel.model.listmanagers.ReadOnlyActivityManager;
 /**
  * A class to access ActivityManager data stored as a json file on the hard disk.
  */
-public class JsonActivityManagerStorage implements ActivityManagerStorage {
+public class JsonActivityStorage implements ActivityStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonActivityManagerStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonActivityStorage.class);
 
     private Path filePath;
 
-    public JsonActivityManagerStorage(Path filePath) {
+    public JsonActivityStorage(Path filePath) {
         this.filePath = filePath;
     }
 

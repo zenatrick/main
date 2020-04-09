@@ -11,7 +11,7 @@ import team.easytravel.model.listmanagers.ReadOnlyActivityManager;
 /**
  * Represents a storage for {@link ActivityManager}.
  */
-public interface ActivityManagerStorage {
+public interface ActivityStorage {
 
     /**
      * Returns the file path of the data file.

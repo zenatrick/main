@@ -37,8 +37,8 @@ import team.easytravel.storage.StorageManager;
 import team.easytravel.storage.UserPrefsStorage;
 import team.easytravel.storage.accommodationbooking.AccommodationBookingStorage;
 import team.easytravel.storage.accommodationbooking.JsonAccommodationBookingStorage;
-import team.easytravel.storage.activity.ActivityManagerStorage;
-import team.easytravel.storage.activity.JsonActivityManagerStorage;
+import team.easytravel.storage.activity.ActivityStorage;
+import team.easytravel.storage.activity.JsonActivityStorage;
 import team.easytravel.storage.fixedexpense.FixedExpenseStorage;
 import team.easytravel.storage.fixedexpense.JsonFixedExpenseStorage;
 import team.easytravel.storage.packinglist.JsonPackingListStorage;
@@ -97,8 +97,8 @@ public class MainApp extends Application {
                 new JsonTransportBookingStorage((userPrefs.getTransportBookingStorageFilePath()));
         FixedExpenseStorage fixedExpenseStorage =
                 new JsonFixedExpenseStorage(userPrefs.getFixedExpenseStorageFilePath());
-        ActivityManagerStorage activityManagerStorage =
-                new JsonActivityManagerStorage(userPrefs.getActivityStorageFilePath());
+        ActivityStorage activityStorage =
+                new JsonActivityStorage(userPrefs.getActivityStorageFilePath());
         AccommodationBookingStorage accommodationBookingStorage =
                 new JsonAccommodationBookingStorage((userPrefs.getAccommodationBookingStorageFilePath()));
         PackingListStorage packingListStorage = new JsonPackingListStorage(userPrefs.getPackingListStorageFilePath());
@@ -107,7 +107,7 @@ public class MainApp extends Application {
         storage = new StorageManager(
                 transportBookingStorage,
                 fixedExpenseStorage,
-                activityManagerStorage,
+                activityStorage,
                 accommodationBookingStorage,
                 packingListStorage,
                 tripManagerStorage,

@@ -1,5 +1,5 @@
 @startuml
-!include style.puml
+!include ../style.puml
 
 hide member
 skinparam Class {
@@ -13,7 +13,7 @@ skinparam ArrowColor MODEL_COLOR_T2
 Class HiddenOutside BACKGROUND_COLOR
 
 Package Model <<Rectangle>> {
-Class ReadOnlyXYZ <<Interface>>
+Class ReadOnlyXYZManager <<Interface>>
 Class Model <<Interface>>
 Class ObservableList <<Interface>>
 Class XYZManager
@@ -21,14 +21,22 @@ Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
+
+note left of XYZManager
+""XYZManager"" = ""ActivityManager"",
+""TransportBookingManager"", etc
+
+""ReadOnlyXYZ"" = ""ReadOnlyActivityManager"",
+""ReadOnlyXYZTransportBookingManager"", etc
+end note
 }
 
 HiddenOutside ..> Model
 
-XYZManager .|> ReadOnlyXYZ
+XYZManager .|> ReadOnlyXYZManager
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "6 " XYZManager
+ModelManager o--> XYZManager
 ModelManager o-left-> " 1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 @enduml
