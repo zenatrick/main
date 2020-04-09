@@ -1,15 +1,15 @@
 @startuml
 !include ../style.puml
 
-Class Logic <<Interface>> LOGIC_COLOR_T1 {
-+ execute()
+Class Logic <<Interface>> {
++ execute() : CommandResult
 }
 
-Class LogicManager LOGIC_COLOR_T1 {
-+ execute()
+Class LogicManager {
++ execute() : CommandResult
 }
 
-Class TransportBooking MODEL_COLOR_T1 {
+Class TransportBooking {
 - mode : Mode
 - startLocation : Location
 - endLocation : Location
@@ -19,33 +19,33 @@ Class TransportBooking MODEL_COLOR_T1 {
 + isTimeValid(DateTime) : boolean
 }
 
-Class Model <<Interface>> MODEL_COLOR_T1 {
+Class Model <<Interface>> {
 + addTransportBooking()
 + scheduleTransport(TransportBooking)
 + unscheduleTransport(DayScheduleEntry)
 }
 
-Class ModelManager MODEL_COLOR_T1 {
+Class ModelManager {
 + addTransportBooking()
 + scheduleTransport(TransportBooking)
 + unscheduleTransport(DayScheduleEntry)
 }
 
-Class TransportBookingManager MODEL_COLOR_T1 {
+Class TransportBookingManager {
 + addTransportBooking()
 }
 
-Class TripManager MODEL_COLOR_T1 {
+Class TripManager {
 + scheduleTransport(TransportBooking)
 + unscheduleTransport(DayScheduleEntry)
 }
 
-Class DaySchedule MODEL_COLOR_T1 {
+Class DaySchedule {
 + addSchedule(DayScheduleEntry)
 + removeScheduleEntry(DayScheduleEntry)
 }
 
-Class DayScheduleEntry MODEL_COLOR_T1 {
+Class DayScheduleEntry {
 - type : Type
 - title : Title
 - startDateTime : DateTime

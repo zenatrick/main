@@ -10,7 +10,6 @@ box Model MODEL_COLOR_T1
 skinparam BoxWidth 5000
 participant "**m:ModelManager**" as ModelManager MODEL_COLOR
 participant "**:TripManager**" as TripManager MODEL_COLOR
-participant "**:DayScheduleEntry**"  as DayScheduleEntryStatic <<static>> MODEL_COLOR
 participant "**e:DayScheduleEntry**" as DayScheduleEntry MODEL_COLOR
 participant "**:DaySchedule**" as DaySchedule MODEL_COLOR
 
@@ -31,18 +30,12 @@ activate ModelManager
 ModelManager -> TripManager : scheduleActivity(activity)
 activate TripManager
 
-TripManager -> DayScheduleEntryStatic : fromActivity(activity)
-activate DayScheduleEntryStatic
-
 create DayScheduleEntry
-DayScheduleEntryStatic -> DayScheduleEntry
+TripManager -> DayScheduleEntry : new DayScheduleEntry(\nactivity)
 activate DayScheduleEntry
 
-DayScheduleEntry --> DayScheduleEntryStatic : e
+DayScheduleEntry --> TripManager : e
 deactivate DayScheduleEntry
-
-DayScheduleEntryStatic --> TripManager : e
-deactivate
 
 TripManager -> DaySchedule : addScheduleEntry(e)
 activate DaySchedule
