@@ -23,9 +23,10 @@ package Parser {
     Class Prefix
 }
 
+
 package Command {
 Class XYZCommand
-note right of XYZCommand: ""XYZCommand"" = ""AddItemCommand"",\n""DeleteActivityCommand"", etc
+
 Class CommandResult
 Class "{abstract}\nCommand" as Command
 }
@@ -65,4 +66,10 @@ Logic ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult
 CommandResult -[hidden]-> Parser
+
+note right of XYZCommand
+""XYZCommand"" = ""AddItemCommand"",
+""DeleteActivityCommand"", etc
+end note
+
 @enduml
