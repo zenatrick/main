@@ -1,28 +1,22 @@
 @startuml
 !include ../style.puml
 
-class ReadOnlyDaySchedule <<interface>>
-
-
-Trip "1  "<.. TripManager
-DaySchedule" *   " <.left. TripManager : contains <
-ReadOnlyDaySchedule <|.. DaySchedule
-
-class TripManager {
+Class ReadOnlyDaySchedule <<interface>>
+Class TripManager {
     - hasTrip:boolean
-    - trip:Trip
     + hasTrip(): boolean
 }
-
-class Trip {
-    - title:Title
-    - startDate:Date
-    - endDate:Date
-    - numDays:int
-    - budget:Budget
-    - exchangeRate:ExchangeRate
+Class Trip {
+    - title : Title
+    - startDate : Date
+    - endDate : Date
+    - numDays : int
+    - budget : Budget
+    - exchangeRate : ExchangeRate
 }
 
-show members
+Trip "0..1  "<-- TripManager
+DaySchedule " * " <-left TripManager : "                "
+ReadOnlyDaySchedule <|.. DaySchedule
 
 @enduml
