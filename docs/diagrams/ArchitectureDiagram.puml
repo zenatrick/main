@@ -16,7 +16,7 @@ skinparam ArrowColor black
 !define MODEL_COLOR MODEL_COLOR_T2
 
 Package "" {
-    Class UI UI_COLOR
+    Class Ui UI_COLOR
     Class Logic LOGIC_COLOR
     Class Storage STORAGE_COLOR
     Class Model MODEL_COLOR
@@ -32,12 +32,12 @@ Class "<$user>" as User #092491
 Class "<$documents>" as File #00827E
 
 
-HiddenUI -up[hidden]-> UI
+HiddenUI -up[hidden]-> Ui
 HiddenModel -left[hidden]-> Model
 Main -up-> HiddenUI
 Main -left-> HiddenModel
-UI -> Logic
-UI -right-> Model
+Ui -> Logic
+Ui -right-> Model
 Logic -> Storage
 Logic -down-> Model
 
@@ -47,6 +47,6 @@ Hidden .down.> Commons
 Hidden .down.> Commons
 
 Storage .right.>File
-User --> UI
+User --> Ui
 Main --> Hidden
 @enduml

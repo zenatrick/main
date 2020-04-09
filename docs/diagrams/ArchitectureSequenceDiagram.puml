@@ -6,7 +6,7 @@ skinparam ParticipantFontColor BACKGROUND_COLOR
 !define MODEL_COLOR MODEL_COLOR_T2
 
 Actor User as user USER_COLOR
-Participant "**:UI**" as ui UI_COLOR
+Participant "**:Ui**" as ui UI_COLOR
 Participant "**:Logic**" as logic LOGIC_COLOR
 Participant "**:Model**" as model MODEL_COLOR
 Participant "**:Storage**" as storage STORAGE_COLOR
