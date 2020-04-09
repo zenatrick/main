@@ -1,4 +1,4 @@
-= Easy Travel - Testing
+= E.T. - Testing
 :site-section: DeveloperGuide
 :toc:
 :toc-title:
