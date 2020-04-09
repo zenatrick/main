@@ -1,4 +1,4 @@
-package team.easytravel.testutil;
+package team.easytravel.testutil.activity;
 
 import java.util.HashSet;
 import java.util.Optional;

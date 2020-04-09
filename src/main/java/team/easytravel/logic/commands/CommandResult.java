@@ -126,9 +126,15 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
-        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && checkStatus.equals(otherCommandResult.checkStatus)
-                && action.equals(otherCommandResult.action);
+
+        if (checkStatus == null) {
+            return feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                    && action.equals(otherCommandResult.action);
+        } else {
+            return feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                    && checkStatus.equals(otherCommandResult.checkStatus)
+                    && action.equals(otherCommandResult.action);
+        }
     }
 
     @Override

@@ -17,7 +17,7 @@ import team.easytravel.model.ModelStub;
 import team.easytravel.model.listmanagers.ActivityManager;
 import team.easytravel.model.listmanagers.ReadOnlyActivityManager;
 import team.easytravel.model.listmanagers.activity.Activity;
-import team.easytravel.testutil.ActivityBuilder;
+import team.easytravel.testutil.activity.ActivityBuilder;
 
 class AddActivityCommandTest {
 
