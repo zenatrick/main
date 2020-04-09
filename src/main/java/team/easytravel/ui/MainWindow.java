@@ -37,7 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     private ResultDisplay resultDisplay;
-    private CheckStatusWindow checkStatusWindow;
+    private StatusWindow statusWindow;
     private ListPresetWindow listPresetWindow;
     private SideTabsBar sideTabsBar;
 
@@ -75,7 +75,7 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
-        checkStatusWindow = new CheckStatusWindow();
+        statusWindow = new StatusWindow();
         listPresetWindow = new ListPresetWindow();
         sideTabsBar = new SideTabsBar(tabName -> clearFunction -> button -> switchTab(tabName, clearFunction, button));
         helpTabPanel = new HelpTabPanel(logic.getHelpQuestions());
@@ -177,10 +177,10 @@ public class MainWindow extends UiPart<Stage> {
      * Opens the checkstatus window or focuses on it if it's already opened.
      */
     public void handleShowStatus(List<String> status) {
-        if (checkStatusWindow.isShowing()) {
-            checkStatusWindow.close();
+        if (statusWindow.isShowing()) {
+            statusWindow.close();
         }
-        checkStatusWindow.show(status);
+        statusWindow.show(status);
     }
 
     void show() {
@@ -192,6 +192,14 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
+        if (statusWindow.isShowing()) {
+            statusWindow.close();
+        }
+
+        if (listPresetWindow.isShowing()) {
+            listPresetWindow.close();
+        }
+
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);

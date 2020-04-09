@@ -59,4 +59,11 @@ public class ListPresetWindow extends UiPart<Stage> {
     public void focus() {
         getRoot().requestFocus();
     }
+
+    /**
+     * Closes this window.
+     */
+    public void close() {
+        getRoot().close();
+    }
 }

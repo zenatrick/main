@@ -12,19 +12,33 @@ Class HiddenOutside BACKGROUND_COLOR
 
 hide member
 
-package UI <<Rectangle>>{
+package Ui <<Rectangle>>{
+note top of Hidden
+""XYZWindow"" = ""StatusWindow"",
+""ListPresetWindow""
+
+""XYZTabPanel"" = ""HelpTabPanel"",
+""ActivityTabPanel"", etc
+
+""XYZCard"" = ""HelpCard"",
+""ActivityCard""
+end note
 Class Ui <<Interface>>
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
-Class HelpWindow
+Class XYZWindow
 Class ResultDisplay
 Class SideTabsBar
-Class XYZTabPanel
+Class "{abstract}\nTabPanel" as TabPanel
 Class XYZCard
 Class DashboardPanel
 Class CommandBox
+Class XYZTabPanel
+Class Hidden
 }
+Hidden -down- TabPanel
+hide Hidden
 
 package Model <<Rectangle>> {
 Class HiddenModel BACKGROUND_COLOR
@@ -39,33 +53,35 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> MainWindow
-MainWindow --> HelpWindow
+MainWindow -down-> XYZWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> SideTabsBar
-MainWindow *-down-> XYZTabPanel
+MainWindow *-down-> TabPanel
 MainWindow *-down-> DashboardPanel
 
-XYZTabPanel -down-> XYZCard
+XYZTabPanel -up-|> TabPanel
+XYZTabPanel --> " *" XYZCard
 
-MainWindow -right-|> UiPart
-
+MainWindow -|> UiPart
 ResultDisplay --|> UiPart
 SideTabsBar -right-|> UiPart
 CommandBox --|> UiPart
-XYZTabPanel --|> UiPart
+TabPanel --|> UiPart
 XYZCard --|> UiPart
 DashboardPanel --|> UiPart
-HelpWindow -down-|> UiPart
+XYZWindow -down-|> UiPart
 
-XYZCard ..> Model
+XYZCard .up> Model
+Model <.. XYZWindow
+
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-XYZTabPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
+TabPanel -[hidden]left- XYZWindow
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- DashboardPanel
+DashboardPanel -[hidden]left- SideTabsBar
 
-MainWindow -[hidden]-|> UiPart
+
 @enduml

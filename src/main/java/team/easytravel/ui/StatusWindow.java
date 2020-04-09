@@ -12,10 +12,10 @@ import team.easytravel.commons.core.LogsCenter;
 /**
  * Controller for a help page
  */
-public class CheckStatusWindow extends UiPart<Stage> {
+public class StatusWindow extends UiPart<Stage> {
 
-    private static final Logger logger = LogsCenter.getLogger(CheckStatusWindow.class);
-    private static final String FXML = "CheckStatusWindow.fxml";
+    private static final Logger logger = LogsCenter.getLogger(StatusWindow.class);
+    private static final String FXML = "StatusWindow.fxml";
 
     @FXML
     private Label scheduleMessage;
@@ -33,7 +33,7 @@ public class CheckStatusWindow extends UiPart<Stage> {
      *
      * @param root Stage to use as the root of the HelpWindow.
      */
-    public CheckStatusWindow(Stage root) {
+    public StatusWindow(Stage root) {
         super(FXML, root);
         root.setTitle("Check Status");
     }
@@ -41,7 +41,7 @@ public class CheckStatusWindow extends UiPart<Stage> {
     /**
      * Creates a new HelpWindow.
      */
-    public CheckStatusWindow() {
+    public StatusWindow() {
         this(new Stage());
     }
 
@@ -73,7 +73,7 @@ public class CheckStatusWindow extends UiPart<Stage> {
         String percentage = packingList.split(":")[2];
         double nominator = Double.parseDouble(percentage.split("/")[0]);
         double denominator = Double.parseDouble(percentage.split("/")[1]);
-        packingListIndicator.getStylesheets().add("view/CheckStatus.css");
+        packingListIndicator.getStylesheets().add("view/StatusWindow.css");
 
         if (denominator == 0.0) {
             packingListMessage.setText("[❗] There are no items in the packing list. "
