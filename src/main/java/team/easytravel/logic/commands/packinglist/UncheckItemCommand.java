@@ -14,10 +14,7 @@ import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
-import team.easytravel.model.listmanagers.packinglistitem.ItemCategory;
-import team.easytravel.model.listmanagers.packinglistitem.ItemName;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
-import team.easytravel.model.listmanagers.packinglistitem.Quantity;
 import team.easytravel.model.trip.TripManager;
 
 /**

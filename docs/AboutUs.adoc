@@ -11,7 +11,7 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 == Project Team
 
 === Chau Teng Le
-image::zenatrick.png[width="150", align="left"]
+image::team-profile/zenatrick.png[width="150", align="left"]
 {empty}[https://github.com/zenatrick[github]] [<<zenatrick#, portfolio>>]
 
 Role: Team Lead +
@@ -22,7 +22,7 @@ Components: Model, UI
 '''
 
 === Joshua Lay
-image::joshlay96.png[width="150", align="left"]
+image::team-profile/joshlay96.png[width="150", align="left"]
 {empty}[http://github.com/joshlay96[github]] [<<joshlay96#, portfolio>>]
 
 Role: Developer +
@@ -33,7 +33,7 @@ Components: Common, Storage
 '''
 
 === Charlotte Lim
-image::./team-profile/charlotte.png[width="150", align="left"]
+image::./team-profile/deunitato.png[width="150", align="left"]
 {empty}[http://github.com/deunitato[github]] [<<deunitato#, portfolio>>]
 
 Role: Developer +
@@ -44,7 +44,7 @@ Components: Logic, Model
 '''
 
 === Joshua Wee
-image::jwee97.png[width="150", align="left"]
+image::team-profile/jwee97.png[width="150", align="left"]
 {empty}[http://github.com/jwee97[github]] [<<jwee97#, portfolio>>]
 
 Role: Developer +
@@ -55,7 +55,7 @@ Components: Logic, Storage
 '''
 
 === Catherine Loy
-image::loycatherine.png[width="150", align="left"]
+image::team-profile/loycatherine.png[width="150", align="left"]
 {empty}[http://github.com/loycatherine[github]] [<<loycatherine#, portfolio>>]
 
 Role: Developer +
