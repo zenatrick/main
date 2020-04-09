@@ -12,7 +12,7 @@ participant "**trip:Trip**" as Trip MODEL_COLOR
 participant "**:Trip**" as Trip MODEL_COLOR
 end box
 
-group sd creation of trip
+
 [-> SetTripCommand : execute()
 activate SetTripCommand
 
@@ -62,5 +62,5 @@ deactivate CommandResult
 [<-- ScheduleActivityCommand : result
 deactivate ScheduleActivityCommand
 
-end
+
 @enduml

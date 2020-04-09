@@ -8,19 +8,22 @@ participant "**:SetTripCommandParser**" as SetTripCommandParser LOGIC_COLOR
 participant "**:SetTripCommand**" as SetTripCommand LOGIC_COLOR
 end box
 
-[-> LogicManager : execute("settrip title/graduation trip \n budget/2000 exchangerate/1.02 \nstartdate/20-09-20 enddate/28-09-20")
+[-> LogicManager : execute(userInput)
 activate LogicManager
 
-LogicManager-> EtParser : execute("settrip title/graduation trip \n budget/2000 exchangerate/1.02 \nstartdate/20-09-20 enddate/28-09-20")
+LogicManager-> EtParser : execute(userInput)
 activate EtParser
 
 create SetTripCommandParser
 
 EtParser -> SetTripCommandParser
+activate SetTripCommandParser
+SetTripCommandParser --> EtParser
+deactivate SetTripCommandParser
 
 deactivate SetTripCommand
 
-EtParser -> SetTripCommandParser : parse("settrip title/graduation trip \n budget/2000 exchangerate/1.02 \n startdate/20-09-20 enddate/28-09-20")
+EtParser -> SetTripCommandParser : parse(argument)
 activate SetTripCommandParser
 
 create SetTripCommand
@@ -32,6 +35,7 @@ deactivate SetTripCommand
 
 SetTripCommandParser --> EtParser
 deactivate SetTripCommandParser
+
 
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 SetTripCommandParser -[hidden]-> EtParser
@@ -45,6 +49,10 @@ activate SetTripCommand
 
 SetTripCommand --> LogicManager : result
 deactivate SetTripCommand
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SetTripCommand -[hidden]-> EtParser
+destroy SetTripCommand
 
 [<--LogicManager : result
 deactivate LogicManager
