@@ -23,7 +23,7 @@ import team.easytravel.model.listmanagers.UserPrefs;
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
-import team.easytravel.testutil.TypicalActivity;
+import team.easytravel.testutil.activity.TypicalActivity;
 import team.easytravel.testutil.trip.TripBuilder;
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for

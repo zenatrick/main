@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static team.easytravel.testutil.Assert.assertThrows;
+
 import static team.easytravel.testutil.TypicalAccommodation.ACCOMMODATION_BOOKING_BACKPACKER;
 import static team.easytravel.testutil.TypicalAccommodation.ACCOMMODATION_BOOKING_HOSTEL;
 import static team.easytravel.testutil.TypicalAccommodation.ACCOMMODATION_BOOKING_HOTEL;
-import static team.easytravel.testutil.TypicalActivity.ACTIVITY_DISNEYLAND;
-import static team.easytravel.testutil.TypicalActivity.ACTIVITY_PEAK;
+
 import static team.easytravel.testutil.TypicalFixedExpense.FIXED_EXPENSE_HOTELS;
 import static team.easytravel.testutil.TypicalFixedExpense.FIXED_EXPENSE_PLANE;
 import static team.easytravel.testutil.TypicalFixedExpense.FIXED_EXPENSE_WIFI;
@@ -17,6 +17,8 @@ import static team.easytravel.testutil.TypicalPackingListItem.PACKING_LIST_SHIRT
 import static team.easytravel.testutil.TypicalTransportBooking.TRANSPORT_BOOKING_BUS;
 import static team.easytravel.testutil.TypicalTransportBooking.TRANSPORT_BOOKING_PLANE;
 import static team.easytravel.testutil.TypicalTransportBooking.TRANSPORT_BOOKING_TRAIN;
+import static team.easytravel.testutil.activity.TypicalActivity.ACTIVITY_DISNEYLAND;
+import static team.easytravel.testutil.activity.TypicalActivity.ACTIVITY_PEAK;
 
 import java.util.Comparator;
 

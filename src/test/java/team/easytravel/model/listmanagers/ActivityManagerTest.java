@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static team.easytravel.testutil.Assert.assertThrows;
-import static team.easytravel.testutil.TypicalActivity.ACTIVITY_DISNEYLAND;
-import static team.easytravel.testutil.TypicalActivity.getTypicalActivityManager;
+import static team.easytravel.testutil.activity.TypicalActivity.ACTIVITY_DISNEYLAND;
+import static team.easytravel.testutil.activity.TypicalActivity.getTypicalActivityManager;
 
 import java.util.Arrays;
 import java.util.Collection;
