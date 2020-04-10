@@ -34,6 +34,17 @@ public class TypicalActivity {
             new HashSet<>(), Optional.empty()
     );
 
+    //Dont Touch these Activities below, used for storage
+    public static final Activity ACTIVITY_BUNGEE_JUMP = new Activity(
+            new Title("Bungee Jump"), new Duration(1), new Location("New Zealand"),
+            new HashSet<>(), Optional.empty()
+    );
+
+    public static final Activity ACTIVITY_FLY_KITE = new Activity(
+            new Title("Fly Kite"), new Duration(1), new Location("Singapore"),
+            new HashSet<>(), Optional.empty()
+    );
+
     private TypicalActivity() {
     }
 
