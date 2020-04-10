@@ -1,4 +1,4 @@
-package team.easytravel.logic.commands.packinglisttest;
+package team.easytravel.logic.commands.packinglist;
 
 import static java.util.Objects.requireNonNull;
 

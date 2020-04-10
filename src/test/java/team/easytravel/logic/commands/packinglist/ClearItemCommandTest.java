@@ -1,10 +1,9 @@
-package team.easytravel.logic.commands.packinglisttest;
+package team.easytravel.logic.commands.packinglist;
 
 import static team.easytravel.logic.commands.CommandTestUtil.assertPackingListItemCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 
-import team.easytravel.logic.commands.packinglist.ClearItemCommand;
 import team.easytravel.model.Model;
 import team.easytravel.model.ModelManager;
 import team.easytravel.model.listmanagers.AccommodationBookingManager;

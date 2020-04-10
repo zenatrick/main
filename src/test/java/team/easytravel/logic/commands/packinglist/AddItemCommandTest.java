@@ -1,4 +1,4 @@
-package team.easytravel.logic.commands.packinglisttest;
+package team.easytravel.logic.commands.packinglist;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
-import team.easytravel.logic.commands.packinglist.AddItemCommand;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
 import team.easytravel.testutil.packinglist.PackingListItemBuilder;
 
