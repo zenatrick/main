@@ -18,7 +18,7 @@ class JsonSerializableTransportBookingManagerTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableTransportBookingManagerTest");
     private static final Path TYPICAL_TRANSPORT_FILE = TEST_DATA_FOLDER.resolve("typicalTransportBookingManager.json");
     private static final Path INVALID_TRANSPORT_FILE = TEST_DATA_FOLDER.resolve("invalidTransportBookingManager.json");
-    private static final Path DUPLICATE_TRANSPORT_FILE = TEST_DATA_FOLDER.resolve("duplicateTrnasportBookingManager.json");
+    private static final Path DUPLICATE_TRANSPORT_FILE = TEST_DATA_FOLDER.resolve("duplicateTransportBookingManager.json");
 
 
     @Test

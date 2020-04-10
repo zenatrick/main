@@ -63,20 +63,20 @@ class JsonAdaptedTransportBookingTest {
 
 
     @Test
-    public void toModelType_invalidStartDateTime_throwsIllegalArgumentException() {
+    public void toModelType_invalidStartDateTime_throwsIllegalValueException() {
         JsonAdaptedTransportBooking transportBooking =
                 new JsonAdaptedTransportBooking(VALID_MODE, VALID_START_LOCATION, VALID_END_LOCATION,
                         INVALID_START_DATE_TIME, VALID_END_DATE_TIME);
         String expectedMessage = DateTime.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalArgumentException.class, expectedMessage, transportBooking::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, transportBooking::toModelType);
     }
 
     @Test
-    public void toModelType_invalidEndDateTime_throwsIllegalArgumentException() {
+    public void toModelType_invalidEndDateTime_throwsIllegalValueException() {
         JsonAdaptedTransportBooking transportBooking =
                 new JsonAdaptedTransportBooking(VALID_MODE, VALID_START_LOCATION, VALID_END_LOCATION,
                         VALID_START_DATE_TIME, INVALID_END_DATE_TIME);
         String expectedMessage = DateTime.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalArgumentException.class, expectedMessage, transportBooking::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, transportBooking::toModelType);
     }
 }

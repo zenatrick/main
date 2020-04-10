@@ -2,7 +2,7 @@ package team.easytravel.storage.accommodationbooking;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static team.easytravel.testutil.Assert.assertThrows;
-import static team.easytravel.testutil.TypicalAccommodations.ACCOMMODATION_BOOKING_BACKPACKER;
+import static team.easytravel.testutil.TypicalAccommodation.ACCOMMODATION_BOOKING_BACKPACKER;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,6 @@ import team.easytravel.model.listmanagers.accommodationbooking.AccommodationName
 import team.easytravel.model.listmanagers.accommodationbooking.Day;
 import team.easytravel.model.listmanagers.accommodationbooking.Remark;
 import team.easytravel.model.util.attributes.Location;
-import team.easytravel.testutil.TypicalAccommodations;
 
 
 /**

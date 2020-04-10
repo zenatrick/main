@@ -18,8 +18,6 @@ import org.junit.jupiter.api.io.TempDir;
 import team.easytravel.commons.exceptions.DataConversionException;
 import team.easytravel.model.listmanagers.ActivityManager;
 import team.easytravel.model.listmanagers.ReadOnlyActivityManager;
-import team.easytravel.model.listmanagers.activity.Activity;
-import team.easytravel.testutil.TypicalAccommodations;
 import team.easytravel.testutil.TypicalActivity;
 
 class JsonActivityStorageTest {
