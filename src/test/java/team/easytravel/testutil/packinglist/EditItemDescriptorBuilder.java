@@ -1,33 +1,38 @@
 package team.easytravel.testutil.packinglist;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import team.easytravel.logic.commands.packinglist.EditItemCommand;
 import team.easytravel.logic.commands.packinglist.EditItemCommand.EditItemDescriptor;
-import team.easytravel.model.listmanagers.activity.Activity;
-import team.easytravel.model.listmanagers.activity.Duration;
+import team.easytravel.model.listmanagers.packinglistitem.ItemCategory;
 import team.easytravel.model.listmanagers.packinglistitem.ItemName;
+import team.easytravel.model.listmanagers.packinglistitem.Quantity;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
-import team.easytravel.model.util.attributes.Location;
-import team.easytravel.model.util.attributes.Title;
-import team.easytravel.model.util.attributes.tag.Tag;
-import team.easytravel.testutil.activity.EditActivityDescriptorBuilder;
 
+/**
+ * The type Edit item descriptor builder.
+ */
 public class EditItemDescriptorBuilder {
     private EditItemDescriptor descriptor;
 
+    /**
+     * Instantiates a new Edit item descriptor builder.
+     */
     public EditItemDescriptorBuilder() {
         descriptor = new EditItemCommand.EditItemDescriptor();
     }
 
+    /**
+     * Instantiates a new Edit item descriptor builder.
+     *
+     * @param descriptor the descriptor
+     */
     public EditItemDescriptorBuilder(EditItemCommand.EditItemDescriptor descriptor) {
         this.descriptor = new EditItemCommand.EditItemDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditItemDescriptor} with fields containing {@code Item}'s details
+     *
+     * @param Item the item
      */
     public EditItemDescriptorBuilder(PackingListItem Item) {
         descriptor = new EditItemCommand.EditItemDescriptor();
@@ -39,6 +44,9 @@ public class EditItemDescriptorBuilder {
 
     /**
      * Sets the {@code title} of the {@code EditItemDescriptor} that we are building.
+     *
+     * @param itemName the item name
+     * @return the edit item descriptor builder
      */
     public EditItemDescriptorBuilder withItemName(String itemName) {
         descriptor.setItemName(new ItemName(itemName));
@@ -47,30 +55,31 @@ public class EditItemDescriptorBuilder {
 
     /**
      * Sets the {@code duration} of the {@code EditItemDescriptor} that we are building.
+     *
+     * @param quantity the quantity
+     * @return the edit item descriptor builder
      */
-    public EditItemDescriptorBuilder withDuration(Integer duration) {
-        descriptor.setDuration(new Duration(duration));
+    public EditItemDescriptorBuilder withQuantity(Integer quantity) {
+        descriptor.setQuantity(new Quantity(quantity));
         return this;
     }
 
     /**
-     * Sets the {@code Location} of the {@code EditItemDescriptor} that we are building.
+     * Sets the {@code ItemCategory} of the {@code EditItemDescriptor} that we are building.
+     *
+     * @param itemCategory the item category
+     * @return the edit item descriptor builder
      */
-    public EditItemDescriptorBuilder withLocation(String location) {
-        descriptor.setLocation(new Location(location));
+    public EditItemDescriptorBuilder withItemCategory(String itemCategory) {
+        descriptor.setItemCategory(new ItemCategory(itemCategory));
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditItemDescriptor}
-     * that we are building.
+     * Build edit item command . edit item descriptor.
+     *
+     * @return the edit item command . edit item descriptor
      */
-    public EditItemDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
-        return this;
-    }
-
     public EditItemCommand.EditItemDescriptor build() {
         return descriptor;
     }
