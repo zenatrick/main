@@ -16,17 +16,11 @@ end box
 [-> AddActivityCommand : ""execute(m)""
 activate AddActivityCommand
 
-AddActivityCommand -> ModelManager : ""hasTrip()""
-activate ModelManager
-
-ModelManager --> AddActivityCommand
-deactivate
-
 create Activity
 AddActivityCommand -> Activity : ""new Activity(title, duration, ""\n""location, tags)""
 activate Activity
 note right
-Parameter types of
+Parameter types of the
 ""Activity"" constructor:
 ""Title"", ""Duration"",
 ""Location"", ""Tag""s (optional)

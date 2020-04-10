@@ -1,0 +1,60 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant "**:CheckStatusCommand**" as CheckStatusCommand LOGIC_COLOR
+participant "**r:CommandResult**" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "**m:ModelManager**" as ModelManager MODEL_COLOR
+participant "**:TripManager**" as TripManager MODEL_COLOR
+participant "**:PackingListManager**" as PackingListManager MODEL_COLOR
+participant "**:FixedExpenseManager**" as FixedExpenseManager MODEL_COLOR
+participant "**:AccommodationBookingManager**" as AccManager MODEL_COLOR
+end box
+
+[-> CheckStatusCommand : ""execute(m)""
+activate CheckStatusCommand
+
+CheckStatusCommand -> ModelManager : ""getStatus()""
+activate ModelManager
+
+ModelManager -> TripManager : ""getScheduleStatus()""
+activate TripManager
+
+TripManager --> ModelManager
+deactivate TripManager
+
+ModelManager -> PackingListManager : ""getStatus()""
+activate PackingListManager
+
+PackingListManager --> ModelManager
+deactivate PackingListManager
+
+ModelManager -> FixedExpenseManager : ""getStatus(budget)""
+activate FixedExpenseManager
+
+FixedExpenseManager --> ModelManager
+deactivate FixedExpenseManager
+
+ModelManager -> AccManager : ""getStatus(numDays)""
+activate AccManager
+
+AccManager --> ModelManager
+deactivate AccManager
+
+ModelManager --> CheckStatusCommand
+deactivate ModelManager
+
+create CommandResult
+CheckStatusCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> CheckStatusCommand : ""r""
+deactivate CommandResult
+
+[<-- CheckStatusCommand : ""r""
+deactivate CheckStatusCommand
+
+@enduml

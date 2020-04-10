@@ -32,6 +32,7 @@ if () then ([valid command])
             booking into the
             ""TransportBookingManager"";
 
+            :Shows a success message;
         else ([else])
             :Shows an invalid
             date and time error

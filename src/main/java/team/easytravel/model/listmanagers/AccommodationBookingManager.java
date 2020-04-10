@@ -97,19 +97,19 @@ public class AccommodationBookingManager implements ReadOnlyAccommodationBooking
 
     /**
      * Checks the accommodation booking if there are any missing days that have no accommodation bookings.
-     * @param endDay the number of days of the trip
+     * @param numDays the number of days of the trip
      * @return the status for accommodation booking
      */
-    public String getStatus(int endDay) {
+    public String getStatus(int numDays) {
         StringBuilder result = new StringBuilder("[❌] Accommodation for night");
         boolean accommodationBookingIsOk = true;
-        boolean[] accommodationDayCheck = new boolean[endDay - 1];
+        boolean[] accommodationDayCheck = new boolean[numDays - 1];
 
         getAccommodationBookingList()
                 .forEach(x -> IntStream.range(x.getStartDay().value, x.getEndDay().value)
                         .forEach(y -> accommodationDayCheck[y - 1] = true));
 
-        for (int i = 0; i < endDay - 1; i++) {
+        for (int i = 0; i < numDays - 1; i++) {
             if (!accommodationDayCheck[i]) {
                 accommodationBookingIsOk = false;
                 result.append(" ").append(i + 1).append(",");

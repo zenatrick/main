@@ -1,0 +1,72 @@
+@startuml
+!include ../style.puml
+title Adding a Fixed Expense Entry
+
+start
+
+:Receives an ""addexpense"" command;
+
+note left
+    User will indicate if the
+    amount is in Singapore
+    Dollars (SGD) or Foreign
+    currency
+end note
+
+if () then ([valid command])
+
+    if () then ([trip has been set])
+
+        :Parses the ""addexpense""
+        command and its parameters;
+
+        :Gets the amount of the
+        ""FixedExpense"";
+
+        if () then ([amount in SGD])
+
+        else ([else])
+            :Converts the amount to
+            SGD using the ""Trip""'s
+            exchange rate;
+
+        endif
+
+        :Adds the ""FixedExpense"" into
+        the ""FixedExpenseManager"";
+
+        :Calculates the remaining budget;
+
+        if () then ([budget exceeded])
+
+            :Informs the user that the
+            budget has been exceeded;
+
+        else ([else])
+
+        endif
+
+        :Shows a success message
+        along with the remaining
+        budget;
+
+
+
+    else ([else])
+
+        :Shows a
+        trip-not-set
+        error message;
+
+    endif
+
+else ([else])
+    :Shows an invalid
+    command error
+    message;
+
+endif
+
+stop
+
+@enduml

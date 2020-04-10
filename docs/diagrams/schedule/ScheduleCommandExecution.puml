@@ -18,12 +18,6 @@ end box
 [-> ScheduleCommand : ""execute(m)""
 activate ScheduleCommand
 
-ScheduleCommand -> ModelManager : ""hasTrip()""
-activate ModelManager
-
-ModelManager --> ScheduleCommand
-deactivate ModelManager
-
 ScheduleCommand -> ModelManager : ""getFilteredActivityList()""
 activate ModelManager
 

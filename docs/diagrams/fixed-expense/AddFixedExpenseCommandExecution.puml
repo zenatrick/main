@@ -2,27 +2,27 @@
 !include ../style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":**AddFixedExpenseCommand**" as AddFixedExpenseCommand LOGIC_COLOR
+participant "**:AddFixedExpenseCommand**" as AddFixedExpenseCommand LOGIC_COLOR
 participant "**r:CommandResult**" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant "**toAdd:FixedExpense**" as FixedExpense MODEL_COLOR
+participant "**f:FixedExpense**" as FixedExpense MODEL_COLOR
 participant "**m:ModelManager**" as ModelManager MODEL_COLOR
 participant "**:TripManager**" as TripManager MODEL_COLOR
-participant "**FixedExpenseManager**" as FixedExpenseManager MODEL_COLOR
+participant "**:FixedExpenseManager**" as FixedExpenseManager MODEL_COLOR
 
 
 
 end box
 
-[-> AddFixedExpenseCommand : execute(m)
+[-> AddFixedExpenseCommand : ""execute(m)""
 activate AddFixedExpenseCommand
 
-AddFixedExpenseCommand-> ModelManager : getExchangeRate()
+AddFixedExpenseCommand-> ModelManager : ""getExchangeRate()""
 activate ModelManager
 
-ModelManager -> TripManager : getExchangeRate()
+ModelManager -> TripManager : ""getExchangeRate()""
 activate TripManager
 
 TripManager --> ModelManager
@@ -32,17 +32,24 @@ ModelManager --> AddFixedExpenseCommand
 deactivate ModelManager
 
 create FixedExpense
-AddFixedExpenseCommand -> FixedExpense : new FixedExpense(amount, \nfixedExpenseCategory, description)
+AddFixedExpenseCommand -> FixedExpense : ""new FixedExpense(""\n""amount, category, description)""
 activate FixedExpense
-note left: Parameters: Amount,\n FixedExpenseCategory, \nDescription
 
-FixedExpense --> AddFixedExpenseCommand : toAdd
+note right
+Parameter types of
+the ""FixedExpense""
+constructor: ""Amount"",
+""FixedExpenseCategory"",
+""Description""
+end note
+
+FixedExpense --> AddFixedExpenseCommand : f
 deactivate FixedExpense
 
-AddFixedExpenseCommand -> ModelManager : addFixedExpense(toAdd)
+AddFixedExpenseCommand -> ModelManager : ""addFixedExpense(f)""
 activate ModelManager
 
-ModelManager -> FixedExpenseManager : addFixedExpense(toAdd)
+ModelManager -> FixedExpenseManager : ""addFixedExpense(f)""
 activate FixedExpenseManager
 
 FixedExpenseManager --> ModelManager
@@ -52,10 +59,10 @@ ModelManager --> AddFixedExpenseCommand
 deactivate ModelManager
 
 
-AddFixedExpenseCommand -> ModelManager : getTotalExpense()
+AddFixedExpenseCommand -> ModelManager : ""getTotalExpense()""
 activate ModelManager
 
-ModelManager -> FixedExpenseManager : getTotalExpense()
+ModelManager -> FixedExpenseManager : ""getTotalExpense()""
 activate FixedExpenseManager
 
 FixedExpenseManager --> ModelManager
@@ -65,10 +72,10 @@ ModelManager --> AddFixedExpenseCommand
 deactivate ModelManager
 
 
-AddFixedExpenseCommand -> ModelManager : getBudget()
+AddFixedExpenseCommand -> ModelManager : ""getBudget()""
 activate ModelManager
 
-ModelManager -> TripManager :getBudget()
+ModelManager -> TripManager :""getBudget()""
 activate TripManager
 
 TripManager --> ModelManager
@@ -81,10 +88,10 @@ create CommandResult
 AddFixedExpenseCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> AddFixedExpenseCommand :r
+CommandResult --> AddFixedExpenseCommand :""r""
 deactivate CommandResult
 
-[<-- AddFixedExpenseCommand : r
+[<-- AddFixedExpenseCommand : ""r""
 deactivate AddFixedExpenseCommand
 
 AddFixedExpenseCommand -[hidden]> CommandResult

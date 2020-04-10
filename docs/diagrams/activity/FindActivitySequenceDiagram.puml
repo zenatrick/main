@@ -14,12 +14,6 @@ end box
 [-> FindActivityCommand : ""execute(m)""
 activate FindActivityCommand
 
-FindActivityCommand -> ModelManager : ""hasTrip()""
-activate ModelManager
-
-ModelManager --> FindActivityCommand
-deactivate
-
 FindActivityCommand -> ModelManager : ""updateFilteredActivityList(p)""
 activate ModelManager
 

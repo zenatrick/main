@@ -12,16 +12,16 @@ import team.easytravel.model.Model;
 import team.easytravel.model.trip.TripManager;
 
 /**
- * Adds a person to the address book.
+ * Checks the progress of the plan for the trip.
  */
 public class CheckStatusCommand extends Command {
 
     public static final String COMMAND_WORD = "status";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Check the preparedness of trip. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Check the progress of plan for your trip. "
             + "Example: " + COMMAND_WORD + " ";
 
-    public static final String MESSAGE_SUCCESS = "Check Status window is opened.";
+    public static final String MESSAGE_SUCCESS = "Progress checker window is opened.";
 
 
     @Override

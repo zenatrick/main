@@ -1,0 +1,64 @@
+@startuml
+!include ../style.puml
+start
+title Checking the Progress
+:Receives the ""status"" command;
+
+if () then ([trip has been set])
+
+    :Checks the status of the schedule;
+
+    if () then ([clashes in timings found])
+        :Shows a warning
+        message;
+    else ([else])
+        :Shows an OK message;
+    endif
+
+    :Checks the status of the packing list;
+
+    if () then ([no items added])
+        :Shows an a message
+        to remind the user
+        to add items into
+        the packing list;
+    else ([else])
+        :Shows a message that
+        informs the user the
+        number of items out of
+        the total number of items
+        has been packed;
+    endif
+
+    :Checks the remaining budget;
+
+    if () then ([total expense > budget])
+        :Shows a message
+        that warns the user
+        that the budget has
+        been exceeded and
+        by how much;
+    else ([else])
+        :Shows the remaining budget;
+    endif
+
+    :Checks the accommodation booking status;
+
+    if () then ([accommodation
+ covers all nights])
+        :Shows an OK message;
+    else ([else])
+        :Shows a message
+        that informs the user
+        of the nights with no
+        accommodation
+        bookings;
+    endif
+
+else ([else])
+    :Shows a no-trip-set
+    error message;
+endif
+
+stop
+@enduml
