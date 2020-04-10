@@ -23,6 +23,9 @@ import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBook
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.activity.ActivityContainKeywordPredicate;
 import team.easytravel.testutil.accommodationbooking.EditAccommodationBookingDescriptorBuilder;
+import team.easytravel.model.listmanagers.PackingListManager;
+import team.easytravel.model.listmanagers.packinglistitem.ItemContainsKeywordsPredicate;
+import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
 import team.easytravel.testutil.activity.EditActivityDescriptorBuilder;
 
 /**
@@ -190,6 +193,24 @@ public class CommandTestUtil {
 
     }
 
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the packingListManager, filtered packing list and selected item in {@code actualModel} remain unchanged
+     */
+    public static void assertPackingListItemCommandFailure(Command command, Model actualModel, String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        PackingListManager expectedPackingLIstManager = new PackingListManager(actualModel.getPackingListManager());
+        List<PackingListItem> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPackingList());
+
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedPackingLIstManager, actualModel.getPackingListManager());
+        assertEquals(expectedFilteredList, actualModel.getFilteredPackingList());
+
+    }
+
 
     /**
      * Updates {@code model}'s filtered list to show only the activity at the given {@code targetIndex} in the
@@ -202,6 +223,19 @@ public class CommandTestUtil {
         final String[] splitName = activity.getTitle().value.split("\\s+");
         model.updateFilteredActivityList(new ActivityContainKeywordPredicate(Arrays.asList(splitName[0])));
         assertEquals(1, model.getFilteredActivityList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the item at the given {@code targetIndex} in the
+     * {@code model}'s manager.
+     */
+    public static void showPackingListItemAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPackingList().size());
+
+        PackingListItem item = model.getFilteredPackingList().get(targetIndex.getZeroBased());
+        final String[] splitName = item.getItemName().value.split("\\s+");
+        model.updateFilteredPackingList(new ItemContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        assertEquals(1, model.getFilteredPackingList().size());
     }
 
     /**
