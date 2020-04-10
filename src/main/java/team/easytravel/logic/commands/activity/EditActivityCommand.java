@@ -122,9 +122,20 @@ public class EditActivityCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof EditActivityCommand // instanceof handles nulls
-                && index.equals(((EditActivityCommand) other).index)); // state check
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EditActivityCommand)) {
+            return false;
+        }
+
+        // state check
+        EditActivityCommand e = (EditActivityCommand) other;
+        return index.equals(e.index)
+                && editActivityDescriptor.equals(e.editActivityDescriptor);
     }
 
     /**
