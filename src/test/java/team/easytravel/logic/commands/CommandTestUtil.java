@@ -17,7 +17,9 @@ import team.easytravel.commons.core.index.Index;
 import team.easytravel.logic.commands.activity.EditActivityCommand;
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
+import team.easytravel.model.listmanagers.AccommodationBookingManager;
 import team.easytravel.model.listmanagers.ActivityManager;
+import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBooking;
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.activity.ActivityContainKeywordPredicate;
 import team.easytravel.testutil.activity.EditActivityDescriptorBuilder;
@@ -196,6 +198,36 @@ public class CommandTestUtil {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage,
                 CommandResult.Action.SWITCH_TAB_FIXED_EXPENSE);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the accommodationBookingManager, filtered accommodation booking list and selected accommodation booking in
+     * {@code actualModel} remain unchanged
+     */
+    public static void assertAccommodationBookingCommandFailure(Command command, Model actualModel,
+                                                                String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        AccommodationBookingManager expectedAccommodationBookingManager =
+                new AccommodationBookingManager(actualModel.getAccommodationBookingManager());
+        List<AccommodationBooking> expectedFilteredList =
+                new ArrayList<>(actualModel.getFilteredAccommodationBookingList());
+
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedAccommodationBookingManager, actualModel.getAccommodationBookingManager());
+        assertEquals(expectedFilteredList, actualModel.getFilteredAccommodationBookingList());
+
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the accommodation booking at the given {@code targetIndex} in
+     * the {@code model}'s manager.
+     */
+    public static void showAccommodationBookingAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredAccommodationBookingList().size());
     }
 
 }
