@@ -2,11 +2,11 @@ package team.easytravel.logic.commands.transportbooking;
 
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_TRANSPORT;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_END_LOCATION;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_MODE;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_START_LOCATION;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_END_DATE_TIME;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_END_LOCATION;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_MODE;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_START_DATE_TIME;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_START_LOCATION;
 import static team.easytravel.model.Model.PREDICATE_SHOW_ALL_TRANSPORT_BOOKINGS;
 
 import java.util.List;
@@ -38,13 +38,13 @@ public class EditTransportBookingCommand extends Command {
             + "by the index number used in the displayed transport booking list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_MODE + "MODE] "
-            + "[" + PREFIX_START_LOCATION + "START_LOCATION] "
-            + "[" + PREFIX_END_LOCATION + "END_LOCATION] "
-            + "[" + PREFIX_START_DATE_TIME + "START_TIME] "
-            + "[" + PREFIX_END_DATE_TIME + "END_TIME]\n"
+            + "[" + PREFIX_TRANSPORT_MODE + "MODE] "
+            + "[" + PREFIX_TRANSPORT_START_LOCATION + "START_LOCATION] "
+            + "[" + PREFIX_TRANSPORT_END_LOCATION + "END_LOCATION] "
+            + "[" + PREFIX_TRANSPORT_START_DATE_TIME + "START_TIME] "
+            + "[" + PREFIX_TRANSPORT_END_DATE_TIME + "END_TIME]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_END_LOCATION + "Italy";
+            + PREFIX_TRANSPORT_END_LOCATION + "Italy";
 
     public static final String MESSAGE_EDIT_TRANSPORT_BOOKING_SUCCESS = "Edited Transport Booking: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

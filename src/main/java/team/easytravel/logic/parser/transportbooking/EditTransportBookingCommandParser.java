@@ -1,11 +1,11 @@
 package team.easytravel.logic.parser.transportbooking;
 
 import static java.util.Objects.requireNonNull;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_END_LOCATION;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_MODE;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_START_LOCATION;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_END_DATE_TIME;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_END_LOCATION;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_MODE;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_START_DATE_TIME;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_START_LOCATION;
 
 import team.easytravel.commons.core.Messages;
 import team.easytravel.commons.core.index.Index;
@@ -30,9 +30,9 @@ public class EditTransportBookingCommandParser implements Parser<EditTransportBo
      */
     public EditTransportBookingCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_MODE, PREFIX_START_LOCATION, PREFIX_END_LOCATION,
-                        PREFIX_START_DATE_TIME, PREFIX_END_DATE_TIME);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TRANSPORT_MODE,
+                PREFIX_TRANSPORT_START_LOCATION, PREFIX_TRANSPORT_END_LOCATION, PREFIX_TRANSPORT_START_DATE_TIME,
+                PREFIX_TRANSPORT_END_DATE_TIME);
 
         Index index;
 
@@ -44,24 +44,25 @@ public class EditTransportBookingCommandParser implements Parser<EditTransportBo
         }
 
         EditTransportBookingDescriptor editTransportBookingDescriptor = new EditTransportBookingDescriptor();
-        if (argMultimap.getValue(PREFIX_MODE).isPresent()) {
-            editTransportBookingDescriptor.setMode(ParserUtil.parseMode(argMultimap.getValue(PREFIX_MODE).get()));
+        if (argMultimap.getValue(PREFIX_TRANSPORT_MODE).isPresent()) {
+            editTransportBookingDescriptor.setMode(
+                    ParserUtil.parseMode(argMultimap.getValue(PREFIX_TRANSPORT_MODE).get()));
         }
-        if (argMultimap.getValue(PREFIX_START_LOCATION).isPresent()) {
+        if (argMultimap.getValue(PREFIX_TRANSPORT_START_LOCATION).isPresent()) {
             editTransportBookingDescriptor.setStartLocation(
-                    ParserUtil.parseLocation(argMultimap.getValue(PREFIX_START_LOCATION).get()));
+                    ParserUtil.parseLocation(argMultimap.getValue(PREFIX_TRANSPORT_START_LOCATION).get()));
         }
-        if (argMultimap.getValue(PREFIX_END_LOCATION).isPresent()) {
+        if (argMultimap.getValue(PREFIX_TRANSPORT_END_LOCATION).isPresent()) {
             editTransportBookingDescriptor.setEndLocation(
-                    ParserUtil.parseLocation(argMultimap.getValue(PREFIX_END_LOCATION).get()));
+                    ParserUtil.parseLocation(argMultimap.getValue(PREFIX_TRANSPORT_END_LOCATION).get()));
         }
-        if (argMultimap.getValue(PREFIX_START_DATE_TIME).isPresent()) {
+        if (argMultimap.getValue(PREFIX_TRANSPORT_START_DATE_TIME).isPresent()) {
             editTransportBookingDescriptor.setStartDateTime(
-                    ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_START_DATE_TIME).get()));
+                    ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_TRANSPORT_START_DATE_TIME).get()));
         }
-        if (argMultimap.getValue(PREFIX_END_DATE_TIME).isPresent()) {
+        if (argMultimap.getValue(PREFIX_TRANSPORT_END_DATE_TIME).isPresent()) {
             editTransportBookingDescriptor.setEndDateTime(
-                    ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_END_DATE_TIME).get()));
+                    ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_TRANSPORT_END_DATE_TIME).get()));
         }
 
         if (!editTransportBookingDescriptor.isAnyFieldEdited()) {

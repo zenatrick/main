@@ -19,6 +19,7 @@ import team.easytravel.logic.commands.activity.SortActivityCommand;
 import team.easytravel.logic.commands.fixedexpense.SortFixedExpenseCommand;
 import team.easytravel.logic.commands.packinglist.SortItemCommand;
 import team.easytravel.logic.commands.transportbooking.SortTransportBookingCommand;
+import team.easytravel.logic.commands.util.SortCommandOrder;
 import team.easytravel.logic.parser.exceptions.ParseException;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationName;
 import team.easytravel.model.listmanagers.accommodationbooking.Day;
@@ -363,29 +364,25 @@ public class ParserUtil {
     }
 
     /**
-     * Parse sort item parameters string.
+     * Parses a the given string into a SortTransportBookingCommand's criteria.
+     * Leading and trailing whitespaces will be trimmed.
      *
-     * @param sortParameters the sort parameters
-     * @return the string
-     * @throws ParseException the parse exception
+     * @throws ParseException if the given {@code criteria} is invalid.
      */
-    public static String parseSortTransportParameters(String sortParameters) throws ParseException {
-        requireNonNull(sortParameters);
-
-        switch (sortParameters) {
-        case SortTransportBookingCommand.MODE:
-            return SortTransportBookingCommand.MODE;
-
-        case SortTransportBookingCommand.STARTLOCATION:
-            return SortTransportBookingCommand.STARTLOCATION;
-
-        case SortTransportBookingCommand.ENDLOCATION:
-            return SortTransportBookingCommand.ENDLOCATION;
-
+    public static String parseSortTransportCriteria(String criteria)
+            throws ParseException {
+        requireNonNull(criteria);
+        String trimmedCriteria = criteria.trim().toLowerCase();
+        switch (trimmedCriteria) {
+        case SortTransportBookingCommand.CRITERIA_MODE:
+        case SortTransportBookingCommand.CRITERIA_START_LOCATION:
+        case SortTransportBookingCommand.CRITERIA_END_LOCATION:
+        case SortTransportBookingCommand.CRITERIA_START_TIME:
+        case SortTransportBookingCommand.CRITERIA_END_TIME:
+            return trimmedCriteria;
         default:
-            throw new ParseException("Parameters must consist of only Mode/startlocation/endlocation");
+            throw new ParseException(SortTransportBookingCommand.MESSAGE_CRITERIA_CONSTRAINTS);
         }
-
     }
 
     /**
@@ -537,7 +534,7 @@ public class ParserUtil {
      * Parses a {@code String name} into an {@code AccommodationName}
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException the parse exception
+     * @throws ParseException if the given name is invalid.
      */
     public static AccommodationName parseAccommodationName(String name) throws ParseException {
         requireNonNull(name);
@@ -552,7 +549,7 @@ public class ParserUtil {
      * Parses a {@code String day} into an {@code Day}
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException the parse exception
+     * @throws ParseException if the given day is invalid
      */
     public static Day parseDay(String day) throws ParseException {
         requireNonNull(day);
@@ -572,7 +569,7 @@ public class ParserUtil {
      * Parses a {@code String remark} into an {@code Remark}
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException the parse exception
+     * @throws ParseException if the given remark is invalid
      */
     public static Remark parseRemark(String remark) throws ParseException {
         requireNonNull(remark);
@@ -587,7 +584,7 @@ public class ParserUtil {
      * Parses a {@code String budget} into an {@code Budget}
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException the parse exception
+     * @throws ParseException if the given budget is invalid.
      */
     public static Budget parseBudget(String budget) throws ParseException {
         requireNonNull(budget);
@@ -607,7 +604,7 @@ public class ParserUtil {
      * Parses a {@code String exchangeRate} into an {@code ExchangeRate}
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException the parse exception
+     * @throws ParseException if the given exchangeRate is invalid
      */
     public static ExchangeRate parseExchangeRate(String exchangeRate) throws ParseException {
         requireNonNull(exchangeRate);
@@ -622,5 +619,17 @@ public class ParserUtil {
             throw new ParseException(ExchangeRate.MESSAGE_CONSTRAINTS);
 
         }
+    }
+
+    /**
+     * Parses a {@code String order} into a {@code SortCommandOrder}
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given order is invalid
+     */
+    public static SortCommandOrder parseSortOder(String order) throws ParseException {
+        requireNonNull(order);
+        String trimmedOrder = order.trim().toLowerCase();
+        return SortCommandOrder.parseOrder(trimmedOrder);
     }
 }

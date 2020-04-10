@@ -5,7 +5,7 @@ import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_IN
 import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_PACKING_LIST;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_CATEGORY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import static team.easytravel.model.Model.PREDICATE_SHOW_ALL_PACKING_LIST_ITEMS;
 
 import java.util.List;
@@ -41,10 +41,10 @@ public class EditItemCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_ITEM_NAME + "NAME] "
-            + "[" + PREFIX_QUANTITY + "QUANTITY] "
+            + "[" + PREFIX_ITEM_QUANTITY + "QUANTITY] "
             + "[" + PREFIX_ITEM_CATEGORY + "CATEGORY] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_QUANTITY + "4 "
+            + PREFIX_ITEM_QUANTITY + "4 "
             + PREFIX_ITEM_CATEGORY + "essentials";
 
     /**

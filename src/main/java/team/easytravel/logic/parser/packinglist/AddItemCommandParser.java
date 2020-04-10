@@ -3,7 +3,7 @@ package team.easytravel.logic.parser.packinglist;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_CATEGORY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 
 import java.util.stream.Stream;
 
@@ -32,16 +32,16 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
      */
     public AddItemCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ITEM_NAME, PREFIX_QUANTITY, PREFIX_ITEM_CATEGORY);
+                ArgumentTokenizer.tokenize(args, PREFIX_ITEM_NAME, PREFIX_ITEM_QUANTITY, PREFIX_ITEM_CATEGORY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ITEM_NAME, PREFIX_QUANTITY, PREFIX_ITEM_CATEGORY)
+        if (!arePrefixesPresent(argMultimap, PREFIX_ITEM_NAME, PREFIX_ITEM_QUANTITY, PREFIX_ITEM_CATEGORY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddItemCommand.MESSAGE_USAGE));
         }
 
         ItemName name = ParserUtil.parseItemName(argMultimap.getValue(PREFIX_ITEM_NAME).get());
-        Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get());
+        Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ITEM_QUANTITY).get());
         ItemCategory category = ParserUtil.parseItemCategory(argMultimap.getValue(PREFIX_ITEM_CATEGORY).get());
 
         PackingListItem packingListItem = new PackingListItem(name, quantity, category, false);

@@ -5,21 +5,21 @@ package team.easytravel.logic.parser;
  */
 public class CliSyntax {
 
-    public static final Prefix PREFIX_AMOUNT = new Prefix("amount/");
-    public static final Prefix PREFIX_DESCRIPTION = new Prefix("description/");
-    public static final Prefix PREFIX_CATEGORY = new Prefix("category/");
-    public static final Prefix PREFIX_CURRENCY = new Prefix("currency/");
+    public static final Prefix PREFIX_EXPENSE_AMOUNT = new Prefix("amount/");
+    public static final Prefix PREFIX_EXPENSE_DESCRIPTION = new Prefix("description/");
+    public static final Prefix PREFIX_EXPENSE_CATEGORY = new Prefix("category/");
+    public static final Prefix PREFIX_EXPENSE_CURRENCY = new Prefix("currency/");
 
     public static final Prefix PREFIX_ITEM_NAME = new Prefix("name/");
-    public static final Prefix PREFIX_QUANTITY = new Prefix("quantity/");
+    public static final Prefix PREFIX_ITEM_QUANTITY = new Prefix("quantity/");
     public static final Prefix PREFIX_ITEM_CATEGORY = new Prefix("category/");
     public static final Prefix PREFIX_ITEM_CRITERIA = new Prefix("criteria/");
 
-    public static final Prefix PREFIX_MODE = new Prefix("mode/");
-    public static final Prefix PREFIX_START_LOCATION = new Prefix("startloc/");
-    public static final Prefix PREFIX_END_LOCATION = new Prefix("endloc/");
-    public static final Prefix PREFIX_START_DATE_TIME = new Prefix("starttime/");
-    public static final Prefix PREFIX_END_DATE_TIME = new Prefix("endtime/");
+    public static final Prefix PREFIX_TRANSPORT_MODE = new Prefix("mode/");
+    public static final Prefix PREFIX_TRANSPORT_START_LOCATION = new Prefix("startloc/");
+    public static final Prefix PREFIX_TRANSPORT_END_LOCATION = new Prefix("endloc/");
+    public static final Prefix PREFIX_TRANSPORT_START_DATE_TIME = new Prefix("starttime/");
+    public static final Prefix PREFIX_TRANSPORT_END_DATE_TIME = new Prefix("endtime/");
 
     public static final Prefix PREFIX_ACTIVITY_TITLE = new Prefix("title/");
     public static final Prefix PREFIX_ACTIVITY_LOCATION = new Prefix("location/");

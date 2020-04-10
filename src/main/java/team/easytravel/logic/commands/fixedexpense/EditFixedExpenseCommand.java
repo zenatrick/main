@@ -3,10 +3,10 @@ package team.easytravel.logic.commands.fixedexpense;
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
 import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_FIXED_EXPENSE;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_AMOUNT;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_CURRENCY;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_AMOUNT;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_CATEGORY;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_CURRENCY;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_DESCRIPTION;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -35,15 +35,15 @@ public class EditFixedExpenseCommand extends Command {
             + "by the index number used in the displayed list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_AMOUNT + "AMOUNT] "
-            + "[" + PREFIX_CURRENCY + "CURRENCY] "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_CATEGORY + "CATEGORY] \n"
+            + "[" + PREFIX_EXPENSE_AMOUNT + "AMOUNT] "
+            + "[" + PREFIX_EXPENSE_CURRENCY + "CURRENCY] "
+            + "[" + PREFIX_EXPENSE_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_EXPENSE_CATEGORY + "CATEGORY] \n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_AMOUNT + "3000 "
-            + PREFIX_CURRENCY + "sgd "
-            + PREFIX_DESCRIPTION + "SQ Flight "
-            + PREFIX_CATEGORY + "transport";
+            + PREFIX_EXPENSE_AMOUNT + "3000 "
+            + PREFIX_EXPENSE_CURRENCY + "sgd "
+            + PREFIX_EXPENSE_DESCRIPTION + "SQ Flight "
+            + PREFIX_EXPENSE_CATEGORY + "transport";
 
     public static final String MESSAGE_EDIT_FIXEDEXPENSE_SUCCESS = "Edited Fixed Expense: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

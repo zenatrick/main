@@ -12,7 +12,7 @@ import java.time.temporal.ChronoUnit;
  * Represents a DateTime object in ET which wraps around the java.time.LocalDateTime and provides basic
  * functionality such as comparision between time.
  */
-public class DateTime {
+public class DateTime implements Comparable<DateTime> {
     public static final String MESSAGE_CONSTRAINTS = "Date-Time entered must be in the format of <dd-MM-yyyy HH:mm>.";
 
     private static final DateTimeFormatter FORMAT_INPUT = DateTimeFormatter.ofPattern("d-M-yyyy H:m");
@@ -34,6 +34,7 @@ public class DateTime {
      * The comparison is primarily based on the date-time, from earliest to latest. It is consistent with equals(),
      * as defined by Comparable.
      */
+    @Override
     public int compareTo(DateTime other) {
         return dateTime.compareTo(other.dateTime);
     }

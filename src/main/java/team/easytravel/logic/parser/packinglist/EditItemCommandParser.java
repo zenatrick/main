@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_CATEGORY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 
 import team.easytravel.commons.core.index.Index;
 import team.easytravel.logic.commands.packinglist.EditItemCommand;
@@ -23,7 +23,7 @@ public class EditItemCommandParser implements Parser<EditItemCommand> {
     public EditItemCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ITEM_NAME, PREFIX_QUANTITY, PREFIX_ITEM_CATEGORY);
+                ArgumentTokenizer.tokenize(args, PREFIX_ITEM_NAME, PREFIX_ITEM_QUANTITY, PREFIX_ITEM_CATEGORY);
 
         Index index;
 
@@ -37,8 +37,8 @@ public class EditItemCommandParser implements Parser<EditItemCommand> {
         if (argMultimap.getValue(PREFIX_ITEM_NAME).isPresent()) {
             editItemDescriptor.setItemName(ParserUtil.parseItemName(argMultimap.getValue(PREFIX_ITEM_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_QUANTITY).isPresent()) {
-            editItemDescriptor.setQuantity(ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get()));
+        if (argMultimap.getValue(PREFIX_ITEM_QUANTITY).isPresent()) {
+            editItemDescriptor.setQuantity(ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ITEM_QUANTITY).get()));
         }
         if (argMultimap.getValue(PREFIX_ITEM_CATEGORY).isPresent()) {
             editItemDescriptor.setItemCategory(ParserUtil.parseItemCategory

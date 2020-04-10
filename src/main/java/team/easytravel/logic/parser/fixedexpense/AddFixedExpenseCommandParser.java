@@ -1,9 +1,9 @@
 package team.easytravel.logic.parser.fixedexpense;
 
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_AMOUNT;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_CURRENCY;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_AMOUNT;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_CATEGORY;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_CURRENCY;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_DESCRIPTION;
 
 import java.util.stream.Stream;
 
@@ -34,21 +34,21 @@ public class AddFixedExpenseCommandParser implements Parser<AddFixedExpenseComma
 
     public AddFixedExpenseCommand parse(String args) throws ParseException {
 
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_AMOUNT, PREFIX_CURRENCY, PREFIX_DESCRIPTION, PREFIX_CATEGORY);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EXPENSE_AMOUNT, PREFIX_EXPENSE_CURRENCY,
+                PREFIX_EXPENSE_DESCRIPTION, PREFIX_EXPENSE_CATEGORY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_AMOUNT, PREFIX_CURRENCY, PREFIX_DESCRIPTION, PREFIX_CATEGORY)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_EXPENSE_AMOUNT, PREFIX_EXPENSE_CURRENCY, PREFIX_EXPENSE_DESCRIPTION,
+                PREFIX_EXPENSE_CATEGORY) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     AddFixedExpenseCommand.MESSAGE_USAGE));
         }
 
 
-        String currency = ParserUtil.parseCurrency(argMultimap.getValue(PREFIX_CURRENCY).get());
-        Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        String currency = ParserUtil.parseCurrency(argMultimap.getValue(PREFIX_EXPENSE_CURRENCY).get());
+        Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_EXPENSE_AMOUNT).get());
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_EXPENSE_DESCRIPTION).get());
         FixedExpenseCategory fixedExpenseCategory =
-                ParserUtil.parseFixedExpenseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
+                ParserUtil.parseFixedExpenseCategory(argMultimap.getValue(PREFIX_EXPENSE_CATEGORY).get());
 
         FixedExpense fixedExpense = new FixedExpense(amount, description, fixedExpenseCategory);
 
@@ -66,7 +66,6 @@ public class AddFixedExpenseCommandParser implements Parser<AddFixedExpenseComma
     protected static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 
 
 }

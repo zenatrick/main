@@ -2,11 +2,11 @@ package team.easytravel.logic.commands.transportbooking;
 
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_TRANSPORT;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_END_LOCATION;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_MODE;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_START_LOCATION;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_END_DATE_TIME;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_END_LOCATION;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_MODE;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_START_DATE_TIME;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_START_LOCATION;
 
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
@@ -25,17 +25,17 @@ public class AddTransportBookingCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a transport booking. "
             + "Parameters: "
-            + PREFIX_MODE + "MODE "
-            + PREFIX_START_LOCATION + "START_LOCATION "
-            + PREFIX_END_LOCATION + "END_LOCATION "
-            + PREFIX_START_DATE_TIME + "START_TIME "
-            + PREFIX_END_DATE_TIME + "END_TIME\n"
+            + PREFIX_TRANSPORT_MODE + "MODE "
+            + PREFIX_TRANSPORT_START_LOCATION + "START_LOCATION "
+            + PREFIX_TRANSPORT_END_LOCATION + "END_LOCATION "
+            + PREFIX_TRANSPORT_START_DATE_TIME + "START_TIME "
+            + PREFIX_TRANSPORT_END_DATE_TIME + "END_TIME\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODE + "plane "
-            + PREFIX_START_LOCATION + "Singapore "
-            + PREFIX_END_LOCATION + "Japan "
-            + PREFIX_START_DATE_TIME + "28-09-2020 00:00 "
-            + PREFIX_END_DATE_TIME + "28-09-2020 07:00\n";
+            + PREFIX_TRANSPORT_MODE + "plane "
+            + PREFIX_TRANSPORT_START_LOCATION + "Singapore "
+            + PREFIX_TRANSPORT_END_LOCATION + "Japan "
+            + PREFIX_TRANSPORT_START_DATE_TIME + "28-09-2020 00:00 "
+            + PREFIX_TRANSPORT_END_DATE_TIME + "28-09-2020 07:00\n";
 
     public static final String MESSAGE_SUCCESS = "New transport booking added: %1$s";
     public static final String MESSAGE_DUPLICATE_TRANSPORT_BOOKING = "This transport booking already exists in the "

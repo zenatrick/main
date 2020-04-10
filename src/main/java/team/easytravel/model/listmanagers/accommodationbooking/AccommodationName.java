@@ -13,7 +13,6 @@ public class AccommodationName {
     public static final String MESSAGE_CONSTRAINTS = "Name of accommodation must be made up of alphanumeric words "
             + "that is less than 50 characters long.";
 
-    // todo update regex to match constraints
     // Allows for 50 alphanumeric characters.
     public static final String VALIDATION_REGEX = "^(?!\\s*$)[A-Za-z0-9\\s]{1,50}+";
 
@@ -49,8 +48,7 @@ public class AccommodationName {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AccommodationName // instanceof handles nulls
-                && value.equals(((AccommodationName) other)
-                .value)); // state check
+                && value.equals(((AccommodationName) other).value)); // state check
     }
 
     @Override

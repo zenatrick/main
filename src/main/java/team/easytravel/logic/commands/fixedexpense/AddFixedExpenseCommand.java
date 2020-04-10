@@ -3,10 +3,10 @@ package team.easytravel.logic.commands.fixedexpense;
 import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.util.CollectionUtil.requireAllNonNull;
 import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_FIXED_EXPENSE;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_AMOUNT;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_CURRENCY;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_AMOUNT;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_CATEGORY;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_CURRENCY;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_DESCRIPTION;
 
 import java.text.DecimalFormat;
 import java.util.Collections;
@@ -31,15 +31,15 @@ public class AddFixedExpenseCommand extends Command {
     public static final String MESSAGE_EXCEED_BUDGET = "Take note, you have exceeded your budget!";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a fixed expense to the fixed expense list"
             + "Parameters: "
-            + PREFIX_AMOUNT + "AMOUNT "
-            + PREFIX_CURRENCY + "CURRENCY "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_CATEGORY + "CATEGORY...\n"
+            + PREFIX_EXPENSE_AMOUNT + "AMOUNT "
+            + PREFIX_EXPENSE_CURRENCY + "CURRENCY "
+            + PREFIX_EXPENSE_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_EXPENSE_CATEGORY + "CATEGORY...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_AMOUNT + "1500 "
-            + PREFIX_CURRENCY + "sgd "
-            + PREFIX_DESCRIPTION + "Plane Tickets "
-            + PREFIX_CATEGORY + "transport";
+            + PREFIX_EXPENSE_AMOUNT + "1500 "
+            + PREFIX_EXPENSE_CURRENCY + "sgd "
+            + PREFIX_EXPENSE_DESCRIPTION + "Plane Tickets "
+            + PREFIX_EXPENSE_CATEGORY + "transport";
 
     public static final String MESSAGE_SUCCESS = "New Fixed Expense added: %1$s";
     private FixedExpense toAdd;
