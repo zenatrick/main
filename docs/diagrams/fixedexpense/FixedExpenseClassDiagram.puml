@@ -32,13 +32,11 @@ Class ModelManager{
 }
 
 Class FixedExpenseManager{
-uniqueFixedExpensesLists : UniqueList<FixedExpenseManager>
 + addFixedExpense(FixedExpense)
 + getFixedExpenseList() : ObservableList<FixedExpense>
 }
 
 Class TripManager{
-trip: Trip
 + getBudget() : Budget
 + setBudget(Budget)
 }
