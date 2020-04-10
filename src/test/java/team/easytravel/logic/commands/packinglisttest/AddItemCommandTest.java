@@ -65,4 +65,12 @@ public class AddItemCommandTest {
         // different PackingListItem -> returns false
         assertFalse(addRaincoatCommand.equals(addCameraCommand));
     }
+
+    @Test
+    void execute() {
+    }
+
+    @Test
+    void testEquals() {
+    }
 }

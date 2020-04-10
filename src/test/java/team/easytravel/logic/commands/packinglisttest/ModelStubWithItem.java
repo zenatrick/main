@@ -22,6 +22,11 @@ public class ModelStubWithItem extends ModelStub {
     }
 
     @Override
+    public boolean hasTrip() {
+        return true;
+    }
+
+    @Override
     public boolean hasPackingListItem(PackingListItem packingListItem) {
         requireNonNull(packingListItem);
         return this.packingListItem.isSame(packingListItem);

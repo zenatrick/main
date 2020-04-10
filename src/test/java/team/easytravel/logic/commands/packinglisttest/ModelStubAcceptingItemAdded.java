@@ -19,6 +19,11 @@ public class ModelStubAcceptingItemAdded extends ModelStub {
     final ArrayList<PackingListItem> packingListItemsAdded = new ArrayList<>();
 
     @Override
+    public boolean hasTrip() {
+        return true;
+    }
+
+    @Override
     public boolean hasPackingListItem(PackingListItem packingListItem) {
         requireNonNull(packingListItem);
         return packingListItemsAdded.stream().anyMatch(packingListItem::isSame);
