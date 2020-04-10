@@ -7,28 +7,38 @@ participant "**r:CommandResult**" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant "**toAdd:Activity**" as Activity MODEL_COLOR
+participant "**a:Activity**" as Activity MODEL_COLOR
 participant "**m:ModelManager**" as ModelManager MODEL_COLOR
 participant "**:ActivityManager**" as ActivityManager MODEL_COLOR
 
 end box
 
 [-> AddActivityCommand : ""execute(m)""
+activate AddActivityCommand
+
+AddActivityCommand -> ModelManager : ""hasTrip()""
+activate ModelManager
+
+ModelManager --> AddActivityCommand
+deactivate
 
 create Activity
-activate AddActivityCommand
 AddActivityCommand -> Activity : ""new Activity(title, duration, ""\n""location, tags)""
-
 activate Activity
-note left: Parameters: ""Title"", \n ""Duration"",\n ""Location"", \n ""Tags"" (optional)
+note right
+Parameter types of
+""Activity"" constructor:
+""Title"", ""Duration"",
+""Location"", ""Tag""s (optional)
+end note
 
 Activity --> AddActivityCommand
 deactivate Activity
 
-AddActivityCommand -> ModelManager : ""addActivity(toAdd)""
+AddActivityCommand -> ModelManager : ""addActivity(a)""
 activate ModelManager
 
-ModelManager -> ActivityManager : ""addActivity(toAdd)""
+ModelManager -> ActivityManager : ""addActivity(a)""
 activate ActivityManager
 
 ActivityManager --> ModelManager
