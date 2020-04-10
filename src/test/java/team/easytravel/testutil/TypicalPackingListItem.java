@@ -33,6 +33,13 @@ public class TypicalPackingListItem {
     public static final PackingListItem PACKING_LIST_CONDITIONER = new PackingListItem(
             new ItemName("Conditioner"), new Quantity(1), new ItemCategory("toiletries"), false);
 
+    // Dont touch these packing list items below, used for storage testing
+    public static final PackingListItem PACKING_LIST_SANDALS = new PackingListItem(
+            new ItemName("Sandals"), new Quantity(1), new ItemCategory("clothes"), false);
+
+    public static final PackingListItem PACKING_LIST_SHAVER = new PackingListItem(
+            new ItemName("Shaver"), new Quantity(1), new ItemCategory("toiletries"), false);
+
     private TypicalPackingListItem() {
     }
 
