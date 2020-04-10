@@ -11,11 +11,11 @@ import team.easytravel.model.util.attributes.Location;
  */
 public class AccommodationBookingBuilder {
 
-    public static final String DEFAULT_ACCOMMODATION_NAME = "Ritz Carlton";
-    public static final String DEFAULT_LOCATION = "KL";
+    public static final String DEFAULT_ACCOMMODATION_NAME = "Hotel";
+    public static final String DEFAULT_LOCATION = "Singapore";
     public static final Integer DEFAULT_START_DAY = 1;
-    public static final Integer DEFAULT_END_DAY = 4;
-    public static final String DEFAULT_REMARK = "Check-in at 2pm.";
+    public static final Integer DEFAULT_END_DAY = 3;
+    public static final String DEFAULT_REMARK = "2 nights stay";
 
     private AccommodationName accommodationName;
     private Location location;

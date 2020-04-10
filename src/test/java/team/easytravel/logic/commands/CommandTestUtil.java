@@ -2,7 +2,6 @@ package team.easytravel.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACCOMMODATION_LOCATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_DURATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_LOCATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_TAG;
@@ -14,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import team.easytravel.commons.core.index.Index;
+import team.easytravel.logic.commands.accommodationbooking.EditAccommodationBookingCommand;
 import team.easytravel.logic.commands.activity.EditActivityCommand;
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
@@ -22,6 +22,7 @@ import team.easytravel.model.listmanagers.ActivityManager;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBooking;
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.activity.ActivityContainKeywordPredicate;
+import team.easytravel.testutil.accommodationbooking.EditAccommodationBookingDescriptorBuilder;
 import team.easytravel.testutil.activity.EditActivityDescriptorBuilder;
 
 /**
@@ -74,12 +75,17 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_ACTIVITY_TAG + "stupid*"; // '*' not allowed in tags
 
     //----ACCOMMODATION--
-    public static final String VALID_ACCOMMODATION_TITLE = "JW Marriott Hotel";
-    public static final String VALID_ACCOMMODATION_START_DAY = "1";
-    public static final String VALID_ACCOMMODATION_END_DAY = "2";
+    public static final String VALID_ACCOMMODATION_JW_TITLE = "JW Marriott Hotel";
+    public static final String VALID_ACCOMMODATION_JW_LOCATION = "KL";
+    public static final Integer VALID_ACCOMMODATION_JW_START_DAY = 3;
+    public static final Integer VALID_ACCOMMODATION_JW_END_DAY = 4;
+    public static final String VALID_ACCOMMODATION_JW_REMARK = "Check-in at 3pm.";
 
-    public static final String ACCOMMODATION_LOCATION_DESC = " " + PREFIX_ACCOMMODATION_LOCATION
-            + VALID_LOCATION;
+    public static final String VALID_ACCOMMODATION_RITZ_TITLE = "Ritz Carlton";
+    public static final String VALID_ACCOMMODATION_RITZ_LOCATION = "KL";
+    public static final Integer VALID_ACCOMMODATION_RITZ_START_DAY = 1;
+    public static final Integer VALID_ACCOMMODATION_RITZ_END_DAY = 2;
+    public static final String VALID_ACCOMMODATION_RITZ_REMARK = "Check-in at 2pm.";
 
     //---TRANSPORT---
 
@@ -107,6 +113,21 @@ public class CommandTestUtil {
                 .withDuration(VALID_ACTIVITY_DURATION_FINLAND).withLocation(VALID_LOCATION_FINLAND)
                 .withTags(VALID_TAG_SIGHTSEEING).build();
     }
+
+    public static final EditAccommodationBookingCommand.EditAccommodationBookingDescriptor DESC_ACC_JW;
+    public static final EditAccommodationBookingCommand.EditAccommodationBookingDescriptor DESC_ACC_RITZ;
+
+    static {
+        DESC_ACC_JW = new EditAccommodationBookingDescriptorBuilder()
+                .withAccommodationName(VALID_ACCOMMODATION_JW_TITLE)
+                .withLocation(VALID_ACCOMMODATION_JW_LOCATION).withStartDay(VALID_ACCOMMODATION_JW_START_DAY)
+                .withEndDay(VALID_ACCOMMODATION_JW_END_DAY).withRemark(VALID_ACCOMMODATION_JW_REMARK).build();
+        DESC_ACC_RITZ = new EditAccommodationBookingDescriptorBuilder()
+                .withAccommodationName(VALID_ACCOMMODATION_RITZ_TITLE)
+                .withLocation(VALID_ACCOMMODATION_RITZ_LOCATION).withStartDay(VALID_ACCOMMODATION_RITZ_START_DAY)
+                .withEndDay(VALID_ACCOMMODATION_RITZ_END_DAY).withRemark(VALID_ACCOMMODATION_RITZ_REMARK).build();
+    }
+
 
     /**
      * Executes the given {@code command}, confirms that <br>
