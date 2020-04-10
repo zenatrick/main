@@ -14,7 +14,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private static final Path DEFAULT_FOLDER_PATH = Path.of("data");
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = DEFAULT_FOLDER_PATH.resolve("addressbook.json");
     private Path transportBookingStorageFilePath = DEFAULT_FOLDER_PATH.resolve("transportation.json");
     private Path fixedExpenseStorageFilePath = DEFAULT_FOLDER_PATH.resolve("expense.json");
     private Path activityStorageFilePath = DEFAULT_FOLDER_PATH.resolve("activity.json");
@@ -42,7 +41,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        //setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
         setActivityStorageFilePath(newUserPrefs.getActivityStorageFilePath());
         setAccommodationBookingStorageFilePath(newUserPrefs.getAccommodationBookingStorageFilePath());
         setTransportBookingStorageFilePath(newUserPrefs.getTransportBookingStorageFilePath());
@@ -60,16 +58,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(guiSettings);
         this.guiSettings = guiSettings;
     }
-
-//    @Override
-//    public Path getAddressBookFilePath() {
-//        return addressBookFilePath;
-//    }
-//
-//    public void setAddressBookFilePath(Path addressBookFilePath) {
-//        requireNonNull(addressBookFilePath);
-//        this.addressBookFilePath = addressBookFilePath;
-//    }
 
     @Override
     public Path getTransportBookingStorageFilePath() {
@@ -143,7 +131,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs otherUserPrefs = (UserPrefs) other;
 
         return guiSettings.equals(otherUserPrefs.guiSettings)
-                && addressBookFilePath.equals(otherUserPrefs.addressBookFilePath)
                 && transportBookingStorageFilePath.equals(otherUserPrefs.transportBookingStorageFilePath)
                 && fixedExpenseStorageFilePath.equals(otherUserPrefs.fixedExpenseStorageFilePath)
                 && activityStorageFilePath.equals(otherUserPrefs.activityStorageFilePath)
@@ -152,14 +139,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath, transportBookingStorageFilePath,
+        return Objects.hash(guiSettings, transportBookingStorageFilePath,
                 fixedExpenseStorageFilePath, accommodationBookingStorageFilePath, activityStorageFilePath);
     }
 
     @Override
     public String toString() {
         return "Gui Settings : " + guiSettings
-                + "\nLocal data file location : " + addressBookFilePath
                 + "\nTransport Bookings data file location : " + transportBookingStorageFilePath
                 + "\nFixed Expenses data file location : " + fixedExpenseStorageFilePath
                 + "\nAccommodation Bookings data file location : " + accommodationBookingStorageFilePath
