@@ -134,7 +134,7 @@ class TripTest {
 
         String dateYear = "5-10-2023";
         assertFalse(Trip.isValidTrip(Date.fromString(date1), Date.fromString(dateYear))); //many years
-        
+
         date2= "27-10-2020";
         assertTrue(Trip.isValidTrip(Date.fromString(date1), Date.fromString(date2))); //exactly 30 days
 

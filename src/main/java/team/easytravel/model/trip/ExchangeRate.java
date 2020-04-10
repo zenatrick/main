@@ -17,7 +17,7 @@ public class ExchangeRate {
 
     private static final double MIN_VALUE = 0.0;
     private static final double MAX_VALUE = 100.0;
-    public static final Predicate<Double> VALIDATION_PREDICATE = i -> i >= MIN_VALUE && i <= MAX_VALUE;
+    public static final Predicate<Double> VALIDATION_PREDICATE = i -> i > MIN_VALUE && i <= MAX_VALUE;
 
     public final Double value;
 
