@@ -1,4 +1,4 @@
-package team.easytravel.testutil;
+package team.easytravel.testutil.packinglist;
 
 import team.easytravel.model.listmanagers.packinglistitem.ItemCategory;
 import team.easytravel.model.listmanagers.packinglistitem.ItemName;

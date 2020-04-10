@@ -13,7 +13,7 @@ import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.logic.commands.packinglist.AddItemCommand;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
-import team.easytravel.testutil.PackingListItemBuilder;
+import team.easytravel.testutil.packinglist.PackingListItemBuilder;
 
 public class AddItemCommandTest {
     @Test
@@ -22,7 +22,7 @@ public class AddItemCommandTest {
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_itemAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingItemAdded modelStub = new ModelStubAcceptingItemAdded();
         PackingListItem validPackingListItem = new PackingListItemBuilder().build();
 
@@ -34,13 +34,13 @@ public class AddItemCommandTest {
     }
 
     @Test
-    public void execute_DuplicatePackingListItem_throwsCommandException() {
+    public void execute_duplicatePackingListItem_throwsCommandException() {
         PackingListItem validPackingListItem = new PackingListItemBuilder().build();
-        AddItemCommand AddItemCommand = new AddItemCommand(validPackingListItem);
+        AddItemCommand addItemCommand = new AddItemCommand(validPackingListItem);
         ModelStubWithItem modelStubWithItem = new ModelStubWithItem(validPackingListItem);
 
-        assertThrows(CommandException.class, AddItemCommand.MESSAGE_DUPLICATE_ITEM,(
-            )-> AddItemCommand.execute(modelStubWithItem));
+        assertThrows(CommandException.class, addItemCommand.MESSAGE_DUPLICATE_ITEM, (
+            )-> addItemCommand.execute(modelStubWithItem));
     }
 
     @Test
