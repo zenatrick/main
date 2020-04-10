@@ -1,34 +1,42 @@
 @startuml
-title Find Overlap in Accommodation Booking Command
+!include ../style.puml
+
+title Overlap check between 2\n accommodation bookings
 
 start
 
-:System starts the
-checking for overlap;
+:Gets the start day and end day of
+""AccommodationBooking"" 1;
 
-:System gets booking 1
-start day and end day;
+:Gets the start day and end day of
+""AccommodationBooking"" 2;
 
-:System gets booking 2
-start day and end day;
+:Calculates the total duration
+of both bookings;
 
-:Calculate duration
-of both booking;
+:Gets latest end day of among
+the 2 bookings;
 
-:Get largest end day
-of both booking;
+:Gets earliest start day of among
+the 2 bookings;
 
-:Get smallest start day
-of both booking;
+:Calculates the acceptable duration;
 
-if () then ([largest end day - smallest start day
-< duration of both bookings])
+note right
+acceptable duration =
+latest end day - earliest start day
+end note
 
-    :User receive overlap message;
+if () then ([total duration\n is within the \n acceptable\n duration])
+
+    :Continues the check
+    for the next
+    ""AccommodationBooking"";
 
 else ([else])
 
-    :User receive ok message;
+    :Stops the check and
+    shows an error message;
 
 endif
 
