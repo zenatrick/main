@@ -3,6 +3,7 @@ package team.easytravel.storage.accommodationbooking;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static team.easytravel.testutil.Assert.assertThrows;
+import static team.easytravel.testutil.TypicalAccommodation.getTypicalAccommodationManager;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import team.easytravel.commons.exceptions.IllegalValueException;
 import team.easytravel.commons.util.JsonUtil;
 import team.easytravel.model.listmanagers.AccommodationBookingManager;
-import team.easytravel.testutil.TypicalAccommodations;
 
 class JsonSerializableAccommodationBookingManagerTest {
 
@@ -28,7 +28,7 @@ class JsonSerializableAccommodationBookingManagerTest {
         JsonSerializableAccommodationBookingManager dataFromFile = JsonUtil.readJsonFile(TYPICAL_ACCOMMODATION_BOOKING_FILE,
                 JsonSerializableAccommodationBookingManager.class).get();
         AccommodationBookingManager accommodationBookingManagerFromFile = dataFromFile.toModelType();
-        AccommodationBookingManager typicalAccommodationBookingAccommodationBookingManager = TypicalAccommodations.getTypicalAccommodationManager();
+        AccommodationBookingManager typicalAccommodationBookingAccommodationBookingManager = getTypicalAccommodationManager();
         assertEquals(accommodationBookingManagerFromFile, typicalAccommodationBookingAccommodationBookingManager);
     }
 

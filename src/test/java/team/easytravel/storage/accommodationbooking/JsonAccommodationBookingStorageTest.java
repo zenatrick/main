@@ -3,6 +3,10 @@ package team.easytravel.storage.accommodationbooking;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static team.easytravel.testutil.Assert.assertThrows;
+import static team.easytravel.testutil.TypicalAccommodation.ACCOMMODATION_BOOKING_BACKPACKER;
+import static team.easytravel.testutil.TypicalAccommodation.ACCOMMODATION_BOOKING_CAMP;
+import static team.easytravel.testutil.TypicalAccommodation.ACCOMMODATION_BOOKING_HDB;
+import static team.easytravel.testutil.TypicalAccommodation.getTypicalAccommodationManager;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -14,7 +18,6 @@ import org.junit.jupiter.api.io.TempDir;
 import team.easytravel.commons.exceptions.DataConversionException;
 import team.easytravel.model.listmanagers.AccommodationBookingManager;
 import team.easytravel.model.listmanagers.ReadOnlyAccommodationBookingManager;
-import team.easytravel.testutil.TypicalAccommodations;
 
 class JsonAccommodationBookingStorageTest {
 
@@ -69,7 +72,7 @@ class JsonAccommodationBookingStorageTest {
     @Test
     public void readAndSaveAccommodationBooking_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAccommodationBooking.json");
-        AccommodationBookingManager origin = TypicalAccommodations.getTypicalAccommodationManager();
+        AccommodationBookingManager origin = getTypicalAccommodationManager();
         JsonAccommodationBookingStorage jsonAccommodationBookingStorage = new JsonAccommodationBookingStorage(filePath);
 
         jsonAccommodationBookingStorage.saveAccommodationBookings(origin, filePath);
@@ -77,13 +80,13 @@ class JsonAccommodationBookingStorageTest {
                 readAccommodationBookings(filePath).get();
         assertEquals(origin, new AccommodationBookingManager(readBack));
 
-        origin.addAccommodationBooking(TypicalAccommodations.ACCOMMODATION_BOOKING_HDB);
-        origin.removeAccommodationBooking(TypicalAccommodations.ACCOMMODATION_BOOKING_BACKPACKER);
+        origin.addAccommodationBooking(ACCOMMODATION_BOOKING_HDB);
+        origin.removeAccommodationBooking(ACCOMMODATION_BOOKING_BACKPACKER);
         jsonAccommodationBookingStorage.saveAccommodationBookings(origin, filePath);
         readBack = jsonAccommodationBookingStorage.readAccommodationBookings(filePath).get();
         assertEquals(origin, new AccommodationBookingManager(readBack));
 
-        origin.addAccommodationBooking(TypicalAccommodations.ACCOMMODATION_BOOKING_CAMP);
+        origin.addAccommodationBooking(ACCOMMODATION_BOOKING_CAMP);
         jsonAccommodationBookingStorage.saveAccommodationBookings(origin);
         readBack = jsonAccommodationBookingStorage.readAccommodationBookings().get();
         assertEquals(origin, new AccommodationBookingManager(readBack));
