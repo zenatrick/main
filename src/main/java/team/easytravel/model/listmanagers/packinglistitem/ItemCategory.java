@@ -11,7 +11,7 @@ public class ItemCategory {
      * The constant MESSAGE_CONSTRAINTS.
      */
     public static final String MESSAGE_CONSTRAINTS = "Category must be made up of alphanumeric words that is "
-            + "less than 30 characters long.";
+            + "less than 30 characters long, and it will always be in lowercase";
 
     /**
      * The constant VALIDATION_REGEX.
@@ -29,7 +29,7 @@ public class ItemCategory {
     public ItemCategory(String category) {
         requireNonNull(category);
         checkArgument(isValidItemCategory(category), MESSAGE_CONSTRAINTS);
-        value = category;
+        value = category.toLowerCase();
     }
 
     /**
