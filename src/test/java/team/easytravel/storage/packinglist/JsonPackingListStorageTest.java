@@ -23,7 +23,8 @@ import team.easytravel.storage.activity.JsonActivityStorage;
 import team.easytravel.testutil.TypicalPackingListItem;
 
 class JsonPackingListStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonPackingListItemStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test",
+            "data", "JsonPackingListItemStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -50,17 +51,20 @@ class JsonPackingListStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readPackingListItemManager("notJsonFormatPackingListItemManager.json"));
+        assertThrows(DataConversionException.class, () -> readPackingListItemManager(
+                "notJsonFormatPackingListItemManager.json"));
     }
 
     @Test
     public void readPackingListManager_invalidPackingListManager_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readPackingListItemManager("invalidPackingListItemManager.json"));
+        assertThrows(DataConversionException.class, () -> readPackingListItemManager(
+                "invalidPackingListItemManager.json"));
     }
 
     @Test
     public void readPackingListManager_invalidAndValidPackingListManager_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readPackingListItemManager("invalidAndValidPackingListItemManager.json"));
+        assertThrows(DataConversionException.class, () -> readPackingListItemManager(
+                "invalidAndValidPackingListItemManager.json"));
     }
 
     @Test
@@ -90,7 +94,8 @@ class JsonPackingListStorageTest {
 
     @Test
     public void savePackingListManager_nullPackingListManager_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> savePackingListManager(null, "SomeFile.json"));
+        assertThrows(NullPointerException.class, () -> savePackingListManager(
+                null, "SomeFile.json"));
     }
 
     /**
@@ -109,6 +114,4 @@ class JsonPackingListStorageTest {
     public void savePackingListManager_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> savePackingListManager(new PackingListManager(), null));
     }
-
-
 }

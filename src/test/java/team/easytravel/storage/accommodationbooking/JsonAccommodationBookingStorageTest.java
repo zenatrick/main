@@ -32,10 +32,10 @@ class JsonAccommodationBookingStorageTest {
         assertThrows(NullPointerException.class, () -> readAccommodationBookingManager(null));
     }
 
-    private java.util.Optional<ReadOnlyAccommodationBookingManager> readAccommodationBookingManager
-            (String filePath) throws Exception {
-        return new JsonAccommodationBookingStorage(Paths.get(filePath)).readAccommodationBookings
-                (addToTestDataPathIfNotNull(filePath));
+    private java.util.Optional<ReadOnlyAccommodationBookingManager> readAccommodationBookingManager(
+            String filePath) throws Exception {
+        return new JsonAccommodationBookingStorage(Paths.get(filePath)).readAccommodationBookings(
+                addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -51,10 +51,8 @@ class JsonAccommodationBookingStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAccommodationBookingManager("notJsonFormatAccommodationBookingManager.json"));
-//
-//        assertThrows(DataConversionException.class, () -> readAccommodationBookingManager
-//                ("notJsonFormatAccommodationBookingManager.json"));
+        assertThrows(DataConversionException.class, () -> readAccommodationBookingManager(
+                "notJsonFormatAccommodationBookingManager.json"));
     }
 
     @Test
@@ -64,7 +62,7 @@ class JsonAccommodationBookingStorageTest {
     }
 
     @Test
-    public void readAccommodationBookingManager_invalidAndValidAccommodationBookingManager_throwDataConversionException() {
+    public void readAccommodationBooking_invalidAndValidAccommodationBookingManager_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readAccommodationBookingManager
                 ("invalidAndValidAccommodationAccommodationBookingManager.json"));
     }
@@ -76,8 +74,8 @@ class JsonAccommodationBookingStorageTest {
         JsonAccommodationBookingStorage jsonAccommodationBookingStorage = new JsonAccommodationBookingStorage(filePath);
 
         jsonAccommodationBookingStorage.saveAccommodationBookings(origin, filePath);
-        ReadOnlyAccommodationBookingManager readBack = jsonAccommodationBookingStorage.
-                readAccommodationBookings(filePath).get();
+        ReadOnlyAccommodationBookingManager readBack = jsonAccommodationBookingStorage
+                .readAccommodationBookings(filePath).get();
         assertEquals(origin, new AccommodationBookingManager(readBack));
 
         origin.addAccommodationBooking(ACCOMMODATION_BOOKING_HDB);
@@ -97,7 +95,8 @@ class JsonAccommodationBookingStorageTest {
 
     @Test
     public void saveAccommodationBookingManager_nullAccommodationBookingManager_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAccommodationBookings(null, "SomeFile.json"));
+        assertThrows(NullPointerException.class, () -> saveAccommodationBookings(
+                null, "SomeFile.json"));
     }
 
     /**

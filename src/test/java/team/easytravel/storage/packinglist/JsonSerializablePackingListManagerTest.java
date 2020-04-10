@@ -14,7 +14,8 @@ import team.easytravel.model.listmanagers.PackingListManager;
 import team.easytravel.testutil.TypicalPackingListItem;
 
 class JsonSerializablePackingListManagerTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializablePackingListManagerTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test",
+            "data", "JsonSerializablePackingListManagerTest");
     private static final Path TYPICAL_ITEM_FILE = TEST_DATA_FOLDER.resolve("typicalPackingListManager.json");
     private static final Path INVALID_ITEM_FILE = TEST_DATA_FOLDER.resolve("invalidPackingListManager.json");
     private static final Path DUPLICATE_ITEM_FILE = TEST_DATA_FOLDER.resolve("duplicatePackingListManager.json");

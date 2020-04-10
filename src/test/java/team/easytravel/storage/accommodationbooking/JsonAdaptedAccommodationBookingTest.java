@@ -35,8 +35,8 @@ class JsonAdaptedAccommodationBookingTest {
 
     @Test
     public void toModelType_validAccommodationDetails_returnsAccommodation() throws Exception {
-        JsonAdaptedAccommodationBooking accommodationBooking = new JsonAdaptedAccommodationBooking
-                (ACCOMMODATION_BOOKING_BACKPACKER);
+        JsonAdaptedAccommodationBooking accommodationBooking = new JsonAdaptedAccommodationBooking(
+                ACCOMMODATION_BOOKING_BACKPACKER);
         assertEquals(ACCOMMODATION_BOOKING_BACKPACKER, accommodationBooking.toModelType());
     }
 
@@ -84,6 +84,4 @@ class JsonAdaptedAccommodationBookingTest {
         String expectedMessage = Remark.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, accommodationBooking::toModelType);
     }
-
-
 }

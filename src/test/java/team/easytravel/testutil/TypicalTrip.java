@@ -2,20 +2,18 @@ package team.easytravel.testutil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import team.easytravel.commons.core.time.DateTime;
-import team.easytravel.model.listmanagers.ActivityManager;
-import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.trip.Budget;
 import team.easytravel.model.trip.ExchangeRate;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
 import team.easytravel.model.util.attributes.Title;
 
+/**
+ * A utility class containing a list of {@code Trip} objects to be used in tests.
+ */
 public class TypicalTrip {
 
     public static final Trip TRIP_HONGKONG =

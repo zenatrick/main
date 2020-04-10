@@ -6,7 +6,6 @@ import static team.easytravel.testutil.TypicalPackingListItem.PACKING_LIST_PASSP
 
 import org.junit.jupiter.api.Test;
 
-
 import team.easytravel.commons.exceptions.IllegalValueException;
 
 import team.easytravel.model.listmanagers.packinglistitem.ItemCategory;

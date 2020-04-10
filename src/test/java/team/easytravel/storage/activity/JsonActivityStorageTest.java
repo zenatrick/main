@@ -3,9 +3,10 @@ package team.easytravel.storage.activity;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static team.easytravel.testutil.Assert.assertThrows;
-import static team.easytravel.testutil.TypicalActivity.ACTIVITY_BUNGEE_JUMP;
-import static team.easytravel.testutil.TypicalActivity.ACTIVITY_FLY_KITE;
-import static team.easytravel.testutil.TypicalActivity.ACTIVITY_PEAK;
+import static team.easytravel.testutil.activity.TypicalActivity.ACTIVITY_BUNGEE_JUMP;
+import static team.easytravel.testutil.activity.TypicalActivity.ACTIVITY_FLY_KITE;
+import static team.easytravel.testutil.activity.TypicalActivity.ACTIVITY_PEAK;
+import static team.easytravel.testutil.activity.TypicalActivity.getTypicalActivityManager;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -18,7 +19,6 @@ import org.junit.jupiter.api.io.TempDir;
 import team.easytravel.commons.exceptions.DataConversionException;
 import team.easytravel.model.listmanagers.ActivityManager;
 import team.easytravel.model.listmanagers.ReadOnlyActivityManager;
-import team.easytravel.testutil.TypicalActivity;
 
 class JsonActivityStorageTest {
 
@@ -29,10 +29,10 @@ class JsonActivityStorageTest {
 
     @Test
     public void readActivityManager_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, ()-> readActivityManager(null));
+        assertThrows(NullPointerException.class, () -> readActivityManager(null));
     }
 
-    private Optional<ReadOnlyActivityManager> readActivityManager(String filePath) throws Exception{
+    private Optional<ReadOnlyActivityManager> readActivityManager(String filePath) throws Exception {
         return new JsonActivityStorage(Paths.get(filePath)).readActivityManager(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -49,23 +49,24 @@ class JsonActivityStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, ()-> readActivityManager("notJsonFormatActivityManager.json"));
+        assertThrows(DataConversionException.class, () -> readActivityManager("notJsonFormatActivityManager.json"));
     }
 
     @Test
     public void readActivityManager_invalidActivityActivityManager_throwDataConversionException() {
-        assertThrows(DataConversionException.class, ()-> readActivityManager("invalidActivityActivityManager.json"));
+        assertThrows(DataConversionException.class, () -> readActivityManager("invalidActivityActivityManager.json"));
     }
 
     @Test
     public void readActivityManager_invalidAndValidActivityActivityManager_throwDataConversionException() {
-        assertThrows(DataConversionException.class, ()-> readActivityManager("invalidAndValidActivityActivityManager.json"));
+        assertThrows(DataConversionException.class, () -> readActivityManager(
+                "invalidAndValidActivityActivityManager.json"));
     }
 
     @Test
     public void readAndSaveActivityManager_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempActivityManager.json");
-        ActivityManager original = TypicalActivity.getTypicalActivityManager();
+        ActivityManager original = getTypicalActivityManager();
         JsonActivityStorage jsonActivityStorage = new JsonActivityStorage(filePath);
 
         //Save in new file and read back
@@ -89,7 +90,7 @@ class JsonActivityStorageTest {
 
     @Test
     public void saveActivityManager_nullActivityManager_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, ()-> saveActivityManager(null, "SomeFile.json"));
+        assertThrows(NullPointerException.class, () -> saveActivityManager(null, "SomeFile.json"));
     }
 
     /**
@@ -106,13 +107,8 @@ class JsonActivityStorageTest {
 
     @Test
     public void saveActivityManager_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, ()-> saveActivityManager(new ActivityManager(), null));
+        assertThrows(NullPointerException.class, () -> saveActivityManager(new ActivityManager(), null));
     }
-
-
-
-
-
 
 
 }

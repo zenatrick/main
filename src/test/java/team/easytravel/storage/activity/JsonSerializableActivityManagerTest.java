@@ -1,8 +1,8 @@
 package team.easytravel.storage.activity;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static team.easytravel.testutil.Assert.assertThrows;
+import static team.easytravel.testutil.activity.TypicalActivity.getTypicalActivityManager;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,12 +12,11 @@ import org.junit.jupiter.api.Test;
 import team.easytravel.commons.exceptions.IllegalValueException;
 import team.easytravel.commons.util.JsonUtil;
 import team.easytravel.model.listmanagers.ActivityManager;
-import team.easytravel.storage.accommodationbooking.JsonSerializableAccommodationBookingManager;
-import team.easytravel.testutil.TypicalActivity;
 
 class JsonSerializableActivityManagerTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableActivityManagerTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
+            "JsonSerializableActivityManagerTest");
     private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalActivityActivityManager.json");
     private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidActivityActivityManager.json");
     private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicateActivityActivityManager.json");
@@ -27,7 +26,7 @@ class JsonSerializableActivityManagerTest {
         JsonSerializableActivityManager dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableActivityManager.class).get();
         ActivityManager activityManagerFromFile = dataFromFile.toModelType();
-        ActivityManager typicalActivityActivityBook = TypicalActivity.getTypicalActivityManager();
+        ActivityManager typicalActivityActivityBook = getTypicalActivityManager();
         assertEquals(activityManagerFromFile, typicalActivityActivityBook);
     }
 

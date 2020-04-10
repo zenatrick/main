@@ -33,7 +33,7 @@ class SetTripCommandTest {
 
         assertEquals(String.format(SetTripCommand.MESSAGE_SUCCESS, validTrip),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validTrip), modelStub.TripAdded);
+        assertEquals(Arrays.asList(validTrip), modelStub.tripAdded);
     }
 
     @Test
@@ -86,18 +86,18 @@ class SetTripCommandTest {
      * A Model stub that always accept the Trip being added.
      */
     private class ModelStubAcceptingTripAdded extends ModelStub {
-        final ArrayList<Trip> TripAdded = new ArrayList<>();
+        final ArrayList<Trip> tripAdded = new ArrayList<>();
 
         @Override
         public boolean hasTrip() {
-            return TripAdded.size() > 0;
+            return tripAdded.size() > 0;
         }
 
 
         @Override
         public void setTrip(Trip trip) {
             requireNonNull(trip);
-            TripAdded.add(trip);
+            tripAdded.add(trip);
         }
 
     }

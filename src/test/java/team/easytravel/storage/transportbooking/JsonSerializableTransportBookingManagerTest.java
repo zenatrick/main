@@ -15,10 +15,12 @@ import team.easytravel.testutil.TypicalTransportBooking;
 
 class JsonSerializableTransportBookingManagerTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableTransportBookingManagerTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
+            "JsonSerializableTransportBookingManagerTest");
     private static final Path TYPICAL_TRANSPORT_FILE = TEST_DATA_FOLDER.resolve("typicalTransportBookingManager.json");
     private static final Path INVALID_TRANSPORT_FILE = TEST_DATA_FOLDER.resolve("invalidTransportBookingManager.json");
-    private static final Path DUPLICATE_TRANSPORT_FILE = TEST_DATA_FOLDER.resolve("duplicateTransportBookingManager.json");
+    private static final Path DUPLICATE_TRANSPORT_FILE = TEST_DATA_FOLDER.resolve(
+            "duplicateTransportBookingManager.json");
 
 
     @Test
@@ -26,7 +28,8 @@ class JsonSerializableTransportBookingManagerTest {
         JsonSerializableTransportBookingManager dataFromFile = JsonUtil.readJsonFile(TYPICAL_TRANSPORT_FILE,
                JsonSerializableTransportBookingManager.class).get();
         TransportBookingManager transportBookingManagerFromFile = dataFromFile.toModelType();
-        TransportBookingManager typicalTransportBookingManager = TypicalTransportBooking.getTypicalTransportBookingManager();
+        TransportBookingManager typicalTransportBookingManager = TypicalTransportBooking
+                .getTypicalTransportBookingManager();
         assertEquals(transportBookingManagerFromFile, typicalTransportBookingManager);
     }
 
@@ -41,7 +44,8 @@ class JsonSerializableTransportBookingManagerTest {
     public void toModelType_duplicateTransportBookings_throwsIllegalValueException() throws Exception {
         JsonSerializableTransportBookingManager dataFromFile = JsonUtil.readJsonFile(DUPLICATE_TRANSPORT_FILE,
                JsonSerializableTransportBookingManager.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableTransportBookingManager.MESSAGE_DUPLICATE_TRANSPORT_BOOKING,
+        assertThrows(IllegalValueException.class, JsonSerializableTransportBookingManager
+                        .MESSAGE_DUPLICATE_TRANSPORT_BOOKING,
                 dataFromFile::toModelType);
     }
 

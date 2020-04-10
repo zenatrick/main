@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static team.easytravel.testutil.Assert.assertThrows;
 import static team.easytravel.testutil.TypicalTransportBooking.TRANSPORT_BOOKING_BOAT;
-import static team.easytravel.testutil.TypicalTransportBooking.TRANSPORT_BOOKING_BUS;
 import static team.easytravel.testutil.TypicalTransportBooking.TRANSPORT_BOOKING_PLANE;
 import static team.easytravel.testutil.TypicalTransportBooking.TRANSPORT_BOOKING_SAMPAN;
 
@@ -17,17 +16,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import team.easytravel.commons.exceptions.DataConversionException;
-import team.easytravel.model.listmanagers.ActivityManager;
 import team.easytravel.model.listmanagers.ReadOnlyActivityManager;
 import team.easytravel.model.listmanagers.ReadOnlyTransportBookingManager;
 import team.easytravel.model.listmanagers.TransportBookingManager;
-import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
 import team.easytravel.storage.activity.JsonActivityStorage;
-import team.easytravel.testutil.TypicalActivity;
 import team.easytravel.testutil.TypicalTransportBooking;
 
 class JsonTransportBookingStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonTransportBookingStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test",
+            "data", "JsonTransportBookingStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -54,17 +51,20 @@ class JsonTransportBookingStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readTransportBookingManager("notJsonFormatTransportManager.json"));
+        assertThrows(DataConversionException.class, () -> readTransportBookingManager(
+                "notJsonFormatTransportManager.json"));
     }
 
     @Test
     public void readActivityManager_invalidTransportBookingManager_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readTransportBookingManager("invalidTransportManager.json"));
+        assertThrows(DataConversionException.class, () -> readTransportBookingManager(
+                "invalidTransportManager.json"));
     }
 
     @Test
     public void readActivityManager_invalidAndValidTransportBookingManager_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readTransportBookingManager("invalidAndValidTransportManager.json"));
+        assertThrows(DataConversionException.class, () -> readTransportBookingManager(
+                "invalidAndValidTransportManager.json"));
     }
 
     @Test
@@ -94,7 +94,8 @@ class JsonTransportBookingStorageTest {
 
     @Test
     public void saveActivityManager_nullTransportBookingManager_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveTransportBookingManager(null, "SomeFile.json"));
+        assertThrows(NullPointerException.class, () -> saveTransportBookingManager(
+                null, "SomeFile.json"));
     }
 
     /**
@@ -111,9 +112,9 @@ class JsonTransportBookingStorageTest {
 
     @Test
     public void saveTransportBookingManager_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveTransportBookingManager(new TransportBookingManager(), null));
+        assertThrows(NullPointerException.class, () -> saveTransportBookingManager(
+                new TransportBookingManager(), null));
     }
-
 
 
 }

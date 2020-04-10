@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.nio.file.Path;
-import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,8 +19,6 @@ import team.easytravel.model.listmanagers.ReadOnlyPackingListManager;
 import team.easytravel.model.listmanagers.ReadOnlyTransportBookingManager;
 import team.easytravel.model.listmanagers.TransportBookingManager;
 import team.easytravel.model.listmanagers.UserPrefs;
-import team.easytravel.model.trip.Trip;
-import team.easytravel.model.trip.TripManager;
 import team.easytravel.storage.accommodationbooking.JsonAccommodationBookingStorage;
 import team.easytravel.storage.activity.JsonActivityStorage;
 import team.easytravel.storage.fixedexpense.JsonFixedExpenseStorage;
@@ -32,7 +29,6 @@ import team.easytravel.testutil.TypicalAccommodation;
 import team.easytravel.testutil.TypicalFixedExpense;
 import team.easytravel.testutil.TypicalPackingListItem;
 import team.easytravel.testutil.TypicalTransportBooking;
-import team.easytravel.testutil.TypicalTrip;
 
 
 public class StorageManagerTest {

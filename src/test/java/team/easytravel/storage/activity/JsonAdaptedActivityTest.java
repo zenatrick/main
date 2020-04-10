@@ -2,7 +2,7 @@ package team.easytravel.storage.activity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static team.easytravel.testutil.Assert.assertThrows;
-import static team.easytravel.testutil.TypicalActivity.ACTIVITY_PEAK;
+import static team.easytravel.testutil.activity.TypicalActivity.ACTIVITY_PEAK;
 
 import java.util.ArrayList;
 import java.util.List;

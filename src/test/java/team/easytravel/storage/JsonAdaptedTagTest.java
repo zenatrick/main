@@ -1,7 +1,5 @@
 package team.easytravel.storage;
 
-
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static team.easytravel.testutil.Assert.assertThrows;

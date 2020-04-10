@@ -28,18 +28,17 @@ public class TypicalAccommodation {
             new AccommodationName("Backpacker"), new Location("Singapore"),
             new Day(5), new Day(7), new Remark("2 nights stay"));
 
-    private TypicalAccommodation() {
-    }
     // Manually Added -- DONT USE THESE TWO, only for storage tests!!
-    public static final AccommodationBooking ACCOMMODATION_BOOKING_HDB = new AccommodationBooking(
-            new AccommodationName("HDB"), new Location("Singapore"),
-            new Day(7), new Day(9), new Remark("2 nights stay"));
-
     public static final AccommodationBooking ACCOMMODATION_BOOKING_CAMP = new AccommodationBooking(
             new AccommodationName("CAMP"), new Location("Singapore"),
             new Day(9), new Day(11), new Remark("2 nights stay"));
 
+    public static final AccommodationBooking ACCOMMODATION_BOOKING_HDB = new AccommodationBooking(
+            new AccommodationName("HDB"), new Location("Singapore"),
+            new Day(7), new Day(9), new Remark("2 nights stay"));
 
+    private TypicalAccommodation() {
+    }
 
 
     /**
