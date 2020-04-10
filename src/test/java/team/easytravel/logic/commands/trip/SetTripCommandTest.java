@@ -25,7 +25,7 @@ class SetTripCommandTest {
     }
 
     @Test
-    public void execute_TripAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_tripAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTripAdded modelStub = new ModelStubAcceptingTripAdded();
         Trip validTrip = new TripBuilder().build();
 
@@ -83,7 +83,7 @@ class SetTripCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the Trip being added.
      */
     private class ModelStubAcceptingTripAdded extends ModelStub {
         final ArrayList<Trip> TripAdded = new ArrayList<>();
