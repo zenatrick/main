@@ -14,7 +14,7 @@ import team.easytravel.testutil.Assert;
 
 class TripTest {
 
-    private final Trip TRIP = new Trip(new Title("Cheese Land"),
+    private final Trip trip = new Trip(new Title("Cheese Land"),
             Date.fromString("28-09-2020"), Date.fromString("05-10-2020"),
             new Budget(1000), new ExchangeRate(1.03));
 
@@ -68,10 +68,10 @@ class TripTest {
     public void getTitle() {
 
         // Correct case
-        Assertions.assertEquals(new Title("Cheese Land"), TRIP.getTitle());
+        Assertions.assertEquals(new Title("Cheese Land"), trip.getTitle());
 
         //Different case
-        Assertions.assertNotEquals(new Title("Not Cheese Land"), TRIP.getTitle());
+        Assertions.assertNotEquals(new Title("Not Cheese Land"), trip.getTitle());
 
     }
 
@@ -80,21 +80,19 @@ class TripTest {
 
         // Correct case
         assertEquals(Date.fromString("28-09-2020"),
-                TRIP.getStartDate());
+                trip.getStartDate());
 
         //Different case
         assertNotEquals(Date.fromString("20-09-2020"),
-                TRIP.getStartDate());
+                trip.getStartDate());
 
         // Correct case
         assertEquals(Date.fromString("05-10-2020"),
-                TRIP.getEndDate());
+                trip.getEndDate());
 
         //Different case
         assertNotEquals(Date.fromString("20-09-2020"),
-                TRIP.getEndDate());
-
-
+                trip.getEndDate());
 
     }
 
@@ -103,11 +101,11 @@ class TripTest {
 
         // Correct case
         assertEquals(new Budget(1000).toString(),
-                TRIP.getBudget().toString());
+                trip.getBudget().toString());
 
         //Different case
         assertNotEquals(new Budget(2000).toString(),
-                TRIP.getBudget().toString());
+                trip.getBudget().toString());
 
     }
 
@@ -116,11 +114,11 @@ class TripTest {
 
         // Correct case
         assertEquals(new ExchangeRate(1.03).toString(),
-                TRIP.getExchangeRate().toString());
+                trip.getExchangeRate().toString());
 
         //Different case
         assertNotEquals(new ExchangeRate(1.3).toString(),
-                TRIP.getExchangeRate().toString());
+                trip.getExchangeRate().toString());
 
     }
 
@@ -135,10 +133,10 @@ class TripTest {
         String dateYear = "5-10-2023";
         assertFalse(Trip.isValidTrip(Date.fromString(date1), Date.fromString(dateYear))); //many years
 
-        date2= "27-10-2020";
+        date2 = "27-10-2020";
         assertTrue(Trip.isValidTrip(Date.fromString(date1), Date.fromString(date2))); //exactly 30 days
 
-        date2= "28-10-2020";
+        date2 = "28-10-2020";
         assertFalse(Trip.isValidTrip(Date.fromString(date1), Date.fromString(date2))); //exactly 31 days
 
         assertTrue(Trip.isValidTrip(Date.fromString(date1), Date.fromString(date1))); //one day
@@ -152,13 +150,13 @@ class TripTest {
                         Date.fromString("28-09-2020"), Date.fromString("05-10-2020"),
                         new Budget(1000), new ExchangeRate(1.03));
 
-        assertEquals(TRIP.toString(), editedTrip.toString());
+        assertEquals(trip.toString(), editedTrip.toString());
 
         editedTrip = new Trip(new Title("Not Cheese Land"),
                         Date.fromString("28-09-2020"), Date.fromString("05-10-2020"),
                         new Budget(1000), new ExchangeRate(1.03));
 
-        assertNotEquals(editedTrip.toString(), TRIP.toString()); //different title
+        assertNotEquals(editedTrip.toString(), trip.toString()); //different title
 
     }
 }

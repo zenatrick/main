@@ -21,7 +21,7 @@ public class TypicalTrip {
             new Budget(1000), new ExchangeRate(1.03));
 
     public static final Trip TRIP_GRAD = new Trip(new Title("Graduation Trip"),
-            Date.fromString("20-03-2020"), Date.fromString("06-04-2020"),
+            Date.fromString("20-03-2020"), Date.fromString("20-03-2020"),
             new Budget(5000), new ExchangeRate(3.0));
 
     public static final Trip TRIP_MOON = new Trip(new Title("Cheese Land"),

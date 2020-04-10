@@ -4,31 +4,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static team.easytravel.testutil.Assert.assertThrows;
-import static team.easytravel.testutil.activity.TypicalActivity.ACTIVITY_DISNEYLAND;
-import static team.easytravel.testutil.activity.TypicalActivity.getTypicalActivityManager;
+import static team.easytravel.testutil.trip.TypicalTrip.TRIP_CHEESE;
+import static team.easytravel.testutil.trip.TypicalTrip.TRIP_GRAD;
+import static team.easytravel.testutil.trip.TypicalTrip.getTypicalTripManager;
 
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import team.easytravel.model.listmanagers.ActivityManager;
-import team.easytravel.model.listmanagers.ReadOnlyActivityManager;
-import team.easytravel.model.listmanagers.activity.Activity;
-import team.easytravel.model.util.uniquelist.exceptions.DuplicateElementException;
+import team.easytravel.model.trip.exception.IllegalOperationException;
 
 
-class ActivityManagerTest {
+class TripManagerTest {
 
     private final TripManager tripManager = new TripManager();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), tripManager.getDayScheduleEntryLists());
+        tripManager.setTrip(TRIP_GRAD);
+        assertEquals(Collections.EMPTY_LIST, tripManager.getDayScheduleEntryList(0));
     }
 
     @Test
@@ -37,58 +31,29 @@ class ActivityManagerTest {
     }
 
     @Test
-    public void resetDataWithValidReadOnlyActivityManagerReplacesData() {
+    public void resetDataWithValidReadOnlyTripManagerReplacesData() {
         TripManager newData = getTypicalTripManager();
         tripManager.resetData(newData);
-        assertEquals(newData, tripManager);
+        assertEquals(newData.toString(), tripManager.toString());
+        assertEquals(newData.hashCode(), tripManager.hashCode());
+    }
+
+
+    @Test
+    public void hasTripNotInTripManagerReturnsFalse() {
+        assertFalse(tripManager.hasTrip());
     }
 
     @Test
-    public void resetDataWithDuplicateActivityThrowsDuplicateElementException() {
-        List<Activity> newActivity = Arrays.asList(ACTIVITY_DISNEYLAND,
-                ACTIVITY_DISNEYLAND);
-        team.easytravel.model.listmanagers.ActivityManagerTest.ActivityManagerStub newData = new team.easytravel.model.listmanagers.ActivityManagerTest.ActivityManagerStub(newActivity);
-        assertThrows(DuplicateElementException.class, () -> tripManager.resetData(newData));
+    public void hasTripManagerInTripManagerReturnsTrue() {
+        tripManager.setTrip(TRIP_CHEESE);
+        assertTrue(tripManager.hasTrip());
     }
 
     @Test
-    public void hasActivityNullActivity_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> tripManager
-                .hasActivity(null));
+    public void getTripModifyListThrowsUnsupportedOperationException() {
+        assertThrows(IllegalOperationException.class, () -> tripManager
+                .getDayScheduleEntryLists().remove(0));
     }
 
-    @Test
-    public void hasActivityNotInActivityManagerReturnsFalse() {
-        assertFalse(tripManager.hasActivity(ACTIVITY_DISNEYLAND));
-    }
-
-    @Test
-    public void hasActivityManagerInActivityManagerReturnsTrue() {
-        tripManager.addActivity(ACTIVITY_DISNEYLAND);
-        assertTrue(tripManager.hasActivity(ACTIVITY_DISNEYLAND));
-    }
-
-    @Test
-    public void getActivityModifyListThrowsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> tripManager
-                .getActivityList().remove(0));
-    }
-
-
-    /**
-     * A stub ReadOnlyActivityManager whose activity list can violate interface constraints.
-     */
-    private static class ActivityManagerStub implements ReadOnlyActivityManager {
-        private final ObservableList<Activity> activityBookings =
-                FXCollections.observableArrayList();
-
-        ActivityManagerStub(Collection<Activity> activities) {
-            this.activityBookings.setAll(activities);
-        }
-
-        @Override
-        public ObservableList<Activity> getActivityList() {
-            return activityBookings;
-        }
-    }
 }
