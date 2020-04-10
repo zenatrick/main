@@ -1,12 +1,12 @@
-package team.easytravel.storage;
+package team.easytravel.storage.userprefs;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
 import team.easytravel.commons.exceptions.DataConversionException;
-import team.easytravel.model.listmanagers.ReadOnlyUserPrefs;
-import team.easytravel.model.listmanagers.UserPrefs;
+import team.easytravel.model.userprefs.ReadOnlyUserPrefs;
+import team.easytravel.model.userprefs.UserPrefs;
 
 /**
  * Represents a storage for {@link UserPrefs}.

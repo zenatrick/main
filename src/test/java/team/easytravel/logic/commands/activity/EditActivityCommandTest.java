@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.activity;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static team.easytravel.logic.commands.CommandTestUtil.DESC_FINLAND;
 import static team.easytravel.logic.commands.CommandTestUtil.DESC_JAPAN;
@@ -26,10 +27,10 @@ import team.easytravel.model.listmanagers.AccommodationBookingManager;
 import team.easytravel.model.listmanagers.FixedExpenseManager;
 import team.easytravel.model.listmanagers.PackingListManager;
 import team.easytravel.model.listmanagers.TransportBookingManager;
-import team.easytravel.model.listmanagers.UserPrefs;
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
+import team.easytravel.model.userprefs.UserPrefs;
 import team.easytravel.testutil.activity.ActivityBuilder;
 import team.easytravel.testutil.activity.EditActivityDescriptorBuilder;
 import team.easytravel.testutil.activity.TypicalActivity;
@@ -201,22 +202,22 @@ public class EditActivityCommandTest {
         EditActivityDescriptor copyDescriptor = new EditActivityDescriptor(DESC_JAPAN);
         EditActivityCommand commandWithSameValues = new EditActivityCommand(INDEX_FIRST, copyDescriptor);
 
-        assertTrue(standardCommand.equals(commandWithSameValues));
+        assertEquals(standardCommand, commandWithSameValues);
 
         // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
+        assertEquals(standardCommand, standardCommand);
 
         // null -> returns false
-        assertFalse(standardCommand.equals(null));
+        assertNotEquals(null, standardCommand);
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearActivityCommand()));
+        assertNotEquals(standardCommand, new ClearActivityCommand());
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditActivityCommand(INDEX_SECOND, DESC_JAPAN)));
+        assertNotEquals(standardCommand, new EditActivityCommand(INDEX_SECOND, DESC_JAPAN));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditActivityCommand(INDEX_FIRST, DESC_FINLAND)));
+        assertNotEquals(standardCommand, new EditActivityCommand(INDEX_FIRST, DESC_FINLAND));
     }
 }
 

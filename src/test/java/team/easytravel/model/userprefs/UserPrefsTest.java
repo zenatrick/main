@@ -1,8 +1,7 @@
-package team.easytravel.model;
+package team.easytravel.model.userprefs;
 
 import org.junit.jupiter.api.Test;
 
-import team.easytravel.model.listmanagers.UserPrefs;
 import team.easytravel.testutil.Assert;
 
 public class UserPrefsTest {

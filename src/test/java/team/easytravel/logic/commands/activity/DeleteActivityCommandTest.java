@@ -1,6 +1,7 @@
 package team.easytravel.logic.commands.activity;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static team.easytravel.logic.commands.CommandTestUtil.assertActivityCommandFailure;
 import static team.easytravel.logic.commands.CommandTestUtil.assertActivityCommandSuccess;
@@ -19,12 +20,13 @@ import team.easytravel.model.listmanagers.AccommodationBookingManager;
 import team.easytravel.model.listmanagers.FixedExpenseManager;
 import team.easytravel.model.listmanagers.PackingListManager;
 import team.easytravel.model.listmanagers.TransportBookingManager;
-import team.easytravel.model.listmanagers.UserPrefs;
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
+import team.easytravel.model.userprefs.UserPrefs;
 import team.easytravel.testutil.activity.TypicalActivity;
 import team.easytravel.testutil.trip.TripBuilder;
+
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
  * {@code DeleteCommand}.
@@ -112,20 +114,20 @@ public class DeleteActivityCommandTest {
         DeleteActivityCommand deleteSecondCommand = new DeleteActivityCommand(INDEX_SECOND);
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertEquals(deleteFirstCommand, deleteFirstCommand);
 
         // same values -> returns true
         DeleteActivityCommand deleteFirstCommandCopy = new DeleteActivityCommand(INDEX_FIRST);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        assertEquals(deleteFirstCommand, deleteFirstCommandCopy);
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertNotEquals(1, deleteFirstCommand);
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertNotEquals(null, deleteFirstCommand);
 
         // different person -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertNotEquals(deleteFirstCommand, deleteSecondCommand);
     }
 
     /**

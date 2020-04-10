@@ -23,9 +23,7 @@ import team.easytravel.model.listmanagers.ReadOnlyActivityManager;
 import team.easytravel.model.listmanagers.ReadOnlyFixedExpenseManager;
 import team.easytravel.model.listmanagers.ReadOnlyPackingListManager;
 import team.easytravel.model.listmanagers.ReadOnlyTransportBookingManager;
-import team.easytravel.model.listmanagers.ReadOnlyUserPrefs;
 import team.easytravel.model.listmanagers.TransportBookingManager;
-import team.easytravel.model.listmanagers.UserPrefs;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBooking;
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
@@ -36,6 +34,8 @@ import team.easytravel.model.trip.DayScheduleEntry;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
 import team.easytravel.model.trip.exception.IllegalOperationException;
+import team.easytravel.model.userprefs.ReadOnlyUserPrefs;
+import team.easytravel.model.userprefs.UserPrefs;
 import team.easytravel.model.util.attributes.Title;
 
 /**

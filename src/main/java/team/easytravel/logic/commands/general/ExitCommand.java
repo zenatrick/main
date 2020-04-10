@@ -1,7 +1,9 @@
-package team.easytravel.logic.commands;
+package team.easytravel.logic.commands.general;
 
 import static team.easytravel.logic.commands.CommandResult.Action.EXIT;
 
+import team.easytravel.logic.commands.Command;
+import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.model.Model;
 
 /**

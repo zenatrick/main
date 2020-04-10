@@ -1,4 +1,4 @@
-package team.easytravel.model.listmanagers;
+package team.easytravel.model.userprefs;
 
 import static java.util.Objects.requireNonNull;
 

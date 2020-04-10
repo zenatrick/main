@@ -1,8 +1,7 @@
 package team.easytravel.logic.commands.activity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static team.easytravel.commons.core.Messages.MESSAGE_ITEMS_LISTED_OVERVIEW;
 import static team.easytravel.logic.commands.CommandTestUtil.assertActivityCommandSuccess;
 
@@ -18,10 +17,10 @@ import team.easytravel.model.listmanagers.AccommodationBookingManager;
 import team.easytravel.model.listmanagers.FixedExpenseManager;
 import team.easytravel.model.listmanagers.PackingListManager;
 import team.easytravel.model.listmanagers.TransportBookingManager;
-import team.easytravel.model.listmanagers.UserPrefs;
 import team.easytravel.model.listmanagers.activity.ActivityContainKeywordPredicate;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
+import team.easytravel.model.userprefs.UserPrefs;
 import team.easytravel.testutil.activity.TypicalActivity;
 import team.easytravel.testutil.trip.TripBuilder;
 
@@ -30,13 +29,12 @@ import team.easytravel.testutil.trip.TripBuilder;
  */
 public class FindActivityCommandTest {
     private Model model;
-    private TripManager tripManagerSet;
     private Model expectedModel;
 
     @BeforeEach
     public void setUp() {
         Trip newTrip = new TripBuilder().build();
-        tripManagerSet = new TripManager();
+        TripManager tripManagerSet = new TripManager();
         tripManagerSet.setTrip(newTrip);
         model = new ModelManager(new TransportBookingManager(),
                 new FixedExpenseManager(), new PackingListManager(), TypicalActivity.getTypicalActivityManager(),
@@ -60,26 +58,26 @@ public class FindActivityCommandTest {
         FindActivityCommand findSecondCommand = new FindActivityCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(findFirstCommand.equals(findFirstCommand));
+        assertEquals(findFirstCommand, findFirstCommand);
 
         // same values -> returns true
         FindActivityCommand findFirstCommandCopy = new FindActivityCommand(firstPredicate);
-        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+        assertEquals(findFirstCommand, findFirstCommandCopy);
 
         // different types -> returns false
-        assertFalse(findFirstCommand.equals(1));
+        assertNotEquals(1, findFirstCommand);
 
         // null -> returns false
-        assertFalse(findFirstCommand.equals(null));
+        assertNotEquals(null, findFirstCommand);
 
         // different person -> returns false
-        assertFalse(findFirstCommand.equals(findSecondCommand));
+        assertNotEquals(findFirstCommand, findSecondCommand);
     }
 
     @Test
     public void execute_zeroKeywords_noActivityFound() {
-        String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 0, "activities "
-                + "found.\n Use command listactivity to show all activities");
+        String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 0, "activities")
+                + String.format("\nUse the \"%s\" command to show all activities", ListActivityCommand.COMMAND_WORD);
         ActivityContainKeywordPredicate predicate = preparePredicate(" ");
         FindActivityCommand command = new FindActivityCommand(predicate);
         expectedModel.updateFilteredActivityList(predicate);
@@ -89,13 +87,13 @@ public class FindActivityCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleActivityFound() {
-        String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 1, "activities "
-                + "found.\n Use command listactivity to show all activities");
+        String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 1, "activities")
+                + String.format("\nUse the \"%s\" command to show all activities", ListActivityCommand.COMMAND_WORD);
         ActivityContainKeywordPredicate predicate = preparePredicate("Hokkaido");
         FindActivityCommand command = new FindActivityCommand(predicate);
         expectedModel.updateFilteredActivityList(predicate);
         assertActivityCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TypicalActivity.ACTIVITY_DISNEYLAND), model.getFilteredActivityList());
+        assertEquals(Collections.singletonList(TypicalActivity.ACTIVITY_DISNEYLAND), model.getFilteredActivityList());
     }
 
     /**

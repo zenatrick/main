@@ -1,4 +1,4 @@
-package team.easytravel.storage;
+package team.easytravel.storage.userprefs;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import team.easytravel.commons.core.GuiSettings;
 import team.easytravel.commons.exceptions.DataConversionException;
-import team.easytravel.model.listmanagers.UserPrefs;
+import team.easytravel.model.userprefs.UserPrefs;
 import team.easytravel.testutil.Assert;
 
 public class JsonUserPrefsStorageTest {

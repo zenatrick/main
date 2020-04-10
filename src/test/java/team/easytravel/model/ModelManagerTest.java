@@ -4,11 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static team.easytravel.testutil.Assert.assertThrows;
-
 import static team.easytravel.testutil.TypicalAccommodation.ACCOMMODATION_BOOKING_BACKPACKER;
 import static team.easytravel.testutil.TypicalAccommodation.ACCOMMODATION_BOOKING_HOSTEL;
 import static team.easytravel.testutil.TypicalAccommodation.ACCOMMODATION_BOOKING_HOTEL;
-
 import static team.easytravel.testutil.TypicalFixedExpense.FIXED_EXPENSE_HOTELS;
 import static team.easytravel.testutil.TypicalFixedExpense.FIXED_EXPENSE_PLANE;
 import static team.easytravel.testutil.TypicalFixedExpense.FIXED_EXPENSE_WIFI;
@@ -30,13 +28,13 @@ import team.easytravel.model.listmanagers.ActivityManager;
 import team.easytravel.model.listmanagers.FixedExpenseManager;
 import team.easytravel.model.listmanagers.PackingListManager;
 import team.easytravel.model.listmanagers.TransportBookingManager;
-import team.easytravel.model.listmanagers.UserPrefs;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBooking;
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
 import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
 import team.easytravel.model.trip.TripManager;
+import team.easytravel.model.userprefs.UserPrefs;
 import team.easytravel.model.util.uniquelist.exceptions.ElementNotFoundException;
 
 
@@ -82,8 +80,7 @@ public class ModelManagerTest {
     @Test
     public void hasTransportBookingModelManager() {
         assertThrows(NullPointerException.class, () -> modelManager.hasTransportBooking(null));
-        TransportBooking newTransport = TRANSPORT_BOOKING_BUS;
-        assertFalse(modelManager.hasTransportBooking(newTransport));
+        assertFalse(modelManager.hasTransportBooking(TRANSPORT_BOOKING_BUS));
     }
 
     @Test
@@ -150,8 +147,7 @@ public class ModelManagerTest {
     @Test
     public void hasFixedExpenseModelManager() {
         assertThrows(NullPointerException.class, () -> modelManager.hasFixedExpense(null));
-        FixedExpense newFixedExpense = FIXED_EXPENSE_HOTELS;
-        assertFalse(modelManager.hasFixedExpense(newFixedExpense));
+        assertFalse(modelManager.hasFixedExpense(FIXED_EXPENSE_HOTELS));
     }
 
     @Test
@@ -219,8 +215,7 @@ public class ModelManagerTest {
     @Test
     public void hasPackingListItemModelManager() {
         assertThrows(NullPointerException.class, () -> modelManager.hasPackingListItem(null));
-        PackingListItem newPackingListItem = PACKING_LIST_JEANS;
-        assertFalse(modelManager.hasPackingListItem(newPackingListItem));
+        assertFalse(modelManager.hasPackingListItem(PACKING_LIST_JEANS));
     }
 
     @Test
@@ -287,8 +282,7 @@ public class ModelManagerTest {
     @Test
     public void hasActivityManagerModelManager() {
         assertThrows(NullPointerException.class, () -> modelManager.hasActivity(null));
-        Activity newActivity = ACTIVITY_DISNEYLAND;
-        assertFalse(modelManager.hasActivity(newActivity));
+        assertFalse(modelManager.hasActivity(ACTIVITY_DISNEYLAND));
     }
 
     @Test
@@ -355,8 +349,7 @@ public class ModelManagerTest {
     @Test
     public void hasAccommodationBookingModelManager() {
         assertThrows(NullPointerException.class, () -> modelManager.hasAccommodationBooking(null));
-        AccommodationBooking newAccommodationBooking = ACCOMMODATION_BOOKING_BACKPACKER;
-        assertFalse(modelManager.hasAccommodationBooking(newAccommodationBooking));
+        assertFalse(modelManager.hasAccommodationBooking(ACCOMMODATION_BOOKING_BACKPACKER));
     }
 
     @Test

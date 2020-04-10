@@ -1,4 +1,4 @@
-package team.easytravel.model.listmanagers;
+package team.easytravel.model.userprefs;
 
 import java.nio.file.Path;
 
@@ -10,8 +10,6 @@ import team.easytravel.commons.core.GuiSettings;
 public interface ReadOnlyUserPrefs {
 
     GuiSettings getGuiSettings();
-
-    //Path getAddressBookFilePath();
 
     Path getTransportBookingStorageFilePath();
 

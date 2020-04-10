@@ -1,4 +1,4 @@
-package team.easytravel.storage;
+package team.easytravel.storage.userprefs;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -6,8 +6,8 @@ import java.util.Optional;
 
 import team.easytravel.commons.exceptions.DataConversionException;
 import team.easytravel.commons.util.JsonUtil;
-import team.easytravel.model.listmanagers.ReadOnlyUserPrefs;
-import team.easytravel.model.listmanagers.UserPrefs;
+import team.easytravel.model.userprefs.ReadOnlyUserPrefs;
+import team.easytravel.model.userprefs.UserPrefs;
 
 /**
  * A class to access UserPrefs stored in the hard disk as a json file
@@ -32,6 +32,7 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
 
     /**
      * Similar to {@link #readUserPrefs()}
+     *
      * @param prefsFilePath location of the data. Cannot be null.
      * @throws DataConversionException if the file format is not as expected.
      */

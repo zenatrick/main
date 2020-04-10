@@ -40,7 +40,7 @@ public class FindActivityCommand extends Command {
         model.updateFilteredActivityList(predicate);
         return new CommandResult(
                 String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, model.getFilteredActivityList().size(), "activities")
-                        + String.format("\nUse the %s command to show all activities",
+                        + String.format("\nUse the \"%s\" command to show all activities",
                         ListActivityCommand.COMMAND_WORD), SWITCH_TAB_ACTIVITY);
     }
 

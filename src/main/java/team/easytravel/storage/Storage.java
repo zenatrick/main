@@ -6,6 +6,7 @@ import team.easytravel.storage.fixedexpense.FixedExpenseStorage;
 import team.easytravel.storage.packinglist.PackingListStorage;
 import team.easytravel.storage.transportbooking.TransportBookingStorage;
 import team.easytravel.storage.trip.TripManagerStorage;
+import team.easytravel.storage.userprefs.UserPrefsStorage;
 
 /**
  * API of the Storage component

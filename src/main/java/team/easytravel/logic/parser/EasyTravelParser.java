@@ -7,8 +7,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import team.easytravel.logic.commands.Command;
-import team.easytravel.logic.commands.ExitCommand;
-import team.easytravel.logic.commands.HelpCommand;
 import team.easytravel.logic.commands.accommodationbooking.AddAccommodationBookingCommand;
 import team.easytravel.logic.commands.accommodationbooking.ClearAccommodationBookingCommand;
 import team.easytravel.logic.commands.accommodationbooking.DeleteAccommodationBookingCommand;
@@ -29,6 +27,8 @@ import team.easytravel.logic.commands.fixedexpense.DeleteFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.EditFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.ListFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.SortFixedExpenseCommand;
+import team.easytravel.logic.commands.general.ExitCommand;
+import team.easytravel.logic.commands.general.HelpCommand;
 import team.easytravel.logic.commands.packinglist.AddItemCommand;
 import team.easytravel.logic.commands.packinglist.AddPresetCommand;
 import team.easytravel.logic.commands.packinglist.CheckItemCommand;

@@ -12,15 +12,16 @@ import team.easytravel.model.listmanagers.ReadOnlyActivityManager;
 import team.easytravel.model.listmanagers.ReadOnlyFixedExpenseManager;
 import team.easytravel.model.listmanagers.ReadOnlyPackingListManager;
 import team.easytravel.model.listmanagers.ReadOnlyTransportBookingManager;
-import team.easytravel.model.listmanagers.ReadOnlyUserPrefs;
-import team.easytravel.model.listmanagers.UserPrefs;
 import team.easytravel.model.trip.TripManager;
+import team.easytravel.model.userprefs.ReadOnlyUserPrefs;
+import team.easytravel.model.userprefs.UserPrefs;
 import team.easytravel.storage.accommodationbooking.AccommodationBookingStorage;
 import team.easytravel.storage.activity.ActivityStorage;
 import team.easytravel.storage.fixedexpense.FixedExpenseStorage;
 import team.easytravel.storage.packinglist.PackingListStorage;
 import team.easytravel.storage.transportbooking.TransportBookingStorage;
 import team.easytravel.storage.trip.TripManagerStorage;
+import team.easytravel.storage.userprefs.UserPrefsStorage;
 
 /**
  * Manages storage of Easy Travel's data in local storage.
@@ -41,7 +42,7 @@ public class StorageManager implements Storage {
      *
      * @param transportBookingStorage     the transport booking storage
      * @param fixedExpenseStorage         the fixed expense storage
-     * @param activityStorage      the activity manager storage
+     * @param activityStorage             the activity manager storage
      * @param accommodationBookingStorage the accommodation booking storage
      * @param packingListStorage          the packing list storage
      * @param userPrefsStorage            the user prefs storage
