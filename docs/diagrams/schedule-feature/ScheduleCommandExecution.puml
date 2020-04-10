@@ -15,29 +15,37 @@ participant "**:DaySchedule**" as DaySchedule MODEL_COLOR
 
 end box
 
-[-> ScheduleCommand : execute(m)
+[-> ScheduleCommand : ""execute(m)""
 activate ScheduleCommand
 
-ScheduleCommand -> ModelManager : getFilteredActivityList()
+ScheduleCommand -> ModelManager : ""hasTrip()""
 activate ModelManager
 
 ModelManager --> ScheduleCommand
 deactivate ModelManager
 
-ScheduleCommand -> ModelManager : scheduleActivity(activity)
+ScheduleCommand -> ModelManager : ""getFilteredActivityList()""
 activate ModelManager
 
-ModelManager -> TripManager : scheduleActivity(activity)
+ModelManager --> ScheduleCommand
+deactivate ModelManager
+
+ScheduleCommand -> ModelManager : ""scheduleActivity(activity)""
+activate ModelManager
+
+
+ModelManager -> TripManager : ""scheduleActivity(activity)""
+
 activate TripManager
 
 create DayScheduleEntry
-TripManager -> DayScheduleEntry : new DayScheduleEntry(\nactivity)
+TripManager -> DayScheduleEntry
 activate DayScheduleEntry
 
-DayScheduleEntry --> TripManager : e
+DayScheduleEntry --> TripManager : ""e""
 deactivate DayScheduleEntry
 
-TripManager -> DaySchedule : addScheduleEntry(e)
+TripManager -> DaySchedule : ""addScheduleEntry(e)""
 activate DaySchedule
 
 DaySchedule --> TripManager
@@ -53,10 +61,10 @@ create CommandResult
 ScheduleCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ScheduleCommand : r
+CommandResult --> ScheduleCommand : ""r""
 deactivate CommandResult
 
-[<-- ScheduleCommand : r
+[<-- ScheduleCommand : ""r""
 deactivate ScheduleCommand
 
 ScheduleCommand -[hidden]> CommandResult
