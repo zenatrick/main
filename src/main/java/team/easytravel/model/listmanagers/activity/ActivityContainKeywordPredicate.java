@@ -7,13 +7,13 @@ import team.easytravel.commons.util.StringUtil;
 
 
 /**
- * The type Item category contains keywords predicate.
+ * The type Activity contains keywords predicate.
  */
 public class ActivityContainKeywordPredicate implements Predicate<Activity> {
     private final List<String> keywords;
 
     /**
-     * Instantiates a new Item category contains keywords predicate.
+     * Instantiates a new Activity contains keywords predicate.
      *
      * @param keywords the keywords
      */

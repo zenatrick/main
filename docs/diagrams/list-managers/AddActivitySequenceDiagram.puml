@@ -13,22 +13,22 @@ participant "**:ActivityManager**" as ActivityManager MODEL_COLOR
 
 end box
 
-[-> AddActivityCommand : execute(m)
+[-> AddActivityCommand : ""execute(m)""
 
 create Activity
 activate AddActivityCommand
-AddActivityCommand -> Activity : new Activity(title, duration, \n location, tags)
+AddActivityCommand -> Activity : ""new Activity(title, duration, ""\n""location, tags)""
 
 activate Activity
-note left: Parameters: Title, \n Duration,\n Location, \n Tags (optional)
+note left: Parameters: ""Title"", \n ""Duration"",\n ""Location"", \n ""Tags"" (optional)
 
 Activity --> AddActivityCommand
 deactivate Activity
 
-AddActivityCommand -> ModelManager : addActivity(toAdd)
+AddActivityCommand -> ModelManager : ""addActivity(toAdd)""
 activate ModelManager
 
-ModelManager -> ActivityManager : addActivity(toAdd)
+ModelManager -> ActivityManager : ""addActivity(toAdd)""
 activate ActivityManager
 
 ActivityManager --> ModelManager
@@ -42,10 +42,10 @@ create CommandResult
 AddActivityCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> AddActivityCommand : r
+CommandResult --> AddActivityCommand : ""r""
 deactivate CommandResult
 
-[<-- AddActivityCommand : r
+[<-- AddActivityCommand : ""r""
 deactivate AddActivityCommand
 
 AddActivityCommand -[hidden]> CommandResult

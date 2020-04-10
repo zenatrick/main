@@ -12,16 +12,16 @@ import team.easytravel.model.listmanagers.activity.ActivityContainKeywordPredica
 import team.easytravel.model.trip.TripManager;
 
 /**
- * Finds and lists all items whose category contains any of the argument keywords.
+ * Finds and lists all activities that contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindActivityCommand extends Command {
     public static final String COMMAND_WORD = "findactivity";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all items whose category contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all activities that contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " swimming clothes essentials";
+            + "Example: " + COMMAND_WORD + " sightseeing carnival";
 
     private final ActivityContainKeywordPredicate predicate;
 
@@ -39,8 +39,9 @@ public class FindActivityCommand extends Command {
 
         model.updateFilteredActivityList(predicate);
         return new CommandResult(
-                String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, model.getFilteredActivityList().size(), "activities "
-                        + "found.\n Use command listactivity to show all activities"), SWITCH_TAB_ACTIVITY);
+                String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, model.getFilteredActivityList().size(), "activities")
+                        + String.format("\nUse the %s command to show all activities",
+                        ListActivityCommand.COMMAND_WORD), SWITCH_TAB_ACTIVITY);
     }
 
     @Override

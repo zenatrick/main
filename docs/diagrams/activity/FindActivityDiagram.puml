@@ -1,36 +1,40 @@
 @startuml
 
 !include ../style.puml
-title Find Activity Command
+title Finding an Activity
 
 start
 
-:User executes ""findactivity"" command;
+:Receives a ""findactivity"" command;
 
-if () then ([is a valid command])
+if () then ([valid command])
 
-    if () then ([is Trip Set])
+    if () then ([trip has been set])
 
-            :Execute ""model""
-            updateFilteredActivityList using
-            given predicate;
+            :Parses the
+            ""findactivity"" command
+            and the keywords;
 
-            :Return a
-            ""FindActivityCommand"" object;
+            :Search for all activities
+            with matching keywords;
 
-            :Execute ""FindActivityCommand"";
+            :Shows all the found
+            activities to the user;
 
-            :Show success message to the user;
+            :Shows a success message
+            to the user;
 
     else ([else])
-            : User receive message that
-            trip has not been set yet;
+            :Shows
+            a trip-not-set
+            error message;
     endif
 
 else ([else])
 
-    :User receive message that
-     command is invalid;
+    :Shows an
+    invalid command
+    error message;
 endif
 
 stop

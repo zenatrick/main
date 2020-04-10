@@ -1,0 +1,86 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":**FindActivityCommand**" as FindActivityCommand LOGIC_COLOR
+participant "**r:CommandResult**" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "**m:ModelManager**" as ModelManager MODEL_COLOR
+participant "**:ActivityManager**" as ActivityManager MODEL_COLOR
+end box
+
+[-> FindActivityCommand : ""execute(m)""
+activate FindActivityCommand
+
+FindActivityCommand -> ModelManager : ""hasTrip()""
+activate ModelManager
+
+ModelManager --> FindActivityCommand
+deactivate
+
+FindActivityCommand -> ModelManager : ""updateFilteredActivityList(p)""
+activate ModelManager
+
+note right
+""p"" is the Predicate
+which check if the
+given ""Activity""
+has the user input
+keywords
+end note
+
+ModelManager -> ActivityManager : ""updateFiltered""\n""ActivityList(p)""
+activate ActivityManager
+
+ActivityManager --> ModelManager
+deactivate ActivityManager
+
+ModelManager --> FindActivityCommand
+deactivate
+
+create CommandResult
+FindActivityCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindActivityCommand : ""r""
+deactivate CommandResult
+
+[<-- FindActivityCommand : ""r""
+deactivate FindActivityCommand
+
+FindActivityCommand -[hidden]> CommandResult
+destroy FindActivityCommand
+
+'create Activity
+'activate AddActivityCommand
+'AddActivityCommand -> Activity : ""new Activity(title, duration, ""\n""location, tags)""
+'
+'activate Activity
+'note left
+'Parameters: ""String"",
+'""Duration"",\n ""Location"", \n ""Tags"" (optional)
+'end note
+'
+'Activity --> AddActivityCommand
+'deactivate Activity
+'
+'AddActivityCommand -> ModelManager : ""addActivity(toAdd)""
+'activate ModelManager
+'
+'ModelManager -> ActivityManager : ""addActivity(toAdd)""
+'activate ActivityManager
+'
+'ActivityManager --> ModelManager
+'deactivate ActivityManager
+'
+'ModelManager --> AddActivityCommand
+'deactivate ModelManager
+'
+'
+
+
+
+@enduml
+
