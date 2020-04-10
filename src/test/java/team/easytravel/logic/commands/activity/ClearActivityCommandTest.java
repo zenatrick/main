@@ -15,6 +15,7 @@ import team.easytravel.model.listmanagers.UserPrefs;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
 import team.easytravel.testutil.trip.TripBuilder;
+import team.easytravel.testutil.activity.TypicalActivity;
 
 class ClearActivityCommandTest {
 
@@ -56,7 +57,7 @@ class ClearActivityCommandTest {
                 new FixedExpenseManager(), new PackingListManager(), new ActivityManager(),
                 new AccommodationBookingManager(), tripManagerSet,
                 new UserPrefs());
-        expectedModel.setActivityManager(new ActivityManager());
+        expectedModel.setActivityManager(TypicalActivity.getTypicalActivityManager());
 
         assertActivityCommandSuccess(new ClearActivityCommand(), model,
                 ClearActivityCommand.MESSAGE_SUCCESS, expectedModel);
