@@ -21,8 +21,7 @@ if () then ([valid command])
             :Shows all the found
             activities to the user;
 
-            :Shows a success message
-            to the user;
+            :Shows a success message;
 
     else ([else])
             :Shows

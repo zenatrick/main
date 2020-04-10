@@ -1,48 +1,53 @@
 @startuml
+
 !include ../style.puml
-title Add Preset to Packing List
+title Adding a Preset to the Packing List
 
 start
 
-:User executes ""addpreset"" command;
-note left
-  Arguments should contain
-  a category
-end note
+:Receives an ""addpreset"" command;
 
-if () then ([trip is set])
+if () then ([valid command])
 
-    if () then ([is a valid command identifier])
+    if () then ([trip has been set])
 
+            :Parses the
+            ""addpreset"" command
+            and the category
+            to be added;
 
-        if () then ([no missing field])
+            if () then ([valid category])
 
-                :Return a
-                ""AddPresetCommand"" object;
+                :Retrieves the list
+                of items from the
+                system;
 
-                :Execute ""AddPresetCommand"";
+                :Adds all the items
+                into the packing list;
 
-                :Add a preset to
-                ""PackingListManager"";
+                :Shows a success
+                message;
 
-                :User receives a command
-                success message;
+            else ([else])
 
-        else ([else])
-                :User receives invalid
-                command format message;
-        endif
+                :Shows an invalid
+                category error
+                message;
+
+            endif
+
 
     else ([else])
-        :User receives unknown
-        command message;
-
+            :Shows
+            a trip-not-set
+            error message;
     endif
 
 else ([else])
-    : User receives no trip
-    set message;
 
+    :Shows an
+    invalid command
+    error message;
 endif
 
 stop
