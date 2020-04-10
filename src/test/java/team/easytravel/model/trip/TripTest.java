@@ -1,7 +1,9 @@
 package team.easytravel.model.trip;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -120,6 +122,26 @@ class TripTest {
         assertNotEquals(new ExchangeRate(1.3).toString(),
                 trip.getExchangeRate().toString());
 
+    }
+
+    @Test
+    public void isValidTrip() {
+        String date1 = "28-09-2020";
+        String date2 = "5-10-2020";
+
+        assertTrue(Trip.isValidTrip(Date.fromString(date1), Date.fromString(date2))); //within bound
+        assertFalse(Trip.isValidTrip(Date.fromString(date2), Date.fromString(date1))); //date2 is later
+
+        String dateYear = "5-10-2023";
+        assertFalse(Trip.isValidTrip(Date.fromString(date1), Date.fromString(dateYear))); //many years
+        
+        date2= "27-10-2020";
+        assertTrue(Trip.isValidTrip(Date.fromString(date1), Date.fromString(date2))); //exactly 30 days
+
+        date2= "28-10-2020";
+        assertFalse(Trip.isValidTrip(Date.fromString(date1), Date.fromString(date2))); //exactly 31 days
+
+        assertTrue(Trip.isValidTrip(Date.fromString(date1), Date.fromString(date1))); //one day
     }
 
 
