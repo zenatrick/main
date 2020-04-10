@@ -1,39 +1,56 @@
 @startuml
 !include ../style.puml
-title Add Transport Booking
+title Automatic Scheduling of a Transport Booking
 
 start
 
-:User wants to add a ""TransportBooking""
-into the ""TransportBookingManager"";
+:Receives an ""addtransport"" command;
 
-if () then ([is a valid transport booking])
+if () then ([valid command])
 
-    :Creates a corresponding
-    ""DayScheduleEntry"";
+    if () then ([trip has been set])
 
-    :Calculates the day to
-    schedule the transport
-    booking;
+        :Parses the ""addtransport""
+        command and the user
+        specified transport booking;
 
-    if () then ([is a valid day])
+        :Creates a corresponding
+        ""DayScheduleEntry"" using
+        this transport booking;
 
-        :Adds ""DayScheduleEntry""
-        into the schedule;
+        :Calculates the day to
+        schedule this transport
+        booking;
 
-        :Adds ""TransportBooking"" into
-        the ""TransportBookingManager"";
+        if () then ([valid day])
+
+            :Adds the
+            ""DayScheduleEntry""
+            into the schedule;
+
+            :Adds the transport
+            booking into the
+            ""TransportBookingManager"";
+
+        else ([else])
+            :Shows an invalid
+            date and time error
+            message;
+
+        endif
 
     else ([else])
-        :User receives invalid
-        date and time error
-        message;
+
+    :Shows a
+    trip-not-set
+    error message;
 
     endif
 
 else ([else])
-    :User receives relevant
-    error message;
+    :Shows an invalid
+    command error
+    message;
 
 endif
 
