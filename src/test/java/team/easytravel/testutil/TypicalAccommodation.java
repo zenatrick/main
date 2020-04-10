@@ -14,7 +14,7 @@ import team.easytravel.model.util.attributes.Location;
 /**
  * A utility class containing a list of {@code Accommodations} objects to be used in tests.
  */
-public class TypicalAccommodations {
+public class TypicalAccommodation {
 
     public static final AccommodationBooking ACCOMMODATION_BOOKING_HOTEL = new AccommodationBooking(
             new AccommodationName("Hotel"), new Location("Singapore"),
@@ -28,7 +28,7 @@ public class TypicalAccommodations {
             new AccommodationName("Backpacker"), new Location("Singapore"),
             new Day(5), new Day(7), new Remark("2 nights stay"));
 
-    private TypicalAccommodations() {
+    private TypicalAccommodation() {
     }
 
     /**

@@ -16,7 +16,7 @@ import javafx.collections.ObservableList;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBooking;
 import team.easytravel.model.util.uniquelist.exceptions.DuplicateElementException;
 import team.easytravel.testutil.Assert;
-import team.easytravel.testutil.TypicalAccommodations;
+import team.easytravel.testutil.TypicalAccommodation;
 
 class AccommodationBookingManagerTest {
 
@@ -35,15 +35,15 @@ class AccommodationBookingManagerTest {
 
     @Test
     public void resetDataWithValidReadOnlyAccommodationBookingManagerReplacesData() {
-        AccommodationBookingManager newData = TypicalAccommodations.getTypicalAccommodationManager();
+        AccommodationBookingManager newData = TypicalAccommodation.getTypicalAccommodationManager();
         accommodationBookingManager.resetData(newData);
         assertEquals(newData, accommodationBookingManager);
     }
 
     @Test
     public void resetDataWithDuplicateAccommodationBookingThrowsDuplicateElementException() {
-        List<AccommodationBooking> newAccommodations = Arrays.asList(TypicalAccommodations.ACCOMMODATION_BOOKING_HOTEL,
-                TypicalAccommodations.ACCOMMODATION_BOOKING_HOTEL);
+        List<AccommodationBooking> newAccommodations = Arrays.asList(TypicalAccommodation.ACCOMMODATION_BOOKING_HOTEL,
+                TypicalAccommodation.ACCOMMODATION_BOOKING_HOTEL);
         AccommodationBookingManagerStub newData = new AccommodationBookingManagerStub(newAccommodations);
         Assert.assertThrows(DuplicateElementException.class, () -> accommodationBookingManager.resetData(newData));
     }
@@ -57,14 +57,14 @@ class AccommodationBookingManagerTest {
     @Test
     public void hasAccommodationBookingNotInAccommodationBookingManagerReturnsFalse() {
         assertFalse(accommodationBookingManager.hasAccommodationBooking(
-                TypicalAccommodations.ACCOMMODATION_BOOKING_HOTEL));
+                TypicalAccommodation.ACCOMMODATION_BOOKING_HOTEL));
     }
 
     @Test
     public void hasAccommodationBookingInAccommodationBookingManagerReturnsTrue() {
-        accommodationBookingManager.addAccommodationBooking(TypicalAccommodations.ACCOMMODATION_BOOKING_HOTEL);
+        accommodationBookingManager.addAccommodationBooking(TypicalAccommodation.ACCOMMODATION_BOOKING_HOTEL);
         assertTrue(accommodationBookingManager
-                .hasAccommodationBooking(TypicalAccommodations.ACCOMMODATION_BOOKING_HOTEL));
+                .hasAccommodationBooking(TypicalAccommodation.ACCOMMODATION_BOOKING_HOTEL));
     }
 
     @Test

@@ -73,8 +73,8 @@ public class CommandTestUtil {
 
     //----ACCOMMODATION--
     public static final String VALID_ACCOMMODATION_TITLE = "JW Marriott Hotel";
-    public static final String VALID_ACCOMMODATION_STARTDATE = "1";
-    public static final String VALID_ACCOMMODATION_ENDDATE = "2";
+    public static final String VALID_ACCOMMODATION_START_DAY = "1";
+    public static final String VALID_ACCOMMODATION_END_DAY = "2";
 
     public static final String ACCOMMODATION_LOCATION_DESC = " " + PREFIX_ACCOMMODATION_LOCATION
             + VALID_LOCATION;
@@ -174,6 +174,17 @@ public class CommandTestUtil {
         final String[] splitName = activity.getTitle().value.split("\\s+");
         model.updateFilteredActivityList(new ActivityContainKeywordPredicate(Arrays.asList(splitName[0])));
         assertEquals(1, model.getFilteredActivityList().size());
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertAccommodationBookingCommandSuccess(Command command, Model actualModel,
+                                                                String expectedMessage, Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage,
+                CommandResult.Action.SWITCH_TAB_ACCOMMODATION);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
 }

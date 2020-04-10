@@ -20,7 +20,7 @@ public class AccommodationBookingBuilder {
     private AccommodationName accommodationName;
     private Location location;
     private Day startDay;
-    private  Day endDay;
+    private Day endDay;
     private Remark remark;
 
     public AccommodationBookingBuilder() {
