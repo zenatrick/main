@@ -39,8 +39,7 @@ public class AddItemCommandTest {
         AddItemCommand addItemCommand = new AddItemCommand(validPackingListItem);
         ModelStubWithItem modelStubWithItem = new ModelStubWithItem(validPackingListItem);
 
-        assertThrows(CommandException.class, addItemCommand.MESSAGE_DUPLICATE_ITEM, (
-            )-> addItemCommand.execute(modelStubWithItem));
+        assertThrows(CommandException.class, ()-> addItemCommand.execute(modelStubWithItem));
     }
 
     @Test

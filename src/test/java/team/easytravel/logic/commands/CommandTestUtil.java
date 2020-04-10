@@ -85,6 +85,8 @@ public class CommandTestUtil {
 
     //---- Packing list ---
     public static final String VALID_ITEM_NAME = "Underwear";
+    public static final Integer VALID_QUANTITY = 7;
+    public static final String VALID_ITEM_CATEGORY = "Clothes";
 
 
     //---- FIXED EXPENSES --
@@ -128,6 +130,17 @@ public class CommandTestUtil {
                                                     String expectedMessage, Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage,
                 CommandResult.Action.SWITCH_TAB_ACTIVITY);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertPackingListItemCommandSuccess(Command command, Model actualModel,
+                                                    String expectedMessage, Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage,
+                CommandResult.Action.SWITCH_TAB_PACKING_LIST);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
