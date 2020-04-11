@@ -10,14 +10,11 @@ import team.easytravel.commons.util.AppUtil;
  */
 public class FixedExpenseCategory {
 
-    // Flights, accommodations, transport, activities, others
     public static final String MESSAGE_CONSTRAINTS = "Category should be one "
             + "of the following words:  \"accommodations\", "
             + "\"transport\", \"activities\", \"others\"";
 
 
-
-    // todo update regex to match constraints
     public static final String VALIDATION_REGEX = "^(transport|accommodations|activities|others)$";
 
     public final String value;

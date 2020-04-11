@@ -114,8 +114,9 @@ public class TransportBookingManager implements ReadOnlyTransportBookingManager 
 
     @Override
     public String toString() {
-        return transportBookings.asUnmodifiableObservableList().size() + " transport bookings";
-        // TODO: refine later
+        return "TransportBookingManager:\n"
+                + transportBookings.stream().map(TransportBooking::toString).collect(Collectors.joining("\n"))
+                + "\n Total number of transport bookings: " + transportBookings.size();
     }
 
     @Override

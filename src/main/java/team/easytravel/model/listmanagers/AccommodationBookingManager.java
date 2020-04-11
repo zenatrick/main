@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import javafx.collections.ObservableList;
@@ -135,8 +136,11 @@ public class AccommodationBookingManager implements ReadOnlyAccommodationBooking
 
     @Override
     public String toString() {
-        return accommodationBookings.asUnmodifiableObservableList().size() + " accommodation bookings";
-        // TODO: refine later
+        return "AccommodationBookingManager:\n"
+                + accommodationBookings.stream()
+                .map(AccommodationBooking::toString)
+                .collect(Collectors.joining("\n"))
+                + "\n Total number of accommodation bookings: " + accommodationBookings.size();
     }
 
     @Override

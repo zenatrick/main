@@ -2,7 +2,9 @@ package team.easytravel.model.trip;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import team.easytravel.model.util.uniquelist.UniqueList;
@@ -63,7 +65,7 @@ public class DaySchedule implements ReadOnlyDaySchedule {
      */
     public void addScheduleEntry(DayScheduleEntry scheduleEntry) {
         scheduleEntries.add(scheduleEntry);
-        scheduleEntries.sort((x, y) -> x.getStartDateTime().compareTo(y.getStartDateTime()));
+        scheduleEntries.sort(Comparator.comparing(DayScheduleEntry::getStartDateTime));
     }
 
     /**
@@ -90,8 +92,9 @@ public class DaySchedule implements ReadOnlyDaySchedule {
 
     @Override
     public String toString() {
-        return scheduleEntries.asUnmodifiableObservableList().size() + "  schedule entries";
-        // TODO: refine later
+        return "DaySchedule:\n"
+                + scheduleEntries.stream().map(DayScheduleEntry::toString).collect(Collectors.joining("\n"))
+                + "\n Total number of schedule entries: " + scheduleEntries.size();
     }
 
     @Override

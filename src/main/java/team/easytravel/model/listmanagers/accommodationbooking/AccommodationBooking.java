@@ -58,8 +58,6 @@ public class AccommodationBooking implements UniqueListElement {
         return remark;
     }
 
-    // TODO: May want to check if day is within the trip's day here
-
     /**
      * Returns true if the specified start day is before the specified end day.
      */

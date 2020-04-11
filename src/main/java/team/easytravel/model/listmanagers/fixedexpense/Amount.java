@@ -11,8 +11,7 @@ import team.easytravel.commons.util.AppUtil;
 public class Amount {
     public static final String MESSAGE_CONSTRAINTS = "Amount must be a valid number with at most 2 decimal places.";
 
-    // todo update regex
-    // Done already, allows 10 digits, and at most 2 decimal places.
+    // Allows 10 digits, and at most 2 decimal places.
     public static final String VALIDATION_REGEX = "^([\\d]{1,30})(\\.[\\d]{1,2})?$";
 
     public final String value;

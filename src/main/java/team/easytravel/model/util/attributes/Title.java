@@ -15,7 +15,6 @@ public class Title {
     public static final String MESSAGE_CONSTRAINTS = "Title must be made up of alphanumeric words that is less "
             + "than 50 characters long.";
 
-    // todo update regex to match constraints
     // Allows for 50 alphanumeric characters.
     public static final String VALIDATION_REGEX = "^(?!\\s*$)[A-Za-z0-9\\s]{1,50}+";
 

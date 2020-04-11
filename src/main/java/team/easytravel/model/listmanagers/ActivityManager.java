@@ -117,8 +117,9 @@ public class ActivityManager implements ReadOnlyActivityManager {
 
     @Override
     public String toString() {
-        return activities.asUnmodifiableObservableList().size() + "  activities";
-        // TODO: refine later
+        return "ActivityManager:\n"
+                + activities.stream().map(Activity::toString).collect(Collectors.joining("\n"))
+                + "\n Total number of activities: " + activities.size();
     }
 
     public ObservableList<Activity> getActivityList() {

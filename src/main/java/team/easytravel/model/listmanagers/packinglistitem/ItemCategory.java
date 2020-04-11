@@ -13,10 +13,7 @@ public class ItemCategory {
     public static final String MESSAGE_CONSTRAINTS = "Category must be made up of alphanumeric words that is "
             + "less than 30 characters long, and it will always be in lowercase";
 
-    /**
-     * The constant VALIDATION_REGEX.
-     */
-    // todo update regex to match constraints
+
     public static final String VALIDATION_REGEX = "(?!\\s*$)[A-Za-z0-9\\s]{1,30}";
 
     public final String value;

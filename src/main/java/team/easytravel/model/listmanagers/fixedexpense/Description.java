@@ -12,7 +12,6 @@ public class Description {
     public static final String MESSAGE_CONSTRAINTS = "Description must be made up of alphanumeric words that is less "
             + "than 50 characters long.";
 
-    // todo update regex to match constraints
     // Done description now allows for 1-50 characters long.
     // Spaces does not count.
     public static final String VALIDATION_REGEX = "^(?!\\s*$)[A-Za-z0-9\\s]{1,50}+";

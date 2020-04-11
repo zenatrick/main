@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import team.easytravel.model.listmanagers.fixedexpense.Amount;
@@ -15,20 +16,20 @@ import team.easytravel.model.util.uniquelist.UniqueList;
  * Duplicates are not allowed (by.equals comparison)
  */
 public class FixedExpenseManager implements ReadOnlyFixedExpenseManager {
-    private final UniqueList<FixedExpense> uniqueFixedExpenseLists;
+    private final UniqueList<FixedExpense> fixedExpenses;
 
     /**
      * Instantiates a new FixedExpenseManager.
      */
     public FixedExpenseManager() {
-        uniqueFixedExpenseLists = new UniqueList<>();
+        fixedExpenses = new UniqueList<>();
     }
 
     /**
      * Creates an FixedExpenseManager using the FixedExpenses in the {@code} toBeCopied}
      */
     public FixedExpenseManager(ReadOnlyFixedExpenseManager toBeCopied) {
-        uniqueFixedExpenseLists = new UniqueList<>();
+        fixedExpenses = new UniqueList<>();
         resetData(toBeCopied);
     }
 
@@ -37,7 +38,7 @@ public class FixedExpenseManager implements ReadOnlyFixedExpenseManager {
      * {@code fixedExpenses} must not contain duplicate fixed expenses.
      */
     public void setFixedExpenses(List<FixedExpense> fixedExpenses) {
-        this.uniqueFixedExpenseLists.setElements(fixedExpenses);
+        this.fixedExpenses.setElements(fixedExpenses);
     }
 
 
@@ -58,7 +59,7 @@ public class FixedExpenseManager implements ReadOnlyFixedExpenseManager {
      */
     public boolean hasFixedExpense(FixedExpense fixedExpense) {
         requireNonNull(fixedExpense);
-        return uniqueFixedExpenseLists.contains(fixedExpense);
+        return fixedExpenses.contains(fixedExpense);
     }
 
     /**
@@ -66,7 +67,7 @@ public class FixedExpenseManager implements ReadOnlyFixedExpenseManager {
      * The fixed expense must not already exist in the FixedExpenseManager.
      */
     public void addFixedExpense(FixedExpense f) {
-        uniqueFixedExpenseLists.add(f);
+        fixedExpenses.add(f);
     }
 
     /**
@@ -78,7 +79,7 @@ public class FixedExpenseManager implements ReadOnlyFixedExpenseManager {
     public void setFixedExpense(FixedExpense target, FixedExpense editedFixedExpense) {
         requireNonNull(editedFixedExpense);
 
-        uniqueFixedExpenseLists.setElement(target, editedFixedExpense);
+        fixedExpenses.setElement(target, editedFixedExpense);
     }
 
 
@@ -88,21 +89,21 @@ public class FixedExpenseManager implements ReadOnlyFixedExpenseManager {
      * {@code key} must exist in the FixedExpenseManager.
      */
     public void removeFixedExpense(FixedExpense key) {
-        uniqueFixedExpenseLists.remove(key);
+        fixedExpenses.remove(key);
     }
 
     /**
      * Sorts the fixed expense list with the specified comparator.
      */
     public void sortFixedExpenseList(Comparator<FixedExpense> cmp) {
-        uniqueFixedExpenseLists.sort(cmp);
+        fixedExpenses.sort(cmp);
     }
 
 
     // Util methods
 
     public String getStatus(double budget) {
-        int numOfExpense = uniqueFixedExpenseLists.size();
+        int numOfExpense = fixedExpenses.size();
         if (numOfExpense == 0) {
             return "[❗] There is no expense entered. You can add expense using the \"addexpense\" command.";
         }
@@ -115,7 +116,7 @@ public class FixedExpenseManager implements ReadOnlyFixedExpenseManager {
     }
 
     public double getTotalExpense() {
-        return uniqueFixedExpenseLists.stream()
+        return fixedExpenses.stream()
                 .map(FixedExpense::getAmount)
                 .map(Amount::toString)
                 .mapToDouble(Double::parseDouble)
@@ -124,13 +125,14 @@ public class FixedExpenseManager implements ReadOnlyFixedExpenseManager {
 
     @Override
     public String toString() {
-        return uniqueFixedExpenseLists.asUnmodifiableObservableList().size() + " fixed expenses";
-        // TODO: refine later
+        return "FixedExpenseManager:\n"
+                + fixedExpenses.stream().map(FixedExpense::toString).collect(Collectors.joining("\n"))
+                + "\n Total number of fixed expenses: " + fixedExpenses.size();
     }
 
     @Override
     public ObservableList<FixedExpense> getFixedExpenseList() {
-        return uniqueFixedExpenseLists.asUnmodifiableObservableList();
+        return fixedExpenses.asUnmodifiableObservableList();
     }
 
 
@@ -138,12 +140,12 @@ public class FixedExpenseManager implements ReadOnlyFixedExpenseManager {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FixedExpenseManager // instanceof handles nulls
-                && uniqueFixedExpenseLists.equals(((FixedExpenseManager) other).uniqueFixedExpenseLists));
+                && fixedExpenses.equals(((FixedExpenseManager) other).fixedExpenses));
     }
 
     @Override
     public int hashCode() {
-        return uniqueFixedExpenseLists.hashCode();
+        return fixedExpenses.hashCode();
     }
 
 
