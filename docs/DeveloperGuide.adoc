@@ -338,45 +338,61 @@ Reasons for choosing option 1:
 // tag::scheduleactivity[]
 [#list-manager]
 === List Managers
-**E.T.** allows the user to schedule an activity from the activity list to a specified time of a day. This is done using the `schedule` command which requires the user to specify the `INDEX` of an activity from the displayed activity list, the `DAY_INDEX` of the trip and the `START_TIME` of the activity to be scheduled.
+**E.T.** allows the user to manage different essential lists for their trip.
+
+These list include:
+* Activities
+* Transport Bookings
+* Fix Expenses
+* Accommodation Bookings
+* Packing List
+
+All these lists are managed by `ListManager`s which support basic __CRUD__ operations and some additional operations for users to manage their list efficiently. The term __item__ will be used to refer to the elements stored in a list.
+
+Common commands for all `ListManager`s:
+
+* `add` — Creates a new __item__
+* `delete` — Deletes an existing __item__
+* `edit` — Edits an existing __item__
+* `sort` — Sorts the list by the given specification
+* `list` — List all __items__ in the list.
 
 ==== Rationale
-The schedule feature is an important feature that allows the users to manage and plan for their trip schedule or itinerary. This feature is added to **E.T.** to separate from the activity management feature from the schedule. This can increase the ease of planning because users can just focus on the time management aspect when scheduling proposed activities from the activity list. The schedule feature also automatically adds any transport bookings into the schedule.
+When planning for a trip, there are many things that the user may want to keep track of. This is our reason for creating the 5 lists stated above. The `ListManager`s are thus created to help the user manage the 5 lists so that they can plan their trip conveniently and efficiently.
+
 
 ==== Current Implementation
-The schedule feature uses a separate system and structure as compared to the `ListManager`s. Instead, the schedule feature will be more closely related to the trip feature because it heavily relies on information about the `Trip` such as the `startDate` and `endDate`.
+In this section, we will first explain the structure of a typical `ListManager` also known as an `XYZListManager`. As mentioned earlier in the overview of this section, the term __item__ will be used to refer to the elements stored in a list.
 
-As such, the `TripManager` is in charge of managing the schedule. The `TripManager`, contains a list of `DaySchedule`s which represents the schedule of a specific day of the `Trip`. Thus, the number of `DaySchedule`s equals the number of days in the `Trip`. E.g. a trip of 2 days means that the `TripManager` contains 2 `DaySchedule` objects.
+The `XYZListManager` contains a `UniqueList` which is a data structure that stores all the __items__ of a list. The `UniqueList` makes use of Java’s __generics__ and can only contain __items__ that implement the `UniqueListElement` interface. This is because the uniqueness of an element in the `UniqueList` is determined by the returned value of the `isSame()` method of the UniqueListElement interface.
 
-Within each `DaySchedule` object, there is a `UniqueList` of `DayScheduleEntry`. The `DayScheduleEntry` object represents an entry in the schedule.
-As an example, the following UML object diagram describes the relevant objects related to this feature when a `Trip` of 2 days is set.
+In addition, the `XYZListManager` implements the `ReadOnlyXYZManager` interface. This interface has the `getXYZList()` method which returns an `ObservableList` of __items__. For example, `ActivityManager` implements `ReadOnlyActivityManager`. The `ObservableList` of __items__ allows the `Ui` model to use the __Observer Pattern__ to update the __GUI__.
+
+The following __Class Diagram__ describes the aforementioned structure of the `ActivityManager`.
 
 
-.Example of associations between related objects of the schedule feature.
-image::developer-guide/schedule/ScheduleFeatureObjectDiagram.png[]
+.Structure of `ActivityManager`.
+image::developer-guide/list-managers/ListManagerClassDiagram.png[]
 
-When the user enters the `schedule` command to schedule an activity, the user input command undergoes the same command parsing as described in <<DeveloperGuide.adoc#logic-component, Section 2.3 Logic Component>> . A `ScheduleCommand` will then be created.
-The following steps describe the execution of the `ScheduleCommand`, assuming that no error is encountered.
+The following paragraphs will describe what happens when the user performs an operation on a `ListManager` through commands. `XYZCommand` here will refer to a command described above for the 5 `ListManager`s. (e.g. `AddActivityCommand`, `EditTransportBookingCommand`).
 
-. When `execute()` of the `ScheduleCommand` is called, the `ModelManager` retrieves the displayed list of activities shown to the user.
-. Then, it retrieves the target `Activity` using the user-specified `INDEX`.
-. The `ModelManager`’s `scheduleActivity()` method is called to schedule the target `Activity`.
-. The `ModelManager` proceeds to call the `scheduleActivity()` method of the `TripManager`.
-. The `TripManager` then uses the given activity to create a corresponding `DayScheduleEntry` object.
-. The `TripManager will calculate which day of the trip to schedule this activity and get the `DaySchedule` representing the schedule of the target day.
-. The target activity is then scheduled on the target day through the `addScheduleEntry()` method of the target `DaySchedule`.
-. If the above steps are all successful, the `ScheduleCommand` will then create a `CommandResult` object and return the result.
+As described in <<DeveloperGuide.adoc#logic-component, Section 2.3 Logic Component>>, after the user enters a command, the `EasyTravelParser` will generate an `XYZCommandParser` which parses the user input parameters and generate an executable `XYZCommand` that performs an operation on the list.
 
-The  _Sequence Diagram_ below summarizes the execution of the `ScheduleCommand`.
+We will describe the execution of an `XYZCommand`, using `AddActivityCommand` as an example. All other `XYZCommand` will be executed in similar ways.
 
-.Execution of the `ScheduleCommand`.
-image::developer-guide/schedule/ScheduleCommandExecution.png[Schedule Activity Command Execution]
+When `AddActivityCommand` is executed, an `Activity` will be added to the list of activities managed by the `ActivityManager` in the `Model` component.
+
+The __Sequence Diagram__ below shows the execution of the `AddActivityCommand`:
+
+.Execution of the `AddActivityCommand`.
+image::developer-guide/list-managers/AddActivitySequenceDiagram.png[Schedule Activity Command Execution]
 
 [NOTE]
 ====
-The lifelines for the `ScheduleCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+The lifelines for the `AddActivityCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 
-This sequence diagram does not take into consideration the possible exceptions which might occur during the `ScheduleCommand` execution.
+This sequence diagram does not take into consideration the possible exceptions which might occur during the `AddActivityCommand` execution.
+
 
 ====
 
@@ -388,26 +404,57 @@ This sequence diagram does not take into consideration the possible exceptions w
 |===
 | |Pros |Cons
 
-|**Option 1 (Current)**
-Scheduling is separated from activity management.
+|**Option 1 (Current)**:
+Use 5 different list managers to manage the 5 main features
 
-|Better user experience.
-Allows for extensions. Other types of objects such as a `TransportBooking` could easily be converted into a `DayScheduleEntry` object and be added into the schedule. This is by the Open-Closed principle.
-|Complicated to implement and more likely to result in bugs if undesirable dependencies are introduced.
+
+|Keeps everything separate which abide by the Separation of Concerns Principle (SoC) principle.
+
+Achieves better modularity by separating the code into distinct sections, such that each section addresses a separate concern.
+
+Allows for different behaviours of each list manager
+
+|Tedious to implement as we have many lists to manage.
 
 |**Option 2**
-An activity must be scheduled directly into a day as it is added.
-i.e. `ActivityManager` is in charge of scheduling.
+Use a single manager to handle all the 5 lists
 
-|Straightforward and simple to implement.
 
-|Other types of objects such as `TransportBooking` will not be able to be scheduled. This can result in poorer user experience when using **E.T.** as users may want to include transport bookings into their schedule.
+|Easy to implement as we only need to write one `ListManager` class.
+
+|Violates SoC.
 |===
 
-Reasons for choosing option 1:
+Reason for choosing option 1:
 
-* The schedule feature is a major feature because it is the main part of planning for a trip. Thus, we decided to opt for the option with better user experience.
-* The ability for other objects to be converted into a `DayScheduleEntry` object in option 1 is also beneficial for future versions of **E.T.** if we want to extend this feature to schedule other items such as accommodation bookings.
+Applying SoC limits the ripple effect when changes are introduced to a specific part of the system. Since we are constantly changing our system during development, abiding by SoC will save us time in the long-run as less code is affected when changes to the system are made.
+
+===== Aspect: Implementation behind a list manager
+
+
+|===
+| |Pros |Cons
+
+|**Option 1 (Current)**:
+Extract the common operations and functionality of the 5 `ListManager`s into one `UniqueList` class. All 5 `ListManager`s will make use of the `UniqueList` as their internal data structure and build their operations on top of it.
+
+|Abide by the Don’t Repeat Yourself (DRY) principle. Minimize repeated code as all `ListManager`s use the basic functionality of `UniqueList`.
+
+|All `ListManager`s have dependencies on `UniqueList`. Thus, `UniqueList` has to be implemented before starting on any `ListManager`. This slows down the implementation of all `ListManager`s.
+
+|**Option 2**
+Do not extract any common operations and functionalities
+
+
+|Each `ListManager` can be worked on by different people as there is no dependency on a common data structure that has to be implemented beforehand. Allows each feature to be worked on separately by different developers.
+
+|Violates the DRY principle as there will be common operations between `ListManager`s.
+|===
+
+Reason for choosing option 1:
+
+* It is a good coding practice to follow the DRY principle.
+* The implementations of the `ListManager`s are done quite early on, where our team has more flexibility in terms of deadline. Thus, we can afford to spend more time developing the `UniqueList` data structure before starting on the implementation of any `ListManager`
 
 // End list management
 //end
