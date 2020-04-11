@@ -94,4 +94,12 @@ public class AddFixedExpenseCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd + "\n"
                 + "Your budget left is now " + remainingBudget), SWITCH_TAB_FIXED_EXPENSE);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddFixedExpenseCommand // instanceof handles nulls
+                && toAdd.equals(((AddFixedExpenseCommand) other).toAdd)
+                && isOverseasAmount == ((AddFixedExpenseCommand) other).isOverseasAmount);
+    }
 }

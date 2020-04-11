@@ -187,4 +187,15 @@ public class CommandTestUtil {
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertFixedExpenseCommandSuccess(Command command, Model actualModel,
+                                                        String expectedMessage, Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage,
+                CommandResult.Action.SWITCH_TAB_FIXED_EXPENSE);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
 }

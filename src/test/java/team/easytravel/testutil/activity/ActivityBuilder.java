@@ -33,7 +33,7 @@ public class ActivityBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code activity}.
+     * Initializes the ActivityBuilder with the data of {@code activity}.
      */
     public ActivityBuilder(Activity activity) {
         title = activity.getTitle();
