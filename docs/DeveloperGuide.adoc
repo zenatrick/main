@@ -475,39 +475,25 @@ The following steps describes the process of the check overlap method:
 
 // tag::activity[]
 === Activity Manager
-*_E.T._* allows the user to plan for their `activity` for a trip. The activity manager handles everything to do with manipulating of activities.
-
-This `addactivity` command requires the user to include the `title` of an activity, the `priority` of the activity , the `duration` of the activity in terms of hours, `Location` of the activity and optional `tags`.
-
-List of commands that helps with activity management:
-
-* `addactivity title/TITLE priority/PRIORITY duration/DURATION location/LOCATION t/TAG` --  create an activity with the given title, priority, duration, location and tags. There can be more than one tags included
-* `clearactivity`  -- Clears the entire activity list
-* `deleteactivity index`  -- Deletes the activity based on index
-* `editactivity index [title/TITLE] [priority/PRIORITY] [duration/DURATION] [location/LOCATION] [t/TAG]` -- Edits the activity based on index
-
-Example:
-
-`addactivity title/Big Cheese Land priority/1 duration/2 location/The moon t/nice` will create an activity named `Big Cheese` with a priority of `1` , duration of `2` and is happening at a location `The moon`. The activity would also have the tag `nice`
+**E.T.** allows the user to keep track of their activities for his/her trip. The activity manager is one of the `ListManager`s (See Section 3.1 List Managers). On top of the basic operations provided by a `ListManager`, it also allows the user to search for their activities using the `findacitivty` command. The parameters of the `findactivity` command are keywords in the activity entries that the user wants to search for. E.g. `findactivity sightseeing carnival` will search and list all activity entries with `sightseeing` or `carnival` in their detail. Another similar command, `findactivitytag` has the same functionality but only searches for the tags of activity entries.
 
 
-The user can use any other activity command if there exist at least one activity in the list.
+`ActivityManager` has other than the basic CRUD commands, find command provide a find command to assist in activity management such as:
+* `findactivitytag`
+* `findactivity`
 
 ==== Rationale
-The activity manager allows user to plan and manage their activities for the trip.
-The activity manager only handles activities and the manipulation of activities.
+The activity manager is an important feature to have because any oversea trip will be packed with activities for the traveller. Thus, we decided to create an activity manager as one of the `ListManager`s.
 
 ==== Current Implementation
-The keywords from the command given by user is parsed using a parser for the respective command
 
-e.g `DeleteActivityCommandParser`
+The current implementation of the activity manager only allows the user to keep track of a list of activities for their trip. It does not allow the user to indicate the start and end time of an activity. Instead, the ability to indicate a start time for an activity will be in another feature known as the schedule feature (See Section 3.4).
 
-These objects are used to create the command object for their respective command that can be execution to schedule the activity.
+In this section, we will outline the `findactivity` command of the activity manager which is summarised by the __Activity Diagram__ below.
 
-e.g `DeleteActivity`
 
-.Activity diagram showing the workflow of a `deleteactivity` command.
-image::developer-guide/activity/DeleteActivityActivityDiagram.png[]
+.Activity diagram showing the workflow of a `findactivity` command.
+image::developer-guide/activity/FindActivityDiagram.png[]
 
 The sequence diagram below shows the creation of the an ActivityCommand object:
 
@@ -515,28 +501,34 @@ The sequence diagram below shows the creation of the an ActivityCommand object:
 
 image::developer-guide/activity/DeleteActivityCommandCreation.png[]
 
-After the creation of the `DeleteActivityCommand` object, the `LogicManager` will proceed to call the `execute()` method of `DeleteActivityCommand`.
+When the user enters the `findactivity` command to search for activities, the user input command undergoes the same command parsing as described in Section 2.3 Logic Component. During the parsing, a predicate is created. This predicate checks if a given `Activity` contains the user input keywords. The `FindActivityCommand` will then receive this predicate when it is created.
 
-The following steps describes the execution of the `ScheduleActivityCommand`:
+The following steps will describe the execution of the `FindActivityCommand` in detail, assuming that no error is encountered.
 
-1. `Model` retrieves the list of activities from the `UniqueList` that stores `Activity` objects.
-2. The `activityIndex` is used to find the target `Activity` from the activity list.
-3. The `Activity` object that corresponds to the index is removed from the list
+. When the `execute()` method of the `FindActivityCommand` is called, the `ModelManager`’s `updateFilteredActivityList()` method is called.
+. The `ModelManager` then proceeds to call the `updateFilteredActivityList()` method of the `ActivityManager`.
+. The `ActivityManager` will then update its filtered list of `Activity`s to contain only `Activity`s that fulfil the given predicate.
+                                                               . The `Ui` component will detect this change and update the __GUI__.
+. If the above steps are all successful, the `ScheduleCommand` will then create a `CommandResult` object and return the result.
 
+The __Sequence Diagram__ below summarises the aforementioned steps.
 
-The sequence diagram below shows the the execution of `DeleteActivityCommand`:
+.Execution of the `FindActivityCommand`.
 
-.Sequence diagram that describes the execution of ScheduleActivityCommand.
-image::developer-guide/activity/DeleteActivityCommandExecution.png[Delete Activity Command Execution placeholder]
+image::developer-guide/activity/FindActivitySequenceDiagram.png[]
+
+[NOTE]
+====
+The lifelines for the `FindActivityCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+
+This sequence diagram does not take into consideration the possible exceptions which might occur during the `FindActivityCommand` execution.
+
+====
 
 ==== Design Consideration
-
-===== Aspect: Activity does not keep track of the day
-
-* **Current Choice:** Days is being tracked by scheduler
-** **Pros:** Separation of concerns: Only the scheduler should know which day the activity is held on.
-** **Cons:** {kiv}
+We do not have other implementation options for the `FindActivityCommand` as the current implementation is the only option that we came up with. This option is quite easy to understand and follows good coding principles.
 // end::activity[]
+
 
 // tag::packinglist[]
 === Packing List feature
