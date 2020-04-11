@@ -31,10 +31,10 @@ class AddFixedExpenseCommandTest {
     }
 
     @Test
-    public void execute_fixedExpenseWithoutTripSet() {
+
+    public void execute_addFixedExpenseWithoutTripSet_throwsCommandException() {
         ModelStubNoTripSet modelStub = new ModelStubNoTripSet();
         FixedExpense validFixedExpense = new FixedExpenseBuilder().build();
-
         assertThrows(CommandException.class, () -> new AddFixedExpenseCommand(validFixedExpense, false)
                 .execute(modelStub));
 
@@ -101,7 +101,8 @@ class AddFixedExpenseCommandTest {
         assertEquals(addTestExpenseCommand, addTestExpenseCommand);
 
         // same values -> returns true
-        AddFixedExpenseCommand addTestExpenseCommandCopy = new AddFixedExpenseCommand(testExpense, false);
+        AddFixedExpenseCommand addTestExpenseCommandCopy = new AddFixedExpenseCommand(testExpense,
+                false);
         assertEquals(addTestExpenseCommand, addTestExpenseCommandCopy);
 
         // different types -> returns false
@@ -138,7 +139,7 @@ class AddFixedExpenseCommandTest {
     }
 
     /**
-     * A Model stub that always accept the fixed expense being added and is below budget.
+     * A Model stub that has no trip set.
      */
     private class ModelStubNoTripSet extends ModelStub {
         @Override

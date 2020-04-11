@@ -70,7 +70,7 @@ class ClearFixedExpenseCommandTest {
     }
 
     /**
-     * A Model stub that always accept the fixed expense being added and is below budget.
+     * A Model stub that does not have a trip set.
      */
     private class ModelStubNoTripSet extends ModelStub {
         @Override
