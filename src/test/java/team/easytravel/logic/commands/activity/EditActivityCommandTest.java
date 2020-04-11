@@ -3,8 +3,8 @@ package team.easytravel.logic.commands.activity;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static team.easytravel.logic.commands.CommandTestUtil.DESC_CHEESE;
 import static team.easytravel.logic.commands.CommandTestUtil.DESC_FINLAND;
-import static team.easytravel.logic.commands.CommandTestUtil.DESC_JAPAN;
 import static team.easytravel.logic.commands.CommandTestUtil.VALID_ACTIVITY_DURATION_FINLAND;
 import static team.easytravel.logic.commands.CommandTestUtil.VALID_ACTIVITY_TITLE_FINLAND;
 import static team.easytravel.logic.commands.CommandTestUtil.VALID_LOCATION_FINLAND;
@@ -196,10 +196,10 @@ public class EditActivityCommandTest {
 
     @Test
     public void equals() {
-        final EditActivityCommand standardCommand = new EditActivityCommand(INDEX_FIRST, DESC_JAPAN);
+        final EditActivityCommand standardCommand = new EditActivityCommand(INDEX_FIRST, DESC_CHEESE);
 
         // same values -> returns true
-        EditActivityDescriptor copyDescriptor = new EditActivityDescriptor(DESC_JAPAN);
+        EditActivityDescriptor copyDescriptor = new EditActivityDescriptor(DESC_CHEESE);
         EditActivityCommand commandWithSameValues = new EditActivityCommand(INDEX_FIRST, copyDescriptor);
 
         assertEquals(standardCommand, commandWithSameValues);
@@ -214,10 +214,10 @@ public class EditActivityCommandTest {
         assertNotEquals(standardCommand, new ClearActivityCommand());
 
         // different index -> returns false
-        assertNotEquals(standardCommand, new EditActivityCommand(INDEX_SECOND, DESC_JAPAN));
+        assertNotEquals(standardCommand, new EditActivityCommand(INDEX_SECOND, DESC_CHEESE));
+
 
         // different descriptor -> returns false
         assertNotEquals(standardCommand, new EditActivityCommand(INDEX_FIRST, DESC_FINLAND));
     }
 }
-

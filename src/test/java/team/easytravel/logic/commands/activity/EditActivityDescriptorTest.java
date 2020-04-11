@@ -2,11 +2,11 @@ package team.easytravel.logic.commands.activity;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static team.easytravel.logic.commands.CommandTestUtil.DESC_CHEESE;
 import static team.easytravel.logic.commands.CommandTestUtil.DESC_FINLAND;
-import static team.easytravel.logic.commands.CommandTestUtil.DESC_JAPAN;
-import static team.easytravel.logic.commands.CommandTestUtil.VALID_ACTIVITY_DURATION_JAPAN;
-import static team.easytravel.logic.commands.CommandTestUtil.VALID_ACTIVITY_TITLE_JAPAN;
-import static team.easytravel.logic.commands.CommandTestUtil.VALID_LOCATION_JAPAN;
+import static team.easytravel.logic.commands.CommandTestUtil.VALID_ACTIVITY_DURATION_CHEESE;
+import static team.easytravel.logic.commands.CommandTestUtil.VALID_ACTIVITY_TITLE_CHEESE;
+import static team.easytravel.logic.commands.CommandTestUtil.VALID_LOCATION_CHEESE;
 import static team.easytravel.logic.commands.CommandTestUtil.VALID_TAG_EXPENSIVE;
 
 import org.junit.jupiter.api.Test;
@@ -32,20 +32,20 @@ public class EditActivityDescriptorTest {
         assertFalse(DESC_FINLAND.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_FINLAND.equals(DESC_JAPAN));
+        assertFalse(DESC_FINLAND.equals(DESC_CHEESE));
 
         // different name -> returns false
         EditActivityDescriptor editedJapan =
-                new EditActivityDescriptorBuilder(DESC_FINLAND).withTitle(VALID_ACTIVITY_TITLE_JAPAN).build();
+                new EditActivityDescriptorBuilder(DESC_FINLAND).withTitle(VALID_ACTIVITY_TITLE_CHEESE).build();
         assertFalse(DESC_FINLAND.equals(editedJapan));
 
         // different phone -> returns false
         editedJapan =
-                new EditActivityDescriptorBuilder(DESC_FINLAND).withDuration(VALID_ACTIVITY_DURATION_JAPAN).build();
+                new EditActivityDescriptorBuilder(DESC_FINLAND).withDuration(VALID_ACTIVITY_DURATION_CHEESE).build();
         assertFalse(DESC_FINLAND.equals(editedJapan));
 
         // different email -> returns false
-        editedJapan = new EditActivityDescriptorBuilder(DESC_FINLAND).withLocation(VALID_LOCATION_JAPAN).build();
+        editedJapan = new EditActivityDescriptorBuilder(DESC_FINLAND).withLocation(VALID_LOCATION_CHEESE).build();
         assertFalse(DESC_FINLAND.equals(editedJapan));
 
         // different tags -> returns false

@@ -45,32 +45,37 @@ public class CommandTestUtil {
 
 
     //-----ACTIVITY-----
-    public static final String VALID_ACTIVITY_TITLE_JAPAN = "Shopping street";
+    public static final String VALID_ACTIVITY_TITLE_CHEESE = "CHEESELAND OWO";
     public static final String VALID_ACTIVITY_TITLE_FINLAND = "Somewhere Cold";
-    public static final Integer VALID_ACTIVITY_DURATION_JAPAN = 1;
-    public static final Integer VALID_ACTIVITY_DURATION_FINLAND = 2;
-    public static final String VALID_LOCATION_JAPAN = "Japan";
+    public static final Integer VALID_ACTIVITY_DURATION_CHEESE = 2;
+    public static final Integer VALID_ACTIVITY_DURATION_FINLAND = 1;
+    public static final String VALID_LOCATION_CHEESE = "LAND OF CHEESE";
     public static final String VALID_LOCATION_FINLAND = "Finland";
     public static final String VALID_TAG_EXPENSIVE = "expensive";
     public static final String VALID_TAG_SIGHTSEEING = "sightseeing";
 
-    public static final String ACTIVITY_TITLE_DESC_JAPAN = " " + PREFIX_TRIP_TITLE + VALID_ACTIVITY_TITLE_JAPAN;
+
+
+
+    public static final String ACTIVITY_TITLE_DESC_CHEESE = " " + PREFIX_TRIP_TITLE + VALID_ACTIVITY_TITLE_CHEESE;
     public static final String ACTIVITY_TITLE_DESC_FINLAND = " " + PREFIX_TRIP_TITLE + VALID_ACTIVITY_TITLE_FINLAND;
-    public static final String ACTIVITY_DURATION_DESC_JAPAN = " " + PREFIX_ACTIVITY_DURATION
-            + VALID_ACTIVITY_DURATION_JAPAN;
-    public static final String ACTIVITY_LOCATION_DESC_FINLAND = " " + PREFIX_ACTIVITY_LOCATION
+    public static final String ACTIVITY_DURATION_DESC_CHEESE = " " + PREFIX_ACTIVITY_DURATION
+            + VALID_ACTIVITY_DURATION_CHEESE;
+    public static final String ACTIVITY_DURATION_DESC_FINLAND = " " + PREFIX_ACTIVITY_DURATION
             + VALID_ACTIVITY_DURATION_FINLAND;
-    public static final String ACTIVITY_LOCATION_DESC_JAPAN = " " + PREFIX_ACTIVITY_LOCATION
-            + VALID_ACTIVITY_DURATION_JAPAN;
+    public static final String ACTIVITY_LOCATION_DESC_FINLAND = " " + PREFIX_ACTIVITY_LOCATION
+            + VALID_LOCATION_FINLAND;
+    public static final String ACTIVITY_LOCATION_DESC_CHEESE = " " + PREFIX_ACTIVITY_LOCATION
+            + VALID_LOCATION_CHEESE;
     public static final String TAG_DESC_EXPENSIVE = " " + PREFIX_ACTIVITY_TAG + VALID_TAG_EXPENSIVE;
     public static final String TAG_DESC_SIGHTSEEING = " " + PREFIX_ACTIVITY_TAG + VALID_TAG_SIGHTSEEING;
 
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_TRIP_TITLE
+    public static final String INVALID_TITLE_DESC = " " + PREFIX_TRIP_TITLE
             + "Cheese land&"; // '&' not allowed in title
-    public static final String INVALID_PHONE_DESC = " "
+    public static final String INVALID_DURATION_DESC = " "
             + PREFIX_ACTIVITY_DURATION + "911a"; // 'a' not allowed in duraation
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_ACTIVITY_LOCATION
+    public static final String INVALID_LOCATION_DESC = " " + PREFIX_ACTIVITY_LOCATION
             + "The moon&"; // missing '@' symbol
     public static final String INVALID_TAG_DESC = " " + PREFIX_ACTIVITY_TAG + "stupid*"; // '*' not allowed in tags
 
@@ -102,12 +107,12 @@ public class CommandTestUtil {
 
 
 
-    public static final EditActivityCommand.EditActivityDescriptor DESC_JAPAN;
+    public static final EditActivityCommand.EditActivityDescriptor DESC_CHEESE;
     public static final EditActivityCommand.EditActivityDescriptor DESC_FINLAND;
 
     static {
-        DESC_JAPAN = new EditActivityDescriptorBuilder().withTitle(VALID_ACTIVITY_TITLE_JAPAN)
-                .withDuration(VALID_ACTIVITY_DURATION_JAPAN).withLocation(VALID_LOCATION_JAPAN)
+        DESC_CHEESE = new EditActivityDescriptorBuilder().withTitle(VALID_ACTIVITY_TITLE_CHEESE)
+                .withDuration(VALID_ACTIVITY_DURATION_CHEESE).withLocation(VALID_LOCATION_CHEESE)
                 .withTags(VALID_TAG_EXPENSIVE).build();
         DESC_FINLAND = new EditActivityDescriptorBuilder().withTitle(VALID_ACTIVITY_TITLE_FINLAND)
                 .withDuration(VALID_ACTIVITY_DURATION_FINLAND).withLocation(VALID_LOCATION_FINLAND)

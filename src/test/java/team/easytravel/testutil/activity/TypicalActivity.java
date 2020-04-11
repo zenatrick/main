@@ -34,6 +34,15 @@ public class TypicalActivity {
             new HashSet<>(), Optional.empty()
     );
 
+    // DO NOT TOUCH THESE EITHER
+    public static final String VALID_ACTIVITY_TITLE_CHEESE = "CHEESELAND OWO";
+    public static final Integer VALID_ACTIVITY_DURATION_CHEESE = 2;
+    public static final String VALID_LOCATION_CHEESE = "LAND OF CHEESE";
+    public static final Activity ACTIVITY_CHEESE = new Activity(new Title(VALID_ACTIVITY_TITLE_CHEESE),
+            new Duration(VALID_ACTIVITY_DURATION_CHEESE),
+            new Location(VALID_LOCATION_CHEESE),
+            new HashSet<>(), Optional.empty());
+
     //Dont Touch these Activities below, used for storage
     public static final Activity ACTIVITY_BUNGEE_JUMP = new Activity(
             new Title("Bungee Jump"), new Duration(1), new Location("New Zealand"),
