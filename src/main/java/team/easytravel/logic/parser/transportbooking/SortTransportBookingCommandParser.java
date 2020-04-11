@@ -29,5 +29,4 @@ public class SortTransportBookingCommandParser implements Parser<SortTransportBo
         SortCommandOrder parsedSortOrder = ParserUtil.parseSortOder(sortParameters[1]);
         return new SortTransportBookingCommand(parsedSortOrder, parsedCriteria);
     }
-
 }

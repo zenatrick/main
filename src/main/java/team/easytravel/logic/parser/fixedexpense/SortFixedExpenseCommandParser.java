@@ -2,6 +2,7 @@ package team.easytravel.logic.parser.fixedexpense;
 
 import team.easytravel.commons.core.Messages;
 import team.easytravel.logic.commands.fixedexpense.SortFixedExpenseCommand;
+import team.easytravel.logic.commands.util.SortCommandOrder;
 import team.easytravel.logic.parser.Parser;
 import team.easytravel.logic.parser.ParserUtil;
 import team.easytravel.logic.parser.exceptions.ParseException;
@@ -18,21 +19,15 @@ public class SortFixedExpenseCommandParser implements Parser<SortFixedExpenseCom
      * @throws ParseException if the user input does not conform the expected format
      */
     public SortFixedExpenseCommand parse(String args) throws ParseException {
-        try {
-            if (args.length() < 1) { //The case where nothing is placed after sortexpense
-                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                        SortFixedExpenseCommand.MESSAGE_USAGE));
-            }
-
-            String[] sortIdentifiers = ParserUtil.parseSortArgumentString(args);
-            String parseSortIdentifier = ParserUtil.parseSortIdentifier(sortIdentifiers[0].toLowerCase());
-            String parseSortParameter = ParserUtil.parseSortExpParameters(sortIdentifiers[1]).toLowerCase();
-
-            return new SortFixedExpenseCommand((parseSortIdentifier), parseSortParameter);
-        } catch (ParseException pe) {
+        String[] sortParameters = args.trim().split("\\s+");
+        if (sortParameters.length != 2) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    SortFixedExpenseCommand.MESSAGE_USAGE), pe);
+                    SortFixedExpenseCommand.MESSAGE_USAGE));
         }
+
+        String parsedCriteria = ParserUtil.parseSortFixedExpenseCriteria(sortParameters[0]);
+        SortCommandOrder parsedSortOrder = ParserUtil.parseSortOder(sortParameters[1]);
+        return new SortFixedExpenseCommand(parsedSortOrder, parsedCriteria);
     }
 
 }

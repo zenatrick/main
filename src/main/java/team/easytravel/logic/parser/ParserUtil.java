@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import team.easytravel.commons.core.Messages;
 import team.easytravel.commons.core.index.Index;
 import team.easytravel.commons.core.time.Date;
 import team.easytravel.commons.core.time.DateTime;
@@ -183,146 +182,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String sortIdentifier}
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code sortIdentifier} is invalid.
-     */
-    public static String parseSortIdentifier(String sortIdentifier) throws ParseException {
-        requireNonNull(sortIdentifier);
-
-        switch (sortIdentifier) {
-        case SortFixedExpenseCommand.SORT_ASCENDING:
-        case SortFixedExpenseCommand.SORT_DESCENDING:
-            return sortIdentifier;
-
-        default:
-            throw new ParseException("String must consist of either high for descending order"
-                    + " or low for ascending order");
-        }
-    }
-
-    /**
-     * Parses a {@code String sortArgumentString}
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code sortArgumentString} is invalid.
-     */
-    public static String[] parseSortArgumentString(String sortArgumentString) throws ParseException {
-        requireNonNull(sortArgumentString);
-
-        String[] sortIdentifiers = sortArgumentString.trim().split("\\s+");
-        if (sortIdentifiers.length != 2) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    SortFixedExpenseCommand.MESSAGE_USAGE));
-        }
-        return sortIdentifiers;
-    }
-
-    /**
-     * Parse sort item identifier string.
-     *
-     * @param sortIdentifier the sort identifier
-     * @return the string
-     * @throws ParseException the parse exception
-     */
-    public static String parseSortItemIdentifier(String sortIdentifier) throws ParseException {
-        requireNonNull(sortIdentifier);
-
-        switch (sortIdentifier) {
-        case SortItemCommand.SORT_ASCENDING:
-            return SortItemCommand.SORT_ASCENDING;
-        case SortItemCommand.SORT_DESCENDING:
-            return SortItemCommand.SORT_DESCENDING;
-        default:
-            throw new ParseException("String must consist of either high for descending order"
-                    + " or low for ascending order");
-        }
-    }
-
-    /**
-     * Parses a {@code String sortParameters} into a {@code String}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code sortParameters} is invalid.
-     */
-    public static String parseSortExpParameters(String sortParameters) throws ParseException {
-        requireNonNull(sortParameters);
-
-        switch (sortParameters) {
-        case SortFixedExpenseCommand.AMOUNT:
-            return SortFixedExpenseCommand.AMOUNT;
-
-        case SortFixedExpenseCommand.CATEGORY:
-            return SortFixedExpenseCommand.CATEGORY;
-
-        case SortFixedExpenseCommand.DESCRIPTION:
-            return SortFixedExpenseCommand.DESCRIPTION;
-
-        case SortAccommodationBookingCommand.LOCATION:
-            return SortAccommodationBookingCommand.LOCATION;
-
-        case SortAccommodationBookingCommand.NAME:
-            return SortAccommodationBookingCommand.NAME;
-
-
-        default:
-            throw new ParseException("Parameters must consist of only amount/description/category");
-        }
-
-    }
-
-    /**
-     * Parses a {@code String sortParameters} into a {@code String}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code sortParameters} is invalid.
-     */
-    public static String parseSortAccParameters(String sortParameters) throws ParseException {
-        requireNonNull(sortParameters);
-
-        switch (sortParameters) {
-        case SortAccommodationBookingCommand.LOCATION:
-            return SortAccommodationBookingCommand.LOCATION;
-
-        case SortAccommodationBookingCommand.NAME:
-            return SortAccommodationBookingCommand.NAME;
-
-
-        default:
-            throw new ParseException("Parameters must consist of only name/location");
-        }
-
-    }
-
-
-    /**
-     * Parse sort item parameters string.
-     *
-     * @param sortParameters the sort parameters
-     * @return the string
-     * @throws ParseException the parse exception
-     */
-    public static String parseSortItemParameters(String sortParameters) throws ParseException {
-        requireNonNull(sortParameters);
-
-        switch (sortParameters) {
-        case SortItemCommand.ALPHABET:
-            return SortItemCommand.ALPHABET;
-
-        case SortItemCommand.CATEGORY:
-            return SortItemCommand.CATEGORY;
-
-        case SortItemCommand.QUANTITY:
-            return SortItemCommand.QUANTITY;
-
-        default:
-            throw new ParseException("Parameters must consist of only alphabet/quantity/category");
-        }
-
-    }
-
-    /**
      * Parses a {@code String mode} into an {@code Mode}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -335,32 +194,6 @@ public class ParserUtil {
             throw new ParseException(Mode.MESSAGE_CONSTRAINTS);
         }
         return new Mode(trimmedMode);
-    }
-
-    /**
-     * Parse sort item parameters string.
-     *
-     * @param sortParameters the sort parameters
-     * @return the string
-     * @throws ParseException the parse exception
-     */
-    public static String parseSortActivityParameters(String sortParameters) throws ParseException {
-        requireNonNull(sortParameters);
-
-        switch (sortParameters) {
-        case SortActivityCommand.TITLE:
-            return SortActivityCommand.TITLE;
-
-        case SortActivityCommand.LOCATION:
-            return SortActivityCommand.LOCATION;
-
-        case SortActivityCommand.DURATION:
-            return SortActivityCommand.DURATION;
-
-        default:
-            throw new ParseException("Parameters must consist of only title/location/duration");
-        }
-
     }
 
     /**
@@ -382,6 +215,86 @@ public class ParserUtil {
             return trimmedCriteria;
         default:
             throw new ParseException(SortTransportBookingCommand.MESSAGE_CRITERIA_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a the given string into a SortAccommodationBookingCommand's criteria.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code criteria} is invalid.
+     */
+    public static String parseSortAccommodationCriteria(String criteria)
+            throws ParseException {
+        requireNonNull(criteria);
+        String trimmedCriteria = criteria.trim().toLowerCase();
+        switch (trimmedCriteria) {
+        case SortAccommodationBookingCommand.CRITERIA_NAME:
+        case SortAccommodationBookingCommand.CRITERIA_LOCATION:
+        case SortAccommodationBookingCommand.CRITERIA_DAY:
+            return trimmedCriteria;
+        default:
+            throw new ParseException(SortAccommodationBookingCommand.MESSAGE_CRITERIA_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a the given string into a SortActivityCommand's criteria.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code criteria} is invalid.
+     */
+    public static String parseSortActivityCriteria(String criteria)
+            throws ParseException {
+        requireNonNull(criteria);
+        String trimmedCriteria = criteria.trim().toLowerCase();
+        switch (trimmedCriteria) {
+        case SortActivityCommand.CRITERIA_TITLE:
+        case SortActivityCommand.CRITERIA_LOCATION:
+        case SortActivityCommand.CRITERIA_DURATION:
+            return trimmedCriteria;
+        default:
+            throw new ParseException(SortActivityCommand.MESSAGE_CRITERIA_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a the given string into a SortFixedExpenseCommand's criteria.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code criteria} is invalid.
+     */
+    public static String parseSortFixedExpenseCriteria(String criteria)
+            throws ParseException {
+        requireNonNull(criteria);
+        String trimmedCriteria = criteria.trim().toLowerCase();
+        switch (trimmedCriteria) {
+        case SortFixedExpenseCommand.CRITERIA_CATEGORY:
+        case SortFixedExpenseCommand.CRITERIA_DESCRIPTION:
+        case SortFixedExpenseCommand.CRITERIA_AMOUNT:
+            return trimmedCriteria;
+        default:
+            throw new ParseException(SortFixedExpenseCommand.MESSAGE_CRITERIA_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a the given string into a SortItemCommand's criteria.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code criteria} is invalid.
+     */
+    public static String parseSortPackingListItemCriteria(String criteria)
+            throws ParseException {
+        requireNonNull(criteria);
+        String trimmedCriteria = criteria.trim().toLowerCase();
+        switch (trimmedCriteria) {
+        case SortItemCommand.CRITERIA_CATEGORY:
+        case SortItemCommand.CRITERIA_NAME:
+        case SortItemCommand.CRITERIA_QUANTITY:
+            return trimmedCriteria;
+        default:
+            throw new ParseException(SortItemCommand.MESSAGE_CRITERIA_CONSTRAINTS);
         }
     }
 

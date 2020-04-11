@@ -6,7 +6,6 @@ import static team.easytravel.commons.core.Messages.MESSAGE_SORT_SUCCESS_FORMAT;
 import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_TRANSPORT;
 
 import java.util.Comparator;
-import java.util.List;
 
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
@@ -22,12 +21,6 @@ import team.easytravel.model.trip.TripManager;
 public class SortTransportBookingCommand extends Command {
     public static final String COMMAND_WORD = "sorttransport";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the displayed transport bookings by the given "
-            + "criteria and order.\n"
-            + "Parameters : CRITERIA "
-            + " ORDER\n"
-            + "Example: " + COMMAND_WORD + " mode asc";
-
     public static final String CRITERIA_MODE = "mode";
     public static final String CRITERIA_START_LOCATION = "startloc";
     public static final String CRITERIA_END_LOCATION = "endloc";
@@ -35,8 +28,14 @@ public class SortTransportBookingCommand extends Command {
     public static final String CRITERIA_END_TIME = "endtime";
 
     public static final String MESSAGE_CRITERIA_CONSTRAINTS = String.format("Criteria must be one of the following: "
-            + "\"%s\", \"%s\", \"%s\", \"%s\", \"%s\".", CRITERIA_MODE, CRITERIA_START_LOCATION, CRITERIA_END_LOCATION,
-            CRITERIA_START_TIME, CRITERIA_END_TIME);
+                    + "\"%s\", \"%s\", \"%s\", \"%s\", \"%s\".", CRITERIA_MODE, CRITERIA_START_LOCATION,
+            CRITERIA_END_LOCATION, CRITERIA_START_TIME, CRITERIA_END_TIME);
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the displayed transport bookings by the given "
+            + "criteria and order.\n"
+            + "Parameters : CRITERIA "
+            + " ORDER\n"
+            + "Example: " + COMMAND_WORD + " " + CRITERIA_MODE + " " + SortCommandOrder.ASCENDING;
 
     private final SortCommandOrder order;
     private final String criteria;
@@ -54,22 +53,20 @@ public class SortTransportBookingCommand extends Command {
             throw new CommandException(TripManager.MESSAGE_ERROR_NO_TRIP);
         }
 
-        List<TransportBooking> lastShownList = model.getFilteredTransportBookingList();
-
-        if (lastShownList.isEmpty()) {
+        if (model.getFilteredTransportBookingList().isEmpty()) {
             throw new CommandException(String.format(MESSAGE_EMPTY_LIST_FORMAT, "transport booking"));
         }
 
         Comparator<TransportBooking> cmp;
         switch (criteria) {
         case CRITERIA_MODE:
-            cmp = Comparator.comparing(transportBooking -> transportBooking.getMode().value);
+            cmp = Comparator.comparing(entry -> entry.getMode().value);
             break;
         case CRITERIA_START_LOCATION:
-            cmp = Comparator.comparing(transportBooking -> transportBooking.getStartLocation().value.toLowerCase());
+            cmp = Comparator.comparing(entry -> entry.getStartLocation().value.toLowerCase());
             break;
         case CRITERIA_END_LOCATION:
-            cmp = Comparator.comparing(transportBooking -> transportBooking.getEndLocation().value.toLowerCase());
+            cmp = Comparator.comparing(entry -> entry.getEndLocation().value.toLowerCase());
             break;
         case CRITERIA_START_TIME:
             cmp = Comparator.comparing(TransportBooking::getStartDateTime);

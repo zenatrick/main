@@ -2,6 +2,7 @@ package team.easytravel.logic.parser.activity;
 
 import team.easytravel.commons.core.Messages;
 import team.easytravel.logic.commands.activity.SortActivityCommand;
+import team.easytravel.logic.commands.util.SortCommandOrder;
 import team.easytravel.logic.parser.Parser;
 import team.easytravel.logic.parser.ParserUtil;
 import team.easytravel.logic.parser.exceptions.ParseException;
@@ -18,20 +19,14 @@ public class SortActivityCommandParser implements Parser<SortActivityCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public SortActivityCommand parse(String args) throws ParseException {
-        try {
-            if (args.length() < 1) { //The case where nothing is placed after sortActivity
-                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                        SortActivityCommand.MESSAGE_USAGE));
-            }
-            String[] sortIdentifiers = ParserUtil.parseSortArgumentString(args);
-            String parseSortIdentifier = ParserUtil.parseSortIdentifier(sortIdentifiers[0].toLowerCase());
-            String parseSortParameter = ParserUtil.parseSortActivityParameters(sortIdentifiers[1].toLowerCase());
-
-            return new SortActivityCommand((parseSortIdentifier), parseSortParameter);
-        } catch (ParseException pe) {
+        String[] sortParameters = args.trim().split("\\s+");
+        if (sortParameters.length != 2) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    SortActivityCommand.MESSAGE_USAGE), pe);
+                    SortActivityCommand.MESSAGE_USAGE));
         }
-    }
 
+        String parsedCriteria = ParserUtil.parseSortActivityCriteria(sortParameters[0]);
+        SortCommandOrder parsedSortOrder = ParserUtil.parseSortOder(sortParameters[1]);
+        return new SortActivityCommand(parsedSortOrder, parsedCriteria);
+    }
 }
