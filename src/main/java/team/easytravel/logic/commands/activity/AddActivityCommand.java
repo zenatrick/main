@@ -21,7 +21,7 @@ public class AddActivityCommand extends Command {
 
     public static final String COMMAND_WORD = "addactivity";
 
-    public static final String MESSAGE_DUPLICATE_ACTIVITY = "This activity already exists in the scheduler";
+    public static final String MESSAGE_DUPLICATE_ACTIVITY = "This activity already exists in the list";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an activity to the activity list"
             + "Parameters: "
             + PREFIX_ACTIVITY_TITLE + "TITLE "

@@ -10,7 +10,7 @@ import team.easytravel.commons.util.AppUtil;
  */
 public class Amount {
     public static final String MESSAGE_CONSTRAINTS = "Amount must be a valid number with at most 2 decimal places and "
-            + "less than 10,000,000,000 in SGD and in Other currency.";
+            + "less than 10,000,000,000 both before and after currency conversion.";
 
     // Allows 10 digits, and at most 2 decimal places.
     public static final String VALIDATION_REGEX = "^([\\d]{1,10})(\\.[\\d]{1,2})?$";

@@ -1,11 +1,11 @@
 package team.easytravel.logic.parser.packinglist;
 
 import static java.util.Objects.requireNonNull;
-import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_CATEGORY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 
+import team.easytravel.commons.core.Messages;
 import team.easytravel.commons.core.index.Index;
 import team.easytravel.logic.commands.packinglist.EditItemCommand;
 import team.easytravel.logic.commands.packinglist.EditItemCommand.EditItemDescriptor;
@@ -30,7 +30,7 @@ public class EditItemCommandParser implements Parser<EditItemCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditItemCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "item"), pe);
         }
 
         EditItemDescriptor editItemDescriptor = new EditItemDescriptor();

@@ -23,9 +23,8 @@ public class DeleteAccommodationBookingCommandParser implements Parser<DeleteAcc
             Index index = ParserUtil.parseIndex(userInput);
             return new DeleteAccommodationBookingCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                            DeleteAccommodationBookingCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT,
+                    "accommodation booking"), pe);
         }
     }
 

@@ -58,8 +58,7 @@ public class DeleteItemCommand extends Command {
         List<PackingListItem> lastShownList = model.getFilteredPackingList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(String.format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT,
-                    "packing list item"));
+            throw new CommandException(String.format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "item"));
         }
 
         PackingListItem packingListItemToDelete = lastShownList.get(targetIndex.getZeroBased());

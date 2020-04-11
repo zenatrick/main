@@ -37,8 +37,8 @@ public class EditAccommodationBookingCommandParser implements Parser<EditAccommo
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditAccommodationBookingCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT,
+                    "accommodation booking"), pe);
         }
 
         EditAccommodationBookingCommand.EditAccommodationBookingDescriptor editAccommodationBookingDescriptor =

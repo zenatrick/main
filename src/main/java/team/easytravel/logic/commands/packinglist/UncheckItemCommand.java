@@ -100,7 +100,7 @@ public class UncheckItemCommand extends Command {
 
         if (editedItems.isEmpty() && !invalidIndexes.isEmpty()) {
             throw new CommandException(String.format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT,
-                    "packing list item"));
+                    "item"));
         } else if (invalidIndexes.isEmpty() && !editedItems.isEmpty()) {
             // Event where there are no invalid indexes and items were edited
             return new CommandResult(String.format(MESSAGE_PACKED_ITEM_SUCCESS, sb), SWITCH_TAB_PACKING_LIST);
