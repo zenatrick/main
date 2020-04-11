@@ -16,6 +16,7 @@ import team.easytravel.commons.core.index.Index;
 import team.easytravel.logic.commands.accommodationbooking.EditAccommodationBookingCommand;
 import team.easytravel.logic.commands.activity.EditActivityCommand;
 import team.easytravel.logic.commands.exceptions.CommandException;
+import team.easytravel.logic.commands.packinglist.EditItemCommand;
 import team.easytravel.model.Model;
 import team.easytravel.model.listmanagers.AccommodationBookingManager;
 import team.easytravel.model.listmanagers.ActivityManager;
@@ -27,6 +28,7 @@ import team.easytravel.model.listmanagers.PackingListManager;
 import team.easytravel.model.listmanagers.packinglistitem.ItemContainsKeywordsPredicate;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
 import team.easytravel.testutil.activity.EditActivityDescriptorBuilder;
+import team.easytravel.testutil.packinglist.EditItemDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -100,9 +102,13 @@ public class CommandTestUtil {
     public static final String VALID_ACCOMMODATION_MODE = "plane";
 
     //---- Packing list ---
-    public static final String VALID_ITEM_NAME = "Underwear";
-    public static final Integer VALID_QUANTITY = 7;
-    public static final String VALID_ITEM_CATEGORY = "Clothes";
+    public static final String VALID_ITEM_NAME_UNDERWEAR = "Underwear";
+    public static final Integer VALID_QUANTITY_UNDERWEAR = 7;
+    public static final String VALID_ITEM_CATEGORY_UNDERWEAR = "clothes";
+
+    public static final String VALID_ITEM_NAME_PASSPORT = "Passport";
+    public static final Integer VALID_QUANTITY_PASSPORT = 1;
+    public static final String VALID_ITEM_CATEGORY_PASSPORT = "international";
 
 
     //---- FIXED EXPENSES --
@@ -112,6 +118,9 @@ public class CommandTestUtil {
 
     public static final EditActivityCommand.EditActivityDescriptor DESC_CHEESE;
     public static final EditActivityCommand.EditActivityDescriptor DESC_FINLAND;
+
+    public static final EditItemCommand.EditItemDescriptor ITEM_UNDERWEAR;
+    public static final EditItemCommand.EditItemDescriptor ITEM_PASSPORT;
 
     static {
         DESC_CHEESE = new EditActivityDescriptorBuilder().withTitle(VALID_ACTIVITY_TITLE_CHEESE)
@@ -136,6 +145,12 @@ public class CommandTestUtil {
                 .withEndDay(VALID_ACCOMMODATION_RITZ_END_DAY).withRemark(VALID_ACCOMMODATION_RITZ_REMARK).build();
     }
 
+    static {
+        ITEM_UNDERWEAR = new EditItemDescriptorBuilder().withItemName(VALID_ITEM_NAME_UNDERWEAR)
+                .withQuantity(VALID_QUANTITY_UNDERWEAR).withItemCategory(VALID_ITEM_CATEGORY_UNDERWEAR).build();
+        ITEM_PASSPORT = new EditItemDescriptorBuilder().withItemName(VALID_ITEM_NAME_PASSPORT)
+                .withQuantity(VALID_QUANTITY_PASSPORT).withItemCategory(VALID_ITEM_CATEGORY_PASSPORT).build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
