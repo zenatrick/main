@@ -163,65 +163,95 @@ Classes used by multiple components are in the `team.easytravel.commons` package
 This section describes some noteworthy details on how certain features are implemented.
 // tag::TripManagement[]
 
-=== Trip Management
-*_E.T._* only allow the user to manage one trip at a time and is necessary to be used first before other commands are available. This is done using the `settrip` command which requires the user to specify the `title` of the trip, the `budget` of the trip and the `start date` and `end date` of the entire trip.
-For example, `settrip title/cheese land budget/2000 startdate/20-09-20 enddate/28-09-20` means that the trip with the title `cheese land` will be set with a budget of `2000` dollars and a duration of 8 days between `20-09-20` to `28-09-20`.
+=== Trip Manager
+*E.T*  allows the user to plan for an overseas trip. *E.T* is implemented in a way that the user can only plan for one single trip at any time. i.e. Only a single trip’s data can be managed. In this Trip Manager feature, the user can set, edit and delete his/her trip details. The trip details includes:
 
-** title = cheese land
 
-** budget = 2000
+* `title`
+* `budget`
+* `exchangeRate`
+* `startDate`
+* `endDate`
 
-** start date = 20-09-20
-
-** end date = 28-09-20
 
 ==== Rationale
-The Trip Manager feature is the main driving feature that allows the users to set their trip schedule, budget as well
-as the duration of the trip.
-The Trip manager oversees the feature schedule and is essential to be set first before the user is allow to access any other features within the application. This is for the application to ensure that user must have a trip in mind before being allowed to plan for the trip.
+The Trip Manager feature is included in **E.T.** because it is the core feature of the application. If the user wants to plan for an overseas trip, he/she has to record details about the trip.
 
 ==== Current Implementation
-The keywords from the command given by user is parsed using `SetTripCommandParser` which converts the string
-variable of the `startDate` and `endDate` into a java `Date` object, the `title` into a `Title` object while the `budget` is converted into `Budget` objects.
-These objects are used to create the `SetTripCommand` object that can be execution to create the trip. Execution of this object would hence enable other features within the application.
+The `TripManager` class in the `Model` component is responsible for all operations on the trip which is represented by the `Trip` class. The following _Class Diagram_ describes the structure of the `TripManager` and its relevant classes.
 
-The sequence diagram below shows the creation of the `SetTripCommand` object:
 
-.Sequence diagram that describes the creation of the `SetTripCommand` from the input user command `settrip title/cheese budget/2000 startdate/20-09-20 enddate/28-09-20`.
-image::developer-guide/trip/SetTripCommandCreation.png[]
+.Structure of the `TripManager` and its relevant classes.
+image::developer-guide/trip/TripClassDiagram.png[]
 
-After the creation of the `SetTripCommand` object, the `LogicManager` will proceed to call the `execute()` method of `SetTripCommand`.
+As seen from the diagram, the `TripManager` can only manage one trip at any point in time.
+Next, the following table shows the commands related to managing the trip details.
 
-The following steps describes the execution of the `SetTripCommand`:
 
-1. The `Schedule` object, `Budget` object, `startDate` and `endDate` is passed into the `createTrip()` method of `Model` and parse into a `Trip` object.
-2. A new `Scheduler` will be created while `Budget` object, `startDate` and `endDate` object given by the `Trip object`  .
-3. The `trip` object will calculate and initialise the `duration` of the trip using the given `startDate` and `endDate`.
-4. `Trip` would enable access to other commands within application.
+|===
+|Command |Purpose
 
-The sequence diagram below shows the the execution of `SetTripCommand`:
+|`settrip`
+|Adds a trip and sets the trip details.
 
-.Sequence diagram that describes the execution of ScheduleActivityCommand.
-image::developer-guide/trip/f.png[SetTrip Command Execution PlaceHolder]
+|`rename`
+|Edits the trip title.
+
+|`editbudget`
+|Edits the budget of the trip.
+
+|`deletetrip`
+|Deletes the trip and all the data in the App.
+|===
+
+This ability to change the start and end dates and the exchange rate of the trip is not available.
 
 ==== Design Consideration
 
-===== Aspect: Trip is isolated from any list manager
+===== Aspect: Number of trips allowed to be managed
 
-* **Current Choice:** Trip is isolated from all list managing
-** Pros: Better user experience. Single Responsibility: only handles objects necessary for a `trip` to exist
-and be added into the schedule.
-** Cons: Complicated to implement and more likely to result in bugs.
 
-===== Aspect: Creation of trip is required before use of any other commands
+|===
+| |Pros |Cons
 
-* **Current Choice:** A trip must be created before use of any other commands
-** Pros: Ensures that users cannot implement any activity or schedule without creation of an activity.
-** Cons: Complicate to implement and likely result in dependency issues
+|**Option 1 (Current)**
+Only one
+|Easy to implement. `TripManager` just needs to hold one `Trip` object.
+|Less flexibility for the user.
 
-* **Alternative:** A trip can be created after the use of any other commands
-** Pros: Gives the user the freedom to use commands before the trip is set, such as the budgeting and packing list.
-** Cons: Defeats the purpose of planning the trip from top down, starting from the trip being set first.
+|**Option 2**
+More than one
+|More flexibility for the user.
+|More overhead, especially in terms of space.
+|===
+
+Reasons for choosing the option 1:
+
+* A typical user would only plan one trip at a time. Thus, the overhead incurred by option 2 is not justified.
+* Limited time for implementing this feature. Thus, option 1 is more ideal.
+
+
+===== Aspect: Ability to edit the details of the trip
+
+|===
+| |Pros |Cons
+
+|**Option 1 (Current)**
+Can only edit the title and budget.
+|Easy to implement. Nothing depends on the trip title and budget.
+|Users who need to change the dates or exchange rate of the trip need to delete and then set the trip which is troublesome.
+
+|**Option 2**
+Can edit every detail.
+|More flexibility and convenience for the user.
+|The schedule feature depends on the trip dates while the expense feature depends on the exchange rate. Thus, allowing these fields to be changed is very difficult to implement and likely to result in bugs.
+|===
+
+Reasons for choosing option 1:
+
+* The exchange rate of a trip does not tend to fluctuate much, thus the cons of option 2 outweigh the pros for the exchange rate.
+* As for the trip dates, the schedule feature is a big feature of **E.T.** and it depends on the trip dates. Given the limited time for implementation, we decided to opt for a less bug-prone approach that can showcase **E.T.**’s feature.
+
 // end::Trip Management[]
 
 
