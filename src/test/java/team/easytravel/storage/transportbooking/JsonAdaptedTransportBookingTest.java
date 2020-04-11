@@ -23,8 +23,8 @@ class JsonAdaptedTransportBookingTest {
     public static final String VALID_MODE = TRANSPORT_BOOKING_BUS.getMode().value;
     public static final String VALID_START_LOCATION = TRANSPORT_BOOKING_BUS.getStartLocation().value;
     public static final String VALID_END_LOCATION = TRANSPORT_BOOKING_BUS.getEndLocation().value;
-    public static final String VALID_START_DATE_TIME = TRANSPORT_BOOKING_BUS.getStartDateTime().toString();
-    public static final String VALID_END_DATE_TIME = TRANSPORT_BOOKING_BUS.getEndDateTime().toString();
+    public static final String VALID_START_DATE_TIME = TRANSPORT_BOOKING_BUS.getStartDateTime().getStorageFormat();
+    public static final String VALID_END_DATE_TIME = TRANSPORT_BOOKING_BUS.getEndDateTime().getStorageFormat();
 
 
     @Test
@@ -114,6 +114,15 @@ class JsonAdaptedTransportBookingTest {
                 new JsonAdaptedTransportBooking(VALID_MODE, VALID_START_LOCATION, VALID_END_LOCATION,
                         VALID_START_DATE_TIME, INVALID_END_DATE_TIME);
         String expectedMessage = DateTime.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, transportBooking::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullEndDateTime_throwsIllegalValueException() {
+        JsonAdaptedTransportBooking transportBooking =
+                new JsonAdaptedTransportBooking(VALID_MODE, VALID_START_LOCATION, VALID_END_LOCATION,
+                        VALID_START_DATE_TIME, null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, DateTime.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, transportBooking::toModelType);
     }
 }

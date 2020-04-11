@@ -1,0 +1,22 @@
+{
+  "hasTrip": true,
+  "jsonAdaptedTrip": [
+    {
+      "title": "Graduation Trip",
+      "startDate": "28-09-2020",
+      "endDate": "05-10-2020",
+      "budget": 1000000,
+      "exchangeRate": 1.03
+    },
+    {
+      "hasTrip": true,
+      "jsonAdaptedTrip": "title"
+      :
+      "Gradua#!!@!#tion Trip",
+      "startDate": "28-09-2020",
+      "endDate": "05-10-2020",
+      "budget": 1000000,
+      "exchangeRate": 1.03
+    }
+  ]
+}

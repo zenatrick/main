@@ -84,4 +84,22 @@ public class Trip {
                 + " Exchange Rate: " + exchangeRate;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Trip)) {
+            return false;
+        }
+
+        Trip otherTrip = (Trip) other;
+        return title.equals(otherTrip.title)
+                && startDate.equals(otherTrip.startDate)
+                && endDate.equals(otherTrip.endDate)
+                && numDays == otherTrip.numDays
+                && budget.equals(otherTrip.budget)
+                && exchangeRate.equals(otherTrip.exchangeRate);
+    }
 }

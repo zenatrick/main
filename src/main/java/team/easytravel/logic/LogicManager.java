@@ -12,6 +12,7 @@ import team.easytravel.commons.core.LogsCenter;
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
 import team.easytravel.logic.commands.exceptions.CommandException;
+import team.easytravel.logic.commands.fixedexpense.AddFixedExpenseCommand;
 import team.easytravel.logic.parser.EasyTravelParser;
 import team.easytravel.logic.parser.exceptions.ParseException;
 import team.easytravel.model.Model;
@@ -119,6 +120,7 @@ public class LogicManager implements Logic {
     public ObservableList<String> getHelpQuestions() {
         ArrayList<String> questions = new ArrayList<>();
         questions.add(HELP_MESSAGE);
+        questions.add(AddFixedExpenseCommand.MESSAGE_USAGE);
         questions.add("Set Trip : settrip title/TITLE start/START_DATE end/END_DATE location/LOCATION\n\n"
                 + "Example: settrip title/Graduation Trip start/28-09-2020 end/28-10-2020 location/Japan");
         questions.add("Edit Trip : edittrip [title/TITLE] [start/START_DATE] [end/END_DATE][country/COUNTRY]\n\n"

@@ -43,8 +43,7 @@ public class TypicalTrip {
     }
 
     public static List<Trip> getTypicalTrip() {
-        return new ArrayList<>(Arrays.asList(TRIP_CHEESE, TRIP_GRAD,
-                TRIP_MOON));
+        return new ArrayList<>(Arrays.asList(TRIP_CHEESE));
     }
 
 }

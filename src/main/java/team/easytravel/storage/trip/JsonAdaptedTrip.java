@@ -15,7 +15,7 @@ import team.easytravel.model.util.attributes.Title;
  */
 class JsonAdaptedTrip {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Trip's %s field is missing!";
 
     private final String title;
     private final String startDate;
@@ -93,6 +93,9 @@ class JsonAdaptedTrip {
         if (exchangeRate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ExchangeRate.class.getSimpleName()));
+        }
+        if (!ExchangeRate.isValidExchangeRate(exchangeRate)) {
+            throw new IllegalValueException(ExchangeRate.MESSAGE_CONSTRAINTS);
         }
         final ExchangeRate modelExchangeRate = new ExchangeRate(exchangeRate);
 
