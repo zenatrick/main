@@ -11,7 +11,7 @@ import team.easytravel.commons.util.AppUtil;
  * Guarantees: immutable; is valid as declared in {@link #isValidDuration(Integer)}
  */
 public class Duration {
-    public static final String MESSAGE_CONSTRAINTS = "Time (Hours) must be a valid number less than 24";
+    public static final String MESSAGE_CONSTRAINTS = "Duration (in hours) must be a valid integer not more than 24";
 
     private static final int MAX_VALUE = 24;
     private static final int MIN_VALUE = 1;

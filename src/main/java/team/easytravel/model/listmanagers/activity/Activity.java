@@ -11,7 +11,6 @@ import team.easytravel.commons.core.time.DateTime;
 import team.easytravel.commons.util.CollectionUtil;
 import team.easytravel.model.util.attributes.Location;
 import team.easytravel.model.util.attributes.Title;
-import team.easytravel.model.util.attributes.tag.Tag;
 import team.easytravel.model.util.uniquelist.UniqueListElement;
 
 /**

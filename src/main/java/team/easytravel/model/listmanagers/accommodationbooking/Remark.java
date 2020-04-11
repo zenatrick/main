@@ -10,12 +10,12 @@ import team.easytravel.commons.util.AppUtil;
  */
 public class Remark {
 
-    public static final String MESSAGE_CONSTRAINTS = "Remark must be made up of alphanumeric words that is less "
-            + "than 150 characters long.";
+    public static final String MESSAGE_CONSTRAINTS = "Remark must be made up of words that is not more than "
+            + "than 150 characters long. (Common punctuation characters allowed)";
 
-    // todo update regex to match constraints
-    // Allows for 150 characters long.
-    public static final String VALIDATION_REGEX = "[\\W\\w\\s]{1,150}+";
+    // Allows for 150 characters long
+    // The characters: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~ are allowed.
+    public static final String VALIDATION_REGEX = "^(?!\\s*$)[\\p{Alnum}\\p{Punct}\\s]{1,150}$";
 
     public final String value;
 

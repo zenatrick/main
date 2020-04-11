@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import team.easytravel.commons.exceptions.IllegalValueException;
-import team.easytravel.model.util.attributes.tag.Tag;
+import team.easytravel.model.listmanagers.activity.Tag;
 
 /**
  * Jackson-friendly version of {@link Tag}.

@@ -4,17 +4,15 @@ import static java.util.Objects.requireNonNull;
 import static team.easytravel.commons.util.AppUtil.checkArgument;
 
 /**
- * The type Item category.
+ * Represents a PackingListItem's category in the PackingListManager.
+ * Guarantees: immutable; is valid as declared in {@link #isValidItemCategory(String)}
  */
 public class ItemCategory {
-    /**
-     * The constant MESSAGE_CONSTRAINTS.
-     */
+
     public static final String MESSAGE_CONSTRAINTS = "Category must be made up of alphanumeric words that is "
-            + "less than 30 characters long, and it will always be in lowercase";
+            + "less than 30 characters long. It will always be in lowercase";
 
-
-    public static final String VALIDATION_REGEX = "(?!\\s*$)[A-Za-z0-9\\s]{1,30}";
+    public static final String VALIDATION_REGEX = "^(?!\\s*$)[\\p{Alnum}\\s]{1,30}$";
 
     public final String value;
 

@@ -1,4 +1,4 @@
-package team.easytravel.model.util.attributes.tag;
+package team.easytravel.model.listmanagers.activity;
 
 import org.junit.jupiter.api.Test;
 

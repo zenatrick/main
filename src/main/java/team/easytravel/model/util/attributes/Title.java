@@ -9,18 +9,12 @@ import static team.easytravel.commons.util.AppUtil.checkArgument;
  */
 public class Title {
 
-    /**
-     * The constant MESSAGE_CONSTRAINTS.
-     */
-    public static final String MESSAGE_CONSTRAINTS = "Title must be made up of alphanumeric words that is less "
-            + "than 50 characters long.";
+    public static final String MESSAGE_CONSTRAINTS = "Title must be made up of alphanumeric words that is not more than"
+            + " 50 characters long.";
 
     // Allows for 50 alphanumeric characters.
-    public static final String VALIDATION_REGEX = "^(?!\\s*$)[A-Za-z0-9\\s]{1,50}+";
+    public static final String VALIDATION_REGEX = "^(?!\\s*$)[\\p{Alnum}\\s]{1,50}";
 
-    /**
-     * The Value.
-     */
     public final String value;
 
     /**

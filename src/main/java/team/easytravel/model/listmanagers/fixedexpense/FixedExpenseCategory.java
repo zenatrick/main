@@ -10,12 +10,17 @@ import team.easytravel.commons.util.AppUtil;
  */
 public class FixedExpenseCategory {
 
-    public static final String MESSAGE_CONSTRAINTS = "Category should be one "
-            + "of the following words:  \"accommodations\", "
-            + "\"transport\", \"activities\", \"others\"";
+    public static final String CATEGORY_ACTIVITY = "activities";
+    public static final String CATEGORY_ACCOMMODATION = "accommodations";
+    public static final String CATEGORY_TRANSPORT = "transport";
+    public static final String CATEGORY_OTHER = "others";
 
+    public static final String MESSAGE_CONSTRAINTS = "Category can take one of the following values: "
+            + "\"" + CATEGORY_ACTIVITY + "\", \"" + CATEGORY_ACCOMMODATION + "\", \"" + CATEGORY_TRANSPORT + "\" or \""
+            + CATEGORY_OTHER + "\".";
 
-    public static final String VALIDATION_REGEX = "^(transport|accommodations|activities|others)$";
+    public static final String VALIDATION_REGEX = String.format("^(%s|%s|%s|%s)$", CATEGORY_ACTIVITY,
+            CATEGORY_ACCOMMODATION, CATEGORY_TRANSPORT, CATEGORY_OTHER);
 
     public final String value;
 

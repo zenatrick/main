@@ -45,7 +45,7 @@ class AmountTest {
         assertTrue(Amount.isValidAmount("1")); // Only 1 digit
         assertTrue(Amount.isValidAmount("0")); // 0 included
         assertTrue(Amount.isValidAmount("0123")); //When a 0 is placed in front
-        assertTrue(Amount.isValidAmount("10000000000000000000000")); // Very large number
+        assertTrue(Amount.isValidAmount("9999999999.99")); // Largest possible number
     }
 
     @Test

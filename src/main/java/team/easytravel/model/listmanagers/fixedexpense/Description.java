@@ -9,12 +9,12 @@ import team.easytravel.commons.util.AppUtil;
  * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
  */
 public class Description {
-    public static final String MESSAGE_CONSTRAINTS = "Description must be made up of alphanumeric words that is less "
-            + "than 50 characters long.";
+    public static final String MESSAGE_CONSTRAINTS = "Description must be made up of alphanumeric words that is not "
+            + "more than 50 characters long.";
 
     // Done description now allows for 1-50 characters long.
     // Spaces does not count.
-    public static final String VALIDATION_REGEX = "^(?!\\s*$)[A-Za-z0-9\\s]{1,50}+";
+    public static final String VALIDATION_REGEX = "^(?!\\s*$)[\\p{Alnum}\\s]{1,50}$";
 
     public final String value;
 

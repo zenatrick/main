@@ -25,6 +25,7 @@ import team.easytravel.model.listmanagers.accommodationbooking.AccommodationName
 import team.easytravel.model.listmanagers.accommodationbooking.Day;
 import team.easytravel.model.listmanagers.accommodationbooking.Remark;
 import team.easytravel.model.listmanagers.activity.Duration;
+import team.easytravel.model.listmanagers.activity.Tag;
 import team.easytravel.model.listmanagers.fixedexpense.Amount;
 import team.easytravel.model.listmanagers.fixedexpense.Description;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpenseCategory;
@@ -36,7 +37,6 @@ import team.easytravel.model.trip.Budget;
 import team.easytravel.model.trip.ExchangeRate;
 import team.easytravel.model.util.attributes.Location;
 import team.easytravel.model.util.attributes.Title;
-import team.easytravel.model.util.attributes.tag.Tag;
 
 
 /**

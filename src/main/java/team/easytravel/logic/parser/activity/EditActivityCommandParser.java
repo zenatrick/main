@@ -19,7 +19,7 @@ import team.easytravel.logic.parser.ArgumentTokenizer;
 import team.easytravel.logic.parser.Parser;
 import team.easytravel.logic.parser.ParserUtil;
 import team.easytravel.logic.parser.exceptions.ParseException;
-import team.easytravel.model.util.attributes.tag.Tag;
+import team.easytravel.model.listmanagers.activity.Tag;
 
 /**
  * Parses input arguments and creates a new EditActivityCommand.

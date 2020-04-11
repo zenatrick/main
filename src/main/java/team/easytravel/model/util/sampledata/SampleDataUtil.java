@@ -22,6 +22,7 @@ import team.easytravel.model.listmanagers.accommodationbooking.Day;
 import team.easytravel.model.listmanagers.accommodationbooking.Remark;
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.activity.Duration;
+import team.easytravel.model.listmanagers.activity.Tag;
 import team.easytravel.model.listmanagers.fixedexpense.Amount;
 import team.easytravel.model.listmanagers.fixedexpense.Description;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
@@ -34,7 +35,6 @@ import team.easytravel.model.listmanagers.transportbooking.Mode;
 import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
 import team.easytravel.model.util.attributes.Location;
 import team.easytravel.model.util.attributes.Title;
-import team.easytravel.model.util.attributes.tag.Tag;
 
 /**
  * Contains utility methods for populating Easy Travel with sample data.

@@ -22,12 +22,12 @@ import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.model.Model;
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.activity.Duration;
+import team.easytravel.model.listmanagers.activity.Tag;
 import team.easytravel.model.trip.DayScheduleEntry;
 import team.easytravel.model.trip.TripManager;
 import team.easytravel.model.trip.exception.IllegalOperationException;
 import team.easytravel.model.util.attributes.Location;
 import team.easytravel.model.util.attributes.Title;
-import team.easytravel.model.util.attributes.tag.Tag;
 
 /**
  * Edits the details of an existing activity.

@@ -9,10 +9,11 @@ import team.easytravel.commons.util.AppUtil;
  * Guarantees: immutable; is valid as declared in {@link #isValidAmount(String)}
  */
 public class Amount {
-    public static final String MESSAGE_CONSTRAINTS = "Amount must be a valid number with at most 2 decimal places.";
+    public static final String MESSAGE_CONSTRAINTS = "Amount must be a valid number with at most 2 decimal places and "
+            + "less than 10 000 000 000.";
 
     // Allows 10 digits, and at most 2 decimal places.
-    public static final String VALIDATION_REGEX = "^([\\d]{1,30})(\\.[\\d]{1,2})?$";
+    public static final String VALIDATION_REGEX = "^([\\d]{1,10})(\\.[\\d]{1,2})?$";
 
     public final String value;
 

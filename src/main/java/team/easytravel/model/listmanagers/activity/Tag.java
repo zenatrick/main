@@ -1,17 +1,19 @@
-package team.easytravel.model.util.attributes.tag;
+package team.easytravel.model.listmanagers.activity;
 
 import static java.util.Objects.requireNonNull;
 
 import team.easytravel.commons.util.AppUtil;
 
 /**
- * Represents a Tag in the address book.
+ * Represents a Tag in the Activity.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric word that is not more "
+            + "than 30 characters long.";
+
+    public static final String VALIDATION_REGEX = "^(?!\\s*$)[\\p{Alnum}]{1,30}$";
 
     public final String tagName;
 

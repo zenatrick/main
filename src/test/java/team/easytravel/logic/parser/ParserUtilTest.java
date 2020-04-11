@@ -16,7 +16,7 @@
 //import team.easytravel.model.person.Email;
 //import team.easytravel.model.person.Name;
 //import team.easytravel.model.person.Phone;
-//import team.easytravel.model.util.attributes.tag.Tag;
+//import team.easytravel.model.listmanagers.activity.Tag;
 //import team.easytravel.testutil.Assert;
 //import team.easytravel.testutil.TypicalIndexes;
 //

@@ -13,12 +13,12 @@ public class ItemName {
     /**
      * The constant MESSAGE_CONSTRAINTS.
      */
-    public static final String MESSAGE_CONSTRAINTS = "Name must be made up of alphanumeric words that is less "
+    public static final String MESSAGE_CONSTRAINTS = "Name must be made up of alphanumeric words that is not more than "
             + "than 30 characters long.";
 
 
     // Allows for 30 alphanumeric characters.
-    public static final String VALIDATION_REGEX = "^(?!\\s*$)[A-Za-z0-9\\s]{1,30}+";
+    public static final String VALIDATION_REGEX = "^(?!\\s*$)[\\p{Alnum}\\s]{1,30}$";
 
     public final String value;
 

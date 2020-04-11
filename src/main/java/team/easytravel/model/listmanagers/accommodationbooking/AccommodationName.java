@@ -11,10 +11,10 @@ import team.easytravel.commons.util.AppUtil;
 public class AccommodationName {
 
     public static final String MESSAGE_CONSTRAINTS = "Name of accommodation must be made up of alphanumeric words "
-            + "that is less than 50 characters long.";
+            + "that is not more than 50 characters long.";
 
     // Allows for 50 alphanumeric characters.
-    public static final String VALIDATION_REGEX = "^(?!\\s*$)[A-Za-z0-9\\s]{1,50}+";
+    public static final String VALIDATION_REGEX = "^(?!\\s*$)[\\p{Alnum}\\s]{1,50}$";
 
     /**
      * The accommodation name.

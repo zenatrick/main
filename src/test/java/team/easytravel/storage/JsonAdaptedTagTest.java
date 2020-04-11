@@ -7,7 +7,7 @@ import static team.easytravel.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import team.easytravel.commons.exceptions.IllegalValueException;
-import team.easytravel.model.util.attributes.tag.Tag;
+import team.easytravel.model.listmanagers.activity.Tag;
 
 class JsonAdaptedTagTest {
 
@@ -17,7 +17,7 @@ class JsonAdaptedTagTest {
     }
 
     @Test
-    public void tagConstructor() throws IllegalValueException {
+    public void tagConstructor() {
         assertEquals(("hello"), new JsonAdaptedTag(new Tag("hello")).getTagName());
     }
 
