@@ -46,7 +46,7 @@ public class DeleteFixedExpenseCommand extends Command {
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(String.format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT,
-                    "transport booking"));
+                    "expense"));
         }
 
         int currentBudget = model.getBudget();

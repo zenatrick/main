@@ -8,7 +8,6 @@ import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_CATEGORY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_CURRENCY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_DESCRIPTION;
 
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,7 +81,7 @@ public class EditFixedExpenseCommand extends Command {
         Double exchangeRate = model.getExchangeRate();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(String.format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "fixed expense"));
+            throw new CommandException(String.format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "expense"));
         }
 
         FixedExpense fixedExpenseToEdit = lastShownList.get(index.getZeroBased());
@@ -108,16 +107,18 @@ public class EditFixedExpenseCommand extends Command {
     private static FixedExpense createEditedFixedExpense(FixedExpense fixedExpenseToEdit,
                                                          EditFixedExpenseDescriptor editFixedExpenseDescriptor,
                                                          boolean isOverseasAmount,
-                                                         Double exchangeRate) {
+                                                         Double exchangeRate) throws CommandException {
         assert fixedExpenseToEdit != null;
 
         Amount updatedAmount;
 
         if (isOverseasAmount) {
-            DecimalFormat decimalFormat = new DecimalFormat("#.##");
-            updatedAmount =
-                    new Amount(decimalFormat.format(Double.parseDouble(editFixedExpenseDescriptor.getAmount()
-                            .orElse(fixedExpenseToEdit.getAmount()).value) * exchangeRate));
+            String amountInSgd = String.format("%.2f", Double.parseDouble(editFixedExpenseDescriptor.getAmount()
+                    .orElse(fixedExpenseToEdit.getAmount()).value) * exchangeRate);
+            if (!Amount.isValidAmount(amountInSgd)) {
+                throw new CommandException(Amount.MESSAGE_CONSTRAINTS);
+            }
+            updatedAmount = new Amount(amountInSgd);
         } else {
             updatedAmount = editFixedExpenseDescriptor.getAmount().orElse(fixedExpenseToEdit.getAmount());
         }

@@ -1,12 +1,12 @@
 package team.easytravel.logic.parser.fixedexpense;
 
 import static java.util.Objects.requireNonNull;
-import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_AMOUNT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_CATEGORY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_CURRENCY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_DESCRIPTION;
 
+import team.easytravel.commons.core.Messages;
 import team.easytravel.commons.core.index.Index;
 import team.easytravel.logic.commands.fixedexpense.EditFixedExpenseCommand;
 import team.easytravel.logic.parser.ArgumentMultimap;
@@ -14,6 +14,7 @@ import team.easytravel.logic.parser.ArgumentTokenizer;
 import team.easytravel.logic.parser.Parser;
 import team.easytravel.logic.parser.ParserUtil;
 import team.easytravel.logic.parser.exceptions.ParseException;
+import team.easytravel.model.listmanagers.fixedexpense.Amount;
 
 /**
  * Parses input arguments and creates a new EditFixedExpenseCommand.
@@ -37,8 +38,7 @@ public class EditFixedExpenseCommandParser implements Parser<EditFixedExpenseCom
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditFixedExpenseCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "expense"), pe);
         }
 
         EditFixedExpenseCommand.EditFixedExpenseDescriptor editFixedExpenseDescriptor =
@@ -49,10 +49,10 @@ public class EditFixedExpenseCommandParser implements Parser<EditFixedExpenseCom
             if (argMultimap.getValue(PREFIX_EXPENSE_CURRENCY).isEmpty()) {
                 throw new ParseException(EditFixedExpenseCommand.MESSAGE_CURRENCY_NOT_PRESENT);
 
-            } else if (argMultimap.getValue(PREFIX_EXPENSE_CURRENCY).get().equalsIgnoreCase("sgd")) {
+            } else if (argMultimap.getValue(PREFIX_EXPENSE_CURRENCY).get().equalsIgnoreCase(Amount.CURRENCY_SGD)) {
                 editFixedExpenseDescriptor.setAmount(ParserUtil
                         .parseAmount(argMultimap.getValue(PREFIX_EXPENSE_AMOUNT).get()));
-            } else if (argMultimap.getValue(PREFIX_EXPENSE_CURRENCY).get().equalsIgnoreCase("other")) {
+            } else if (argMultimap.getValue(PREFIX_EXPENSE_CURRENCY).get().equalsIgnoreCase(Amount.CURRENCY_OTHER)) {
                 isOverseasAmount = true;
                 editFixedExpenseDescriptor.setAmount(ParserUtil
                         .parseAmount(argMultimap.getValue(PREFIX_EXPENSE_AMOUNT).get()));

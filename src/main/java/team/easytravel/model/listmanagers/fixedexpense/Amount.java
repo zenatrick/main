@@ -10,17 +10,18 @@ import team.easytravel.commons.util.AppUtil;
  */
 public class Amount {
     public static final String MESSAGE_CONSTRAINTS = "Amount must be a valid number with at most 2 decimal places and "
-            + "less than 10 000 000 000.";
+            + "less than 10,000,000,000 in SGD and in Other currency.";
 
     // Allows 10 digits, and at most 2 decimal places.
     public static final String VALIDATION_REGEX = "^([\\d]{1,10})(\\.[\\d]{1,2})?$";
-
+    public static final String CURRENCY_SGD = "sgd";
+    public static final String CURRENCY_OTHER = "other";
     public final String value;
 
     public Amount(String amount) {
         requireNonNull(amount);
         AppUtil.checkArgument(isValidAmount(amount), MESSAGE_CONSTRAINTS);
-        value = amount;
+        value = String.format("%.2f", Double.parseDouble(amount));
     }
 
     /**

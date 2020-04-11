@@ -3,7 +3,6 @@ package team.easytravel.logic.commands.fixedexpense;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static team.easytravel.logic.commands.CommandResult.Action.SWITCH_TAB_FIXED_EXPENSE;
 import static team.easytravel.logic.commands.fixedexpense.AddFixedExpenseCommand.MESSAGE_EXCEED_BUDGET;
 import static team.easytravel.logic.commands.fixedexpense.AddFixedExpenseCommand.MESSAGE_SUCCESS;
@@ -32,7 +31,7 @@ class AddFixedExpenseCommandTest {
     }
 
     @Test
-    public void execute_fixedExpenseWithoutTripSet() throws Exception {
+    public void execute_fixedExpenseWithoutTripSet() {
         ModelStubNoTripSet modelStub = new ModelStubNoTripSet();
         FixedExpense validFixedExpense = new FixedExpenseBuilder().build();
 
@@ -63,7 +62,7 @@ class AddFixedExpenseCommandTest {
         CommandResult commandResult = new AddFixedExpenseCommand(validFixedExpense, false)
                 .execute(modelStub);
         assertEquals(String.format(MESSAGE_SUCCESS, validFixedExpense + "\n"
-                + MESSAGE_EXCEED_BUDGET + "\n Currently, your Highest expense is "
+                + MESSAGE_EXCEED_BUDGET + "\nCurrently, your Highest expense is "
                 + validFixedExpense), commandResult.getFeedbackToUser());
         assertEquals(Collections.singletonList(validFixedExpense), modelStub.fixedExpensesAdded);
     }
@@ -99,7 +98,7 @@ class AddFixedExpenseCommandTest {
         AddFixedExpenseCommand addTestExpense2Command = new AddFixedExpenseCommand(testExpense2, false);
 
         // same object -> returns true
-        assertTrue(addTestExpenseCommand.equals(addTestExpenseCommand));
+        assertEquals(addTestExpenseCommand, addTestExpenseCommand);
 
         // same values -> returns true
         AddFixedExpenseCommand addTestExpenseCommandCopy = new AddFixedExpenseCommand(testExpense, false);

@@ -8,7 +8,6 @@ import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_CATEGORY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_CURRENCY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_DESCRIPTION;
 
-import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -42,6 +41,7 @@ public class AddFixedExpenseCommand extends Command {
             + PREFIX_EXPENSE_CATEGORY + "transport";
 
     public static final String MESSAGE_SUCCESS = "New Fixed Expense added: %1$s";
+
     private FixedExpense toAdd;
     private boolean isOverseasAmount;
 
@@ -68,10 +68,12 @@ public class AddFixedExpenseCommand extends Command {
 
         if (isOverseasAmount) {
             double exchangeRate = model.getExchangeRate();
-            DecimalFormat decimalFormat = new DecimalFormat("#.##");
-            Double amountInSgd = Double.parseDouble(toAdd.getAmount().value) * exchangeRate;
+            String amountInSgd = String.format("%.2f", Double.parseDouble(toAdd.getAmount().value) * exchangeRate);
             // JPY -> SGD
-            toAdd = new FixedExpense(new Amount(decimalFormat.format(amountInSgd)),
+            if (!Amount.isValidAmount(amountInSgd)) {
+                throw new CommandException(Amount.MESSAGE_CONSTRAINTS);
+            }
+            toAdd = new FixedExpense(new Amount(amountInSgd),
                     toAdd.getDescription(),
                     toAdd.getFixedExpenseCategory());
             model.addFixedExpense(toAdd);
@@ -87,7 +89,7 @@ public class AddFixedExpenseCommand extends Command {
                     Comparator.comparingDouble(x -> Double.parseDouble(x.getAmount().value)));
 
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd + "\n"
-                    + MESSAGE_EXCEED_BUDGET + "\n Currently, your Highest expense is "
+                    + MESSAGE_EXCEED_BUDGET + "\nCurrently, your Highest expense is "
                     + highestExpense), SWITCH_TAB_FIXED_EXPENSE);
         }
 

@@ -52,10 +52,12 @@ public class AddFixedExpenseCommandParser implements Parser<AddFixedExpenseComma
 
         FixedExpense fixedExpense = new FixedExpense(amount, description, fixedExpenseCategory);
 
-        if (currency.equals("sgd")) {
+        if (currency.equals(Amount.CURRENCY_SGD)) {
             return new AddFixedExpenseCommand(fixedExpense, false);
-        } else {
+        } else if (currency.equals(Amount.CURRENCY_OTHER)) {
             return new AddFixedExpenseCommand(fixedExpense, true);
+        } else {
+            throw new AssertionError("Invalid currency type.");
         }
     }
 
