@@ -374,7 +374,7 @@ The following __Class Diagram__ describes the aforementioned structure of the `A
 .Structure of `ActivityManager`.
 image::developer-guide/list-managers/ListManagerClassDiagram.png[]
 
-The following paragraphs will describe what happens when the user performs an operation on a `ListManager` through commands. `XYZCommand` here will refer to a command described above for the 5 `ListManager`s. (e.g. `AddActivityCommand`, `EditTransportBookingCommand`).
+The following paragraphs will describe what happens when the user performs an operation on a `ListManager` through commands. `XYZCommand` here will refer to a command described above for the 5 `ListManager` s. (e.g. `AddActivityCommand`, `EditTransportBookingCommand`).
 
 As described in <<DeveloperGuide.adoc#logic-component, Section 2.3 Logic Component>>, after the user enters a command, the `EasyTravelParser` will generate an `XYZCommandParser` which parses the user input parameters and generate an executable `XYZCommand` that performs an operation on the list.
 
@@ -454,7 +454,7 @@ Do not extract any common operations and functionalities
 Reason for choosing option 1:
 
 * It is a good coding practice to follow the DRY principle.
-* The implementations of the `ListManager`s are done quite early on, where our team has more flexibility in terms of deadline. Thus, we can afford to spend more time developing the `UniqueList` data structure before starting on the implementation of any `ListManager`
+* The implementations of the `ListManager` s are done quite early on, where our team has more flexibility in terms of deadline. Thus, we can afford to spend more time developing the `UniqueList` data structure before starting on the implementation of any `ListManager`
 
 // End list management
 //end
@@ -462,7 +462,7 @@ Reason for choosing option 1:
 
 
 === Activity Manager
-**E.T.** allows the user to keep track of their activities for his/her trip. The activity manager is one of the `ListManager`s <<DeveloperGuide.adoc#list-manager, (See Section 3.1 List Managers)>>. On top of the basic operations provided by a `ListManager`, it also allows the user to search for their activities using the `findacitivty` command. The parameters of the `findactivity` command are keywords in the activity entries that the user wants to search for. E.g. `findactivity sightseeing carnival` will search and list all activity entries with `sightseeing` or `carnival` in their detail. Another similar command, `findactivitytag` has the same functionality but only searches for the tags of activity entries.
+**E.T.** allows the user to keep track of their activities for his/her trip. The activity manager is one of the `ListManager` s  <<DeveloperGuide.adoc#list-manager, (See Section 3.1 List Managers)>>. On top of the basic operations provided by a `ListManager`, it also allows the user to search for their activities using the `findacitivty` command. The parameters of the `findactivity` command are keywords in the activity entries that the user wants to search for. E.g. `findactivity sightseeing carnival` will search and list all activity entries with `sightseeing` or `carnival` in their detail. Another similar command, `findactivitytag` has the same functionality but only searches for the tags of activity entries.
 
 
 `ActivityManager` has other than the basic CRUD commands, find command provide a find command to assist in activity management such as:
@@ -593,49 +593,10 @@ Reasons for choosing option 1:
 // End scheduler
 
 
-// tag::transportbooking[]
-=== Transport Booking feature
-
-**E.T.** allows the user to keep track of their transport bookings for his/her trip. The transport booking manager is one of the `ListManager`s <<DeveloperGuide.adoc#list-manager, (See Section 3.1 List Managers)>>. On top of the basic operations provided by a `ListManager`, it also automatically adds all the transport bookings into the trip schedule.
-
-
-==== Rationale
-
-The transport booking manager is an important feature to have because any oversea trip will require some form of transportation to the destination and back. Thus, we decided to create a transport booking manager as one of the `ListManager`s.
-
-==== Current Implementation
-
-The transport bookings are managed by the `TransportBookingManager` class. In this section, we will describe how a transport booking is automatically added to the schedule when the user adds a transport booking.
-
-The following __Class Diagram__ describes the structure of the `TransportBookingManager` and how it is related to the `TripManager` which handles the scheduling of activities and transport bookings. Only relevant classes and methods are shown in the diagram.
-
-.Structure of the `TransportBookingManager`
-image::developer-guide/transport-booking/TransportBookingFeatureClassDiagram.png[]
-
-From the diagram, it is clear that the `TransportBookingManager` has no direct association with the `TripManager`. The following steps will outline how a transport booking is added to the schedule managed by the `TripManager` when the user tries to add a transport booking to the `TransportBookingManager` using the `addtransport` command.
-
-. The user enters the `addtransport` command to add a transport booking.
-. The command is parsed by the `Logic` component and an `AddTransportBookingCommand` is created. (See Section 2.3 Logic Component)
-. During the execution of the `AddTransportBookingCommand`, a `DayScheduleEntry` representing this transport booking is first created. (See Section X.X Schedule for more information on the schedule feature)
-. The day to schedule this transport booking is calculated.
-. If the calculation returns an out-of-bound day of the current `Trip`, an error message will be shown to the user.
-. Else, the `AddTransportBookingCommand` will add the `DayScheduleEntry` to the schedule through the `ModelManager`’s `scheduleTransportBooking()` method.
-. Finally, `AddTransportBookingCommand` will then add the transport booking into the `TransportBookingManager`.
-
-The following __Activity Diagram__ summarizes the workflow mentioned above.
-
-.Workflow of how a transport booking is automatically scheduled
-image::developer-guide/transport-booking/AddTransportBookingActivityDiagram.png[]
-
-==== Design Consideration
-The design consideration for this feature is similar to that of the Schedule feature. <<DeveloperGuide.adoc#schedule-design-consideration, (See 3.4.3 Schedule Feature - Design Consideration)>>
-This is because if we let the `ActivityManager` manage the schedule and activities, then the schedule can only contain activities. This means that transport bookings will become a basic `ListManager` <<DeveloperGuide.adoc#list-manager, (See 3.2 List Managers)>> with no special functionalities. Thus, we decided to adopt the current implementation for better user experience and potential future extensions.
-// end::transportbooking[]
-
 // tag::accommodationbooking[]
 === Accommodation Booking feature
 
-**E.T.** allows the user to keep track of their accommodation bookings for his/her trip. The accommodation booking manager is one of the ``ListManager``s (See <<DeveloperGuide.adoc#, Section 3.1 List Managers>>). On top of the basic operations provided by a `ListManager`, it also prevents the user from having overlapping accommodation bookings.
+**E.T.** allows the user to keep track of their accommodation bookings for his/her trip. The accommodation booking manager is one of the ``ListManager``s (See <<DeveloperGuide.adoc#list-manager, Section 3.1 List Managers>>). On top of the basic operations provided by a `ListManager`, it also prevents the user from having overlapping accommodation bookings.
 
 ==== Rationale
 
@@ -700,110 +661,181 @@ Checking for any particular day takes constant time.
 |===
 // end::accommodationbooking[]
 
-// tag::activity[]
+// tag::transportbooking[]
+=== Transport Booking feature
 
+**E.T.** allows the user to keep track of their transport bookings for his/her trip. The transport booking manager is one of the `ListManager` s <<DeveloperGuide.adoc#list-manager, (See Section 3.1 List Managers)>>. On top of the basic operations provided by a `ListManager`, it also automatically adds all the transport bookings into the trip schedule.
+
+
+==== Rationale
+
+The transport booking manager is an important feature to have because any oversea trip will require some form of transportation to the destination and back. Thus, we decided to create a transport booking manager as one of the `ListManager`s.
+
+==== Current Implementation
+
+The transport bookings are managed by the `TransportBookingManager` class. In this section, we will describe how a transport booking is automatically added to the schedule when the user adds a transport booking.
+
+The following __Class Diagram__ describes the structure of the `TransportBookingManager` and how it is related to the `TripManager` which handles the scheduling of activities and transport bookings. Only relevant classes and methods are shown in the diagram.
+
+.Structure of the `TransportBookingManager`
+image::developer-guide/transport-booking/TransportBookingFeatureClassDiagram.png[]
+
+From the diagram, it is clear that the `TransportBookingManager` has no direct association with the `TripManager`. The following steps will outline how a transport booking is added to the schedule managed by the `TripManager` when the user tries to add a transport booking to the `TransportBookingManager` using the `addtransport` command.
+
+. The user enters the `addtransport` command to add a transport booking.
+. The command is parsed by the `Logic` component and an `AddTransportBookingCommand` is created. (See Section 2.3 Logic Component)
+. During the execution of the `AddTransportBookingCommand`, a `DayScheduleEntry` representing this transport booking is first created. (See Section X.X Schedule for more information on the schedule feature)
+. The day to schedule this transport booking is calculated.
+. If the calculation returns an out-of-bound day of the current `Trip`, an error message will be shown to the user.
+. Else, the `AddTransportBookingCommand` will add the `DayScheduleEntry` to the schedule through the `ModelManager`’s `scheduleTransportBooking()` method.
+. Finally, `AddTransportBookingCommand` will then add the transport booking into the `TransportBookingManager`.
+
+The following __Activity Diagram__ summarizes the workflow mentioned above.
+
+.Workflow of how a transport booking is automatically scheduled
+image::developer-guide/transport-booking/AddTransportBookingActivityDiagram.png[]
+
+==== Design Consideration
+The design consideration for this feature is similar to that of the Schedule feature. <<DeveloperGuide.adoc#schedule-design-consideration, (See 3.4.3 Schedule Feature - Design Consideration)>>
+This is because if we let the `ActivityManager` manage the schedule and activities, then the schedule can only contain activities. This means that transport bookings will become a basic `ListManager` <<DeveloperGuide.adoc#list-manager, (See 3.2 List Managers)>> with no special functionalities. Thus, we decided to adopt the current implementation for better user experience and potential future extensions.
+// end::transportbooking[]
 
 
 // tag::packinglist[]
 === Packing List feature
 
-*_E.T._* allows the user to create a packing list. The packing list manager handles everything to do with manipulating of packing list items.
+**E.T.** allows the user to keep track of their packing list for his/her trip. The packing list manager is one of the `ListManager` s <<DeveloperGuide.adoc#list-manager, (See Section 3.1 List Managers)>>. On top of the basic operations provided by a `ListManager`, it also allows the user to add built-in lists of items into his/her current packing list through the `addpreset` command.
 
-The packing list item contains the following fields:
-
-* `itemName`
-* `quantity`
-* `itemCategory`
-
-`PackingListManager` has commands other than the basic CRUD commands, such as:
-
-* `finditem`
-** Finds packing list items based on the keywords given by the user
-* `finditemcategory`
-** Finds packing list items in the categories given by the user
-* `addpreset`
-** Adds a pre-existing list of items in a category into the current packing list
-* `listpreset`
-** Shows the available presets that the user can add into the packing list
-
-I will be focusing on the `addpreset` command here. The `addpreset` command requires the user to include the `category` of the preset they want to add into the packing list.
-For example, `addpreset swimming` means that the preset called `swimming` will be added into the user's packing list.
-Only pre-existing presets can be added into the user's packing list.
+E.g. the `addpreset swimming` will add items related to swimming into the packing list. The term __preset__ will be used to refer to the built-in list of packing list items.
 
 ==== Rationale
-The packing list feature is an important feature that allows the users to plan and pack for their trip. It ensures that the user did not forget to pack anything for their trip, providing convenience.
+The packing list manager is an important feature to have because there are many things that a traveller wants to bring for his/her oversea trip. The packing list will help the user ensure that he/she did not forget to pack anything for the trip. Thus, we decided to create a packing list manager as one of the `ListManager`s.
 
 ==== Current Implementation
 
-The keywords from the command given by the user is parsed using `AddPresetCommandParser` which converts the string variable `category` into a `ItemCategory` object.
-These objects are used to create the `AddPresetCommand` object that will execute to create a list of packing list items.
+When a user enters the `addpreset` command, the `Logic` Component parses the user input and creates an `AddPresetCommand` object <<DeveloperGuide.adoc#logic-component, (See Section 2.3 Logic Component)>>. When the `execute()` method of `AddPresetCommand` is called, the execution of this command will retrieve the target preset specified by the user into the packing list.
 
-The sequence diagram below shows the creation of the `AddPresetCommand` object:
+The __Activity Diagram__ below shows how a preset is added to the packing list.
 
-.Activity diagram showing the workflow of an `addpreset` command.
+
+.Workflow of the `addpreset` command.
 image::developer-guide/packing-list/AddPackingListActivityDiagram.png[]
 
-After the creation of the `AddPresetCommand` object, the `LogicManager` will proceed to call the `execute()` method of `AddPresetCommand`.
-
-The following steps describes the execution of the `AddPresetCommand`:
-
-1.	In `Model`, the `AddPresetCommand` adds a list of pre-existing list of items under a category into the packing list. If it encounters duplicates, it will skip the duplicate, and continue adding the rest of the items in the preset into the packing list.
-2. A `CommandResult` object which consists of a `MESSAGE_SUCCESS` is sent back to `LogicManager` if there is a successful addition of the preset items into the packing list.
-3.	After receiving the `CommandResult` from `AddPresetCommand`, `LogicManager` will return the `CommandResult` back to “MainApp” where the updated packing list is shown.
 
 ==== Design Consideration
 
-===== Aspect:
+===== Aspect: Customizability of the preset
 
-* **Current Choice:** Users choose a preset list of items under a category
-** **Pros:** Gives the user more convenience; allows them to add a list of items at one go, instead of adding an item each time.
-** **Cons:** Users are only able to choose from the pre-existing list of presets, hence not a lot of freedom to create their own preset.
 
-* **Alternative:** Users create their own presets
-** **Pros:** Gives the user a lot of freedom to customise their presets and packing list, making it user focused.
-** **Cons:** Difficult to implement
+|===
+||Pros |Cons
+
+|**Option 1 (Current)**:
+Users can only choose the preset from the built-in lists
+
+|Provides the user with more convenience as it allows the user to add an existing built-in list into their packing list instead of adding one item at a time.
+|Restricts the freedom of the user due to lack of customizability
+
+|**Option 2:**
+Users create their own presets
+
+|Gives the user a lot of freedom to customise their presets and packing list, making the application user focused.
+|Difficult to implement as we would need to introduce more validation rules and checks to ensure the user creates a valid preset.
+
+|**Option 3:**
+Combine both option 1 and 2
+
+|Provides the best user experience as this option gets the benefit of both the previous 2 options.
+|Complicated and takes a long time to implement.
+|===
+
+Reasons for choosing option 1:
+
+* Due to time restriction, we only have enough time to implement either option 1 or 2 by v1.4.
+* We want to focus on giving the user the best first time experience when using **E.T.**. Thus, option 1 is more suitable as it provides convenience for the user when he first use **E.T.**.
+* Option 2 is only useful when the user uses **E.T.** for more than one trip and he/she wants to save his previous packing list to add for the next trip.
+
+
 // end::packinglist[]
 
 // tag::fixedexpense[]
 === Fixed expense feature
 
-*_E.T._* allows the user to create a fixed expense. The fixed expense manager handles everything to do with manipulating of fixed expenses.
-
-This `sortexpense` command requires the user to include the `order` of the sorting, which is either ascending or descending, and the `criteria` of the sorting, which is either amount, blah or category.
-For example, `sortexpense asc amount` sorts the fixed expense list in ascending order, according to the amount of the fixed expenses.
+**E.T.** allows the user to keep track of their fixed expenses for his/her trip. The fixed expense manager is one of the `ListManager` s <<DeveloperGuide.adoc#list-manager, (See Section 3.1 List Managers)>>. On top of the basic operations provided by a `ListManager`, it also allows the user to set a budget for the trip and automatically converts any fixed expenses entered in foreign currency into Singapore Dollars (SGD).
 
 ==== Rationale
-The fixed expense feature is an important feature that allows the users to plan financially for their trip. It allows the user keeps track of the amount spent on the big ticket items, such as plane tickets and accommodation bookings.
+The fixed expense manager is an important feature to have because many travellers would want to manage their expense for an overseas trip. We also found out that most accommodations are commonly charged in a foreign currency instead of SGD. This prevented travelers from having a clearer picture of how much they have spent on these big ticket items before their trip. Thus, we decided to create a transport booking manager as one of the `ListManager` s with an automatic conversion feature.
 
 ==== Current Implementation
 
-The keywords from the command given by the user is parsed using `SortFixedExpenseCommandParser` which converts the retrieves the order of the sort, and the sorting criteria.
-These objects are used to create the `SortFixedExpenseCommand` object that will execute the sorting of the fixed expense list according to the given order and criteria.
+Currently, the information on the trip’s budget and the exchange rate is stored as fields in the `Trip` class which is managed by the `TripManager`. All fixed expenses, on the other hand, is managed by the `FixedExpenseManager`.
 
-The sequence diagram below shows the creation of the `SortFixedExpenseCommand` object:
+The following __Class Diagram__ shows the association between relevant classes of this feature.
 
-[KIV]
-Figure x.x: Sequence diagram of a Sort Fixed Expense command.
 
-After the creation of the `SortFixedExpenseCommand` object, the `LogicManager` will proceed to call the `execute()` method of `SortFixedExpenseCommand`.
+.Structure of the `FixedExpenseManager` and its relevant classes.
+image::developer-guide/fixed-expense/FixedExpenseClassDiagram.png[]
 
-The following steps describes the execution of the `SortFixedExpenseCommand`:
 
-1.	In `Model`, the `SortFixedExpenseCommand` sorts the current fixed expense list according to an order and criteria.
-2. A `CommandResult` object which consists of a `MESSAGE_SUCCESS` is sent back to `LogicManager` if there is a successful sorting of the fixed expense list.
-3.	After receiving the `CommandResult` from `SortFixedExpenseCommand`, `LogicManager` will return the `CommandResult` back to “MainApp” where the sorted fixed expense list is shown.
+The Activity Diagram below summarises what happens when the user adds a fixed expense entry using the `addexpense` command.
+
+.Workflow of the `addexpense` command..
+image::developer-guide/fixed-expense/AddFixedExpenseActivityDiagram.png[]
+
+When a user enters the `addexpense` command, the `Logic` Component parses the user input and creates an `AddExpeseCommand` object. <<DeveloperGuide.adoc#logic-component, (See Section 2.3 Logic Component)>>
+
+The following steps describes the execution of the AddFixedExpenseCommand:
+
+. When `execute()` of the `AddExpeseCommand` is called, the current exchange rate is obtained from `TripManager` through `ModelManager`.
+. A new `FixedExpense` object is created. The amount will be converted to SGD if it is in foreign currency.
+. The newly created `FixedExpense` object is added to the `FixedExpenseManager` through the `ModelManager`’s `addFixedExpense()` method.
+. The total sum of all expenses is obtained by calling the `getTotalExpense()` method.
+. The budget of the trip is obtained by calling the `getBudget()` method.
+. The remaining budget is calculated.
+. A `CommandResult` object which consists of a contains the success message along with the remaining budget is created and returned.
+
+The following sequence diagram describes the execution of the `AddExpeseCommand` when its `execute()` method is called.
+
+.Workflow of the `addexpense` command..
+image::developer-guide/fixed-expense/AddFixedExpenseCommandExecution.png[]
+
+[NOTE]
+====
+The lifelines for the `AddFixedExpenseCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+
+This sequence diagram does not take into consideration the possible exceptions which might occur during the `AddFixedExpenseCommand` execution.
+
+====
 
 ==== Design Consideration
 
-===== Aspect:
+===== Aspect: Which class to store the trip’s budget and fixed expense
 
-* **Current Choice:** Sorting criteria can only be `amount`, `description` or `category`
-** **Pros:** Keeps the implementation simple, as well as the fields of fixed expense only contain the above criteria
-** **Cons:** Restricts the user on the criteria they can use, prevents them from customising the sorting of their fixed expense list.
 
-* **Alternative:** Sorting criteria can be anything the user inputs
-** **Pros:** Not restricted to a fixed criteria, gives the user freedom to choose and customise their sorting criteria.
-** **Cons:** Difficult to implement, too many criteria to consider.
+|===
+| |Pros |Cons
+
+|**Option 1 (Current)**:
+Place the budget and exchange rate as fields in the `Trip` class.
+
+|Follows the Separation of Concerns (SoC) principle. The budget for the trip is an attribute of the trip. Thus, only the `Trip` class should contain the budget.
+|The `Model` API has to provide the `getBudget()` and `getExchangeRate()` methods which will take more time to implement.
+
+|**Option 2:**
+Place the budget and exchange rate as fields in the `FixedExpenseManager` class
+
+|Faster to implement as calculations for the remaining budget can be done internally in the `FixedExpenseManager`.
+Easy to access and manipulate budget and exchange rate data. Especially when calculating the remaining budget.
+
+|Breaks the Single Responsibility Principle (SRP) as the `FixedExpenseManager` should only have one job of managing fixed expenses and not manage both expenses and budget.
+|===
+
+Reasons for choosing option 1:
+
+* Option 1 follows good coding practices and principles (the SoC and SRP) which makes it more ideal.
+* The implementation of this feature is done quite early on, where our team has more flexibility in terms of deadline. Thus, we can afford to spend more time on option 1’s implementation.
+
+
 // end::fixedexpense[]
 
 [#progress-checker]
