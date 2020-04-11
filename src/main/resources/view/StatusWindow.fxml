@@ -41,13 +41,13 @@
                                     </HBox.margin>
                                     <Image url="@../images/calendar1.png"/>
                                 </ImageView>
-                                <Label fx:id="scheduleMessage" prefHeight="83.0" prefWidth="440.0" text="Label"
+                                <Label fx:id="scheduleMessage" prefHeight="190.0" prefWidth="440.0" text="Label"
                                        wrapText="true">
                                     <padding>
                                         <Insets left="5.0"/>
                                     </padding>
                                     <font>
-                                        <Font name="Bell MT" size="16.0"/>
+                                        <Font name="Bell MT" size="13.0"/>
                                     </font>
                                 </Label>
                             </HBox>
@@ -65,7 +65,7 @@
                                         <Insets left="5.0"/>
                                     </padding>
                                     <font>
-                                        <Font name="Bell MT" size="16.0"/>
+                                        <Font name="Bell MT" size="13.0"/>
                                     </font>
                                 </Label>
                             </HBox>
@@ -89,7 +89,7 @@
                                         <Insets left="5.0"/>
                                     </padding>
                                     <font>
-                                        <Font name="Bell MT" size="16.0"/>
+                                        <Font name="Bell MT" size="13.0"/>
                                     </font>
                                     <HBox.margin>
                                         <Insets/>
@@ -104,13 +104,13 @@
                                     </HBox.margin>
                                     <Image url="@../images/hotel.png"/>
                                 </ImageView>
-                                <Label fx:id="accommodationMessage" prefHeight="89.0" prefWidth="409.0"
+                                <Label fx:id="accommodationMessage" prefHeight="90.0" prefWidth="409.0"
                                        text="Label" wrapText="true">
                                     <padding>
                                         <Insets left="5.0"/>
                                     </padding>
                                     <font>
-                                        <Font name="Bell MT" size="16.0"/>
+                                        <Font name="Bell MT" size="13.0"/>
                                     </font>
                                 </Label>
                             </HBox>

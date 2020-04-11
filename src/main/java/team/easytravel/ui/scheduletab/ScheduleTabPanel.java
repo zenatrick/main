@@ -2,6 +2,7 @@ package team.easytravel.ui.scheduletab;
 
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.IntStream;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -33,17 +34,17 @@ public class ScheduleTabPanel extends TabPanel {
     public ScheduleTabPanel(List<ObservableList<DayScheduleEntry>> schedule) {
         super(FXML);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        schedule.forEach(daySchedule -> {
+        IntStream.rangeClosed(1, schedule.size()).forEach(index -> {
             VBox vBox = new VBox();
             vBox.setMinWidth(250);
             vBox.setPadding(new Insets(5, 10, 5, 0));
             ListView<DayScheduleEntry> listView = new ListView<>();
-            listView.setItems(daySchedule);
+            listView.setItems(schedule.get(index - 1));
             listView.setCellFactory(l -> new DayScheduleListViewCell());
+            vBox.getChildren().add(new DayNumberCard(index).getRoot());
             vBox.getChildren().add(listView);
             scheduleView.getChildren().add(vBox);
         });
-
     }
 
     /**

@@ -22,6 +22,8 @@ public class DashboardPanel extends UiPart<Region> {
     private Label tripStartDate;
     @FXML
     private Label budget;
+    @FXML
+    private Label exchange;
 
     public DashboardPanel(Trip triptoshow) {
         super(FXML);
@@ -31,6 +33,7 @@ public class DashboardPanel extends UiPart<Region> {
                 "Duration of trip: " + triptoshow.getStartDate().toString() + " ~ "
                         + triptoshow.getEndDate().toString());
         this.tripTitle.setText("Title: " + triptoshow.getTitle().toString());
+        this.exchange.setText("Exchange Rate: " + triptoshow.getExchangeRate().toString());
     }
 
     public DashboardPanel() {
