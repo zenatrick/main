@@ -8,12 +8,12 @@ import team.easytravel.model.Model;
 import team.easytravel.model.ModelManager;
 import team.easytravel.model.listmanagers.AccommodationBookingManager;
 import team.easytravel.model.listmanagers.ActivityManager;
-import team.easytravel.model.listmanagers.PackingListManager;
 import team.easytravel.model.listmanagers.FixedExpenseManager;
+import team.easytravel.model.listmanagers.PackingListManager;
 import team.easytravel.model.listmanagers.TransportBookingManager;
-import team.easytravel.model.listmanagers.UserPrefs;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
+import team.easytravel.model.userprefs.UserPrefs;
 import team.easytravel.testutil.trip.TripBuilder;
 
 public class ClearItemCommandTest {
@@ -37,7 +37,7 @@ public class ClearItemCommandTest {
             new UserPrefs());
 
         assertPackingListItemCommandSuccess(new ClearItemCommand(), model,
-                ClearItemCommand.MESSAGE_SUCCESS, expectedModel);
+            ClearItemCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -58,6 +58,6 @@ public class ClearItemCommandTest {
         expectedModel.setPackingListManager(new PackingListManager());
 
         assertPackingListItemCommandSuccess(new ClearItemCommand(), model,
-                ClearItemCommand.MESSAGE_SUCCESS, expectedModel);
+            ClearItemCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

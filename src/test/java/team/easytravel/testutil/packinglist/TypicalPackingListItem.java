@@ -1,4 +1,4 @@
-package team.easytravel.testutil;
+package team.easytravel.testutil.packinglist;
 
 import java.util.ArrayList;
 import java.util.Arrays;

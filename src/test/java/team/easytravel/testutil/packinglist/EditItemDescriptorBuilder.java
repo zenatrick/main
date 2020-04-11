@@ -4,8 +4,8 @@ import team.easytravel.logic.commands.packinglist.EditItemCommand;
 import team.easytravel.logic.commands.packinglist.EditItemCommand.EditItemDescriptor;
 import team.easytravel.model.listmanagers.packinglistitem.ItemCategory;
 import team.easytravel.model.listmanagers.packinglistitem.ItemName;
-import team.easytravel.model.listmanagers.packinglistitem.Quantity;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
+import team.easytravel.model.listmanagers.packinglistitem.Quantity;
 
 /**
  * The type Edit item descriptor builder.
@@ -32,14 +32,14 @@ public class EditItemDescriptorBuilder {
     /**
      * Returns an {@code EditItemDescriptor} with fields containing {@code Item}'s details
      *
-     * @param Item the item
+     * @param item the item
      */
-    public EditItemDescriptorBuilder(PackingListItem Item) {
+    public EditItemDescriptorBuilder(PackingListItem item) {
         descriptor = new EditItemCommand.EditItemDescriptor();
 
-        descriptor.setItemName(Item.getItemName());
-        descriptor.setQuantity(Item.getQuantity());
-        descriptor.setItemCategory(Item.getItemCategory());
+        descriptor.setItemName(item.getItemName());
+        descriptor.setQuantity(item.getQuantity());
+        descriptor.setItemCategory(item.getItemCategory());
     }
 
     /**

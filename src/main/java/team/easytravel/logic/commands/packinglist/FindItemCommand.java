@@ -38,9 +38,12 @@ public class FindItemCommand extends Command {
         }
 
         model.updateFilteredPackingList(predicate);
+
         return new CommandResult(
-                String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, model.getFilteredPackingList().size(), "items"),
-                SWITCH_TAB_PACKING_LIST);
+            String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, model.getFilteredPackingList().size(),
+                    "item(s)")
+                    + String.format("\nUse the \"%s\" command to show all packing list items",
+                    ListItemCommand.COMMAND_WORD), SWITCH_TAB_PACKING_LIST);
     }
 
     @Override

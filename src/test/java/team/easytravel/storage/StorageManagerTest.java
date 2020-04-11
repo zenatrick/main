@@ -28,8 +28,8 @@ import team.easytravel.storage.trip.JsonTripManagerStorage;
 import team.easytravel.storage.userprefs.JsonUserPrefsStorage;
 import team.easytravel.testutil.TypicalAccommodation;
 import team.easytravel.testutil.TypicalFixedExpense;
-import team.easytravel.testutil.TypicalPackingListItem;
 import team.easytravel.testutil.TypicalTransportBooking;
+import team.easytravel.testutil.packinglist.TypicalPackingListItem;
 
 
 public class StorageManagerTest {

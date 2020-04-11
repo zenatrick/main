@@ -3,7 +3,7 @@ package team.easytravel.storage.packinglist;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static team.easytravel.storage.packinglist.JsonAdaptedPackingListItem.MISSING_FIELD_MESSAGE_FORMAT;
 import static team.easytravel.testutil.Assert.assertThrows;
-import static team.easytravel.testutil.TypicalPackingListItem.PACKING_LIST_PASSPORT;
+import static team.easytravel.testutil.packinglist.TypicalPackingListItem.PACKING_LIST_PASSPORT;
 
 import org.junit.jupiter.api.Test;
 

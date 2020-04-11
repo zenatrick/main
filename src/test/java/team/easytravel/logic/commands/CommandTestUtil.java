@@ -20,13 +20,13 @@ import team.easytravel.logic.commands.packinglist.EditItemCommand;
 import team.easytravel.model.Model;
 import team.easytravel.model.listmanagers.AccommodationBookingManager;
 import team.easytravel.model.listmanagers.ActivityManager;
+import team.easytravel.model.listmanagers.PackingListManager;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBooking;
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.activity.ActivityContainKeywordPredicate;
-import team.easytravel.testutil.accommodationbooking.EditAccommodationBookingDescriptorBuilder;
-import team.easytravel.model.listmanagers.PackingListManager;
 import team.easytravel.model.listmanagers.packinglistitem.ItemContainsKeywordsPredicate;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
+import team.easytravel.testutil.accommodationbooking.EditAccommodationBookingDescriptorBuilder;
 import team.easytravel.testutil.activity.EditActivityDescriptorBuilder;
 import team.easytravel.testutil.packinglist.EditItemDescriptorBuilder;
 
@@ -217,11 +217,11 @@ public class CommandTestUtil {
     public static void assertPackingListItemCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        PackingListManager expectedPackingLIstManager = new PackingListManager(actualModel.getPackingListManager());
+        PackingListManager expectedPackingListManager = new PackingListManager(actualModel.getPackingListManager());
         List<PackingListItem> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPackingList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedPackingLIstManager, actualModel.getPackingListManager());
+        assertEquals(expectedPackingListManager, actualModel.getPackingListManager());
         assertEquals(expectedFilteredList, actualModel.getFilteredPackingList());
 
     }

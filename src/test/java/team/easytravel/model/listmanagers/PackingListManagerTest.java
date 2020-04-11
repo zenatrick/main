@@ -16,7 +16,7 @@ import javafx.collections.ObservableList;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
 import team.easytravel.model.util.uniquelist.exceptions.DuplicateElementException;
 import team.easytravel.testutil.Assert;
-import team.easytravel.testutil.TypicalPackingListItem;
+import team.easytravel.testutil.packinglist.TypicalPackingListItem;
 
 class PackingListManagerTest {
 

@@ -3,9 +3,9 @@ package team.easytravel.storage.packinglist;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static team.easytravel.testutil.Assert.assertThrows;
-import static team.easytravel.testutil.TypicalPackingListItem.PACKING_LIST_CONDITIONER;
-import static team.easytravel.testutil.TypicalPackingListItem.PACKING_LIST_SANDALS;
-import static team.easytravel.testutil.TypicalPackingListItem.PACKING_LIST_SHAVER;
+import static team.easytravel.testutil.packinglist.TypicalPackingListItem.PACKING_LIST_CONDITIONER;
+import static team.easytravel.testutil.packinglist.TypicalPackingListItem.PACKING_LIST_SANDALS;
+import static team.easytravel.testutil.packinglist.TypicalPackingListItem.PACKING_LIST_SHAVER;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.io.TempDir;
 import team.easytravel.commons.exceptions.DataConversionException;
 import team.easytravel.model.listmanagers.PackingListManager;
 import team.easytravel.model.listmanagers.ReadOnlyPackingListManager;
-import team.easytravel.testutil.TypicalPackingListItem;
+import team.easytravel.testutil.packinglist.TypicalPackingListItem;
 
 class JsonPackingListStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test",

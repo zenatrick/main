@@ -66,4 +66,11 @@ public class DeleteItemCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_ITEM_SUCCESS, packingListItemToDelete),
                 SWITCH_TAB_PACKING_LIST);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteItemCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteItemCommand) other).targetIndex)); // state check
+    }
 }

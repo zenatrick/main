@@ -1,8 +1,8 @@
 package team.easytravel.logic.commands.packinglist;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import static team.easytravel.commons.core.Messages.MESSAGE_ITEMS_LISTED_OVERVIEW;
 import static team.easytravel.logic.commands.CommandTestUtil.assertPackingListItemCommandSuccess;
 
@@ -18,22 +18,21 @@ import team.easytravel.model.listmanagers.AccommodationBookingManager;
 import team.easytravel.model.listmanagers.ActivityManager;
 import team.easytravel.model.listmanagers.FixedExpenseManager;
 import team.easytravel.model.listmanagers.TransportBookingManager;
-import team.easytravel.model.listmanagers.UserPrefs;
 import team.easytravel.model.listmanagers.packinglistitem.ItemContainsKeywordsPredicate;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
-import team.easytravel.testutil.TypicalPackingListItem;
+import team.easytravel.model.userprefs.UserPrefs;
+import team.easytravel.testutil.packinglist.TypicalPackingListItem;
 import team.easytravel.testutil.trip.TripBuilder;
 
 public class FindItemCommandTest {
     private Model model;
-    private TripManager tripManagerSet;
     private Model expectedModel;
 
     @BeforeEach
     public void setUp() {
         Trip newTrip = new TripBuilder().build();
-        tripManagerSet = new TripManager();
+        TripManager tripManagerSet = new TripManager();
         tripManagerSet.setTrip(newTrip);
         model = new ModelManager(new TransportBookingManager(),
                 new FixedExpenseManager(), TypicalPackingListItem.getTypicalPackingListManager(), new ActivityManager(),
@@ -57,26 +56,27 @@ public class FindItemCommandTest {
         FindItemCommand findSecondCommand = new FindItemCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(findFirstCommand.equals(findFirstCommand));
+        assertEquals(findFirstCommand, findFirstCommand);
 
         // same values -> returns true
         FindItemCommand findFirstCommandCopy = new FindItemCommand(firstPredicate);
-        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+        assertEquals(findFirstCommand, findFirstCommandCopy);
 
         // different types -> returns false
-        assertFalse(findFirstCommand.equals(1));
+        assertNotEquals(findFirstCommand, 1);
 
         // null -> returns false
-        assertFalse(findFirstCommand.equals(null));
+        assertNotEquals(findFirstCommand, null);
 
         // different person -> returns false
-        assertFalse(findFirstCommand.equals(findSecondCommand));
+        assertNotEquals(findFirstCommand, findSecondCommand);
     }
 
     @Test
     public void execute_zeroKeywords_noItemFound() {
-        String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 0, "packing list items "
-                + "found.\n Use command listitem to show all packing list items");
+        String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 0, "item(s)")
+                + String.format("\nUse the \"%s\" command to show all packing list items",
+                ListItemCommand.COMMAND_WORD);
         ItemContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindItemCommand command = new FindItemCommand(predicate);
         expectedModel.updateFilteredPackingList(predicate);
@@ -86,14 +86,15 @@ public class FindItemCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleItemFound() {
-        String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 1, "packing list items "
-                + "found.\n Use command listitem to show all packing list items");
-        ItemContainsKeywordsPredicate predicate = preparePredicate("Shampoo Jeans Passport");
+        String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 3, "item(s)")
+                + String.format("\nUse the \"%s\" command to show all packing list items",
+                ListItemCommand.COMMAND_WORD);
+        ItemContainsKeywordsPredicate predicate = preparePredicate("shampoo jeans passport");
         FindItemCommand command = new FindItemCommand(predicate);
         expectedModel.updateFilteredPackingList(predicate);
         assertPackingListItemCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TypicalPackingListItem.PACKING_LIST_SHAMPOO,
-                TypicalPackingListItem.PACKING_LIST_JEANS, TypicalPackingListItem.PACKING_LIST_PASSPORT),
+        assertEquals(Arrays.asList(TypicalPackingListItem.PACKING_LIST_JEANS,
+                TypicalPackingListItem.PACKING_LIST_PASSPORT, TypicalPackingListItem.PACKING_LIST_SHAMPOO),
                 model.getFilteredPackingList());
     }
 

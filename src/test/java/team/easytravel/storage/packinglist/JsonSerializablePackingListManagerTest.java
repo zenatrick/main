@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import team.easytravel.commons.exceptions.IllegalValueException;
 import team.easytravel.commons.util.JsonUtil;
 import team.easytravel.model.listmanagers.PackingListManager;
-import team.easytravel.testutil.TypicalPackingListItem;
+import team.easytravel.testutil.packinglist.TypicalPackingListItem;
 
 class JsonSerializablePackingListManagerTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test",

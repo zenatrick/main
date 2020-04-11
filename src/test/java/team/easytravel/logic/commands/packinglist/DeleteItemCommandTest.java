@@ -1,12 +1,15 @@
 package team.easytravel.logic.commands.packinglist;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static team.easytravel.logic.commands.CommandTestUtil.assertPackingListItemCommandFailure;
 import static team.easytravel.logic.commands.CommandTestUtil.assertPackingListItemCommandSuccess;
 import static team.easytravel.logic.commands.CommandTestUtil.showPackingListItemAtIndex;
+import static team.easytravel.testutil.TypicalIndexes.INDEX_FIFTH;
 import static team.easytravel.testutil.TypicalIndexes.INDEX_FIRST;
 import static team.easytravel.testutil.TypicalIndexes.INDEX_SECOND;
+import static team.easytravel.testutil.TypicalIndexes.INDEX_SIXTH;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,11 +22,11 @@ import team.easytravel.model.listmanagers.AccommodationBookingManager;
 import team.easytravel.model.listmanagers.ActivityManager;
 import team.easytravel.model.listmanagers.FixedExpenseManager;
 import team.easytravel.model.listmanagers.TransportBookingManager;
-import team.easytravel.model.listmanagers.UserPrefs;
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
-import team.easytravel.testutil.TypicalPackingListItem;
+import team.easytravel.model.userprefs.UserPrefs;
+import team.easytravel.testutil.packinglist.TypicalPackingListItem;
 import team.easytravel.testutil.trip.TripBuilder;
 
 /**
@@ -48,25 +51,25 @@ public class DeleteItemCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        PackingListItem ItemToDelete = model.getFilteredPackingList().get(INDEX_FIRST.getZeroBased());
-        DeleteItemCommand deleteCommand = new DeleteItemCommand(INDEX_FIRST);
+        PackingListItem itemToDelete = model.getFilteredPackingList().get(INDEX_FIRST.getZeroBased());
+        DeleteItemCommand deleteItemCommand = new DeleteItemCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeleteItemCommand.MESSAGE_DELETE_ITEM_SUCCESS, ItemToDelete);
+        String expectedMessage = String.format(DeleteItemCommand.MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete);
 
         ModelManager expectedModel = new ModelManager(new TransportBookingManager(),
-                new FixedExpenseManager(), model.getPackingListManager(), new ActivityManager(),
-                new AccommodationBookingManager(), tripManagerSet,
-                new UserPrefs());
-        expectedModel.deletePackingListItem(ItemToDelete);
+            new FixedExpenseManager(), model.getPackingListManager(), new ActivityManager(),
+            new AccommodationBookingManager(), tripManagerSet,
+            new UserPrefs());
+        expectedModel.deletePackingListItem(itemToDelete);
 
-        assertPackingListItemCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertPackingListItemCommandSuccess(deleteItemCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPackingList().size() + 1);
         DeleteItemCommand deleteCommand = new DeleteItemCommand(outOfBoundIndex);
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "Item");
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "item");
 
         assertPackingListItemCommandFailure(deleteCommand, model, expectedMessage);
     }
@@ -93,15 +96,15 @@ public class DeleteItemCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPackingListItemAtIndex(model, INDEX_FIRST);
+        showPackingListItemAtIndex(model, INDEX_FIFTH);
 
-        Index outOfBoundIndex = INDEX_SECOND;
+        Index outOfBoundIndex = INDEX_SIXTH;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getPackingListManager().
-                getUniquePackingList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getPackingListManager()
+            .getUniquePackingList().size());
 
         DeleteItemCommand deleteCommand = new DeleteItemCommand(outOfBoundIndex);
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "Item");
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "item");
 
         assertPackingListItemCommandFailure(deleteCommand, model, expectedMessage);
     }
@@ -112,20 +115,20 @@ public class DeleteItemCommandTest {
         DeleteItemCommand deleteSecondCommand = new DeleteItemCommand(INDEX_SECOND);
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertEquals(deleteFirstCommand, deleteFirstCommand);
 
         // same values -> returns true
         DeleteItemCommand deleteFirstCommandCopy = new DeleteItemCommand(INDEX_FIRST);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        assertEquals(deleteFirstCommand, deleteFirstCommandCopy);
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertNotEquals(1, deleteFirstCommand);
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertNotEquals(null, deleteFirstCommand);
 
         // different person -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertNotEquals(deleteFirstCommand, deleteSecondCommand);
     }
 
     /**
@@ -137,3 +140,4 @@ public class DeleteItemCommandTest {
         assertTrue(model.getFilteredPackingList().isEmpty());
     }
 }
+
