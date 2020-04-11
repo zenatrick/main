@@ -513,36 +513,38 @@ The following steps describes the execution of the `AddTransportBookingCommand`:
 // tag::accommodationbooking[]
 === Accommodation Booking feature
 
-E.T. allows the user to add an accommodation booking. This is done using the schedule command which requires the user to specify the accommodation name, location, start day, end day and a remark. This feature also prevents the user from having an overlap of accommodation.
-
-The activity contains the following fields:
-
-* `accommodation name`
-* `location`
-* `start day`
-* `end day`
-* `remarks`
+**E.T.** allows the user to keep track of their accommodation bookings for his/her trip. The accommodation booking manager is one of the ``ListManager``s (See <<DeveloperGuide.adoc#, Section 3.1 List Managers>>). On top of the basic operations provided by a `ListManager`, it also prevents the user from having overlapping accommodation bookings.
 
 ==== Rationale
 
-The accommodation booking feature is an important feature that allows the user to track the list of accommodation bookings that they have made before leaving.
+The transport booking manager is an important feature to have because any oversea trip of more than one day will require some form of accommodation. Thus, we decided to create an accommodation booking manager as one of the ``ListManager``s.
 
 ==== Current Implementation
 
-When a user adds an accommodation booking using the `AddAccommodationBookingCommandParser`, an `AddAccommodationBookingCommand` object is created that will execute to create an accommodation booking. When the `execute()` method is called, a method `isOverlappingWithOthers()` will check if there is an overlap of the new accommodation booking with the other bookings.
+When a user adds an accommodation booking, the `Logic` Component parses the user input and creates an `AddAccommodationBookingCommand` object (See <<DeveloperGuide.adoc#logic-component, Section 2.3 Logic Component>>). When the `execute()` method of `AddAccommodationBookingCommand` is called, the execution will check if the new accommodation booking overlaps with any other other current bookings.
 
-Using a stream, the new accommodation booking will be against all other bookings in the list to find look for any overlaps. The activity diagram shows how 2 bookings are checked if there is an overlap:
+Using a Java’s __stream__, the new accommodation booking will be checked against all other bookings in the list to look for any overlaps.
+We used an interval overlap detection algorithm to check for overlap between 2 accommodation bookings. If the total duration of the 2 accommodation bookings is within the __acceptable duration__ of the algorithm, then there is no overlap.
+__acceptable duration__ = latest end day - earliest start day
+
+The following diagram gives a visual explanation on this interval overlap detection algorithm.
+
+.Visual explanation on the interval overlap detection algorithm
+image::developer-guide/accommodation-booking/OverlappingIntervalAlgorithm.png[]
+
+The following steps describe the flow of an overlap check between 2 accommodation bookings:
+
+. The start day and end day of both bookings are retrieved using `getStartDay()` and `getEndDay()` methods of the `AccommodationBooking` object.
+. The total duration of both accommodation bookings is calculated.
+. The latest end day and earliest start day is obtained.
+. The __acceptable duration__ is calculated.
+. If the __acceptable duration__ is greater than the total duration of both bookings, there is no overlap. The overlap check will continue for the next accommodation booking until the last.
+If there is an overlap, the check will stop and the user will receive a message that informs them that the new accommodation booking will overlap with another booking.
+
+The __Activity Diagram__ below summaries the above steps.
 
 .Activity diagram of check overlap for 2 accommodation bookings
 image::developer-guide/accommodation-booking/FindOverlapActivityDiagram.png[]
-
-The following steps describes the process of the check overlap method:
-
-. The start day and end day of both bookings are retrieved using `getStartDay()` and `getEndDay()`
-. The largest end day and smallest start day is calculated and the difference of the largest and smallest is calculated
-. The duration of both bookings is calculated by adding the difference of the end day and start day of both bookings
-. If the difference of the largest end day and smallest start day is greater than the duration of both bookings, there is no overlap. The accommodation booking will then be added into the list.
-. If there is an overlap, user will receive a message that informs that there is the new accommodation booking has an overlap with another booking.
 
 ==== Design Consideration
 
@@ -550,13 +552,29 @@ The following steps describes the process of the check overlap method:
 
 |===
 | |Pros |Cons
-|Current Choice : Using stream to compare the accommodation bookings
-|Few lines of codes needed to compare the bookings, follows the KISS principle
-|Difficult for beginner users to understand our code
+|**Option 1 (Current)**
 
-|Alternative Choice: Using an arraylist of days to track accommodations
-|Easy to use and understand
-|Requires many lines of code, may become difficult to read
+Use an interval overlap detection algorithm.
+
+In the worst case, the checking for overlap against all accommodation booking takes O(n) time where n is the number of accommodation bookings
+
+|Simple and easy to implement.
+
+Only require constant space to calculate overlaps between 2 intervals.
+
+|Requires some calculation.
+
+|**Option 2**
+
+Use a hashtable to store the days that have been accounted for.
+
+In the worst case, the checking for overlap against all accommodation booking takes O(d) time where d is the number of days.
+
+|Simple and easy to implement.
+
+Checking for any particular day takes constant time.
+
+|Require a large amount of storage space to save the hashtable data.
 |===
 // end::accommodationbooking[]
 
