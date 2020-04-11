@@ -560,7 +560,7 @@ The lifelines for the `ScheduleCommand` should end at the destroy marker (X). Ho
 This sequence diagram does not take into consideration the possible exceptions which might occur during the `ScheduleCommand` execution.
 
 ====
-
+[#schedule-design-consideration]
 ==== Design Consideration
 
 ===== Aspect: Separation between scheduling and activity management
@@ -596,42 +596,40 @@ Reasons for choosing option 1:
 // tag::transportbooking[]
 === Transport Booking feature
 
-E.T. allows the user to add a transport booking. This is done using the schedule command which requires the user to specify the mode, start location, end location, start time and end time.
+**E.T.** allows the user to keep track of their transport bookings for his/her trip. The transport booking manager is one of the `ListManager`s <<DeveloperGuide.adoc#list-manager, (See Section 3.1 List Managers)>>. On top of the basic operations provided by a `ListManager`, it also automatically adds all the transport bookings into the trip schedule.
+
 
 ==== Rationale
 
-The transport booking feature is an important feature that allows the user to track the list of transport bookings that they have made before leaving.
-This feature also allows the user to schedule their activities while taking the scheduled transport bookings into consideration.
+The transport booking manager is an important feature to have because any oversea trip will require some form of transportation to the destination and back. Thus, we decided to create a transport booking manager as one of the `ListManager`s.
 
 ==== Current Implementation
 
-The keywords from the command given by the user is parsed using `AddTransportBookingCommandParser` which converts the string variable `mode` into a `Mode` object, `start location` and `end location` into a `Location` objects, as well as `start time` and `end time` into `Time` objects.
-These objects are used to create the `AddTransportBookingCommand` object that will execute to create a transport booking.
+The transport bookings are managed by the `TransportBookingManager` class. In this section, we will describe how a transport booking is automatically added to the schedule when the user adds a transport booking.
 
-The activity diagram below shows the creation of the `AddTransportBookingCommand` object:
+The following __Class Diagram__ describes the structure of the `TransportBookingManager` and how it is related to the `TripManager` which handles the scheduling of activities and transport bookings. Only relevant classes and methods are shown in the diagram.
 
-.Activity diagram showing the workflow of a `AddTransportBooking` command.
+.Structure of the `TransportBookingManager`
+image::developer-guide/transport-booking/TransportBookingFeatureClassDiagram.png[]
+
+From the diagram, it is clear that the `TransportBookingManager` has no direct association with the `TripManager`. The following steps will outline how a transport booking is added to the schedule managed by the `TripManager` when the user tries to add a transport booking to the `TransportBookingManager` using the `addtransport` command.
+
+. The user enters the `addtransport` command to add a transport booking.
+. The command is parsed by the `Logic` component and an `AddTransportBookingCommand` is created. (See Section 2.3 Logic Component)
+. During the execution of the `AddTransportBookingCommand`, a `DayScheduleEntry` representing this transport booking is first created. (See Section X.X Schedule for more information on the schedule feature)
+. The day to schedule this transport booking is calculated.
+. If the calculation returns an out-of-bound day of the current `Trip`, an error message will be shown to the user.
+. Else, the `AddTransportBookingCommand` will add the `DayScheduleEntry` to the schedule through the `ModelManager`’s `scheduleTransportBooking()` method.
+. Finally, `AddTransportBookingCommand` will then add the transport booking into the `TransportBookingManager`.
+
+The following __Activity Diagram__ summarizes the workflow mentioned above.
+
+.Workflow of how a transport booking is automatically scheduled
 image::developer-guide/transport-booking/AddTransportBookingActivityDiagram.png[]
 
-After the creation of the `AddTransportBookingCommand` object, the `LogicManager` will proceed to call the `execute()` method of `AddTransportBookingCommand`.
-
-The following steps describes the execution of the `AddTransportBookingCommand`:
-
-1.	In `Model`, the `AddTransportBookingCommand` checks the current transport booking list for duplicates before adding the new object into the transport booking list
-2. A `CommandResult` object which consists of a `MESSAGE_SUCCESS` is sent back to `LogicManager` if there is a successful addition of the transport booking into the transport booking list
-3.	After receiving the `CommandResult` from `AddTransportBookingCommand`, `LogicManager` will return the `CommandResult` back to “MainApp” where the updated transport booking list is shown.
-
 ==== Design Consideration
-
-===== Aspect:
-
-* **Current Choice:**
-** **Pros:**
-** **Cons:**
-
-* **Alternative:**
-** **Pros:**
-** **Cons:**
+The design consideration for this feature is similar to that of the Schedule feature. <<DeveloperGuide.adoc#schedule-design-consideration, (See 3.4.3 Schedule Feature - Design Consideration)>>
+This is because if we let the `ActivityManager` manage the schedule and activities, then the schedule can only contain activities. This means that transport bookings will become a basic `ListManager` <<DeveloperGuide.adoc#list-manager, (See 3.2 List Managers)>> with no special functionalities. Thus, we decided to adopt the current implementation for better user experience and potential future extensions.
 // end::transportbooking[]
 
 // tag::accommodationbooking[]
