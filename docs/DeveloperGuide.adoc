@@ -1000,28 +1000,28 @@ _{More to be added}_
 [discrete]
 === Trip Planner
 ----------------------------------------------------------------------------------------------------------------
-UC01: Add trip - Add a trip to the main list
+UC01: Set trip - Sets a trip in the application
 
 System: E.T.
 Actor: User
 
-Preconditions: User must be on the home page.
+Preconditions: There should be no other trip existing
 Guarantees:
     - A new trip will be added to the trip list upon successful command.
 
 MSS:
-    1. User adds a new trip to the list.
-    2. System adds trip to the list of trips.
-    3. System shows the updated list of trips.
+    1. User set a trip by providing details
+    2. E.T. sets the current trip
+    3. E.T. displays the set trip on dashboard
 Use case ends.
 
 Extensions:
-    2a. The trip list is empty.
-        2a1. System shows an empty page.
+    1a. Incomplete details are given.
+        1a1. E.T. shows an error message.
         Use case resumes at step 3.
 
-    3a. Incomplete details are given.
-        3a1. System shows an error message.
+    2a. The trip list is empty.
+        2a1. E.T. shows an empty page.
         Use case resumes at step 3.
 
 UC02: Check trip readiness
@@ -1029,13 +1029,13 @@ UC02: Check trip readiness
 System: E.T.
 Actor: User
 
-Preconditions: A trip must be opened.
+Preconditions: A trip must be existing.
 Guarantees:
-    - System informs the user of incomplete preparations.
+    - E.T. informs the user of incomplete preparations.
 
 MSS:
     1. User request for a preparation check
-    2. System shows the list of things that needs to be completed
+    2. E.T. creates a popup that shows the list of things that needs to be completed
 Use case ends.
 ----------------------------------------------------------------------------------------------------------------
 [discrete]
@@ -1046,51 +1046,22 @@ UC03: Add item to Packing list
 System: E.T.
 Actor: User
 
-Preconditions: A trip must be opened.
+Preconditions: A trip must be existing.
 Guarantees:
     - A new packing list would be created upon successful command.
 
 MSS:
     1. User requests to create a new trip.
     2. User navigates to the packing list tab.
-    3. System shows the packing list.
+    3. E.T. shows the packing list.
     4. User adds an item to the packing list.
-    5. System shows the updated packing list.
+    5. E.T. shows the updated packing list.
 Use case ends.
 
 
 Extensions:
     3a. The packing list is empty.
-        3a1. System shows an empty list.
-        Use case resumes at step 4.
-
-    4a. Incomplete details are given.
-        4a1. System shows an error message.
-        Use case resumes at step 4.
-----------------------------------------------------------------------------------------------------------------
-[discrete]
-=== Memory
-----------------------------------------------------------------------------------------------------------------
-UC04: Write entry into diary
-
-System: E.T.
-Actor: User
-
-Preconditions: A trip must be opened.
-Guarantees:
-    - A new diary entry would be created upon successful command.
-
-MSS:
-    1. User requests to create a new diary entry.
-    2. User navigates to the diary tab.
-    3. E.T. shows the existing diary entries.
-    4. User adds a diary entry to the diary.
-    5. E.T. shows the updated diary entries.
-Use case ends.
-
-Extensions:
-    3a. The diary is empty.
-        3a1. E.T. shows an empty page.
+        3a1. E.T. shows an empty list.
         Use case resumes at step 4.
 
     4a. Incomplete details are given.
@@ -1098,14 +1069,43 @@ Extensions:
         Use case resumes at step 4.
 ----------------------------------------------------------------------------------------------------------------
 [discrete]
-=== Expenditure Manager
+=== Scheduling
+----------------------------------------------------------------------------------------------------------------
+UC04: Schedule an activity
+
+System: E.T.
+Actor: User
+
+Preconditions: A trip must be existing.
+Guarantees:
+    - A new schedule entry would be created upon successful command.
+
+MSS:
+    1. Users navigates to the schedule tab
+    2. E.T. displays the current existing schedule entries
+    3. Users create a new schedule entry.
+    4. E.T. adds a scheduled entry to the schedule list.
+    5. E.T. shows the updated scheduled entries.
+Use case ends.
+
+Extensions:
+    2a. Incomplete details are given.
+        2a1. E.T. shows an error message.
+        Use case resumes at step 1.
+
+    4a. Incomplete details are given.
+        4a1. E.T. shows an error message.
+        Use case resumes at step 4.
+----------------------------------------------------------------------------------------------------------------
+[discrete]
+=== Fixed Expense Manager
 ----------------------------------------------------------------------------------------------------------------
 UC05: Add expenses
 
 System: E.T.
 Actor: User
 
-Preconditions: A trip must be opened.
+Preconditions: A trip must be existing.
 Guarantees:
     - Any expense will be added to the trip upon successful command.
     - Current and future expenses will be flagged if it exceeds the budget set for the trip.
@@ -1113,50 +1113,50 @@ Guarantees:
 MSS:
     1. User requests to create a new expense entry.
     2. User navigates to the expense manager tab.
-    3. System shows existing expenses for the current trip.
+    3. E.T. shows existing expenses for the current trip.
     4. User adds a new expense for the current trip.
-    5. System shows the updated expenses for the trip.
+    5. E.T. shows the updated expenses for the trip.
 Use case ends.
 
 Extensions:
-    3a. The expense is empty
-        3a1. System shows an empty page.
+    3a. The expense list is empty
+        3a1. E.T. shows an empty page.
         Use case resumes at step 4.
 
     4a. Incomplete details are given.
-        4a1. System shows an error message.
-        Use case resumes at step 4.
+        4a1. E.T. shows an error message.
+        Use case ends.
     4b. Expenses are entered by the user in the foreign country’s currency when the conversion rate is not set.
-        4b1. System shows an error message.
-        Use Case resumes at step 4.
+        4b1. E.T. shows an error message.
+        Use case ends.
 ----------------------------------------------------------------------------------------------------------------
 [discrete]
-=== Pre Trip
+=== Accommodation
 ----------------------------------------------------------------------------------------------------------------
 UC06: Add accommodation into a trip
 
 System: E.T.
 Actor: User
 
-Preconditions: A trip must be opened
+Preconditions: A trip must be existing
 Guarantees:
     - Accommodation will be added into a list upon successful command.
 
 MSS:
-    1. User requests to create a new accommodation booking.
-    2. User navigates to the pre-trip tab.
-    3. System shows the existing list of accommodations for the current trip.
-    4. User adds a new accommodation booking for the current trip.
-    5. System shows an updated list of accommodations.
+    1. User navigates to the accommodation tab.
+    2. UI shows the accommodation tab and list
+    3. User requests to create a new accommodation booking.
+    4. E.T. shows the successful addition to the accommodation list.
+    5. E.T. shows an updated list of accommodations.
 Use case ends
 
 Extensions:
     3a. The is no accommodation booking
-	    3a1. System show an empty list
+	    3a1. E.T. show an empty list
 	    Use case resumes at step 4
     4a. Incomplete details are given.
-        4a1. System shows an error message.
-        Use case resumes at step 4.
+        4a1. E.T. shows an error message.
+        Use case ends.
 ----------------------------------------------------------------------------------------------------------------
 
 _{More to be added}_
@@ -1166,9 +1166,7 @@ _{More to be added}_
 
 * Application should work on any <<mainstream-os,mainstream OS>> as long as it has Java 11 or above installed.
 
-* Application should be able to hold up to 20 trips no longer than 1 month each without a noticeable sluggishness in performance for typical usage.
-
-* Application should respond within 2 seconds of the client's query.
+* Application should be able to one month’s worth of trip data without any noticeable sluggishness in performance for typical usage.
 
 * A user with above-average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
@@ -1190,8 +1188,38 @@ _{More to be added}_
 [[e-t]] E.T.::
 An abbreviation for Easy Travel, the name of the application.
 
-[[mainstream-os]] Mainstream OS::
+[[crud]] CRUD::
+In computer programming, create, read, update, and delete are the four basic functions of persistent storage
+
+[[cli]] Command Line Interface::
 Windows, Linux, Unix, macOS.
+
+[[command-pattern]] Command Pattern::
+It is a Design Pattern that lets you encapsulate actions within Java classes. Of which, each class has an "execute()" method which is declared in the Command interface the class implements.
+
+[[facade-pattern]] Facade Pattern::
+Facade Pattern is a structural design pattern that provides a simplified (but limited) interface to a complex system of classes, library or framework. While decreasing the overall complexity of the application, it also helps to move unwanted dependencies to one place.
+
+[[generics]] Generics::
+Java's type system to allow "a type or method to operate on objects of various types while providing compile-time type safety".
+
+[[gui]] Graphical User Interface::
+A visual display shown on the screen.
+
+[[javafx]] JavaFX::
+is a software platform for creating and delivering desktop applications, as well as rich Internet applications (RIAs) that can run across a wide variety of devices.
+
+[[java-script-object]] JavaScript Object Notation::
+A lightweight data-interchange format which is easily readable and writable.
+
+[[json]] JavaScript Object Notation::
+A lightweight data-interchange format which is easily readable and writable.
+
+[[mainstream-os]] Mainstream OS::
+Windows, Linux, Unix, macOS
+
+[[oop]] Object Oriented Programming::
+A type of computer programming (software design) in which programmers define the data type of a data structure, and also the types of operations (functions) that can be applied to the data structure.
 
 [[prefix]] Prefix::
 The term that comes before each parameter in the command. For example, the prefix in country/COUNTRY is country/.
@@ -1199,14 +1227,9 @@ The term that comes before each parameter in the command. For example, the prefi
 [[prefix-name]] Prefix Name::
 The word that comes before ‘/’ in the prefix. For example, the prefix name in country/COUNTRY is country/.
 
-[[cli]] Command Line Interface::
-An interface where the user interacts with the application through the command box.
+[[stream]] Stream::
+A stream is a sequence of objects that supports various methods which can be pipelined to produce the desired result.
 
-[[gui]] Graphical User Interface::
-A visual display shown on the screen.
-
-[[json]] JavaScript Object Notation::
-A lightweight data-interchange format which is easily readable and writable.
 
 [appendix]
 == Product Survey
@@ -1236,37 +1259,136 @@ These instructions only provide a starting point for testers to work on; testers
 === Launch and Shutdown
 
 . Initial launch
-
 .. Download the jar file and copy into an empty folder
-.. Double-click the jar file +
-   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
+.. Double-click the jar file
+Expected: Shows the __GUI__ with a set of schedules. The window size may not be optimum.
 . Saving window preferences
-
 .. Resize the window to an optimum size. Move the window to a different location. Close the window.
-.. Re-launch the app by double-clicking the jar file. +
-   Expected: The most recent window size and location is retained.
+.. Re-launch the app by double-clicking the jar file.
+Expected: The most recent window size and location is retained.
 
-_{ more test cases ... }_
+=== Adding/Setting
 
-=== Deleting a person
+==== Adding Activities
 
-. Deleting a person while all persons are listed
+* Add a new activity to **E.T.**
 
-.. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-.. Test case: `delete 1` +
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `delete 0` +
-   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +
-   Expected: Similar to previous.
+ . Prerequisites: Arguments are valid and compulsory parameters are provided.
+Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/expensive tag/sightseeing`
+. Expected: Adds an activity with title of “Osaka Castle View”, with duration of 1 hour, a location of “Osaka” and tags of “expensive” and “sightseeing”
 
-_{ more test cases ... }_
+. Test case `addactivity title/Osaka Castle
+.. Expected: No activity is added. Error details shown in feedback display.
 
-=== Saving data
+. Other incorrect add commands to try: addactivity duration/1, addactivity location/Singapore, addactivity tag/testing
+.. Expected: Similar to previous test case.
 
-. Dealing with missing/corrupted data files
+==== Setting Trip
 
-.. _{explain how to simulate a missing/corrupted file and the expected behavior}_
+* Sets a new trip to Easy Travel
 
-_{ more test cases ... }_
+. Prerequisites: Arguments are valid and compulsory parameters are provided.
+
+. Test case: `settrip title/Graduation Trip budget/5000 exchangerate/1.03 startdate/28-09-2020 enddate/05-10-2020`
+.. Expected: Sets a trip with title `Graduation Trip`, with budget of `5000`, exchange rate of `1.03`, startdate of `28-09-2020` and enddate of `05-10-2020`
+
+. Test case `settrip title/Graduation Trip`
+.. Expected: No Trip is set. Error details shown in the feedback display.
+
+
+. Other incorrect set commands to try: `settrip budget/5000`, `settrip exchangerate/1.03`, `settrip startdate/28-09-2020`, `settrip enddate/05-10-2020`
+.. Expected: Similar to point 3
+
+==== Adding Accommodation
+* Adds a new accommodation to Easy Travel
+
+. Prerequisites: Arguments are valid and compulsory parameters are provided.
+
+. Test case: `addacc name/JW Marriott Hotel loc/KL startday/2 endday/4 remark/Check-in at 3pm.`
+.. Expected: Adds an accommodation with name `JW Marriott Hotel` location `KL`,  startday `2`, endday`4` and remark of `Check-in at 3pm`
+
+. Test case `addacc name/JW Marriott Hotel`
+.. Expected: No Accommodation is set. Error details shown in the feedback display.
+
+. Other incorrect set commands to try: `addacc loc/KL`, `addacc startday/2`, `addacc endday/4`, `addacc remark/Check-in at 3pm.`
+.. Expected: Similar to point 3
+
+==== Adding Transportation
+* Adds a new transportation to Easy Travel
+
+. Prerequisites: Arguments are valid and compulsory parameters are provided.
+
+. Test case: `addtransport mode/plane startloc/Singapore endloc/Japan starttime/20-03-2020 17:00 endtime/21-03-2020 00:00`
+.. Expected: Adds an transportation with mode `plane`, startloc as `Singapore`, endloc as `Japan`, starttime as `20-03-2020 17:00` and endtime as `21-03-2020 00:00`
+
+. Test case `addtransport mode/plane`
+.. Expected: No Transportation is set. Error details shown in the feedback display.
+
+. Other incorrect set commands to try: `addtransport startloc/Singapore`, `addtransport endloc/Japan`, `addtransport starttime/20-03-2020 17:00`, `addtransport endtime/21-03-2020 00:00`
+.. Expected: Similar to point 3
+
+==== Adding Item in Packing List
+* Adds a new Item to Easy Travel
+
+. Prerequisites: Arguments are valid and compulsory parameters are provided.
+
+. Test case: `additem name/Tshirts quantity/5 category/clothes`
+.. Expected: Adds an item with name `Tshirts` quantity `5`, category `clothes`
+
+. Test case `additem name/Tshirts`
+.. Expected: No Item is set. Error details shown in the feedback display.
+
+. Other incorrect set commands to try: `addacc loc/KL`, `additem quantity/5`, `addacc category/basics`
+.. Expected: Similar to point 3
+
+==== Adding Preset in Packing List
+* Adds a new Preset to Easy Travel
+
+. Prerequisites: Arguments are valid and compulsory parameters are provided.
+
+. Test case: `addpreset swimming`
+.. Expected: Adds a new preset of `swimming`
+
+. Test case `addpreset Tshirts`
+.. Expected: No preset is set. Error details shown in the feedback display.
+
+
+==== Adding Fixed Expense in Fixed Expense List
+* Adds a new Fixed Expense to Easy Travel
+
+. Prerequisites: Arguments are valid and compulsory parameters are provided.
+
+. Test case: `addexpense amount/1500 currency/sgd description/Plane Tickets category/transport`
+.. Expected: Adds a fixed expense with amount `1500` currency `sgd`, description `Plane Tickets` and of category `transport`
+
+. Test case `addexpense amount/1500`
+.. Expected: No Fixed Expense is set. Error details shown in the feedback display.
+
+. Other incorrect set commands to try: `addexpense currency/sgd`, `addexpense description/Plane Tickets`, `addexpense category/transport`
+.. Expected: Similar to point 3
+
+
+=== Editing
+
+==== Editing Activity
+
+* Edits a current Activity in Easy Travel
+
+. Prerequisites: Arguments are valid, compulsory parameters are provided and activity must exist in the Activity List.
+
+. Test case: `editactivity 1 title/Shopping duration/2`
+.. Expected: Edits an activity in index `1` of the Activity List with title `Shopping` currency `sgd`, description `SQ Flight` and of category `transport
+
+. Other incorrect set commands to try: `editactivity 1000000000 title/Shopping` Expected: No Activity is edited. Error details shown in feedback display.
+
+
+==== Editing Fixed Expense
+* Edits a current Fixed Expense in Easy Travel
+
+. Prerequisites: Arguments are valid,  compulsory parameters are provided and fixed expense must exist in the Fixed Expense List.
+
+. Test case: `editexpense 1 amount/3000 currency/sgd description/SQ Flight category/transport`
+.. Expected: Edits a fixed expense in index `1` of the Fixed Expense List with amount `3000` currency `sgd`, description `SQ Flight` and of category `transport`
+
+. Other incorrect set commands to try: `editactivity 1 category`testing`
+.. Expected: No Fixed Expense is edited. Error details shown in feedback display.
