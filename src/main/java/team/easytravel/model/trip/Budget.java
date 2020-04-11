@@ -13,10 +13,10 @@ import java.util.function.Predicate;
 public class Budget {
 
     public static final String MESSAGE_CONSTRAINTS = "Budget should be a whole number greater than 0 and less than or "
-            + "equal to 1,000,000";
+            + "equal to 1,000,000,000";
 
     private static final int MIN_VALUE = 1;
-    private static final int MAX_VALUE = 1_000_000;
+    private static final int MAX_VALUE = 1_000_000_000;
     public static final Predicate<Integer> VALIDATION_PREDICATE = i -> i >= MIN_VALUE && i <= MAX_VALUE;
 
     public final Integer value;

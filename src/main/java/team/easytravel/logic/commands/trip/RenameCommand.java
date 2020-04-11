@@ -18,7 +18,7 @@ public class RenameCommand extends Command {
     public static final String COMMAND_WORD = "rename";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the title of the current trip."
-            + "Parameter: TITLE (must be between 1 to 50 characters)\n"
+            + "Parameter: TITLE (must be alphanumeric words not more than 50 characters long)\n"
             + "Example: " + COMMAND_WORD + " Awesome trip";
 
     public static final String MESSAGE_EDIT_TITLE_SUCCESS = "The trip is now named: %s";

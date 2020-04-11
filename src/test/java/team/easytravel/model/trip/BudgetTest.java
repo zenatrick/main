@@ -28,7 +28,7 @@ public class BudgetTest {
         // invalid Budget
         assertFalse(Budget.isValidBudget(-000000)); // negative 0s
         assertFalse(Budget.isValidBudget(-2)); // spaces only
-        assertFalse(Budget.isValidBudget(999999999)); // very big number
+        assertFalse(Budget.isValidBudget(Integer.MAX_VALUE)); // very big number
 
         // valid Budget
         assertTrue(Budget.isValidBudget(911)); // exactly 3 numbers

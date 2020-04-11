@@ -39,6 +39,7 @@ public class DashboardPanel extends UiPart<Region> {
     public DashboardPanel() {
         super(FXML);
         this.budget.setText(" ");
+        this.exchange.setText(" ");
         this.tripStartDate.setText("Hint: Use settrip to start a trip");
         this.tripTitle.setText("There is no trip set");
     }
