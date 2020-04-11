@@ -12,7 +12,7 @@ import team.easytravel.model.Model;
 public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
-
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Quits the app.";
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Easy Travel as requested ...";
 
     @Override

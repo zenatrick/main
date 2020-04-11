@@ -15,6 +15,7 @@ import team.easytravel.model.trip.TripManager;
 public class DeleteTripCommand extends Command {
 
     public static final String COMMAND_WORD = "deletetrip";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the entire trip and all the app data.";
     public static final String MESSAGE_SUCCESS = "Trip has been deleted. All lists have been cleared!";
 
     @Override

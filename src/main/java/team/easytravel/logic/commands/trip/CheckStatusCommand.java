@@ -18,8 +18,7 @@ public class CheckStatusCommand extends Command {
 
     public static final String COMMAND_WORD = "status";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Check the progress of plan for your trip. "
-            + "Example: " + COMMAND_WORD + " ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Checks the progress of the plan for your trip.";
 
     public static final String MESSAGE_SUCCESS = "Progress checker window is opened.";
 

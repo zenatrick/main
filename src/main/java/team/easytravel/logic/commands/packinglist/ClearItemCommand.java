@@ -12,13 +12,9 @@ import team.easytravel.model.listmanagers.PackingListManager;
  * The type Clear item command.
  */
 public class ClearItemCommand extends Command {
-    /**
-     * The constant COMMAND_WORD.
-     */
+
     public static final String COMMAND_WORD = "clearitem";
-    /**
-     * The constant MESSAGE_SUCCESS.
-     */
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears the packing list.";
     public static final String MESSAGE_SUCCESS = "Packing List has been cleared!";
 
     @Override

@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox id="cardPane" fx:id="cardPane" alignment="CENTER_LEFT" spacing="5">
+        <padding>
+            <Insets bottom="5" left="15" right="5" top="5" />
+        </padding>
+        <Label styleClass="cell_big_label" text="Refer to the user guide (click the link to copy):"/>
+        <Hyperlink fx:id="hyperlink" onMouseClicked="#copyUrl" textFill="darkorange"/>
+    </HBox>
     <ListView fx:id="helpListView" VBox.vgrow="ALWAYS"/>
 </VBox>

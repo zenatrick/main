@@ -16,7 +16,7 @@ import team.easytravel.model.trip.TripManager;
 public class ListActivityCommand extends Command {
 
     public static final String COMMAND_WORD = "listactivity";
-
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all activities.";
     public static final String MESSAGE_SUCCESS = "Listed all activities.";
 
     @Override

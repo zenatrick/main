@@ -16,7 +16,8 @@ import team.easytravel.model.trip.TripManager;
 public class ClearFixedExpenseCommand extends Command {
 
     public static final String COMMAND_WORD = "clearexpense";
-    public static final String MESSAGE_SUCCESS = "Fixed Expenses has been cleared!";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears the fixed expense list.";
+    public static final String MESSAGE_SUCCESS = "Fixed Expenses have been cleared!";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

@@ -28,12 +28,12 @@ public class AddFixedExpenseCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_EXPENSE = "This expense already exists in the address book";
     public static final String MESSAGE_EXCEED_BUDGET = "Take note, you have exceeded your budget!";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a fixed expense to the fixed expense list"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a fixed expense to the fixed expense list\n"
             + "Parameters: "
             + PREFIX_EXPENSE_AMOUNT + "AMOUNT "
             + PREFIX_EXPENSE_CURRENCY + "CURRENCY "
             + PREFIX_EXPENSE_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_EXPENSE_CATEGORY + "CATEGORY...\n"
+            + PREFIX_EXPENSE_CATEGORY + "CATEGORY\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_EXPENSE_AMOUNT + "1500 "
             + PREFIX_EXPENSE_CURRENCY + "sgd "

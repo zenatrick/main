@@ -11,8 +11,56 @@ import team.easytravel.commons.core.GuiSettings;
 import team.easytravel.commons.core.LogsCenter;
 import team.easytravel.logic.commands.Command;
 import team.easytravel.logic.commands.CommandResult;
+import team.easytravel.logic.commands.accommodationbooking.AddAccommodationBookingCommand;
+import team.easytravel.logic.commands.accommodationbooking.ClearAccommodationBookingCommand;
+import team.easytravel.logic.commands.accommodationbooking.DeleteAccommodationBookingCommand;
+import team.easytravel.logic.commands.accommodationbooking.EditAccommodationBookingCommand;
+import team.easytravel.logic.commands.accommodationbooking.ListAccommodationBookingCommand;
+import team.easytravel.logic.commands.accommodationbooking.SortAccommodationBookingCommand;
+import team.easytravel.logic.commands.activity.AddActivityCommand;
+import team.easytravel.logic.commands.activity.ClearActivityCommand;
+import team.easytravel.logic.commands.activity.DeleteActivityCommand;
+import team.easytravel.logic.commands.activity.EditActivityCommand;
+import team.easytravel.logic.commands.activity.FindActivityCommand;
+import team.easytravel.logic.commands.activity.FindActivityTagCommand;
+import team.easytravel.logic.commands.activity.ListActivityCommand;
+import team.easytravel.logic.commands.activity.SortActivityCommand;
 import team.easytravel.logic.commands.exceptions.CommandException;
 import team.easytravel.logic.commands.fixedexpense.AddFixedExpenseCommand;
+import team.easytravel.logic.commands.fixedexpense.ClearFixedExpenseCommand;
+import team.easytravel.logic.commands.fixedexpense.DeleteFixedExpenseCommand;
+import team.easytravel.logic.commands.fixedexpense.EditFixedExpenseCommand;
+import team.easytravel.logic.commands.fixedexpense.ListFixedExpenseCommand;
+import team.easytravel.logic.commands.fixedexpense.SortFixedExpenseCommand;
+import team.easytravel.logic.commands.general.ExitCommand;
+import team.easytravel.logic.commands.general.HelpCommand;
+import team.easytravel.logic.commands.packinglist.AddItemCommand;
+import team.easytravel.logic.commands.packinglist.AddPresetCommand;
+import team.easytravel.logic.commands.packinglist.CheckItemCommand;
+import team.easytravel.logic.commands.packinglist.ClearItemCommand;
+import team.easytravel.logic.commands.packinglist.DeleteItemCommand;
+import team.easytravel.logic.commands.packinglist.EditItemCommand;
+import team.easytravel.logic.commands.packinglist.FindItemCategoryCommand;
+import team.easytravel.logic.commands.packinglist.FindItemCommand;
+import team.easytravel.logic.commands.packinglist.ListItemCommand;
+import team.easytravel.logic.commands.packinglist.ListPresetCommand;
+import team.easytravel.logic.commands.packinglist.SortItemCommand;
+import team.easytravel.logic.commands.packinglist.UncheckItemCommand;
+import team.easytravel.logic.commands.schedule.ListScheduleCommand;
+import team.easytravel.logic.commands.schedule.ScheduleCommand;
+import team.easytravel.logic.commands.schedule.UnscheduleCommand;
+import team.easytravel.logic.commands.transportbooking.AddTransportBookingCommand;
+import team.easytravel.logic.commands.transportbooking.ClearTransportBookingCommand;
+import team.easytravel.logic.commands.transportbooking.DeleteTransportBookingCommand;
+import team.easytravel.logic.commands.transportbooking.EditTransportBookingCommand;
+import team.easytravel.logic.commands.transportbooking.ListTransportBookingCommand;
+import team.easytravel.logic.commands.transportbooking.SortTransportBookingCommand;
+import team.easytravel.logic.commands.trip.CheckBudgetStatus;
+import team.easytravel.logic.commands.trip.CheckStatusCommand;
+import team.easytravel.logic.commands.trip.DeleteTripCommand;
+import team.easytravel.logic.commands.trip.EditBudgetCommand;
+import team.easytravel.logic.commands.trip.RenameCommand;
+import team.easytravel.logic.commands.trip.SetTripCommand;
 import team.easytravel.logic.parser.EasyTravelParser;
 import team.easytravel.logic.parser.exceptions.ParseException;
 import team.easytravel.model.Model;
@@ -31,7 +79,6 @@ import team.easytravel.storage.Storage;
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
 
-    private static final String HELP_MESSAGE = "Refer to the user guide: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
@@ -119,106 +166,71 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<String> getHelpQuestions() {
         ArrayList<String> questions = new ArrayList<>();
-        questions.add(HELP_MESSAGE);
+
+        // General
+        questions.add(HelpCommand.MESSAGE_USAGE);
+        questions.add(ExitCommand.MESSAGE_USAGE);
+
+        // Trip Commands
+        questions.add(SetTripCommand.MESSAGE_USAGE);
+        questions.add(DeleteTripCommand.MESSAGE_USAGE);
+        questions.add(RenameCommand.MESSAGE_USAGE);
+        questions.add(EditBudgetCommand.MESSAGE_USAGE);
+        questions.add(CheckBudgetStatus.MESSAGE_USAGE);
+        questions.add(CheckStatusCommand.MESSAGE_USAGE);
+
+        // Activity Commands
+        questions.add(AddActivityCommand.MESSAGE_USAGE);
+        questions.add(EditActivityCommand.MESSAGE_USAGE);
+        questions.add(DeleteActivityCommand.MESSAGE_USAGE);
+        questions.add(ClearActivityCommand.COMMAND_WORD);
+        questions.add(FindActivityCommand.MESSAGE_USAGE);
+        questions.add(FindActivityTagCommand.MESSAGE_USAGE);
+        questions.add(SortActivityCommand.MESSAGE_USAGE);
+        questions.add(ListActivityCommand.MESSAGE_USAGE);
+
+        // Accommodation Booking Commands
+        questions.add(AddAccommodationBookingCommand.MESSAGE_USAGE);
+        questions.add(EditAccommodationBookingCommand.MESSAGE_USAGE);
+        questions.add(DeleteAccommodationBookingCommand.MESSAGE_USAGE);
+        questions.add(ClearAccommodationBookingCommand.MESSAGE_USAGE);
+        questions.add(SortAccommodationBookingCommand.MESSAGE_USAGE);
+        questions.add(ListAccommodationBookingCommand.MESSAGE_USAGE);
+
+        // Transport Booking Commands
+        questions.add(AddTransportBookingCommand.MESSAGE_USAGE);
+        questions.add(EditTransportBookingCommand.MESSAGE_USAGE);
+        questions.add(DeleteTransportBookingCommand.MESSAGE_USAGE);
+        questions.add(ClearTransportBookingCommand.MESSAGE_USAGE);
+        questions.add(SortTransportBookingCommand.MESSAGE_USAGE);
+        questions.add(ListTransportBookingCommand.MESSAGE_USAGE);
+
+        // Packing List Commands
+        questions.add(AddItemCommand.MESSAGE_USAGE);
+        questions.add(EditItemCommand.MESSAGE_USAGE);
+        questions.add(DeleteItemCommand.MESSAGE_USAGE);
+        questions.add(CheckItemCommand.MESSAGE_USAGE);
+        questions.add(UncheckItemCommand.MESSAGE_USAGE);
+        questions.add(ClearItemCommand.MESSAGE_USAGE);
+        questions.add(FindItemCommand.MESSAGE_USAGE);
+        questions.add(FindItemCategoryCommand.MESSAGE_USAGE);
+        questions.add(SortItemCommand.MESSAGE_USAGE);
+        questions.add(ListItemCommand.MESSAGE_USAGE);
+        questions.add(ListPresetCommand.MESSAGE_USAGE);
+        questions.add(AddPresetCommand.MESSAGE_USAGE);
+
+        // Fixed Expense Command
         questions.add(AddFixedExpenseCommand.MESSAGE_USAGE);
-        questions.add("Set Trip : settrip title/TITLE start/START_DATE end/END_DATE location/LOCATION\n\n"
-                + "Example: settrip title/Graduation Trip start/28-09-2020 end/28-10-2020 location/Japan");
-        questions.add("Edit Trip : edittrip [title/TITLE] [start/START_DATE] [end/END_DATE][country/COUNTRY]\n\n"
-                + "Example: edittrip title/not a graduation trip country/Singapore\n");
-        questions.add("Delete Trip : deletetrip\n\n"
-                + "Example: deletetrip\n");
-        questions.add("Clear Trip : cleartrip\n\n"
-                + "Example: cleartrip\n");
-        questions.add("View Itinerary : view\n\n"
-                + "Example: view\n");
-        questions.add("Check Preparation : status\n\n"
-                + "Example: status\n");
+        questions.add(EditFixedExpenseCommand.MESSAGE_USAGE);
+        questions.add(DeleteFixedExpenseCommand.MESSAGE_USAGE);
+        questions.add(ClearFixedExpenseCommand.MESSAGE_USAGE);
+        questions.add(SortFixedExpenseCommand.MESSAGE_USAGE);
+        questions.add(ListFixedExpenseCommand.MESSAGE_USAGE);
 
-
-        questions.add("Add Activity : addactivity title/TITLE duration/DURATION location/LOCATION [t/tag]...\n\n"
-                + "Example: addactivity title/Going to the beach duration/4 location/Hakone t/sea t/ocean\n");
-        questions.add("Edit Activity : editactivity index [title/NAME] [duration/DURATION] [location/LOCATION] "
-                + "[t/tag]\n\n"
-                + "Example: editactivity 1 name/Go to an aquarium\n"
-                + " \n");
-        questions.add("Delete Activity : deleteactivity index\n\n"
-                + "Example: deleteactivity 1\n");
-        questions.add("Clear Activity : clearactivity\n\n"
-                + "Example: clearactivity\n");
-
-
-        questions.add("Add Transport Booking : addtransport mode/MODE startloc/START_LOCATION endloc/END_LOCATION \n"
-                + "starttime/DATE_TIME_OF_DEPARTURE endtime/DATE_TIME_OF_ARRIVAL\n\n"
-                + "Example: addtransport mode/plane startloc/Singapore endloc/Japan starttime/22-04-2021 09:00 \n"
-                + "endtime/22-04-2021 16:00\n");
-        questions.add("Edit Transportation Booking : edittransport INDEX [mode/MODE] [startloc/START_LOCATION]\n"
-                + "[endloc/END_LOCATION] [starttime/DATE_TIME_OF_DEPARTURE] [endtime/DATE_TIME_OF_ARRIVAL]\n\n"
-                + "Example: edittransport 2 starttime/22-04-2021 10:00\n");
-        questions.add("Delete transportation Booking : deletetransport INDEX\n\n"
-                + "Example: deletetransport 1\n");
-        questions.add("Clear Transportation Bookings : cleartransport\n\n"
-                + "Example: cleartransport\n");
-        questions.add("Add Accommodation Booking :  addacc name/NAME loc/LOCATION startday/START_DAY\n"
-                + "endday/END_DAY [remark/REMARK]\n\n"
-                + "Example: addacc name/JW Marriott Hotel loc/KL startday/2 endday/4\n");
-        questions.add("Edit Accommodation Booking : editacc INDEX [name/NAME] [loc/LOCATION] [startday/START_DAY]\n"
-                + "[endday/END_DAY] [remark/REMARK]\n\n"
-                + "Example: editacc 2 startday/4 endday/6\n");
-
-
-        questions.add("Delete Transportation Bookings : deletetransport INDEX\n\n"
-                + "Example: deletetransport 1");
-        questions.add("Clear Transportation Bookings : cleartransport\n\n"
-                + "Example: cleartransport");
-        questions.add("Add Accommodation Booking : addacc name/NAME loc/LOCATION startday/START_DAY\n"
-                + "endday/END_DAY [remark/REMARK]\n\n"
-                + "Example: addacc name/JW Marriott Hotel loc/KL startday/2 endday/4");
-        questions.add("Edit Accommodation Booking : editacc INDEX [name/NAME] [loc/LOCATION] [startday/START_DAY]\n "
-                + "[endday/END_DAY] [remark/REMARK]\n\n"
-                + "Example: editacc 2 startday/4 endday/6");
-        questions.add("Delete Accommodation Booking : deleteacc INDEX\n\n"
-                + "Example: deleteacc 2");
-        questions.add("Clear Accommodation Bookings : clearacc\n\n"
-                + "Example: clearacc");
-
-
-        questions.add("Add Preset Category : addpreset preset/PRESET_NAME\n\n"
-                + "Example: addpreset beach");
-        questions.add("List all Presets in Packing List : listpresets\n\n"
-                + "Example: listpresets");
-        questions.add("Add Item in Packing List : additem item/ITEM quantity/QUANTITY\n\n"
-                + "Example: additem item/underwear quantity/5");
-        questions.add("Edit Item in Packing List : edititem INDEX [i/item] [q/quantity]\n\n"
-                + "edititem 1 item/shirt quantity/5");
-        questions.add("Delete item in Packing List : deleteitem INDEX\n\n"
-                + "Example: deleteitem 1");
-        questions.add("Mark Item as packed in Packing List :  checkitem INDEX\n\n"
-                + "Example: checkitem 1");
-        questions.add("Mark Item as unpacked in Packing List : uncheckitem INDEX\n\n"
-                + "uncheckitem 1");
-        questions.add("Sort Items in Packing List : sortitem order criteria\n\n"
-                + "Example: sortitem asc alphabet");
-        questions.add("Find items in Packing List: finditem\n\n"
-                + "Example: finditem car shampoo");
-        questions.add("Find items in Packing List under category: finditemcategory\n\n"
-                + "Example: finditemcategory swimming clothes\n");
-
-
-        questions.add("Add Fixed Expense :  addexpense amount/AMOUNT currency/CURRENCY\n"
-                + "description/DESCRIPTION category/CATEGORY \n\n"
-                + "Example: addexpense amount/1100 currency/SGD description/SQ Tickets category/Flights");
-        questions.add("Edit Fixed Expense : editexpense INDEX amount/AMOUNT currency/CURRENCY\n "
-                + "[description/DESCRIPTION] [category/CATEGORY]\n\n"
-                + "Example: editexpense 1 amount/3000 currency/other description/Cathay Pacific Flight");
-        questions.add("Delete Fixed Expense : deleteexpense INDEX\n\n"
-                + "Example: deleteexpense 1");
-        questions.add("Clear Fixed Expenses : clearexpense\n\n"
-                + "Example: clearexpense");
-        questions.add("Set Conversion Rate :  conversion rate/RATE\n\n"
-                + "Example: conversion rate/1.32");
-        questions.add("Sort Fixed Expenses : sortexpense SORTIDENTIFIER [AMOUNT] [DESCRIPTION] [CATEGORY]\n\n"
-                + "Example: sortexpense 1 amount");
-
+        // Schedule Command
+        questions.add(ScheduleCommand.MESSAGE_USAGE);
+        questions.add(UnscheduleCommand.MESSAGE_USAGE);
+        questions.add(ListScheduleCommand.MESSAGE_USAGE);
 
         return FXCollections.observableArrayList(questions);
     }

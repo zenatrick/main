@@ -15,13 +15,9 @@ import team.easytravel.model.trip.TripManager;
  */
 public class ClearActivityCommand extends Command {
 
-    /**
-     * The constant COMMAND_WORD.
-     */
+
     public static final String COMMAND_WORD = "clearactivity";
-    /**
-     * The constant MESSAGE_SUCCESS.
-     */
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears the activity list.";
     public static final String MESSAGE_SUCCESS = "The activity list has been cleared";
 
 

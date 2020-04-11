@@ -16,7 +16,7 @@ import team.easytravel.model.trip.TripManager;
 public class ListFixedExpenseCommand extends Command {
 
     public static final String COMMAND_WORD = "listexpense";
-
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all fixed expenses.";
     public static final String MESSAGE_SUCCESS = "Listed all fixed expenses.";
 
     @Override

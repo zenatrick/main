@@ -16,7 +16,7 @@ import team.easytravel.model.trip.TripManager;
 public class ListAccommodationBookingCommand extends Command {
 
     public static final String COMMAND_WORD = "listacc";
-
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all accommodation bookings.";
     public static final String MESSAGE_SUCCESS = "Listed all accommodation bookings.";
 
     @Override

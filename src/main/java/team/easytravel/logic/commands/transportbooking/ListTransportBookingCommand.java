@@ -16,7 +16,7 @@ import team.easytravel.model.trip.TripManager;
 public class ListTransportBookingCommand extends Command {
 
     public static final String COMMAND_WORD = "listtransport";
-
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all transport bookings.";
     public static final String MESSAGE_SUCCESS = "Listed all transport bookings.";
 
     @Override

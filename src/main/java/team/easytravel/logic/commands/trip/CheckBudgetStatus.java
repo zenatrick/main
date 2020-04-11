@@ -15,7 +15,7 @@ import team.easytravel.model.trip.TripManager;
 public class CheckBudgetStatus extends Command {
 
     public static final String COMMAND_WORD = "budget";
-
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Checks the remaining budget.";
     public static final String MESSAGE_SUCCESS = "Total budget: $%1$.2f\n"
             + "Total Expense: $%2$.2f\n"
             + "Remaining budget: $%3$.2f\n";

@@ -16,7 +16,8 @@ import team.easytravel.model.trip.TripManager;
 public class ClearAccommodationBookingCommand extends Command {
 
     public static final String COMMAND_WORD = "clearacc";
-    public static final String MESSAGE_SUCCESS = "Accommodation Bookings has been cleared!";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears the accommodation booking list.";
+    public static final String MESSAGE_SUCCESS = "Accommodation Bookings have been cleared!";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

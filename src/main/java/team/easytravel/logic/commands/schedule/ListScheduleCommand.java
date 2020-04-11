@@ -15,7 +15,7 @@ import team.easytravel.model.trip.TripManager;
 public class ListScheduleCommand extends Command {
 
     public static final String COMMAND_WORD = "listschedule";
-
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the schedule.";
     public static final String MESSAGE_SUCCESS = "Listed all schedules.";
 
     @Override

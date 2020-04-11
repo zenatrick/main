@@ -16,7 +16,7 @@ import team.easytravel.model.trip.TripManager;
 public class ListItemCommand extends Command {
 
     public static final String COMMAND_WORD = "listitem";
-
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all packing list items.";
     public static final String MESSAGE_SUCCESS = "Listed all packing list items.";
 
     @Override
