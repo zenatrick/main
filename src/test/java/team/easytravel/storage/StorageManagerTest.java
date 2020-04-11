@@ -115,6 +115,11 @@ public class StorageManagerTest {
     }
 
     @Test
+    public void getActivityListManagerFilePath() {
+        assertNotNull(storageManager.getActivityManagerStorageFilePath());
+    }
+
+    @Test
     public void getPackingListManagerFilePath() {
         assertNotNull(storageManager.getPackingListStorageFilePath());
     }

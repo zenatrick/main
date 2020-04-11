@@ -58,13 +58,13 @@ class JsonAccommodationBookingStorageTest {
     @Test
     public void readAccommodationBookingManager_invalidAccommodationBookingManager_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readAccommodationBookingManager
-                ("invalidAccommodationAccommodationManager.json"));
+                ("invalidAccommodationManager.json"));
     }
 
     @Test
     public void readAccommodationBooking_invalidAndValidAccommodationBookingManager_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readAccommodationBookingManager
-                ("invalidAndValidAccommodationAccommodationBookingManager.json"));
+                ("invalidAndValidAccommodationBookingManager.json"));
     }
 
     @Test

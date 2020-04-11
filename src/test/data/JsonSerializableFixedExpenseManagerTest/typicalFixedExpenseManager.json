@@ -1,0 +1,14 @@
+{
+  "fixedExpenses" : [ {
+  "amount" : "3000",
+  "description" : "Flights",
+  "category" : "transport"
+}, {
+    "amount" : "30",
+    "description" : "Wifi",
+    "category" : "others"
+  }, {
+    "amount" : "2500",
+    "description" : "Price of hotel",
+    "category" : "accommodations"
+  }]}

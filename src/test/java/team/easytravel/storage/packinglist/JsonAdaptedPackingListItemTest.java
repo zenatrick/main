@@ -1,6 +1,7 @@
 package team.easytravel.storage.packinglist;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static team.easytravel.storage.packinglist.JsonAdaptedPackingListItem.MISSING_FIELD_MESSAGE_FORMAT;
 import static team.easytravel.testutil.Assert.assertThrows;
 import static team.easytravel.testutil.TypicalPackingListItem.PACKING_LIST_PASSPORT;
 
@@ -39,6 +40,15 @@ class JsonAdaptedPackingListItemTest {
         assertThrows(IllegalValueException.class, exceptedMessage, item::toModelType);
     }
 
+    @Test
+    public void toModelType_nullItemName_throwsIllegalValueException() {
+        JsonAdaptedPackingListItem item =
+                new JsonAdaptedPackingListItem(null, VALID_QUANTITY, VALID_ITEM_CATEGORY, true);
+        String exceptedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                ItemName.class.getSimpleName());
+        assertThrows(IllegalValueException.class, exceptedMessage, item::toModelType);
+    }
+
 
     @Test
     public void toModelType_invalidQuantity_throwsIllegalValueException() {
@@ -50,10 +60,29 @@ class JsonAdaptedPackingListItemTest {
 
 
     @Test
+    public void toModelType_nullQuantity_throwsIllegalValueException() {
+        JsonAdaptedPackingListItem item =
+                new JsonAdaptedPackingListItem(VALID_ITEM_NAME, null, VALID_ITEM_CATEGORY, true);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Quantity.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, item::toModelType);
+    }
+
+
+    @Test
     public void toModelType_invalidItemCategory_throwsIllegalValueException() {
         JsonAdaptedPackingListItem item =
                 new JsonAdaptedPackingListItem(VALID_ITEM_NAME, VALID_QUANTITY, INVALID_ITEM_CATEGORY, true);
         String expectedMessage = ItemCategory.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, item::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullItemCategory_throwsIllegalValueException() {
+        JsonAdaptedPackingListItem item =
+                new JsonAdaptedPackingListItem(VALID_ITEM_NAME, VALID_QUANTITY, null, true);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                ItemCategory.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, item::toModelType);
     }
 

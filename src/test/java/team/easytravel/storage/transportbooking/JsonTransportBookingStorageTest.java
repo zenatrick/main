@@ -16,10 +16,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import team.easytravel.commons.exceptions.DataConversionException;
-import team.easytravel.model.listmanagers.ReadOnlyActivityManager;
 import team.easytravel.model.listmanagers.ReadOnlyTransportBookingManager;
 import team.easytravel.model.listmanagers.TransportBookingManager;
-import team.easytravel.storage.activity.JsonActivityStorage;
 import team.easytravel.testutil.TypicalTransportBooking;
 
 class JsonTransportBookingStorageTest {
@@ -34,8 +32,9 @@ class JsonTransportBookingStorageTest {
         assertThrows(NullPointerException.class, () -> readTransportBookingManager(null));
     }
 
-    private Optional<ReadOnlyActivityManager> readTransportBookingManager(String filePath) throws Exception {
-        return new JsonActivityStorage(Paths.get(filePath)).readActivityManager(addToTestDataPathIfNotNull(filePath));
+    private Optional<ReadOnlyTransportBookingManager> readTransportBookingManager(String filePath) throws Exception {
+        return new JsonTransportBookingStorage(Paths.get(filePath))
+                .readTransportBookings(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -56,13 +55,13 @@ class JsonTransportBookingStorageTest {
     }
 
     @Test
-    public void readActivityManager_invalidTransportBookingManager_throwDataConversionException() {
+    public void readTransportBookingManager_invalidTransportBookingManager_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readTransportBookingManager(
                 "invalidTransportManager.json"));
     }
 
     @Test
-    public void readActivityManager_invalidAndValidTransportBookingManager_throwDataConversionException() {
+    public void readTransportBookingManager_invalidAndValidTransportBookingManager_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readTransportBookingManager(
                 "invalidAndValidTransportManager.json"));
     }

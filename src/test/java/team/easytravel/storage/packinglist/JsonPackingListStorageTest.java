@@ -17,9 +17,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import team.easytravel.commons.exceptions.DataConversionException;
 import team.easytravel.model.listmanagers.PackingListManager;
-import team.easytravel.model.listmanagers.ReadOnlyActivityManager;
 import team.easytravel.model.listmanagers.ReadOnlyPackingListManager;
-import team.easytravel.storage.activity.JsonActivityStorage;
 import team.easytravel.testutil.TypicalPackingListItem;
 
 class JsonPackingListStorageTest {
@@ -34,8 +32,8 @@ class JsonPackingListStorageTest {
         assertThrows(NullPointerException.class, () -> readPackingListItemManager(null));
     }
 
-    private Optional<ReadOnlyActivityManager> readPackingListItemManager(String filePath) throws Exception {
-        return new JsonActivityStorage(Paths.get(filePath)).readActivityManager(addToTestDataPathIfNotNull(filePath));
+    private Optional<ReadOnlyPackingListManager> readPackingListItemManager(String filePath) throws Exception {
+        return new JsonPackingListStorage(Paths.get(filePath)).readPackingList(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {

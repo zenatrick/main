@@ -19,11 +19,11 @@ class JsonSerializableAccommodationBookingManagerTest {
             "JsonSerializableAccommodationBookingManagerTest");
 
     public static final Path TYPICAL_ACCOMMODATION_BOOKING_FILE = TEST_DATA_FOLDER
-            .resolve("typicalAccommodationBookingAccommodationBookingManager.json");
+            .resolve("typicaAccommodationBookingManager.json");
     public static final Path INVALID_ACCOMMODATION_BOOKING_FILE = TEST_DATA_FOLDER
-            .resolve("invalidAccommodationBookingAccommodationBookingManager.json");
+            .resolve("invalidAccommodationBookingManager.json");
     public static final Path DUPLICATE_ACCOMMODATION_BOOKING_FILE = TEST_DATA_FOLDER
-            .resolve("duplicateAccommodationBookingAccommodationBookingManager.json");
+            .resolve("duplicateAccommodationBookingManager.json");
 
     @Test
     public void toModelType_typicalAccommodationBookingFile_success() throws Exception {
@@ -31,9 +31,9 @@ class JsonSerializableAccommodationBookingManagerTest {
                 .readJsonFile(TYPICAL_ACCOMMODATION_BOOKING_FILE,
                 JsonSerializableAccommodationBookingManager.class).get();
         AccommodationBookingManager accommodationBookingManagerFromFile = dataFromFile.toModelType();
-        AccommodationBookingManager typicalAccommodationBookingAccommodationBookingManager =
+        AccommodationBookingManager typicalAccommodationBookingManager =
                 getTypicalAccommodationManager();
-        assertEquals(accommodationBookingManagerFromFile, typicalAccommodationBookingAccommodationBookingManager);
+        assertEquals(accommodationBookingManagerFromFile, typicalAccommodationBookingManager);
     }
 
     @Test

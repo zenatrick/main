@@ -1,6 +1,7 @@
 package team.easytravel.storage.activity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static team.easytravel.storage.activity.JsonAdaptedActivity.MISSING_FIELD_MESSAGE_FORMAT;
 import static team.easytravel.testutil.Assert.assertThrows;
 import static team.easytravel.testutil.activity.TypicalActivity.ACTIVITY_PEAK;
 
@@ -47,6 +48,15 @@ class JsonAdaptedActivityTest {
         assertThrows(IllegalValueException.class, exceptedMessage, activity::toModelType);
     }
 
+    @Test
+    public void toModelType_nullTitle_throwsIllegalValueException() {
+        JsonAdaptedActivity activity =
+                new JsonAdaptedActivity(null, VALID_DURATION, VALID_LOCATION, VALID_DATE_TIME,
+                        VALID_TAGS);
+        String exceptedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName());
+        assertThrows(IllegalValueException.class, exceptedMessage, activity::toModelType);
+    }
+
 
     @Test
     public void toModelType_invalidDuration_throwsIllegalValueException() {
@@ -57,6 +67,16 @@ class JsonAdaptedActivityTest {
         assertThrows(IllegalValueException.class, expectedMessage, activity::toModelType);
     }
 
+    @Test
+    public void toModelType_nullDuration_throwsIllegalValueException() {
+        JsonAdaptedActivity activity =
+                new JsonAdaptedActivity(VALID_TITLE, null, VALID_LOCATION, VALID_DATE_TIME,
+                        VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Duration.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, activity::toModelType);
+    }
+
 
     @Test
     public void toModelType_invalidLocation_throwsIllegalValueException() {
@@ -64,6 +84,16 @@ class JsonAdaptedActivityTest {
                 new JsonAdaptedActivity(VALID_TITLE, VALID_DURATION, INVALID_LOCATION, VALID_DATE_TIME,
                         VALID_TAGS);
         String expectedMessage = Location.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, activity::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullLocation_throwsIllegalValueException() {
+        JsonAdaptedActivity activity =
+                new JsonAdaptedActivity(VALID_TITLE, VALID_DURATION, null, VALID_DATE_TIME,
+                        VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Location.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, activity::toModelType);
     }
 
@@ -87,6 +117,5 @@ class JsonAdaptedActivityTest {
         assertThrows(IllegalValueException.class, activity::toModelType);
 
     }
-
 
 }

@@ -54,13 +54,13 @@ class JsonActivityStorageTest {
 
     @Test
     public void readActivityManager_invalidActivityActivityManager_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readActivityManager("invalidActivityActivityManager.json"));
+        assertThrows(DataConversionException.class, () -> readActivityManager("invalidActivityManager.json"));
     }
 
     @Test
     public void readActivityManager_invalidAndValidActivityActivityManager_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readActivityManager(
-                "invalidAndValidActivityActivityManager.json"));
+                "invalidAndValidActivityManager.json"));
     }
 
     @Test

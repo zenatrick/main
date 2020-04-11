@@ -1,0 +1,11 @@
+{
+  "fixedExpenses" : [ {
+    "amount" : "-1000",
+    "description" : "test@#@#!activity",
+    "category" : "test"
+  },
+    {
+      "amount" : "100",
+      "description" : "test",
+      "category" : "others"
+    }]}

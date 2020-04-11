@@ -19,7 +19,7 @@ import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
 @JsonRootName(value = "fixedExpenseManager")
 class JsonSerializableFixedExpenseManager {
 
-    public static final String MESSAGE_DUPLICATE_TRANSPORT_BOOKING = "Fixed Expense list contains duplicate Fixed "
+    public static final String MESSAGE_DUPLICATE_FIXED_EXPENSE_BOOKING = "Fixed Expense list contains duplicate Fixed "
             + "Expenses.";
 
     private final List<JsonAdaptedFixedExpense> fixedExpenses = new ArrayList<>();
@@ -56,7 +56,7 @@ class JsonSerializableFixedExpenseManager {
         for (JsonAdaptedFixedExpense jsonAdaptedFixedExpense : fixedExpenses) {
             FixedExpense fixedExpense = jsonAdaptedFixedExpense.toModelType();
             if (fixedExpenseManager.hasFixedExpense(fixedExpense)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_TRANSPORT_BOOKING);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_FIXED_EXPENSE_BOOKING);
             }
             fixedExpenseManager.addFixedExpense(fixedExpense);
         }

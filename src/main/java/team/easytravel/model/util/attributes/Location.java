@@ -16,7 +16,7 @@ public class Location {
     /*
      * Location must be made up of alphanumeric words not more than 50 characters long.
      */
-    public static final String VALIDATION_REGEX = "^[^\\s][\\w\\s]{1,50}";
+    public static final String VALIDATION_REGEX = "^(?!\\s*$)[A-Za-z0-9\\s]{1,50}+";
 
     public final String value;
 

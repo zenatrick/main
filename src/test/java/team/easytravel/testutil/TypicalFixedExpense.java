@@ -27,6 +27,15 @@ public class TypicalFixedExpense {
             new Amount("2500"), new Description("Price of hotel"), new FixedExpenseCategory("accommodations")
     );
 
+    //DONT TOUCH THESE, for storage TESTS
+    public static final FixedExpense FIXED_EXPENSE_FLY_KITE = new FixedExpense(
+            new Amount("50"), new Description("Fly Kite"), new FixedExpenseCategory("others")
+    );
+
+    public static final FixedExpense FIXED_EXPENSE_STALL = new FixedExpense(
+            new Amount("100"), new Description("Stall"), new FixedExpenseCategory("others")
+    );
+
     private TypicalFixedExpense() {
     }
 

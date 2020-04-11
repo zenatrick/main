@@ -1,6 +1,7 @@
 package team.easytravel.storage.accommodationbooking;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static team.easytravel.storage.accommodationbooking.JsonAdaptedAccommodationBooking.MISSING_FIELD_MESSAGE_FORMAT;
 import static team.easytravel.testutil.Assert.assertThrows;
 import static team.easytravel.testutil.TypicalAccommodation.ACCOMMODATION_BOOKING_BACKPACKER;
 
@@ -50,11 +51,31 @@ class JsonAdaptedAccommodationBookingTest {
     }
 
     @Test
+    public void toModelType_nullAccommodationName_throwsIllegalValueException() {
+        JsonAdaptedAccommodationBooking accommodationBooking =
+                new JsonAdaptedAccommodationBooking(null, VALID_LOCATION, VALID_STARTDAY, VALID_ENDDAY,
+                        VALID_REMARK);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                AccommodationName.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, accommodationBooking::toModelType);
+    }
+
+    @Test
     public void toModelType_invalidLocation_throwsIllegalValueException() {
         JsonAdaptedAccommodationBooking accommodationBooking =
                 new JsonAdaptedAccommodationBooking(VALID_NAME, INVALID_LOCATION, VALID_STARTDAY,
                         VALID_ENDDAY, VALID_REMARK);
         String expectedMessage = Location.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, accommodationBooking::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullLocation_throwsIllegalValueException() {
+        JsonAdaptedAccommodationBooking accommodationBooking =
+                new JsonAdaptedAccommodationBooking(VALID_NAME, null, VALID_STARTDAY,
+                        VALID_ENDDAY, VALID_REMARK);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Location.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, accommodationBooking::toModelType);
     }
 
@@ -68,6 +89,15 @@ class JsonAdaptedAccommodationBookingTest {
     }
 
     @Test
+    public void toModelType_nullStartDay_throwsIllegalValueException() {
+        JsonAdaptedAccommodationBooking accommodationBooking =
+                new JsonAdaptedAccommodationBooking(VALID_NAME, VALID_LOCATION, null, VALID_ENDDAY,
+                        VALID_REMARK);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Day.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, accommodationBooking::toModelType);
+    }
+
+    @Test
     public void toModelType_invalidEndDay_throwsIllegalValueException() {
         JsonAdaptedAccommodationBooking accommodationBooking =
                 new JsonAdaptedAccommodationBooking(VALID_NAME, VALID_LOCATION, VALID_STARTDAY, INVALID_ENDDAY,
@@ -77,11 +107,30 @@ class JsonAdaptedAccommodationBookingTest {
     }
 
     @Test
+    public void toModelType_nullEndDay_throwsIllegalValueException() {
+        JsonAdaptedAccommodationBooking accommodationBooking =
+                new JsonAdaptedAccommodationBooking(VALID_NAME, VALID_LOCATION, VALID_STARTDAY, null,
+                        VALID_REMARK);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Day.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, accommodationBooking::toModelType);
+    }
+
+
+    @Test
     public void toModelType_invalidRemark_throwsIllegalValueException() {
         JsonAdaptedAccommodationBooking accommodationBooking =
                 new JsonAdaptedAccommodationBooking(VALID_NAME, VALID_LOCATION, VALID_STARTDAY, VALID_ENDDAY,
                         INVALID_REMARK);
         String expectedMessage = Remark.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, accommodationBooking::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullRemark_throwsIllegalValueException() {
+        JsonAdaptedAccommodationBooking accommodationBooking =
+                new JsonAdaptedAccommodationBooking(VALID_NAME, VALID_LOCATION, VALID_STARTDAY, VALID_ENDDAY,
+                        null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, accommodationBooking::toModelType);
     }
 }
