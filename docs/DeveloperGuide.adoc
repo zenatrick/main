@@ -257,8 +257,140 @@ Reasons for choosing option 1:
 
 // end::Trip Management[]
 
+// List management
+// tag::scheduleactivity[]
+[#list-manager]
+=== List Managers
+**E.T.** allows the user to schedule an activity from the activity list to a specified time of a day. This is done using the `schedule` command which requires the user to specify the `INDEX` of an activity from the displayed activity list, the `DAY_INDEX` of the trip and the `START_TIME` of the activity to be scheduled.
 
-// end::Check Status[]
+==== Rationale
+The schedule feature is an important feature that allows the users to manage and plan for their trip schedule or itinerary. This feature is added to **E.T.** to separate from the activity management feature from the schedule. This can increase the ease of planning because users can just focus on the time management aspect when scheduling proposed activities from the activity list. The schedule feature also automatically adds any transport bookings into the schedule.
+
+==== Current Implementation
+The schedule feature uses a separate system and structure as compared to the `ListManager`s. Instead, the schedule feature will be more closely related to the trip feature because it heavily relies on information about the `Trip` such as the `startDate` and `endDate`.
+
+As such, the `TripManager` is in charge of managing the schedule. The `TripManager`, contains a list of `DaySchedule`s which represents the schedule of a specific day of the `Trip`. Thus, the number of `DaySchedule`s equals the number of days in the `Trip`. E.g. a trip of 2 days means that the `TripManager` contains 2 `DaySchedule` objects.
+
+Within each `DaySchedule` object, there is a `UniqueList` of `DayScheduleEntry`. The `DayScheduleEntry` object represents an entry in the schedule.
+As an example, the following UML object diagram describes the relevant objects related to this feature when a `Trip` of 2 days is set.
+
+
+.Example of associations between related objects of the schedule feature.
+image::developer-guide/schedule/ScheduleFeatureObjectDiagram.png[]
+
+When the user enters the `schedule` command to schedule an activity, the user input command undergoes the same command parsing as described in <<DeveloperGuide.adoc#logic-component, Section 2.3 Logic Component>> . A `ScheduleCommand` will then be created.
+The following steps describe the execution of the `ScheduleCommand`, assuming that no error is encountered.
+
+. When `execute()` of the `ScheduleCommand` is called, the `ModelManager` retrieves the displayed list of activities shown to the user.
+. Then, it retrieves the target `Activity` using the user-specified `INDEX`.
+. The `ModelManager`’s `scheduleActivity()` method is called to schedule the target `Activity`.
+. The `ModelManager` proceeds to call the `scheduleActivity()` method of the `TripManager`.
+. The `TripManager` then uses the given activity to create a corresponding `DayScheduleEntry` object.
+. The `TripManager will calculate which day of the trip to schedule this activity and get the `DaySchedule` representing the schedule of the target day.
+. The target activity is then scheduled on the target day through the `addScheduleEntry()` method of the target `DaySchedule`.
+. If the above steps are all successful, the `ScheduleCommand` will then create a `CommandResult` object and return the result.
+
+The  _Sequence Diagram_ below summarizes the execution of the `ScheduleCommand`.
+
+.Execution of the `ScheduleCommand`.
+image::developer-guide/schedule/ScheduleCommandExecution.png[Schedule Activity Command Execution]
+
+[NOTE]
+====
+The lifelines for the `ScheduleCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+
+This sequence diagram does not take into consideration the possible exceptions which might occur during the `ScheduleCommand` execution.
+
+====
+
+==== Design Consideration
+
+===== Aspect: Separation between scheduling and activity management
+
+
+|===
+| |Pros |Cons
+
+|**Option 1 (Current)**
+Scheduling is separated from activity management.
+
+|Better user experience.
+Allows for extensions. Other types of objects such as a `TransportBooking` could easily be converted into a `DayScheduleEntry` object and be added into the schedule. This is by the Open-Closed principle.
+|Complicated to implement and more likely to result in bugs if undesirable dependencies are introduced.
+
+|**Option 2**
+An activity must be scheduled directly into a day as it is added.
+i.e. `ActivityManager` is in charge of scheduling.
+
+|Straightforward and simple to implement.
+
+|Other types of objects such as `TransportBooking` will not be able to be scheduled. This can result in poorer user experience when using **E.T.** as users may want to include transport bookings into their schedule.
+|===
+
+Reasons for choosing option 1:
+
+* The schedule feature is a major feature because it is the main part of planning for a trip. Thus, we decided to opt for the option with better user experience.
+* The ability for other objects to be converted into a `DayScheduleEntry` object in option 1 is also beneficial for future versions of **E.T.** if we want to extend this feature to schedule other items such as accommodation bookings.
+
+// End list management
+//end
+
+
+
+=== Activity Manager
+**E.T.** allows the user to keep track of their activities for his/her trip. The activity manager is one of the `ListManager`s <<DeveloperGuide.adoc#list-manager, (See Section 3.1 List Managers)>>. On top of the basic operations provided by a `ListManager`, it also allows the user to search for their activities using the `findacitivty` command. The parameters of the `findactivity` command are keywords in the activity entries that the user wants to search for. E.g. `findactivity sightseeing carnival` will search and list all activity entries with `sightseeing` or `carnival` in their detail. Another similar command, `findactivitytag` has the same functionality but only searches for the tags of activity entries.
+
+
+`ActivityManager` has other than the basic CRUD commands, find command provide a find command to assist in activity management such as:
+* `findactivitytag`
+* `findactivity`
+
+==== Rationale
+The activity manager is an important feature to have because any oversea trip will be packed with activities for the traveller. Thus, we decided to create an activity manager as one of the `ListManager`s.
+
+==== Current Implementation
+
+The current implementation of the activity manager only allows the user to keep track of a list of activities for their trip. It does not allow the user to indicate the start and end time of an activity. Instead, the ability to indicate a start time for an activity will be in another feature known as the schedule feature (See Section 3.4).
+
+In this section, we will outline the `findactivity` command of the activity manager which is summarised by the __Activity Diagram__ below.
+
+
+.Activity diagram showing the workflow of a `findactivity` command.
+image::developer-guide/activity/FindActivityDiagram.png[]
+
+The sequence diagram below shows the creation of the an ActivityCommand object:
+
+.Sequence diagram that describes the creation of the `deleteactivity` from the input user command `deleteactivity 1`.
+
+image::developer-guide/activity/DeleteActivityCommandCreation.png[]
+
+When the user enters the `findactivity` command to search for activities, the user input command undergoes the same command parsing as described in Section 2.3 Logic Component. During the parsing, a predicate is created. This predicate checks if a given `Activity` contains the user input keywords. The `FindActivityCommand` will then receive this predicate when it is created.
+
+The following steps will describe the execution of the `FindActivityCommand` in detail, assuming that no error is encountered.
+
+. When the `execute()` method of the `FindActivityCommand` is called, the `ModelManager`’s `updateFilteredActivityList()` method is called.
+. The `ModelManager` then proceeds to call the `updateFilteredActivityList()` method of the `ActivityManager`.
+. The `ActivityManager` will then update its filtered list of `Activity`s to contain only `Activity`s that fulfil the given predicate.
+. The `Ui` component will detect this change and update the __GUI__.
+. If the above steps are all successful, the `ScheduleCommand` will then create a `CommandResult` object and return the result.
+
+The __Sequence Diagram__ below summarises the aforementioned steps.
+
+.Execution of the `FindActivityCommand`.
+
+image::developer-guide/activity/FindActivitySequenceDiagram.png[]
+
+[NOTE]
+====
+The lifelines for the `FindActivityCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+
+This sequence diagram does not take into consideration the possible exceptions which might occur during the `FindActivityCommand` execution.
+
+====
+
+==== Design Consideration
+We do not have other implementation options for the `FindActivityCommand` as the current implementation is the only option that we came up with. This option is quite easy to understand and follows good coding principles.
+// end::activity[]
 
 // tag::scheduleactivity[]
 [#schedule-feature]
@@ -333,6 +465,8 @@ Reasons for choosing option 1:
 
 * The schedule feature is a major feature because it is the main part of planning for a trip. Thus, we decided to opt for the option with better user experience.
 * The ability for other objects to be converted into a `DayScheduleEntry` object in option 1 is also beneficial for future versions of **E.T.** if we want to extend this feature to schedule other items such as accommodation bookings.
+
+// End scheduler
 
 
 // tag::transportbooking[]
@@ -427,60 +561,7 @@ The following steps describes the process of the check overlap method:
 // end::accommodationbooking[]
 
 // tag::activity[]
-=== Activity Manager
-**E.T.** allows the user to keep track of their activities for his/her trip. The activity manager is one of the `ListManager`s <<DeveloperGuide.adoc#list-manager, (See Section 3.1 List Managers)>>. On top of the basic operations provided by a `ListManager`, it also allows the user to search for their activities using the `findacitivty` command. The parameters of the `findactivity` command are keywords in the activity entries that the user wants to search for. E.g. `findactivity sightseeing carnival` will search and list all activity entries with `sightseeing` or `carnival` in their detail. Another similar command, `findactivitytag` has the same functionality but only searches for the tags of activity entries.
 
-
-`ActivityManager` has other than the basic CRUD commands, find command provide a find command to assist in activity management such as:
-* `findactivitytag`
-* `findactivity`
-
-==== Rationale
-The activity manager is an important feature to have because any oversea trip will be packed with activities for the traveller. Thus, we decided to create an activity manager as one of the `ListManager`s.
-
-==== Current Implementation
-
-The current implementation of the activity manager only allows the user to keep track of a list of activities for their trip. It does not allow the user to indicate the start and end time of an activity. Instead, the ability to indicate a start time for an activity will be in another feature known as the schedule feature (See Section 3.4).
-
-In this section, we will outline the `findactivity` command of the activity manager which is summarised by the __Activity Diagram__ below.
-
-
-.Activity diagram showing the workflow of a `findactivity` command.
-image::developer-guide/activity/FindActivityDiagram.png[]
-
-The sequence diagram below shows the creation of the an ActivityCommand object:
-
-.Sequence diagram that describes the creation of the `deleteactivity` from the input user command `deleteactivity 1`.
-
-image::developer-guide/activity/DeleteActivityCommandCreation.png[]
-
-When the user enters the `findactivity` command to search for activities, the user input command undergoes the same command parsing as described in Section 2.3 Logic Component. During the parsing, a predicate is created. This predicate checks if a given `Activity` contains the user input keywords. The `FindActivityCommand` will then receive this predicate when it is created.
-
-The following steps will describe the execution of the `FindActivityCommand` in detail, assuming that no error is encountered.
-
-. When the `execute()` method of the `FindActivityCommand` is called, the `ModelManager`’s `updateFilteredActivityList()` method is called.
-. The `ModelManager` then proceeds to call the `updateFilteredActivityList()` method of the `ActivityManager`.
-. The `ActivityManager` will then update its filtered list of `Activity`s to contain only `Activity`s that fulfil the given predicate.
-                                                               . The `Ui` component will detect this change and update the __GUI__.
-. If the above steps are all successful, the `ScheduleCommand` will then create a `CommandResult` object and return the result.
-
-The __Sequence Diagram__ below summarises the aforementioned steps.
-
-.Execution of the `FindActivityCommand`.
-
-image::developer-guide/activity/FindActivitySequenceDiagram.png[]
-
-[NOTE]
-====
-The lifelines for the `FindActivityCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
-
-This sequence diagram does not take into consideration the possible exceptions which might occur during the `FindActivityCommand` execution.
-
-====
-
-==== Design Consideration
-We do not have other implementation options for the `FindActivityCommand` as the current implementation is the only option that we came up with. This option is quite easy to understand and follows good coding principles.
-// end::activity[]
 
 
 // tag::packinglist[]
