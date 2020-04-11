@@ -88,6 +88,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+[#logic-component]
 [[Design-Logic]]
 === Logic component
 
@@ -157,6 +158,8 @@ The `Storage` component,
 === Common classes
 
 Classes used by multiple components are in the `team.easytravel.commons` package.
+
+[#implementation]
 
 == Implementation
 
@@ -256,6 +259,7 @@ Reasons for choosing option 1:
 
 
 // end::Check Status[]
+[#check-status]
 === Check Status
 ==== Rationale
 
@@ -330,56 +334,78 @@ return the `CommandResult` back to “MainApp” where the checklist will be sho
 ** **Cons:** Troublesome for the user to check each list one by one.
 
 // tag::scheduleactivity[]
+[#schedule-feature]
 === Schedule feature
-*_E.T._* allows the user to schedule an activity from the activity list to a specified time of a day.
-This is done using the `schedule` command which requires the user to specify the `activity index` of an activity from
-the displayed activity list, the `day number` of the trip and the `start time` of the activity to be scheduled. For
-example, `schedule 1 day/2 starttime/13:00` means that the activity with the index of `1` will be schedule on the second
-day of the trip at 1pm. Before using the `schedule` command, the user should have filled up the activity list with
-activities.
+**E.T.** allows the user to schedule an activity from the activity list to a specified time of a day. This is done using the `schedule` command which requires the user to specify the `INDEX` of an activity from the displayed activity list, the `DAY_INDEX` of the trip and the `START_TIME` of the activity to be scheduled.
 
 ==== Rationale
-The schedule feature is an important feature that allows the users to manage and plan for their trip schedule or itinerary.
-This feature is separated from the activity management feature to increase the ease of planning because users can just focus
-on the time management aspect when scheduling proposed activities from the activity list.
+The schedule feature is an important feature that allows the users to manage and plan for their trip schedule or itinerary. This feature is added to **E.T.** to separate from the activity management feature from the schedule. This can increase the ease of planning because users can just focus on the time management aspect when scheduling proposed activities from the activity list. The schedule feature also automatically adds any transport bookings into the schedule.
 
 ==== Current Implementation
-The keywords from the command given by user is parsed using `ScheduleActivityCommandParser` which converts the string
-variable of the `start time` into a java `Time` object, while `activity index` and `day number` are converted into `Index` objects.
-These objects are used to create the `ScheduleActivityCommand` object that can be execution to schedule the activity.
+The schedule feature uses a separate system and structure as compared to the `ListManager`s. Instead, the schedule feature will be more closely related to the trip feature because it heavily relies on information about the `Trip` such as the `startDate` and `endDate`.
 
-The sequence diagram below shows the creation of the `ScheduleActivityCommand` object:
+As such, the `TripManager` is in charge of managing the schedule. The `TripManager`, contains a list of `DaySchedule`s which represents the schedule of a specific day of the `Trip`. Thus, the number of `DaySchedule`s equals the number of days in the `Trip`. E.g. a trip of 2 days means that the `TripManager` contains 2 `DaySchedule` objects.
 
-.Sequence diagram that describes the creation of the `ScheduleActivityCommand` from the input user command `schedule 1 day/2 starttime/13:00`.
-image::developer-guide/schedule-feature/ScheduleActivityCommandCreation.png[]
+Within each `DaySchedule` object, there is a `UniqueList` of `DayScheduleEntry`. The `DayScheduleEntry` object represents an entry in the schedule.
+As an example, the following UML object diagram describes the relevant objects related to this feature when a `Trip` of 2 days is set.
 
-After the creation of the `ScheduleActivityCommand` object, the `LogicManager` will proceed to call the `execute()` method of `ScheduleActivityCommand`.
 
-The following steps describes the execution of the `ScheduleActivityCommand`:
+.Example of associations between related objects of the schedule feature.
+image::developer-guide/schedule/ScheduleFeatureObjectDiagram.png[]
 
-1. `Model` retrieves the list of activities from the `UniqueList` that stores `Activity` objects.
-2. The `activityIndex` is used to obtain the target `Activity` from the activity list.
-3. The `Activity` object, `dayIndex` and `startTime` is passed into the `scheduleActivity()` method of `Model`.
-4. `Activity` is converted to a `Schedulee` object using the `startTime` from the `ScheduleActivityCommand`, the `title` and `duration` from the target `Activity`.
-5. The `Schedulee` object is added to the target day's `DaySchedule`.
-6. The list of `Schedulee` is sorted according to the `startTime`.
+When the user enters the `schedule` command to schedule an activity, the user input command undergoes the same command parsing as described in <<DeveloperGuide.adoc#logic-component, Section 2.3 Logic Component>> . A `ScheduleCommand` will then be created.
+The following steps describe the execution of the `ScheduleCommand`, assuming that no error is encountered.
 
-The sequence diagram below shows the the execution of `ScheduleActivityCommand`:
+. When `execute()` of the `ScheduleCommand` is called, the `ModelManager` retrieves the displayed list of activities shown to the user.
+. Then, it retrieves the target `Activity` using the user-specified `INDEX`.
+. The `ModelManager`’s `scheduleActivity()` method is called to schedule the target `Activity`.
+. The `ModelManager` proceeds to call the `scheduleActivity()` method of the `TripManager`.
+. The `TripManager` then uses the given activity to create a corresponding `DayScheduleEntry` object.
+. The `TripManager will calculate which day of the trip to schedule this activity and get the `DaySchedule` representing the schedule of the target day.
+. The target activity is then scheduled on the target day through the `addScheduleEntry()` method of the target `DaySchedule`.
+. If the above steps are all successful, the `ScheduleCommand` will then create a `CommandResult` object and return the result.
 
-.Sequence diagram that describes the execution of ScheduleActivityCommand.
-image::developer-guide/schedule-feature/ScheduleActivityCommandExecution.png[Schedule Activity Command Execution]
+The  _Sequence Diagram_ below summarizes the execution of the `ScheduleCommand`.
+
+.Execution of the `ScheduleCommand`.
+image::developer-guide/schedule/ScheduleCommandExecution.png[Schedule Activity Command Execution]
+
+[NOTE]
+====
+The lifelines for the `ScheduleCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+
+This sequence diagram does not take into consideration the possible exceptions which might occur during the `ScheduleCommand` execution.
+
+====
 
 ==== Design Consideration
 
 ===== Aspect: Separation between scheduling and activity management
 
-* **Current Choice:** Scheduling is separated from activity management.
-** Pros: Better user experience. Allows for extension: other type of objects could easily be converted into a `Schedulee` object
-and be added into the schedule.
-** Cons: Complicated to implement and more likely to result in bugs.
-* **Alternative:** Activity must be scheduled directly into a day.
-** Pros: Simple to implement.
-** Cons: Increase difficulty planning for users and limit the schedule to `Activity` objects only.
+
+|===
+| |Pros |Cons
+
+|**Option 1 (Current)**
+Scheduling is separated from activity management.
+
+|Better user experience.
+Allows for extensions. Other types of objects such as a `TransportBooking` could easily be converted into a `DayScheduleEntry` object and be added into the schedule. This is by the Open-Closed principle.
+|Complicated to implement and more likely to result in bugs if undesirable dependencies are introduced.
+
+|**Option 2**
+An activity must be scheduled directly into a day as it is added.
+i.e. `ActivityManager` is in charge of scheduling.
+
+|Straightforward and simple to implement.
+
+|Other types of objects such as `TransportBooking` will not be able to be scheduled. This can result in poorer user experience when using **E.T.** as users may want to include transport bookings into their schedule.
+|===
+
+Reasons for choosing option 1:
+
+* The schedule feature is a major feature because it is the main part of planning for a trip. Thus, we decided to opt for the option with better user experience.
+* The ability for other objects to be converted into a `DayScheduleEntry` object in option 1 is also beneficial for future versions of **E.T.** if we want to extend this feature to schedule other items such as accommodation bookings.
 
 
 // tag::transportbooking[]
