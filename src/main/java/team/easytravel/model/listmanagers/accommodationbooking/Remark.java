@@ -15,7 +15,7 @@ public class Remark {
 
     // Allows for 150 characters long
     // The characters: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~ are allowed.
-    public static final String VALIDATION_REGEX = "^(?!\\s*$)[\\p{Alnum}\\p{Punct}\\s]{1,150}$";
+    public static final String VALIDATION_REGEX = "^[\\p{Alnum}\\p{Punct}\\s]{1,150}$";
 
     public final String value;
 

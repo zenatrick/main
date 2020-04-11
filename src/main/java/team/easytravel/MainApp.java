@@ -329,10 +329,8 @@ public class MainApp extends Application {
             Optional<TripManager> tripManagerOptional = storage.readTripManager();
             if (tripManagerOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample TransportBookingManager.");
-                tripManager = new TripManager();
-            } else {
-                tripManager = tripManagerOptional.get();
             }
+            tripManager = tripManagerOptional.orElseGet(SampleDataUtil::getSampleTripManager);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty"
                     + "TripManager.");
