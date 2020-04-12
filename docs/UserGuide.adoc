@@ -1225,11 +1225,13 @@ Before you jump right in to use this feature, you may want to learn about all th
 * It must be made of alphanumeric characters, and it must be less than 30 characters long
 * It can be made up of multiple words
 * **E.T.** will automatically capitalise the first letter of the NAME. For example, if the user types in name/high heels, it will display “High Heels” in the packing list. However, it will not make the rest of the words in the name to lowercase.For example, if the user types in name/unDErwear, it will display “UnDErwear” in the packing list
+* E.g. high heels
 
 |`QUANTITY`
 | The quantity of the item
 
 * It must be a positive integer 1,2,3… and up to 100000
+* E.g. 5
 
 |`CATEGORY`
 |The category that the item is classified in
@@ -1238,11 +1240,13 @@ Before you jump right in to use this feature, you may want to learn about all th
 * It can be made up of multiple words
 * **E.T.** will automatically make the category lowercase
 * If it is not in the available presets (see section 4.5.13), then the default icon will be placed next to the packing list item’s name. Else, the category icon will be placed next to the packing list item’s name instead.
+* E.g. essentials
 
 |`INDEX`
 | The index number of the packing list item in the displayed list. The first entry of the list has an index number of 1 and all the entries are listed in increasing index numbers.
 
 * It must be a positive integer 1,2,3…
+* E.g. 1
 |===
 
 ==== List all packing list items: `listitem`
@@ -1289,9 +1293,9 @@ Example:
 
 Suppose you want to add a new item with the following information and wish to record it in **E.T.**
 
-[cols="1,2"]
+[cols="1,2", options="header"]
 |===
-
+| Packing List Item |
 |`NAME`
 | underwear
 
@@ -1334,27 +1338,6 @@ Format: `edititem INDEX [name/NAME] [quantity/QUANTITY] [category/CATEGORY]`
 
 Examples:
 
-`edititem 5 item/boxer` +
-
-Let’s say initially, the item at index 5 is underwear and you want to change it to boxer. You can follow these instructions:
-
-****
-Editing the packing list item:
-
-1. Type `edititem 5 name/boxer` into the __Command Box__.
-2. Press `Enter` to execute.
-
-Outcome:
-
-1. The __Result Display__ will show a success message.
-2. **E.T.** will switch to the __Packing List Tab__.
-3. You can now see your edited item.
-****
-
-.After edit item command
-image::user-guide/EditItem 1.png[]
-
-
 `edititem 5 item/boxer quantity/3 category/essentials` +
 
 Let’s say you want to edit the item at index 5 to the following information:
@@ -1362,8 +1345,8 @@ Let’s say you want to edit the item at index 5 to the following information:
 [cols="1,2,3", options="header"]
 |===
 |
-| Initial
-| Final
+| Current
+| Edited
 
 |`NAME`
 | Underwear
@@ -1394,7 +1377,7 @@ Outcome:
 ****
 
 .After edit item command
-image::user-guide/EditItem 2.png[]
+image::user-guide/EditItem.png[]
 
 ==== Delete an existing packing list item: `deleteitem`
 
@@ -1450,14 +1433,14 @@ Format: `checkitem INDEX [MORE_INDEXES]...`
 
 Examples:
 
-`checkitem 1 3 5 6` +
+`checkitem 1 3 14 17` +
 
 Let’s assume you want to mark the first, third, fifth and sixth items in the packing list as packed. You can follow these instructions.
 
 ****
 Marking the packing list items as packed:
 
-1. Type `checkitem 1 3 5 6` into the command box into the __Command Box__.
+1. Type `checkitem 1 3 14 17` into the command box into the __Command Box__.
 2. Press `Enter` to execute.
 
 Outcome:
@@ -1468,10 +1451,10 @@ Outcome:
 ****
 
 .After check item command part 1
-image::user-guide/CheckItem 2.png[]
+image::user-guide/CheckItem 1.png[]
 
 .After check item command part 2
-image::user-guide/CheckItem 3.png[]
+image::user-guide/CheckItem 2.png[]
 
 ==== Mark an existing packing list item as unpacked: `uncheckitem`
 
@@ -1486,7 +1469,7 @@ Format: `uncheckitem INDEX [MORE_INDEXES]...`
 - The result box will display the unchecked item(s)
 - You are able to mark multiple items as unpacked in one command
 - If there is one invalid index given in the command, for example `uncheckitem 1 3 1000 5`, and 1000 is the invalid index, then the items at index 1, 3 and 5 will be marked as unpacked, but not 1000.
-- However, if a negative index is given, such as   `uncheckitem 1 3 -2 5`, no matter the position of the negative index, the whole command will be deemed as invalid, and every item at the indicated indexes will remain as checked.
+- However, if a negative index is given, such as `uncheckitem 1 3 -2 5`, no matter the position of the negative index, the whole command will be deemed as invalid, and every item at the indicated indexes will remain as checked.
 =====
 
 Examples:
@@ -1509,13 +1492,13 @@ Outcome:
 ****
 
 .After uncheck item command part 1
-image::user-guide/UncheckItem 2.png[]
+image::user-guide/UncheckItem 1.png[]
 
 .After uncheck item command part 2
-image::user-guide/UncheckItem 3.png[]
+image::user-guide/UncheckItem 2.png[]
 
 .After uncheck item command part 3
-image::user-guide/UncheckItem 4.png[]
+image::user-guide/UncheckItem 3.png[]
 
 ==== Sort the packing list: `sortitem`
 
@@ -1539,7 +1522,7 @@ In the case where you want to sort the packing list by alphabetical order, and i
 ****
 Sorting the packing list by alphabetical order:
 
-1. Type `sortitem asc criteria/alphabet` into the command box into the __Command Box__.
+1. Type `sortitem name asc` into the command box into the __Command Box__.
 2. Press `Enter` to execute.
 
 Outcome:
@@ -1572,7 +1555,7 @@ Format: `finditem KEYWORD [MORE_KEYWORDS]...`
 
 Examples:
 
-`finditem shampoo hairbrush` +
+`finditem shampoo dress` +
 
 Suppose you want to find items that contain either shampoo or dress in its name in the packing list. You can follow these instructions.
 
