@@ -788,53 +788,120 @@ image::user-guide/ClearAccommodationBooking.png[]
 
 === Packing List
 
-Allow the user to have a packing list for the trip +
-Format: `list`
+This feature allows you to manage your packing list for the trip. You can record the following information about your packing list items:
+=====
+- Name
+- Quantity
+- Category
+=====
 
-The following sections [4.5.1. - 4.5.12] allows the user to set and modify the packing list for their trip.
+==== Packing List Item Management Command Parameters
+Before you jump right in to use this feature, you may want to learn about all the common command parameters used in this feature. The table below shows the list of common command parameters that will be used for this feature.
 
-===== Adding an item in the packing list: `additem`
+[cols="1,5a", options="header"]
+|===
+|Parameter Name
+|Description
 
-This command adds a new item into the packing list.
+|`NAME`
+| The name of the packing list item
+
+* It must be made of alphanumeric characters, and it must be less than 30 characters long
+* It can be made up of multiple words
+* **E.T.** will automatically capitalise the first letter of the NAME. For example, if the user types in name/high heels, it will display “High Heels” in the packing list. However, it will not make the rest of the words in the name to lowercase.For example, if the user types in name/unDErwear, it will display “UnDErwear” in the packing list
+
+|`QUANTITY`
+| The quantity of the item
+
+* It must be a positive integer 1,2,3…and up to 100000
+
+|`CATEGORY`
+|The category that the item is classified in
+
+* It must be made of alphanumeric characters, and it must be less than 30 characters long
+* It can be made up of multiple words
+* **E.T.** will automatically make the category lowercase
+* If it is not in the available presets (see section 4.5.12), then the default icon will be placed next to the packing list item’s name. Else, the category icon will be placed next to the packing list item’s name instead.
+|===
+
+====  Viewing all items in your packing list: `listitem`
+
+You can use this command to navigate to the __Packing List Tab__ and display your packing list in **E.T.**
+
+Format: `listitem`
+
+Examples:
+`listitem` +
+
+If you are in another tab and wish to look at your packing list, you can follow these instructions.
+
+****
+Listing your packing list:
+
+1. Type `lisitem` into the __Command Box__.
+2. Press `Enter` to execute.
+
+Outcome:
+
+1. The __Result Display__ will show a success message.
+2. **E.T.** will switch to the __Packing List Tab__.
+3. You can now see your packing list.
+****
+
+.After the list item command
+image::user-guide/ListItem.png[]
+
+==== Adding an item in the packing list: `additem`
+
+This command allows you to add a new item into your packing list.
 
 Format: `additem name/NAME quantity/QUANTITY category/CATEGORY`
 
 [NOTE]
 =====
-- `NAME` must be made of alphanumeric characters, and it must be less than 30 characters long
-- `NAME` can be made up of multiple words
-- `QUANTITY` must be a positive integer 1,2,3… and must be less than 100000
-- `CATEGORY` must be made of alphanumeric characters, and it must be less than 30 characters long
-- `CATEGORY` can be made up of multiple words
 - If a duplicated item is added, it will let the user know that the item is already in the list.
-- If CATEGORY is not in the available presets (see section 4.5.11), then the default icon  will be placed next to the packing list item’s name. Else, the default icon will be placed next to the packing list item’s name instead.
-- E.T. will automatically capitalise the first letter of the NAME. For example, if the user types in name/high heels, it will display “High Heels” in the packing list.
 =====
 
 Example:
 
 `additem name/underwear quantity/5 category/clothes` +
 
-Let’s say you want to add a new item named underwear into the packing list.
-You can do so by `additem` - ing the underwear item, alongside with the quantity of 5 underwear
-you want to bring for your trip, as well as the category that underwear is located in, which is clothes.
+Suppose you want to add a new item with the following information and wish to record it in **E.T.**
+
+[cols="1,2"]
+|===
+
+|`NAME`
+| underwear
+
+|`QUANTITY`
+| 5
+
+|`CATEGORY`
+| clothes
+|===
+
+You can follow these instructions:
 
 ****
-To add a new item:
+Adding your packing list item:
 
-1. Type `additem name/underwear quantity/5 category/clothes` into the command box, and press `Enter` to execute it.
+1. Type `additem name/underwear quantity/5 category/clothes` into the __Command Box__.
+2. Press `Enter` to execute.
 
-2. The result box will display the message  `New item added: Packing list item - Item Name: Underwear Quantity: 5 Category: clothes Is Checked: false.`
+Outcome:
 
-3. You can check that the new packing list item is visible in the list.
+1. The __Result Display__ will show a success message.
+2. **E.T.** will switch to the __Packing List Tab__.
+3. You can now see your newly added packing list item
 ****
 
 .After add item command
 image::user-guide/AddItem.png[]
 
-===== Editing an item in the packing list: `edititem`
+==== Editing an item in the packing list: `edititem`
 
-This command edits an existing item in the packing list
+This command allows you to edit any mistake made in the details of an existing item.
 
 Format: `edititem INDEX [name/NAME] [quantity/QUANTITY] [category/CATEGORY]`
 
@@ -842,28 +909,25 @@ Format: `edititem INDEX [name/NAME] [quantity/QUANTITY] [category/CATEGORY]`
 =====
 - Existing values will be updated to the input values.
 - Command can only be used if an item has been added.
-- `NAME` must be made of alphanumeric characters, and it must be less than 30 characters long
-- `NAME` can be made up of multiple words
-- `QUANTITY` must be a positive integer 1,2,3… and must be less than 100000
-- `CATEGORY` must be made of alphanumeric characters, and it must be less than 30 characters long
-- `CATEGORY` can be made up of multiple words
-- If the item is marked as packed initially, it will not change after you edit the item. Likewise the same for an item that is marked as unpacked.
 =====
 
 Examples:
 
 `edititem 5 item/boxer` +
 
-Let’s say initially, the item at index 5 is underwear. Let’s say you want to change it to boxer. You may edit the item by executing the `edititem` command.
+Let’s say initially, the item at index 5 is underwear and you want to change it to boxer. You can follow these instructions:
 
 ****
-To edit an item:
+Editing the packing list item:
 
-1. Type `edititem 5 name/boxer` into the command box, and press `Enter` to execute it.
+1. Type `edititem 5 name/boxer` into the __Command Box__.
+2. Press `Enter` to execute.
 
-2. The result box will display the message `Edited Item: Packing list item - Item Name: Boxer Quantity: 5 Category: clothes Is Checked: false`
+Outcome:
 
-3. And you can see that the item will change from `Underwear` to `Boxer`.
+1. The __Result Display__ will show a success message.
+2. **E.T.** will switch to the __Packing List Tab__.
+3. You can now see your edited item.
 ****
 
 .After edit item command
@@ -872,24 +936,48 @@ image::user-guide/EditItem 1.png[]
 
 `edititem 5 item/boxer quantity/3 category/essentials` +
 
-Let’s say initially, the item at index 5 is underwear, the quantity is 5 and the category is clothes. Let’s say you want to change it to boxer, change the quantity to 3 and change the category to essentials. You may edit the item by executing the `edititem` command.
+Let’s say you want to edit the item at index 5 to the following information:
+
+[cols="1,2,3", options="header"]
+|===
+|
+| Initial
+| Final
+
+|`NAME`
+| Underwear
+| Boxer
+
+|`QUANTITY`
+| 5
+| 3
+
+|`CATEGORY`
+| clothes
+| essentials
+|===
+
+You can follow these instructions:
 
 ****
-To edit an item:
+Editing the packing list item:
 
-1. Type `edititem 5 name/boxer quantity/3 category/essentials` into the command box, and press `Enter` to execute it.
+1. Type `edititem 5 name/boxer quantity/3 category/essentials` into the __Command Box__.
+2. Press `Enter` to execute.
 
-2. The result box will display the message `The result box will display the message “Edited Item: Packing list item - Item Name: Boxer Quantity: 3 Category: essentials Is Checked: false”`
+Outcome:
 
-3. You can see that the item will change from `Underwear` to `Boxer`, quantity will change from `5` to `3`, and the category will change from `clothes` to `essentials`
+1. The __Result Display__ will show a success message.
+2. **E.T.** will switch to the __Packing List Tab__.
+3. You can now see your edited item.
 ****
 
 .After edit item command
 image::user-guide/EditItem 2.png[]
 
-===== Deleting an item in the packing list: `deleteitem`
+==== Deleting an item in the packing list: `deleteitem`
 
-This commands deletes an item in the packing list
+This commands deletes your item in the packing list.
 
 Format: `deleteitem INDEX`
 
@@ -902,16 +990,19 @@ Examples:
 
 `deleteitem 1` +
 
-Let’s say you want to delete the first item in the packing list. You may delete the item by executing the `deleteitem` command.
+Let’s say you want to delete the first item in the packing list. You can follow these instructions:
 
 ****
-To delete an item:
+Deleting the packing list item:
 
-1. Type `deleteitem 1` into the command box, and press `Enter` to execute it.
+1. Type `deleteitem 1` into the __Command Box__.
+2. Press `Enter` to execute.
 
-2. The result box will display the message `Deleted Item: Packing list item - Item Name: Swimsuit Quantity: 1 Category: swimming Is Checked: true`
+Outcome:
 
-3. You can see that the item at index 1 is deleted.
+1. The __Result Display__ will show a success message.
+2. **E.T.** will switch to the __Packing List Tab__.
+3. You can now the item is deleted from your packing list.
 ****
 
 .Before delete item command
@@ -920,9 +1011,9 @@ image::user-guide/DeleteItem 1.png[]
 .After delete item command
 image::user-guide/DeleteItem 2.png[]
 
-===== Marking an item as packed in the packing list: `checkitem`
+==== Marking an item as packed in the packing list: `checkitem`
 
-This command marks an item as packed in the packing list.
+This command marks an item as packed in your packing list.
 
 Format: `checkitem INDEX [MORE_INDEXES]...`
 
@@ -940,16 +1031,19 @@ Examples:
 
 `checkitem 1` +
 
-Let’s say you want to mark the first item in the packing list as packed. You may do so by executing the `checkitem` command.
+If you want to mark the first item in the packing list as packed, you can follow these instructions.
 
 ****
-To mark an item as packed:
+Marking the packing list item as packed:
 
-1. Type `checkitem 1` into the command box, and press `Enter` to execute it.
+1. Type `checkitem 1` into the command box into the __Command Box__.
+2. Press `Enter` to execute.
 
-2. The result box will display the message `Packed Item: Packing list item - Item Name: Cruise tickets Quantity: 1 Category: cruise Is Checked: true`
+Outcome:
 
-3. You can see that the item is marked as packed.
+1. The __Result Display__ will show a success message.
+2. **E.T.** will switch to the __Packing List Tab__.
+3. You can now see your checked item.
 ****
 
 .After check item command
@@ -957,21 +1051,19 @@ image::user-guide/CheckItem 1.png[]
 
 `checkitem 1 3 5 6` +
 
-Let’s say you want to mark the first, third, fifth and sixth items in the packing list as packed. You may do so by executing the checkitem command.
+Let’s assume you want to mark the first, third, fifth and sixth items in the packing list as packed. You can follow these instructions.
 
 ****
-To mark an item as packed:
+Marking the packing list items as packed:
 
-1. Type `checkitem 1 3 5 6` into the command box, and press `Enter` to execute it.
+1. Type `checkitem 1 3 5 6` into the command box into the __Command Box__.
+2. Press `Enter` to execute.
 
-2. The result box will display the message
-“Packed Item: Checked items
-- Packing list item - Item Name: Cruise Tickets Quantity: 1 Category: cruise Is Checked: true
-- Packing list item - Item Name: Belt Quantity: 1 Category: clothes Is Checked: true
-- Packing list item - Item Name: Jacket Quantity: 2 Category: clothes Is Checked: true
-- Packing list item - Item Name: Jeans Quantity: 3 Category: clothes Is Checked: true”
+Outcome:
 
-3. You can see that now the items indicated by the user are marked as packed, from a cross, to a tick next to the item.
+1. The __Result Display__ will show a success message.
+2. **E.T.** will switch to the __Packing List Tab__.
+3. You can now see your checked items.
 ****
 
 .After check item command part 1
@@ -980,9 +1072,9 @@ image::user-guide/CheckItem 2.png[]
 .After check item command part 2
 image::user-guide/CheckItem 3.png[]
 
-===== Marking an item as unpacked in the packing list: `uncheckitem`
+==== Marking an item as unpacked in the packing list: `uncheckitem`
 
-This command marks an item as packed in the packing list
+This command marks an item as unpacked in your packing list.
 
 Format: `uncheckitem INDEX [MORE_INDEXES]...`
 
@@ -1000,18 +1092,19 @@ Examples:
 
 `uncheckitem 2` +
 
-Let’s say you want to mark the second item in the packing list as unpacked. You may do so by executing the `uncheckitem` command.
+Assuming you want to mark the second item in the packing list as unpacked. You can follow these instructions.
 
 ****
-To mark an item as unpacked:
+Marking the packing list items as unpacked:
 
-1. Type `uncheckitem 2` into the command box, and press `Enter` to execute it.
+1. Type `uncheckitem 2` into the command box into the __Command Box__.
+2. Press `Enter` to execute.
 
-2. The result box will display the message
-`Unpacked Item(s): Unchecked items`
-- `Packing list item - Item Name: Sandals Quantity: 1 Category: swimming Is Checked: false`
+Outcome:
 
-3. You can see the item at index 2 is marked as unpacked
+1. The __Result Display__ will show a success message.
+2. **E.T.** will switch to the __Packing List Tab__.
+3. You can now see your unchecked items.
 ****
 
 .After uncheck item command
@@ -1019,27 +1112,19 @@ image::user-guide/UncheckItem 1.png[]
 
 `uncheckitem 1 4 7 13 16` +
 
-Let’s say you want to mark the first, fourth, seventh, thirteenth and sixteenth items in the packing list as unpacked. You may do so by executing the uncheckitem command.
+Imagine you want to mark the first, fourth, seventh, thirteenth and sixteenth items in the packing list as unpacked. You can follow these instructions.
 
 ****
-To mark an item as unpacked:
+Marking the packing list items as unpacked:
 
-1. Type `uncheckitem 1 4 7 13 16` into the command box, and press `Enter` to execute it.
+1. Type `uncheckitem 1 4 7 13 16` into the command box into the __Command Box__.
+2. Press `Enter` to execute.
 
-2. The result box will display the message
-`Unpacked Item(s): Unchecked items`
+Outcome:
 
-- `Packing list item - Item Name: Cruise Tickets Quantity: 1 Category: cruise Is Checked: false`
-
-- `Packing list item - Item Name: Dress Quantity: 3 Category: clothes Is Checked: false`
-
-- `Packing list item - Item Name: Pyjamas Quantity: 5 Category: clothes Is Checked: false`
-
-- `Packing list item - Item Name: Underwear Quantity: 7 Category: clothes Is Checked: false`
-
-- `Packing list item - Item Name: Fanny Pack Quantity: 1 Category: music festival Is Checked: false`
-
-3. You can see that now the items indicated by the user are marked as unpacked, from a tick, to a cross next to the item.
+1. The __Result Display__ will show a success message.
+2. **E.T.** will switch to the __Packing List Tab__.
+3. You can now see your unchecked items.
 ****
 
 .After uncheck item command part 1
@@ -1051,9 +1136,9 @@ image::user-guide/UncheckItem 3.png[]
 .After uncheck item command part 3
 image::user-guide/UncheckItem 4.png[]
 
-===== Sorting items in the packing list: `sortitem`
+==== Sorting items in the packing list: `sortitem`
 
-This command sorts items in the packing list
+This command sorts your items in the packing list according to an order and a criteria you specify.
 
 Format: `sortitem order criteria/CRITERIA`
 
@@ -1068,16 +1153,19 @@ Examples:
 
 `sortitem asc criteria/alphabet` +
 
-Let’s say you want to sort the packing list alphabetically. You may do so by executing the `sortitem` command.
+In the case where you want to sort the packing list by alphabetical order. You can follow these instructions.
 
 ****
-To sort the packing list:
+Sorting the packing list by alphabetical order:
 
-1. Type `sortitem asc criteria/alphabet` into the command box, and press `Enter` to execute it.
+1. Type `sortitem asc criteria/alphabet` into the command box into the __Command Box__.
+2. Press `Enter` to execute.
 
-2. The result box will display the message `Sorting of Item successful :)`
+Outcome:
 
-3. You can see that the packing list items are sorted in ascending order, according to their category.
+1. The __Result Display__ will show a success message.
+2. **E.T.** will switch to the __Packing List Tab__.
+3. You can now see your packing list is sorted according to alphabetical order.
 ****
 
 .After sort item command part 1
@@ -1086,9 +1174,9 @@ image::user-guide/SortItem 1.png[]
 .After sort item command part 2
 image::user-guide/SortItem 2.png[]
 
-===== Finding items in the packing list: `finditem`
+==== Finding items in the packing list: `finditem`
 
-This command finds items in the packing list according to keywords in the items’ names.
+This command finds items in your packing list according to keywords specified by you.
 
 Format: `finditem KEYWORD [MORE_KEYWORDS]...`
 
@@ -1098,30 +1186,34 @@ Format: `finditem KEYWORD [MORE_KEYWORDS]...`
 - If packing list does not contain any of the keywords, then it will display an empty list.
 - If you want to return to the packing list after using the `finditem` command, use the `listitem` command. (see Section 4.5.9)
 - The result box will display the number of items that contains the keyword(s).
+- The `finditem` command will only search through the titles of the items
 =====
 
 Examples:
 
 `finditem shampoo hairbrush` +
 
-Let’s say you want to find items that contain either shampoo or hairbrush in its name in the packing list. You may do so by executing the `finditem` command.
+Suppose you want to find items that contain either shampoo or dress in its name in the packing list. You can follow these instructions.
 
 ****
-To find items in the packing list:
+Find the packing list items that contain shampoo or dress:
 
-1. Type `finditem shampoo dress` into the command box, and press `Enter` to execute it.
+1. Type `finditem shampoo dress` into the command box into the __Command Box__.
+2. Press `Enter` to execute.
 
-2. The result box will display the message `2 items listed!`
+Outcome:
 
-3. You can see all the packing list items that contain either shampoo or dress will be listed in the packing list.
+1. The __Result Display__ will show a success message.
+2. **E.T.** will switch to the __Packing List Tab__.
+3. You can now see the items in your packing list that contain either shampoo or dress in its name.
 ****
 
 .After find item command
 image::user-guide/FindItem.png[]
 
-===== Finding item categories in the packing list: `finditemcategory`
+==== Finding item categories in the packing list: `finditemcategory`
 
-This command find items in the packing list according to keywords that are categories.
+This command find items in your packing list according to keywords keywords specified by you that are categories
 
 Format: `finditemcategory KEYWORD [MORE_KEYWORDS]...`
 
@@ -1137,49 +1229,27 @@ Examples:
 
 `finditemcategory international clothes` +
 
-Let’s say you want to find items that are either in the swimming or clothes category. You may do so by executing the `finditemcategory` command.
+Presuming you want to find items that are either in the international or clothes category.  You can follow these instructions.
 
 ****
-To find items in the packing list under categories:
+Find the packing list items that are in the international or clothes category:
 
-1. Type `finditemcategory international clothes` into the command box, and press `Enter` to execute it.
+1. Type `finditemcategory international clothes` into the command box into the __Command Box__.
+2. Press `Enter` to execute.
 
-2. The result box will display the message `20 item(s) listed!`
+Outcome:
 
-3. You can now see the displayed packing list items that are either in the international category or in the clothes category
+1. The __Result Display__ will show a success message.
+2. **E.T.** will switch to the __Packing List Tab__.
+3. You can now see the items in your packing list that are either in the international or clothes category
 ****
 
 .After find item category command
 image::user-guide/FindItemCategory.png[]
 
-===== Listing items in the packing list: `listitem`
-
-This command lists items in the packing list.
-
-Format: `listitem`
-
-Examples:
-
-`listitem` +
-
-Let's say you want to display the original packing list, after executing the `finditem` or `finditemcategory`.
-
-****
-To show the original packing list:
-
-1. Type `listitem` into the command box, and press `Enter` to execute it.
-
-2. The result box will display the message `Listed all packing list items.`
-
-3. You can now see the original packing list.
-****
-
-.After the list item command
-image::user-guide/ListItem.png[]
-
 ===== Clearing items in the packing list: `clearitem`
 
-This command lists items in the packing list.
+This command clears all items in your packing list.
 
 Format: `clearitem`
 
@@ -1187,24 +1257,27 @@ Examples:
 
 `clearitem` +
 
-Let's say you want to delete all the items in your packing list, to start from an empty packing list. You may do so by executing the clearitem command
+In the circumstance that you want to delete all the items in your packing list, to start from an empty packing list. You can follow these instructions.
 
 ****
-To clear all items:
+Clearing your packing list:
 
-1. Type `clearitem` into the command box, and press `Enter` to execute it.
+1. Type `clearitem` into the command box into the __Command Box__.
+2. Press `Enter` to execute.
 
-2. The result box will display the message `Packing List has been cleared!`
+Outcome:
 
-3.You can now see an empty packing list.
+1. The __Result Display__ will show a success message.
+2. **E.T.** will switch to the __Packing List Tab__.
+3. You will now see an empty packing list.
 ****
 
 .After the clear item command
 image::user-guide/ClearItem.png[]
 
-===== Adding a preset category: `addpreset`
+==== Adding a preset category: `addpreset`
 
-This command adds a pre-existing list of items under a category into the packing list.
+This command adds a pre-existing list of items under a category into your packing list.
 
 Format: `addpreset PRESET_NAME`
 
@@ -1212,33 +1285,34 @@ Format: `addpreset PRESET_NAME`
 =====
 - If the preset contains an item that is already in the packing list, it will not add that item in. It will add the rest of the items in the preset into the packing list.
 - You can only add in pre-existing presets. If you add in other presets, then you will receive the message, "Sorry! This preset does not exist."
-- To see all the available presets, use the `listpreset` command. (see Section 4.5.11)
+- To see all the available presets, use the `listpreset` command. (see Section 4.5.12)
 =====
 
 Examples:
 
 * `addpreset beach` +
 
-Let’s say you will be going to the beach during your trip, but you are too lazy to add a packing list item one-by-one. You want to add all the items in the beach category into your packing list. You may do so by executing the `addpreset` command.
+Assuming you will be going to the beach during your trip, but you are too lazy to add a packing list item one-by-one. You will like to add all the items in the beach category into your packing list. You can follow these instructions.
 
 ****
-To add a pre-existing preset:
+Adding a pre-existing beach preset into your packing list:
 
-1. Type `addpreset beach` into the command box, and press `Enter` to execute it.
+1. Type `addpreset beach` into the command box into the __Command Box__.
+2. Press `Enter` to execute.
 
-2. The result box will display the message `New preset added: beach`
+Outcome:
 
-3. You can see that the list of items under the category beach is added into the packing list.
-
-4. As you can see, it is just a preset. Feel free to customize your packing list by adding in other items in the packing list through the `additem` command (see Section 4.5.1) and editing the sample list of items provided through the `edititem` command (see Section 4.5.2)
+1. The __Result Display__ will show a success message.
+2. **E.T.** will switch to the __Packing List Tab__.
+3. You can now see the items in the beach preset added into your packing list.
 ****
 
 .After add preset command
 image::user-guide/AddPreset.png[]
 
-===== Listing all the presets in the packing list: `listpreset`
+==== Listing all the presets in the packing list: `listpreset`
 
-This command lists all the presets available for use.
+This command lists all the default presets available for you to use.
 
 Format: `listpreset`
 
@@ -1251,17 +1325,19 @@ Format: `listpreset`
 Examples:
 
 * `listpreset` +
-Let’s say you want to add a list of items under a pre-existing category, but you are not sure of the available presets you can use. You may find the pre-existing categories by executing the `listpreset` command.
+
+In the case that you want to add a list of items under a pre-existing category, but you are not sure of the available presets you can use. You can follow these instructions.
 
 ****
-To show all the available presets:
+Listing all the pre-existing presets:
 
-1. Type `listpreset` into the command box, and press `Enter` to execute it.
+1. Type `listpreset` into the command box into the __Command Box__.
+2. Press `Enter` to execute.
 
-2. This will open the pop up window called `List Preset`.
+Outcome:
 
-3. You can see icons and names of all the available pre-existing presets in the pop up window
-****
+1. The __Result Display__ will show a success message.
+2. A pop-up window will appear, showing you all the available presets.
 
 .After list preset command
 image::user-guide/ListPreset.png[]
