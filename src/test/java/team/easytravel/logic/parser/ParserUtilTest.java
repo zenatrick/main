@@ -23,6 +23,7 @@ import team.easytravel.model.listmanagers.fixedexpense.FixedExpenseCategory;
 import team.easytravel.model.listmanagers.packinglistitem.ItemCategory;
 import team.easytravel.model.listmanagers.packinglistitem.ItemName;
 import team.easytravel.model.listmanagers.packinglistitem.Quantity;
+import team.easytravel.model.listmanagers.transportbooking.Mode;
 import team.easytravel.model.trip.Budget;
 import team.easytravel.model.trip.ExchangeRate;
 import team.easytravel.model.util.attributes.Location;
@@ -489,6 +490,29 @@ public class ParserUtilTest {
         assertEquals(expectedQuantity, ParserUtil.parseQuantity(quantityWithWhitespace));
     }
 
+    // -- Transport --
+    @Test
+    public void parseMode_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseMode(null));
+    }
+
+    @Test
+    public void parseMode_invalidValue_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseMode(INVALID_MODE));
+    }
+
+    @Test
+    public void parseMode_validValueWithoutWhitespace_returnsMode() throws Exception {
+        Mode expectedMode = new Mode(VALID_MODE);
+        assertEquals(expectedMode, ParserUtil.parseMode(VALID_MODE));
+    }
+
+    @Test
+    public void parseMode_validValueWithWhitespace_returnsTrimmedMode() throws Exception {
+        String modeWithWhitespace = WHITESPACE + VALID_MODE + WHITESPACE;
+        Mode expectedMode = new Mode(VALID_MODE);
+        assertEquals(expectedMode, ParserUtil.parseMode(modeWithWhitespace));
+    }
 
 
     //    @Test
