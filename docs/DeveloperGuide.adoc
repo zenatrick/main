@@ -22,7 +22,7 @@ Refer to the guide <<SettingUp#, here>>.
 
 == Design
 
-In this section, you will learn about the general design and structure of **E.T.**. Subsequently, this section will also describe and explain how each component in **E.T.** works individually. **E.T.** is coded using the __Object-Oriented Programming__ paradigm and it follows the __Facade Pattern__ and __Command Pattern__ in software design.
+In this section, you will learn about the general design and structure of **E.T.**. Subsequently, this section will also describe and explain how each component in **E.T.** works individually. **E.T.** is coded using the <<oop, __Object-Oriented Programming__>> paradigm and it follows the <<facade-pattern, __Facade Pattern__>> and <<command-pattern, __Command Pattern__>> in software design.
 
 [[Design-Architecture]]
 === Architecture
@@ -101,7 +101,7 @@ link:{repoURL}/src/main/java/team/easytravel/ui/Ui.java[`Ui.java`]
 
 The `Ui` component consists of a `MainWindow` that is made up of smaller parts such as `ResultDisplay` and `CommandBox` as shown in the __Class Diagram__ above. All UI parts in the `Ui` component including `MainWindow` inherit from the abstract `UiPart` class.
 
-The `TabPanel` is an abstract class that represents a tab in the __GUI__ and each tab will display information on different features of **E.T.**. The following classes inherit from the `TabPanel` abstract class:
+The `TabPanel` is an abstract class that represents a tab in the <<gui, __GUI__>> and each tab will display information on different features of **E.T.**. The following classes inherit from the `TabPanel` abstract class:
 
 * `ScheduleTabPanel`
 * `ActivityTabPanel`
@@ -122,14 +122,14 @@ The `MainWindow` also has access to 2 more windows, namely:
 
 NOTE: `XYZWindow` is used to refer to the 2 windows listed above.
 
-The `Ui` component uses __JavaFX__ UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/team/easytravel/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
+The `Ui` component uses <<javafx, __JavaFX__>> UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/team/easytravel/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
 ==== Responsibilities
 
 The `Ui` component,
 
 * Executes user commands using the `Logic` component.
-* Listens for changes to `Model` data so that the __GUI__ can be updated with the modified data.
+* Listens for changes to `Model` data so that the <<gui, __GUI__>> can be updated with the modified data.
 
 [#logic-component]
 [[Design-Logic]]
@@ -189,7 +189,7 @@ The `XYZManager` is a generic name given to the following managers which represe
 * `PackingListManager`
 * `FixedExpenseManager`
 
-The `ObservableList` abstract class is exposed by the `Model` component for the `Ui` component to observe and automatically update the __GUI__ when data in the `Model` component changes. This follows the __Observer Pattern__ in software design.
+The `ObservableList` abstract class is exposed by the `Model` component for the `Ui` component to observe and automatically update the <<gui, __GUI__>> when data in the `Model` component changes. This follows the __Observer Pattern__ in software design.
 
 ==== Responsibilities
 
@@ -198,7 +198,7 @@ The `Model` component,
 * Represents data of different features of **E.T.**.
 * Stores these data in-memory when the App is running.
 * Does not depend on the `Ui`, `Logic` and `Storage` components.
-* Contains observable data so that the __GUI__ can automatically update upon data changes.
+* Contains observable data so that the <<gui, __GUI__>> can automatically update upon data changes.
 
 [#storage-component]
 [[Design-Storage]]
@@ -225,9 +225,9 @@ image::FixedExpenseStorageClassDiagram.png[]
 
 The `Storage` component,
 
-* Can save the `UserPref` object in a __JSON__ format.
+* Can save the `UserPref` object in a <<json, __JSON__>> format.
 * Can parse a `json` file in the correct format to get the `UserPref` object.
-* Can save the `XYZManager` data in a __JSON__ format.
+* Can save the `XYZManager` data in a <<json, __JSON__>> format.
 * Can parse a `json` file in the correct format to get the `XYZManager`’s data.
 
 [#commons-component]
@@ -348,7 +348,7 @@ These list include: +
 * Accommodation Bookings
 * Packing List
 
-All these lists are managed by `ListManager`s which support basic __CRUD__ operations and some additional operations for users to manage their list efficiently. The term __item__ will be used to refer to the elements stored in a list.
+All these lists are managed by `ListManager`s which support basic <<crud, __CRUD__>> operations and some additional operations for users to manage their list efficiently. The term __item__ will be used to refer to the elements stored in a list.
 
 Common commands for all `ListManager`s:
 
@@ -365,9 +365,9 @@ When planning for a trip, there are many things that the user may want to keep t
 ==== Current Implementation
 In this section, we will first explain the structure of a typical `ListManager` also known as an `XYZListManager`. As mentioned earlier in the overview of this section, the term __item__ will be used to refer to the elements stored in a list.
 
-The `XYZListManager` contains a `UniqueList` which is a data structure that stores all the __items__ of a list. The `UniqueList` makes use of Java’s __generics__ and can only contain __items__ that implement the `UniqueListElement` interface. This is because the uniqueness of an element in the `UniqueList` is determined by the returned value of the `isSame()` method of the UniqueListElement interface.
+The `XYZListManager` contains a `UniqueList` which is a data structure that stores all the __items__ of a list. The `UniqueList` makes use of Java’s <<generics, __generics__>> and can only contain __items__ that implement the `UniqueListElement` interface. This is because the uniqueness of an element in the `UniqueList` is determined by the returned value of the `isSame()` method of the UniqueListElement interface.
 
-In addition, the `XYZListManager` implements the `ReadOnlyXYZManager` interface. This interface has the `getXYZList()` method which returns an `ObservableList` of __items__. For example, `ActivityManager` implements `ReadOnlyActivityManager`. The `ObservableList` of __items__ allows the `Ui` model to use the __Observer Pattern__ to update the __GUI__.
+In addition, the `XYZListManager` implements the `ReadOnlyXYZManager` interface. This interface has the `getXYZList()` method which returns an `ObservableList` of __items__. For example, `ActivityManager` implements `ReadOnlyActivityManager`. The `ObservableList` of __items__ allows the `Ui` model to use the __Observer Pattern__ to update the <<gui, __GUI__>>.
 
 The following __Class Diagram__ describes the aforementioned structure of the `ActivityManager`.
 
@@ -465,12 +465,6 @@ Reason for choosing option 1:
 === Activity Manager
 **E.T.** allows the user to keep track of their activities for his/her trip. The activity manager is one of the `ListManager` s  (See <<List-Manager>>). On top of the basic operations provided by a `ListManager`, it also allows the user to search for their activities using the `findacitivty` command. The parameters of the `findactivity` command are keywords in the activity entries that the user wants to search for. E.g. `findactivity sightseeing carnival` will search and list all activity entries with `sightseeing` or `carnival` in their detail. Another similar command, `findactivitytag` has the same functionality but only searches for the tags of activity entries.
 
-
-`ActivityManager` has other than the basic CRUD commands, find command provide a find command to assist in activity management such as:
-
-* `findactivitytag`
-* `findactivity`
-
 ==== Rationale
 The activity manager is an important feature to have because any oversea trip will be packed with activities for the traveller. Thus, we decided to create an activity manager as one of the ``ListManager``s.
 
@@ -490,7 +484,7 @@ The following steps will describe the execution of the `FindActivityCommand` in 
 . When the `execute()` method of the `FindActivityCommand` is called, the `ModelManager`’s `updateFilteredActivityList()` method is called.
 . The `ModelManager` then proceeds to call the `updateFilteredActivityList()` method of the `ActivityManager`.
 . The `ActivityManager` will then update its filtered list of `Activity`s to contain only `Activity`s that fulfil the given predicate.
-. The `Ui` component will detect this change and update the __GUI__.
+. The `Ui` component will detect this change and update the <<gui, __GUI__>>.
 . If the above steps are all successful, the `ScheduleCommand` will then create a `CommandResult` object and return the result.
 
 The __Sequence Diagram__ below summarises the aforementioned steps.
@@ -604,7 +598,7 @@ The transport booking manager is an important feature to have because any overse
 
 When a user adds an accommodation booking, the `Logic` Component parses the user input and creates an `AddAccommodationBookingCommand` object (See <<Design-Logic>>). When the `execute()` method of `AddAccommodationBookingCommand` is called, the execution will check if the new accommodation booking overlaps with any other other current bookings.
 
-Using a Java’s __stream__, the new accommodation booking will be checked against all other bookings in the list to look for any overlaps.
+Using a Java’s <<stream, __stream__>>, the new accommodation booking will be checked against all other bookings in the list to look for any overlaps.
 We used an interval overlap detection algorithm to check for overlap between 2 accommodation bookings. If the total duration of the 2 accommodation bookings is within the __acceptable duration__ of the algorithm, then there is no overlap.
 __acceptable duration__ = latest end day - earliest start day
 
@@ -940,13 +934,13 @@ Refer to the guide <<DevOps#, here>>.
 * prefer desktop apps over other types
 * can type fast
 * prefers typing over mouse input
-* is reasonably comfortable using CLI apps
+* is reasonably comfortable using <<cli>> apps
 
 
 *Value proposition*:
 
 * An all in one travel planner and manager, that guides the user from head to tail in planning for an overseas trip. Even those who have never planned for a trip before will be able to focus on enjoying their trip while the app guides them in planning and managing the perfect overseas trip.
-* E.T. can manage trips faster than a typical mouse/__GUI__  driven app.
+* E.T. can manage trips faster than a typical mouse/<<gui, __GUI__>>  driven app.
 
 [appendix]
 == User Stories
@@ -982,7 +976,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`*` |Command Line enthusiast |Press `Tab` to autocomplete my commands |Be more efficient
 
-|`*` |User who likes customization|Change my application into different colour themes |Make my application’s __GUI__ visually appealing to me
+|`*` |User who likes customization|Change my application into different colour themes |Make my application’s <<gui, __GUI__>> visually appealing to me
 
 |`*` |Budget traveller |Set an individual budget for each day |Stay within my budget
 
@@ -1211,14 +1205,14 @@ A lightweight data-interchange format which is easily readable and writable.
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, Unix, macOS
 
-[[oop]] Object Oriented Programming::
+[[oop]] Object-Oriented Programming::
 A type of computer programming (software design) in which programmers define the data type of a data structure, and also the types of operations (functions) that can be applied to the data structure.
 
 [[prefix]] Prefix::
-The term that comes before each parameter in the command. For example, the prefix in country/COUNTRY is country/.
+The term that comes before each parameter in the command. For example, the prefix in `country/COUNTRY` is `country/`.
 
 [[prefix-name]] Prefix Name::
-The word that comes before ‘/’ in the prefix. For example, the prefix name in country/COUNTRY is country/.
+The word that comes before `/` in the prefix. For example, the prefix name in `country/COUNTRY` is `country`.
 
 [[stream]] Stream::
 A stream is a sequence of objects that supports various methods which can be pipelined to produce the desired result.
@@ -1236,7 +1230,7 @@ These instructions only provide a starting point for testers to work on; testers
 . Initial launch
 .. Download the jar file and copy into an empty folder
 .. Double-click the jar file
-Expected: Shows the __GUI__ with a set of schedules. The window size may not be optimum.
+Expected: Shows the <<gui, __GUI__>> with a set of schedules. The window size may not be optimum.
 . Saving window preferences
 .. Resize the window to an optimum size. Move the window to a different location. Close the window.
 .. Re-launch the app by double-clicking the jar file.

@@ -14,8 +14,8 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 image::team-profile/zenatrick.png[width="150", align="left"]
 {empty}[https://github.com/zenatrick[github]] [<<zenatrick#, portfolio>>]
 
-Role: Team Lead +
-Feature: Diary +
+Role: Team Leader +
+Feature: Schedule, Transport Booking Manager +
 Responsibilities: Integration, Git Expert +
 Components: Model, UI
 
@@ -26,7 +26,7 @@ image::team-profile/joshlay96.png[width="150", align="left"]
 {empty}[http://github.com/joshlay96[github]] [<<joshlay96#, portfolio>>]
 
 Role: Developer +
-Feature: Expense Manager +
+Feature: Expense Manager, Help Tab +
 Responsibilities: Testing, Intellij Expert +
 Components: Common, Storage
 
@@ -38,7 +38,7 @@ image::./team-profile/deunitato.png[width="150", align="left"]
 
 Role: Developer +
 Feature: Trip Planner +
-Responsibilities: Delieverables and Deadlines, Scheduling and Tracking +
+Responsibilities: Deliverable and Deadlines, Scheduling and Tracking +
 Components: Logic, Model
 
 '''
@@ -48,7 +48,7 @@ image::team-profile/jwee97.png[width="150", align="left"]
 {empty}[http://github.com/jwee97[github]] [<<jwee97#, portfolio>>]
 
 Role: Developer +
-Feature: Pre-Trip Manager +
+Feature: Accommodation Booking Manager +
 Responsibilities: Code Quality, UML Expert +
 Components: Logic, Storage
 
@@ -59,7 +59,7 @@ image::team-profile/loycatherine.png[width="150", align="left"]
 {empty}[http://github.com/loycatherine[github]] [<<loycatherine#, portfolio>>]
 
 Role: Developer +
-Feature: Packing List +
+Feature: Packing List, Progress Checker +
 Responsibilities: Documentation +
 Components: Common, UI
 
