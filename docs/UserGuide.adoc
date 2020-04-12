@@ -194,7 +194,7 @@ This section contains all the information you need to know about the features of
 
 You are required to set a trip before other features are unlocked. <<UserGuide.adoc#set-a-new-trip, See Section 4.1.2 Set a new trip>>  to learn how to set a trip.
 
-==== Trip Management
+=== Trip Management
 
 This feature allows you to manage your trip. You can record the following information about your trip:
 * Title
@@ -204,7 +204,7 @@ This feature allows you to manage your trip. You can record the following inform
 * End date
 
 [#trip-management-command-parameters]
-===== Trip Management Command Parameters
+==== Trip Management Command Parameters
 Before you jump right into using this feature, you may want to learn about all the common command parameters used in this feature. The table below shows the list of common command parameters that will be used for this feature.
 
 
@@ -317,7 +317,7 @@ Outcome:
 .Outcome of a successful rename
 image::user-guide/RenameTrip.png[]
 
-===== Editing the trip’s budget: `editbudget`
+===== Edit the trip’s budget: `editbudget`
 
 You can use this command to change the budget of the trip.
 
@@ -646,7 +646,7 @@ Outcome:
 * *E.T.* will switch to the Activities Tab.
 * You can see a list of sorted activities being displayed.
 
-==== Find activities by keywords: `findactivity`
+==== Find activities by name: `findactivity`
 You can use this command to find activities by keywords.
 
 *Format:*
@@ -665,7 +665,7 @@ Let say your list has a bunch of activities and you want to search for a specifi
 
 Finding activities:
 
-. Type `findactivity` shopping into the _Command Box_.
+. Type `findactivity shopping` into the _Command Box_.
 . Press `Enter` to execute.
 
 Outcome:
@@ -678,13 +678,13 @@ Outcome:
 .Outcome of a successful findactivity command
 image::user-guide/FindActivity.png[]
 
-==== Find activities by keywords: `findactivitytag`
+==== Find activities by tag: `findactivitytag`
 You can use this command to find activities by tags.
 
 
 *Format:*
 
-`findactivitytag TAG_NAME ...`
+`findactivitytag KEYWORD [MORE_KEYWORDS]...`
 
 [NOTE]
 ====
@@ -720,7 +720,7 @@ Outcome:
 
 The following sections [4.3.1 to 4.3.3] allows the user to manage transportation bookings for the trip.
 
-==== Create new transportation booking: `addtransport`
+==== Add a new transportation booking: `addtransport`
 
 If you have a new transportation booking, you can use this command to store the information and it will store the booking into a list.
 
@@ -741,7 +741,7 @@ If you have a plane booking, you can use `addtransport` to add the booking with 
 .After add transport booking command
 image::user-guide/AddTransportBooking.png[]
 
-==== Edit transportation booking: `edittransport`
+==== Edit an existing transportation booking: `edittransport`
 
 If you have details for a given transport booking, you can use this command to edit certain details of the booking.
 
@@ -772,7 +772,7 @@ In the case that you want to change the end location and mode of transport, you 
 .After edit transport booking command
 image::user-guide/EditTransportBooking2.png[]
 
-==== Delete transportation booking: `deletetransport`
+==== Delete an existing transportation booking: `deletetransport`
 
 In the case that you want to remove the transport booking, you can use this command to remove it from the list.
 
@@ -790,7 +790,7 @@ You can delete a transport booking by using the `deletetransport` command
 .After delete transport booking command
 image::user-guide/DeleteTransportBooking.png[]
 
-==== Clear transportation booking: `cleartransport`
+==== Clear all transportation bookings: `cleartransport`
 
 If you want to remove all the transportation bookings that you have made, this command will return an empty list for you to start working with again.
 
@@ -812,7 +812,7 @@ image::user-guide/ClearTransportBooking.png[]
 
 The following sections [4.4.1 to 4.4.3] allows the user to set and modify accommodation bookings in the trip.
 
-===== Create a new accommodation booking: `addacc`
+==== Add a new accommodation booking: `addacc`
 
 If you have made an accommodation booking, you can use this command to store it into a list and be able to keep track of it.
 
@@ -836,7 +836,7 @@ If you have a new accommodation booking for JW Marriott Hotel at KL on the 2nd d
 .After add accommodation booking command
 image::user-guide/AddAccommodationBooking.png[]
 
-==== Edit accommodation booking: `editacc`
+==== Edit an existing accommodation booking: `editacc`
 
 If you have to adjust the details of the accommodation booking and you wish to make changes, you can use this command to edit the necessary information.
 
@@ -869,7 +869,7 @@ You can also use this command to change the third accommodation booking in the l
 image::user-guide/EditAccommodationBooking2.png[]
 
 
-==== Delete accommodation booking: `deleteacc`
+==== Delete an existing accommodation booking: `deleteacc`
 
 Assuming you have another accommodation booking and plan to delete the previous one that you set on the same days, you can use this command to remove it.
 
@@ -887,7 +887,7 @@ You can use `deleteacc` to delete the second accommodation booking.
 .After delete accommodation booking command
 image::user-guide/DeleteAccommodationBooking.png[]
 
-==== Clear accommodation booking: `clearacc`
+==== Clear all accommodation bookings: `clearacc`
 
 If you want to remove all the accommodation bookings that you have made, this command will return an empty list for you to start working with again.
 
@@ -940,10 +940,10 @@ Before you jump right in to use this feature, you may want to learn about all th
 * It must be made of alphanumeric characters, and it must be less than 30 characters long
 * It can be made up of multiple words
 * **E.T.** will automatically make the category lowercase
-* If it is not in the available presets (see section 4.5.12), then the default icon will be placed next to the packing list item’s name. Else, the category icon will be placed next to the packing list item’s name instead.
+* If it is not in the available presets (see section 4.5.13), then the default icon will be placed next to the packing list item’s name. Else, the category icon will be placed next to the packing list item’s name instead.
 |===
 
-====  Viewing all items in your packing list: `listitem`
+==== View all items in the packing list: `listitem`
 
 You can use this command to navigate to the __Packing List Tab__ and display your packing list in **E.T.**
 
@@ -970,7 +970,7 @@ Outcome:
 .After the list item command
 image::user-guide/ListItem.png[]
 
-==== Adding an item in the packing list: `additem`
+==== Add a new packing list item: `additem`
 
 This command allows you to add a new item into your packing list.
 
@@ -1018,7 +1018,7 @@ Outcome:
 .After add item command
 image::user-guide/AddItem.png[]
 
-==== Editing an item in the packing list: `edititem`
+==== Edit an existing packing list item: `edititem`
 
 This command allows you to edit any mistake made in the details of an existing item.
 
@@ -1094,7 +1094,7 @@ Outcome:
 .After edit item command
 image::user-guide/EditItem 2.png[]
 
-==== Deleting an item in the packing list: `deleteitem`
+==== Delete an existing packing list item: `deleteitem`
 
 This commands deletes your item in the packing list.
 
@@ -1130,7 +1130,7 @@ image::user-guide/DeleteItem 1.png[]
 .After delete item command
 image::user-guide/DeleteItem 2.png[]
 
-==== Marking an item as packed in the packing list: `checkitem`
+==== Mark an existing packing list item as packed: `checkitem`
 
 This command marks an item as packed in your packing list.
 
@@ -1171,7 +1171,7 @@ image::user-guide/CheckItem 2.png[]
 .After check item command part 2
 image::user-guide/CheckItem 3.png[]
 
-==== Marking an item as unpacked in the packing list: `uncheckitem`
+==== Mark an existing packing list item as unpacked: `uncheckitem`
 
 This command marks an item as unpacked in your packing list.
 
@@ -1215,7 +1215,7 @@ image::user-guide/UncheckItem 3.png[]
 .After uncheck item command part 3
 image::user-guide/UncheckItem 4.png[]
 
-==== Sorting items in the packing list: `sortitem`
+==== Sort the packing list: `sortitem`
 
 This command sorts your items in the packing list according to an order and a criteria you specify.
 
@@ -1253,7 +1253,7 @@ image::user-guide/SortItem 1.png[]
 .After sort item command part 2
 image::user-guide/SortItem 2.png[]
 
-==== Finding items in the packing list: `finditem`
+==== Find packing list items by keywords: `finditem`
 
 This command finds items in your packing list according to keywords specified by you.
 
@@ -1263,7 +1263,7 @@ Format: `finditem KEYWORD [MORE_KEYWORDS]...`
 =====
 - Command can only be used if there is at least 1 item in the packing list.
 - If packing list does not contain any of the keywords, then it will display an empty list.
-- If you want to return to the packing list after using the `finditem` command, use the `listitem` command. (see Section 4.5.9)
+- If you want to return to the packing list after using the `finditem` command, use the `listitem` command. (see Section 4.5.2)
 - The result box will display the number of items that contains the keyword(s).
 - The `finditem` command will only search through the titles of the items
 =====
@@ -1290,7 +1290,7 @@ Outcome:
 .After find item command
 image::user-guide/FindItem.png[]
 
-==== Finding item categories in the packing list: `finditemcategory`
+==== Find packing list items by keywords that are categories: `finditemcategory`
 
 This command find items in your packing list according to keywords keywords specified by you that are categories
 
@@ -1300,7 +1300,7 @@ Format: `finditemcategory KEYWORD [MORE_KEYWORDS]...`
 =====
 - Command can only be used if there is at least 1 item in the packing list.
 - If packing list does not contain any of the keywords, then it will display an empty list
-- If you want to return to the packing list after using the `finditemcategory` command, use the `listitem` command. (see Section 4.5.9)
+- If you want to return to the packing list after using the `finditemcategory` command, use the `listitem` command. (see Section 4.5.2)
 - The result box will display the number of items that is in the categories of the given keyword(s).
 =====
 
@@ -1326,7 +1326,7 @@ Outcome:
 .After find item category command
 image::user-guide/FindItemCategory.png[]
 
-==== Clearing items in the packing list: `clearitem`
+==== Clear all packing list items: `clearitem`
 
 This command clears all items in your packing list.
 
@@ -1354,7 +1354,7 @@ Outcome:
 .After the clear item command
 image::user-guide/ClearItem.png[]
 
-==== Adding a preset category: `addpreset`
+==== Add a new preset category: `addpreset`
 
 This command adds a pre-existing list of items under a category into your packing list.
 
@@ -1364,7 +1364,7 @@ Format: `addpreset PRESET_NAME`
 =====
 - If the preset contains an item that is already in the packing list, it will not add that item in. It will add the rest of the items in the preset into the packing list.
 - You can only add in pre-existing presets. If you add in other presets, then you will receive the message, "Sorry! This preset does not exist."
-- To see all the available presets, use the `listpreset` command. (see Section 4.5.12)
+- To see all the available presets, use the `listpreset` command. (see Section 4.5.13)
 =====
 
 Examples:
@@ -1389,7 +1389,7 @@ Outcome:
 .After add preset command
 image::user-guide/AddPreset.png[]
 
-==== Listing all the presets in the packing list: `listpreset`
+==== List all presets: `listpreset`
 
 This command lists all the default presets available for you to use.
 
@@ -1421,7 +1421,6 @@ Outcome:
 
 .After list preset command
 image::user-guide/ListPreset.png[]
-****
 
 === Fixed Expense Manager
 
@@ -1497,7 +1496,7 @@ This would be further elaborated in sections 4.6.3 below.
 
 The following sections [4.6.3.1 - 4.6.3.5] allows a user to set and modify fixed expenses before the trip.
 
-===== Adding a new fixed expense: `addexpense`
+===== Add a new fixed expense: `addexpense`
 
 You can use this command to add a new expense into the Fixed Expense Manager.
 
@@ -1545,8 +1544,7 @@ Outcome:
 .After successfully adding a fixed expense
 image::user-guide/AddFixedExpense.png[]
 
-
-===== Edit your fixed expense: editexpense
+===== Edit an existing fixed expense: `editexpense`
 
 This command allows you to edit any mistakes that you might have accidentally included into the fixed expense manager. You can edit the details of an existing fixed expense entry based on the `INDEX` you have specified.
 
@@ -1610,7 +1608,7 @@ Outcome:
 image::user-guide/EditFixedExpense.png[]
 
 
-===== Deleting a fixed expense: `deleteexpense`
+===== Delete an existing fixed expense: `deleteexpense`
 
 This command allows you to delete an existing fixed expense entry.
 
@@ -1641,7 +1639,7 @@ Outcome:
 .After successfully deleting a fixed expense
 image::user-guide/DeleteFixedExpense.png[]
 
-===== Clearing a fixed expense: `clearexpense`
+===== Clear all fixed expenses: `clearexpense`
 
 This command allows you to clear all Fixed Expenses in the list.
 
@@ -1670,7 +1668,7 @@ Outcome:
 .After successfully clearing all fixed expense
 image::user-guide/ClearFixedExpense.png[]
 
-===== Sort fixed expenses according to amount spent: `sortexpense`
+===== Sort the fixed expense list: `sortexpense`
 
 This command allows you to sort all your fixed expenses in the list.
 
