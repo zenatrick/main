@@ -782,11 +782,11 @@ The Activity Diagram below summarises what happens when the user adds a fixed ex
 .Workflow of the `addexpense` command..
 image::developer-guide/fixed-expense/AddFixedExpenseActivityDiagram.png[]
 
-When a user enters the `addexpense` command, the `Logic` Component parses the user input and creates an `AddExpeseCommand` object. <<DeveloperGuide.adoc#logic-component, (See Section 2.3 Logic Component)>>
+When a user enters the `addexpense` command, the `Logic` Component parses the user input and creates an `AddExpenseCommand` object. <<DeveloperGuide.adoc#logic-component, (See Section 2.3 Logic Component)>>
 
 The following steps describes the execution of the AddFixedExpenseCommand:
 
-. When `execute()` of the `AddExpeseCommand` is called, the current exchange rate is obtained from `TripManager` through `ModelManager`.
+. When `execute()` of the `AddExpenseCommand` is called, the current exchange rate is obtained from `TripManager` through `ModelManager`.
 . A new `FixedExpense` object is created. The amount will be converted to SGD if it is in foreign currency.
 . The newly created `FixedExpense` object is added to the `FixedExpenseManager` through the `ModelManager`’s `addFixedExpense()` method.
 . The total sum of all expenses is obtained by calling the `getTotalExpense()` method.
@@ -794,7 +794,7 @@ The following steps describes the execution of the AddFixedExpenseCommand:
 . The remaining budget is calculated.
 . A `CommandResult` object which consists of a contains the success message along with the remaining budget is created and returned.
 
-The following sequence diagram describes the execution of the `AddExpeseCommand` when its `execute()` method is called.
+The following sequence diagram describes the execution of the `AddExpenseCommand` when its `execute()` method is called.
 
 .Workflow of the `addexpense` command..
 image::developer-guide/fixed-expense/AddFixedExpenseCommandExecution.png[]
@@ -1208,9 +1208,6 @@ A visual display shown on the screen.
 
 [[javafx]] JavaFX::
 is a software platform for creating and delivering desktop applications, as well as rich Internet applications (RIAs) that can run across a wide variety of devices.
-
-[[java-script-object]] JavaScript Object Notation::
-A lightweight data-interchange format which is easily readable and writable.
 
 [[json]] JavaScript Object Notation::
 A lightweight data-interchange format which is easily readable and writable.
