@@ -11,10 +11,15 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import team.easytravel.commons.core.time.Date;
 import team.easytravel.commons.core.time.DateTime;
 import team.easytravel.logic.parser.exceptions.ParseException;
+import team.easytravel.model.listmanagers.accommodationbooking.AccommodationName;
 import team.easytravel.model.listmanagers.activity.Duration;
 import team.easytravel.model.listmanagers.activity.Tag;
+import team.easytravel.model.listmanagers.fixedexpense.Amount;
+import team.easytravel.model.listmanagers.fixedexpense.Description;
+import team.easytravel.model.listmanagers.fixedexpense.FixedExpenseCategory;
 import team.easytravel.model.trip.Budget;
 import team.easytravel.model.trip.ExchangeRate;
 import team.easytravel.model.util.attributes.Location;
@@ -53,7 +58,7 @@ public class ParserUtilTest {
 
     //--FixedExpense
     public static final String INVALID_AMOUNT = "KK";
-    public static final String VALID_AMOUNT = "100";
+    public static final String VALID_AMOUNT = "100.00";
     public static final String INVALID_DESC = "&&**";
     public static final String VALID_DESC = "This is a valid desc";
     public static final String VALID_CATEGORY = "activities";
@@ -154,13 +159,13 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDateTime_validValueWithoutWhitespace_returnsAddress() throws Exception {
+    public void parseDateTime_validValueWithoutWhitespace_returnsDateTime() throws Exception {
         DateTime expectedDateTime = DateTime.fromString(VALID_DATE);
         assertEquals(expectedDateTime, ParserUtil.parseDateTime(VALID_DATE));
     }
 
     @Test
-    public void parseDateTime_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
+    public void parseDateTime_validValueWithWhitespace_returnsTrimmedAddressDateTime() throws Exception {
         String dateTimeWithWhitespace = WHITESPACE + VALID_DATE + WHITESPACE;
         DateTime expectedDateTime = DateTime.fromString(VALID_DATE);
         assertEquals(expectedDateTime, ParserUtil.parseDateTime(dateTimeWithWhitespace));
@@ -215,6 +220,7 @@ public class ParserUtilTest {
         Budget expectedBudget = new Budget(VALID_BUDGET);
         assertEquals(expectedBudget, ParserUtil.parseBudget(budgetWithWhite));
     }
+
 
     // -- Activity --
     @Test
@@ -288,6 +294,123 @@ public class ParserUtilTest {
         assertEquals(expectedDuration, ParserUtil.parseDuration(durationWithWhitespace));
     }
 
+    // -- Accommodation --
+    @Test
+    public void parseDate_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseDate(null));
+    }
+
+    @Test
+    public void parseDate_invalidValue_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DAY));
+    }
+
+    @Test
+    public void parseDate_validValueWithoutWhitespace_returnsDate() throws Exception {
+        Date expectedDate = Date.fromString(VALID_DAY);
+        assertEquals(expectedDate, ParserUtil.parseDate(VALID_DAY));
+    }
+
+    @Test
+    public void parseDate_validValueWithWhitespace_returnsTrimmedDate() throws Exception {
+        String dateWithWhite = WHITESPACE + VALID_DAY + WHITESPACE;
+        Date expectedDate = Date.fromString(VALID_DAY);
+        assertEquals(expectedDate, ParserUtil.parseDate(dateWithWhite));
+    }
+
+    @Test
+    public void parseAccommodationName_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseAccommodationName(null));
+    }
+
+    @Test
+    public void parseAccommodationName_invalidValue_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseAccommodationName(INVALID_ACC_NAME));
+    }
+
+
+    @Test
+    public void parseAccommodationName_validValueWithoutWhitespace_returnsAccommodationName() throws Exception {
+        AccommodationName expectedName = new AccommodationName(VALID_ACC_NAME);
+        assertEquals(expectedName, ParserUtil.parseAccommodationName(VALID_ACC_NAME));
+    }
+
+    @Test
+    public void parseAccommodationName_validValueWithWhitespace_returnsTrimmedAccommodationName() throws Exception {
+        String accommodationWithWhite = WHITESPACE + VALID_ACC_NAME + WHITESPACE;
+        AccommodationName expectedName = new AccommodationName(VALID_ACC_NAME);
+        assertEquals(expectedName, ParserUtil.parseAccommodationName(accommodationWithWhite));
+    }
+
+    //-- Fix Expense --
+    @Test
+    public void parseAmount_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseAmount(null));
+    }
+
+    @Test
+    public void parseAmount_invalidValue_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseAmount(INVALID_AMOUNT));
+    }
+
+    @Test
+    public void parseAmount_validValueWithoutWhitespace_returnsAmount() throws Exception {
+        Amount expectedAmount = new Amount(VALID_AMOUNT);
+        assertEquals(expectedAmount, ParserUtil.parseAmount(VALID_AMOUNT));
+    }
+
+    @Test
+    public void parseAmount_validValueWithWhitespace_returnsTrimmedAmount() throws Exception {
+        String amountWithWhite = WHITESPACE + VALID_AMOUNT + WHITESPACE;
+        Amount expectedAmount = new Amount(VALID_AMOUNT);
+        assertEquals(expectedAmount, ParserUtil.parseAmount(amountWithWhite));
+    }
+
+    @Test
+    public void parseCategory_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseFixedExpenseCategory(null));
+    }
+
+    @Test
+    public void parseCategory_invalidValue_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseFixedExpenseCategory(INVALID_CATEGORY));
+    }
+
+    @Test
+    public void parseCategory_validValueWithoutWhitespace_returnsCategory() throws Exception {
+        FixedExpenseCategory expected = new FixedExpenseCategory(VALID_CATEGORY);
+        assertEquals(expected, ParserUtil.parseFixedExpenseCategory(VALID_CATEGORY));
+    }
+
+    @Test
+    public void parseCategory_validValueWithWhitespace_returnsTrimmedCategory() throws Exception {
+        String catWithWhite = WHITESPACE + VALID_CATEGORY + WHITESPACE;
+        FixedExpenseCategory expected = new FixedExpenseCategory(VALID_CATEGORY);
+        assertEquals(expected, ParserUtil.parseFixedExpenseCategory(catWithWhite));
+    }
+
+    @Test
+    public void parseDesc_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseDescription(null));
+    }
+
+    @Test
+    public void parseDesc_invalidValue_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_DESC));
+    }
+
+    @Test
+    public void parseDesc_validValueWithoutWhitespace_returnsDesc() throws Exception {
+        Description expectedDesc = new Description(VALID_DESC);
+        assertEquals(expectedDesc, ParserUtil.parseDescription(VALID_DESC));
+    }
+
+    @Test
+    public void parseDesc_validValueWithWhitespace_returnsTrimmedDesc() throws Exception {
+        String descWithWhite = WHITESPACE + VALID_DESC + WHITESPACE;
+        Description expectedDesc = new Description(VALID_DESC);
+        assertEquals(expectedDesc, ParserUtil.parseDescription(descWithWhite));
+    }
 
 
 
