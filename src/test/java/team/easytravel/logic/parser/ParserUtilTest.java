@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import team.easytravel.commons.core.time.DateTime;
 import team.easytravel.logic.parser.exceptions.ParseException;
+import team.easytravel.model.listmanagers.activity.Duration;
 import team.easytravel.model.listmanagers.activity.Tag;
 import team.easytravel.model.trip.Budget;
 import team.easytravel.model.trip.ExchangeRate;
@@ -42,7 +43,7 @@ public class ParserUtilTest {
     public static final String VALID_TAG_1 = "expensive";
     public static final String VALID_TAG_2 = "cool";
     public static final String INVALID_DURATION = "$"; //THIS IS NOT A VALID
-    public static final String VALID_DURATION = "1";
+    public static final Integer VALID_DURATION = 1;
 
     // -- Accommodation --
     public static final String INVALID_ACC_NAME = "."; //non alphanumerica
@@ -69,11 +70,8 @@ public class ParserUtilTest {
     // -- Transportbooking --
     public static final String INVALID_MODE = "stupid";
     public static final String VALID_MODE = "plane";
-    
+
     private static final String WHITESPACE = " \t\r\n";
-
-
-
 
     //-- Commons --
 
@@ -169,7 +167,7 @@ public class ParserUtilTest {
     }
 
     // -- TRIP --
-    //location
+    //exchangeRate
     @Test
     public void parseExchangeRate_null_throwsNullPointerException() {
         Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseExchangeRate(null));
@@ -264,6 +262,30 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    //duration
+    @Test
+    public void parseDuration_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseDuration((String) null));
+    }
+
+    @Test
+    public void parseDuration_invalidValue_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseDuration(INVALID_DURATION));
+    }
+
+    @Test
+    public void parseDuration_validValueWithoutWhitespace_returnsDuration() throws Exception {
+        Duration expectedDuration = new Duration(VALID_DURATION);
+        assertEquals(expectedDuration, ParserUtil.parseDuration(VALID_DURATION.toString()));
+    }
+
+    @Test
+    public void parseDuration_validValueWithWhitespace_returnsTrimmedDuration() throws Exception {
+        String durationWithWhitespace = WHITESPACE + VALID_DURATION + WHITESPACE;
+        Duration expectedDuration = new Duration(VALID_DURATION);
+        assertEquals(expectedDuration, ParserUtil.parseDuration(durationWithWhitespace));
     }
 
 

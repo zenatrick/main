@@ -417,6 +417,7 @@ public class ParserUtil {
      */
     public static Duration parseDuration(String duration) throws ParseException {
         requireNonNull(duration);
+        duration = duration.trim();
         try {
             Integer intDuration = Integer.parseInt(duration);
             if (!Duration.isValidDuration(intDuration)) {
