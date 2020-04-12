@@ -50,6 +50,6 @@ public class Budget {
         }
 
         Budget otherBudget = (Budget) other;
-        return this.value == otherBudget.value;
+        return this.value.equals(otherBudget.value);
     }
 }

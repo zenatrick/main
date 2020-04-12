@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import team.easytravel.commons.core.time.DateTime;
 import team.easytravel.logic.parser.exceptions.ParseException;
 import team.easytravel.model.listmanagers.activity.Tag;
+import team.easytravel.model.trip.Budget;
 import team.easytravel.model.trip.ExchangeRate;
 import team.easytravel.model.util.attributes.Location;
 import team.easytravel.model.util.attributes.Title;
@@ -40,7 +41,35 @@ public class ParserUtilTest {
     public static final String INVALID_TAG = "&"; //Tag cannot be '&'
     public static final String VALID_TAG_1 = "expensive";
     public static final String VALID_TAG_2 = "cool";
+    public static final String INVALID_DURATION = "$"; //THIS IS NOT A VALID
+    public static final String VALID_DURATION = "1";
 
+    // -- Accommodation --
+    public static final String INVALID_ACC_NAME = "."; //non alphanumerica
+    public static final String VALID_ACC_NAME = "Hillet";
+    public static final String INVALID_DAY = "a";
+    public static final String VALID_DAY = "28-09-2020";
+
+    //--FixedExpense
+    public static final String INVALID_AMOUNT = "KK";
+    public static final String VALID_AMOUNT = "100";
+    public static final String INVALID_DESC = "&&**";
+    public static final String VALID_DESC = "This is a valid desc";
+    public static final String VALID_CATEGORY = "activities";
+    public static final String INVALID_CATEGORY = "baka";
+
+    // -- PackingListitem --
+    public static final String INVALID_ITEM_CAT = "^^^";
+    public static final String VALID_ITEM_CAT = "male";
+    public static final String INVALID_ITEM_NAME = "(((";
+    public static final String VALID_ITEM_NAME = "underwear";
+    public static final String INVALID_QUANTITY = "2SS";
+    public static final String VALID_QUANTITY = "2";
+
+    // -- Transportbooking --
+    public static final String INVALID_MODE = "stupid";
+    public static final String VALID_MODE = "plane";
+    
     private static final String WHITESPACE = " \t\r\n";
 
 
@@ -164,6 +193,30 @@ public class ParserUtilTest {
         assertEquals(expectedExchangeRate, ParserUtil.parseExchangeRate(exchangeRateWithWhite));
     }
 
+    //budget
+    @Test
+    public void parseBudget_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseBudget(null));
+    }
+
+    @Test
+    public void parseBudget_invalidValue_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseBudget(INVALID_BUDGET.toString()));
+    }
+
+
+    @Test
+    public void parseBudget_validValueWithoutWhitespace_returnsBudget() throws Exception {
+        Budget expectedBudget = new Budget(VALID_BUDGET);
+        assertEquals(expectedBudget, ParserUtil.parseBudget(VALID_BUDGET.toString()));
+    }
+
+    @Test
+    public void parseBudget_validValueWithWhitespace_returnsTrimmedBudget() throws Exception {
+        String budgetWithWhite = WHITESPACE + VALID_BUDGET + WHITESPACE;
+        Budget expectedBudget = new Budget(VALID_BUDGET);
+        assertEquals(expectedBudget, ParserUtil.parseBudget(budgetWithWhite));
+    }
 
     // -- Activity --
     @Test
@@ -212,6 +265,8 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+
 
 
     //    @Test
