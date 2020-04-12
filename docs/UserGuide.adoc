@@ -1239,7 +1239,7 @@ Before you jump right in to use this feature, you may want to learn about all th
 * It must be made of alphanumeric characters, and it must be less than 30 characters long
 * It can be made up of multiple words
 * **E.T.** will automatically make the category lowercase
-* If it is not in the available presets (see section 4.5.13), then the default icon will be placed next to the packing list item’s name. Else, the category icon will be placed next to the packing list item’s name instead.
+* **E.T.**’s GUI will attach a category icon to the name of your packing list item. There are many recognised categories with relevant icons. However, if an unrecognised category is entered by you, the default icon will be used instead.
 * E.g. essentials
 
 |`INDEX`
@@ -2110,7 +2110,7 @@ This feature would allow you to import and export your trip data to be freely sh
 |===
 |Command |Example
 
-|*Add Transport Booking* : `=addtransport mode/MODE startloc/START_LOCATION endloc/END_LOCATION starttime/DATE_TIME_OF_DEPARTURE endtime/DATE_TIME_OF_ARRIVAL`
+|*Add Transport Booking* : `addtransport mode/MODE startloc/START_LOCATION endloc/END_LOCATION starttime/DATE_TIME_OF_DEPARTURE endtime/DATE_TIME_OF_ARRIVAL`
 |`addtransport mode/plane startloc/Singapore endloc/Japan starttime/22-04-2021 09:00 endtime/22-04-2021 16:00`
 
 |*Edit Transportation Booking* : `edittransport INDEX [mode/MODE] [startloc/START_LOCATION] [endloc/END_LOCATION] [starttime/DATE_TIME_OF_DEPARTURE] [endtime/DATE_TIME_OF_ARRIVAL]`
@@ -2126,36 +2126,41 @@ This feature would allow you to import and export your trip data to be freely sh
 === Packing List Commands
 |===
 |Command |Example
+|*List Item* : `listitem`
+|`listitem`
 
-|*Add Preset Category* : `addpreset preset/PRESET_NAME`
+|*Add Packing List Item* : `additem name/ITEM quantity/QUANTITY category/CATEGORY`
+|`additem name/underwear quantity/5 category/clothes`
+
+|*Edit Packing List Item* : `edititem INDEX [name/NAME] [quantity/QUANTITY] [category/CATEGORY]`
+|`edititem 1 name/shirt quantity/5 category/essentials`
+
+|*Delete Packing List Item* : `deleteitem INDEX`
+|`deleteitem 1`
+
+|*Mark Packing List Item as packed* :  `checkitem INDEX [MORE_INDEXES]...`
+|`checkitem 1 3 5 6`
+
+|*Mark Packing List Item as unpacked* : `uncheckitem INDEX [MORE_INDEXES]...`
+|`uncheckitem 1 4 7 13 16`
+
+|*Sort Packing List* : `sortitem CRITERIA ORDER`
+|`sortitem name asc`
+
+|*Find Packing List Items by name*: `finditem`
+|`finditem car shampoo`
+
+|*Find Packing List Items by category*: `finditemcategory`
+|`finditemcategory swimming clothes`
+
+|*Clear Packing List*: `clearitem`
+|`clearitem`
+
+|*Add Preset* : `addpreset preset/PRESET_NAME`
 |`addpreset beach`
 
 |*List all Presets in Packing List*: `listpresets`
 |`listpresets`
-
-|*Add Item in Packing List* : `additem item/ITEM quantity/QUANTITY`
-|`additem item/underwear quantity/5`
-
-|*Edit Item in Packing List* : `edititem INDEX [i/item] [q/quantity]`
-|`edititem 1 item/shirt quantity/5`
-
-|*Delete item in Packing List* : `deleteitem INDEX`
-|`deleteitem 1`
-
-|*Mark Item as packed in Packing List* :  `checkitem INDEX`
-|`checkitem 1`
-
-|*Mark Item as unpacked in Packing List* : `uncheckitem INDEX`
-|`uncheckitem 1`
-
-|*Sort Items in Packing List* : `sortitem order criteria`
-|`sortitem asc alphabet`
-
-|*Find items in Packing List*: `finditem`
-|`finditem car shampoo`
-
-|*Find items in Packing List under category*: `finditemcategory`
-|`finditemcategory swimming clothes`
 |===
 
 === Fixed Expense Commands
