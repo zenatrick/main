@@ -63,63 +63,63 @@ public class PackingListCard extends UiPart<Region> {
         Image imageCategory;
 
         switch (item.getItemCategory().value) {
-            case "swimming":
-                imageCategory = new Image("/images/swim.png");
-                break;
-            case "clothes":
-                imageCategory = new Image("/images/clothes.png");
-                break;
-            case "car":
-                imageCategory = new Image("/images/car.png");
-                break;
-            case "camping":
-                imageCategory = new Image("/images/camping.png");
-                break;
-            case "formal dinner female":
-                imageCategory = new Image("/images/dress.png");
-                break;
-            case "formal dinner male":
-                imageCategory = new Image("/images/suit.png");
-                break;
-            case "snow":
-                imageCategory = new Image("/images/snow.png");
-                break;
-            case "gym":
-                imageCategory = new Image("/images/gym.png");
-                break;
-            case "essentials":
-                imageCategory = new Image("/images/warning.png");
-                break;
-            case "hiking":
-                imageCategory = new Image("/images/adventurer.png");
-                break;
-            case "train":
-                imageCategory = new Image("/images/train.png");
-                break;
-            case "cruise":
-                imageCategory = new Image("/images/cruise.png");
-                break;
-            case "beach":
-                imageCategory = new Image("/images/beach.png");
-                break;
-            case "toiletries":
-                imageCategory = new Image("/images/soap.png");
-                break;
-            case "international":
-                imageCategory = new Image("/images/global.png");
-                break;
-            case "work":
-                imageCategory = new Image("/images/portfolio.png");
-                break;
-            case "photography":
-                imageCategory = new Image("/images/camera.png");
-                break;
-            case "music festival":
-                imageCategory = new Image("/images/music.png");
-                break;
-            default:
-                imageCategory = new Image("/images/default.png");
-                break;
+        case "swimming":
+            imageCategory = new Image("/images/swim.png");
+            break;
+        case "clothes":
+            imageCategory = new Image("/images/clothes.png");
+            break;
+        case "car":
+            imageCategory = new Image("/images/car.png");
+            break;
+        case "camping":
+            imageCategory = new Image("/images/camping.png");
+            break;
+        case "formal dinner female":
+            imageCategory = new Image("/images/dress.png");
+            break;
+        case "formal dinner male":
+            imageCategory = new Image("/images/suit.png");
+            break;
+        case "snow":
+            imageCategory = new Image("/images/snow.png");
+            break;
+        case "gym":
+            imageCategory = new Image("/images/gym.png");
+            break;
+        case "essentials":
+            imageCategory = new Image("/images/warning.png");
+            break;
+        case "hiking":
+            imageCategory = new Image("/images/adventurer.png");
+            break;
+        case "train":
+            imageCategory = new Image("/images/train.png");
+            break;
+        case "cruise":
+            imageCategory = new Image("/images/cruise.png");
+            break;
+        case "beach":
+            imageCategory = new Image("/images/beach.png");
+            break;
+        case "toiletries":
+            imageCategory = new Image("/images/soap.png");
+            break;
+        case "international":
+            imageCategory = new Image("/images/global.png");
+            break;
+        case "work":
+            imageCategory = new Image("/images/portfolio.png");
+            break;
+        case "photography":
+            imageCategory = new Image("/images/camera.png");
+            break;
+        case "music festival":
+            imageCategory = new Image("/images/music.png");
+            break;
+        default:
+            imageCategory = new Image("/images/default.png");
+            break;
         }
 
         category.setImage(imageCategory);

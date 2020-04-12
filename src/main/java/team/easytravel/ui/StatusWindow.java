@@ -78,6 +78,7 @@ public class StatusWindow extends UiPart<Stage> {
         if (denominator == 0.0) {
             packingListMessage.setText("[❗] There are no items in the packing list. "
                     + "You can add items to your packing list using the " + "\"additem\" command.");
+            packingListIndicator.setProgress(0);
         } else {
             packingListMessage.setText(status.get(1));
             packingListIndicator.setProgress(nominator / denominator);
