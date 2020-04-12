@@ -52,11 +52,11 @@ public class UncheckItemCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         PackingListItem itemToUncheck = model.getFilteredPackingList().get(INDEX_FIRST.getZeroBased());
-        PackingListItem UncheckedItem = new PackingListItem(itemToUncheck.getItemName(), itemToUncheck.getQuantity(),
+        PackingListItem uncheckedItem = new PackingListItem(itemToUncheck.getItemName(), itemToUncheck.getQuantity(),
                 itemToUncheck.getItemCategory(), false);
         StringBuilder sb = new StringBuilder().append("Unchecked items \n");
 
-        sb.append(UncheckedItem.toString()).append("\n");
+        sb.append(uncheckedItem.toString()).append("\n");
 
         List<Index> indexes = new ArrayList<>();
         indexes.add(INDEX_FIRST);
@@ -68,7 +68,7 @@ public class UncheckItemCommandTest {
                 new FixedExpenseManager(), model.getPackingListManager(), new ActivityManager(),
                 new AccommodationBookingManager(), tripManagerSet,
                 new UserPrefs());
-        expectedModel.setPackingListItem(itemToUncheck, UncheckedItem);
+        expectedModel.setPackingListItem(itemToUncheck, uncheckedItem);
 
         assertPackingListItemCommandSuccess(uncheckItemCommand, model, expectedMessage, expectedModel);
     }
@@ -120,28 +120,28 @@ public class UncheckItemCommandTest {
         List<Index> indexList = new ArrayList<>();
         indexList.add(INDEX_FIRST);
         indexList.add(INDEX_SECOND);
-        UncheckItemCommand UncheckFirstCommand = new UncheckItemCommand(indexList);
+        UncheckItemCommand uncheckFirstCommand = new UncheckItemCommand(indexList);
 
         List<Index> indexList1 = new ArrayList<>();
         indexList1.add(INDEX_THIRD);
         indexList1.add(INDEX_FORTH);
 
-        UncheckItemCommand UncheckSecondCommand = new UncheckItemCommand(indexList1);
+        UncheckItemCommand uncheckSecondCommand = new UncheckItemCommand(indexList1);
 
         // same object -> returns true
-        assertEquals(UncheckFirstCommand, UncheckFirstCommand);
+        assertEquals(uncheckFirstCommand, uncheckFirstCommand);
 
         // same values -> returns true
-        UncheckItemCommand UncheckFirstCommandCopy = new UncheckItemCommand(indexList);
-        assertEquals(UncheckFirstCommand, UncheckFirstCommandCopy);
+        UncheckItemCommand uncheckFirstCommandCopy = new UncheckItemCommand(indexList);
+        assertEquals(uncheckFirstCommand, uncheckFirstCommandCopy);
 
         // different types -> returns false
-        assertNotEquals(1, UncheckFirstCommand);
+        assertNotEquals(1, uncheckFirstCommand);
 
         // null -> returns false
-        assertNotEquals(null, UncheckFirstCommand);
+        assertNotEquals(null, uncheckFirstCommand);
 
         // different person -> returns false
-        assertNotEquals(UncheckFirstCommand, UncheckSecondCommand);
+        assertNotEquals(uncheckFirstCommand, uncheckSecondCommand);
     }
 }

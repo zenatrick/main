@@ -50,7 +50,7 @@ class AddFixedExpenseCommandTest {
 
 
         assertEquals(String.format(String.format(MESSAGE_SUCCESS, validFixedExpense + "\n"
-                        + "Your budget left is now " + modelStub.getBudget()), SWITCH_TAB_FIXED_EXPENSE),
+                        + "Your budget left is " + modelStub.getBudget()), SWITCH_TAB_FIXED_EXPENSE),
                 commandResult.getFeedbackToUser());
         assertEquals(Collections.singletonList(validFixedExpense), modelStub.fixedExpensesAdded);
     }
@@ -75,7 +75,7 @@ class AddFixedExpenseCommandTest {
         CommandResult commandResult = new AddFixedExpenseCommand(validFixedExpense, true)
                 .execute(modelStub);
         assertEquals(String.format(String.format(MESSAGE_SUCCESS, validFixedExpense + "\n"
-                        + "Your budget left is now " + modelStub.getBudget()), SWITCH_TAB_FIXED_EXPENSE),
+                        + "Your budget left is " + modelStub.getBudget()), SWITCH_TAB_FIXED_EXPENSE),
                 commandResult.getFeedbackToUser());
         assertEquals(Collections.singletonList(validFixedExpense), modelStub.fixedExpensesAdded);
     }

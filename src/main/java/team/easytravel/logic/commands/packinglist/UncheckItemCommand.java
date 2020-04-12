@@ -53,7 +53,7 @@ public class UncheckItemCommand extends Command {
         List<PackingListItem> editedItems = new ArrayList<>();
         List<Index> invalidIndexes = new ArrayList<>();
         StringBuilder sb = new StringBuilder().append("Unchecked items \n");
-        StringBuilder invalidIndex = new StringBuilder().append("Invalid Indexes are: ");
+        StringBuilder invalidIndex = new StringBuilder().append("Invalid Indexes is/are: ");
 
         for (Index i : indexes) {
             if (i.getZeroBased() >= lastShownList.size()) {

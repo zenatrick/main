@@ -55,7 +55,6 @@ import team.easytravel.logic.commands.transportbooking.DeleteTransportBookingCom
 import team.easytravel.logic.commands.transportbooking.EditTransportBookingCommand;
 import team.easytravel.logic.commands.transportbooking.ListTransportBookingCommand;
 import team.easytravel.logic.commands.transportbooking.SortTransportBookingCommand;
-import team.easytravel.logic.commands.trip.CheckBudgetStatus;
 import team.easytravel.logic.commands.trip.CheckStatusCommand;
 import team.easytravel.logic.commands.trip.DeleteTripCommand;
 import team.easytravel.logic.commands.trip.EditBudgetCommand;
@@ -176,14 +175,13 @@ public class LogicManager implements Logic {
         questions.add(DeleteTripCommand.MESSAGE_USAGE);
         questions.add(RenameCommand.MESSAGE_USAGE);
         questions.add(EditBudgetCommand.MESSAGE_USAGE);
-        questions.add(CheckBudgetStatus.MESSAGE_USAGE);
         questions.add(CheckStatusCommand.MESSAGE_USAGE);
 
         // Activity Commands
         questions.add(AddActivityCommand.MESSAGE_USAGE);
         questions.add(EditActivityCommand.MESSAGE_USAGE);
         questions.add(DeleteActivityCommand.MESSAGE_USAGE);
-        questions.add(ClearActivityCommand.COMMAND_WORD);
+        questions.add(ClearActivityCommand.MESSAGE_USAGE);
         questions.add(FindActivityCommand.MESSAGE_USAGE);
         questions.add(FindActivityTagCommand.MESSAGE_USAGE);
         questions.add(SortActivityCommand.MESSAGE_USAGE);

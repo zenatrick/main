@@ -94,7 +94,7 @@ public class AddFixedExpenseCommand extends Command {
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd + "\n"
-                + "Your budget left is now " + remainingBudget), SWITCH_TAB_FIXED_EXPENSE);
+                + "Your budget left is " + remainingBudget), SWITCH_TAB_FIXED_EXPENSE);
     }
 
     @Override

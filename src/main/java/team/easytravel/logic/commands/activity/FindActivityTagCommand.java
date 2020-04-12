@@ -19,8 +19,8 @@ public class FindActivityTagCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all activity with "
             + "the specified tags (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " hot";
+            + "Parameters: TAG_NAME [MORE_TAG_NAMES]...\n"
+            + "Example: " + COMMAND_WORD + " outdoor";
 
     private final ActivityTagContainsPredicate predicate;
 
