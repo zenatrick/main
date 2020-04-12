@@ -30,7 +30,7 @@ public class ScheduleCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Schedule an activity by the index "
             + "number used in the displayed list to the schedule.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: ACTIVITY_INDEX (must be a positive integer) "
             + PREFIX_SCHEDULE_DAY + "DAY_INDEX "
             + PREFIX_SCHEDULE_TIME + "TIME\n"
             + "Example: " + COMMAND_WORD + " 1 "
