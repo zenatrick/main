@@ -309,103 +309,291 @@ The pop-up would show you major warnings such as
 ====
 
 === Activity Management
-This section allows users to manage the activities in the trip.
+This feature allows you to manage your activities for the trip. You can record the following information about your activities:
 
-==== Add your activity: `addactivity`
-Lets say you wish to add in a new activity that you decided to do on the trip. Using the `addactivitiy` command would create and add your activity into the list.
+* Title
+* Location
+* Duration
 
-Format: `addactivity title/TITLE duration/DURATION location/LOCATION [tag/tag]...`
+[#activity-management-command-parameters]
+==== Activity Management Command Parameters
+Before you jump right into using this feature, you may want to learn about all the common command parameters used in this feature. The table below shows the list of common command parameters that will be used for this feature.
 
-Example:
-`addactivity title/Going to the beach duration/4 location/Hakone tag/sea tag/ocean`
+|===
+|*Parameter Name* |*Description*
 
-.After add activity command
-image::user-guide/AddActivity.png[]
+|`TITLE`
+|The title of the activity.
 
-This would create and add an activity titled “Going to the beach" with a duration of 4 hours. The location of this activity is set to  “Hakone”, and has the tags “sea” and “ocean”.
+It must be alphanumeric words not more than 50 characters long.
 
-==== Editing your activity: `editactivity`
+E.g. `Shopping`
 
-Assume you have accidentally made a mistake in the spelling or the location of the activity and wish to change it. Running the `editactivity` command will allow you to make any changes to previously set activities.
+|`LOCATION`
+|The location of the activity.
 
-Format: `editactivity INDEX [title/NAME][duration/DURATION][location/LOCATION][tag/tag]...`
+It must be alphanumeric words not more than 50 characters long.
 
-Example:
-`editactivity 1 title/Go to an aquarium`
+E.g. `Tokyo`
 
-.After edit activity command
-image::user-guide/EditActivity.png[]
+|`DURATION`
+|The duration of the activity in hours.
 
-In this example, this command will edit an existing activity at the index 1 ‘s title to “Go to an aquarium”. The other fields will stay the same.
+It must be an integer from 1 to 24 (both inclusive).
 
-IMPORTANT: The activity must exist to be edited
+E.g. `3`
 
-==== Deleting your activity: `deleteactivity`
+|`TAG`
+|The tag you want to attach to an activity.
 
-Perhaps you decided that previously set activities are unviable and wish to remove it. Using the `deleteactivity` command would remove any activities that you do not want.
+It must be a single alphanumeric word not more than 30 characters long.
 
-Format: `deleteactivity index`
-Example:
-`deleteactivity 1`
+E.g. `sports`
 
-.After delete activity command
-image::user-guide/DeleteActivity.png[]
 
-In this example, you would delete an activity at the index 1
+|`INDEX`
+|The index number of the activity in the displayed list. The first entry of the list has an index number of `1` and all the entries are listed in increasing index numbers.
 
-[IMPORTANT]
+It must be a valid index number.
+
+|===
+
+
+==== List all activities: `listactivity`
+
+You can use this command to navigate to the Activities Tab and display all your activities in **E.T.**.
+
+*Format:*
+
+`listactivity`
+
+
+
+*Example:*
+
+If you are in another tab and wish to look at your list of activities, you can follow these instructions.
+
+Listing all your activities:
+
+* Type `listactivity` into the __Command Box__.
+* Press `Enter` to execute.
+
+Outcome:
+
+* The Result Display will show a success message.
+* *E.T.* will switch to the Activities Tab.
+* You can now see all your activities.
+
+====  Add a new activity: `addactivity`
+
+You can use this command to add a new activity to E.T.
+
+*Format:*
+
+`addactivity title/TITLE duration/DURATION location/LOCATION [tag/TAG]...`
+
+
+[NOTE]
 =====
-The activity at that index must exist before deleting is allowed
+Refer to <<UserGuide.adoc#activity-management-command-parameters, Section 4.2.1 Activity Management Command Parameters>> for more detail about each parameter.
 =====
 
-==== Clearing your planned activities: `clearactivity`
+*Example:*
 
-Perhaps you decided that all the activities you had planned before are not needed and want to start the activity list on a clean slate. Using the `clearactivity` command would clear any existing activities and replace your list with a brand new empty list.
+Let’s say you have an activity with the following information and wish to record it in *E.T.*.
 
-Format: `clearactivity`
+|===
+|Activity |
 
-Example:
-`clearactivity`
+|Title
+|plane
 
-.After clear activity command
-image::user-guide/ClearActivity.png[]
+|Location
+|Singapore
+
+|Duration
+|1
+
+|Tag
+|sea, outdoor
+|===
+
+Adding the above activity:
+
+. Type `addactivity title/Going to the beach duration/4 location/Hakone tag/sea tag/outdoor` into the Command Box.
+. Press `Enter` to execute
+
+Outcome:
+
+* The Result Display will show a success message.
+* *E.T.* will switch to the Activities Tab.
+* You can now see all your activities including the newly added activity.
+
+.Outcome of a successful addactivity command
+image::user-guide/addactivity.png[]
+
+==== Edit an existing activity: `editactivity`
+
+You can use this command to edit an existing activity in `E.T.`
+
+*Format:*
+
+`editactivity INDEX [title/NAME] [duration/DURATION] [location/LOCATION] [tag/TAG]...`
+
+
+
 
 [NOTE]
 ====
-You can use this to delete all your activities at once
+* You must supply at least one optional parameter.
+* The existing values will be updated to the new values.
+* If `tag/TAG` is supplied, it will overwrite the existing tags. Hence, you can supply an empty tag to clear the existing tags.
+* Refer to <<UserGuide.adoc#activity-management-command-parameters, Section 4.2.1 Activity Management Command Parameters>> for more detail about each parameter.
 ====
 
-====  Find your activities
-Let say you had added a bunch of activities and wished to search for a specific one. You can do it by using the find command to search through based on tags or by keyword.
-
-`Findactivitytag` allows you to search by tags while `findactivity` command allows you to search by keyword.
-
-Format: `findactivitytag tag`
+Editing the activity:
 
 
+*Example:*
 
-Example:
-`findactivitytag expensive`
+Assume you have accidentally made a mistake in the spelling of the title of the *second* activity in the displayed list and wish to change it to “*Skiing*”. You do perform the following steps.
 
-This would show you the activities that have the tag expensive as shown in the figure 11.
+Editing the activity:
 
-.After find activity category command
-image::user-guide/FindActivityCategory.png[]
+. Type `editactivity 2 title/Skiing into the Command Box.`
+. Press `Enter` to execute.
 
-Let's say rather than finding by tags, you decided to search by keywords. You can use the `findactivity` to find base on the keywords you provided.
+Outcome:
 
-Format: `findactivity keyword`
+* The Result Display will show a success message.
+* *E.T.* will switch to the Activities Tab.
+* You can now see all your activities including the edited activity.
 
-Example:
-`findactivity Osaka`
+.Outcome of a successful editactivity command
+image::user-guide/editactivity.png[]
 
-This would search for all activities with “Osaka” in it as shown in the figure 12
+====  Delete an existing activity: `deleteactivity`
+You can use this command to delete an existing activity in *E.T.*.
 
-.After find activity command
+*Format:*
+
+`deleteactivity INDEX`
+
+[NOTE]
+====
+* Refer to <<UserGuide.adoc#activity-management-command-parameters, Section 4.2.1 Activity Management Command Parameters>> for more detail about each parameter.
+====
+
+*Example:*
+
+If you change your mind and decide to remove the *first* activity in the displayed list from your plan, you can perform the steps below.
+
+Deleting the activity:
+
+. Type `deleteactivity 1` into the Command Box.
+. Press `Enter` to execute.
+
+Outcome:
+
+* The Result Display will show a success message.
+* *E.T.* will switch to the Activities Tab.
+* You can now see the deleted activity no longer exists.
+
+==== Sort the activity list: `sortactivity`
+
+*Format:*
+
+`sortactivity CRITERIA ORDER`
+
+[NOTE]
+====
+* `CRITERIA` refers to the criteria to sort the list of activities by. It can take the following values: `title`, `location`, `duration`.
+* `ORDER` refers to the order to sort the list of activities by. It can take the value of `ascending` or `asc` to sort in `ascending` order and `descending` or `des` to sort in descending order.
+====
+
+*Example:*
+
+If you want to sort your list of activities in descending order of duration, to help you in your planning, you can do the following.
+
+Sorting activities:
+
+* Type `sortactivity` duration des into the Command Box.
+* Press `Enter` to execute.
+
+Outcome:
+
+* The Result Display will show a success message.
+* *E.T.* will switch to the Activities Tab.
+* You can see a list of sorted activities being displayed.
+
+==== Find activities by keywords: `findactivity`
+You can use this command to find activities by keywords.
+
+*Format:*
+
+`findactivity KEYWORD [MORE_KEYWORDS]...`
+
+[NOTE]
+====
+* The keyword is case-in sensitive
+* All the activities that contain at least one of the keywords will be shown.
+====
+
+*Example:*
+
+Let say your list has a bunch of activities and you want to search for a specific one about shopping. You can do so as follows.
+
+Finding activities:
+
+. Type `findactivity` shopping into the _Command Box_.
+. Press `Enter` to execute.
+
+Outcome:
+
+* The _Result Display_ will show a success message.
+* *E.T.* will switch to the Activities Tab.
+* You can see a list of activities with the keyword being displayed.
+
+
+.Outcome of a successful findactivity command
 image::user-guide/FindActivity.png[]
 
+==== Find activities by keywords: `findactivitytag`
+You can use this command to find activities by tags.
+
+
+*Format:*
+
+`findactivitytag TAG_NAME ...   `
+
 [NOTE]
-`FindActivity` only searches location and activity titles
+====
+* The keyword is case-in sensitive
+* All the activities that contain at least one of the tags will be shown.
+* This command is very similar to the `findactivity` command. You can refer to <<UserGuide.adoc#activity-management-command-parameters, Section 4.2.1 Activity Management Command Parameters>> for an example.
+====
+
+==== Clear all activities: `clearactivity`
+
+You can use this command to clear and delete the whole list of activities in *E.T.*.
+
+*Format:*
+
+`clearactivity`
+
+*Example:*
+
+In the case that you want to restart your activity planning from scratch, you can do the following.
+
+Clearing the activity list:
+. Type `clearactivity` into the Command Box.
+. Press Enter to execute.
+
+Outcome:
+
+* The Result Display will show a success message.
+* *E.T.* will switch to the Activities Tab.
+* You can see that the list is now empty.
 
 
 === Transportation Booking Management
