@@ -128,14 +128,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseDateTime_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        DateTime expectedDateTime =  DateTime.fromString(VALID_DATE);
+        DateTime expectedDateTime = DateTime.fromString(VALID_DATE);
         assertEquals(expectedDateTime, ParserUtil.parseDateTime(VALID_DATE));
     }
 
     @Test
     public void parseDateTime_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String dateTimeWithWhitespace = WHITESPACE + VALID_DATE + WHITESPACE;
-        DateTime expectedDateTime =  DateTime.fromString(VALID_DATE);
+        DateTime expectedDateTime = DateTime.fromString(VALID_DATE);
         assertEquals(expectedDateTime, ParserUtil.parseDateTime(dateTimeWithWhitespace));
     }
 
@@ -153,14 +153,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseExchangeRate_validValueWithoutWhitespace_returnsExchangeRate() throws Exception {
-        ExchangeRate expectedExchangeRate =  new ExchangeRate(VALID_EXCHANGE_RATE);
+        ExchangeRate expectedExchangeRate = new ExchangeRate(VALID_EXCHANGE_RATE);
         assertEquals(expectedExchangeRate, ParserUtil.parseExchangeRate(VALID_EXCHANGE_RATE.toString()));
     }
 
     @Test
     public void parseExchangeRate_validValueWithWhitespace_returnsTrimmedExchangeRate() throws Exception {
         String exchangeRateWithWhite = WHITESPACE + VALID_EXCHANGE_RATE + WHITESPACE;
-        ExchangeRate expectedExchangeRate =  new ExchangeRate(VALID_EXCHANGE_RATE);
+        ExchangeRate expectedExchangeRate = new ExchangeRate(VALID_EXCHANGE_RATE);
         assertEquals(expectedExchangeRate, ParserUtil.parseExchangeRate(exchangeRateWithWhite));
     }
 
@@ -196,8 +196,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        Assert.assertThrows(ParseException.class,
-        () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+        Assert.assertThrows(ParseException.class, () ->
+                ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
     }
 
     @Test

@@ -1,7 +1,6 @@
 package team.easytravel.logic.parser.activity;
 
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
 import static team.easytravel.logic.commands.CommandTestUtil.ACTIVITY_DURATION_DESC_CHEESE;
 import static team.easytravel.logic.commands.CommandTestUtil.ACTIVITY_DURATION_DESC_FINLAND;
 import static team.easytravel.logic.commands.CommandTestUtil.ACTIVITY_LOCATION_DESC_CHEESE;
@@ -42,15 +41,12 @@ public class EditActivityCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_ACTIVITY_TAG;
 
-    private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditActivityCommand.MESSAGE_USAGE);
-
     private EditActivityCommandParser parser = new EditActivityCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
 
-        String expectedMessage = String.format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "activity");
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditActivityCommand.MESSAGE_USAGE);
         // no index specified
         assertParseFailure(parser, VALID_ACTIVITY_TITLE_CHEESE, expectedMessage);
 
@@ -64,18 +60,19 @@ public class EditActivityCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
 
-        String expectedIndexMessage = String.format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "activity");
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditActivityCommand.MESSAGE_USAGE);
+
         // negative index
-        assertParseFailure(parser, "-5" + ACTIVITY_TITLE_DESC_CHEESE, expectedIndexMessage);
+        assertParseFailure(parser, "-5" + ACTIVITY_TITLE_DESC_CHEESE, expectedMessage);
 
         // zero index
-        assertParseFailure(parser, "0" + ACTIVITY_TITLE_DESC_CHEESE, expectedIndexMessage);
+        assertParseFailure(parser, "0" + ACTIVITY_TITLE_DESC_CHEESE, expectedMessage);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", expectedIndexMessage);
+        assertParseFailure(parser, "1 some random string", expectedMessage);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", expectedIndexMessage);
+        assertParseFailure(parser, "1 i/ string", expectedMessage);
     }
 
     @Test

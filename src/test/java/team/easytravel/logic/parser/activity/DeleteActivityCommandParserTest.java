@@ -1,6 +1,6 @@
 package team.easytravel.logic.parser.activity;
 
-import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
+import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static team.easytravel.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static team.easytravel.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static team.easytravel.testutil.TypicalIndexes.INDEX_FIRST;
@@ -27,7 +27,7 @@ public class DeleteActivityCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT,
-                "activity"));
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteActivityCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, "a", expectedMessage);
     }
 }
