@@ -564,7 +564,7 @@ You can use this command to find activities by tags.
 
 *Format:*
 
-`findactivitytag TAG_NAME ...   `
+`findactivitytag TAG_NAME ...`
 
 [NOTE]
 ====
