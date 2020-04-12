@@ -1,6 +1,7 @@
 package team.easytravel.logic.parser.transportbooking;
 
-import team.easytravel.commons.core.Messages;
+import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import team.easytravel.commons.core.index.Index;
 import team.easytravel.logic.commands.transportbooking.DeleteTransportBookingCommand;
 import team.easytravel.logic.parser.Parser;
@@ -23,8 +24,8 @@ public class DeleteTransportBookingCommandParser implements Parser<DeleteTranspo
             Index index = ParserUtil.parseIndex(args);
             return new DeleteTransportBookingCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT,
-                    "transport booking"), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteTransportBookingCommand.MESSAGE_USAGE), pe);
         }
     }
 

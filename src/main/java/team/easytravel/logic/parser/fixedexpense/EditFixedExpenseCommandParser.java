@@ -1,12 +1,12 @@
 package team.easytravel.logic.parser.fixedexpense;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_AMOUNT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_CATEGORY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_CURRENCY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_DESCRIPTION;
 
-import team.easytravel.commons.core.Messages;
 import team.easytravel.commons.core.index.Index;
 import team.easytravel.logic.commands.fixedexpense.EditFixedExpenseCommand;
 import team.easytravel.logic.parser.ArgumentMultimap;
@@ -38,7 +38,8 @@ public class EditFixedExpenseCommandParser implements Parser<EditFixedExpenseCom
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "expense"), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditFixedExpenseCommand.MESSAGE_USAGE), pe);
         }
 
         EditFixedExpenseCommand.EditFixedExpenseDescriptor editFixedExpenseDescriptor =

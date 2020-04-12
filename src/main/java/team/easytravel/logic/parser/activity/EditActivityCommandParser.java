@@ -1,6 +1,7 @@
 package team.easytravel.logic.parser.activity;
 
 import static java.util.Objects.requireNonNull;
+import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_DURATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_LOCATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_TAG;
@@ -11,7 +12,6 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import team.easytravel.commons.core.Messages;
 import team.easytravel.commons.core.index.Index;
 import team.easytravel.logic.commands.activity.EditActivityCommand;
 import team.easytravel.logic.parser.ArgumentMultimap;
@@ -42,7 +42,8 @@ public class EditActivityCommandParser implements Parser<EditActivityCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "activity"), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditActivityCommand.MESSAGE_USAGE), pe);
         }
 
         EditActivityCommand.EditActivityDescriptor editActivityDescriptor =

@@ -1,8 +1,9 @@
 package team.easytravel.logic.parser.packinglist;
 
+import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.util.List;
 
-import team.easytravel.commons.core.Messages;
 import team.easytravel.commons.core.index.Index;
 import team.easytravel.logic.commands.packinglist.CheckItemCommand;
 import team.easytravel.logic.parser.Parser;
@@ -19,7 +20,8 @@ public class CheckItemCommandParser implements Parser<CheckItemCommand> {
             List<Index> indexes = ParserUtil.parseMultipleIndex(userInput);
             return new CheckItemCommand(indexes);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "item"), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    CheckItemCommand.MESSAGE_USAGE), pe);
         }
     }
 }

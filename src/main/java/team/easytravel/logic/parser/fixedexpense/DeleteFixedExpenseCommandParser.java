@@ -1,6 +1,7 @@
 package team.easytravel.logic.parser.fixedexpense;
 
-import team.easytravel.commons.core.Messages;
+import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import team.easytravel.commons.core.index.Index;
 import team.easytravel.logic.commands.fixedexpense.DeleteFixedExpenseCommand;
 import team.easytravel.logic.parser.Parser;
@@ -18,7 +19,8 @@ public class DeleteFixedExpenseCommandParser implements Parser<DeleteFixedExpens
             Index index = ParserUtil.parseIndex(userInput);
             return new DeleteFixedExpenseCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "expense"), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteFixedExpenseCommand.MESSAGE_USAGE), pe);
         }
     }
 }
