@@ -37,7 +37,7 @@ image::./team-profile/deunitato.png[width="150", align="left"]
 {empty}[http://github.com/deunitato[github]] [<<deunitato#, portfolio>>]
 
 Role: Developer +
-Feature: Trip Planner +
+Feature: Trip Manager, Activity Manager +
 Responsibilities: Deliverable and Deadlines, Scheduling and Tracking +
 Components: Logic, Model
 
