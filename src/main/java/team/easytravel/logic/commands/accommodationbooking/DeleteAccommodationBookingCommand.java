@@ -55,4 +55,11 @@ public class DeleteAccommodationBookingCommand extends Command {
                 accommodationBookingToDelete), SWITCH_TAB_ACCOMMODATION);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteAccommodationBookingCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteAccommodationBookingCommand) other).targetIndex)); // state check
+    }
+
 }
