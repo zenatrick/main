@@ -1,6 +1,5 @@
 package team.easytravel.logic.parser.activity;
 
-import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT;
 import static team.easytravel.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static team.easytravel.logic.parser.CommandParserTestUtil.assertParseSuccess;
