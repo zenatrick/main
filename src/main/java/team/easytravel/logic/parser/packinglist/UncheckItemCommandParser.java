@@ -18,9 +18,7 @@ public class UncheckItemCommandParser implements Parser<UncheckItemCommand> {
     public UncheckItemCommand parse(String userInput) throws ParseException {
         try {
             List<Index> indexes = ParserUtil.parseMultipleIndex(userInput);
-            UncheckItemCommand.UncheckItemDescriptor uncheckItemDescriptor =
-                    new UncheckItemCommand.UncheckItemDescriptor();
-            return new UncheckItemCommand(indexes, uncheckItemDescriptor);
+            return new UncheckItemCommand(indexes);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     UncheckItemCommand.MESSAGE_USAGE), pe);
