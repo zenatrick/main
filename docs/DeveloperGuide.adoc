@@ -261,7 +261,7 @@ The Trip Manager feature is included in **E.T.** because it is the core feature 
 The `TripManager` class in the `Model` component is responsible for all operations on the trip which is represented by the `Trip` class. The following _Class Diagram_ describes the structure of the `TripManager` and its relevant classes.
 
 
-.Structure of the `TripManager` and its relevant classes.
+.Structure of the `TripManager` and its relevant classes
 image::developer-guide/trip/TripClassDiagram.png[]
 
 As seen from the diagram, the `TripManager` can only manage one trip at any point in time.
@@ -294,12 +294,12 @@ This ability to change the start and end dates and the exchange rate of the trip
 |===
 | |Pros |Cons
 
-|**Option 1 (Current)**
+|**Option 1 (Current)** +
 Only one
 |Easy to implement. `TripManager` just needs to hold one `Trip` object.
 |Less flexibility for the user.
 
-|**Option 2**
+|**Option 2** +
 More than one
 |More flexibility for the user.
 |More overhead, especially in terms of space.
@@ -316,12 +316,12 @@ Reasons for choosing the option 1:
 |===
 | |Pros |Cons
 
-|**Option 1 (Current)**
+|**Option 1 (Current)** +
 Can only edit the title and budget.
 |Easy to implement. Nothing depends on the trip title and budget.
 |Users who need to change the dates or exchange rate of the trip need to delete and then set the trip which is troublesome.
 
-|**Option 2**
+|**Option 2** +
 Can edit every detail.
 |More flexibility and convenience for the user.
 |The schedule feature depends on the trip dates while the expense feature depends on the exchange rate. Thus, allowing these fields to be changed is very difficult to implement and likely to result in bugs.
@@ -337,10 +337,11 @@ Reasons for choosing option 1:
 // List management
 // tag::scheduleactivity[]
 [#list-manager]
+[[List-Manager]]
 === List Managers
 **E.T.** allows the user to manage different essential lists for their trip.
 
-These list include:
+These list include: +
 * Activities
 * Transport Bookings
 * Fix Expenses
@@ -371,12 +372,12 @@ In addition, the `XYZListManager` implements the `ReadOnlyXYZManager` interface.
 The following __Class Diagram__ describes the aforementioned structure of the `ActivityManager`.
 
 
-.Structure of `ActivityManager`.
+.Structure of `ActivityManager`
 image::developer-guide/list-managers/ListManagerClassDiagram.png[]
 
 The following paragraphs will describe what happens when the user performs an operation on a `ListManager` through commands. `XYZCommand` here will refer to a command described above for the 5 `ListManager` s. (e.g. `AddActivityCommand`, `EditTransportBookingCommand`).
 
-As described in <<DeveloperGuide.adoc#logic-component, Section 2.3 Logic Component>>, after the user enters a command, the `EasyTravelParser` will generate an `XYZCommandParser` which parses the user input parameters and generate an executable `XYZCommand` that performs an operation on the list.
+As described in <<Design-Logic>>, after the user enters a command, the `EasyTravelParser` will generate an `XYZCommandParser` which parses the user input parameters and generate an executable `XYZCommand` that performs an operation on the list.
 
 We will describe the execution of an `XYZCommand`, using `AddActivityCommand` as an example. All other `XYZCommand` will be executed in similar ways.
 
@@ -384,7 +385,7 @@ When `AddActivityCommand` is executed, an `Activity` will be added to the list o
 
 The __Sequence Diagram__ below shows the execution of the `AddActivityCommand`:
 
-.Execution of the `AddActivityCommand`.
+.Execution of the `AddActivityCommand`
 image::developer-guide/list-managers/AddActivitySequenceDiagram.png[Schedule Activity Command Execution]
 
 [NOTE]
@@ -404,7 +405,7 @@ This sequence diagram does not take into consideration the possible exceptions w
 |===
 | |Pros |Cons
 
-|**Option 1 (Current)**:
+|**Option 1 (Current)** +
 Use 5 different list managers to manage the 5 main features
 
 
@@ -416,7 +417,7 @@ Allows for different behaviours of each list manager
 
 |Tedious to implement as we have many lists to manage.
 
-|**Option 2**
+|**Option 2** +
 Use a single manager to handle all the 5 lists
 
 
@@ -435,26 +436,26 @@ Applying SoC limits the ripple effect when changes are introduced to a specific 
 |===
 | |Pros |Cons
 
-|**Option 1 (Current)**:
-Extract the common operations and functionality of the 5 `ListManager`s into one `UniqueList` class. All 5 `ListManager`s will make use of the `UniqueList` as their internal data structure and build their operations on top of it.
+|**Option 1 (Current)** +
+Extract the common operations and functionality of the 5 ``ListManager``s into one `UniqueList` class. All 5 ``ListManager``s will make use of the `UniqueList` as their internal data structure and build their operations on top of it.
 
-|Abide by the Don’t Repeat Yourself (DRY) principle. Minimize repeated code as all `ListManager`s use the basic functionality of `UniqueList`.
+|Abide by the Don’t Repeat Yourself (DRY) principle. Minimize repeated code as all ``ListManager``s use the basic functionality of `UniqueList`.
 
-|All `ListManager`s have dependencies on `UniqueList`. Thus, `UniqueList` has to be implemented before starting on any `ListManager`. This slows down the implementation of all `ListManager`s.
+|All ``ListManager``s have dependencies on `UniqueList`. Thus, `UniqueList` has to be implemented before starting on any `ListManager`. This slows down the implementation of all ``ListManager``s.
 
-|**Option 2**
+|**Option 2** +
 Do not extract any common operations and functionalities
 
 
 |Each `ListManager` can be worked on by different people as there is no dependency on a common data structure that has to be implemented beforehand. Allows each feature to be worked on separately by different developers.
 
-|Violates the DRY principle as there will be common operations between `ListManager`s.
+|Violates the DRY principle as there will be common operations between ``ListManager``s.
 |===
 
 Reason for choosing option 1:
 
 * It is a good coding practice to follow the DRY principle.
-* The implementations of the `ListManager` s are done quite early on, where our team has more flexibility in terms of deadline. Thus, we can afford to spend more time developing the `UniqueList` data structure before starting on the implementation of any `ListManager`
+* The implementations of the ``ListManager``s are done quite early on, where our team has more flexibility in terms of deadline. Thus, we can afford to spend more time developing the `UniqueList` data structure before starting on the implementation of any `ListManager`
 
 // End list management
 //end
@@ -462,33 +463,27 @@ Reason for choosing option 1:
 
 
 === Activity Manager
-**E.T.** allows the user to keep track of their activities for his/her trip. The activity manager is one of the `ListManager` s  <<DeveloperGuide.adoc#list-manager, (See Section 3.1 List Managers)>>. On top of the basic operations provided by a `ListManager`, it also allows the user to search for their activities using the `findacitivty` command. The parameters of the `findactivity` command are keywords in the activity entries that the user wants to search for. E.g. `findactivity sightseeing carnival` will search and list all activity entries with `sightseeing` or `carnival` in their detail. Another similar command, `findactivitytag` has the same functionality but only searches for the tags of activity entries.
+**E.T.** allows the user to keep track of their activities for his/her trip. The activity manager is one of the `ListManager` s  (See <<List-Manager>>). On top of the basic operations provided by a `ListManager`, it also allows the user to search for their activities using the `findacitivty` command. The parameters of the `findactivity` command are keywords in the activity entries that the user wants to search for. E.g. `findactivity sightseeing carnival` will search and list all activity entries with `sightseeing` or `carnival` in their detail. Another similar command, `findactivitytag` has the same functionality but only searches for the tags of activity entries.
 
 
 `ActivityManager` has other than the basic CRUD commands, find command provide a find command to assist in activity management such as:
+
 * `findactivitytag`
 * `findactivity`
 
 ==== Rationale
-The activity manager is an important feature to have because any oversea trip will be packed with activities for the traveller. Thus, we decided to create an activity manager as one of the `ListManager`s.
+The activity manager is an important feature to have because any oversea trip will be packed with activities for the traveller. Thus, we decided to create an activity manager as one of the ``ListManager``s.
 
 ==== Current Implementation
 
-The current implementation of the activity manager only allows the user to keep track of a list of activities for their trip. It does not allow the user to indicate the start and end time of an activity. Instead, the ability to indicate a start time for an activity will be in another feature known as the schedule feature (See Section 3.4).
+The current implementation of the activity manager only allows the user to keep track of a list of activities for their trip. It does not allow the user to indicate the start and end time of an activity. Instead, the ability to indicate a start time for an activity will be in another feature known as the Schedule Feature (See <<Schedule-Feature>>).
 
 In this section, we will outline the `findactivity` command of the activity manager which is summarised by the __Activity Diagram__ below.
 
-
-.Activity diagram showing the workflow of a `findactivity` command.
+.Workflow of a `findactivity` command
 image::developer-guide/activity/FindActivityDiagram.png[]
 
-The sequence diagram below shows the creation of the an ActivityCommand object:
-
-.Sequence diagram that describes the creation of the `deleteactivity` from the input user command `deleteactivity 1`.
-
-image::developer-guide/activity/DeleteActivityCommandCreation.png[]
-
-When the user enters the `findactivity` command to search for activities, the user input command undergoes the same command parsing as described in Section 2.3 Logic Component. During the parsing, a predicate is created. This predicate checks if a given `Activity` contains the user input keywords. The `FindActivityCommand` will then receive this predicate when it is created.
+When the user enters the `findactivity` command to search for activities, the user input command undergoes the same command parsing as described in <<Design-Logic>>. During the parsing, a predicate is created. This predicate checks if a given `Activity` contains the user input keywords. The `FindActivityCommand` will then receive this predicate when it is created.
 
 The following steps will describe the execution of the `FindActivityCommand` in detail, assuming that no error is encountered.
 
@@ -500,7 +495,7 @@ The following steps will describe the execution of the `FindActivityCommand` in 
 
 The __Sequence Diagram__ below summarises the aforementioned steps.
 
-.Execution of the `FindActivityCommand`.
+.Execution of the `FindActivityCommand`
 
 image::developer-guide/activity/FindActivitySequenceDiagram.png[]
 
@@ -518,25 +513,26 @@ We do not have other implementation options for the `FindActivityCommand` as the
 
 // tag::scheduleactivity[]
 [#schedule-feature]
-=== Schedule feature
+[[Schedule-Feature]]
+=== Schedule Feature
 **E.T.** allows the user to schedule an activity from the activity list to a specified time of a day. This is done using the `schedule` command which requires the user to specify the `INDEX` of an activity from the displayed activity list, the `DAY_INDEX` of the trip and the `START_TIME` of the activity to be scheduled.
 
 ==== Rationale
 The schedule feature is an important feature that allows the users to manage and plan for their trip schedule or itinerary. This feature is added to **E.T.** to separate from the activity management feature from the schedule. This can increase the ease of planning because users can just focus on the time management aspect when scheduling proposed activities from the activity list. The schedule feature also automatically adds any transport bookings into the schedule.
 
 ==== Current Implementation
-The schedule feature uses a separate system and structure as compared to the `ListManager`s. Instead, the schedule feature will be more closely related to the trip feature because it heavily relies on information about the `Trip` such as the `startDate` and `endDate`.
+The schedule feature uses a separate system and structure as compared to the ``ListManager``s. Instead, the schedule feature will be more closely related to the trip feature because it heavily relies on information about the `Trip` such as the `startDate` and `endDate`.
 
-As such, the `TripManager` is in charge of managing the schedule. The `TripManager`, contains a list of `DaySchedule`s which represents the schedule of a specific day of the `Trip`. Thus, the number of `DaySchedule`s equals the number of days in the `Trip`. E.g. a trip of 2 days means that the `TripManager` contains 2 `DaySchedule` objects.
+As such, the `TripManager` is in charge of managing the schedule. The `TripManager`, contains a list of ``DaySchedule``s which represents the schedule of a specific day of the `Trip`. Thus, the number of ``DaySchedule``s equals the number of days in the `Trip`. E.g. a trip of 2 days means that the `TripManager` contains 2 `DaySchedule` objects.
 
 Within each `DaySchedule` object, there is a `UniqueList` of `DayScheduleEntry`. The `DayScheduleEntry` object represents an entry in the schedule.
 As an example, the following UML object diagram describes the relevant objects related to this feature when a `Trip` of 2 days is set.
 
 
-.Example of associations between related objects of the schedule feature.
+.Example of associations between related objects of the schedule feature
 image::developer-guide/schedule/ScheduleFeatureObjectDiagram.png[]
 
-When the user enters the `schedule` command to schedule an activity, the user input command undergoes the same command parsing as described in <<DeveloperGuide.adoc#logic-component, Section 2.3 Logic Component>> . A `ScheduleCommand` will then be created.
+When the user enters the `schedule` command to schedule an activity, the user input command undergoes the same command parsing as described in <<Design-Logic>> . A `ScheduleCommand` will then be created.
 The following steps describe the execution of the `ScheduleCommand`, assuming that no error is encountered.
 
 . When `execute()` of the `ScheduleCommand` is called, the `ModelManager` retrieves the displayed list of activities shown to the user.
@@ -544,13 +540,13 @@ The following steps describe the execution of the `ScheduleCommand`, assuming th
 . The `ModelManager`’s `scheduleActivity()` method is called to schedule the target `Activity`.
 . The `ModelManager` proceeds to call the `scheduleActivity()` method of the `TripManager`.
 . The `TripManager` then uses the given activity to create a corresponding `DayScheduleEntry` object.
-. The `TripManager will calculate which day of the trip to schedule this activity and get the `DaySchedule` representing the schedule of the target day.
+. The `TripManager` will calculate which day of the trip to schedule this activity and get the `DaySchedule` representing the schedule of the target day.
 . The target activity is then scheduled on the target day through the `addScheduleEntry()` method of the target `DaySchedule`.
 . If the above steps are all successful, the `ScheduleCommand` will then create a `CommandResult` object and return the result.
 
 The  _Sequence Diagram_ below summarizes the execution of the `ScheduleCommand`.
 
-.Execution of the `ScheduleCommand`.
+.Execution of the `ScheduleCommand`
 image::developer-guide/schedule/ScheduleCommandExecution.png[Schedule Activity Command Execution]
 
 [NOTE]
@@ -561,6 +557,7 @@ This sequence diagram does not take into consideration the possible exceptions w
 
 ====
 [#schedule-design-consideration]
+[[Schedule-Design-Consideration]]
 ==== Design Consideration
 
 ===== Aspect: Separation between scheduling and activity management
@@ -569,14 +566,15 @@ This sequence diagram does not take into consideration the possible exceptions w
 |===
 | |Pros |Cons
 
-|**Option 1 (Current)**
+|**Option 1 (Current)** +
 Scheduling is separated from activity management.
 
 |Better user experience.
-Allows for extensions. Other types of objects such as a `TransportBooking` could easily be converted into a `DayScheduleEntry` object and be added into the schedule. This is by the Open-Closed principle.
+
+Allows for extensions as other types of objects such as a `TransportBooking` could easily be converted into a `DayScheduleEntry` object and be added into the schedule. This is by the Open-Closed principle.
 |Complicated to implement and more likely to result in bugs if undesirable dependencies are introduced.
 
-|**Option 2**
+|**Option 2** +
 An activity must be scheduled directly into a day as it is added.
 i.e. `ActivityManager` is in charge of scheduling.
 
@@ -596,7 +594,7 @@ Reasons for choosing option 1:
 // tag::accommodationbooking[]
 === Accommodation Booking feature
 
-**E.T.** allows the user to keep track of their accommodation bookings for his/her trip. The accommodation booking manager is one of the ``ListManager``s (See <<DeveloperGuide.adoc#list-manager, Section 3.1 List Managers>>). On top of the basic operations provided by a `ListManager`, it also prevents the user from having overlapping accommodation bookings.
+**E.T.** allows the user to keep track of their accommodation bookings for his/her trip. The accommodation booking manager is one of the ``ListManager``s (See <<List-Manager>>). On top of the basic operations provided by a `ListManager`, it also prevents the user from having overlapping accommodation bookings.
 
 ==== Rationale
 
@@ -604,7 +602,7 @@ The transport booking manager is an important feature to have because any overse
 
 ==== Current Implementation
 
-When a user adds an accommodation booking, the `Logic` Component parses the user input and creates an `AddAccommodationBookingCommand` object (See <<DeveloperGuide.adoc#logic-component, Section 2.3 Logic Component>>). When the `execute()` method of `AddAccommodationBookingCommand` is called, the execution will check if the new accommodation booking overlaps with any other other current bookings.
+When a user adds an accommodation booking, the `Logic` Component parses the user input and creates an `AddAccommodationBookingCommand` object (See <<Design-Logic>>). When the `execute()` method of `AddAccommodationBookingCommand` is called, the execution will check if the new accommodation booking overlaps with any other other current bookings.
 
 Using a Java’s __stream__, the new accommodation booking will be checked against all other bookings in the list to look for any overlaps.
 We used an interval overlap detection algorithm to check for overlap between 2 accommodation bookings. If the total duration of the 2 accommodation bookings is within the __acceptable duration__ of the algorithm, then there is no overlap.
@@ -626,7 +624,7 @@ If there is an overlap, the check will stop and the user will receive a message 
 
 The __Activity Diagram__ below summaries the above steps.
 
-.Activity diagram of check overlap for 2 accommodation bookings
+.Workflow of an overlap check between 2 accommodation bookings
 image::developer-guide/accommodation-booking/FindOverlapActivityDiagram.png[]
 
 ==== Design Consideration
@@ -635,8 +633,7 @@ image::developer-guide/accommodation-booking/FindOverlapActivityDiagram.png[]
 
 |===
 | |Pros |Cons
-|**Option 1 (Current)**
-
+|**Option 1 (Current)** +
 Use an interval overlap detection algorithm.
 
 In the worst case, the checking for overlap against all accommodation booking takes O(n) time where n is the number of accommodation bookings
@@ -647,8 +644,7 @@ Only require constant space to calculate overlaps between 2 intervals.
 
 |Requires some calculation.
 
-|**Option 2**
-
+|**Option 2** +
 Use a hashtable to store the days that have been accounted for.
 
 In the worst case, the checking for overlap against all accommodation booking takes O(d) time where d is the number of days.
@@ -659,17 +655,22 @@ Checking for any particular day takes constant time.
 
 |Require a large amount of storage space to save the hashtable data.
 |===
+
+Reason for choosing option 1:
+
+* Both options are simple and easy to implement. However, option 2 has a larger overhead due to the hashtable it uses. Thus, we decided option 1 is better.
+
 // end::accommodationbooking[]
 
 // tag::transportbooking[]
 === Transport Booking feature
 
-**E.T.** allows the user to keep track of their transport bookings for his/her trip. The transport booking manager is one of the `ListManager` s <<DeveloperGuide.adoc#list-manager, (See Section 3.1 List Managers)>>. On top of the basic operations provided by a `ListManager`, it also automatically adds all the transport bookings into the trip schedule.
+**E.T.** allows the user to keep track of their transport bookings for his/her trip. The transport booking manager is one of the ``ListManager``s (See <<List-Manager>>). On top of the basic operations provided by a `ListManager`, it also automatically adds all the transport bookings into the trip schedule.
 
 
 ==== Rationale
 
-The transport booking manager is an important feature to have because any oversea trip will require some form of transportation to the destination and back. Thus, we decided to create a transport booking manager as one of the `ListManager`s.
+The transport booking manager is an important feature to have because any oversea trip will require some form of transportation to the destination and back. Thus, we decided to create a transport booking manager as one of the ``ListManager``s.
 
 ==== Current Implementation
 
@@ -683,8 +684,8 @@ image::developer-guide/transport-booking/TransportBookingFeatureClassDiagram.png
 From the diagram, it is clear that the `TransportBookingManager` has no direct association with the `TripManager`. The following steps will outline how a transport booking is added to the schedule managed by the `TripManager` when the user tries to add a transport booking to the `TransportBookingManager` using the `addtransport` command.
 
 . The user enters the `addtransport` command to add a transport booking.
-. The command is parsed by the `Logic` component and an `AddTransportBookingCommand` is created. (See Section 2.3 Logic Component)
-. During the execution of the `AddTransportBookingCommand`, a `DayScheduleEntry` representing this transport booking is first created. (See Section X.X Schedule for more information on the schedule feature)
+. The command is parsed by the `Logic` component and an `AddTransportBookingCommand` is created. (See <<Design-Logic>>)
+. During the execution of the `AddTransportBookingCommand`, a `DayScheduleEntry` representing this transport booking is first created. (See <<Schedule-Feature>> for more information on the schedule feature)
 . The day to schedule this transport booking is calculated.
 . If the calculation returns an out-of-bound day of the current `Trip`, an error message will be shown to the user.
 . Else, the `AddTransportBookingCommand` will add the `DayScheduleEntry` to the schedule through the `ModelManager`’s `scheduleTransportBooking()` method.
@@ -696,15 +697,15 @@ The following __Activity Diagram__ summarizes the workflow mentioned above.
 image::developer-guide/transport-booking/AddTransportBookingActivityDiagram.png[]
 
 ==== Design Consideration
-The design consideration for this feature is similar to that of the Schedule feature. <<DeveloperGuide.adoc#schedule-design-consideration, (See 3.4.3 Schedule Feature - Design Consideration)>>
-This is because if we let the `ActivityManager` manage the schedule and activities, then the schedule can only contain activities. This means that transport bookings will become a basic `ListManager` <<DeveloperGuide.adoc#list-manager, (See 3.2 List Managers)>> with no special functionalities. Thus, we decided to adopt the current implementation for better user experience and potential future extensions.
+The design consideration for this feature is similar to that of the Schedule feature. (See <<Schedule-Design-Consideration>>)
+This is because if we let the `ActivityManager` manage the schedule and activities, then the schedule can only contain activities. This means that transport bookings will become a basic `ListManager` (See <<List-Manager>>) with no special functionalities. Thus, we decided to adopt the current implementation for better user experience and potential future extensions.
 // end::transportbooking[]
 
 
 // tag::packinglist[]
 === Packing List feature
 
-**E.T.** allows the user to keep track of their packing list for his/her trip. The packing list manager is one of the `ListManager` s <<DeveloperGuide.adoc#list-manager, (See Section 3.1 List Managers)>>. On top of the basic operations provided by a `ListManager`, it also allows the user to add built-in lists of items into his/her current packing list through the `addpreset` command.
+**E.T.** allows the user to keep track of their packing list for his/her trip. The packing list manager is one of the `ListManager` s (See <<List-Manager>>). On top of the basic operations provided by a `ListManager`, it also allows the user to add built-in lists of items into his/her current packing list through the `addpreset` command.
 
 E.g. the `addpreset swimming` will add items related to swimming into the packing list. The term __preset__ will be used to refer to the built-in list of packing list items.
 
@@ -713,12 +714,12 @@ The packing list manager is an important feature to have because there are many 
 
 ==== Current Implementation
 
-When a user enters the `addpreset` command, the `Logic` Component parses the user input and creates an `AddPresetCommand` object <<DeveloperGuide.adoc#logic-component, (See Section 2.3 Logic Component)>>. When the `execute()` method of `AddPresetCommand` is called, the execution of this command will retrieve the target preset specified by the user into the packing list.
+When a user enters the `addpreset` command, the `Logic` Component parses the user input and creates an `AddPresetCommand` object (See <<Design-Logic>>). When the `execute()` method of `AddPresetCommand` is called, the execution of this command will retrieve the target preset specified by the user into the packing list.
 
 The __Activity Diagram__ below shows how a preset is added to the packing list.
 
 
-.Workflow of the `addpreset` command.
+.Workflow of the `addpreset` command
 image::developer-guide/packing-list/AddPackingListActivityDiagram.png[]
 
 
@@ -730,19 +731,19 @@ image::developer-guide/packing-list/AddPackingListActivityDiagram.png[]
 |===
 ||Pros |Cons
 
-|**Option 1 (Current)**:
+|**Option 1 (Current)**: +
 Users can only choose the preset from the built-in lists
 
 |Provides the user with more convenience as it allows the user to add an existing built-in list into their packing list instead of adding one item at a time.
 |Restricts the freedom of the user due to lack of customizability
 
-|**Option 2:**
+|**Option 2:** +
 Users create their own presets
 
 |Gives the user a lot of freedom to customise their presets and packing list, making the application user focused.
 |Difficult to implement as we would need to introduce more validation rules and checks to ensure the user creates a valid preset.
 
-|**Option 3:**
+|**Option 3:** +
 Combine both option 1 and 2
 
 |Provides the best user experience as this option gets the benefit of both the previous 2 options.
@@ -751,7 +752,7 @@ Combine both option 1 and 2
 
 Reasons for choosing option 1:
 
-* Due to time restriction, we only have enough time to implement either option 1 or 2 by v1.4.
+* Due to time restriction, we only have enough time to implement either option 1 or 2 by **E.T. v1.4**.
 * We want to focus on giving the user the best first time experience when using **E.T.**. Thus, option 1 is more suitable as it provides convenience for the user when he first use **E.T.**.
 * Option 2 is only useful when the user uses **E.T.** for more than one trip and he/she wants to save his previous packing list to add for the next trip.
 
@@ -761,10 +762,10 @@ Reasons for choosing option 1:
 // tag::fixedexpense[]
 === Fixed expense feature
 
-**E.T.** allows the user to keep track of their fixed expenses for his/her trip. The fixed expense manager is one of the `ListManager` s <<DeveloperGuide.adoc#list-manager, (See Section 3.1 List Managers)>>. On top of the basic operations provided by a `ListManager`, it also allows the user to set a budget for the trip and automatically converts any fixed expenses entered in foreign currency into Singapore Dollars (SGD).
+**E.T.** allows the user to keep track of their fixed expenses for his/her trip. The fixed expense manager is one of the ``ListManager``s (See <<List-Manager>>). On top of the basic operations provided by a `ListManager`, it also allows the user to set a budget for the trip and automatically converts any fixed expenses entered in foreign currency into Singapore Dollars (SGD).
 
 ==== Rationale
-The fixed expense manager is an important feature to have because many travellers would want to manage their expense for an overseas trip. We also found out that most accommodations are commonly charged in a foreign currency instead of SGD. This prevented travelers from having a clearer picture of how much they have spent on these big ticket items before their trip. Thus, we decided to create a transport booking manager as one of the `ListManager` s with an automatic conversion feature.
+The fixed expense manager is an important feature to have because many travellers would want to manage their expense for an overseas trip. We also found out that most accommodations are commonly charged in a foreign currency instead of SGD. This prevented travelers from having a clearer picture of how much they have spent on these big ticket items before their trip. Thus, we decided to create a transport booking manager as one of the ``ListManager``s with an automatic conversion feature.
 
 ==== Current Implementation
 
@@ -779,10 +780,10 @@ image::developer-guide/fixed-expense/FixedExpenseClassDiagram.png[]
 
 The Activity Diagram below summarises what happens when the user adds a fixed expense entry using the `addexpense` command.
 
-.Workflow of the `addexpense` command..
+.Workflow of the `addexpense` command
 image::developer-guide/fixed-expense/AddFixedExpenseActivityDiagram.png[]
 
-When a user enters the `addexpense` command, the `Logic` Component parses the user input and creates an `AddExpenseCommand` object. <<DeveloperGuide.adoc#logic-component, (See Section 2.3 Logic Component)>>
+When a user enters the `addexpense` command, the `Logic` Component parses the user input and creates an `AddExpenseCommand` object. <<Design-Logic>>
 
 The following steps describes the execution of the AddFixedExpenseCommand:
 
@@ -796,7 +797,7 @@ The following steps describes the execution of the AddFixedExpenseCommand:
 
 The following sequence diagram describes the execution of the `AddExpenseCommand` when its `execute()` method is called.
 
-.Workflow of the `addexpense` command..
+.Execution of the `addexpense` command
 image::developer-guide/fixed-expense/AddFixedExpenseCommandExecution.png[]
 
 [NOTE]
@@ -815,13 +816,13 @@ This sequence diagram does not take into consideration the possible exceptions w
 |===
 | |Pros |Cons
 
-|**Option 1 (Current)**:
+|**Option 1 (Current)**: +
 Place the budget and exchange rate as fields in the `Trip` class.
 
 |Follows the Separation of Concerns (SoC) principle. The budget for the trip is an attribute of the trip. Thus, only the `Trip` class should contain the budget.
 |The `Model` API has to provide the `getBudget()` and `getExchangeRate()` methods which will take more time to implement.
 
-|**Option 2:**
+|**Option 2:** +
 Place the budget and exchange rate as fields in the `FixedExpenseManager` class
 
 |Faster to implement as calculations for the remaining budget can be done internally in the `FixedExpenseManager`.
@@ -856,10 +857,10 @@ This feature is added because as a travel planning application, the user would w
 The following __Activity Diagram__ summarizes what happens when a user enters the `status` command.
 
 
-.Workflow of the `status` command.
+.Workflow of the `status` command
 image::developer-guide/progress-checker/CheckStatusActivityDiagram.png[]
 
-When a user enters the `status` command, the `Logic` Component parses and creates a `CheckStatusCommand` object. <<DeveloperGuide.adoc#logic-component, (See Section 2.3 Logic Component)>>.
+When a user enters the `status` command, the `Logic` Component parses and creates a `CheckStatusCommand` object. (See <<Design-Logic>>).
 
 The execution of the `CheckStatusCommand` undergoes the following steps.
 
@@ -871,7 +872,7 @@ The execution of the `CheckStatusCommand` undergoes the following steps.
 . After all the required data is obtained, the `ModelManager` will return the data to the `CheckStatusCommand`.
 . The `CheckStatusCommand` will then create a new `CommandResult` object using the data obtained and return this `CommandResult` object.
 
-.Execution of the `CheckStatusCommand`.
+.Execution of the `CheckStatusCommand`
 image::developer-guide/progress-checker/CheckStatusCommandExecution.png[]
 
 [NOTE]
@@ -882,7 +883,7 @@ This sequence diagram does not take into consideration the possible exceptions w
 
 ====
 
-==== Design Considerations
+==== Design Consideration
 
 We do not have other implementation options for this feature as the current implementation is the only option that we came up with. It is also a good option because it follows good coding principles such as the Law of Demeter (LoD). In our implementation, each object only calls the methods of other objects that it is directly associated with.
 
@@ -995,7 +996,6 @@ _{More to be added}_
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `E.T.` and the *Actor* is the `User`, unless specified otherwise)
 
 [discrete]
 === Trip Planner
@@ -1159,8 +1159,6 @@ Extensions:
         Use case ends.
 ----------------------------------------------------------------------------------------------------------------
 
-_{More to be added}_
-
 [appendix]
 == Non Functional Requirements
 
@@ -1179,8 +1177,6 @@ _{More to be added}_
 * Application should be for a single user i.e. (not a multi-user product).
 
 * Application should not require an online connection.
-
-_{More to be added}_
 
 [appendix]
 == Glossary
@@ -1227,24 +1223,6 @@ The word that comes before ‘/’ in the prefix. For example, the prefix name i
 [[stream]] Stream::
 A stream is a sequence of objects that supports various methods which can be pipelined to produce the desired result.
 
-
-[appendix]
-== Product Survey
-
-*Product Name*
-
-Author: ...
-
-Pros:
-
-* ...
-* ...
-
-Cons:
-
-* ...
-* ...
-
 [appendix]
 == Instructions for Manual Testing
 
@@ -1272,12 +1250,12 @@ Expected: The most recent window size and location is retained.
 
  . Prerequisites: Arguments are valid and compulsory parameters are provided.
 Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/expensive tag/sightseeing`
-. Expected: Adds an activity with title of “Osaka Castle View”, with duration of 1 hour, a location of “Osaka” and tags of “expensive” and “sightseeing”
+. Expected: Adds an activity with title of `Osaka Castle View`, with duration of `1` hour, a location of `Osaka` and tags of `expensive` and `sightseeing`.
 
-. Test case `addactivity title/Osaka Castle
+. Test case `addactivity title/Osaka Castle`
 .. Expected: No activity is added. Error details shown in feedback display.
 
-. Other incorrect add commands to try: addactivity duration/1, addactivity location/Singapore, addactivity tag/testing
+. Other incorrect add commands to try: `addactivity duration/1`, `addactivity location/Singapore`, `addactivity tag/testing`
 .. Expected: Similar to previous test case.
 
 ==== Setting Trip
@@ -1287,14 +1265,14 @@ Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/ex
 . Prerequisites: Arguments are valid and compulsory parameters are provided.
 
 . Test case: `settrip title/Graduation Trip budget/5000 exchangerate/1.03 startdate/28-09-2020 enddate/05-10-2020`
-.. Expected: Sets a trip with title `Graduation Trip`, with budget of `5000`, exchange rate of `1.03`, startdate of `28-09-2020` and enddate of `05-10-2020`
+.. Expected: Sets a trip with title `Graduation Trip`, with budget of `5000`, exchange rate of `1.03`, startdate of `28-09-2020` and enddate of `05-10-2020`.
 
 . Test case `settrip title/Graduation Trip`
 .. Expected: No Trip is set. Error details shown in the feedback display.
 
 
 . Other incorrect set commands to try: `settrip budget/5000`, `settrip exchangerate/1.03`, `settrip startdate/28-09-2020`, `settrip enddate/05-10-2020`
-.. Expected: Similar to point 3
+.. Expected: Similar to point 3.
 
 ==== Adding Accommodation
 * Adds a new accommodation to Easy Travel
@@ -1302,7 +1280,7 @@ Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/ex
 . Prerequisites: Arguments are valid and compulsory parameters are provided.
 
 . Test case: `addacc name/JW Marriott Hotel loc/KL startday/2 endday/4 remark/Check-in at 3pm.`
-.. Expected: Adds an accommodation with name `JW Marriott Hotel` location `KL`,  startday `2`, endday`4` and remark of `Check-in at 3pm`
+.. Expected: Adds an accommodation with name of `JW Marriott Hotel` location of `KL`,  startday of `2`, endday of `4` and remark of `Check-in at 3pm`.
 
 . Test case `addacc name/JW Marriott Hotel`
 .. Expected: No Accommodation is set. Error details shown in the feedback display.
@@ -1316,7 +1294,7 @@ Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/ex
 . Prerequisites: Arguments are valid and compulsory parameters are provided.
 
 . Test case: `addtransport mode/plane startloc/Singapore endloc/Japan starttime/20-03-2020 17:00 endtime/21-03-2020 00:00`
-.. Expected: Adds an transportation with mode `plane`, startloc as `Singapore`, endloc as `Japan`, starttime as `20-03-2020 17:00` and endtime as `21-03-2020 00:00`
+.. Expected: Adds an transportation with mode `plane`, startloc as `Singapore`, endloc as `Japan`, starttime as `20-03-2020 17:00` and endtime as `21-03-2020 00:00`.
 
 . Test case `addtransport mode/plane`
 .. Expected: No Transportation is set. Error details shown in the feedback display.
@@ -1330,7 +1308,7 @@ Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/ex
 . Prerequisites: Arguments are valid and compulsory parameters are provided.
 
 . Test case: `additem name/Tshirts quantity/5 category/clothes`
-.. Expected: Adds an item with name `Tshirts` quantity `5`, category `clothes`
+.. Expected: Adds an item with name of `Tshirts` quantity of `5`, category of `clothes`.
 
 . Test case `additem name/Tshirts`
 .. Expected: No Item is set. Error details shown in the feedback display.
@@ -1344,7 +1322,7 @@ Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/ex
 . Prerequisites: Arguments are valid and compulsory parameters are provided.
 
 . Test case: `addpreset swimming`
-.. Expected: Adds a new preset of `swimming`
+.. Expected: Adds a new preset of `swimming`.
 
 . Test case `addpreset Tshirts`
 .. Expected: No preset is set. Error details shown in the feedback display.
@@ -1356,7 +1334,7 @@ Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/ex
 . Prerequisites: Arguments are valid and compulsory parameters are provided.
 
 . Test case: `addexpense amount/1500 currency/sgd description/Plane Tickets category/transport`
-.. Expected: Adds a fixed expense with amount `1500` currency `sgd`, description `Plane Tickets` and of category `transport`
+.. Expected: Adds a fixed expense with amount of `1500` currency of `sgd`, description of `Plane Tickets` and category of `transport`.
 
 . Test case `addexpense amount/1500`
 .. Expected: No Fixed Expense is set. Error details shown in the feedback display.
@@ -1371,10 +1349,10 @@ Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/ex
 
 * Edits a current Activity in Easy Travel
 
-. Prerequisites: Arguments are valid, compulsory parameters are provided and activity must exist in the Activity List.
+. Prerequisites: Arguments are valid, compulsory parameters are provided and activity must exist in the activity list.
 
 . Test case: `editactivity 1 title/Shopping duration/2`
-.. Expected: Edits an activity in index `1` of the Activity List with title `Shopping` currency `sgd`, description `SQ Flight` and of category `transport
+.. Expected: Edits an activity in index `1` in the displayed activity list with title of `Shopping`, currency of `sgd`, description of `SQ Flight` and category of `transport`.
 
 . Other incorrect set commands to try: `editactivity 1000000000 title/Shopping` Expected: No Activity is edited. Error details shown in feedback display.
 
@@ -1382,10 +1360,10 @@ Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/ex
 ==== Editing Fixed Expense
 * Edits a current Fixed Expense in Easy Travel
 
-. Prerequisites: Arguments are valid,  compulsory parameters are provided and fixed expense must exist in the Fixed Expense List.
+. Prerequisites: Arguments are valid,  compulsory parameters are provided and fixed expense must exist in the fixed expense List.
 
 . Test case: `editexpense 1 amount/3000 currency/sgd description/SQ Flight category/transport`
-.. Expected: Edits a fixed expense in index `1` of the Fixed Expense List with amount `3000` currency `sgd`, description `SQ Flight` and of category `transport`
+.. Expected: Edits a fixed expense in index `1` of the fixed expense list with amount of `3000`, currency of `sgd`, description of `SQ Flight` and category of `transport`.
 
-. Other incorrect set commands to try: `editactivity 1 category`testing`
+. Other incorrect set commands to try: `editactivity 1 category testing`
 .. Expected: No Fixed Expense is edited. Error details shown in feedback display.
