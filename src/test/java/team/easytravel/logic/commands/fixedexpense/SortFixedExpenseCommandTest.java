@@ -5,6 +5,7 @@ import static team.easytravel.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import team.easytravel.logic.commands.exceptions.CommandException;
+import team.easytravel.logic.commands.util.SortCommandOrder;
 import team.easytravel.model.ModelStub;
 
 class SortFixedExpenseCommandTest {
@@ -12,7 +13,8 @@ class SortFixedExpenseCommandTest {
     @Test
     public void execute_tripNotSet_throwsCommandException() {
         ModelStubNoTripSet modelStub = new ModelStubNoTripSet();
-        assertThrows(CommandException.class, ()-> new SortFixedExpenseCommand("asc", "amount")
+        assertThrows(CommandException.class, ()-> new SortFixedExpenseCommand(SortCommandOrder.ASCENDING,
+                "amount")
                 .execute(modelStub));
     }
 

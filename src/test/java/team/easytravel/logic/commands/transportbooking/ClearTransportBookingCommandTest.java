@@ -1,6 +1,6 @@
-package team.easytravel.logic.commands.fixedexpense;
+package team.easytravel.logic.commands.transportbooking;
 
-import static team.easytravel.logic.commands.CommandTestUtil.assertFixedExpenseCommandSuccess;
+import static team.easytravel.logic.commands.CommandTestUtil.assertTransportBookingCommandSuccess;
 import static team.easytravel.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -17,20 +17,20 @@ import team.easytravel.model.listmanagers.TransportBookingManager;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
 import team.easytravel.model.userprefs.UserPrefs;
-import team.easytravel.testutil.TypicalFixedExpense;
+import team.easytravel.testutil.TypicalTransportBooking;
 import team.easytravel.testutil.trip.TripBuilder;
 
-class ClearFixedExpenseCommandTest {
+public class ClearTransportBookingCommandTest {
 
     @Test
     public void execute_nonTripSet_throwsCommandException() {
         ModelStubNoTripSet modelStub = new ModelStubNoTripSet();
-        assertThrows(CommandException.class, () -> new ClearFixedExpenseCommand()
+        assertThrows(CommandException.class, () -> new ClearTransportBookingCommand()
                 .execute(modelStub));
     }
 
     @Test
-    public void execute_emptyFixedExpenseManager_success() {
+    public void execute_emptyTransportBookingManager_success() {
         Trip newTrip = new TripBuilder().build();
         TripManager tripManagerSet = new TripManager();
         tripManagerSet.setTrip(newTrip);
@@ -44,12 +44,12 @@ class ClearFixedExpenseCommandTest {
                 new AccommodationBookingManager(), tripManagerSet,
                 new UserPrefs());
 
-        assertFixedExpenseCommandSuccess(new ClearFixedExpenseCommand(), model,
-                ClearFixedExpenseCommand.MESSAGE_SUCCESS, expectedModel);
+        assertTransportBookingCommandSuccess(new ClearTransportBookingCommand(), model,
+                ClearTransportBookingCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
-    public void execute_nonFixedExpenseManager_success() {
+    public void execute_nonTransportBookingManager_success() {
         Trip newTrip = new TripBuilder().build();
         TripManager tripManagerSet = new TripManager();
         tripManagerSet.setTrip(newTrip);
@@ -63,10 +63,10 @@ class ClearFixedExpenseCommandTest {
                 new FixedExpenseManager(), new PackingListManager(), new ActivityManager(),
                 new AccommodationBookingManager(), tripManagerSet,
                 new UserPrefs());
-        expectedModel.setFixedExpenseManager(TypicalFixedExpense.getTypicalFixedExpenseManager());
+        expectedModel.setTransportBookingManager(TypicalTransportBooking.getTypicalTransportBookingManager());
 
-        assertFixedExpenseCommandSuccess(new ClearFixedExpenseCommand(), model,
-                ClearFixedExpenseCommand.MESSAGE_SUCCESS, expectedModel);
+        assertTransportBookingCommandSuccess(new ClearTransportBookingCommand(), model,
+                ClearTransportBookingCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     /**
@@ -78,4 +78,5 @@ class ClearFixedExpenseCommandTest {
             return false;
         }
     }
+
 }

@@ -1,14 +1,7 @@
-//package seedu.address.logic;
+//package team.easytravel.logic;
 //
 //import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
-//import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-//import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-//import static seedu.address.testutil.Assert.assertThrows;
-//import static seedu.address.testutil.TypicalPersons.AMY;
+//
 //
 //import java.io.IOException;
 //import java.nio.file.Path;
@@ -17,26 +10,28 @@
 //import org.junit.jupiter.api.Test;
 //import org.junit.jupiter.api.io.TempDir;
 //
-//import seedu.address.logic.commands.AddCommand;
-//import seedu.address.logic.commands.CommandResult;
-//import seedu.address.logic.commands.ListCommand;
-//import seedu.address.logic.commands.exceptions.CommandException;
-//import seedu.address.logic.parser.exceptions.ParseException;
-//import seedu.address.model.Model;
-//import seedu.address.model.ModelManager;
-//import seedu.address.model.ReadOnlyAddressBook;
-//import seedu.address.model.person.Person;
-//import seedu.address.model.trip.TripManager;
-//import seedu.address.storage.JsonAddressBookStorage;
-//import seedu.address.storage.JsonUserPrefsStorage;
-//import seedu.address.storage.StorageManager;
-//import seedu.address.storage.accommodationbooking.JsonAccommodationBookingStorage;
-//import seedu.address.storage.activity.JsonActivityManagerStorage;
-//import seedu.address.storage.fixedexpense.JsonFixedExpenseStorage;
-//import seedu.address.storage.packinglist.JsonPackingListStorage;
-//import seedu.address.storage.transportbooking.JsonTransportBookingStorage;
-//import seedu.address.storage.trip.JsonTripManagerStorage;
-//import seedu.address.testutil.PersonBuilder;
+//
+//import team.easytravel.logic.Logic;
+//import team.easytravel.logic.LogicManager;
+//import team.easytravel.logic.commands.CommandResult;
+//import team.easytravel.logic.commands.exceptions.CommandException;
+//import team.easytravel.model.Model;
+//import team.easytravel.model.ModelManager;
+//import team.easytravel.model.listmanagers.AccommodationBookingManager;
+//import team.easytravel.model.listmanagers.ActivityManager;
+//import team.easytravel.model.listmanagers.FixedExpenseManager;
+//import team.easytravel.model.listmanagers.PackingListManager;
+//import team.easytravel.model.listmanagers.TransportBookingManager;
+//import team.easytravel.model.trip.TripManager;
+//import team.easytravel.model.userprefs.UserPrefs;
+//import team.easytravel.storage.StorageManager;
+//import team.easytravel.storage.accommodationbooking.JsonAccommodationBookingStorage;
+//import team.easytravel.storage.activity.JsonActivityStorage;
+//import team.easytravel.storage.fixedexpense.JsonFixedExpenseStorage;
+//import team.easytravel.storage.packinglist.JsonPackingListStorage;
+//import team.easytravel.storage.transportbooking.JsonTransportBookingStorage;
+//import team.easytravel.storage.trip.JsonTripManagerStorage;
+//import team.easytravel.storage.userprefs.JsonUserPrefsStorage;
 //
 //public class LogicManagerTest {
 //    private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -44,34 +39,33 @@
 //    @TempDir
 //    public Path temporaryFolder;
 //
-//    private Model model = new ModelManager();
+//    private Model model = new ModelManager(new TransportBookingManager(), new FixedExpenseManager(),
+//            new PackingListManager(),
+//            new ActivityManager(), new AccommodationBookingManager(), new TripManager(), new UserPrefs());
 //    private Logic logic;
 //
 //    @BeforeEach
 //    public void setUp() {
-//        JsonAddressBookStorage addressBookStorage =
-//                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
-//        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-//        //TODO Improve this!
-//        JsonTransportBookingStorage transportBookingStorage = new JsonTransportBookingStorage(temporaryFolder
-//                .resolve("transport.json"));
-//        JsonFixedExpenseStorage fixedExpenseStorage = new JsonFixedExpenseStorage(temporaryFolder
-//                .resolve("fixedexpense.json"));
-//        JsonActivityManagerStorage activityManagerStorage = new JsonActivityManagerStorage(temporaryFolder
-//                .resolve("activity.json"));
-//        JsonPackingListStorage packingListStorage = new JsonPackingListStorage(temporaryFolder
-//                .resolve("packinglist.json"));
+//        JsonTripManagerStorage tripManagerStorage =
+//                new JsonTripManagerStorage(temporaryFolder.resolve("trip.json"));
 //        JsonAccommodationBookingStorage accommodationBookingStorage =
-//                new JsonAccommodationBookingStorage(temporaryFolder
-//                .resolve("accommodationbooking.json"));
-//        JsonTripManagerStorage tripStorage = new JsonTripManagerStorage(temporaryFolder.resolve("trip.json"));
+//                new JsonAccommodationBookingStorage(temporaryFolder.resolve("accommodation.json"));
+//        JsonFixedExpenseStorage fixedExpenseStorage =
+//                new JsonFixedExpenseStorage(temporaryFolder.resolve("expense.json"));
+//        JsonTransportBookingStorage transportBookingStorage =
+//                new JsonTransportBookingStorage(temporaryFolder.resolve("transportation.json"));
+//        JsonPackingListStorage packingListStorage =
+//                new JsonPackingListStorage(temporaryFolder.resolve("packinglist.json"));
+//        JsonActivityStorage activityStorage =
+//                new JsonActivityStorage(temporaryFolder.resolve("activity.json"));
+//        JsonUserPrefsStorage userPrefsStorage =
+//                new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
 //
-//        StorageManager storage = new StorageManager(addressBookStorage,
-//                transportBookingStorage,
+//        StorageManager storage = new StorageManager(transportBookingStorage,
 //                fixedExpenseStorage,
-//                activityManagerStorage,
+//                activityStorage,
 //                accommodationBookingStorage,
-//                packingListStorage, tripStorage,
+//                packingListStorage, tripManagerStorage,
 //                userPrefsStorage);
 //
 //        logic = new LogicManager(model, storage);

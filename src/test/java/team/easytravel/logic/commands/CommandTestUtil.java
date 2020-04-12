@@ -341,4 +341,17 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredAccommodationBookingList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the transport booking at the given {@code targetIndex} in
+     * the {@code model}'s manager.
+     */
+    public static void assertTransportBookingCommandSuccess(Command command, Model actualModel,
+                                                            String expectedMessage, Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage,
+                CommandResult.Action.SWITCH_TAB_TRANSPORT);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+
+
 }

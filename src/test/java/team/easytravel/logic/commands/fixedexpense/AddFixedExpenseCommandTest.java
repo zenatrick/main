@@ -93,9 +93,10 @@ class AddFixedExpenseCommandTest {
     @Test
     public void equals() {
         FixedExpense testExpense = new FixedExpenseBuilder().withAmount("1000").build();
-        FixedExpense testExpense2 = new FixedExpenseBuilder().withAmount("3000").build();
+        FixedExpense testExpenseSecond = new FixedExpenseBuilder().withAmount("3000").build();
         AddFixedExpenseCommand addTestExpenseCommand = new AddFixedExpenseCommand(testExpense, false);
-        AddFixedExpenseCommand addTestExpense2Command = new AddFixedExpenseCommand(testExpense2, false);
+        AddFixedExpenseCommand addTestExpenseSecondCommand =
+                new AddFixedExpenseCommand(testExpenseSecond, false);
 
         // same object -> returns true
         assertEquals(addTestExpenseCommand, addTestExpenseCommand);
@@ -112,7 +113,7 @@ class AddFixedExpenseCommandTest {
         assertNotEquals(null, addTestExpenseCommand);
 
         // different person -> returns false
-        assertNotEquals(addTestExpenseCommand, addTestExpense2Command);
+        assertNotEquals(addTestExpenseCommand, addTestExpenseSecondCommand);
     }
 
     /**
