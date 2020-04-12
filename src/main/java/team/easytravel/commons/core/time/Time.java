@@ -6,7 +6,6 @@ import static team.easytravel.commons.util.AppUtil.checkArgument;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoUnit;
 
 /**
  * Represents a Time object in ET which wraps around the java.time.LocalTime and provides basic

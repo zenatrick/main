@@ -2,8 +2,8 @@ package team.easytravel.commons.core.time;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static team.easytravel.testutil.Assert.assertThrows;
 
+import static team.easytravel.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 

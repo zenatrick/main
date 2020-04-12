@@ -38,7 +38,7 @@ public class FixedExpenseTabPanel extends TabPanel {
     private SplitPane splitPane;
 
 
-    public FixedExpenseTabPanel(ObservableList<FixedExpense> fixedExpensesList, double height, double width) {
+    public FixedExpenseTabPanel(ObservableList<FixedExpense> fixedExpensesList, double width) {
         super(FXML);
         this.fixedExpenses = fixedExpensesList;
         splitPane.setPrefWidth(width);

@@ -129,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
         transportBookingTabPanel = new TransportBookingTabPanel(logic.getFilteredTransportBookingList());
         packingListTabPanel = new PackingListTabPanel(logic.getFilteredPackingList());
         fixedExpenseTabPanel = new FixedExpenseTabPanel(logic.getFilteredFixedExpenseList(),
-                logic.getGuiSettings().getWindowHeight(), logic.getGuiSettings().getWindowWidth());
+                logic.getGuiSettings().getWindowWidth());
 
         sideTabsBar.handleSwitchToScheduleTab();
         handleUpdateTrip(true);

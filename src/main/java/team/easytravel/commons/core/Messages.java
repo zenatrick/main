@@ -5,7 +5,6 @@ package team.easytravel.commons.core;
  */
 public class Messages {
     // Success messages
-    public static final String MESSAGE_SORT_SUCCESS = "%1$s are sorted successfully! \uD83D\uDE03";
     public static final String MESSAGE_ITEMS_LISTED_OVERVIEW = "%1$d %2$s listed! \uD83D\uDE03";
     public static final String MESSAGE_SORT_SUCCESS_FORMAT = "Sorted %1$s successfully! \uD83D\uDE03"
         + "\nCriteria: %2$s\nMode: %3$s";

@@ -81,7 +81,8 @@ public class EditFixedExpenseCommand extends Command {
         Double exchangeRate = model.getExchangeRate();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(String.format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "expense"));
+            throw new CommandException(String
+                    .format(MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT, "expense"));
         }
 
         FixedExpense fixedExpenseToEdit = lastShownList.get(index.getZeroBased());

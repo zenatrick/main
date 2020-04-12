@@ -5,11 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import team.easytravel.commons.core.index.Index;
-import team.easytravel.model.Model;
-import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
-
-
 /**
  * A utility class for test cases.
  */
@@ -33,24 +28,4 @@ public class TestUtil {
         return SANDBOX_FOLDER.resolve(fileName);
     }
 
-    /**
-     * Returns the middle index of the Fixed Expense in the {@code model}'s fixed expense list.
-     */
-    public static Index getFixedExpenseMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredFixedExpenseList().size() / 2);
-    }
-
-    /**
-     * Returns the last index of the Fixed Expense in the {@code model}'s person list.
-     */
-    public static Index getFixedExpenseLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredFixedExpenseList().size());
-    }
-
-    /**
-     * Returns the person in the {@code model}'s person list at {@code index}.
-     */
-    public static FixedExpense getFixedExpense(Model model, Index index) {
-        return model.getFilteredFixedExpenseList().get(index.getZeroBased());
-    }
 }
