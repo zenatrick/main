@@ -38,4 +38,18 @@ public class Budget {
     public String toString() {
         return value.toString();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Budget)) {
+            return false;
+        }
+
+        Budget otherBudget = (Budget) other;
+        return this.value == otherBudget.value;
+    }
 }

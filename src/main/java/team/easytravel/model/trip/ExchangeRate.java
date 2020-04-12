@@ -38,4 +38,18 @@ public class ExchangeRate {
     public String toString() {
         return value.toString();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ExchangeRate)) {
+            return false;
+        }
+
+        ExchangeRate otherExchangeRate = (ExchangeRate) other;
+        return this.value.equals(otherExchangeRate.value);
+    }
 }

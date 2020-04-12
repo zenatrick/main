@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import team.easytravel.commons.core.time.DateTime;
 import team.easytravel.logic.parser.exceptions.ParseException;
 import team.easytravel.model.listmanagers.activity.Tag;
+import team.easytravel.model.trip.ExchangeRate;
 import team.easytravel.model.util.attributes.Location;
 import team.easytravel.model.util.attributes.Title;
 import team.easytravel.testutil.Assert;
@@ -30,7 +31,7 @@ public class ParserUtilTest {
     public static final String VALID_DATE = "28-09-2020 14:00";
 
     //-- Trip --
-    public static final Double INVALID_EXCHANGE_RATE = 0.0; //cannot be 0
+    public static final String INVALID_EXCHANGE_RATE = "sss"; //cannot be 0
     public static final Double VALID_EXCHANGE_RATE = 17.3;
     public static final Integer INVALID_BUDGET = -33; //cannot be negative
     public static final Integer VALID_BUDGET = 1700;
@@ -139,6 +140,29 @@ public class ParserUtilTest {
     }
 
     // -- TRIP --
+    //location
+    @Test
+    public void parseExchangeRate_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseExchangeRate(null));
+    }
+
+    @Test
+    public void parseExchangeRate_invalidValue_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseExchangeRate(INVALID_EXCHANGE_RATE));
+    }
+
+    @Test
+    public void parseExchangeRate_validValueWithoutWhitespace_returnsExchangeRate() throws Exception {
+        ExchangeRate expectedExchangeRate =  new ExchangeRate(VALID_EXCHANGE_RATE);
+        assertEquals(expectedExchangeRate, ParserUtil.parseExchangeRate(VALID_EXCHANGE_RATE.toString()));
+    }
+
+    @Test
+    public void parseExchangeRate_validValueWithWhitespace_returnsTrimmedExchangeRate() throws Exception {
+        String exchangeRateWithWhite = WHITESPACE + VALID_EXCHANGE_RATE + WHITESPACE;
+        ExchangeRate expectedExchangeRate =  new ExchangeRate(VALID_EXCHANGE_RATE);
+        assertEquals(expectedExchangeRate, ParserUtil.parseExchangeRate(exchangeRateWithWhite));
+    }
 
 
     // -- Activity --
