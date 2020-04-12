@@ -1,11 +1,19 @@
 package team.easytravel.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static team.easytravel.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import team.easytravel.commons.core.time.DateTime;
 import team.easytravel.logic.parser.exceptions.ParseException;
+import team.easytravel.model.listmanagers.activity.Tag;
 import team.easytravel.model.util.attributes.Location;
 import team.easytravel.model.util.attributes.Title;
 import team.easytravel.testutil.Assert;
@@ -18,7 +26,22 @@ public class ParserUtilTest {
     public static final String VALID_TITLE = "this is a pretty good title";
     public static final String INVALID_LOCATION = "&&&"; // '&' is not allowed
     public static final String VALID_LOCATION = "Cheese land";
+    public static final String INVALID_DATE = "a"; //start date must be a date
+    public static final String VALID_DATE = "28-09-2020 14:00";
+
+    //-- Trip --
+    public static final Double INVALID_EXCHANGE_RATE = 0.0; //cannot be 0
+    public static final Double VALID_EXCHANGE_RATE = 17.3;
+    public static final Integer INVALID_BUDGET = -33; //cannot be negative
+    public static final Integer VALID_BUDGET = 1700;
+
+    //-- Activity --
+    public static final String INVALID_TAG = "&"; //Tag cannot be '&'
+    public static final String VALID_TAG_1 = "expensive";
+    public static final String VALID_TAG_2 = "cool";
+
     private static final String WHITESPACE = " \t\r\n";
+
 
 
 
@@ -91,8 +114,81 @@ public class ParserUtilTest {
         assertEquals(expectedLocation, ParserUtil.parseLocation(locationWithWhitespace));
     }
 
+    //location
+    @Test
+    public void parseDateTime_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseDateTime((String) null));
+    }
+
+    @Test
+    public void parseDateTime_invalidValue_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseDateTime(INVALID_DATE));
+    }
+
+    @Test
+    public void parseDateTime_validValueWithoutWhitespace_returnsAddress() throws Exception {
+        DateTime expectedDateTime =  DateTime.fromString(VALID_DATE);
+        assertEquals(expectedDateTime, ParserUtil.parseDateTime(VALID_DATE));
+    }
+
+    @Test
+    public void parseDateTime_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
+        String dateTimeWithWhitespace = WHITESPACE + VALID_DATE + WHITESPACE;
+        DateTime expectedDateTime =  DateTime.fromString(VALID_DATE);
+        assertEquals(expectedDateTime, ParserUtil.parseDateTime(dateTimeWithWhitespace));
+    }
+
     // -- TRIP --
-    
+
+
+    // -- Activity --
+    @Test
+    public void parseTag_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    }
+
+    @Test
+    public void parseTag_invalidValue_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+    }
+
+    @Test
+    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
+        Tag expectedTag = new Tag(VALID_TAG_1);
+        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
+    }
+
+    @Test
+    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
+        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
+        Tag expectedTag = new Tag(VALID_TAG_1);
+        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
+    }
+
+    @Test
+    public void parseTags_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
+    }
+
+    @Test
+    public void parseTags_collectionWithInvalidTags_throwsParseException() {
+        Assert.assertThrows(ParseException.class,
+        () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+    }
+
+    @Test
+    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
+        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
+        Set<Tag> expectedTagSet = new HashSet<>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+
+        assertEquals(expectedTagSet, actualTagSet);
+    }
+
 
     //    @Test
     //    public void parsePhone_null_throwsNullPointerException() {
@@ -141,50 +237,5 @@ public class ParserUtilTest {
     //        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
     //    }
     //
-    //    @Test
-    //    public void parseTag_null_throwsNullPointerException() {
-    //        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
-    //    }
-    //
-    //    @Test
-    //    public void parseTag_invalidValue_throwsParseException() {
-    //        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
-    //    }
-    //
-    //    @Test
-    //    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-    //        Tag expectedTag = new Tag(VALID_TAG_1);
-    //        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
-    //    }
-    //
-    //    @Test
-    //    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-    //        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-    //        Tag expectedTag = new Tag(VALID_TAG_1);
-    //        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
-    //    }
-    //
-    //    @Test
-    //    public void parseTags_null_throwsNullPointerException() {
-    //        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
-    //    }
-    //
-    //    @Test
-    //    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-    //        Assert.assertThrows(ParseException.class,
-    //        () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
-    //    }
-    //
-    //    @Test
-    //    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-    //        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
-    //    }
-    //
-    //    @Test
-    //    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-    //        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-    //        Set<Tag> expectedTagSet = new HashSet<>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
-    //
-    //        assertEquals(expectedTagSet, actualTagSet);
-    //    }
+
 }
