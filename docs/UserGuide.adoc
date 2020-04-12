@@ -273,15 +273,17 @@ Refer to <<UserGuide.adoc#trip-management-command-parameters, Section 4.1.1 Trip
 
 If you are all ready to start planning for your trip and you want to set a trip to get started, follow these steps below. You will learn how to set a graduation trip that starts on *28 September 2020* and ends on *5 October 2020* with a budget of *$5000* and an exchange rate of *76.7*.
 
+****
 Setting a new trip:
 
 . Type `settrip title/Graduation Trip budget/5000 exchangerate/76.6 startdate/28-09-2020 enddate/05-10-2020` into the _Command Box_.
 . Press `Enter` to execute.
+
 Outcome:
 
-* The _Result Display_ will show a success message.
-* You can now see your trip information on the _Trip Information Panel_.
-
+. The _Result Display_ will show a success message.
+. You can now see your trip information on the _Trip Information Panel_.
+****
 
 .Outcome of a successful settrip command
 image::user-guide/SetTrip.png[]
@@ -305,14 +307,17 @@ Refer to <<UserGuide.adoc#trip-management-command-parameters, Section 4.1.1 Trip
 
 Assume that you have accidentally titled the trip wrongly to *Craduation Trip* instead of *Graduation Trip*, you can do the following steps.
 
+****
 Renaming the trip:
 
 . Type rename `Graduation Trip` into the _Command Box_.
 . Press `Enter` to execute.
+
 Outcome:
 
-* The _Result Display_ will show a success message.
-* You can now see your updated trip title on the _Trip Information Panel_.
+. The _Result Display_ will show a success message.
+. You can now see your updated trip title on the _Trip Information Panel_.
+****
 
 .Outcome of a successful rename
 image::user-guide/RenameTrip.png[]
@@ -335,6 +340,7 @@ You can use this command to change the budget of the trip.
 
 Let’s say after planning your expenses, you realised that you would want to increase your budget to $6000. Follow the following steps to do that.
 
+****
 Editing the trip budget:
 
 . Type `editbudget 6000` into the _Command Box_.
@@ -342,9 +348,9 @@ Editing the trip budget:
 
 Outcome:
 
-* The _Result Display_ will show a success message.
-* You can now see your updated trip budget on the _Trip Information Panel_.
-
+. The _Result Display_ will show a success message.
+. You can now see your updated trip budget on the _Trip Information Panel_.
+****
 
 .Outcome of a successful editbudget
 image::user-guide/EditBudget.png[]
@@ -371,8 +377,9 @@ Deleting the current trip:
 . Press `Enter` to execute.
 
 Outcome:
-* The _Result Display_ will show a success message.
-* You can now see that no trip is set on the _Trip Information Panel_.
+
+. The _Result Display_ will show a success message.
+. You can now see that no trip is set on the _Trip Information Panel_.
 
 .Outcome of a successful deletetrip command
 image::user-guide/deletetrip.png[]
@@ -391,14 +398,17 @@ You can use this command to check the progress of your planning. This command wi
 *Example:*
 If you are planning for your trip halfway and feel lost, you can check your progress using the following steps. It can remind you of what you have to do next.
 
+****
 Deleting the current trip:
 
 . Type `status` into the _Command Box_.
 . Press `Enter` to execute.
 
 Outcome:
-* The _Result Display_ will show the message “Progress checker window is opened.”.
-* You will now see the following window.
+
+. The _Result Display_ will show the message “Progress checker window is opened.”.
+. You will now see the following window.
+****
 
 .Progress checker window
 image::user-guide/status.png[]
@@ -487,22 +497,22 @@ You can use this command to navigate to the Activities Tab and display all your 
 
 `listactivity`
 
-
-
 *Example:*
 
 If you are in another tab and wish to look at your list of activities, you can follow these instructions.
 
+****
 Listing all your activities:
 
-* Type `listactivity` into the __Command Box__.
-* Press `Enter` to execute.
+. Type `listactivity` into the __Command Box__.
+. Press `Enter` to execute.
 
 Outcome:
 
-* The Result Display will show a success message.
-* *E.T.* will switch to the Activities Tab.
-* You can now see all your activities.
+. The Result Display will show a success message.
+. *E.T.* will switch to the Activities Tab.
+. You can now see all your activities.
+****
 
 ====  Add a new activity: `addactivity`
 
@@ -538,6 +548,7 @@ Let’s say you have an activity with the following information and wish to reco
 |sea, outdoor
 |===
 
+****
 Adding the above activity:
 
 . Type `addactivity title/Going to the beach duration/4 location/Hakone tag/sea tag/outdoor` into the Command Box.
@@ -545,9 +556,10 @@ Adding the above activity:
 
 Outcome:
 
-* The Result Display will show a success message.
-* *E.T.* will switch to the Activities Tab.
-* You can now see all your activities including the newly added activity.
+. The Result Display will show a success message.
+. *E.T.* will switch to the Activities Tab.
+. You can now see all your activities including the newly added activity.
+****
 
 .Outcome of a successful addactivity command
 image::user-guide/addactivity.png[]
@@ -578,6 +590,7 @@ Editing the activity:
 
 Assume you have accidentally made a mistake in the spelling of the title of the *second* activity in the displayed list and wish to change it to “*Skiing*”. You do perform the following steps.
 
+****
 Editing the activity:
 
 . Type `editactivity 2 title/Skiing into the Command Box.`
@@ -585,9 +598,10 @@ Editing the activity:
 
 Outcome:
 
-* The Result Display will show a success message.
-* *E.T.* will switch to the Activities Tab.
-* You can now see all your activities including the edited activity.
+. The Result Display will show a success message.
+. *E.T.* will switch to the Activities Tab.
+. You can now see all your activities including the edited activity.
+****
 
 .Outcome of a successful editactivity command
 image::user-guide/editactivity.png[]
@@ -608,6 +622,7 @@ You can use this command to delete an existing activity in *E.T.*.
 
 If you change your mind and decide to remove the *first* activity in the displayed list from your plan, you can perform the steps below.
 
+****
 Deleting the activity:
 
 . Type `deleteactivity 1` into the Command Box.
@@ -615,9 +630,10 @@ Deleting the activity:
 
 Outcome:
 
-* The Result Display will show a success message.
-* *E.T.* will switch to the Activities Tab.
-* You can now see the deleted activity no longer exists.
+. The Result Display will show a success message.
+. *E.T.* will switch to the Activities Tab.
+. You can now see the deleted activity no longer exists.
+****
 
 ==== Sort the activity list: `sortactivity`
 
@@ -635,16 +651,18 @@ Outcome:
 
 If you want to sort your list of activities in descending order of duration, to help you in your planning, you can do the following.
 
+****
 Sorting activities:
 
-* Type `sortactivity` duration des into the Command Box.
-* Press `Enter` to execute.
+. Type `sortactivity` duration des into the Command Box.
+. Press `Enter` to execute.
 
 Outcome:
 
-* The Result Display will show a success message.
-* *E.T.* will switch to the Activities Tab.
-* You can see a list of sorted activities being displayed.
+. The Result Display will show a success message.
+. *E.T.* will switch to the Activities Tab.
+. You can see a list of sorted activities being displayed.
+****
 
 ==== Find activities by title: `findactivity`
 You can use this command to find activities by keywords.
@@ -663,6 +681,7 @@ You can use this command to find activities by keywords.
 
 Let say your list has a bunch of activities and you want to search for a specific one about shopping. You can do so as follows.
 
+****
 Finding activities:
 
 . Type `findactivity shopping` into the _Command Box_.
@@ -670,10 +689,10 @@ Finding activities:
 
 Outcome:
 
-* The _Result Display_ will show a success message.
-* *E.T.* will switch to the Activities Tab.
-* You can see a list of activities with the keyword being displayed.
-
+. The _Result Display_ will show a success message.
+. *E.T.* will switch to the Activities Tab.
+. You can see a list of activities with the keyword being displayed.
+****
 
 .Outcome of a successful findactivity command
 image::user-guide/FindActivity.png[]
@@ -705,16 +724,18 @@ You can use this command to clear and delete the whole list of activities in *E.
 
 In the case that you want to restart your activity planning from scratch, you can do the following.
 
+****
 Clearing the activity list:
+
 . Type `clearactivity` into the Command Box.
 . Press Enter to execute.
 
 Outcome:
 
-* The Result Display will show a success message.
-* *E.T.* will switch to the Activities Tab.
-* You can see that the list is now empty.
-
+. The Result Display will show a success message.
+. *E.T.* will switch to the Activities Tab.
+. You can see that the list is now empty.
+****
 
 === Transportation Booking Management
 
@@ -955,100 +976,231 @@ image::user-guide/ClearTransportBooking.png[]
 
 === Accommodation Booking
 
-The following sections [4.4.1 to 4.4.3] allows the user to set and modify accommodation bookings in the trip.
+The following feature allows you to manage all  accommodation bookings.
+
+[#accommodation-booking-management-command-parameters]
+==== Accommodation Booking Management Command Parameters
+
+Before you jump right into using this feature, you may want to learn about all the common command parameters used in this feature. The table below shows the list of common command parameters that will be used for this feature.
+
+
+|===
+|Parameter Name |Description
+
+|`NAME`
+|The name of the accommodation booking
+
+It must be alphanumeric words not more than 50 characters long.
+
+E.g. `Ritz Carlton`
+
+
+|`LOCATION`
+|The location of the accommodation booking
+
+It must be alphanumeric words not more than 50 characters long.
+
+E.g. `KL`
+
+
+|`START_DAY`
+|The start day of the accommodation booking
+
+It must be a positive integer and it cannot be a number larger than `END_DAY`
+
+
+|`END_DAY`
+|The end day of the accommodation booking
+
+It must be a positive integer and cannot exceed the length of the trip
+
+|`REMARK`
+|The remark of the accommodation booking
+
+It cannot be more than 150 characters long.
+
+
+|`INDEX`
+|The index number of the accommodation booking in the displayed list. The first entry of the list has an index number of `1` and all the entries are listed in increasing index numbers.
+
+It must be a valid index number.
+
+|===
+
+==== List all accommodation bookings: `listacc`
+
+You can use this command to navigate to the __Accommodation Tab__ and display all your activities in **E.T.**.
+
+Format: `listacc`
+
+Example:
+If you are in another tab and wish to look at your list of accommodation bookings, you can follow these instructions.
+
+****
+Listing all your activities:
+
+. Type `listacc` into the __Command Box__.
+. Press `Enter` to execute.
+
+Outcome:
+
+. The __Result Display__ will show a success message.
+. *E.T.* will switch to the __Accommodation Tab__.
+. You can now see all your accommodation bookings.
+****
+
 
 ==== Add a new accommodation booking: `addacc`
 
-If you have made an accommodation booking, you can use this command to store it into a list and be able to keep track of it.
+This command would add a new accommodation booking into your list of accommodations.
 
 Format: `addacc name/NAME loc/LOCATION startday/START_DAY endday/END_DAY [remark/REMARK]`
 
-[NOTE]
-====
-- `NAME` and `LOCATION` must be made of alphanumeric characters, and it must be less than 50 characters long
-- `START_DAY` and `END_DAY` needs to be positive integers
-- `START_DAY` refers to the day that you check in
-- `END_DAY` refers to the day that you check out
-- `REMARK` must be less than 150 characters long
-====
+NOTE: Refer to <<UserGuide.adoc#accommodation-booking-management-command-parameters, Section 4.4.1 Trip Management Command Parameters>> for more detail about each parameter.
 
 Examples:
 
-`addacc name/JW Marriott Hotel loc/KL startday/2 endday/4`
+Let’s say you have secured a booking of the accommodation “JW Marriott Hotel” at the location “KL”. You can run the following command to record this into your list of accommodations.
 
-If you have a new accommodation booking for JW Marriott Hotel at KL on the 2nd day to the 4th day, you can create it using the `addacc` command
+
+|===
+|Accommodation Booking |
+
+|Name
+|JW Marriott Hotel
+
+|Location
+|KL
+
+|Start Day
+|2
+
+|End Day
+|3
+|===
+
+****
+Adding the above activity:
+
+. Type `addacc name/JW Marriott Hotel loc/KL startday/2 endday/4` into the __Command Box__.
+. Press `Enter` to execute.
+
+Outcome:
+
+. The __Result Display__ will show a success message.
+. **E.T.* *will switch to the __Accommodation Tab__.
+. You can now see all your accommodation bookings including the newly added accommodation booking.
+****
 
 .After add accommodation booking command
 image::user-guide/AddAccommodationBooking.png[]
 
 ==== Edit an existing accommodation booking: `editacc`
 
-If you have to adjust the details of the accommodation booking and you wish to make changes, you can use this command to edit the necessary information.
+This command will edit any mistakes made in the details of the accommodation booking using the specified `INDEX`.
 
 Format: `editacc INDEX [name/NAME] [loc/LOCATION] [startday/START_DAY] [endday/END_DAY] [remark/REMARK]`
 
-[NOTE]
-====
-- `INDEX` refers to the index number shown in the displayed transport booking list. `INDEX` *must be a positive integer* 1, 2, 3, ...
-- `NAME` and `LOCATION` must be made of alphanumeric characters, and it must be less than 50 characters long
-- `START_DAY` and `END_DAY` needs to be positive integers
-- `START_DAY` refers to the day that you check in
-- `END_DAY` refers to the day that you check out
-- `REMARK` must be less than 150 characters long
-====
+NOTE: Refer to <<UserGuide.adoc#accommodation-booking-management-command-parameters, Section 4.4.1 Trip Management Command Parameters>> for more detail about each parameter.
 
 Examples:
 
-`editacc 2 startday/4 endday/6`
+Let’s say you decided to change the accommodation booking you have input earlier to have a check in day of 4 and check out day of 6.
 
-In the case that you want to change the start day and end day of the 2nd accommodation, you can use `editacc` command.
+****
+Editing the accommodation booking:
+
+. Type `editacc 2 startday/4 endday/6` into the __Command Box__.
+. Press `Enter` to execute.
+
+Outcome:
+
+. The __Result Display__ will show a success message.
+. **E.T.* *will switch to the __Accommodation Tab__.
+. You can now see all your accommodation bookings including the edited accommodation booking.
+****
 
 .After edit accommodation booking command
 image::user-guide/EditAccommodationBooking.png[]
 
-`editacc 3 address/Hilton KL remark/Check-in at 2pm`
-
-You can also use this command to change the third accommodation booking in the list to Hilton, set the location to KL and change the remark to check in at 2pm.
-
-.After edit accommodation booking command
-image::user-guide/EditAccommodationBooking2.png[]
-
 
 ==== Delete an existing accommodation booking: `deleteacc`
 
-Assuming you have another accommodation booking and plan to delete the previous one that you set on the same days, you can use this command to remove it.
+This command would delete the accommodation booking you have added earlier using the specified `INDEX`
 
 Format: `deleteacc INDEX`
 
-[NOTE]
-`INDEX` refers to the index number shown in the displayed transport booking list. `INDEX` *must be a positive integer* 1, 2, 3, ...
+NOTE: Refer to <<UserGuide.adoc#accommodation-booking-management-command-parameters, Section 4.4.1 Trip Management Command Parameters>> for more detail about each parameter.
 
 Examples:
 
-`deleteacc 2`
+Let’s say you decided to cancel on the accommodation booking that you have made earlier. The accommodation booking that you want to cancel is stored in `INDEX` 2 of *E.T.* , thus running the following command would delete the accommodation booking entry.
 
-You can use `deleteacc` to delete the second accommodation booking.
+****
+Deleting the activity:
 
-.After delete accommodation booking command
-image::user-guide/DeleteAccommodationBooking.png[]
+. Type `deleteactivity 1` into the _Command Box_.
+. Press `Enter` to execute.
 
-==== Clear all accommodation bookings: `clearacc`
+Outcome:
 
-If you want to remove all the accommodation bookings that you have made, this command will return an empty list for you to start working with again.
+. The __Result Display__ will show a success message.
+. **E.T.* *will switch to the __Accommodation Tab__.
+. You can now see the deleted accommodation booking no longer exists.
+****
 
-Format: `clearacc`
+==== Sort the accommodation booking list: `sortacc`
 
-[IMPORTANT]
-This command will remove all the accommodation bookings that is in your current list
+You can use this command to sort the displayed list of accommodation bookings.
+
+Format: `sortacc CRITERIA ORDER`
+
+[NOTE]
+====
+`CRITERIA` refers to the criteria to sort the list of accommodation bookings by. It can take the following values: `name`, `location`, `day`.
+
+`ORDER` refers to the order to sort the list of accommodation bookings by. It can take the value of `ascending` or `asc` to sort in ascending order and `descending` or `des` to sort in descending order.
+====
 
 Example:
 
- clearacc
+If you want to sort your list of accommodation bookings in ascending order of name, to help you in your planning, you can do the following.
 
-You can use `clearacc` to clear all accommodation bookings in the list
+****
+Sorting activities:
 
-.After clear accommodation booking command
-image::user-guide/ClearAccommodationBooking.png[]
+. Type `sortacc name asc` into the __Command Box__.
+. Press Enter to execute.
+
+Outcome:
+
+. The __Result Display__ will show a success message.
+. **E.T.* *will switch to the __Accommodation Tab__.
+. You can see a list of sorted accommodation bookings being displayed.
+****
+
+==== Clear all accommodation bookings: `clearacc`
+
+This command allows you to clear all accommodation booking you have made previously.
+
+Format: `clearacc`
+
+Example:
+
+Let’s say you decided to delete all accommodation bookings you have created without deleting the trip. Running this command would clear all prior accommodation booking created and let you start on a clean slate.
+
+****
+Clearing the accommodation booking list:
+
+. Type `clearacc` into the __Command Box__.
+. Press `Enter` to execute.
+
+Outcome:
+
+. The __Result Display__ will show a success message.
+. **E.T.* *will switch to the __Accommodation Tab__.
+. You can see that the list is now empty.
+****
 
 === Packing List
 
