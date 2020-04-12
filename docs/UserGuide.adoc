@@ -1710,7 +1710,7 @@ image::user-guide/ListPreset.png[]
 
 === Fixed Expense Manager
 
-The Fixed Expense Manager comprises a list which allows you to set fixed expenses before your trip. This would help you plan a suitable budget for your upcoming trip.
+The Fixed Expense Manager comprises a list which allows you to set your fixed expenses before your trip. This would help you plan a suitable budget for your upcoming trip.
 
 Examples of Fixed Expenses that you can include are as follows,
 ****
@@ -1765,7 +1765,7 @@ The first entry of the list has an index of `1` and all subsequent entries are l
 
 ==== List your Fixed Expenses: listexpense
 You can use the `listexpense` command to navigate to the Fixed Expense Manager.
-Alternatively, you can click on the Fixed Expense tab highlighted in Figure 40.
+Alternatively, you can click on the Fixed Expense tab.
 
 .Accessing Fixed Expense Manager
 image::user-guide/ListExpense.png[]
@@ -1776,24 +1776,21 @@ After successfully entering the fixed expense manager, you will see the screen s
 image::user-guide/FixedExpenseManager.png[]
 
 Thereafter, you will be able to add and subsequently modify your fixed expenses.
-This would be further elaborated in sections 4.6.3 below.
+This would be further elaborated in sections 4.6.3 - 4.6.7 below.
 
-==== Modifying expenses
 
-The following sections [4.6.3.1 - 4.6.3.5] allows a user to set and modify fixed expenses before the trip.
+==== Adding a new fixed expense: `addexpense`
 
-===== Add a new fixed expense: `addexpense`
-
-You can use this command to add a new expense into the Fixed Expense Manager.
+You can use this command to add a new fixed expense into the Fixed Expense Manager.
 
 Format: `addexpense amount/AMOUNT currency/CURRENCY description/DESCRIPTION category/CATEGORY`
 [NOTE]
 ====
 - Adds a new fixed expense for the upcoming trip.
 
-- The amount entered must be *must be a positive integer*
+- The `AMOUNT` entered *must be a positive integer*
 
-- The `DESCRIPTION` field must be alphanumeric words and contain 50 and 30 characters respectively.
+- The `DESCRIPTION` field must be alphanumeric words and contain 50 characters.
 
 - The `CATEGORY` field only accepts `transport`, `accommodations`, `others`, `activities`
 
@@ -1803,7 +1800,7 @@ field, the amount will be automatically converted to SGD using the exchange rate
 
 Example:
 
-Let’s say you wish to include an expense entry with the following information and wish to add it in the Fixed Expense Manager.
+Let’s say you wish to include an fixed expense entry with the following information and wish to add it in the Fixed Expense Manager.
 
 |===
 
@@ -1830,7 +1827,8 @@ Outcome:
 .After successfully adding a fixed expense
 image::user-guide/AddFixedExpense.png[]
 
-===== Edit an existing fixed expense: `editexpense`
+
+==== Edit your fixed expense: editexpense
 
 This command allows you to edit any mistakes that you might have accidentally included into the fixed expense manager. You can edit the details of an existing fixed expense entry based on the `INDEX` you have specified.
 
@@ -1838,14 +1836,11 @@ Format: `editexpense INDEX [amount/AMOUNT] [currency/CURRENCY]  [description/DES
 
 [NOTE]
 ====
-- Edits the expense at the specified `INDEX`. The index refers to the index number shown in the displayed fixed expense
-list.
 - The index *must be a positive integer* 1, 2, 3, ...
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
-- The `DESCRIPTION` field must be alphanumeric words and contain 50 and 30 characters respectively.
+- The `DESCRIPTION` field must only contain alphanumeric words and contain 50 characters.
 - The `CATEGORY` field only accepts `transport`, `accommodations`, `others`, `activities`
-- If the user wishes to change the amount, they must indicate what currency the edited amount is in.
 - Both currency and amount fields must exist for a successful edit.
 - If the user enters the expense in other currency, the amount will be automatically converted to SGD using the exchange rate provided.
 - A *warning* will be shown to you if you have edited an expense such that you have overshot your budget.
@@ -1894,7 +1889,7 @@ Outcome:
 image::user-guide/EditFixedExpense.png[]
 
 
-===== Delete an existing fixed expense: `deleteexpense`
+==== Deleting a fixed expense: `deleteexpense`
 
 This command allows you to delete an existing fixed expense entry.
 
@@ -1925,7 +1920,7 @@ Outcome:
 .After successfully deleting a fixed expense
 image::user-guide/DeleteFixedExpense.png[]
 
-===== Clear all fixed expenses: `clearexpense`
+==== Clearing a fixed expense: `clearexpense`
 
 This command allows you to clear all Fixed Expenses in the list.
 
@@ -1934,8 +1929,7 @@ Format: `clearexpense`
 
 Example:
 
-Assuming that you wish to clear all your Fixed Expenses as you are planning for a new trip.
-Instead of deleting every single Fixed Expense, you could clear the list.
+Assuming that you wish to clear all your fixed expenses as you are planning for a new trip. You could clear the fixed expense manager using the `clearexpense` command instead of deleting every single fixed expense from your previous trip.
 
 ****
 To do so, follow these steps:
@@ -1954,7 +1948,7 @@ Outcome:
 .After successfully clearing all fixed expense
 image::user-guide/ClearFixedExpense.png[]
 
-===== Sort the fixed expense list: `sortexpense`
+==== Sort fixed expenses according to amount spent: `sortexpense`
 
 This command allows you to sort all your fixed expenses in the list.
 
@@ -1965,7 +1959,6 @@ Format: `sortexpense CRITERIA ORDER`
 * `ORDER` refers to the order to sort the Fixed Expenses by. It can take the value of `ascending` or `asc` to sort in ascending order or `descending` or `des` to sort in descending order.
 * `CRITERIA` refers to the criteria to sort the Fixed Expenses by. It can take these values, `[AMOUNT]` `[DESCRIPTION]` `[CATEGORY]`.
 * Only __one__ criteria can be included in the command.
-list in ascending or descending order dependent on what needs to be sorted.
 * The list must not be empty.
 ====
 
@@ -1989,6 +1982,7 @@ Outcome:
 
 .After successful sorting of fixed expense
 image::user-guide/SortFixedExpense.png[]
+
 
 === Features coming in Version 2.0
 
