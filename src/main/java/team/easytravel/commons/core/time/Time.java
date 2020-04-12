@@ -19,9 +19,6 @@ public class Time {
     private static final DateTimeFormatter FORMAT_STORAGE = DateTimeFormatter.ofPattern("HH:mm");
     private static final DateTimeFormatter FORMAT_OUTPUT = DateTimeFormatter.ofPattern("hh:mma");
 
-    private static final String MESSAGE_ERROR_ADD = "%1$d hours cannot be added to %2$s";
-    private static final String MESSAGE_ERROR_UNTIL = "End time must not be earlier than current time.";
-
     protected final LocalTime time;
 
     /**
@@ -46,35 +43,6 @@ public class Time {
      */
     public String getStorageFormat() {
         return time.format(FORMAT_STORAGE);
-    }
-
-    /**
-     * Returns a copy of this Time with the specified number of hours added.
-     *
-     * @throws IllegalArgumentException When resulting time is over 00:00hrs.
-     */
-    public Time plusHours(long hours) throws IllegalArgumentException {
-        LocalTime result = time.plusHours(hours);
-        if (result.getHour() == 0) {
-            throw new IllegalArgumentException(String.format(MESSAGE_ERROR_ADD, hours, this));
-        }
-        return new Time(result);
-    }
-
-    /**
-     * Returns the number of hours from this time till the specified end {@code Time} (inclusive).
-     */
-    public long hoursUntilExclusive(Time endExclusive) {
-        // If end time is 00:00hr, return 24 - currentTimeHour
-        if (endExclusive.time.getHour() == 0) {
-            return 24 - time.getHour();
-        }
-
-        if (time.compareTo(endExclusive.time) > 0) {
-            throw new AssertionError(MESSAGE_ERROR_UNTIL);
-        }
-
-        return time.until(endExclusive.time, ChronoUnit.HOURS);
     }
 
     /**
