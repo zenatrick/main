@@ -188,110 +188,228 @@ The above user input command examples are equivalent even though the order of th
 With the above information, you can now move on to Section 5 - Feature to learn all the features of the application and start using the commands.
 [[Features]]
 == *Features*
-This section contains all the information you need to know about the features of E.T.. To use each feature or sub-feature, you will need to enter a command into the Command Box.
+This section contains all the information you need to know about the features of *E.T.*. To use each feature or sub-feature, you will need to enter the command into the _Command Box_.
 
+[WARNING]
 
-=== Trip Planner
-
-The main feature of the app. Handles all trip and activity management.
+You are required to set a trip before other features are unlocked. <<UserGuide.adoc#set-a-new-trip, See Section 4.1.2 Set a new trip>>  to learn how to set a trip.
 
 ==== Trip Management
-This section contains the commands for the Trip Planner.
 
-WARNING: A trip is required to be set before other features are unlocked
+This feature allows you to manage your trip. You can record the following information about your trip:
+* Title
+* Budget
+* Exchange rate
+* Start date
+* End date
 
-===== Create your brand new trip: `settrip`
+[#trip-management-command-parameters]
+===== Trip Management Command Parameters
+Before you jump right into using this feature, you may want to learn about all the common command parameters used in this feature. The table below shows the list of common command parameters that will be used for this feature.
 
-Format: `settrip title/TITLE start/START_DATE end/END_DATE budget/BUDGET exchangerate/EXCHANGERATE`
+
+|===
+|*Parameter Name* |*Description*
+
+|`TITLE`
+|The title of your trip.
+
+It must be alphanumeric words not more than 50 characters long.
+
+E.g. `Graduation Trip`
+
+|`BUDGET`
+|The budget of your trip.
+
+It must be a whole number not more than 1 000 000 000.
+
+E.g. `5000`
+
+|`EXCHANGE_RATE`
+|The exchange rate for your country of visit.
+
+It must be a number greater than 0 and not more than 100.
+
+E.g. `76.3`
+
+|`START_DATE`
+|The starting date of your trip.
+
+It must be in the format of `dd-MM-yyyy HH:mm`.
+It must not be later than the `END_DATE`.
+
+E.g. `28-09-2020`
+This example means 28 September 2020.
+
+
+|`END_DATE`
+|The ending date of your trip.
+
+It must be in the format of `dd-MM-yyyy HH:mm`.
+It must not be earlier than the START_DATE.
+
+E.g. `05-10-2020`
+This example means `05 October 2020`.
+
+|===
+
+
+[#set-a-new-trip]
+===== Set a new trip: `settrip`
+
+You can use this command to set a new trip that you want to plan for.
+
+*Format:*
+
+`settrip title/TITLE budget/BUDGET exchangerate/EXCHANGE_RATE startdate/START_DATE enddate/END_DATE`
+
 
 [IMPORTANT]
 ====
-- There must not be a pre-existing trip set.
-- Start and end dates must be a valid date.
-- Title cannot exceed 50 characters.
-- Trip must be within 30 days
-- Budget must be a valid positive Integer from 0 to 1,000,000
-- Exchange Rate must be a valid positive double from 0 to 100.
-- Date must include the departure and arrival date.
+Refer to <<UserGuide.adoc#trip-management-command-parameters, Section 4.1.1 Trip Management Command Parameters>> for more detail about each parameter.
 ====
 
-Let’s say you have an upcoming Graduation Trip and you are planning for it. You can execute a command as shown in the example below:
+*Example:*
 
-`settrip title/Graduation Trip start/28-09-2020 end/28-10-2020 budget/5000 exchangerate/1.03`
+If you are all ready to start planning for your trip and you want to set a trip to get started, follow these steps below. You will learn how to set a graduation trip that starts on *28 September 2020* and ends on *5 October 2020* with a budget of *$5000* and an exchange rate of *76.7*.
 
-This would create a trip titled “Graduation trip” with a start day of 28 September 2020 to 28 October 2020. The budget set is $5000 with the exchangerate of 1.03
+Setting a new trip:
 
-After successfully setting a trip, you would see as shown in figure X below.
+. Type `settrip title/Graduation Trip budget/5000 exchangerate/76.6 startdate/28-09-2020 enddate/05-10-2020` into the _Command Box_.
+. Press `Enter` to execute.
+Outcome:
 
-.Message after successfully setting a trip
+* The _Result Display_ will show a success message.
+* You can now see your trip information on the _Trip Information Panel_.
+
+
+.Outcome of a successful settrip command
 image::user-guide/SetTrip.png[]
 
 WARNING: Ensure that your date is correct as E.T. does not allow editing of dates once set.
 
-===== Rename your trip: `rename`
+===== Rename the trip: `rename`
 
-Assume that you have accidentally titled the trip wrongly, you can execute the rename command to reverse any damages done as shown below
+You can use this command to change the title of the trip.
 
+**Format: **
 
-Format: `rename TITLE`
+`rename TITLE`
 
-Example:
+[NOTE]
+====
+Refer to <<UserGuide.adoc#trip-management-command-parameters, Section 4.1.1 Trip Management Command Parameters>> for more detail about each parameter.
+====
 
-`rename Not a graduation trip.`
+*Example:*
 
-This changes the name of the trip to “Not a graduation trip” as shown in the figure below.
+Assume that you have accidentally titled the trip wrongly to *Craduation Trip* instead of *Graduation Trip*, you can do the following steps.
 
-Expected output:
-`Trip has been named: Not a graduation trip`
+Renaming the trip:
 
-.After renaming the trip
+. Type rename `Graduation Trip` into the _Command Box_.
+. Press `Enter` to execute.
+Outcome:
+
+* The _Result Display_ will show a success message.
+* You can now see your updated trip title on the _Trip Information Panel_.
+
+.Outcome of a successful rename
 image::user-guide/RenameTrip.png[]
 
-===== Editing your  trip’s budget: `editbudget`
+===== Editing the trip’s budget: `editbudget`
 
-Let’s say after planning your expenses, you realised that you would want to change the amount of money used for the trip. Using the editbudget command, you can edit the overall budget for your trip
+You can use this command to change the budget of the trip.
 
-Format: `editbudget AMOUNT`
+*Format:*
+
+`editbudget AMOUNT`
 
 [IMPORTANT]
 ====
-- There must be a pre-existing trip set.
-- The budget set must not be lesser than your total expenses.
+* The new amount set cannot be lower than your total expenses.
+* Refer to <<UserGuide.adoc#trip-management-command-parameters, Section 4.1.1 Trip Management Command Parameters>> for more detail about each parameter.
 ====
 
-For example, we want to decrease the budget for this trip from $5000 to $3000.
+**Example: **
 
-Example:
+Let’s say after planning your expenses, you realised that you would want to increase your budget to $6000. Follow the following steps to do that.
 
-`editbudget 3000`
+Editing the trip budget:
 
-E.T. will reflect the new budget in the trip info as shown in the figure below.
+. Type `editbudget 6000` into the _Command Box_.
+. Press `Enter` to execute.
 
-.After editing budget to 3000
+Outcome:
+
+* The _Result Display_ will show a success message.
+* You can now see your updated trip budget on the _Trip Information Panel_.
+
+
+.Outcome of a successful editbudget
 image::user-guide/EditBudget.png[]
 
-===== Delete your trip: `deletetrip`
+===== Delete the current trip: `deletetrip`
 
-Assuming that you have finished with your trip and would like to start planning for a new one, executing the deletetrip command would remove all traces of your previous trip and set a new clean space for you to start planning for the next one.
+You can use this command to delete the current trip.
 
-Format: `deletetrip`
+[WARNING]
+Deleting the trip will clear all your data from the app! Think twice before you do so.
 
-Example:
+
+*Format:*
+
 `deletetrip`
 
-Expected output:
-`Trip has been deleted. All lists have been cleared!`
+*Example:*
 
-Deleting the trip would result in E.T. showing an empty screen as shown in figure 3. Execute the settrip to start another trip.
+Assuming that you have finished planning for your trip and would like to start planning for a new one, follow these steps.
 
+Deleting the current trip:
 
-==== Scheduler (after opening a trip)
+. Type `deletetrip` into the _Command Box._
+. Press `Enter` to execute.
+
+Outcome:
+* The _Result Display_ will show a success message.
+* You can now see that no trip is set on the _Trip Information Panel_.
+
+.Outcome of a successful deletetrip command
+image::user-guide/deletetrip.png[]
+
+===== Check your progress: `status`
+You can use this command to check the progress of your planning. This command will open a window which shows you the following information:
+
+* Schedule - If there are any overlapping programs.
+* Packing list - Number of items packed and left to pack.
+* Expense - Remaining budget.
+* Accommodation - The nights without accommodation bookings.
+*Format:*
+
+`status`
+
+*Example:*
+If you are planning for your trip halfway and feel lost, you can check your progress using the following steps. It can remind you of what you have to do next.
+
+Deleting the current trip:
+
+. Type `status` into the _Command Box_.
+. Press `Enter` to execute.
+
+Outcome:
+* The _Result Display_ will show the message “Progress checker window is opened.”.
+* You will now see the following window.
+
+.Progress checker window
+image::user-guide/status.png[]
+
+===== Scheduling the activity
 
 Allow users to manage the activities in the trip
 
-===== Check how prepared you are: `status`
+===== View all itinerary: `listschedule`
 
-Assume you are not sure if you have already fully prepared for the trip, using the status command would confirm any fears and doubts about your preparation as well as warn you if you have any forgotten item that is not taken care of.
+Shows you the entire itinerary.
 
 Using the status command would create a pop-up window as shown in figure 4.
 
@@ -307,6 +425,8 @@ The pop-up would show you major warnings such as
 - Over expenditure on budget
 - Unchecked items in packing list
 ====
+
+
 
 === Activity Management
 This feature allows you to manage your activities for the trip. You can record the following information about your activities:
