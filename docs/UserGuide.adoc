@@ -646,7 +646,7 @@ Outcome:
 * *E.T.* will switch to the Activities Tab.
 * You can see a list of sorted activities being displayed.
 
-==== Find activities by name: `findactivity`
+==== Find activities by title: `findactivity`
 You can use this command to find activities by keywords.
 
 *Format:*
@@ -718,63 +718,185 @@ Outcome:
 
 === Transportation Booking Management
 
-The following sections [4.3.1 to 4.3.3] allows the user to manage transportation bookings for the trip.
+This feature allows you to manage your transportation bookings for the trip. You can record the following information about your transport bookings:
 
-==== Add a new transportation booking: `addtransport`
+=====
+- Mode of transport
+- Starting location
+- Destination
+- Time of departure
+- Time of arrival
+=====
 
-If you have a new transportation booking, you can use this command to store the information and it will store the booking into a list.
+==== Transport Booking Management Command Parameters
+Before you jump right in to use this feature, you may want to learn about all the common command parameters used in this feature. The table below shows the list of common command parameters that will be used for this feature.
 
-Format: `addtransport mode/MODE startloc/START_LOCATION endloc/END_LOCATION starttime/DATE_TIME_OF_DEPARTURE endtime/DATE_TIME_OF_ARRIVAL`
+[cols="1,5a", options="header"]
+|===
+|Parameter Name
+|Description
 
-[NOTE]
-====
-- `MODE` can be one of the following: `plane`, `bus`, `car`, `train`, `others`.
-- `DATE_TIME_OF_DEPARTURE` and `DATE_TIME_OF_ARRIVAL` needs to be in the format `dd-MM-yyyy HH:mm`. `HH:mm` is the 24hr format time.
-====
+|`MODE`
+| The mode of transport
+
+* It can take the value of `plane`, `bus`, `car`, `train` and `others`.
+* E.g. plane
+
+|`START_LOCATION`
+| The starting location
+
+* It must be alphanumeric words not more than 50 characters long.
+* E.g. `Singapore Changi Airport`
+
+|`END_LOCATION`
+| The destination
+
+* It must be alphanumeric words not more than 50 characters long.
+* E.g. `KL International Airport`
+
+|`START_TIME`
+| The time of departure
+
+* It must be in the format of dd-MM-yyyy HH:mm where HH:mm is the 24hr format time.
+* It must fall within the time frame of the trip and must not be later than the `END_TIME`.
+* E.g. `28-09-2020 13:00`
+This example means 28 September 2020 at 1:00 PM.
+
+|`END_TIME`
+| The time of arrival
+
+* It must be in the format of dd-MM-yyyy HH:mm where HH:mm is the 24hr format time.
+* It must fall within the time frame of the trip and must not be earlier than the `START_TIME`.
+* E.g. `30-09-2020 13:00`
+This example means 30 September 2020 at 1:00 PM.
+
+|`INDEX`
+| The index number of the transport booking entry in the displayed list. The first entry of the list has an index number of 1 and all the entries are listed in increasing index numbers.
+
+* It must be a valid index number.
+|===
+
+==== List all transport bookings: `listtransport`
+
+You can use this command to navigate to the Transportation Tab and display all your transport bookings in E.T..
+
+Format: `listtransport`
 
 Examples:
+`listtransport` +
 
-`addtransport mode/plane startloc/Singapore endloc/Japan starttime/22-04-2021 09:00 endtime/22-04-2021 16:00`
+If you are in another tab and wish to look at your list of transport bookings, you can follow these instructions.
 
-If you have a plane booking, you can use `addtransport` to add the booking with the start location, end location, start time and end time.
+****
+Listing your packing list:
 
-.After add transport booking command
+1. Type `listtransport` into the __Command Box__.
+2. Press `Enter` to execute.
+
+Outcome:
+
+1. The __Result Display__ will show a success message.
+2. **E.T.** will switch to the __Packing List Tab__.
+3. You can now see your transport bookings.
+****
+
+.After the list transport command
+image::user-guide/ListTransport.png[]
+
+==== Add a new transport booking: `addtransport`
+
+You can use this command to add a new transport booking to **E.T.**
+
+Format: `addtransport name/NAME quantity/QUANTITY category/CATEGORY`
+
+[NOTE]
+=====
+- If a duplicated transport is added, it will let the user know that the transport is already in the list.
+- Refer to Section 4.3.1 Transport Booking Management Command Parameters for detail about each parameter.
+=====
+
+Example:
+
+`addtransport name/underwear quantity/5 category/clothes` +
+
+Let’s say you have a transport booking with the following information and wish to record it in **E.T.**
+
+[cols="1,2"]
+|===
+
+| Mode of transport
+| plane
+
+| Starting location
+| Singapore
+
+| Destination
+| Japan
+
+| Time of departure
+| 28 September 2020 at 9:00 AM
+
+| Time of arrival
+| 28 September 2020 at 4:00 PM
+|===
+
+You can follow these instructions:
+
+****
+Adding the above transport booking:
+
+1. Type `addtransport mode/plane startloc/Singapore endloc/Japan starttime/28-09-2020 09:00 endtime/28-09-2020 16:00` into the __Command Box__.
+2. Press `Enter` to execute.
+
+Outcome:
+
+1. The __Result Display__ will show a success message.
+2. **E.T.** will switch to the __Transportation Tab__.
+3. You can now see all your transport bookings including the newly added transport booking.
+
+****
+
+.After add transport command
 image::user-guide/AddTransportBooking.png[]
 
-==== Edit an existing transportation booking: `edittransport`
+==== Edit an existing packing list transport: `edittransport`
 
-If you have details for a given transport booking, you can use this command to edit certain details of the booking.
+You can use this command to edit an existing transport booking in **E.T.**
 
-Format: `edittransport INDEX [mode/MODE] [startloc/START_LOCATION] [endloc/END_LOCATION] [starttime/DATE_TIME_OF_DEPARTURE] [endtime/DATE_TIME_OF_ARRIVAL]`
+Format: `edittransport INDEX [name/NAME] [quantity/QUANTITY] [category/CATEGORY]`
 
 [NOTE]
-====
-- `INDEX` refers to the index number shown in the displayed transport booking list. `INDEX` *must be a positive integer* 1, 2, 3, ...
-- At least one of the optional fields must be provided.
+=====
 - Existing values will be updated to the input values.
-- `MODE` can take one of the following values: `plane`, `bus`, `car`, `train`, `others`.
-- `DATE_TIME_OF_DEPARTURE` and `DATE_TIME_OF_ARRIVAL` needs to be in the format `dd-MM-yyyy HH:mm`. `HH:mm` is the 24hr format time.
-====
+- You must supply at least one optional parameter.
+- Refer to Section 4.3.1 Transport Booking Management Command Parameters for more detail about each parameter.
+=====
 
 Examples:
 
-`edittransport 2 starttime/22-04-2021 10:00`
+`edittransport 5 transport/boxer` +
 
-In the case that the start time has changed to 22 April 2021 1000hr, you can use `edittransport` to change it.
+Assuming that you have entered the wrong time of departure for the second transport booking and want to change it to `28 September 2020, 10:00 AM`.
 
-.After edit transport booking command
+****
+Editing the transport booking:
+
+1. Type `edittransport 2 starttime/28-09-2021 10:00` into the __Command Box__.
+2. Press `Enter` to execute.
+
+Outcome:
+
+1. The __Result Display__ will show a success message.
+2. **E.T.** will switch to the __Transportation Tab__.
+3. You can now see all your transport bookings including the edited transport booking.
+****
+
+.After edit transport command
 image::user-guide/EditTransportBooking.png[]
-
-`edittransport 4 mode/plane endloc/Italy`
-
-In the case that you want to change the end location and mode of transport, you can use `edittransport` to change it.
-
-.After edit transport booking command
-image::user-guide/EditTransportBooking2.png[]
 
 ==== Delete an existing transportation booking: `deletetransport`
 
-In the case that you want to remove the transport booking, you can use this command to remove it from the list.
+This command would delete the transport booking at the `INDEX` that you specified. The `INDEX` should be corresponding to the index shown in the transport booking list.
 
 Format: `deletetransport INDEX`
 
@@ -785,27 +907,50 @@ Examples:
 
 `deletetransport 1`
 
-You can delete a transport booking by using the `deletetransport` command
+Suppose you decided to cancel the flight you had booked previously. In **E.T.**, the flight that you have entered is stored at `INDEX` 1. You can follow the instructions below.
+
+****
+Deleting the transport booking:
+
+1. Type `deletetransport 1` into the __Command Box__.
+2. Press `Enter` to execute.
+
+Outcome:
+
+1. The __Result Display__ will show a success message.
+2. **E.T.** will switch to the __Transportation Tab__.
+3. You can now see that **E.T.** has deleted the flight at `INDEX` 1
+****
 
 .After delete transport booking command
 image::user-guide/DeleteTransportBooking.png[]
 
 ==== Clear all transportation bookings: `cleartransport`
 
-If you want to remove all the transportation bookings that you have made, this command will return an empty list for you to start working with again.
+This command will clear every transport booking you have made.
 
 Format: `cleartransport`
 
-[IMPORTANT]
-This command will remove all the transportation booking that is in your current list
-
 Example:
 
- cleartransport
+`cleartransport` +
 
-You can use `cleartransport` to clear all transportation bookings in the list
+Assume you decided to cancel all your bookings at once but you do not want to delete the entire trip. You can use this command to easily wipe all traces of previous transportation booking entries and start on a clean slate.
 
-.After edit transport booking command
+****
+Clearing all transport bookings:
+
+1. Type `cleartransport` into the __Command Box__.
+2. Press `Enter` to execute.
+
+Outcome:
+
+1. The __Result Display__ will show a success message.
+2. **E.T.** will switch to the __Transportation Tab__.
+3. You can now see that **E.T.** has cleared all your transport bookings.
+****
+
+.After clear transport booking command
 image::user-guide/ClearTransportBooking.png[]
 
 === Accommodation Booking
@@ -932,7 +1077,7 @@ Before you jump right in to use this feature, you may want to learn about all th
 |`QUANTITY`
 | The quantity of the item
 
-* It must be a positive integer 1,2,3…and up to 100000
+* It must be a positive integer 1,2,3… and up to 100000
 
 |`CATEGORY`
 |The category that the item is classified in
@@ -941,9 +1086,14 @@ Before you jump right in to use this feature, you may want to learn about all th
 * It can be made up of multiple words
 * **E.T.** will automatically make the category lowercase
 * If it is not in the available presets (see section 4.5.13), then the default icon will be placed next to the packing list item’s name. Else, the category icon will be placed next to the packing list item’s name instead.
+
+|`INDEX`
+| The index number of the packing list item in the displayed list. The first entry of the list has an index number of 1 and all the entries are listed in increasing index numbers.
+
+* It must be a positive integer 1,2,3…
 |===
 
-==== View all items in the packing list: `listitem`
+==== List all packing list items: `listitem`
 
 You can use this command to navigate to the __Packing List Tab__ and display your packing list in **E.T.**
 
@@ -978,7 +1128,7 @@ Format: `additem name/NAME quantity/QUANTITY category/CATEGORY`
 
 [NOTE]
 =====
-- If a duplicated item is added, it will let the user know that the item is already in the list.
+- If there is already an item in the packing list with the same name, then it will notify you of it.
 =====
 
 Example:
@@ -1096,7 +1246,7 @@ image::user-guide/EditItem 2.png[]
 
 ==== Delete an existing packing list item: `deleteitem`
 
-This commands deletes your item in the packing list.
+This command would delete the packing list item at the `INDEX` that you specified. The `INDEX` should be corresponding to the index shown in the packing list.
 
 Format: `deleteitem INDEX`
 
@@ -1121,7 +1271,7 @@ Outcome:
 
 1. The __Result Display__ will show a success message.
 2. **E.T.** will switch to the __Packing List Tab__.
-3. You can now the item is deleted from your packing list.
+3. You can now see that the item is deleted from your packing list.
 ****
 
 .Before delete item command
@@ -1253,7 +1403,7 @@ image::user-guide/SortItem 1.png[]
 .After sort item command part 2
 image::user-guide/SortItem 2.png[]
 
-==== Find packing list items by keywords: `finditem`
+==== Find packing list items by name: `finditem`
 
 This command finds items in your packing list according to keywords specified by you.
 
@@ -1290,7 +1440,7 @@ Outcome:
 .After find item command
 image::user-guide/FindItem.png[]
 
-==== Find packing list items by keywords that are categories: `finditemcategory`
+==== Find packing list items by category: `finditemcategory`
 
 This command find items in your packing list according to keywords keywords specified by you that are categories
 
@@ -1302,6 +1452,7 @@ Format: `finditemcategory KEYWORD [MORE_KEYWORDS]...`
 - If packing list does not contain any of the keywords, then it will display an empty list
 - If you want to return to the packing list after using the `finditemcategory` command, use the `listitem` command. (see Section 4.5.2)
 - The result box will display the number of items that is in the categories of the given keyword(s).
+- The `finditemcategory` command will only search through the categories of the items
 =====
 
 Examples:
@@ -1348,7 +1499,7 @@ Outcome:
 
 1. The __Result Display__ will show a success message.
 2. **E.T.** will switch to the __Packing List Tab__.
-3. You will now see an empty packing list.
+3. 3. You can now see that **E.T.** has cleared your packing list.
 ****
 
 .After the clear item command
