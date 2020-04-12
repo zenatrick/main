@@ -62,44 +62,64 @@ public class PackingListCard extends UiPart<Region> {
 
         Image imageCategory;
 
-        if (item.getItemCategory().value.equals("swimming")) {
-            imageCategory = new Image("/images/swim.png");
-        } else if (item.getItemCategory().value.equals("clothes")) {
-            imageCategory = new Image("/images/clothes.png");
-        } else if (item.getItemCategory().value.equals("car")) {
-            imageCategory = new Image("/images/car.png");
-        } else if (item.getItemCategory().value.equals("camping")) {
-            imageCategory = new Image("/images/camping.png");
-        } else if (item.getItemCategory().value.equals("formal dinner female")) {
-            imageCategory = new Image("/images/dress.png");
-        } else if (item.getItemCategory().value.equals("formal dinner male")) {
-            imageCategory = new Image("/images/suit.png");
-        } else if (item.getItemCategory().value.equals("snow")) {
-            imageCategory = new Image("/images/snow.png");
-        } else if (item.getItemCategory().value.equals("gym")) {
-            imageCategory = new Image("/images/gym.png");
-        } else if (item.getItemCategory().value.equals("essentials")) {
-            imageCategory = new Image("/images/exclamation.png");
-        } else if (item.getItemCategory().value.equals("hiking")) {
-            imageCategory = new Image("/images/adventurer.png");
-        } else if (item.getItemCategory().value.equals("train")) {
-            imageCategory = new Image("/images/train.png");
-        } else if (item.getItemCategory().value.equals("cruise")) {
-            imageCategory = new Image("/images/cruise.png");
-        } else if (item.getItemCategory().value.equals("beach")) {
-            imageCategory = new Image("/images/beach.png");
-        } else if (item.getItemCategory().value.equals("toiletries")) {
-            imageCategory = new Image("/images/soap.png");
-        } else if (item.getItemCategory().value.equals("international")) {
-            imageCategory = new Image("/images/global.png");
-        } else if (item.getItemCategory().value.equals("work")) {
-            imageCategory = new Image("/images/portfolio.png");
-        } else if (item.getItemCategory().value.equals("photography")) {
-            imageCategory = new Image("/images/camera.png");
-        } else if (item.getItemCategory().value.equals("music festival")) {
-            imageCategory = new Image("/images/music.png");
-        } else {
-            imageCategory = new Image("/images/default.png");
+        switch (item.getItemCategory().value) {
+            case "swimming":
+                imageCategory = new Image("/images/swim.png");
+                break;
+            case "clothes":
+                imageCategory = new Image("/images/clothes.png");
+                break;
+            case "car":
+                imageCategory = new Image("/images/car.png");
+                break;
+            case "camping":
+                imageCategory = new Image("/images/camping.png");
+                break;
+            case "formal dinner female":
+                imageCategory = new Image("/images/dress.png");
+                break;
+            case "formal dinner male":
+                imageCategory = new Image("/images/suit.png");
+                break;
+            case "snow":
+                imageCategory = new Image("/images/snow.png");
+                break;
+            case "gym":
+                imageCategory = new Image("/images/gym.png");
+                break;
+            case "essentials":
+                imageCategory = new Image("/images/warning.png");
+                break;
+            case "hiking":
+                imageCategory = new Image("/images/adventurer.png");
+                break;
+            case "train":
+                imageCategory = new Image("/images/train.png");
+                break;
+            case "cruise":
+                imageCategory = new Image("/images/cruise.png");
+                break;
+            case "beach":
+                imageCategory = new Image("/images/beach.png");
+                break;
+            case "toiletries":
+                imageCategory = new Image("/images/soap.png");
+                break;
+            case "international":
+                imageCategory = new Image("/images/global.png");
+                break;
+            case "work":
+                imageCategory = new Image("/images/portfolio.png");
+                break;
+            case "photography":
+                imageCategory = new Image("/images/camera.png");
+                break;
+            case "music festival":
+                imageCategory = new Image("/images/music.png");
+                break;
+            default:
+                imageCategory = new Image("/images/default.png");
+                break;
         }
 
         category.setImage(imageCategory);
