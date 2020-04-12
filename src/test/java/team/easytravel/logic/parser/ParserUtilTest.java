@@ -20,6 +20,9 @@ import team.easytravel.model.listmanagers.activity.Tag;
 import team.easytravel.model.listmanagers.fixedexpense.Amount;
 import team.easytravel.model.listmanagers.fixedexpense.Description;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpenseCategory;
+import team.easytravel.model.listmanagers.packinglistitem.ItemCategory;
+import team.easytravel.model.listmanagers.packinglistitem.ItemName;
+import team.easytravel.model.listmanagers.packinglistitem.Quantity;
 import team.easytravel.model.trip.Budget;
 import team.easytravel.model.trip.ExchangeRate;
 import team.easytravel.model.util.attributes.Location;
@@ -70,7 +73,7 @@ public class ParserUtilTest {
     public static final String INVALID_ITEM_NAME = "(((";
     public static final String VALID_ITEM_NAME = "underwear";
     public static final String INVALID_QUANTITY = "2SS";
-    public static final String VALID_QUANTITY = "2";
+    public static final Integer VALID_QUANTITY = 2;
 
     // -- Transportbooking --
     public static final String INVALID_MODE = "stupid";
@@ -102,7 +105,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseTitle_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseTitle((String) null));
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseTitle(null));
     }
 
     @Test
@@ -126,7 +129,7 @@ public class ParserUtilTest {
     //location
     @Test
     public void parseLocation_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseLocation((String) null));
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseLocation(null));
     }
 
     @Test
@@ -150,7 +153,7 @@ public class ParserUtilTest {
     //location
     @Test
     public void parseDateTime_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseDateTime((String) null));
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseDateTime(null));
     }
 
     @Test
@@ -273,7 +276,7 @@ public class ParserUtilTest {
     //duration
     @Test
     public void parseDuration_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseDuration((String) null));
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseDuration(null));
     }
 
     @Test
@@ -410,6 +413,80 @@ public class ParserUtilTest {
         String descWithWhite = WHITESPACE + VALID_DESC + WHITESPACE;
         Description expectedDesc = new Description(VALID_DESC);
         assertEquals(expectedDesc, ParserUtil.parseDescription(descWithWhite));
+    }
+
+    // -- Packing list --
+
+    //item cat
+    @Test
+    public void parseItemCat_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseItemCategory(null));
+    }
+
+    @Test
+    public void parseItemCat_invalidValue_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseItemCategory(INVALID_ITEM_CAT));
+    }
+
+    @Test
+    public void parseItemCat_validValueWithoutWhitespace_returnsItemCat() throws Exception {
+        ItemCategory expectedItemCat = new ItemCategory(VALID_ITEM_CAT);
+        assertEquals(expectedItemCat, ParserUtil.parseItemCategory(VALID_ITEM_CAT));
+    }
+
+    @Test
+    public void parseItemCat_validValueWithWhitespace_returnsTrimmedItemCat() throws Exception {
+        String itemCatWithWhitespace = WHITESPACE + VALID_ITEM_CAT + WHITESPACE;
+        ItemCategory expectedItemCat = new ItemCategory(VALID_ITEM_CAT);
+        assertEquals(expectedItemCat, ParserUtil.parseItemCategory(itemCatWithWhitespace));
+    }
+
+    //itemname
+    @Test
+    public void parseItemName_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseItemName((String) null));
+    }
+
+    @Test
+    public void parseItemName_invalidValue_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseItemName(INVALID_ITEM_NAME));
+    }
+
+    @Test
+    public void parseItemName_validValueWithoutWhitespace_returnsItemName() throws Exception {
+        ItemName expectedItemName = new ItemName(VALID_ITEM_NAME);
+        assertEquals(expectedItemName, ParserUtil.parseItemName(VALID_ITEM_NAME));
+    }
+
+    @Test
+    public void parseItemName_validValueWithWhitespace_returnsTrimmedItemName() throws Exception {
+        String itemNameWithWhitespace = WHITESPACE + VALID_ITEM_NAME + WHITESPACE;
+        ItemName expectedItemName = new ItemName(VALID_ITEM_NAME);
+        assertEquals(expectedItemName, ParserUtil.parseItemName(itemNameWithWhitespace));
+    }
+
+    //quantity
+    @Test
+    public void parseQuantity_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseQuantity(null));
+    }
+
+    @Test
+    public void parseQuantity_invalidValue_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseQuantity(INVALID_QUANTITY));
+    }
+
+    @Test
+    public void parseQuantity_validValueWithoutWhitespace_returnsQuantity() throws Exception {
+        Quantity expectedQuantity = new Quantity(VALID_QUANTITY);
+        assertEquals(expectedQuantity, ParserUtil.parseQuantity(VALID_QUANTITY.toString()));
+    }
+
+    @Test
+    public void parseQuantity_validValueWithWhitespace_returnsTrimmedQuantity() throws Exception {
+        String quantityWithWhitespace = WHITESPACE + VALID_QUANTITY + WHITESPACE;
+        Quantity expectedQuantity = new Quantity(VALID_QUANTITY);
+        assertEquals(expectedQuantity, ParserUtil.parseQuantity(quantityWithWhitespace));
     }
 
 
