@@ -16,7 +16,7 @@ import javafx.collections.ObservableList;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBooking;
 import team.easytravel.model.util.uniquelist.exceptions.DuplicateElementException;
 import team.easytravel.testutil.Assert;
-import team.easytravel.testutil.TypicalAccommodation;
+import team.easytravel.testutil.accommodationbooking.TypicalAccommodation;
 
 class AccommodationBookingManagerTest {
 

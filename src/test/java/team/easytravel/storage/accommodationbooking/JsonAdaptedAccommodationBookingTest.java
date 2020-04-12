@@ -3,7 +3,7 @@ package team.easytravel.storage.accommodationbooking;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static team.easytravel.storage.accommodationbooking.JsonAdaptedAccommodationBooking.MISSING_FIELD_MESSAGE_FORMAT;
 import static team.easytravel.testutil.Assert.assertThrows;
-import static team.easytravel.testutil.TypicalAccommodation.ACCOMMODATION_BOOKING_BACKPACKER;
+import static team.easytravel.testutil.accommodationbooking.TypicalAccommodation.ACCOMMODATION_BOOKING_BACKPACKER;
 
 import org.junit.jupiter.api.Test;
 

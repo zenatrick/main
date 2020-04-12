@@ -2,7 +2,7 @@ package team.easytravel.storage.accommodationbooking;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static team.easytravel.testutil.Assert.assertThrows;
-import static team.easytravel.testutil.TypicalAccommodation.getTypicalAccommodationManager;
+import static team.easytravel.testutil.accommodationbooking.TypicalAccommodation.getTypicalAccommodationManager;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

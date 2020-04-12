@@ -4,9 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static team.easytravel.logic.commands.CommandTestUtil.DESC_ACC_JW;
 import static team.easytravel.logic.commands.CommandTestUtil.DESC_ACC_RITZ;
-import static team.easytravel.logic.commands.CommandTestUtil.VALID_ACCOMMODATION_JW_END_DAY;
-import static team.easytravel.logic.commands.CommandTestUtil.VALID_ACCOMMODATION_JW_START_DAY;
-import static team.easytravel.logic.commands.CommandTestUtil.VALID_ACCOMMODATION_JW_TITLE;
+import static team.easytravel.logic.commands.CommandTestUtil.VALID_ACCOMMODATION_HOTEL_NAME;
+import static team.easytravel.logic.commands.CommandTestUtil.VALID_ACCOMMODATION_RITZ_END_DAY;
+import static team.easytravel.logic.commands.CommandTestUtil.VALID_ACCOMMODATION_RITZ_NAME;
+import static team.easytravel.logic.commands.CommandTestUtil.VALID_ACCOMMODATION_RITZ_START_DAY;
 import static team.easytravel.logic.commands.CommandTestUtil.assertAccommodationBookingCommandFailure;
 import static team.easytravel.logic.commands.CommandTestUtil.assertAccommodationBookingCommandSuccess;
 import static team.easytravel.logic.commands.CommandTestUtil.showAccommodationBookingAtIndex;
@@ -29,9 +30,9 @@ import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBook
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
 import team.easytravel.model.userprefs.UserPrefs;
-import team.easytravel.testutil.TypicalAccommodation;
 import team.easytravel.testutil.accommodationbooking.AccommodationBookingBuilder;
 import team.easytravel.testutil.accommodationbooking.EditAccommodationBookingDescriptorBuilder;
+import team.easytravel.testutil.accommodationbooking.TypicalAccommodation;
 import team.easytravel.testutil.trip.TripBuilder;
 
 /**
@@ -85,14 +86,14 @@ class EditAccommodationBookingCommandTest {
                 new AccommodationBookingBuilder(lastAccommodationBooking);
 
         AccommodationBooking editedAccommodationBooking = accommodationBookingInList
-                .withAccommodationName(VALID_ACCOMMODATION_JW_TITLE)
-                .withStartDay(VALID_ACCOMMODATION_JW_START_DAY)
-                .withEndDay(VALID_ACCOMMODATION_JW_END_DAY).build();
+                .withAccommodationName(VALID_ACCOMMODATION_RITZ_NAME)
+                .withStartDay(VALID_ACCOMMODATION_RITZ_START_DAY)
+                .withEndDay(VALID_ACCOMMODATION_RITZ_END_DAY).build();
 
         EditAccommodationBookingCommand.EditAccommodationBookingDescriptor descriptor =
-                new EditAccommodationBookingDescriptorBuilder().withAccommodationName(VALID_ACCOMMODATION_JW_TITLE)
-                        .withStartDay(VALID_ACCOMMODATION_JW_START_DAY)
-                        .withEndDay(VALID_ACCOMMODATION_JW_END_DAY).build();
+                new EditAccommodationBookingDescriptorBuilder().withAccommodationName(VALID_ACCOMMODATION_RITZ_NAME)
+                        .withStartDay(VALID_ACCOMMODATION_RITZ_START_DAY)
+                        .withEndDay(VALID_ACCOMMODATION_RITZ_END_DAY).build();
 
         EditAccommodationBookingCommand editAccommodationBookingCommand =
                 new EditAccommodationBookingCommand(indexLastAccommodationBooking, descriptor);
@@ -139,10 +140,10 @@ class EditAccommodationBookingCommandTest {
                 model.getFilteredAccommodationBookingList().get(INDEX_FIRST.getZeroBased());
         AccommodationBooking editedAccommodationBooking =
                 new AccommodationBookingBuilder(accommodationBookingInFilteredList)
-                        .withAccommodationName(VALID_ACCOMMODATION_JW_TITLE).build();
+                        .withAccommodationName(VALID_ACCOMMODATION_HOTEL_NAME).build();
         EditAccommodationBookingCommand editAccommodationBookingCommand = new EditAccommodationBookingCommand(
                 INDEX_FIRST, new EditAccommodationBookingDescriptorBuilder()
-                        .withAccommodationName(VALID_ACCOMMODATION_JW_TITLE).build());
+                        .withAccommodationName(VALID_ACCOMMODATION_HOTEL_NAME).build());
 
         String expectedMessage = String.format(EditAccommodationBookingCommand
                 .MESSAGE_EDIT_ACCOMMODATION_BOOKING_SUCCESS, editedAccommodationBooking);
@@ -192,7 +193,7 @@ class EditAccommodationBookingCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAccommodationBookingList().size() + 1);
         EditAccommodationBookingCommand.EditAccommodationBookingDescriptor descriptor =
                 new EditAccommodationBookingDescriptorBuilder()
-                        .withAccommodationName(VALID_ACCOMMODATION_JW_TITLE).build();
+                        .withAccommodationName(VALID_ACCOMMODATION_HOTEL_NAME).build();
         EditAccommodationBookingCommand editAccommodationBookingCommand =
                 new EditAccommodationBookingCommand(outOfBoundIndex, descriptor);
         String expectedMessage = String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FORMAT,

@@ -3,10 +3,10 @@ package team.easytravel.storage.accommodationbooking;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static team.easytravel.testutil.Assert.assertThrows;
-import static team.easytravel.testutil.TypicalAccommodation.ACCOMMODATION_BOOKING_BACKPACKER;
-import static team.easytravel.testutil.TypicalAccommodation.ACCOMMODATION_BOOKING_CAMP;
-import static team.easytravel.testutil.TypicalAccommodation.ACCOMMODATION_BOOKING_HDB;
-import static team.easytravel.testutil.TypicalAccommodation.getTypicalAccommodationManager;
+import static team.easytravel.testutil.accommodationbooking.TypicalAccommodation.ACCOMMODATION_BOOKING_BACKPACKER;
+import static team.easytravel.testutil.accommodationbooking.TypicalAccommodation.ACCOMMODATION_BOOKING_CAMP;
+import static team.easytravel.testutil.accommodationbooking.TypicalAccommodation.ACCOMMODATION_BOOKING_HDB;
+import static team.easytravel.testutil.accommodationbooking.TypicalAccommodation.getTypicalAccommodationManager;
 
 import java.io.IOException;
 import java.nio.file.Path;

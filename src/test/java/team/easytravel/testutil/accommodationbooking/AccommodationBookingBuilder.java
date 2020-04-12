@@ -31,6 +31,13 @@ public class AccommodationBookingBuilder {
         remark = new Remark(DEFAULT_REMARK);
     }
 
+    public AccommodationBookingBuilder(boolean hasNoRemark) {
+        accommodationName = new AccommodationName(DEFAULT_ACCOMMODATION_NAME);
+        location = new Location(DEFAULT_LOCATION);
+        startDay = new Day(DEFAULT_START_DAY);
+        endDay = new Day(DEFAULT_END_DAY);
+    }
+
     /**
      * Initializes the AccommodationBookingBuilder with the data of {@code accommodationBooking}.
      */
@@ -84,6 +91,10 @@ public class AccommodationBookingBuilder {
 
     public AccommodationBooking build() {
         return new AccommodationBooking(accommodationName, location, startDay, endDay, remark);
+    }
+
+    public AccommodationBooking build(boolean hasNoRemark) {
+        return new AccommodationBooking(accommodationName, location, startDay, endDay, new Remark(" "));
     }
 
 }
