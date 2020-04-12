@@ -6,18 +6,23 @@ import static team.easytravel.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import org.junit.jupiter.api.Test;
 
 import team.easytravel.logic.parser.exceptions.ParseException;
+import team.easytravel.model.util.attributes.Location;
 import team.easytravel.model.util.attributes.Title;
 import team.easytravel.testutil.Assert;
 import team.easytravel.testutil.TypicalIndexes;
 
 public class ParserUtilTest {
 
+    //--- Commons --
     public static final String INVALID_TITLE = "Cheese land&"; // '&' not allowed in title
     public static final String VALID_TITLE = "this is a pretty good title";
+    public static final String INVALID_LOCATION = "&&&"; // '&' is not allowed
+    public static final String VALID_LOCATION = "Cheese land";
     private static final String WHITESPACE = " \t\r\n";
 
 
 
+    //-- Commons --
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -62,6 +67,33 @@ public class ParserUtilTest {
         assertEquals(expectedName, ParserUtil.parseTitle(nameWithWhitespace));
     }
 
+    //location
+    @Test
+    public void parseLocation_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseLocation((String) null));
+    }
+
+    @Test
+    public void parseLocation_invalidValue_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseLocation(INVALID_LOCATION));
+    }
+
+    @Test
+    public void parseLocation_validValueWithoutWhitespace_returnsAddress() throws Exception {
+        Location expectedLocation = new Location(VALID_LOCATION);
+        assertEquals(expectedLocation, ParserUtil.parseLocation(VALID_LOCATION));
+    }
+
+    @Test
+    public void parseLocation_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
+        String locationWithWhitespace = WHITESPACE + VALID_LOCATION + WHITESPACE;
+        Location expectedLocation = new Location(VALID_LOCATION);
+        assertEquals(expectedLocation, ParserUtil.parseLocation(locationWithWhitespace));
+    }
+
+    // -- TRIP --
+    
+
     //    @Test
     //    public void parsePhone_null_throwsNullPointerException() {
     //        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
@@ -85,28 +117,6 @@ public class ParserUtilTest {
     //        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
     //    }
     //
-    //    @Test
-    //    public void parseAddress_null_throwsNullPointerException() {
-    //        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
-    //    }
-    //
-    //    @Test
-    //    public void parseAddress_invalidValue_throwsParseException() {
-    //        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
-    //    }
-    //
-    //    @Test
-    //    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-    //        Address expectedAddress = new Address(VALID_ADDRESS);
-    //        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
-    //    }
-    //
-    //    @Test
-    //    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-    //        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-    //        Address expectedAddress = new Address(VALID_ADDRESS);
-    //        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
-    //    }
     //
     //    @Test
     //    public void parseEmail_null_throwsNullPointerException() {
