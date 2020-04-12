@@ -12,10 +12,15 @@ E.T. is a desktop travel planning application to provide a simple an easy way fo
 
 == Summary of contributions
 
-* *Major enhancement*: Implemented Fixed Expense Tab along with its User Interface and commands (CRUD/Sort)
+* *Major enhancement*:
+
+Implemented Fixed Expense Tab along with its User Interface and commands (CRUD/Sort)
+
 ** What it does: Enable to user to add and subsequently modify their fixed expenses prior to the trip.
+
 ** Justification: This feature empowers the user to track their current expenses prior to their trip. By adding and subsequently modifying their expenses, the user would know how much of their
 budget they have spent thus far, resolving the problem that our users, tend to overspend during their trip. Also, users are provided with an avenue to view their fixed expenses in a readable and organised manner.
+
 ** Highlights: (Change later) This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 ** Credits: _{Address Book 3 and Jeffry Lum for his guidance, time and support. }_
 
@@ -29,22 +34,24 @@ budget they have spent thus far, resolving the problem that our users, tend to o
 
 * *Code contributed*: [https://github.com/AY1920S2-CS2103T-W17-3/main/commits?author=joshlay96[All commits]] [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#=undefined&search=joshlay96[Project Code Dashboard]]
 
-* *Other contributions*:
-** Implemented Travis CI in our code.
-** Contributed to the User and Developer Guides for this project.
-** Part of coming up with tests for the project.
+== Other contributions:
 
-* *Project management*:
-** Set up Tasks for v1.1, closed v1.1 and v1.3 milestones.
+** Project management:
+*** Set up Tasks for v1.1, closed v1.1 and v1.3 milestones.
 
 ** Enhancements to existing features:
+*** Wrote tests for existing features to improve coverage [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/362[#362]] [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/364[#364]] [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/374[#374]]
+*** Fix Bugs present within our code. [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/333[#333]] [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/161[#161]] [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/155[#155]]
 
 ** Documentation:
+*** Contributed to the User and Developer Guides for this project. See below for more details.
 
 ** Community:
+*** Provided insight on PRs made by my group (https://github.com/AY1920S2-CS2103T-W17-3/main/pulls?q=is%3Apr+commenter%3Ajoshlay96[PR Reviews])
+*** Along with my group, provided DG comments for other groups (https://github.com/AY1920S2-CS2103-W14-3/main/issues/60[#1])
 
 ** Tools:
-_
+*** Integrate Travis CI in our code.
 
 == Contributions to the User Guide
 |===
