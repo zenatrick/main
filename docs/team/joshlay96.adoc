@@ -1,6 +1,6 @@
 = Joshua Lay - Project Portfolio
 :site-section: AboutUs
-:imagesDir: ../images/joshlay96
+:imagesDir: ../images
 :stylesDir: ../stylesheets
 
 == PROJECT: Easy Travel
@@ -71,10 +71,11 @@ include::../UserGuide.adoc[tag=v2.0]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 include::../DeveloperGuide.adoc[tag=fixedexpense]
+
 include::../DeveloperGuide.adoc[tag=testing]
 
 == Contributions beyond the project team
 
 |===
-|_Posted reply on module forum on fellow course-mate queries: [https://github.com/nus-cs2103-AY1920S2/forum/issues/52[#52]]
+|Posted reply on module forum on fellow course-mate queries: [https://github.com/nus-cs2103-AY1920S2/forum/issues/52[#52]]
 |===

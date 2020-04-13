@@ -1359,7 +1359,7 @@ Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/ex
 
 . Other incorrect set commands to try: `editexpense 1 category testing`
 .. Expected: No Fixed Expense is edited. Error details shown in feedback display.
-//tag::testing[]
+//end::testing[]
 
 //tag::effort[]
 [appendix]
