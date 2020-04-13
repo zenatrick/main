@@ -21,18 +21,19 @@ Implemented Fixed Expense Tab along with its User Interface and commands (CRUD/S
 ** Justification: This feature empowers the user to track their current expenses prior to their trip. By adding and subsequently modifying their expenses, the user would know how much of their
 budget they have spent thus far, resolving the problem that our users, tend to overspend during their trip. Also, users are provided with an avenue to view their fixed expenses in a readable and organised manner.
 
-** Highlights: (Change later) This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-** Credits: _{Address Book 3 and Jeffry Lum for his guidance, time and support. }_
+** Highlights: The implementation too was challenging and time consuming as it required understanding existing commands within Address Book 3.
+** Credits: _{Authors or Address Book 3 and Jeffry Lum for his guidance, time and support. }_
 
-* *Minor Enhancement*: Enabled expenses to be entered or edited in a different currency.
-** *What it does:* Allows the user to add and edit fixed expenses in a different currency based on a preset `exchangerate` set when setting a Trip.
-** Justification: This feature will enable users to add fixed expenses in different currencies, such as attraction tickets as they tend to be in a foreign currency.
+** *Minor Enhancement*: Enabled expenses to be entered or edited in a different currency.
+*** What it does: Allows the user to add and edit fixed expenses in a different currency based on a preset `exchangerate` set when setting a Trip.
+*** Justification: This feature will enable users to add fixed expenses in different currencies, such as attraction tickets as they tend to be in a foreign currency.
 
-* *Minor Enhancement*: Created an interactive Pie Chart along with list for fixed expense.
-** *What it does:* Provides the user with a visual aid and breakdown of their current fixed expenses prior to the trip.
-** Justification: Allows them to determine which category of expenses they need to cut down if they are already over budget, or which categories they can spend more or less on.
+** *Minor Enhancement*: Created an interactive Pie Chart along with list for fixed expense.
+*** What it does: Provides the user with a visual aid and breakdown of their current fixed expenses prior to the trip.
+*** Justification: Allows users to determine which category of expenses they need to cut down if they are already over budget, or which categories they can spend more or less on.
+*** Highlights: The implementation is time consuming as the documentation of javaFX was difficult to learn. Also the implementation the piechart was difficult in javaFX.
 
-* *Code contributed*: [https://github.com/AY1920S2-CS2103T-W17-3/main/commits?author=joshlay96[All commits]] [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#=undefined&search=joshlay96[Project Code Dashboard]]
+* *Code contributed*: [https://github.com/AY1920S2-CS2103T-W17-3/main/commits?author=joshlay96[All commits]] [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#=undefined&search=joshlay96[RepoSense Dashboard]]
 
 == Other contributions:
 
@@ -40,8 +41,10 @@ budget they have spent thus far, resolving the problem that our users, tend to o
 *** Set up Tasks for v1.1, closed v1.1 and v1.3 milestones.
 
 ** Enhancements to existing features:
-*** Wrote tests for existing features to improve coverage [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/362[#362]] [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/364[#364]] [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/374[#374]]
+*** Wrote tests for existing storage component as well as features to improve coverage [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/362[#362]] [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/364[#364]] [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/374[#374]]
 *** Fix Bugs present within our code. [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/333[#333]] [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/161[#161]] [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/155[#155]]
+*** Improved the Help Window. [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/368[#368]]
+*** Morph Adddress Book to Fixed Expense[https://github.com/AY1920S2-CS2103T-W17-3/main/pull/123[#123]] [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/216[#216]]
 
 ** Documentation:
 *** Contributed to the User and Developer Guides for this project. See below for more details.
@@ -60,13 +63,15 @@ budget they have spent thus far, resolving the problem that our users, tend to o
 |===
 
 include::../UserGuide.adoc[tag=fixedexpense]
-include::
+include::../UserGuide.adoc[tag=v2.0]
 
 == Contributions to the Developer Guide
 
 |===
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
+include::../DeveloperGuide.adoc[tag=fixedexpense]
+include::../DeveloperGuide.adoc[tag=testing]
 
 == Contributions beyond the project team
 

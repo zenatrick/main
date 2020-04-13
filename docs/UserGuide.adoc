@@ -2149,9 +2149,9 @@ Outcome:
 
 .After successfully clearing all fixed expense
 image::user-guide/ClearFixedExpense.png[]
-//end::fixedexpense
+//end::fixedexpense[]
 
-
+//tag::v2.0[]
 === Features coming in Version 2.0
 
 This section will describe the various features that are planned for Version 2.0 of *E.T.*
@@ -2195,6 +2195,7 @@ This feature will allow you to undo or redo certain commands.
 ==== Import and export of data
 
 This feature will allow you to import and export your trip data in different formats such as the `.ics` calendar format.
+//end::v2.0[]
 
 // tag::faq[]
 == *FAQ*
@@ -2233,7 +2234,7 @@ This feature will allow you to import and export your trip data in different for
 |*Rename a Trip* : `rename`
 |`rename Not a Graduation Trip`
 
-|*Edit Budget for Trip* : `editbudget BUDGET`
+|*Edit Budget for Trip* : `editbudget AMOUNT`
 |`editbudget 10000`
 
 |*Delete Trip* : `deletetrip`
@@ -2241,6 +2242,9 @@ This feature will allow you to import and export your trip data in different for
 
 |*Check Progress* : `status`
 |`status`
+
+|*Vieww Itineary*: `listschedule`
+|`listschedule`
 
 |===
 
@@ -2260,10 +2264,10 @@ This feature will allow you to import and export your trip data in different for
 |*Delete Activity*: `deleteactivity INDEX`
 |`deleteactivity 1`
 
-|*Sort Activities*: `sortactivity CRITERIA  ORDER`
+|*Sort Activities*: `sortactivity CRITERIA ORDER`
 |`sortactivity title ascending`
 
-|*Find Activities by Keywords*: `findactivity KEYWORD [MORE_KEYWORDS]...`
+|*Find Activities by Keywords*: `findactivity TITLE [MORE_TITLES]...`
 |`findactivity sightseeing carnival`
 
 |*Find Activities by Tag*: `findactivitytag TAG_NAME [MORE_TAG_NAMES]...`
@@ -2323,7 +2327,7 @@ This feature will allow you to import and export your trip data in different for
 |*Add Accommodation Booking*: `addacc name/NAME loc/LOCATION startday/START_DAY endday/END_DAY [remark/REMARK]`
 |`addacc name/JW Marriott Hotel loc/KL startday/2 endday/4 remark/Check-in at 3pm.`
 
-|*Edit Accommodation Booking*: `editacc INDEX [name/NAME] [loc/LOCATION] [startday/START_DAY] [endday/END_DAY] [remark/REMARK] [endtime/END_TIME]`
+|*Edit Accommodation Booking*: `editacc INDEX [name/NAME] [loc/LOCATION] [startday/START_DAY] [endday/END_DAY] [remark/REMARK]`
 |`editacc 1 name/Casa del Rio loc/Malacca`
 
 |*Delete Accommodation Booking*: `deleteacc INDEX`
@@ -2362,16 +2366,16 @@ This feature will allow you to import and export your trip data in different for
 |*Sort Packing List*: `sortitem CRITERIA ORDER`
 |`sortitem name asc`
 
-|*Find Packing List Items by Name*: `finditem KEYWORD [MORE_KEYWORDS]...`
+|*Find Packing List Items by Name*: `finditem NAME [MORE_NAMES]...`
 |`finditem car shampoo`
 
-|*Find Packing List Items by Category*: `finditemcategory KEYWORD [MORE_KEYWORDS]...`
+|*Find Packing List Items by Category*: `finditemcategory CATEGORY [MORE_CATEGORIES]...`
 |`finditemcategory swimming clothes`
 
 |*Clear Packing List*: `clearitem`
 |`clearitem`
 
-|*Add Preset*: `addpreset CATEGORY`
+|*Add Preset*: `addpreset PRESET_NAME`
 |`addpreset beach`
 
 |*List all Presets in Packing List*: `listpreset`

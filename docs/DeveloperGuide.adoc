@@ -1214,6 +1214,7 @@ The word that comes before `/` in the prefix. For example, the prefix name in `c
 [[stream]] Stream::
 A stream is a sequence of objects that supports various methods which can be pipelined to produce the desired result.
 
+//tag::testing[]
 [appendix]
 == Instructions for Manual Testing
 
@@ -1358,3 +1359,4 @@ Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/ex
 
 . Other incorrect set commands to try: `editexpense 1 category testing`
 .. Expected: No Fixed Expense is edited. Error details shown in feedback display.
+//tag::testing[]
