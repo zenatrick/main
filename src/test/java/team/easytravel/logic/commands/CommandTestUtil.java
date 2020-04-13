@@ -10,6 +10,10 @@ import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACCOMMODATION_START_
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_DURATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_LOCATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_TAG;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_AMOUNT;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_CATEGORY;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_CURRENCY;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_DESCRIPTION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_END_DATE_TIME;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_END_LOCATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_MODE;
@@ -26,6 +30,7 @@ import team.easytravel.commons.core.index.Index;
 import team.easytravel.logic.commands.accommodationbooking.EditAccommodationBookingCommand;
 import team.easytravel.logic.commands.activity.EditActivityCommand;
 import team.easytravel.logic.commands.exceptions.CommandException;
+import team.easytravel.logic.commands.fixedexpense.EditFixedExpenseCommand;
 import team.easytravel.logic.commands.packinglist.EditItemCommand;
 import team.easytravel.model.Model;
 import team.easytravel.model.listmanagers.AccommodationBookingManager;
@@ -38,6 +43,7 @@ import team.easytravel.model.listmanagers.packinglistitem.ItemContainsKeywordsPr
 import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
 import team.easytravel.testutil.accommodationbooking.EditAccommodationBookingDescriptorBuilder;
 import team.easytravel.testutil.activity.EditActivityDescriptorBuilder;
+import team.easytravel.testutil.fixedexpense.EditFixedExpenseDescriptorBuilder;
 import team.easytravel.testutil.packinglist.EditItemDescriptorBuilder;
 
 /**
@@ -178,8 +184,38 @@ public class CommandTestUtil {
 
 
     //---- FIXED EXPENSES --
-    public static final String VALID_AMOUNT = "10";
+    public static final String VALID_FIXED_EXPENSE_AMOUNT_TEST = "1000";
+    public static final String VALID_FIXED_EXPENSE_AMOUNT_ACCOMMODATION = "1500";
+    public static final String VALID_FIXED_EXPENSE_CURRENCY_TEST = "sgd";
+    public static final String VALID_FIXED_EXPENSE_CURRENCY_ACCOMMODATION = "sgd";
+    public static final String VALID_FIXED_EXPENSE_DESCRIPTION_TEST = "testexpense";
+    public static final String VALID_FIXED_EXPENSE_DESCRIPTION_ACCOMMODATION = "hotel";
+    public static final String VALID_FIXED_EXPENSE_CATEGORY_TEST = "others";
+    public static final String VALID_FIXED_EXPENSE_CATEGORY_ACCOMMODATION = "accommodations";
 
+    public static final String FIXED_EXPENSE_AMOUNT_DESC_TEST = " " + PREFIX_EXPENSE_AMOUNT
+            + VALID_FIXED_EXPENSE_AMOUNT_TEST;
+    public static final String FIXED_EXPENSE_AMOUNT_DESC_ACCOMMODATION = " " + PREFIX_EXPENSE_AMOUNT
+            + VALID_FIXED_EXPENSE_AMOUNT_ACCOMMODATION;
+    public static final String FIXED_EXPENSE_CURRENCY_DESC_TEST = " " + PREFIX_EXPENSE_CURRENCY
+            + VALID_FIXED_EXPENSE_CURRENCY_TEST;
+    public static final String FIXED_EXPENSE_CURRENCY_DESC_ACCOMMODATION = " " + PREFIX_EXPENSE_CURRENCY
+            + VALID_FIXED_EXPENSE_CURRENCY_ACCOMMODATION;
+    public static final String FIXED_EXPENSE_DESCRIPTION_DESC_TEST = " " + PREFIX_EXPENSE_DESCRIPTION
+            + VALID_FIXED_EXPENSE_DESCRIPTION_TEST;
+    public static final String FIXED_EXPENSE_DESCRIPTION_DESC_ACCOMMODATION = " " + PREFIX_EXPENSE_DESCRIPTION
+            + VALID_FIXED_EXPENSE_DESCRIPTION_ACCOMMODATION;
+    public static final String FIXED_EXPENSE_CATEGORY_DESC_TEST = " " + PREFIX_EXPENSE_CATEGORY
+            + VALID_FIXED_EXPENSE_CATEGORY_TEST;
+    public static final String FIXED_EXPENSE_CATEGORY_DESC_ACCOMMODATION = " " + PREFIX_EXPENSE_CATEGORY
+            + VALID_FIXED_EXPENSE_CATEGORY_ACCOMMODATION;
+
+    public static final String INVALID_FIXED_EXPENSE_AMOUNT_DESC = " " + PREFIX_EXPENSE_AMOUNT
+            + "1-2"; // '-' not allowed in expense amount
+    public static final String INVALID_FIXED_EXPENSE_DESCRIPTION_DESC = " " + PREFIX_EXPENSE_DESCRIPTION
+            + "ab*"; // '*' not allowed in expense description
+    public static final String INVALID_FIXED_EXPENSE_CATEGORY_DESC = " " + PREFIX_EXPENSE_CATEGORY
+            + "lol"; // not a given category
 
 
     public static final EditActivityCommand.EditActivityDescriptor DESC_CHEESE;
@@ -188,6 +224,9 @@ public class CommandTestUtil {
     public static final EditItemCommand.EditItemDescriptor ITEM_UNDERWEAR;
     public static final EditItemCommand.EditItemDescriptor ITEM_PASSPORT;
 
+    public static final EditFixedExpenseCommand.EditFixedExpenseDescriptor FIXED_EXPENSE_TEST;
+    public static final EditFixedExpenseCommand.EditFixedExpenseDescriptor FIXED_EXPENSE_ACCOMMODATION;
+
     static {
         DESC_CHEESE = new EditActivityDescriptorBuilder().withTitle(VALID_ACTIVITY_TITLE_CHEESE)
                 .withDuration(VALID_ACTIVITY_DURATION_CHEESE).withLocation(VALID_LOCATION_CHEESE)
@@ -195,6 +234,16 @@ public class CommandTestUtil {
         DESC_FINLAND = new EditActivityDescriptorBuilder().withTitle(VALID_ACTIVITY_TITLE_FINLAND)
                 .withDuration(VALID_ACTIVITY_DURATION_FINLAND).withLocation(VALID_LOCATION_FINLAND)
                 .withTags(VALID_TAG_SIGHTSEEING).build();
+    }
+
+    static {
+        FIXED_EXPENSE_TEST = new EditFixedExpenseDescriptorBuilder().withAmount(VALID_FIXED_EXPENSE_AMOUNT_TEST)
+                .withDescription(VALID_FIXED_EXPENSE_DESCRIPTION_TEST)
+                .withFixedExpenseCategory(VALID_FIXED_EXPENSE_CATEGORY_TEST).build();
+        FIXED_EXPENSE_ACCOMMODATION = new EditFixedExpenseDescriptorBuilder()
+                .withAmount(VALID_FIXED_EXPENSE_AMOUNT_ACCOMMODATION)
+                .withDescription(VALID_FIXED_EXPENSE_DESCRIPTION_ACCOMMODATION)
+                .withFixedExpenseCategory(VALID_FIXED_EXPENSE_CATEGORY_ACCOMMODATION).build();
     }
 
     public static final EditAccommodationBookingCommand.EditAccommodationBookingDescriptor DESC_ACC_JW;

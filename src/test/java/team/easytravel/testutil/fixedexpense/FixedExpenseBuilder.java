@@ -11,7 +11,7 @@ import team.easytravel.model.listmanagers.fixedexpense.FixedExpenseCategory;
 public class FixedExpenseBuilder {
 
     public static final String DEFAULT_AMOUNT = "1000";
-    public static final String DEFAULT_DESCRIPTION = "TestExpense";
+    public static final String DEFAULT_DESCRIPTION = "testexpense";
     public static final String DEFAULT_FIXED_EXPENSE_CATEGORY = "others";
 
     private Amount amount;

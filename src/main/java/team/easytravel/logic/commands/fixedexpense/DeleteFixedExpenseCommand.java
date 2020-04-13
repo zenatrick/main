@@ -56,4 +56,12 @@ public class DeleteFixedExpenseCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_FIXEDEXPENSE_SUCCESS, fixedExpenseToDelete + "\n"
                 + "Your remaining budget is: " + updatedBudget), SWITCH_TAB_FIXED_EXPENSE);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteFixedExpenseCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteFixedExpenseCommand) other).targetIndex)); // state check
+    }
+
 }

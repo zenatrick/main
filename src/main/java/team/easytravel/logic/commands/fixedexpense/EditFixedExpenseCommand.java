@@ -132,6 +132,15 @@ public class EditFixedExpenseCommand extends Command {
         return new FixedExpense(updatedAmount, updatedDescription, updatedFixedExpenseCategory);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EditFixedExpenseCommand // instanceof handles nulls
+                && index.equals(((EditFixedExpenseCommand) other).index))
+                && editFixedExpenseDescriptor.equals(((EditFixedExpenseCommand) other)
+                .editFixedExpenseDescriptor); // state check
+    }
+
     /**
      * Stores the details to edit the fixed expense with. Each non-empty field value will replace the
      * corresponding field value of the person.
