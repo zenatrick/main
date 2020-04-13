@@ -23,7 +23,7 @@ The packing list feature allows the user to keep track of their packing list, to
 When planning for a trip, it is important to have a packing list to keep track of what is packed and what needs to be packed, so that the traveller will not forget to bring anything they wanted to bring. This gives the traveller a peace of mind, convenience and preventing disasters, such as forgetting to bring one's passport or wallet.
 
 ** Highlights:
-The implementation too was challenging and time consuming as it required understanding existing commands within Address Book 3.
+This enhancement works well with the status feature (mentioned below) as it helps users keep track of their packing list. Careful considerations have to be made so that this feature can be expanded upon by future developers, including myself. The implementation of this feature was challenging because certain restrictions must be enforced to ensure that the users' packing list is appropriate.
 
 ** Credits:
 Credits to the app called Packr for the packing list preset idea. +
@@ -39,6 +39,8 @@ It checks the progress of planning that the user has done. It checks if firstly,
 The status feature ensures the user has planned for their trip fully before they embark on their trip. It prevents any slip-ups from the lack of planning, such as forgetting to pack something, to ensuring that they have a place to stay every night of their trip. This ensures that the trip is a smooth sailing one, with little slip-ups.
 
 ** Highlights:
+This enhancement works well with the existing accommodation booking, schedule feature, fixed expense feature and the packing list feature (mentioned above), as it helps users keep track of the planning progress of their trip. Careful considerations have to be made so that this feature can be expanded upon by future developers, including myself. The implementation of this feature was challenging because certain restrictions must be enforced to ensure that the users' plans are appropriate.
+
 The implementation was challenging and time consuming as it required understanding of all the other features, such as the
 Accommodation Booking, the Schedule and the Budget.
 

@@ -1364,9 +1364,6 @@ Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/ex
 //tag::effort[]
 [appendix]
 == Effort
-
-(Contributed by Catherine)
-
 Creating *Easy Travel* was fairly difficult and required much effort from all the team members. We communicated a lot as a team. However, it was difficult because of quarantine measures imposed by the government during this period due to the COVID-19 situation. Nonetheless, we persevered through, and thanks to technology, we were still able to communicate through regular online meetings. Through our consistent communication, we were able to come up with our product, *Easy Travel*. In addition, we managed to accumulate *32,000 lines of code* combined. This showcases our hard work and contributed to into producing *Easy Travel*.
 
 === Major Enhancement
