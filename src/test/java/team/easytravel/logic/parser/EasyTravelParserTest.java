@@ -25,20 +25,40 @@ import team.easytravel.logic.commands.activity.EditActivityCommand;
 import team.easytravel.logic.commands.activity.EditActivityCommand.EditActivityDescriptor;
 import team.easytravel.logic.commands.activity.FindActivityCommand;
 import team.easytravel.logic.commands.activity.ListActivityCommand;
+import team.easytravel.logic.commands.trip.DeleteTripCommand;
+import team.easytravel.logic.commands.trip.SetTripCommand;
 import team.easytravel.logic.parser.exceptions.ParseException;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBooking;
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.activity.ActivityContainKeywordPredicate;
+import team.easytravel.model.trip.Trip;
 import team.easytravel.testutil.accommodationbooking.AccommodationBookingBuilder;
 import team.easytravel.testutil.accommodationbooking.AccommodationUtil;
 import team.easytravel.testutil.accommodationbooking.EditAccommodationBookingDescriptorBuilder;
 import team.easytravel.testutil.activity.ActivityBuilder;
 import team.easytravel.testutil.activity.ActivityUtil;
 import team.easytravel.testutil.activity.EditActivityDescriptorBuilder;
+import team.easytravel.testutil.trip.TripBuilder;
+import team.easytravel.testutil.trip.TripUtil;
 
 public class EasyTravelParserTest {
 
     private final EasyTravelParser parser = new EasyTravelParser();
+
+    // -- Trip --
+    @Test
+    public void parseTripCommand_add() throws Exception {
+        Trip trip = new TripBuilder().build();
+        SetTripCommand command = (SetTripCommand) parser.parseCommand(TripUtil.getAddCommand(trip));
+        assertEquals(new SetTripCommand(trip), command);
+    }
+
+    @Test
+    public void parseTripCommand_delete() throws Exception {
+        DeleteTripCommand command = (DeleteTripCommand) parser.parseCommand(
+                DeleteTripCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteTripCommand(), command);
+    }
 
     // -- Activity --
     @Test

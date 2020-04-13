@@ -17,7 +17,7 @@ import team.easytravel.model.listmanagers.TransportBookingManager;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.model.trip.TripManager;
 import team.easytravel.model.userprefs.UserPrefs;
-import team.easytravel.testutil.TypicalTransportBooking;
+import team.easytravel.testutil.transportbooking.TypicalTransportBooking;
 import team.easytravel.testutil.trip.TripBuilder;
 
 public class ClearTransportBookingCommandTest {

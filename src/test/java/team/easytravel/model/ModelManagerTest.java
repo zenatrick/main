@@ -7,9 +7,6 @@ import static team.easytravel.testutil.Assert.assertThrows;
 import static team.easytravel.testutil.TypicalFixedExpense.FIXED_EXPENSE_HOTELS;
 import static team.easytravel.testutil.TypicalFixedExpense.FIXED_EXPENSE_PLANE;
 import static team.easytravel.testutil.TypicalFixedExpense.FIXED_EXPENSE_WIFI;
-import static team.easytravel.testutil.TypicalTransportBooking.TRANSPORT_BOOKING_BUS;
-import static team.easytravel.testutil.TypicalTransportBooking.TRANSPORT_BOOKING_PLANE;
-import static team.easytravel.testutil.TypicalTransportBooking.TRANSPORT_BOOKING_TRAIN;
 import static team.easytravel.testutil.accommodationbooking.TypicalAccommodation.ACCOMMODATION_BOOKING_BACKPACKER;
 import static team.easytravel.testutil.accommodationbooking.TypicalAccommodation.ACCOMMODATION_BOOKING_HOSTEL;
 import static team.easytravel.testutil.accommodationbooking.TypicalAccommodation.ACCOMMODATION_BOOKING_HOTEL;
@@ -17,6 +14,9 @@ import static team.easytravel.testutil.activity.TypicalActivity.ACTIVITY_DISNEYL
 import static team.easytravel.testutil.activity.TypicalActivity.ACTIVITY_PEAK;
 import static team.easytravel.testutil.packinglist.TypicalPackingListItem.PACKING_LIST_JEANS;
 import static team.easytravel.testutil.packinglist.TypicalPackingListItem.PACKING_LIST_SHIRT;
+import static team.easytravel.testutil.transportbooking.TypicalTransportBooking.TRANSPORT_BOOKING_BUS;
+import static team.easytravel.testutil.transportbooking.TypicalTransportBooking.TRANSPORT_BOOKING_PLANE;
+import static team.easytravel.testutil.transportbooking.TypicalTransportBooking.TRANSPORT_BOOKING_TRAIN;
 
 import java.util.Comparator;
 

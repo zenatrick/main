@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import team.easytravel.commons.exceptions.IllegalValueException;
 import team.easytravel.commons.util.JsonUtil;
 import team.easytravel.model.listmanagers.TransportBookingManager;
-import team.easytravel.testutil.TypicalTransportBooking;
+import team.easytravel.testutil.transportbooking.TypicalTransportBooking;
 
 class JsonSerializableTransportBookingManagerTest {
 

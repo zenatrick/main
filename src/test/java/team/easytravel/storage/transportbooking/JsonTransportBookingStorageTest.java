@@ -3,9 +3,9 @@ package team.easytravel.storage.transportbooking;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static team.easytravel.testutil.Assert.assertThrows;
-import static team.easytravel.testutil.TypicalTransportBooking.TRANSPORT_BOOKING_BOAT;
-import static team.easytravel.testutil.TypicalTransportBooking.TRANSPORT_BOOKING_PLANE;
-import static team.easytravel.testutil.TypicalTransportBooking.TRANSPORT_BOOKING_SAMPAN;
+import static team.easytravel.testutil.transportbooking.TypicalTransportBooking.TRANSPORT_BOOKING_BOAT;
+import static team.easytravel.testutil.transportbooking.TypicalTransportBooking.TRANSPORT_BOOKING_PLANE;
+import static team.easytravel.testutil.transportbooking.TypicalTransportBooking.TRANSPORT_BOOKING_SAMPAN;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.io.TempDir;
 import team.easytravel.commons.exceptions.DataConversionException;
 import team.easytravel.model.listmanagers.ReadOnlyTransportBookingManager;
 import team.easytravel.model.listmanagers.TransportBookingManager;
-import team.easytravel.testutil.TypicalTransportBooking;
+import team.easytravel.testutil.transportbooking.TypicalTransportBooking;
 
 class JsonTransportBookingStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test",

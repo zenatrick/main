@@ -3,7 +3,7 @@ package team.easytravel.storage.transportbooking;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static team.easytravel.storage.transportbooking.JsonAdaptedTransportBooking.MISSING_FIELD_MESSAGE_FORMAT;
 import static team.easytravel.testutil.Assert.assertThrows;
-import static team.easytravel.testutil.TypicalTransportBooking.TRANSPORT_BOOKING_BUS;
+import static team.easytravel.testutil.transportbooking.TypicalTransportBooking.TRANSPORT_BOOKING_BUS;
 
 import org.junit.jupiter.api.Test;
 

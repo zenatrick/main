@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static team.easytravel.testutil.Assert.assertThrows;
-import static team.easytravel.testutil.TypicalTransportBooking.TRANSPORT_BOOKING_PLANE;
-import static team.easytravel.testutil.TypicalTransportBooking.getTypicalTransportBookingManager;
+import static team.easytravel.testutil.transportbooking.TypicalTransportBooking.TRANSPORT_BOOKING_PLANE;
+import static team.easytravel.testutil.transportbooking.TypicalTransportBooking.getTypicalTransportBookingManager;
 
 import java.util.Arrays;
 import java.util.Collection;

@@ -29,4 +29,10 @@ public class DeleteTripCommand extends Command {
         model.deleteTrip();
         return new CommandResult(MESSAGE_SUCCESS, TRIP_DELETE);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteTripCommand); // state check
+    }
 }

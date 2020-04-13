@@ -59,4 +59,11 @@ public class SetTripCommand extends Command {
         model.setTrip(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TRIP_SET);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SetTripCommand // instanceof handles nulls
+                && toAdd.equals(((SetTripCommand) other).toAdd));
+    }
 }

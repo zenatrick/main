@@ -23,15 +23,15 @@ public class AccommodationUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code Accommodation}'s details.
+     * Returns the part of command string for the given {@code accommodation}'s details.
      */
-    public static String getAccommodationDetails(AccommodationBooking Accommodation) {
+    public static String getAccommodationDetails(AccommodationBooking accommodation) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_ACCOMMODATION_NAME + Accommodation.getAccommodationName().value + " ");
-        sb.append(PREFIX_ACCOMMODATION_LOCATION + Accommodation.getLocation().value + " ");
-        sb.append(PREFIX_ACCOMMODATION_START_DAY + Accommodation.getStartDay().value.toString() + " ");
-        sb.append(PREFIX_ACCOMMODATION_END_DAY + Accommodation.getEndDay().value.toString() + " ");
-        sb.append(PREFIX_ACCOMMODATION_REMARK + Accommodation.getRemark().value + " ");
+        sb.append(PREFIX_ACCOMMODATION_NAME + accommodation.getAccommodationName().value + " ");
+        sb.append(PREFIX_ACCOMMODATION_LOCATION + accommodation.getLocation().value + " ");
+        sb.append(PREFIX_ACCOMMODATION_START_DAY + accommodation.getStartDay().value.toString() + " ");
+        sb.append(PREFIX_ACCOMMODATION_END_DAY + accommodation.getEndDay().value.toString() + " ");
+        sb.append(PREFIX_ACCOMMODATION_REMARK + accommodation.getRemark().value + " ");
         return sb.toString();
     }
 
