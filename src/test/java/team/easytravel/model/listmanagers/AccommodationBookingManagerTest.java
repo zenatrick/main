@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 
@@ -71,6 +72,55 @@ class AccommodationBookingManagerTest {
     public void getAccommodationBookingModifyListThrowsUnsupportedOperationException() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> accommodationBookingManager
                 .getAccommodationBookingList().remove(0));
+    }
+
+    @Test
+    public void getStatusNoAccommodation() {
+        final int TRIPNUMDAYS = 7;
+        String result;
+        StringBuilder stringBuilder = new StringBuilder("[❌] Accommodation for night");
+        boolean accommodationBookingIsOk = true;
+        boolean[] accommodationDayCheck = new boolean[TRIPNUMDAYS];
+        accommodationBookingManager.getAccommodationBookingList()
+                .forEach(x -> IntStream.range(x.getStartDay().value, x.getEndDay().value)
+                        .forEach(y -> accommodationDayCheck[y - 1] = true));
+        for (int i = 0; i < TRIPNUMDAYS - 1; i++) {
+            if (!accommodationDayCheck[i]) {
+                accommodationBookingIsOk = false;
+                stringBuilder.append(" ").append(i + 1).append(",");
+            }
+        }
+        if (accommodationBookingIsOk) {
+            result = "[✔] Accommodation Booking is completed for all nights.";
+        } else {
+            result = stringBuilder.append(" is/are missing").toString();
+        }
+        assertEquals(result, accommodationBookingManager.getStatus(TRIPNUMDAYS));
+    }
+
+    @Test
+    public void getStatusAllAccommodationSettled() {
+        accommodationBookingManager.addAccommodationBooking(TypicalAccommodation.ACCOMMODATION_BOOKING_HOTEL);
+        final int TRIPNUMDAYS = 3;
+        String result;
+        StringBuilder stringBuilder = new StringBuilder("[❌] Accommodation for night");
+        boolean accommodationBookingIsOk = true;
+        boolean[] accommodationDayCheck = new boolean[TRIPNUMDAYS];
+        accommodationBookingManager.getAccommodationBookingList()
+                .forEach(x -> IntStream.range(x.getStartDay().value, x.getEndDay().value)
+                        .forEach(y -> accommodationDayCheck[y - 1] = true));
+        for (int i = 0; i < TRIPNUMDAYS - 1; i++) {
+            if (!accommodationDayCheck[i]) {
+                accommodationBookingIsOk = false;
+                stringBuilder.append(" ").append(i + 1).append(",");
+            }
+        }
+        if (accommodationBookingIsOk) {
+            result = "[✔] Accommodation Booking is completed for all nights.";
+        } else {
+            result = stringBuilder.append(" is/are missing").toString();
+        }
+        assertEquals(result, accommodationBookingManager.getStatus(TRIPNUMDAYS));
     }
 
     /**
