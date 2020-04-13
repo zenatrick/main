@@ -5,11 +5,16 @@
 
 == PROJECT: E.T. Easy Travel
 
+The purpose of this document is to document my contribution I have made to the project.
+
+EasyTravel Github link: https://ay1920s2-cs2103t-w17-3.github.io/main/
+
 == Overview
-My team of 4 software engineering students and I were tasked with enhancing a basic command-line interface desktop address book application for our Software Engineering project. We chose to morph it into a travel planning application, called E.T, short for Easy Travel. E.T. will help reduce the amount of stress and anxiety when planning for a trip. E.T. is a desktop application that helps travellers manage and plan for their trips.
+My team of 4 software engineering students and I were tasked with enhancing a basic command-line interface desktop address book application for our Software Engineering project. We chose to morph it into a travel planning application, called E.T, short for Easy Travel. E.T. will help reduce the amount of stress and anxiety when planning for a trip. E.T. is a desktop application that helps travellers manage, plan and check their preparedness for their trip.
+
 
 === About E.T.
-E.T. is a desktop travel planning application to provide a simple an easy way for users to prepare for their trip. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+E.T. is a desktop travel planning application to provide a simple an easy way for users to prepare for their trip. E.T. has a GUI which was created with JavaFX and the user interacts with it through a CLI. It is written in Java, and has about 10 kLoC.
 
 == Summary of contributions
 
@@ -23,18 +28,20 @@ The activity manager feature allows the user to keep track of all the activities
 
 ** Highlights: This feature allows the user to find activities based on either the title of the activity, or the tags associated with the activity. Sometimes, a user may want to find a particular activity in the activity list, but if he/she has many activities, it will be difficult to find the activity. Hence, this feature brings convenience to the user, so that he/she does not have to look through the entire list to find an activity.
 
+This feature is also essential for the functionality of the schedule feature. The schedule feature has access to all activities created in it's manager and allows the user to schedule their activities into the scheduler.
+
 * *Major enhancement*:
 I added *the trip manager* feature of Easy Travel.
 
 ** What it does:
 It allows the user to set a trip, edit a trip, as well as delete a trip.
 
-** Justification: The trip manager feature is one of the main features of Easy Travel. Without a trip, all the other features in Easy Travel will not be able to function.
+** Justification: The trip manager feature is the core feature of Easy Travel. Without a trip, all the other features in Easy Travel will not be able to function.
 
 ** Highlights: All other features in Easy Travel will not function if a trip is not set by the user. Hence, it is important for the user to set a trip, so that he/she can use the other features in Easy Travel.
 
 * *Minor enhancement*:
-I did the base code for the status feature, so that my team members could work from there.
+I did the base code for the progress check feature, so that my team members could work from there.
 
 * *Minor enhancement*:
 I implemented the dashboard UI for Easy Travel. It consists of the information of the trip set by the user, so that the user will have a visual of all the information of the trip at all times. The information consists of the trip's title, the start and end date of the trip, the budget set for the trip, as well as the exchange rate of the trip.
@@ -52,9 +59,17 @@ I implemented the dashboard UI for Easy Travel. It consists of the information o
 ** Documentation:
 *** Used more 'you' language in the UserGuide so that it will be more reader-friendly. In addition, I added in pictures so that the reader can have visual cues on how the output should look like for each command.
 
+** Team:
+*** Bugs reported for E.T:
+https://github.com/AY1920S2-CS2103T-W17-3/main/issues/158[#158], https://github.com/AY1920S2-CS2103T-W17-3/main/issues/335[#335], https://github.com/AY1920S2-CS2103T-W17-3/main/issues/336[#336],
+*** Responsible for all non-official documentation such as weekly meeting minutes.
+
 ** Community:
 *** PRs reviewed (with non-trivial review comments):
+https://github.com/AY1920S2-CS2103T-W17-3/main/pulls?page=1&q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me[PRs]
 *** Reported bugs and suggestions for other teams in the class:
+https://github.com/Deunitato/ped/issues[Bugs for Cooking Papa]
+
 
 == Contributions to the User Guide
 
