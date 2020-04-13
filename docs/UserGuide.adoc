@@ -1847,6 +1847,7 @@ Outcome:
 .After the `listpreset` command
 image::user-guide/ListPreset.png[]
 
+<<<<<<< HEAD
 //end::packinglist[] //tag::rearrangingparameters
 
 //tag::fixedexpense[]
@@ -1956,7 +1957,6 @@ Format:
 [NOTE]
 ====
 - The `CATEGORY` field only accepts `transport`, `accommodations`, `others`, `activities`
-
 - If you set `CURRENCY` as `other`, the `AMOUNT` will be automatically converted to SGD using the trip exchange rate (See <<settrip>>).
 - Refer to <<expense-param>> for more detail about each parameter.
 ====
@@ -2002,6 +2002,7 @@ Format:
 ====
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
+<<<<<<< HEAD
 - Both currency and amount fields must exist for a successful edit.
 - If you set `CURRENCY` as `other`, the `AMOUNT` will be automatically converted to SGD using the trip exchange rate (See <<settrip>>).
 - *E.T.* will warn you when you overshot your budget.
@@ -2125,9 +2126,16 @@ image::user-guide/SortFixedExpense.png[]
 
 This command allows you to clear all Fixed Expenses in the list.
 
-Format:
+Format: `clearexpense`
 
-`clearexpense`
+[NOTE]
+====
+* `ORDER` refers to the order to sort the Fixed Expenses by. It can take the value of `ascending` or `asc` to sort in ascending order or `descending` or `des` to sort in descending order.
+* `CRITERIA` refers to the criteria to sort the Fixed Expenses by. It can take these values, `AMOUNT` `DESCRIPTION` `CATEGORY`.
+* Only __one__ criteria can be included in the command.
+* The list must not be empty.
+====
+
 
 Example:
 
@@ -2146,10 +2154,10 @@ Outcome:
 3. You will now see an empty Fixed Expense Manager.
 ****
 
-
 .After successfully clearing all fixed expense
 image::user-guide/ClearFixedExpense.png[]
 //end::fixedexpense
+
 
 === Features coming in Version 2.0
 
@@ -2195,6 +2203,7 @@ This feature will allow you to undo or redo certain commands.
 
 This feature will allow you to import and export your trip data in different formats such as the `.ics` calendar format.
 
+// tag::faq[]
 == *FAQ*
 
 *Q*: How many trips am I able to set in *E.T.*?
@@ -2217,7 +2226,7 @@ This feature will allow you to import and export your trip data in different for
 
 *A*: By default, *E.T.* saves all your data in a folder named `data` in the same directory as the application. You can copy and transfer the `data` folder into the same directory as *E.T.* on your other computer and *E.T.* will automatically load your data upon launching *E.T.*.
 
-
+// tag::commandSummary[]
 == *Command Summary*
 
 === Trip Management Commands

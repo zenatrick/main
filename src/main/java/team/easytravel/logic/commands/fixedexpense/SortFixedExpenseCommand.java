@@ -28,7 +28,8 @@ public class SortFixedExpenseCommand extends Command {
     public static final String MESSAGE_CRITERIA_CONSTRAINTS = String.format("Criteria must be one of the following: "
             + "\"%s\", \"%s\", \"%s\".", CRITERIA_CATEGORY, CRITERIA_DESCRIPTION, CRITERIA_AMOUNT);
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the displayed transport bookings by the given "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the displayed fixed expense"
+            + " bookings by the given "
             + "criteria and order.\n"
             + "Parameters : CRITERIA "
             + " ORDER\n"

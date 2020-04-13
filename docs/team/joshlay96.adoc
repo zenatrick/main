@@ -48,17 +48,18 @@ budget they have spent thus far, resolving the problem that our users, tend to o
 
 ** Community:
 *** Provided insight on PRs made by my group (https://github.com/AY1920S2-CS2103T-W17-3/main/pulls?q=is%3Apr+commenter%3Ajoshlay96[PR Reviews])
+*** Made a total of more than 30 PR's (https://github.com/AY1920S2-CS2103T-W17-3/main/pulls/@me[List of PR's])
 *** Along with my group, provided DG comments for other groups (https://github.com/AY1920S2-CS2103-W14-3/main/issues/60[#1])
 
 ** Tools:
-*** Integrate Travis CI in our code.
+*** Integrated Travis CI in our code.
 
 == Contributions to the User Guide
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=delete]
+include::../UserGuide.adoc[tag=fixedExpense]
 
 include::../UserGuide.adoc[tag=dataencryption]
 
@@ -71,5 +72,5 @@ include::../UserGuide.adoc[tag=dataencryption]
 == Contributions beyond the project team
 
 |===
-|_Posted reply on module forum on fellow course-mate queries: [https://github.com/nus-cs2103-AY1920S2/forum/issues/52[#52]_]
+|_Posted reply on module forum on fellow course-mate queries: [https://github.com/nus-cs2103-AY1920S2/forum/issues/52[#52]]
 |===

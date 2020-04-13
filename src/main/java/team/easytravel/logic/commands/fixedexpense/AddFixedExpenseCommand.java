@@ -26,7 +26,7 @@ public class AddFixedExpenseCommand extends Command {
 
     public static final String COMMAND_WORD = "addexpense";
 
-    public static final String MESSAGE_DUPLICATE_EXPENSE = "This expense already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_EXPENSE = "This expense already exists in the Fixed Expense List";
     public static final String MESSAGE_EXCEED_BUDGET = "Take note, you have exceeded your budget!";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a fixed expense to the fixed expense list\n"
             + "Parameters: "
@@ -66,25 +66,26 @@ public class AddFixedExpenseCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EXPENSE);
         }
 
-        if (isOverseasAmount) {
+        if (!isOverseasAmount) {
+            model.addFixedExpense(toAdd);
+        } else {
             double exchangeRate = model.getExchangeRate();
-            String amountInSgd = String.format("%.2f", Double.parseDouble(toAdd.getAmount().value) * exchangeRate);
-            // JPY -> SGD
-            if (!Amount.isValidAmount(amountInSgd)) {
-                throw new CommandException(Amount.MESSAGE_CONSTRAINTS);
-            }
-            toAdd = new FixedExpense(new Amount(amountInSgd),
+            double amountInOther = Double.parseDouble(toAdd.getAmount().value);
+            double amountInSgd = amountInOther * exchangeRate;
+            String amountInSgdString = String.format("%.2f", amountInSgd);
+            checkString(amountInSgdString);
+            toAdd = new FixedExpense(new Amount(amountInSgdString),
                     toAdd.getDescription(),
                     toAdd.getFixedExpenseCategory());
             model.addFixedExpense(toAdd);
-        } else {
-            model.addFixedExpense(toAdd);
         }
+
 
         int remainingBudget = (int) (model.getBudget() - model.getTotalExpense());
 
+        boolean isAboveBudget = checkBudget(remainingBudget);
 
-        if (remainingBudget < 1) {
+        if (isAboveBudget) {
             FixedExpense highestExpense = Collections.max(model.getFilteredFixedExpenseList(),
                     Comparator.comparingDouble(x -> Double.parseDouble(x.getAmount().value)));
 
@@ -95,6 +96,16 @@ public class AddFixedExpenseCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd + "\n"
                 + "Your budget left is " + remainingBudget), SWITCH_TAB_FIXED_EXPENSE);
+    }
+
+    private boolean checkBudget(int remainingBudget) {
+        return remainingBudget < 1;
+    }
+
+    private void checkString(String amountInSgdString) throws CommandException {
+        if (!Amount.isValidAmount(amountInSgdString)) {
+            throw new CommandException(Amount.MESSAGE_CONSTRAINTS);
+        }
     }
 
     @Override

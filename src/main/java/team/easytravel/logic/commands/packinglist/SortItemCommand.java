@@ -28,7 +28,7 @@ public class SortItemCommand extends Command {
     public static final String MESSAGE_CRITERIA_CONSTRAINTS = String.format("Criteria must be one of the following: "
                     + "\"%s\", \"%s\", \"%s\".", CRITERIA_CATEGORY, CRITERIA_NAME, CRITERIA_QUANTITY);
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the displayed transport bookings by the given "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the displayed packing list items by the given "
             + "criteria and order.\n"
             + "Parameters : CRITERIA "
             + " ORDER\n"

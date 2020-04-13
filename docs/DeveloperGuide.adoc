@@ -1356,5 +1356,5 @@ Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/ex
 . Test case: `editexpense 1 amount/3000 currency/sgd description/SQ Flight category/transport`
 .. Expected: Edits a fixed expense in index `1` of the fixed expense list with amount of `3000`, currency of `sgd`, description of `SQ Flight` and category of `transport`.
 
-. Other incorrect set commands to try: `editactivity 1 category testing`
+. Other incorrect set commands to try: `editexpense 1 category testing`
 .. Expected: No Fixed Expense is edited. Error details shown in feedback display.
