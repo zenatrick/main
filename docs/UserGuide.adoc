@@ -1865,6 +1865,8 @@ image::user-guide/ListPreset.png[]
 
 //tag::fixedexpense[]
 === Fixed Expense Management
+(Contributed by Joshua Lay)
+
 The Fixed Expense Manager comprises a list which allows you to set your fixed expenses before your trip. This would help you plan a suitable budget for your upcoming trip.
 
 Examples of Fixed Expenses that you can include are as follows,
@@ -1996,7 +1998,7 @@ Outcome:
 
 .After successfully adding a fixed expense
 image::user-guide/AddFixedExpense.png[]
-
+//end::fixedexpense[]
 
 ==== Edit a fixed expense entry: editexpense
 
@@ -2163,7 +2165,6 @@ Outcome:
 
 .After successfully clearing all fixed expense
 image::user-guide/ClearFixedExpense.png[]
-//end::fixedexpense[]
 
 //tag::v2.0[]
 === Features coming in Version 2.0
@@ -2187,6 +2188,7 @@ This feature allows you to export your existing packing list into a formatted te
 The motivation behind it is to allow you to share your packing lists with your friends easily.
 
 ==== Fixed Expense Management
+(Contributed by Joshua Lay)
 
 The Fixed Expense Management will also be getting brand new functionalities that will take your financial management to the next level.
 

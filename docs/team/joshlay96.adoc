@@ -22,11 +22,7 @@ Implemented Fixed Expense Tab along with its User Interface and commands (CRUD/S
 budget they have spent thus far, resolving the problem that our users, tend to overspend during their trip. Also, users are provided with an avenue to view their fixed expenses in a readable and organised manner.
 
 ** Highlights: The implementation too was challenging and time consuming as it required understanding existing commands within Address Book 3.
-** Credits: _{Authors or Address Book 3 and Jeffry Lum for his guidance, time and support. }_
-
-** *Minor Enhancement*: Enabled expenses to be entered or edited in a different currency.
-*** What it does: Allows the user to add and edit fixed expenses in a different currency based on a preset `exchangerate` set when setting a Trip.
-*** Justification: This feature will enable users to add fixed expenses in different currencies, such as attraction tickets as they tend to be in a foreign currency.
+** Credits: _{Authors of Address Book 3 and Jeffry Lum for his guidance, time and support. }_
 
 ** *Minor Enhancement*: Created an interactive Pie Chart along with list for fixed expense.
 *** What it does: Provides the user with a visual aid and breakdown of their current fixed expenses prior to the trip.
@@ -63,19 +59,14 @@ budget they have spent thus far, resolving the problem that our users, tend to o
 |===
 
 include::../UserGuide.adoc[tag=fixedexpense]
-include::../UserGuide.adoc[tag=v2.0]
 
 == Contributions to the Developer Guide
 
 |===
-|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
-include::../DeveloperGuide.adoc[tag=fixedexpense]
+include::../DeveloperGuide.adoc[tag=fixedexpense1]
+include::../DeveloperGuide.adoc[tag=fixedexpense2]
+include::../DeveloperGuide.adoc[tag=progresschecker]
+include::../DeveloperGuide.adoc[tag=progresschecker1]
 
-include::../DeveloperGuide.adoc[tag=testing]
-
-== Contributions beyond the project team
-
-|===
-|Posted reply on module forum on fellow course-mate queries: [https://github.com/nus-cs2103-AY1920S2/forum/issues/52[#52]]
-|===

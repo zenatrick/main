@@ -750,13 +750,15 @@ Reasons for choosing option 1:
 // end::packinglist[]
 
 // tag::fixedexpense[]
+// tag::fixedexpense1[]
 === Fixed Expense Manager
+(Contributed by Joshua Lay)
 
 **E.T.** allows the user to keep track of their fixed expenses for his/her trip. The fixed expense manager is one of the ``ListManager``s (See <<List-Manager>>). On top of the basic operations provided by a `ListManager`, it also allows the user to set a budget for the trip and automatically converts any fixed expenses entered in foreign currency into Singapore Dollars (SGD).
 
 ==== Rationale
 The fixed expense manager is an important feature to have because many travellers would want to manage their expense for an overseas trip. We also found out that most accommodations are commonly charged in a foreign currency instead of SGD. This prevented travelers from having a clearer picture of how much they have spent on these big ticket items before their trip. Thus, we decided to create a transport booking manager as one of the ``ListManager``s with an automatic conversion feature.
-
+// end::fixedexpense1[]
 ==== Current Implementation
 
 Currently, the information on the trip’s budget and the exchange rate is stored as fields in the `Trip` class which is managed by the `TripManager`. All fixed expenses, on the other hand, is managed by the `FixedExpenseManager`.
@@ -767,7 +769,7 @@ The following __Class Diagram__ shows the association between relevant classes o
 .Structure of the `FixedExpenseManager` and its relevant classes.
 image::developer-guide/fixed-expense/FixedExpenseClassDiagram.png[]
 
-
+// tag::fixedexpense2[]
 The Activity Diagram below summarises what happens when the user adds a fixed expense entry using the `addexpense` command.
 
 .Workflow of the `addexpense` command
@@ -797,7 +799,7 @@ The lifelines for the `AddFixedExpenseCommand` should end at the destroy marker 
 This sequence diagram does not take into consideration the possible exceptions which might occur during the `AddFixedExpenseCommand` execution.
 
 ====
-
+//end::fixedexpense2[]
 ==== Design Consideration
 
 ===== Aspect: Which class to store the trip’s budget and fixed expense
@@ -829,15 +831,18 @@ Reasons for choosing option 1:
 
 // end::fixedexpense[]
 
+//tag::progresschecker[]
 [#progress-checker]
 === Progress Checker
+(Contributed by Joshua Lay)
+
 This feature allows the user to keep track of the progress of his/her planning. It integrates multiple features to show the user what has been done and what needs to be done for his/her trip. The command to check the current progress is `status`. The following aspect of the trip will be shown to the user:
 
 * `Accommodation` - Accommodation coverage
 * `Schedule` - Time clash in the schedule
 * `PackingList` - Number of items packed or yet to be packed
 * `Expense` - Remaining budget
-
+//end::progresschecker[]
 
 ==== Rationale
 
@@ -850,6 +855,7 @@ The following __Activity Diagram__ summarizes what happens when a user enters th
 .Workflow of the `status` command
 image::developer-guide/progress-checker/CheckStatusActivityDiagram.png[]
 
+//tag::progresschecker1[]
 When a user enters the `status` command, the `Logic` Component parses and creates a `CheckStatusCommand` object. (See <<Design-Logic>>).
 
 The execution of the `CheckStatusCommand` undergoes the following steps.
@@ -864,7 +870,7 @@ The execution of the `CheckStatusCommand` undergoes the following steps.
 
 .Execution of the `CheckStatusCommand`
 image::developer-guide/progress-checker/CheckStatusCommandExecution.png[]
-
+//end::progresschecker1[]
 [NOTE]
 ====
 The lifelines for the `CheckStatusCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
@@ -1216,6 +1222,7 @@ A stream is a sequence of objects that supports various methods which can be pip
 //tag::testing[]
 [appendix]
 == Instructions for Manual Testing
+(Contributed by Joshua Lay)
 
 Given below are instructions to test the app manually.
 
