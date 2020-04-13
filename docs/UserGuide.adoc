@@ -369,7 +369,7 @@ Outcome:
 image::user-guide/trip-management/outcome-status.png[]
 //end::trip[]
 
-//start::activity[]
+//tag::activity[]
 === Activity Management
 If you are planning what to do for your trip, you will find this feature useful. This feature allows you to manage your activities for the trip. You can record the following information about your activities:
 

@@ -9,10 +9,10 @@ My team of 4 software engineering students and I were tasked with enhancing a ba
 == Overview
 
 == Summary of contributions
-This section shows a summary of my coding, documentation, and other helpful contributions to the team project.
+This section shows a summary of my coding, documentation, and other helpful contributions to the team project. It takes care of the name, quantity and categories of all the packing list items.
 
 * *Major enhancement*:
-I added the packing list feature of Easy Travel.
+I added the *packing list* feature of Easy Travel.
 ** What it does:
 The packing list feature allows the user to keep track of their packing list, to see which items they have and haven't packed for their trip.
 
@@ -25,8 +25,9 @@ One highlight of the packing list is that you are able to mark multiple items as
 ** Credits:
 Credits to the app called Packr for the packing list preset idea.
 
-* *Minor enhancement*:
-I contributed to the most important feature of our product, the status feature.
+* *Major enhancement*:
+I contributed to the most important feature of our product, the status feature. I added in the progress of the packing of the items, as well as the UI of this feature.
+
 ** What it does:
 It checks the progress of planning that the user has done. It checks if firstly, there are no overlapping activities in the schedule, then it checks the number of packed items, then it checks if the total amount of the fixed expenses is under the budget, and lastly, it checks if there is an accommodation booking for every night of the trip.
 

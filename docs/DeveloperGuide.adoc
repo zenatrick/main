@@ -241,7 +241,7 @@ The `Common` component contains classes used by multiple other components in the
 == Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
-// tag::TripManagement[]
+// tag::tripmanagement[]
 
 === Trip Manager
 *E.T*  allows the user to plan for an overseas trip. *E.T* is implemented in a way that the user can only plan for one single trip at any time. i.e. Only a single trip’s data can be managed. In this Trip Manager feature, the user can set, edit and delete his/her trip details. The trip details includes:
@@ -332,7 +332,7 @@ Reasons for choosing option 1:
 * The exchange rate of a trip does not tend to fluctuate much, thus the cons of option 2 outweigh the pros for the exchange rate.
 * As for the trip dates, the schedule feature is a big feature of **E.T.** and it depends on the trip dates. Given the limited time for implementation, we decided to opt for a less bug-prone approach that can showcase **E.T.**’s feature.
 
-// end::Trip Management[]
+// end::tripmanagement[]
 
 // List management
 // tag::listmanagement[]
@@ -460,6 +460,7 @@ Reason for choosing option 1:
 // End list management
 //end::listmanagement[]
 
+//tag::activitymanager[]
 === Activity Manager
 **E.T.** allows the user to keep track of their activities for his/her trip. The activity manager is one of the `ListManager` s  (See <<List-Manager>>). On top of the basic operations provided by a `ListManager`, it also allows the user to search for their activities using the `findacitivty` command. The parameters of the `findactivity` command are keywords in the activity entries that the user wants to search for. E.g. `findactivity sightseeing carnival` will search and list all activity entries with `sightseeing` or `carnival` in their detail. Another similar command, `findactivitytag` has the same functionality but only searches for the tags of activity entries.
 
@@ -501,7 +502,7 @@ This sequence diagram does not take into consideration the possible exceptions w
 
 ==== Design Consideration
 We do not have other implementation options for the `FindActivityCommand` as the current implementation is the only option that we came up with. This option is quite easy to understand and follows good coding principles.
-// end::activity[]
+// end::activitymanager[]
 
 // tag::scheduleactivity[]
 [#schedule-feature]
