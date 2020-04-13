@@ -25,12 +25,18 @@ import team.easytravel.logic.commands.activity.EditActivityCommand;
 import team.easytravel.logic.commands.activity.EditActivityCommand.EditActivityDescriptor;
 import team.easytravel.logic.commands.activity.FindActivityCommand;
 import team.easytravel.logic.commands.activity.ListActivityCommand;
+import team.easytravel.logic.commands.fixedexpense.AddFixedExpenseCommand;
+import team.easytravel.logic.commands.fixedexpense.ClearFixedExpenseCommand;
+import team.easytravel.logic.commands.fixedexpense.DeleteFixedExpenseCommand;
+import team.easytravel.logic.commands.fixedexpense.EditFixedExpenseCommand;
+import team.easytravel.logic.commands.fixedexpense.ListFixedExpenseCommand;
 import team.easytravel.logic.commands.trip.DeleteTripCommand;
 import team.easytravel.logic.commands.trip.SetTripCommand;
 import team.easytravel.logic.parser.exceptions.ParseException;
 import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBooking;
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.activity.ActivityContainKeywordPredicate;
+import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.testutil.accommodationbooking.AccommodationBookingBuilder;
 import team.easytravel.testutil.accommodationbooking.AccommodationUtil;
@@ -38,6 +44,9 @@ import team.easytravel.testutil.accommodationbooking.EditAccommodationBookingDes
 import team.easytravel.testutil.activity.ActivityBuilder;
 import team.easytravel.testutil.activity.ActivityUtil;
 import team.easytravel.testutil.activity.EditActivityDescriptorBuilder;
+import team.easytravel.testutil.fixedexpense.EditFixedExpenseDescriptorBuilder;
+import team.easytravel.testutil.fixedexpense.FixedExpenseBuilder;
+import team.easytravel.testutil.fixedexpense.FixedExpenseUtil;
 import team.easytravel.testutil.trip.TripBuilder;
 import team.easytravel.testutil.trip.TripUtil;
 
@@ -153,6 +162,50 @@ public class EasyTravelParserTest {
                 + " 3") instanceof ListAccommodationBookingCommand);
     }
 
+    // -- FixedExpense --
+    @Test
+    public void parseFixedExpenseCommand_add() throws Exception {
+        FixedExpense fixedExpense = new FixedExpenseBuilder().build();
+        AddFixedExpenseCommand command = (AddFixedExpenseCommand)
+                parser.parseCommand(FixedExpenseUtil.getAddCommand(fixedExpense));
+        assertEquals(new AddFixedExpenseCommand(fixedExpense, false), command);
+    }
+
+    @Test
+    public void parseFixedExpenseCommand_clear() throws Exception {
+        assertTrue(parser.parseCommand(ClearFixedExpenseCommand.COMMAND_WORD)
+                instanceof ClearFixedExpenseCommand);
+        assertTrue(parser.parseCommand(ClearFixedExpenseCommand.COMMAND_WORD + " 3")
+                instanceof ClearFixedExpenseCommand);
+    }
+
+    @Test
+    public void parseFixedExpenseCommand_delete() throws Exception {
+        DeleteFixedExpenseCommand command = (DeleteFixedExpenseCommand) parser.parseCommand(
+                DeleteFixedExpenseCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteFixedExpenseCommand(INDEX_FIRST), command);
+    }
+
+    @Test
+    public void parseFixedExpenseCommand_edit() throws Exception {
+        FixedExpense fixedExpense = new FixedExpenseBuilder().build();
+        EditFixedExpenseCommand.EditFixedExpenseDescriptor descriptor =
+                new EditFixedExpenseDescriptorBuilder(fixedExpense).build();
+        EditFixedExpenseCommand command = (EditFixedExpenseCommand) parser
+                .parseCommand(EditFixedExpenseCommand.COMMAND_WORD
+                        + " " + INDEX_FIRST.getOneBased() + " " + FixedExpenseUtil
+                        .getEditFixedExpenseDescriptorDetails(descriptor));
+        assertEquals(new EditFixedExpenseCommand(INDEX_FIRST, descriptor, false), command);
+    }
+
+
+    @Test
+    public void parseFixedExpenseCommand_list() throws Exception {
+        assertTrue(parser.parseCommand(ListFixedExpenseCommand.COMMAND_WORD)
+                instanceof ListFixedExpenseCommand);
+        assertTrue(parser.parseCommand(ListFixedExpenseCommand.COMMAND_WORD
+                + " 3") instanceof ListFixedExpenseCommand);
+    }
 
     // -- Commons --
     @Test
