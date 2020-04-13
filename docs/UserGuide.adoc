@@ -19,6 +19,7 @@ endif::[]
 By: `Team ET`      Since: `Jan 2020`      Licence: `MIT`
 
 == *Introduction*
+(Contributed by Joshua Wee)
 
 Welcome to the User Guide of *Easy Travel (E.T.)*!
 
@@ -47,6 +48,8 @@ Refer to <<Command-Syntax>> on how to use commands and <<Features>> on the comma
 
 == *About*
 === Structure of this document
+(Contributed by Teng Le)
+
 There are many things you can do with **E.T.**. Thus, we have structured this User Guide in such a way that you can easily find what you need. In the next subsection, <<Reading>>, you will find useful tips on reading this document. It is then followed by <<Features>> where the seven main features of *E.T.* and their commands are documented:
 
 - Trip Management
@@ -89,6 +92,7 @@ The table below explains the general symbols and syntax used throughout the docu
 
 [[Command-Syntax]]
 ==== Command Syntax and Usage
+(Contributed by Charlotte)
 
 Since *E.T.* is a _CLI_ application, knowing how to use commands is very important. The following subsection will teach you how to read and use commands in *E.T.*. All commands in *E.T.* follow similar formats as described below and examples will be provided to help you understand their usage. Examples of commands and their formats will be written in `code-blocks`.
 
@@ -150,6 +154,7 @@ You are required to set a trip before other features are unlocked. See <<settrip
 
 //tag::trip[]
 === Trip Management
+(Contributed by Charlotte)
 
 This feature allows you to manage your trip. You can record the following information about your trip:
 * Title
@@ -371,6 +376,8 @@ image::user-guide/trip-management/outcome-status.png[]
 
 //tag::activity[]
 === Activity Management
+(Contributed by Charlotte)
+
 If you are planning what to do for your trip, you will find this feature useful. This feature allows you to manage your activities for the trip. You can record the following information about your activities:
 
 * Title
@@ -671,6 +678,7 @@ Outcome:
 // tag::schedule-ppp[]
 //tag::schedule[]
 === Activity Scheduling
+(Contributed by Teng Le)
 
 After brainstorming a bunch of activities to do, do you want to add them to your schedule? This feature will help you do that. In this feature, you can add and remove activities from your schedule. Just tell *E.T.* which activity to schedule at what time and it will be added to the _Schedule Tab_.
 
@@ -810,6 +818,7 @@ Outcome:
 
 //tag::transport[]
 === Transportation Booking Management
+(Contributed by Teng Le)
 
 If you want to be prepared, you have to book transportation for every overseas trip. Thus, if you want to manage your transportation bookings for the trip, you can use this feature. What’s more is that your transport bookings are automatically added to your schedule, unlike the manual scheduling you have to do with activities. You can record the following information about your transport bookings:
 
@@ -1086,6 +1095,7 @@ image::user-guide/transport-management/outcome-cleartransport.png[]
 
 //tag::accommodation[]
 === Accommodation Booking
+(Contributed by Joshua Wee)
 
 Accommodation is something you can miss out on planning and this feature is for you to plan for your accommodation and record them down. You can record the following information about your accommodation bookings:
 
@@ -1333,6 +1343,7 @@ Outcome:
 
 //tag::packinglist[]
 === Packing List
+(Contributed by Catherine)
 
 If you are a forgetful person, this feature will be ideal for you. This feature allows you to manage your packing list for the trip. You can record the following information about your packing list items:
 =====
@@ -2168,6 +2179,7 @@ image::user-guide/ClearFixedExpense.png[]
 
 //tag::v2.0[]
 === Features coming in Version 2.0
+(Contributed by Catherine)
 
 This section will describe the various features that are planned for Version 2.0 of *E.T.*
 
@@ -2215,6 +2227,7 @@ This feature will allow you to import and export your trip data in different for
 
 // tag::faq[]
 == *FAQ*
+(Contributed by Joshua Wee)
 
 *Q*: How many trips am I able to set in *E.T.*?
 
@@ -2238,6 +2251,7 @@ This feature will allow you to import and export your trip data in different for
 
 // tag::commandSummary[]
 == *Command Summary*
+(Contributed by Joshua Lay)
 
 //tag::tripcommands[]
 === Trip Management Commands
