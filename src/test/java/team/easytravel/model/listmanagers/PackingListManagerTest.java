@@ -70,6 +70,32 @@ class PackingListManagerTest {
                 .getUniquePackingList().remove(0));
     }
 
+    @Test
+    public void getStatusNoItems() {
+        String result = "[❗] Packed items: " + "0/0";
+        assertEquals(result, packingListManager.getStatus());
+    }
+
+    @Test
+    public void getStatusNoItemsPacked() {
+        packingListManager.addPackingListItem(TypicalPackingListItem.PACKING_LIST_JEANS);
+        packingListManager.addPackingListItem(TypicalPackingListItem.PACKING_LIST_SANDALS);
+        packingListManager.addPackingListItem(TypicalPackingListItem.PACKING_LIST_SHIRT);
+        packingListManager.addPackingListItem(TypicalPackingListItem.PACKING_LIST_UNDERWEAR);
+
+        String result = "[❌] Packed items: " + "0/4";
+        assertEquals(result, packingListManager.getStatus());
+    }
+
+    @Test
+    public void getStatusAllItemsPacked() {
+        packingListManager.addPackingListItem(TypicalPackingListItem.PACKING_LIST_HANDCREAM);
+        packingListManager.addPackingListItem(TypicalPackingListItem.PACKING_LIST_TOWEL);
+
+        String result = "[✔] Packed items: " + "2/2";
+        assertEquals(result, packingListManager.getStatus());
+    }
+
     /**
      * A stub ReadOnlyPackingListManager whose Packing list can violate interface components.
      */

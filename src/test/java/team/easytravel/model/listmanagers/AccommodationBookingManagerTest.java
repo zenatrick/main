@@ -76,15 +76,15 @@ class AccommodationBookingManagerTest {
 
     @Test
     public void getStatusNoAccommodation() {
-        final int TRIPNUMDAYS = 7;
+        final int tripnumdays = 7;
         String result;
         StringBuilder stringBuilder = new StringBuilder("[❌] Accommodation for night");
         boolean accommodationBookingIsOk = true;
-        boolean[] accommodationDayCheck = new boolean[TRIPNUMDAYS];
+        boolean[] accommodationDayCheck = new boolean[tripnumdays];
         accommodationBookingManager.getAccommodationBookingList()
                 .forEach(x -> IntStream.range(x.getStartDay().value, x.getEndDay().value)
                         .forEach(y -> accommodationDayCheck[y - 1] = true));
-        for (int i = 0; i < TRIPNUMDAYS - 1; i++) {
+        for (int i = 0; i < tripnumdays - 1; i++) {
             if (!accommodationDayCheck[i]) {
                 accommodationBookingIsOk = false;
                 stringBuilder.append(" ").append(i + 1).append(",");
@@ -95,21 +95,21 @@ class AccommodationBookingManagerTest {
         } else {
             result = stringBuilder.append(" is/are missing").toString();
         }
-        assertEquals(result, accommodationBookingManager.getStatus(TRIPNUMDAYS));
+        assertEquals(result, accommodationBookingManager.getStatus(tripnumdays));
     }
 
     @Test
     public void getStatusAllAccommodationSettled() {
         accommodationBookingManager.addAccommodationBooking(TypicalAccommodation.ACCOMMODATION_BOOKING_HOTEL);
-        final int TRIPNUMDAYS = 3;
+        final int tripnumdays = 3;
         String result;
         StringBuilder stringBuilder = new StringBuilder("[❌] Accommodation for night");
         boolean accommodationBookingIsOk = true;
-        boolean[] accommodationDayCheck = new boolean[TRIPNUMDAYS];
+        boolean[] accommodationDayCheck = new boolean[tripnumdays];
         accommodationBookingManager.getAccommodationBookingList()
                 .forEach(x -> IntStream.range(x.getStartDay().value, x.getEndDay().value)
                         .forEach(y -> accommodationDayCheck[y - 1] = true));
-        for (int i = 0; i < TRIPNUMDAYS - 1; i++) {
+        for (int i = 0; i < tripnumdays - 1; i++) {
             if (!accommodationDayCheck[i]) {
                 accommodationBookingIsOk = false;
                 stringBuilder.append(" ").append(i + 1).append(",");
@@ -120,7 +120,7 @@ class AccommodationBookingManagerTest {
         } else {
             result = stringBuilder.append(" is/are missing").toString();
         }
-        assertEquals(result, accommodationBookingManager.getStatus(TRIPNUMDAYS));
+        assertEquals(result, accommodationBookingManager.getStatus(tripnumdays));
     }
 
     /**
