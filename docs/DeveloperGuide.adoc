@@ -1284,7 +1284,7 @@ Expected: The most recent window size and location is retained.
 
 * Add a new activity to **E.T.**
 
- . Prerequisites: Arguments are valid and compulsory parameters are provided. The Activity added must be within the time frame of the trip.
+ . Prerequisites: Arguments are valid and compulsory parameters are provided. The Activity added must be within the time frame of the trip. No duplicate Activity in the Trip.
 
 . Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/expensive tag/sightseeing`
 .. Expected: Adds an activity with title of `Osaka Castle View`, with duration of `1` hour, a location of `Osaka` and tags of `expensive` and `sightseeing`.
@@ -1299,7 +1299,7 @@ Expected: The most recent window size and location is retained.
 
 * Sets a new trip to Easy Travel
 
-. Prerequisites: Arguments are valid and compulsory parameters are provided.
+. Prerequisites: Arguments are valid and compulsory parameters are provided. A Trip must not be set
 
 . Test case: `settrip title/Graduation Trip budget/5000 exchangerate/1.03 startdate/28-09-2020 enddate/05-10-2020`
 .. Expected: Sets a trip with title `Graduation Trip`, with budget of `5000`, exchange rate of `1.03`, startdate of `28-09-2020` and enddate of `05-10-2020`.
@@ -1314,10 +1314,10 @@ Expected: The most recent window size and location is retained.
 ==== Adding Accommodation
 * Adds a new accommodation to Easy Travel
 
-. Prerequisites: Arguments are valid, compulsory parameters are provided. The Accommodation added must be within the time frame of the trip.
+. Prerequisites: Arguments are valid, compulsory parameters are provided. The Accommodation added must be within the time frame of the trip. No Duplicate Accommodation in the list
 
-. Test case: `addacc name/JW Marriott Hotel loc/KL startday/2 endday/4 remark/Check-in at 3pm.`
-.. Expected: Adds an accommodation with name of `JW Marriott Hotel` location of `KL`,  startday of `2`, endday of `4` and remark of `Check-in at 3pm`.
+. Test case: `addacc name/JW Marriott Hotel loc/KL startday/3 endday/4 remark/Check-in at 3pm.`
+.. Expected: Adds an accommodation with name of `JW Marriott Hotel` location of `KL`,  startday of `3`, endday of `4` and remark of `Check-in at 3pm`.
 
 . Test case `addacc name/JW Marriott Hotel`
 .. Expected: No Accommodation is set. Error details shown in the feedback display.
@@ -1328,10 +1328,10 @@ Expected: The most recent window size and location is retained.
 ==== Adding Transportation
 * Adds a new transportation to Easy Travel
 
-. Prerequisites: Arguments are valid, compulsory parameters are provided. The Transportation added must be within the time frame of the trip.
+. Prerequisites: Arguments are valid, compulsory parameters are provided. The Transportation added must be within the time frame of the trip. No Duplicate Transportation in the list.
 
-. Test case: `addtransport mode/plane startloc/Singapore endloc/Japan starttime/20-03-2020 17:00 endtime/21-03-2020 00:00`
-.. Expected: Adds an transportation with mode `plane`, startloc as `Singapore`, endloc as `Japan`, starttime as `20-03-2020 17:00` and endtime as `21-03-2020 00:00`.
+. Test case: `addtransport mode/plane startloc/Singapore endloc/Japan starttime/04-10-2020 17:00 endtime/06-10-2020 00:00`
+.. Expected: Adds an transportation with mode `plane`, startloc as `Singapore`, endloc as `Japan`, starttime as `04-10-2020 17:00` and endtime as `06-10-2020 00:00`.
 
 . Test case `addtransport mode/plane`
 .. Expected: No Transportation is set. Error details shown in the feedback display.
@@ -1342,7 +1342,7 @@ Expected: The most recent window size and location is retained.
 ==== Adding Item in Packing List
 * Adds a new Item to Easy Travel
 
-. Prerequisites: Arguments are valid and compulsory parameters are provided.
+. Prerequisites: Arguments are valid and compulsory parameters are provided. No Duplicate Items are in the list
 
 . Test case: `additem name/Tshirts quantity/5 category/clothes`
 .. Expected: Adds an item with name of `Tshirts` quantity of `5`, category of `clothes`.
@@ -1368,7 +1368,7 @@ Expected: The most recent window size and location is retained.
 ==== Adding Fixed Expense in Fixed Expense List
 * Adds a new Fixed Expense to Easy Travel
 
-. Prerequisites: Arguments are valid and compulsory parameters are provided.
+. Prerequisites: Arguments are valid and compulsory parameters are provided. No Duplicate Fixed Expense must exist in the list
 
 . Test case: `addexpense amount/1500 currency/sgd description/Plane Tickets category/transport`
 .. Expected: Adds a fixed expense with amount of `1500` currency of `sgd`, description of `Plane Tickets` and category of `transport`.
@@ -1386,7 +1386,7 @@ Expected: The most recent window size and location is retained.
 
 * Edits a current Activity in Easy Travel
 
-. Prerequisites: Arguments are valid, compulsory parameters are provided and activity must exist in the activity list. The Activity edited must be within the time frame of the trip.
+. Prerequisites: Arguments are valid, compulsory parameters are provided and activity must exist in the activity list. The Activity edited must be within the time frame of the trip. No duplicate Activity in the list.
 
 . Test case: `editactivity 1 title/Shopping duration/2`
 .. Expected: Edits an activity in index `1` in the displayed activity list with title of `Shopping`, currency of `sgd`, description of `SQ Flight` and category of `transport`.
@@ -1397,7 +1397,7 @@ Expected: The most recent window size and location is retained.
 ==== Editing Fixed Expense
 * Edits a current Fixed Expense in Easy Travel
 
-. Prerequisites: Arguments are valid,  compulsory parameters are provided and fixed expense must exist in the fixed expense List.
+. Prerequisites: Arguments are valid,  compulsory parameters are provided and fixed expense must exist in the fixed expense List. No Duplicate Fixed Expense in the list.
 
 . Test case: `editexpense 1 amount/3000 currency/sgd description/SQ Flight category/transport`
 .. Expected: Edits a fixed expense in index `1` of the fixed expense list with amount of `3000`, currency of `sgd`, description of `SQ Flight` and category of `transport`.
