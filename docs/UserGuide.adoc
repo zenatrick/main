@@ -1847,7 +1847,7 @@ Outcome:
 .After the `listpreset` command
 image::user-guide/ListPreset.png[]
 
-//end::packinglist[] //tag::rearrangingparameters
+//end::packinglist[]
 
 //tag::fixedexpense[]
 === Fixed Expense Management

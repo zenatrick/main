@@ -1361,6 +1361,7 @@ Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/ex
 .. Expected: No Fixed Expense is edited. Error details shown in feedback display.
 //tag::testing[]
 
+//tag::effort[]
 [appendix]
 == Effort
 

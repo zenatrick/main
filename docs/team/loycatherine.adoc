@@ -80,3 +80,5 @@ include::../DeveloperGuide.adoc[tag=listmanagement]
 
 include::../DeveloperGuide.adoc[tag=packinglist]
 
+include::../DeveloperGuide.adoc[tag=effort]
+
