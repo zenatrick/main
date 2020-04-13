@@ -1,19 +1,16 @@
 package team.easytravel.logic.parser.packinglist;
 
 import static team.easytravel.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static team.easytravel.logic.commands.CommandTestUtil.INVALID_ITEM_CATEGORY;
+import static team.easytravel.logic.commands.CommandTestUtil.INVALID_ITEM_NAME;
+import static team.easytravel.logic.commands.CommandTestUtil.INVALID_ITEM_QUANTITY;
 import static team.easytravel.logic.commands.CommandTestUtil.ITEM_CATEGORY_PASSPORT;
 import static team.easytravel.logic.commands.CommandTestUtil.ITEM_CATEGORY_UNDERWEAR;
 import static team.easytravel.logic.commands.CommandTestUtil.ITEM_NAME_UNDERWEAR;
-import static team.easytravel.logic.commands.CommandTestUtil.ITEM_QUANTITY_UNDERWEAR;
 import static team.easytravel.logic.commands.CommandTestUtil.ITEM_QUANTITY_PASSPORT;
-import static team.easytravel.logic.commands.CommandTestUtil.INVALID_ITEM_CATEGORY;
-import static team.easytravel.logic.commands.CommandTestUtil.INVALID_ITEM_NAME;
-import static team.easytravel.logic.commands.CommandTestUtil.INVALID_ITEM_NAME_UNDERWEAR;
-import static team.easytravel.logic.commands.CommandTestUtil.INVALID_ITEM_QUANTITY;
-import static team.easytravel.logic.commands.CommandTestUtil.INVALID_QUANTITY_UNDERWEAR;
+import static team.easytravel.logic.commands.CommandTestUtil.ITEM_QUANTITY_UNDERWEAR;
 import static team.easytravel.logic.commands.CommandTestUtil.VALID_ITEM_CATEGORY_PASSPORT;
 import static team.easytravel.logic.commands.CommandTestUtil.VALID_ITEM_CATEGORY_UNDERWEAR;
-import static team.easytravel.logic.commands.CommandTestUtil.VALID_ITEM_NAME_PASSPORT;
 import static team.easytravel.logic.commands.CommandTestUtil.VALID_ITEM_NAME_UNDERWEAR;
 import static team.easytravel.logic.commands.CommandTestUtil.VALID_QUANTITY_PASSPORT;
 import static team.easytravel.logic.commands.CommandTestUtil.VALID_QUANTITY_UNDERWEAR;
@@ -89,9 +86,9 @@ public class EditItemCommandParserTest {
                 Quantity.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_ITEM_NAME_UNDERWEAR
-                        + INVALID_QUANTITY_UNDERWEAR
-                        + VALID_ITEM_CATEGORY_UNDERWEAR,
+        assertParseFailure(parser, "3" + INVALID_ITEM_NAME
+                        + INVALID_ITEM_QUANTITY
+                        + ITEM_CATEGORY_UNDERWEAR,
                 ItemName.MESSAGE_CONSTRAINTS);
     }
 
@@ -148,7 +145,6 @@ public class EditItemCommandParserTest {
                 + ITEM_QUANTITY_PASSPORT + ITEM_CATEGORY_PASSPORT;
 
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder()
-                .withItemName(VALID_ITEM_NAME_PASSPORT)
                 .withQuantity(VALID_QUANTITY_PASSPORT)
                 .withItemCategory(VALID_ITEM_CATEGORY_PASSPORT)
                 .build();

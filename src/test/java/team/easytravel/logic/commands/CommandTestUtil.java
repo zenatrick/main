@@ -180,7 +180,7 @@ public class CommandTestUtil {
     public static final String VALID_ITEM_NAME_UNDERWEAR = "Underwear";
     public static final String INVALID_ITEM_NAME_UNDERWEAR = "----";
     public static final Integer VALID_QUANTITY_UNDERWEAR = 7;
-    public static final Integer INVALID_QUANTITY_UNDERWEAR = 100002;
+    public static final String INVALID_QUANTITY_UNDERWEAR = "991a";
     public static final String VALID_ITEM_CATEGORY_UNDERWEAR = "clothes";
     public static final String INVALID_ITEM_CATEGORY_UNDERWEAR = "c////";
 
