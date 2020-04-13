@@ -69,17 +69,6 @@ public class PackingListItemBuilder {
     }
 
     /**
-     * With item category packing list item builder.
-     *
-     * @param itemCategory the item category
-     * @return the packing list item builder
-     */
-    public PackingListItemBuilder withItemCategory(String itemCategory) {
-        this.itemCategory = new ItemCategory(itemCategory);
-        return this;
-    }
-
-    /**
      * Build packing list item.
      *
      * @return the packing list item

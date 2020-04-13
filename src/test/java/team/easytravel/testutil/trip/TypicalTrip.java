@@ -1,9 +1,5 @@
 package team.easytravel.testutil.trip;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import team.easytravel.commons.core.time.Date;
 import team.easytravel.model.trip.Budget;
 import team.easytravel.model.trip.ExchangeRate;
@@ -40,10 +36,6 @@ public class TypicalTrip {
         TripManager tm = new TripManager();
         tm.setTrip(TRIP_CHEESE);
         return tm;
-    }
-
-    public static List<Trip> getTypicalTrip() {
-        return new ArrayList<>(Arrays.asList(TRIP_CHEESE));
     }
 
 }

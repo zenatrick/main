@@ -41,22 +41,6 @@ public class FixedExpenseBuilder {
         return this;
     }
 
-    /**
-     * Parses the {@code Description} of the {@code FixedExpense} that we are building.
-     */
-    public FixedExpenseBuilder withDescription(String description) {
-        this.description = new Description(description);
-        return this;
-    }
-
-    /**
-     * Parses the {@code FixedExpenseCategory} of the {@code FixedExpense} that we are building.
-     */
-    public FixedExpenseBuilder withFixedExpenseCategory(String fixedExpenseCategory) {
-        this.fixedExpenseCategory = new FixedExpenseCategory(fixedExpenseCategory);
-        return this;
-    }
-
     public FixedExpense build() {
         return new FixedExpense(amount, description, fixedExpenseCategory);
     }

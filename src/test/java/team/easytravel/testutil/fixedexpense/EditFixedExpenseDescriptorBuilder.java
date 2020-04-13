@@ -19,10 +19,6 @@ public class EditFixedExpenseDescriptorBuilder {
         descriptor = new EditFixedExpenseDescriptor();
     }
 
-    public EditFixedExpenseDescriptorBuilder(EditFixedExpenseDescriptor descriptor) {
-        this.descriptor = new EditFixedExpenseDescriptor(descriptor);
-    }
-
     /**
      * Returns an {@code EditFixedExpenseDescriptor} with fields containing {@code fixed expense}'s details
      */

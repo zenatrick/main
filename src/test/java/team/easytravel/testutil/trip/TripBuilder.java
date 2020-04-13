@@ -42,30 +42,6 @@ public class TripBuilder {
         exchangeRate = trip.getExchangeRate();
     }
 
-    /**
-     * Sets the {@code Title} of the {@code Trip} that we are building.
-     */
-    public TripBuilder withTitle(String title) {
-        this.title = new Title(title);
-        return this;
-    }
-
-
-    /**
-     * Sets the {@code startDate} of the {@code Activity} that we are building.
-     */
-    public TripBuilder withStartDate(String startDate) {
-        this.start = Date.fromString(startDate);
-        return this;
-    }
-
-    /**
-     * Sets the {@code endDate} of the {@code Trip} that we are building.
-     */
-    public TripBuilder withEndDate(String endDate) {
-        this.start = Date.fromString(endDate);
-        return this;
-    }
 
     public Trip build() {
         return new Trip(title, start, end, budget, exchangeRate);

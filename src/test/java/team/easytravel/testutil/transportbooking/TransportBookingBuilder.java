@@ -33,53 +33,10 @@ public class TransportBookingBuilder {
     }
 
     /**
-     * Initializes the TransportBookingBuilder with the data of {@code transportBooking}.
-     */
-    public TransportBookingBuilder(TransportBooking transportBooking) {
-        mode = transportBooking.getMode();
-        startLocation = transportBooking.getStartLocation();
-        endLocation = transportBooking.getEndLocation();
-        startDateTime = transportBooking.getStartDateTime();
-        endDateTime = transportBooking.getEndDateTime();
-    }
-
-    /**
      * Parses the {@code Mode} of the {@code TransportBooking} that we are building.
      */
     public TransportBookingBuilder withMode(String mode) {
         this.mode = new Mode(mode);
-        return this;
-    }
-
-    /**
-     * Parses the {@code startLocation} of the {@code TransportBooking} that we are building.
-     */
-    public TransportBookingBuilder withStartLocation(String startLocation) {
-        this.startLocation = new Location(startLocation);
-        return this;
-    }
-
-    /**
-     * Parses the {@code endLocation} of the {@code TransportBooking} that we are building.
-     */
-    public TransportBookingBuilder withEndLocation(String endLocation) {
-        this.endLocation = new Location(endLocation);
-        return this;
-    }
-
-    /**
-     * Parses the {@code startDateTime} of the {@code TransportBooking} that we are building.
-     */
-    public TransportBookingBuilder withStartDateTime(String startDateTime) {
-        this.startDateTime = DateTime.fromString(startDateTime);
-        return this;
-    }
-
-    /**
-     * Parses the {@code endDateTime} of the {@code TransportBooking} that we are building.
-     */
-    public TransportBookingBuilder withEndDateTime(String endDateTime) {
-        this.endDateTime = DateTime.fromString(endDateTime);
         return this;
     }
 
