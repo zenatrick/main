@@ -752,6 +752,7 @@ Example:
 
 Let’s say you want to add the *first* activity in the Activities Tab to the *third* day of your schedule at *10 AM*. You can do the following.
 
+****
 Adding the activity to your schedule:
 
 1. Type `schedule 1 day/3 time/10:00` into the _Command Box_.
@@ -762,6 +763,7 @@ Outcome:
 - The _Result Display_ will show a success message.
 - *E.T.* will switch to the _Schedule Tab_.
 - You can now see all your scheduled programs including the newly added activity.
+****
 
 .Outcome of a successful `schedule` command
 image::user-guide/schedule/outcome-schedule.png[]
@@ -788,6 +790,7 @@ Example:
 
 In case you want to remove the first activity of the third day because you have other plans at that time. You can do the following.
 
+****
 Removing the activity from your schedule:
 
 1. Type `unschedule 1 day/3` into the _Command Box_.
@@ -798,6 +801,8 @@ Outcome:
 - The _Result Display_ will show a success message.
 - *E.T.* will switch to the _Schedule Tab_.
 - You can now see that the unscheduled activity is removed from your schedule.
+****
+
 //end::schedule[]
 
 //tag::transport[]
