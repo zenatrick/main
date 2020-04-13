@@ -10,33 +10,27 @@ if () then ([valid command])
 
     if () then ([trip has been set])
 
-        :Parses the ""addtransport""
-        command and the user
-        specified transport booking;
+        :Parses the ""addtransport"" command and the
+        user specified transport booking;
 
-        :Creates a corresponding
-        ""DayScheduleEntry"" using
-        this transport booking;
+        :Creates a corresponding ""DayScheduleEntry""
+        using this transport booking;
 
-        :Calculates the day to
-        schedule this transport
-        booking;
+        :Calculates the day to schedule this
+        transport booking;
 
         if () then ([valid day])
 
-            :Adds the
-            ""DayScheduleEntry""
+            :Adds the ""DayScheduleEntry""
             into the schedule;
 
-            :Adds the transport
-            booking into the
-            ""TransportBookingManager"";
+            :Adds the transport booking into
+            the ""TransportBookingManager"";
 
             :Shows a success message;
         else ([else])
-            :Shows an invalid
-            date and time error
-            message;
+            :Shows an invalid date and time
+            error message;
 
         endif
 
