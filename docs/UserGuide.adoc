@@ -595,7 +595,7 @@ Outcome:
 ****
 
 ==== Find activities by name: `findactivity`
-You can use this command to find activities by title or location.
+You can use this command to find activities by title, location and durat    ion.
 
 *Format:*
 
