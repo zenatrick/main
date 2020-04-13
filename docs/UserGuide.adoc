@@ -1410,6 +1410,8 @@ Outcome:
 .After the `listitem` command
 image::user-guide/ListItem.png[]
 
+//tag::packinglist-ppp[]
+
 ==== Add a new packing list item: `additem`
 
 This command allows you to add a new item into your packing list.
@@ -1516,6 +1518,9 @@ Outcome:
 
 .After `edititem` command
 image::user-guide/EditItem.png[]
+
+//end::packinglist-ppp[]
+
 
 ==== Delete an existing packing list item: `deleteitem`
 

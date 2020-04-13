@@ -70,11 +70,7 @@ Accommodation Booking, the Schedule and the Budget.
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=packinglist]
-
-include::../UserGuide.adoc[tag=v2.0]
-
-include::../UserGuide.adoc[tag=packinglistcommands]
+include::../UserGuide.adoc[tag=packinglist-ppp]
 
 == Contributions to the Developer Guide
 
@@ -83,8 +79,4 @@ include::../UserGuide.adoc[tag=packinglistcommands]
 |===
 
 include::../DeveloperGuide.adoc[tag=listmanagement]
-
-include::../DeveloperGuide.adoc[tag=packinglist]
-
-include::../DeveloperGuide.adoc[tag=effort]
 
