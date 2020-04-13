@@ -5,18 +5,24 @@
 
 == PROJECT: E.T. Easy Travel
 
----
-
 == Overview
+My team of 4 software engineering students and I were tasked with enhancing a basic command-line interface desktop address book application for our Software Engineering project. We chose to morph it into a travel planning application, called E.T, short for Easy Travel. E.T. will help reduce the amount of stress and anxiety when planning for a trip. E.T. is a desktop application that helps travellers manage and plan for their trips.
 
+=== About E.T.
 E.T. is a desktop travel planning application to provide a simple an easy way for users to prepare for their trip. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 == Summary of contributions
 
-* *Major enhancement*: added *the ability to undo/redo previous commands*
-** What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-** Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+* *Major enhancement*:
+I added *the activity manager*
+
+** What it does:
+The activity manager feature allows the user to keep track of all the activities planned for their trip.
+
+** Justification: This feature is essential when planning for a trip, as it allows the user to remember all of the activities planned so far.
+
+** Highlights: This feature has a find activity by both the title, and the
+
 ** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
 
 * *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
@@ -50,9 +56,9 @@ _{you can add/remove categories in the list above}_
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=delete]
+include::../UserGuide.adoc[tag=activity]
 
-include::../UserGuide.adoc[tag=dataencryption]
+include::../UserGuide.adoc[tag=trip]
 
 == Contributions to the Developer Guide
 
@@ -64,9 +70,3 @@ include::../DeveloperGuide.adoc[tag=undoredo]
 
 include::../DeveloperGuide.adoc[tag=dataencryption]
 
-
-== PROJECT: PowerPointLabs
-
----
-
-_{Optionally, you may include other projects in your portfolio.}_
