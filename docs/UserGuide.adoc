@@ -595,7 +595,7 @@ Outcome:
 ****
 
 ==== Find activities by name: `findactivity`
-You can use this command to find activities by title, location and durat    ion.
+You can use this command to find activities by keywords. *E.T.* will help you search for your activities using the activity title, duration and location.
 
 *Format:*
 
@@ -1678,7 +1678,7 @@ image::user-guide/SortItem 2.png[]
 
 This command finds items in your packing list according to the names specified by you.
 
-Format: `finditem NAME [MORE_NAMES]...`
+Format: `finditem KEYWORD [MORE_KEYWORDS]...`
 
 [NOTE]
 =====
@@ -2245,9 +2245,6 @@ This feature will allow you to import and export your trip data in different for
 |*Check Progress* : `status`
 |`status`
 
-|*Vieww Itineary*: `listschedule`
-|`listschedule`
-
 |===
 //end::tripcommands[]
 
@@ -2271,7 +2268,7 @@ This feature will allow you to import and export your trip data in different for
 |*Sort Activities*: `sortactivity CRITERIA ORDER`
 |`sortactivity title ascending`
 
-|*Find Activities by Keywords*: `findactivity TITLE [MORE_TITLES]...`
+|*Find Activities by Keywords*: `findactivity KEYWORD [MORE_KEYWORDS]...`
 |`findactivity sightseeing carnival`
 
 |*Find Activities by Tag*: `findactivitytag TAG_NAME [MORE_TAG_NAMES]...`
@@ -2378,7 +2375,7 @@ This feature will allow you to import and export your trip data in different for
 |*Sort Items in Packing List*: `sortitem CRITERIA ORDER`
 |`sortitem name asc`
 
-|*Find Packing List Items by Name*: `finditem NAME [MORE_NAMES]...`
+|*Find Packing List Items by Name*: `finditem KEYWORD [MORE_KEYWORDS]...`
 |`finditem car shampoo`
 
 |*Find Packing List Items by Category*: `finditemcategory CATEGORY [MORE_CATEGORIES]...`
@@ -2387,7 +2384,7 @@ This feature will allow you to import and export your trip data in different for
 |*Clear Packing List*: `clearitem`
 |`clearitem`
 
-|*Add Preset*: `addpreset PRESET_NAME`
+|*Add Preset*: `addpreset CATEGORY`
 |`addpreset beach`
 
 |*List all Presets in Packing List*: `listpreset`
