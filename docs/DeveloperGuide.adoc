@@ -508,7 +508,7 @@ We do not have other implementation options for the `FindActivityCommand` as the
 [#schedule-feature]
 [[Schedule-Feature]]
 === Schedule Feature
-**E.T.** allows the user to schedule an activity from the activity list to a specified time of a day. This is done using the `schedule` command which requires the user to specify the `INDEX` of an activity from the displayed activity list, the `DAY_INDEX` of the trip and the `START_TIME` of the activity to be scheduled.
+**E.T.** allows the user to schedule an activity from the activity list to a specified time of a day. This is done using the `schedule` command which requires the user to specify the `ACTIVITY_INDEX` of an activity from the displayed activity list, the `DAY_INDEX` of the trip and the `START_TIME` of the activity to be scheduled.
 
 ==== Rationale
 The schedule feature is an important feature that allows the users to manage and plan for their trip schedule or itinerary. This feature is added to **E.T.** to separate from the activity management feature from the schedule. This can increase the ease of planning because users can just focus on the time management aspect when scheduling proposed activities from the activity list. The schedule feature also automatically adds any transport bookings into the schedule.
@@ -1377,12 +1377,12 @@ Creating *Easy Travel* was fairly difficult and required much effort from all th
 Throughout the development of *Easy Travel*, we faced many challenges. The following points will describe these challenges what how did we deal with them.
 
 *Challenge 1:* +
-The first challenge we face is the large increase in the number of entities to code and manage.
+The first challenge we faced was the large increase in the number of entities to code and manage.
 
 ** While AB3 deals with only one (`Person`) model object, *Easy Travel* deals with multiple (`Trip`, `Activity`, `TransportBooking`, `AccommodationBooking`, `FixedExpense`, `PackingListItem` and `DayScheduleEntry`) model objects. Thus, even though we were able to refactor some aspects of `Person` into `Trip`, we had to create the rest from scratch.
 ** Moreover, The `Ui` of *AB3* only contains one panel (`ListPanel`). On the other hand, *Easy Travel* has *7 panels* (`ScheduleTabPanel`, `ActivityTabPanel`, `AccommodationTabPanel`, `TransportationTabPanel`, `PackingListTabPanel`, `FixedExpenseTabPanel`, `HelpTabPanel`). This is a big change from *AB3’s*  `UI`. Additionally, `FixedExpenseTabPanel` contains a `PieChart`, which gives the user a better visual of their expenses breakdown.
 ** Furthermore, we have multiple new windows, the `StatusWindow` and `ListPresetWindow`.
-** The copious amount of entities meant that a larger amount of time is necessary to code and implement these entities.
+** The copious amount of entities meant that a larger amount of time would be necessary to code and implement these entities.
 
 *How we solve it:* +
 To overcome this challenge, our team placed heavy emphasis on team communication and efficient division of workload such that we can complete our part in the shortest time possible. In the end, we were able to overcome this challenge due to good team spirit and member contributions. Our effort can be seen from the *32,000 lines of code* that we have completed in less than two months.
