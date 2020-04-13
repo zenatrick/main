@@ -4,6 +4,7 @@ import team.easytravel.logic.commands.packinglist.EditItemCommand;
 import team.easytravel.logic.commands.packinglist.EditItemCommand.EditItemDescriptor;
 import team.easytravel.model.listmanagers.packinglistitem.ItemCategory;
 import team.easytravel.model.listmanagers.packinglistitem.ItemName;
+import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
 import team.easytravel.model.listmanagers.packinglistitem.Quantity;
 
 /**
@@ -26,6 +27,16 @@ public class EditItemDescriptorBuilder {
      */
     public EditItemDescriptorBuilder(EditItemCommand.EditItemDescriptor descriptor) {
         this.descriptor = new EditItemCommand.EditItemDescriptor(descriptor);
+    }
+
+    /**
+     * Returns an {@code EditFixedExpenseDescriptor} with fields containing {@code fixed expense}'s details
+     */
+    public EditItemDescriptorBuilder(PackingListItem item) {
+        descriptor = new EditItemCommand.EditItemDescriptor();
+        descriptor.setItemName(item.getItemName());
+        descriptor.setQuantity(item.getQuantity());
+        descriptor.setItemCategory(item.getItemCategory());
     }
 
     /**
