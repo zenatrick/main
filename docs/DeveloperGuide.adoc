@@ -183,7 +183,7 @@ The steps described above will be the standard command parsing and execution of 
 .Interactions inside the `Logic` component for the `deleteitem 1` command
 image::DeleteSequenceDiagram.png[]
 
-NOTE: The lifelines for the `DeleteItemCommandParser` and `DeleteItemCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+NOTE: The lifelines for the `DeleteItemCommandParser` and `DeleteItemCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifelines reache the end of the diagram.
 
 [#model-component]
 [[Design-Model]]
@@ -417,7 +417,7 @@ image::developer-guide/list-managers/AddActivitySequenceDiagram.png[Schedule Act
 
 [NOTE]
 ====
-The lifelines for the `AddActivityCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+The lifeline for the `AddActivityCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 This sequence diagram does not take into consideration the possible exceptions which might occur during the `AddActivityCommand` execution.
 
@@ -523,7 +523,7 @@ image::developer-guide/activity/FindActivitySequenceDiagram.png[]
 
 [NOTE]
 ====
-The lifelines for the `FindActivityCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+The lifeline for the `FindActivityCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 This sequence diagram does not take into consideration the possible exceptions which might occur during the `FindActivityCommand` execution.
 
@@ -575,7 +575,7 @@ image::developer-guide/schedule/ScheduleCommandExecution.png[Schedule Activity C
 
 [NOTE]
 ====
-The lifelines for the `ScheduleCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+The lifeline for the `ScheduleCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 This sequence diagram does not take into consideration the possible exceptions which might occur during the `ScheduleCommand` execution.
 
@@ -828,7 +828,7 @@ image::developer-guide/fixed-expense/AddFixedExpenseCommandExecution.png[]
 
 [NOTE]
 ====
-The lifelines for the `AddFixedExpenseCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+The lifeline for the `AddFixedExpenseCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 This sequence diagram does not take into consideration the possible exceptions which might occur during the `AddFixedExpenseCommand` execution.
 
@@ -907,7 +907,7 @@ image::developer-guide/progress-checker/CheckStatusCommandExecution.png[]
 //end::progresschecker1[]
 [NOTE]
 ====
-The lifelines for the `CheckStatusCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+The lifeline for the `CheckStatusCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 This sequence diagram does not take into consideration the possible exceptions which might occur during the `CheckStatusCommand` execution.
 
