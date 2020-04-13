@@ -581,11 +581,11 @@ Reasons for choosing option 1:
 * The schedule feature is a major feature because it is the main part of planning for a trip. Thus, we decided to opt for the option with better user experience.
 * The ability for other objects to be converted into a `DayScheduleEntry` object in option 1 is also beneficial for future versions of **E.T.** if we want to extend this feature to schedule other items such as accommodation bookings.
 
-// End scheduler
+// end::scheduleactivity[]
 
 
 // tag::accommodationbooking[]
-=== Accommodation Booking feature
+=== Accommodation Booking Manager
 
 **E.T.** allows the user to keep track of their accommodation bookings for his/her trip. The accommodation booking manager is one of the ``ListManager``s (See <<List-Manager>>). On top of the basic operations provided by a `ListManager`, it also prevents the user from having overlapping accommodation bookings.
 
@@ -656,7 +656,7 @@ Reason for choosing option 1:
 // end::accommodationbooking[]
 
 // tag::transportbooking[]
-=== Transport Booking feature
+=== Transport Booking Manager
 
 **E.T.** allows the user to keep track of their transport bookings for his/her trip. The transport booking manager is one of the ``ListManager``s (See <<List-Manager>>). On top of the basic operations provided by a `ListManager`, it also automatically adds all the transport bookings into the trip schedule.
 
@@ -696,7 +696,7 @@ This is because if we let the `ActivityManager` manage the schedule and activiti
 
 
 // tag::packinglist[]
-=== Packing List feature
+=== Packing List Manager
 
 **E.T.** allows the user to keep track of their packing list for his/her trip. The packing list manager is one of the `ListManager` s (See <<List-Manager>>). On top of the basic operations provided by a `ListManager`, it also allows the user to add built-in lists of items into his/her current packing list through the `addpreset` command.
 
@@ -751,7 +751,7 @@ Reasons for choosing option 1:
 // end::packinglist[]
 
 // tag::fixedexpense[]
-=== Fixed expense feature
+=== Fixed Expense Manager
 
 **E.T.** allows the user to keep track of their fixed expenses for his/her trip. The fixed expense manager is one of the ``ListManager``s (See <<List-Manager>>). On top of the basic operations provided by a `ListManager`, it also allows the user to set a budget for the trip and automatically converts any fixed expenses entered in foreign currency into Singapore Dollars (SGD).
 
