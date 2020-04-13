@@ -1675,7 +1675,7 @@ image::user-guide/SortItem 2.png[]
 
 ==== Find packing list items by name: `finditem`
 
-This command finds items in your packing list according to the item names specified by you.
+This command finds items in your packing list according to the names specified by you.
 
 Format: `finditem NAME [MORE_NAMES]...`
 
@@ -1712,7 +1712,7 @@ image::user-guide/FindItem.png[]
 
 ==== Find packing list items by category: `finditemcategory`
 
-This command find items in your packing list according to the categories specified by you
+This command finds items in your packing list according to the categories specified by you.
 
 Format: `finditemcategory CATEGORY [MORE_CATEGORIES]...`
 

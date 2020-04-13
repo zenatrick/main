@@ -1,11 +1,10 @@
 package team.easytravel.logic.commands.packinglist;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static team.easytravel.testutil.Assert.assertThrows;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +28,7 @@ public class AddItemCommandTest {
 
         assertEquals(String.format(AddItemCommand.MESSAGE_SUCCESS, validPackingListItem),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPackingListItem), modelStub.packingListItemsAdded);
+        assertEquals(Collections.singletonList(validPackingListItem), modelStub.packingListItemsAdded);
     }
 
     @Test
@@ -49,20 +48,20 @@ public class AddItemCommandTest {
         AddItemCommand addCameraCommand = new AddItemCommand(camera);
 
         // same object -> returns true
-        assertTrue(addRaincoatCommand.equals(addRaincoatCommand));
+        assertEquals(addRaincoatCommand, addRaincoatCommand);
 
         // same values -> returns true
         AddItemCommand addRaincoatCommandCopy = new AddItemCommand(raincoat);
-        assertTrue(addRaincoatCommand.equals(addRaincoatCommandCopy));
+        assertEquals(addRaincoatCommand, addRaincoatCommandCopy);
 
         // different types -> returns false
-        assertFalse(addRaincoatCommand.equals(1));
+        assertNotEquals(1, addRaincoatCommand);
 
         // null -> returns false
-        assertFalse(addRaincoatCommand.equals(null));
+        assertNotEquals(null, addRaincoatCommand);
 
         // different PackingListItem -> returns false
-        assertFalse(addRaincoatCommand.equals(addCameraCommand));
+        assertNotEquals(addRaincoatCommand, addCameraCommand);
     }
 
     @Test

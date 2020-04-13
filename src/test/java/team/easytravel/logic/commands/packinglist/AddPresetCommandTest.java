@@ -14,8 +14,8 @@ public class AddPresetCommandTest {
     @Test
     public void execute_itemAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingItemAdded modelStub = new ModelStubAcceptingItemAdded();
-        CommandResult commandResult = new AddPresetCommand(PresetDataUtil.beachPreset()
-                , "beach").execute(modelStub);
+        CommandResult commandResult = new AddPresetCommand(PresetDataUtil.beachPreset(),
+                "beach").execute(modelStub);
 
         assertEquals(String.format(AddPresetCommand.MESSAGE_SUCCESS, "beach"),
                 commandResult.getFeedbackToUser());
@@ -26,7 +26,7 @@ public class AddPresetCommandTest {
         PackingListItem[] essentials = PresetDataUtil.essentialsPreset();
         PackingListItem[] swimming = PresetDataUtil.swimmingPreset();
         AddPresetCommand addEssentialsCommand = new AddPresetCommand(essentials, "essentials");
-        AddPresetCommand addSwimmingCommand= new AddPresetCommand(swimming, "swimming");
+        AddPresetCommand addSwimmingCommand = new AddPresetCommand(swimming, "swimming");
 
         // same object -> returns true
         assertEquals(addEssentialsCommand, addEssentialsCommand);
@@ -42,7 +42,7 @@ public class AddPresetCommandTest {
         assertNotEquals(null, addEssentialsCommand);
 
         // different PackingListItem -> returns false
-        assertNotEquals(addEssentialsCommand,addSwimmingCommand);
+        assertNotEquals(addEssentialsCommand, addSwimmingCommand);
     }
 
     @Test
