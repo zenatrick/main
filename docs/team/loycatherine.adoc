@@ -61,9 +61,7 @@ The highlight of my part is the progress checker of the packing list in the stat
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-https://github.com/AY1920S2-CS2103T-W17-3/main/blob/master/docs/UserGuide.adoc#packing-list[Packing List]
-
-Section 4.5
+include::../UserGuide.adoc[tag=packinglist]
 
 == Contributions to the Developer Guide
 
@@ -71,11 +69,7 @@ Section 4.5
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-https://github.com/AY1920S2-CS2103T-W17-3/main/blob/master/docs/DeveloperGuide.adoc#List-Manager[List Manager]
+include::../DeveloperGuide.adoc[tag=listmanagement]
 
-Section 3.2
-
-https://github.com/AY1920S2-CS2103T-W17-3/main/blob/master/docs/DeveloperGuide.adoc#packing-list-feature[Packing List Feature]
-
-Section 3.7
+include::../DeveloperGuide.adoc[tag=packinglist]
 

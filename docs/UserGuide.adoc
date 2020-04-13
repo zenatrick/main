@@ -148,6 +148,7 @@ This section contains all the information you need to know about the features of
 
 You are required to set a trip before other features are unlocked. See <<settrip>> to learn how to set a trip.
 
+//tag::trip[]
 === Trip Management
 
 This feature allows you to manage your trip. You can record the following information about your trip:
@@ -366,7 +367,9 @@ Outcome:
 
 .Progress checker window
 image::user-guide/trip-management/outcome-status.png[]
+//end::trip[]
 
+//start::activity[]
 === Activity Management
 If you are planning what to do for your trip, you will find this feature useful. This feature allows you to manage your activities for the trip. You can record the following information about your activities:
 
@@ -591,12 +594,12 @@ Outcome:
 . You can see a list of sorted activities being displayed.
 ****
 
-==== Find activities by keyword: `findactivity`
-You can use this command to find activities by keywords.
+==== Find activities by name: `findactivity`
+You can use this command to find activities by the name.
 
 *Format:*
 
-`findactivity KEYWORD [MORE_KEYWORDS]...`
+`findactivity NAME [MORE_NAMES]...`
 
 [NOTE]
 ====
@@ -663,7 +666,9 @@ Outcome:
 . *E.T.* will switch to the Activities Tab.
 . You can see that the list is now empty.
 ****
+//end::activity[]
 
+//tag::schedule[]
 === Activity Scheduling
 
 After brainstorming a bunch of activities to do, do you want to add them to your schedule? This feature will help you do that. In this feature, you can add and remove activities from your schedule. Just tell *E.T.* which activity to schedule at what time and it will be added to the _Schedule Tab_.
@@ -793,7 +798,9 @@ Outcome:
 - The _Result Display_ will show a success message.
 - *E.T.* will switch to the _Schedule Tab_.
 - You can now see that the unscheduled activity is removed from your schedule.
+//end::schedule[]
 
+//tag::transport[]
 === Transportation Booking Management
 
 If you want to be prepared, you have to book transportation for every overseas trip. Thus, if you want to manage your transportation bookings for the trip, you can use this feature. What’s more is that your transport bookings are automatically added to your schedule, unlike the manual scheduling you have to do with activities. You can record the following information about your transport bookings:
@@ -1067,7 +1074,9 @@ Outcome:
 
 .Outcome of a successful `cleartransport` command
 image::user-guide/transport-management/outcome-cleartransport.png[]
+//end::transport[]
 
+//tag::accommodation[]
 === Accommodation Booking
 
 Accommodation is something you can miss out on planning and this feature is for you to plan for your accommodation and record them down. You can record the following information about your transport bookings:
@@ -1312,7 +1321,9 @@ Outcome:
 . **E.T.* *will switch to the __Accommodation Tab__.
 . You can see that the list is now empty.
 ****
+//end::accommodation[]
 
+//tag::packinglist[]
 === Packing List
 
 If you are a forgetful person, this feature will be ideal for you. This feature allows you to manage your packing list for the trip. You can record the following information about your packing list items:
@@ -1664,9 +1675,9 @@ image::user-guide/SortItem 2.png[]
 
 ==== Find packing list items by name: `finditem`
 
-This command finds items in your packing list according to keywords specified by you.
+This command finds items in your packing list according to the item names specified by you.
 
-Format: `finditem KEYWORD [MORE_KEYWORDS]...`
+Format: `finditem NAME [MORE_NAMES]...`
 
 [NOTE]
 =====
@@ -1701,9 +1712,9 @@ image::user-guide/FindItem.png[]
 
 ==== Find packing list items by category: `finditemcategory`
 
-This command find items in your packing list according to keywords specified by you that are categories
+This command find items in your packing list according to the categories specified by you
 
-Format: `finditemcategory KEYWORD [MORE_KEYWORDS]...`
+Format: `finditemcategory CATEGORY [MORE_CATEGORIES]...`
 
 [NOTE]
 =====
@@ -1836,8 +1847,10 @@ Outcome:
 .After the `listpreset` command
 image::user-guide/ListPreset.png[]
 
-=== Fixed Expense Management
+//end::packinglist[] //tag::rearrangingparameters
 
+//tag::fixedexpense[]
+=== Fixed Expense Management
 The Fixed Expense Manager comprises a list which allows you to set your fixed expenses before your trip. This would help you plan a suitable budget for your upcoming trip.
 
 Examples of Fixed Expenses that you can include are as follows,
@@ -2116,7 +2129,6 @@ Format:
 
 `clearexpense`
 
-
 Example:
 
 Assuming that you wish to clear all your fixed expenses entries, you can clear the whole list by following these steps.
@@ -2137,7 +2149,7 @@ Outcome:
 
 .After successfully clearing all fixed expense
 image::user-guide/ClearFixedExpense.png[]
-
+//end::fixedexpense
 
 === Features coming in Version 2.0
 

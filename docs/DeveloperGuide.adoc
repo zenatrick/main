@@ -335,7 +335,7 @@ Reasons for choosing option 1:
 // end::Trip Management[]
 
 // List management
-// tag::scheduleactivity[]
+// tag::listmanagement[]
 [#list-manager]
 [[List-Manager]]
 === List Managers
@@ -458,9 +458,7 @@ Reason for choosing option 1:
 * The implementations of the ``ListManager``s are done quite early on, where our team has more flexibility in terms of deadline. Thus, we can afford to spend more time developing the `UniqueList` data structure before starting on the implementation of any `ListManager`
 
 // End list management
-//end
-
-
+//end::listmanagement[]
 
 === Activity Manager
 **E.T.** allows the user to keep track of their activities for his/her trip. The activity manager is one of the `ListManager` s  (See <<List-Manager>>). On top of the basic operations provided by a `ListManager`, it also allows the user to search for their activities using the `findacitivty` command. The parameters of the `findactivity` command are keywords in the activity entries that the user wants to search for. E.g. `findactivity sightseeing carnival` will search and list all activity entries with `sightseeing` or `carnival` in their detail. Another similar command, `findactivitytag` has the same functionality but only searches for the tags of activity entries.
@@ -749,8 +747,6 @@ Reasons for choosing option 1:
 * Due to time restriction, we only have enough time to implement either option 1 or 2 by **E.T. v1.4**.
 * We want to focus on giving the user the best first time experience when using **E.T.**. Thus, option 1 is more suitable as it provides convenience for the user when he first use **E.T.**.
 * Option 2 is only useful when the user uses **E.T.** for more than one trip and he/she wants to save his previous packing list to add for the next trip.
-
-
 // end::packinglist[]
 
 // tag::fixedexpense[]
