@@ -404,7 +404,7 @@ image::developer-guide/list-managers/ListManagerClassDiagram.png[]
 
 The following paragraphs will describe what happens when the user performs an operation on a `ListManager` through commands. `XYZCommand` here will refer to a command described above for the 5 `ListManager` s. (e.g. `AddActivityCommand`, `EditTransportBookingCommand`).
 
-As described in <<Design-Logic>>, after the user enters a command, the `EasyTravelParser` will generate an `XYZCommandParser` which parses the user input parameters and generate an executable `XYZCommand` that performs an operation on the list.
+As described in <<logic-component>> <<Design-Logic>>, after the user enters a command, the `EasyTravelParser` will generate an `XYZCommandParser` which parses the user input parameters and generate an executable `XYZCommand` that performs an operation on the list.
 
 We will describe the execution of an `XYZCommand`, using `AddActivityCommand` as an example. All other `XYZCommand` will be executed in similar ways.
 
@@ -491,7 +491,7 @@ Reason for choosing option 1:
 === Activity Manager
 (Contributed by Charlotte)
 
-**E.T.** allows the user to keep track of their activities for his/her trip. The activity manager is one of the `ListManager` s  (See <<List-Manager>>). On top of the basic operations provided by a `ListManager`, it also allows the user to search for their activities using the `findacitivty` command. The parameters of the `findactivity` command are keywords in the activity entries that the user wants to search for. E.g. `findactivity sightseeing carnival` will search and list all activity entries with `sightseeing` or `carnival` in their detail. Another similar command, `findactivitytag` has the same functionality but only searches for the tags of activity entries.
+**E.T.** allows the user to keep track of their activities for his/her trip. The activity manager is one of the `ListManager` s  (See <<#List-Manager>>). On top of the basic operations provided by a `ListManager`, it also allows the user to search for their activities using the `findacitivty` command. The parameters of the `findactivity` command are keywords in the activity entries that the user wants to search for. E.g. `findactivity sightseeing carnival` will search and list all activity entries with `sightseeing` or `carnival` in their detail. Another similar command, `findactivitytag` has the same functionality but only searches for the tags of activity entries.
 
 ==== Rationale
 The activity manager is an important feature to have because any oversea trip will be packed with activities for the traveller. Thus, we decided to create an activity manager as one of the ``ListManager``s.
