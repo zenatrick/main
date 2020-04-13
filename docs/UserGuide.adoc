@@ -2161,7 +2161,7 @@ This section will describe the various features that are planned for Version 2.0
 
 The Packing List Management feature has some exciting updates that will help you better manage your packing list.
 
-===== Create a smart packing list: `createlist`
+===== Create a smart packing list: `createlist` `v2.0`
 This feature will allow you to create a smart packing list. The packing list will recommend you the quantity to pack for your trip based on the information provided.
 
 For example, if you are planning a trip is 7 days, with 1 male and 1 female, you can use a single command to help you create a packing list that contains 7 sets of adult and child summer clothing will be added into the packing list, along with toys for the children.
@@ -2169,31 +2169,31 @@ For example, if you are planning a trip is 7 days, with 1 male and 1 female, you
 An example of the command would be: +
 `createlist d/7, m/1, f/1, c/2, s/Summer`
 
-==== Export the packing list as a text file: `export`
+===== Export the packing list as a text file: `export` `v2.0`
 This feature allows you to export your existing packing list into a formatted text file.
 The motivation behind it is to allow you to share your packing lists with your friends easily.
 
-=== Fixed Expense Management
+==== Fixed Expense Management
 
 The Fixed Expense Management will also be getting brand new functionalities that will take your financial management to the next level.
 
-==== Recommend ways to save money based on prevailing usage
+===== Recommend ways to save money based on prevailing usage `v2.0`
 
 *E.T.* will be able to use complex algorithms to monitor and track your spending habits and recommend ways to save money on certain items.
 
-=== Enhancing your experience with E.T.
+==== Enhancing your experience with E.T.
 
 After gathering all your feedback, we have plans to upgrade *E.T.*'s to provide you with better user experience.
 
-==== Auto-Complete
+===== Auto-Complete `v2.0`
 
 This feature will allow you to press `Tab` to complete the command.
 
-==== Undo/Redo
+===== Undo/Redo `v2.0`
 
 This feature will allow you to undo or redo certain commands.
 
-==== Import and export of data
+===== Import and export of data `v2.0`
 
 This feature will allow you to import and export your trip data in different formats such as the `.ics` calendar format.
 //end::v2.0[]
