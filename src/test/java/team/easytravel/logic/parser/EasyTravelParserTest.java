@@ -12,6 +12,12 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import team.easytravel.logic.commands.accommodationbooking.AddAccommodationBookingCommand;
+import team.easytravel.logic.commands.accommodationbooking.ClearAccommodationBookingCommand;
+import team.easytravel.logic.commands.accommodationbooking.DeleteAccommodationBookingCommand;
+import team.easytravel.logic.commands.accommodationbooking.EditAccommodationBookingCommand;
+import team.easytravel.logic.commands.accommodationbooking.EditAccommodationBookingCommand.EditAccommodationBookingDescriptor;
+import team.easytravel.logic.commands.accommodationbooking.ListAccommodationBookingCommand;
 import team.easytravel.logic.commands.activity.AddActivityCommand;
 import team.easytravel.logic.commands.activity.ClearActivityCommand;
 import team.easytravel.logic.commands.activity.DeleteActivityCommand;
@@ -20,8 +26,12 @@ import team.easytravel.logic.commands.activity.EditActivityCommand.EditActivityD
 import team.easytravel.logic.commands.activity.FindActivityCommand;
 import team.easytravel.logic.commands.activity.ListActivityCommand;
 import team.easytravel.logic.parser.exceptions.ParseException;
+import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBooking;
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.activity.ActivityContainKeywordPredicate;
+import team.easytravel.testutil.accommodationbooking.AccommodationBookingBuilder;
+import team.easytravel.testutil.accommodationbooking.AccommodationUtil;
+import team.easytravel.testutil.accommodationbooking.EditAccommodationBookingDescriptorBuilder;
 import team.easytravel.testutil.activity.ActivityBuilder;
 import team.easytravel.testutil.activity.ActivityUtil;
 import team.easytravel.testutil.activity.EditActivityDescriptorBuilder;
@@ -78,7 +88,53 @@ public class EasyTravelParserTest {
                 + " 3") instanceof ListActivityCommand);
     }
 
+    // -- Accommodation --
+    @Test
+    public void parseAccommodationCommand_add() throws Exception {
+        AccommodationBooking accommodationBooking = new AccommodationBookingBuilder().build();
+        AddAccommodationBookingCommand command = (AddAccommodationBookingCommand)
+                parser.parseCommand(AccommodationUtil.getAddCommand(accommodationBooking));
+        assertEquals(new AddAccommodationBookingCommand(accommodationBooking), command);
+    }
 
+    @Test
+    public void parseAccommodationCommand_clear() throws Exception {
+        assertTrue(parser.parseCommand(ClearAccommodationBookingCommand.COMMAND_WORD)
+                instanceof ClearAccommodationBookingCommand);
+        assertTrue(parser.parseCommand(ClearAccommodationBookingCommand.COMMAND_WORD + " 3")
+                instanceof ClearAccommodationBookingCommand);
+    }
+
+    @Test
+    public void parseAccommodationCommand_delete() throws Exception {
+        DeleteAccommodationBookingCommand command = (DeleteAccommodationBookingCommand) parser.parseCommand(
+                DeleteAccommodationBookingCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteAccommodationBookingCommand(INDEX_FIRST), command);
+    }
+
+    @Test
+    public void parseAccommodationCommand_edit() throws Exception {
+        AccommodationBooking accommodationBooking = new AccommodationBookingBuilder().build();
+        EditAccommodationBookingDescriptor descriptor =
+                new EditAccommodationBookingDescriptorBuilder(accommodationBooking).build();
+        EditAccommodationBookingCommand command = (EditAccommodationBookingCommand) parser
+                .parseCommand(EditAccommodationBookingCommand.COMMAND_WORD
+                        + " " + INDEX_FIRST.getOneBased() + " " + AccommodationUtil
+                        .getEditAccommodationDescriptorDetails(descriptor));
+        assertEquals(new EditAccommodationBookingCommand(INDEX_FIRST, descriptor), command);
+    }
+
+
+    @Test
+    public void parseAccommodationCommand_list() throws Exception {
+        assertTrue(parser.parseCommand(ListAccommodationBookingCommand.COMMAND_WORD)
+                instanceof ListAccommodationBookingCommand);
+        assertTrue(parser.parseCommand(ListAccommodationBookingCommand.COMMAND_WORD
+                + " 3") instanceof ListAccommodationBookingCommand);
+    }
+
+
+    // -- Commons --
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class,
