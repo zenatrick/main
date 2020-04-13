@@ -3,42 +3,37 @@
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
-== PROJECT: E.T. Easy Travel
-
-The purpose of this document is to document my contribution I have made to the project.
-
-EasyTravel Github link: https://ay1920s2-cs2103t-w17-3.github.io/main/
+== PROJECT: EasyTravel
+This portfolio aims to document the contributions that I have made to the *E.T.* project.
+The Github Link to *E.T.* can be found here : https://github.com/AY1920S2-CS2103T-W17-3/main
 
 == Overview
-My team of 4 software engineering students and I were tasked with enhancing a basic command-line interface desktop address book application for our Software Engineering project. We chose to morph it into a travel planning application, called E.T, short for Easy Travel. E.T. will help reduce the amount of stress and anxiety when planning for a trip. E.T. is a desktop application that helps travellers manage, plan and check their preparedness for their trip.
-
-
-=== About E.T.
-E.T. is a desktop travel planning application to provide a simple an easy way for users to prepare for their trip. E.T. has a GUI which was created with JavaFX and the user interacts with it through a CLI. It is written in Java, and has about 10 kLoC.
+*E.T.* is a desktop travel planning application to provide a simple an easy way for users to prepare for their trip. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 == Summary of contributions
 
 * *Major enhancement*:
-I added *the activity manager* feature of Easy Travel.
+Implemented Activity Tab along with its User Interface and commands (CRUD/Sort)
 
 ** What it does:
 The activity manager feature allows the user to keep track of all the activities planned for their trip. It takes care of the title, duration and location of the activity. Users are also allowed to tag their activities with tags associated with them, such as expensive or sightseeing.
 
 ** Justification: This feature is essential when planning for a trip, as it allows the user to remember all of the activities planned so far.
 
-** Highlights: This feature allows the user to find activities based on either the title of the activity, or the tags associated with the activity. Sometimes, a user may want to find a particular activity in the activity list, but if he/she has many activities, it will be difficult to find the activity. Hence, this feature brings convenience to the user, so that he/she does not have to look through the entire list to find an activity.
+** Highlights: The implementation too was challenging and time consuming as it required understanding existing commands within Address Book 3.
 
-This feature is also essential for the functionality of the schedule feature. The schedule feature has access to all activities created in it's manager and allows the user to schedule their activities into the scheduler.
+** Credits:
+_{Authors or Address Book 3 and Jeffry Lum for his guidance, time and support. }_
 
 * *Major enhancement*:
-I added *the trip manager* feature of Easy Travel.
+Implemented Trip commands (CRUD/Sort)
 
 ** What it does:
 It allows the user to set a trip, edit a trip, as well as delete a trip.
 
 ** Justification: The trip manager feature is the core feature of Easy Travel. Without a trip, all the other features in Easy Travel will not be able to function.
 
-** Highlights: All other features in Easy Travel will not function if a trip is not set by the user. Hence, it is important for the user to set a trip, so that he/she can use the other features in Easy Travel.
+** Highlights: The implementation was challenging and time consuming as features such as the Accommodation Bookings, the Schedule, the Transportation Bookings, and the Budget all depends on the Trip feature. Hence, I had to understand all the features to implement the Trip feature.
 
 * *Minor enhancement*:
 I did the base code for the progress check feature, so that my team members could work from there.

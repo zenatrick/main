@@ -44,7 +44,7 @@ budget they have spent thus far, resolving the problem that our users, tend to o
 *** Wrote tests for existing storage component as well as features to improve coverage [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/362[#362]] [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/364[#364]] [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/374[#374]]
 *** Fix Bugs present within our code. [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/333[#333]] [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/161[#161]] [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/155[#155]]
 *** Improved the Help Window. [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/368[#368]]
-*** Morph Adddress Book to Fixed Expense[https://github.com/AY1920S2-CS2103T-W17-3/main/pull/123[#123]] [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/216[#216]]
+*** Morph Address Book to Fixed Expense[https://github.com/AY1920S2-CS2103T-W17-3/main/pull/123[#123]] [https://github.com/AY1920S2-CS2103T-W17-3/main/pull/216[#216]]
 
 ** Documentation:
 *** Contributed to the User and Developer Guides for this project. See below for more details.
