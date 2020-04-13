@@ -4,7 +4,7 @@
 :imagesDir: images
 :stylesDir: stylesheets
 
-E.T. was developed by the https://github.com/AY1920S2-CS2103T-W17-3/main[Team] team. +
+Easy Travel was developed by the https://github.com/AY1920S2-CS2103T-W17-3/main[Team] ET. +
 {empty} +
 We are a team based in the http://www.comp.nus.edu.sg[School of Computing, National University of Singapore].
 
@@ -26,7 +26,7 @@ image::team-profile/joshlay96.png[width="150", align="left"]
 {empty}[http://github.com/joshlay96[github]] [<<joshlay96#, portfolio>>]
 
 Role: Developer +
-Feature: Expense Manager, Help Tab +
+Feature: Fixed Expense Manager, Help Tab +
 Responsibilities: Testing, Intellij Expert +
 Components: Common, Storage
 

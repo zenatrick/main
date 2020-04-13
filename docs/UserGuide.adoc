@@ -1,4 +1,4 @@
-= E.T. - User Guide
+= Easy Travel - User Guide
 :site-section: UserGuide
 :toc:
 :toclevels: 5
@@ -16,7 +16,7 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/AY1920S2-CS2103T-W17-3/main
 
-By: `Team ET`      Since: `Jun 2016`      Licence: `MIT`
+By: `Team ET`      Since: `Jan 2020`      Licence: `MIT`
 
 == *Introduction*
 
@@ -1847,7 +1847,6 @@ Outcome:
 .After the `listpreset` command
 image::user-guide/ListPreset.png[]
 
-<<<<<<< HEAD
 //end::packinglist[] //tag::rearrangingparameters
 
 //tag::fixedexpense[]
@@ -1916,10 +1915,6 @@ Format:
 
 `listexpense`
 
-[Note]
-====
-You can also click on the _Fixed Expenses Tab_ on the _Tab bar_ to navigate there.
-====
 
 .Accessing _Fixed Expenses Tab_
 image::user-guide/ListExpense.png[]
@@ -1956,7 +1951,6 @@ Format:
 
 [NOTE]
 ====
-- The `CATEGORY` field only accepts `transport`, `accommodations`, `others`, `activities`
 - If you set `CURRENCY` as `other`, the `AMOUNT` will be automatically converted to SGD using the trip exchange rate (See <<settrip>>).
 - Refer to <<expense-param>> for more detail about each parameter.
 ====
@@ -2002,8 +1996,7 @@ Format:
 ====
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
-<<<<<<< HEAD
-- Both currency and amount fields must exist for a successful edit.
+- Both `CURRENCY` and `AMOUNT` fields must exist together for a successful edit if you wish to change the `AMOUNT` of a fixed expense.
 - If you set `CURRENCY` as `other`, the `AMOUNT` will be automatically converted to SGD using the trip exchange rate (See <<settrip>>).
 - *E.T.* will warn you when you overshot your budget.
 - Refer to <<expense-param>> for more detail about each parameter.
@@ -2019,8 +2012,8 @@ and SGD 1500 respectively.
 | |Current |Edited
 
 |`AMOUNT`
-|*1000*
-|*1500*
+|1000
+|1500*
 
 |`CURRENCY`
 |other

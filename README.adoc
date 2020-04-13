@@ -1,4 +1,4 @@
-= E.T.
+= Easy Travel
 ifdef::env-github,env-browser[:relfileprefix: docs/]
 
 https://ay1920s2-cs2103t-w17-3.github.io/main/[image:https://travis-ci.org/AY1920S2-CS2103T-W17-3/main.svg?branch=master[Build Status]]

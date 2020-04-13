@@ -59,9 +59,8 @@ budget they have spent thus far, resolving the problem that our users, tend to o
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=fixedExpense]
-
-include::../UserGuide.adoc[tag=dataencryption]
+include::../UserGuide.adoc[tag=fixedexpense]
+include::
 
 == Contributions to the Developer Guide
 

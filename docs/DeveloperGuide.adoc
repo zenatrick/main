@@ -1,4 +1,4 @@
-= E.T. - Developer Guide
+= Easy Travel - Developer Guide
 :site-section: DeveloperGuide
 :toc:
 :toc-title:
@@ -14,7 +14,7 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/AY1920S2-CS2103T-W17-3/main/tree/master
 
-By: `Team Team`      Since: `Jan 2020`      Licence: `MIT`
+By: `Team ET`      Since: `Jan 2020`      Licence: `MIT`
 
 == Setting up
 
