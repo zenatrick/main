@@ -58,8 +58,8 @@ public class AddPresetCommandParser implements Parser<AddPresetCommand> {
         case "beach":
             addPresetCommand = new AddPresetCommand(PresetDataUtil.beachPreset(), category);
             break;
-        case "aeroplane":
-            addPresetCommand = new AddPresetCommand(PresetDataUtil.aeroplanePreset(), category);
+        case "airplane":
+            addPresetCommand = new AddPresetCommand(PresetDataUtil.airplanePreset(), category);
             break;
         case "car":
             addPresetCommand = new AddPresetCommand(PresetDataUtil.carPreset(), category);

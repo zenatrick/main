@@ -117,6 +117,9 @@ public class PackingListCard extends UiPart<Region> {
         case "music festival":
             imageCategory = new Image("/images/music.png");
             break;
+        case "airplane":
+            imageCategory = new Image("/images/plane.png");
+            break;
         default:
             imageCategory = new Image("/images/default.png");
             break;

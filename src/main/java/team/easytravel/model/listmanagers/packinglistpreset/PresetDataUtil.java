@@ -184,20 +184,20 @@ public class PresetDataUtil {
      *
      * @return the packing list item [ ]
      */
-    public static PackingListItem[] aeroplanePreset() {
+    public static PackingListItem[] airplanePreset() {
         return new PackingListItem[] {
             new PackingListItem(new ItemName("Boarding Pass"), new Quantity(1),
-                    new ItemCategory("aeroplane"), false),
+                    new ItemCategory("airplane"), false),
             new PackingListItem(new ItemName("Eye mask"), new Quantity(1),
-                    new ItemCategory("aeroplane"), false),
+                    new ItemCategory("airplane"), false),
             new PackingListItem(new ItemName("Headphones"), new Quantity(1),
-                    new ItemCategory("aeroplane"), false),
+                    new ItemCategory("airplane"), false),
             new PackingListItem(new ItemName("Neck Pillow"), new Quantity(1),
-                    new ItemCategory("aeroplane"), false),
+                    new ItemCategory("airplane"), false),
             new PackingListItem(new ItemName("Passport"), new Quantity(1),
-                    new ItemCategory("aeroplane"), false),
+                    new ItemCategory("airplane"), false),
             new PackingListItem(new ItemName("Snacks"), new Quantity(3),
-                    new ItemCategory("aeroplane"), false)
+                    new ItemCategory("airplane"), false)
         };
     }
 
