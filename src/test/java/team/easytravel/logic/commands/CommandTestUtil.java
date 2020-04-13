@@ -10,6 +10,11 @@ import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACCOMMODATION_START_
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_DURATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_LOCATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_ACTIVITY_TAG;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_END_DATE_TIME;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_END_LOCATION;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_MODE;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_START_DATE_TIME;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_START_LOCATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRIP_TITLE;
 import static team.easytravel.testutil.Assert.assertThrows;
 
@@ -63,9 +68,6 @@ public class CommandTestUtil {
     public static final String VALID_LOCATION_FINLAND = "Finland";
     public static final String VALID_TAG_EXPENSIVE = "expensive";
     public static final String VALID_TAG_SIGHTSEEING = "sightseeing";
-
-
-
 
     public static final String ACTIVITY_TITLE_DESC_CHEESE = " " + PREFIX_TRIP_TITLE + VALID_ACTIVITY_TITLE_CHEESE;
     public static final String ACTIVITY_TITLE_DESC_FINLAND = " " + PREFIX_TRIP_TITLE + VALID_ACTIVITY_TITLE_FINLAND;
@@ -134,8 +136,36 @@ public class CommandTestUtil {
             + PREFIX_ACCOMMODATION_REMARK; // empty string not allowed for remarks
 
     //---TRANSPORT---
+    public static final String VALID_TRANSPORT_MODE_PLANE = "plane";
+    public static final String INVALID_TRANSPORT_MODE_BUS = "**bus";
+    public static final String DEFAULT_START_LOCATION = "Singapore";
+    public static final String DEFAULT_END_LOCATION = "Japan";
+    public static final String INVALID_LOCATION = "()()()()";
+    public static final String DEFAULT_START_DATE_TIME = "28-09-2020 18:00";
+    public static final String DEFAULT_END_DATE_TIME = "30-09-2020 23:00";
+    public static final String INVALID_DATE_TIME = "why2103sohard";
 
-    public static final String VALID_ACCOMMODATION_MODE = "plane";
+    public static final String VALID_TRANSPORT_MODE_DESC = " " + PREFIX_TRANSPORT_MODE
+            + " " + VALID_TRANSPORT_MODE_PLANE;
+    public static final String VALID_TRANSPORT_START_LOCATION_DESC = " " + PREFIX_TRANSPORT_START_LOCATION + " "
+            + DEFAULT_START_LOCATION;
+    public static final String VALID_TRANSPORT_END_LOCATION_DESC = " " + PREFIX_TRANSPORT_END_LOCATION + " "
+            + DEFAULT_END_LOCATION;
+    public static final String INVALID_TRANSPORT_MODE_DESC = " " + PREFIX_TRANSPORT_MODE
+            + " " + INVALID_TRANSPORT_MODE_BUS;
+    public static final String INVALID_TRANSPORT_START_LOCATION_DESC = " " + PREFIX_TRANSPORT_START_LOCATION + " "
+            + INVALID_LOCATION;
+    public static final String INVALID_TRANSPORT_END_LOCATION_DESC = " " + PREFIX_TRANSPORT_END_LOCATION + " "
+            + INVALID_LOCATION;
+    public static final String VALID_TRANSPORT_START_DATE_DESC = " " + PREFIX_TRANSPORT_START_DATE_TIME + " "
+            + DEFAULT_START_DATE_TIME;
+    public static final String VALID_TRANSPORT_END_DATE_DESC = " " + PREFIX_TRANSPORT_END_DATE_TIME
+            + " " + DEFAULT_END_DATE_TIME;
+    public static final String INVALID_TRANSPORT_END_DATE_DESC = " " + PREFIX_TRANSPORT_END_DATE_TIME
+            + " " + INVALID_DATE_TIME;
+    public static final String INVALID_TRANSPORT_START_DATE_DESC = " " + PREFIX_TRANSPORT_START_DATE_TIME + " "
+            + INVALID_DATE_TIME;
+
 
     //---- Packing list ---
     public static final String VALID_ITEM_NAME_UNDERWEAR = "Underwear";
