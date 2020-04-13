@@ -30,6 +30,11 @@ import team.easytravel.logic.commands.fixedexpense.ClearFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.DeleteFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.EditFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.ListFixedExpenseCommand;
+import team.easytravel.logic.commands.packinglist.AddItemCommand;
+import team.easytravel.logic.commands.packinglist.ClearItemCommand;
+import team.easytravel.logic.commands.packinglist.DeleteItemCommand;
+import team.easytravel.logic.commands.packinglist.EditItemCommand;
+import team.easytravel.logic.commands.packinglist.ListItemCommand;
 import team.easytravel.logic.commands.transportbooking.AddTransportBookingCommand;
 import team.easytravel.logic.commands.transportbooking.ClearTransportBookingCommand;
 import team.easytravel.logic.commands.transportbooking.DeleteTransportBookingCommand;
@@ -42,6 +47,7 @@ import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBook
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.activity.ActivityContainKeywordPredicate;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
+import team.easytravel.model.listmanagers.packinglistitem.PackingListItem;
 import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.testutil.accommodationbooking.AccommodationBookingBuilder;
@@ -53,6 +59,9 @@ import team.easytravel.testutil.activity.EditActivityDescriptorBuilder;
 import team.easytravel.testutil.fixedexpense.EditFixedExpenseDescriptorBuilder;
 import team.easytravel.testutil.fixedexpense.FixedExpenseBuilder;
 import team.easytravel.testutil.fixedexpense.FixedExpenseUtil;
+import team.easytravel.testutil.packinglist.EditItemDescriptorBuilder;
+import team.easytravel.testutil.packinglist.PackingListItemBuilder;
+import team.easytravel.testutil.packinglist.PackingListUtil;
 import team.easytravel.testutil.transportbooking.EditTransportBookingDescriptorBuilder;
 import team.easytravel.testutil.transportbooking.TransportBookingBuilder;
 import team.easytravel.testutil.transportbooking.TransportUtil;
@@ -259,6 +268,51 @@ public class EasyTravelParserTest {
                 instanceof ListTransportBookingCommand);
         assertTrue(parser.parseCommand(ListTransportBookingCommand.COMMAND_WORD
                 + " 3") instanceof ListTransportBookingCommand);
+    }
+
+    //-- PackingList --
+    @Test
+    public void parsePackingCommand_add() throws Exception {
+        PackingListItem packingListItem = new PackingListItemBuilder().build();
+        AddItemCommand command = (AddItemCommand)
+                parser.parseCommand(PackingListUtil.getAddCommand(packingListItem));
+        assertEquals(new AddItemCommand(packingListItem), command);
+    }
+
+    @Test
+    public void parsePackingCommand_clear() throws Exception {
+        assertTrue(parser.parseCommand(ClearItemCommand.COMMAND_WORD)
+                instanceof ClearItemCommand);
+        assertTrue(parser.parseCommand(ClearItemCommand.COMMAND_WORD + " 3")
+                instanceof ClearItemCommand);
+    }
+
+    @Test
+    public void parsePackingCommand_delete() throws Exception {
+        DeleteItemCommand command = (DeleteItemCommand) parser.parseCommand(
+                DeleteItemCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteItemCommand(INDEX_FIRST), command);
+    }
+
+    @Test
+    public void parsePackingCommand_edit() throws Exception {
+        PackingListItem packingListItem = new PackingListItemBuilder().build();
+        EditItemCommand.EditItemDescriptor descriptor =
+                new EditItemDescriptorBuilder(packingListItem).build();
+        EditItemCommand command = (EditItemCommand) parser
+                .parseCommand(EditItemCommand.COMMAND_WORD
+                        + " " + INDEX_FIRST.getOneBased() + " " + PackingListUtil
+                        .getEditPackingListBookingDescriptorDetails(descriptor));
+        assertEquals(new EditItemCommand(INDEX_FIRST, descriptor), command);
+    }
+
+
+    @Test
+    public void parsePackingCommand_list() throws Exception {
+        assertTrue(parser.parseCommand(ListItemCommand.COMMAND_WORD)
+                instanceof ListItemCommand);
+        assertTrue(parser.parseCommand(ListItemCommand.COMMAND_WORD
+                + " 3") instanceof ListItemCommand);
     }
 
 
