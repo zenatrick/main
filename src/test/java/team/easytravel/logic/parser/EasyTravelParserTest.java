@@ -30,6 +30,11 @@ import team.easytravel.logic.commands.fixedexpense.ClearFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.DeleteFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.EditFixedExpenseCommand;
 import team.easytravel.logic.commands.fixedexpense.ListFixedExpenseCommand;
+import team.easytravel.logic.commands.transportbooking.AddTransportBookingCommand;
+import team.easytravel.logic.commands.transportbooking.ClearTransportBookingCommand;
+import team.easytravel.logic.commands.transportbooking.DeleteTransportBookingCommand;
+import team.easytravel.logic.commands.transportbooking.EditTransportBookingCommand;
+import team.easytravel.logic.commands.transportbooking.ListTransportBookingCommand;
 import team.easytravel.logic.commands.trip.DeleteTripCommand;
 import team.easytravel.logic.commands.trip.SetTripCommand;
 import team.easytravel.logic.parser.exceptions.ParseException;
@@ -37,6 +42,7 @@ import team.easytravel.model.listmanagers.accommodationbooking.AccommodationBook
 import team.easytravel.model.listmanagers.activity.Activity;
 import team.easytravel.model.listmanagers.activity.ActivityContainKeywordPredicate;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
+import team.easytravel.model.listmanagers.transportbooking.TransportBooking;
 import team.easytravel.model.trip.Trip;
 import team.easytravel.testutil.accommodationbooking.AccommodationBookingBuilder;
 import team.easytravel.testutil.accommodationbooking.AccommodationUtil;
@@ -47,6 +53,9 @@ import team.easytravel.testutil.activity.EditActivityDescriptorBuilder;
 import team.easytravel.testutil.fixedexpense.EditFixedExpenseDescriptorBuilder;
 import team.easytravel.testutil.fixedexpense.FixedExpenseBuilder;
 import team.easytravel.testutil.fixedexpense.FixedExpenseUtil;
+import team.easytravel.testutil.transportbooking.EditTransportBookingDescriptorBuilder;
+import team.easytravel.testutil.transportbooking.TransportBookingBuilder;
+import team.easytravel.testutil.transportbooking.TransportUtil;
 import team.easytravel.testutil.trip.TripBuilder;
 import team.easytravel.testutil.trip.TripUtil;
 
@@ -206,6 +215,52 @@ public class EasyTravelParserTest {
         assertTrue(parser.parseCommand(ListFixedExpenseCommand.COMMAND_WORD
                 + " 3") instanceof ListFixedExpenseCommand);
     }
+
+    // -- Transport --
+    @Test
+    public void parseTransportCommand_add() throws Exception {
+        TransportBooking transportBooking = new TransportBookingBuilder().build();
+        AddTransportBookingCommand command = (AddTransportBookingCommand)
+                parser.parseCommand(TransportUtil.getAddCommand(transportBooking));
+        assertEquals(new AddTransportBookingCommand(transportBooking), command);
+    }
+
+    @Test
+    public void parseTransportCommand_clear() throws Exception {
+        assertTrue(parser.parseCommand(ClearTransportBookingCommand.COMMAND_WORD)
+                instanceof ClearTransportBookingCommand);
+        assertTrue(parser.parseCommand(ClearTransportBookingCommand.COMMAND_WORD + " 3")
+                instanceof ClearTransportBookingCommand);
+    }
+
+    @Test
+    public void parseTransportCommand_delete() throws Exception {
+        DeleteTransportBookingCommand command = (DeleteTransportBookingCommand) parser.parseCommand(
+                DeleteTransportBookingCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteTransportBookingCommand(INDEX_FIRST), command);
+    }
+
+    @Test
+    public void parseTransportCommand_edit() throws Exception {
+        TransportBooking transportBooking = new TransportBookingBuilder().build();
+        EditTransportBookingCommand.EditTransportBookingDescriptor descriptor =
+                new EditTransportBookingDescriptorBuilder(transportBooking).build();
+        EditTransportBookingCommand command = (EditTransportBookingCommand) parser
+                .parseCommand(EditTransportBookingCommand.COMMAND_WORD
+                        + " " + INDEX_FIRST.getOneBased() + " " + TransportUtil
+                        .getEditTransportBookingDescriptorDetails(descriptor));
+        assertEquals(new EditTransportBookingCommand(INDEX_FIRST, descriptor), command);
+    }
+
+
+    @Test
+    public void parseTransportCommand_list() throws Exception {
+        assertTrue(parser.parseCommand(ListTransportBookingCommand.COMMAND_WORD)
+                instanceof ListTransportBookingCommand);
+        assertTrue(parser.parseCommand(ListTransportBookingCommand.COMMAND_WORD
+                + " 3") instanceof ListTransportBookingCommand);
+    }
+
 
     // -- Commons --
     @Test
