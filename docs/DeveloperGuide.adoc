@@ -1239,9 +1239,10 @@ Expected: The most recent window size and location is retained.
 
 * Add a new activity to **E.T.**
 
- . Prerequisites: Arguments are valid and compulsory parameters are provided.
-Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/expensive tag/sightseeing`
-. Expected: Adds an activity with title of `Osaka Castle View`, with duration of `1` hour, a location of `Osaka` and tags of `expensive` and `sightseeing`.
+ . Prerequisites: Arguments are valid and compulsory parameters are provided. The Activity added must be within the time frame of the trip.
+
+. Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/expensive tag/sightseeing`
+.. Expected: Adds an activity with title of `Osaka Castle View`, with duration of `1` hour, a location of `Osaka` and tags of `expensive` and `sightseeing`.
 
 . Test case `addactivity title/Osaka Castle`
 .. Expected: No activity is added. Error details shown in feedback display.
@@ -1268,7 +1269,7 @@ Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/ex
 ==== Adding Accommodation
 * Adds a new accommodation to Easy Travel
 
-. Prerequisites: Arguments are valid and compulsory parameters are provided.
+. Prerequisites: Arguments are valid, compulsory parameters are provided. The Accommodation added must be within the time frame of the trip.
 
 . Test case: `addacc name/JW Marriott Hotel loc/KL startday/2 endday/4 remark/Check-in at 3pm.`
 .. Expected: Adds an accommodation with name of `JW Marriott Hotel` location of `KL`,  startday of `2`, endday of `4` and remark of `Check-in at 3pm`.
@@ -1282,7 +1283,7 @@ Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/ex
 ==== Adding Transportation
 * Adds a new transportation to Easy Travel
 
-. Prerequisites: Arguments are valid and compulsory parameters are provided.
+. Prerequisites: Arguments are valid, compulsory parameters are provided. The Transportation added must be within the time frame of the trip.
 
 . Test case: `addtransport mode/plane startloc/Singapore endloc/Japan starttime/20-03-2020 17:00 endtime/21-03-2020 00:00`
 .. Expected: Adds an transportation with mode `plane`, startloc as `Singapore`, endloc as `Japan`, starttime as `20-03-2020 17:00` and endtime as `21-03-2020 00:00`.
@@ -1340,7 +1341,7 @@ Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/ex
 
 * Edits a current Activity in Easy Travel
 
-. Prerequisites: Arguments are valid, compulsory parameters are provided and activity must exist in the activity list.
+. Prerequisites: Arguments are valid, compulsory parameters are provided and activity must exist in the activity list. The Activity edited must be within the time frame of the trip.
 
 . Test case: `editactivity 1 title/Shopping duration/2`
 .. Expected: Edits an activity in index `1` in the displayed activity list with title of `Shopping`, currency of `sgd`, description of `SQ Flight` and category of `transport`.
