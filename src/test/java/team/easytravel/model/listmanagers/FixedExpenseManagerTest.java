@@ -19,6 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import team.easytravel.model.listmanagers.fixedexpense.FixedExpense;
 import team.easytravel.model.util.uniquelist.exceptions.DuplicateElementException;
+import team.easytravel.testutil.TypicalFixedExpense;
 
 class FixedExpenseManagerTest {
 
@@ -69,6 +70,29 @@ class FixedExpenseManagerTest {
     public void getFixedExpenseModifyListThrowsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> fixedExpenseManager
                 .getFixedExpenseList().remove(0));
+    }
+
+    @Test
+    public void getStatusNoExpense() {
+        final double BUDGET = 1000.00;
+        String result = "[❗] There is no expense entered. You can add expense using the \"addexpense\" command.";
+        assertEquals(result, fixedExpenseManager.getStatus(BUDGET));
+    }
+
+    @Test
+    public void getStatusWithRemainingBudget() {
+        final double BUDGET = 1000.00;
+        fixedExpenseManager.addFixedExpense(FIXED_EXPENSE_WIFI);
+        String result = "[✔] Your remaining budget is $970.00.";
+        assertEquals(result, fixedExpenseManager.getStatus(BUDGET));
+    }
+
+    @Test
+    public void getStatusWithExceedBudget() {
+        final double BUDGET = 1000.00;
+        fixedExpenseManager.addFixedExpense(FIXED_EXPENSE_PLANE);
+        String result = "[❌] You have exceeded your budget by 2000.00!";
+        assertEquals(result, fixedExpenseManager.getStatus(BUDGET));
     }
 
     /**
