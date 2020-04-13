@@ -3,7 +3,7 @@
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
-== PROJECT: EasyTravel
+== PROJECT: Easy Travel
 This portfolio aims to document the contributions that I have made to the *E.T.* project.
 The Github Link to *E.T.* can be found here : https://github.com/AY1920S2-CS2103T-W17-3/main
 

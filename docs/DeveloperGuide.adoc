@@ -1372,7 +1372,7 @@ Creating *Easy Travel* was fairly difficult and required much effort from all th
 === Major Enhancement
 *Easy Travel* has many enhancement from *AB3*. This following points will highlight some of the major enhancement that *Easy Travel* has.
 
-* From just keeping track of contacts in *AB3*, *EasyTravel* is a major upgrade as it is a all-in-one application that allows the user to keep track of different aspects of planning for a trip. These aspects includes activity, transport bookings, packing list, etc.
+* From just keeping track of contacts in *AB3*, *Easy Travel* is a major upgrade as it is a all-in-one application that allows the user to keep track of different aspects of planning for a trip. These aspects includes activity, transport bookings, packing list, etc.
 
 * Furthermore, *Easy Travel's* has additional features that complements the list management features. Notably, the *status*, *automated tab switching*, *sorting*, and *schedule* features. These features meant that our app varies greatly from what *AB3* has to offer in terms of user experience. We _designed these features primarily with the user’s needs in mind_ to provide the user with a platform that would ease the pain of planning for an overseas trip.
 

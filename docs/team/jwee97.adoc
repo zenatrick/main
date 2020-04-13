@@ -3,19 +3,19 @@
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
-== PROJECT: EasyTravel
+== PROJECT: Easy Travel
 
 The purpose of this document is to document my contribution I have made to the project.
 
-*_EasyTravel_* Github link: https://ay1920s2-cs2103t-w17-3.github.io/main/
+*_Easy Travel_* Github link: https://ay1920s2-cs2103t-w17-3.github.io/main/
 
 == Overview
 
-EasyTravel is a desktop travel planning application done by me and 4 other software engineering students for students who are planning for an overseas trip.
+Easy Travel is a desktop travel planning application done by me and 4 other software engineering students for students who are planning for an overseas trip.
 
-EasyTravel helps to reduce the amount of stress when planning for a trip by providing 5 main list: activity, transport booking, accommodation booking, packing list and fixed expense.
+Easy Travel helps to reduce the amount of stress when planning for a trip by providing 5 main list: activity, transport booking, accommodation booking, packing list and fixed expense.
 
-EasyTravel has a GUI created with JavaFX and user can interact with it through a CLI (Command Line Interface). It is written in Java and has about 10 kLoC
+Easy Travel has a GUI created with JavaFX and user can interact with it through a CLI (Command Line Interface). It is written in Java and has about 10 kLoC
 
 == Summary of contributions
 

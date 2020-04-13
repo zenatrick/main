@@ -3,10 +3,11 @@
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
-== PROJECT: EasyTravel
+== PROJECT: Easy Travel
+https://github.com/AY1920S2-CS2103T-W17-3/main[GitHub]
 
 == Overview
-The purpose of this portfolio is to document my contributions to my software engineering team project. In this project, my team of five Computer Science students was tasked to enhance a basic command-line interface application (*AddressBook3*). We chose to transform it into our application called *E.T.*, which stands for *EasyTravel*. *E.T.* is an all-in-one travel planning application which helps travellers manage and plan for their overseas trips in various aspects.
+The purpose of this portfolio is to document my contributions to my software engineering team project. In this project, my team of five Computer Science students was tasked to enhance a basic command-line interface application (*AddressBook3*). We chose to transform it into our application called *E.T.*, which stands for *Easy Travel*. *E.T.* is an all-in-one travel planning application which helps travellers manage and plan for their overseas trips in various aspects.
 
 This project portfolio will include a summary of my contributions followed by excerpts of the User Guide and Developer Guide that were written by me.
 
