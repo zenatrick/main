@@ -660,7 +660,6 @@ Reason for choosing option 1:
 
 **E.T.** allows the user to keep track of their transport bookings for his/her trip. The transport booking manager is one of the ``ListManager``s (See <<List-Manager>>). On top of the basic operations provided by a `ListManager`, it also automatically adds all the transport bookings into the trip schedule.
 
-
 ==== Rationale
 
 The transport booking manager is an important feature to have because any oversea trip will require some form of transportation to the destination and back. Thus, we decided to create a transport booking manager as one of the ``ListManager``s.

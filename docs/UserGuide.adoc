@@ -668,6 +668,7 @@ Outcome:
 ****
 //end::activity[]
 
+// tag::schedule-ppp[]
 //tag::schedule[]
 === Activity Scheduling
 
@@ -768,12 +769,14 @@ Outcome:
 .Outcome of a successful `schedule` command
 image::user-guide/schedule/outcome-schedule.png[]
 
+// end::schedule-ppp[]
+
 ====  Remove an activity from the schedule: `unschedule`
 
 You can use this command to remove an activity from your schedule in E.T..
 
 [WARNING]
-You cannot remove a transport booking entry from your schedule. Refer to Section 4.4.5 Delete and existing transport booking for instructions on how to remove a transport booking entry.
+You cannot remove a transport booking entry from your schedule. Refer to Section 4.4.5 Delete an existing transport booking for instructions on how to remove a transport booking entry.
 
 Format:
 
