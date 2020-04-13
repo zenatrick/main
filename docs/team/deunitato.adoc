@@ -14,43 +14,49 @@ E.T. is a desktop travel planning application to provide a simple an easy way fo
 == Summary of contributions
 
 * *Major enhancement*:
-I added *the activity manager*
+I added *the activity manager* feature of Easy Travel.
 
 ** What it does:
-The activity manager feature allows the user to keep track of all the activities planned for their trip.
+The activity manager feature allows the user to keep track of all the activities planned for their trip. It takes care of the title, duration and location of the activity. Users are also allowed to tag their activities with tags associated with them, such as expensive or sightseeing.
 
 ** Justification: This feature is essential when planning for a trip, as it allows the user to remember all of the activities planned so far.
 
-** Highlights: This feature has a find activity by both the title, and the
+** Highlights: This feature allows the user to find activities based on either the title of the activity, or the tags associated with the activity. Sometimes, a user may want to find a particular activity in the activity list, but if he/she has many activities, it will be difficult to find the activity. Hence, this feature brings convenience to the user, so that he/she does not have to look through the entire list to find an activity.
 
-** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+* *Major enhancement*:
+I added *the trip manager* feature of Easy Travel.
 
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
+** What it does:
+It allows the user to set a trip, edit a trip, as well as delete a trip.
+
+** Justification: The trip manager feature is one of the main features of Easy Travel. Without a trip, all the other features in Easy Travel will not be able to function.
+
+** Highlights: All other features in Easy Travel will not function if a trip is not set by the user. Hence, it is important for the user to set a trip, so that he/she can use the other features in Easy Travel.
+
+* *Minor enhancement*:
+I did the base code for the status feature, so that my team members could work from there.
+
+* *Minor enhancement*:
+I implemented the dashboard UI for Easy Travel. It consists of the information of the trip set by the user, so that the user will have a visual of all the information of the trip at all times. The information consists of the trip's title, the start and end date of the trip, the budget set for the trip, as well as the exchange rate of the trip.
 
 * *Code contributed*: [https://github.com/AY1920S2-CS2103T-W17-3/main/commits?author=Deunitato[All commits]] [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=deunitato[RepoSense Dashboard]]
 
 * *Other contributions*:
 
 ** Project management:
-*** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-** Enhancements to existing features:
-*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
-*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
-** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
-** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
-*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
-*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
-** Tools:
-*** Integrated a third party library (Natty) to the project (https://github.com[#42])
-*** Integrated a new Github plugin (CircleCI) to the team repo
+*** There were a total of 4 releases, from version 1.1 to 1.4. I contributed to all the versions on GitHub.
 
-_{you can add/remove categories in the list above}_
+** Enhancements to existing features:
+*** Wrote additional tests for existing features to increase coverage from 20% to 54% (Pull requests https://github.com/AY1920S2-CS2103T-W17-3/main/pull/356[#356], https://github.com/AY1920S2-CS2103T-W17-3/main/pull/361[#361], https://github.com/AY1920S2-CS2103T-W17-3/main/pull/379[#379] https://github.com/AY1920S2-CS2103T-W17-3/main/pull/388[#388])
+
+** Documentation:
+*** Used more 'you' language in the UserGuide so that it will be more reader-friendly. In addition, I added in pictures so that the reader can have visual cues on how the output should look like for each command.
+
+** Community:
+*** PRs reviewed (with non-trivial review comments):
+*** Reported bugs and suggestions for other teams in the class:
 
 == Contributions to the User Guide
-
 
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
@@ -66,7 +72,7 @@ include::../UserGuide.adoc[tag=trip]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../DeveloperGuide.adoc[tag=undoredo]
+include::../DeveloperGuide.adoc[tag=tripmanagement]
 
-include::../DeveloperGuide.adoc[tag=dataencryption]
+include::../DeveloperGuide.adoc[tag=activitymanager]
 
