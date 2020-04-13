@@ -229,7 +229,7 @@ WARNING: Ensure that your date is correct as *E.T.* does not allow editing of da
 
 *Example:*
 
-If you are all ready to start planning for your trip and you want to set a trip to get started, follow these steps below. You will learn how to set a graduation trip that starts on *28 September 2020* and ends on *5 October 2020* with a budget of *$5000* and an exchange rate of *76.7*.
+If you are all ready to start planning for your trip and you want to set a trip to get started, follow these steps below. You will learn how to set a graduation trip that starts on *28 September 2020* and ends on *5 October 2020* with a budget of *$5000* and an exchange rate of *76.6*.
 
 ****
 Setting a new trip:
@@ -502,7 +502,7 @@ You can use this command to edit an existing activity in *E.T.*.
 
 *Format:*
 
-`editactivity INDEX [title/NAME] [duration/DURATION] [location/LOCATION] [tag/TAG]...`
+`editactivity INDEX [title/TITLE] [duration/DURATION] [location/LOCATION] [tag/TAG]...`
 
 
 [NOTE]
@@ -595,11 +595,11 @@ Outcome:
 ****
 
 ==== Find activities by name: `findactivity`
-You can use this command to find activities by the name.
+You can use this command to find activities by title.
 
 *Format:*
 
-`findactivity NAME [MORE_NAMES]...`
+`findactivity TITLE [MORE_TITLE]...`
 
 [NOTE]
 ====
@@ -1079,7 +1079,7 @@ image::user-guide/transport-management/outcome-cleartransport.png[]
 //tag::accommodation[]
 === Accommodation Booking
 
-Accommodation is something you can miss out on planning and this feature is for you to plan for your accommodation and record them down. You can record the following information about your transport bookings:
+Accommodation is something you can miss out on planning and this feature is for you to plan for your accommodation and record them down. You can record the following information about your accommodation bookings:
 
 - Name of the accommodation
 - The location or address
@@ -2363,7 +2363,7 @@ This feature will allow you to import and export your trip data in different for
 |*Mark Packing List Item as Not Packed*: `uncheckitem INDEX [MORE_INDEXES]...`
 |`uncheckitem 1 4 7 13 16`
 
-|*Sort Packing List*: `sortitem CRITERIA ORDER`
+|*Sort Items in Packing List*: `sortitem CRITERIA ORDER`
 |`sortitem name asc`
 
 |*Find Packing List Items by Name*: `finditem NAME [MORE_NAMES]...`
