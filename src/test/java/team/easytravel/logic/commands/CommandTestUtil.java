@@ -14,6 +14,9 @@ import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_AMOUNT;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_CATEGORY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_CURRENCY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_EXPENSE_DESCRIPTION;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_CATEGORY;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
+import static team.easytravel.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_END_DATE_TIME;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_END_LOCATION;
 import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRANSPORT_MODE;
@@ -23,7 +26,7 @@ import static team.easytravel.logic.parser.CliSyntax.PREFIX_TRIP_TITLE;
 import static team.easytravel.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import team.easytravel.commons.core.index.Index;
@@ -175,12 +178,34 @@ public class CommandTestUtil {
 
     //---- Packing list ---
     public static final String VALID_ITEM_NAME_UNDERWEAR = "Underwear";
+    public static final String INVALID_ITEM_NAME_UNDERWEAR = "----";
     public static final Integer VALID_QUANTITY_UNDERWEAR = 7;
+    public static final Integer INVALID_QUANTITY_UNDERWEAR = 100002;
     public static final String VALID_ITEM_CATEGORY_UNDERWEAR = "clothes";
+    public static final String INVALID_ITEM_CATEGORY_UNDERWEAR = "c////";
 
     public static final String VALID_ITEM_NAME_PASSPORT = "Passport";
     public static final Integer VALID_QUANTITY_PASSPORT = 1;
     public static final String VALID_ITEM_CATEGORY_PASSPORT = "international";
+
+    public static final String ITEM_NAME_UNDERWEAR = " " + PREFIX_ITEM_NAME
+            + " " + VALID_ITEM_NAME_UNDERWEAR;
+    public static final String ITEM_QUANTITY_UNDERWEAR = " " + PREFIX_ITEM_QUANTITY
+            + " " + VALID_QUANTITY_UNDERWEAR;
+    public static final String ITEM_CATEGORY_UNDERWEAR = " " + PREFIX_ITEM_CATEGORY
+            + " " + VALID_ITEM_CATEGORY_UNDERWEAR;
+    public static final String ITEM_NAME_PASSPORT = " " + PREFIX_ITEM_NAME
+            + " " + VALID_ITEM_NAME_PASSPORT;
+    public static final String ITEM_QUANTITY_PASSPORT = " " + PREFIX_ITEM_QUANTITY
+            + " " + VALID_QUANTITY_PASSPORT;
+    public static final String ITEM_CATEGORY_PASSPORT = " " + PREFIX_ITEM_CATEGORY
+            + " " + VALID_ITEM_CATEGORY_PASSPORT;
+    public static final String INVALID_ITEM_NAME = " " + PREFIX_ITEM_NAME
+            + " " + INVALID_ITEM_NAME_UNDERWEAR;
+    public static final String INVALID_ITEM_QUANTITY = " " + PREFIX_ITEM_QUANTITY
+            + " " + INVALID_QUANTITY_UNDERWEAR;
+    public static final String INVALID_ITEM_CATEGORY = " " + PREFIX_ITEM_CATEGORY
+            + " " + INVALID_ITEM_CATEGORY_UNDERWEAR;
 
 
     //---- FIXED EXPENSES --
@@ -351,7 +376,7 @@ public class CommandTestUtil {
 
         Activity activity = model.getFilteredActivityList().get(targetIndex.getZeroBased());
         final String[] splitName = activity.getTitle().value.split("\\s+");
-        model.updateFilteredActivityList(new ActivityContainKeywordPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredActivityList(new ActivityContainKeywordPredicate(Collections.singletonList(splitName[0])));
         assertEquals(1, model.getFilteredActivityList().size());
     }
 
@@ -364,7 +389,7 @@ public class CommandTestUtil {
 
         PackingListItem item = model.getFilteredPackingList().get(targetIndex.getZeroBased());
         final String[] splitName = item.getItemName().value.split("\\s+");
-        model.updateFilteredPackingList(new ItemContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPackingList(new ItemContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
         assertEquals(1, model.getFilteredPackingList().size());
     }
 
