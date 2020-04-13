@@ -59,7 +59,7 @@ Accommodation Booking, the Schedule and the Budget.
 *** Used more 'you' language in the UserGuide so that it will be more reader-friendly. In addition, I added in pictures so that the reader can have visual cues on how the output should look like for each command.
 
 ** Community:
-*** Reviewed Pull Requests with non-trivial comments (Pull Request https://github.com/AY1920S2-CS2103T-W17-3/main/pull/363[#363])
+*** Reviewed Pull Requests with non-trivial comments (Pull Requests https://github.com/AY1920S2-CS2103T-W17-3/main/pull/363[#363] https://github.com/AY1920S2-CS2103T-W17-3/main/pull/397[#397])
 *** Reported bugs and offered suggestions for https://github.com/AY1920S2-CS2103T-W16-3/main[StudyBuddy], another AddressBook3-based application.
 
 == Contributions to the User Guide
@@ -69,6 +69,10 @@ Accommodation Booking, the Schedule and the Budget.
 |===
 
 include::../UserGuide.adoc[tag=packinglist]
+
+include::../UserGuide.adoc[tag=v2.0]
+
+include::../UserGuide.adoc[tag=packinglistcommands]
 
 == Contributions to the Developer Guide
 
