@@ -1360,3 +1360,30 @@ Test case: `addactivity title/Osaka Castle View duration/1 location/Osaka tag/ex
 . Other incorrect set commands to try: `editexpense 1 category testing`
 .. Expected: No Fixed Expense is edited. Error details shown in feedback display.
 //tag::testing[]
+
+[appendix]
+== Effort
+
+(Contributed by Catherine)
+
+Creating *Easy Travel* was fairly difficult and required much effort from all the team members. We *communicated* a lot as a team,  which was difficult due to the quarantine measures that resulted from the on-going COVID-19 situation. However, we persevered through, and thanks to technology, we were still able to communicate through regular online meetings. Through our consistent communication, we were able to come up with our product, *Easy Travel*. In addition, we managed to accumulate *32,000 lines of code* combined. This showcases our hard work and effort put into producing *Easy Travel*.
+
+While AB3 deals with only one entity, *Easy Travel* deals with *multiple entities*.
+
+* *AB3* contains only `Person`. While we were able to refactor some aspects of `Person` into `Trip`, we had to create
+`Activity`, `Accommodation Booking`, `Transportation Booking`, `Packing List Item`, `Fixed Expense` and `Schedule` from scratch.
+* The `UI` of *AB3* only contains one `ListPanel`. On the other hand, *Easy Travel* has *5 `ListPanels`* spread out in 7 views -
+the *ScheduleView*, *ActivityView*, *AccommodationView*, *TransportView*, *PackingListView*, *FixedExpenseView* and lastly, the *HelpView*. This is a big change from *AB3’s*  `UI`. In addition, *FixedExpenseView* contains a Pie Chart, which gives the user a better visual of the amount of money spent.
+* In addition, we have a `StatusWindow` and a `ListPresetWindow`. The `StatusWindow` is used to show the progress of the planning of the trip, and the `ListPresetWindow` is used to show the available built-in list of items the user can add into their packing list.
+
+Furthermore, *Easy Travel's* additional features such as `status`, `automated tab switching`, `sorting`, and `schedule` meant that our app varies greatly from what *AB3* has to offer in terms of user experience. These carefully thought out features were _designed primarily with the user’s needs in mind_, to provide the user with a platform that would ease the pain of planning for a trip. Furthermore, it keeps track of the user's planning progress, to ensure that he/she will not forget to plan anything, to ensure a smooth sailing trip.
+
+Initially, we wanted to allow the user to edit the dates of the trip, once the trip is set. However, if we allowed the user to do so, there will be complications for the *Schedule*, *Accommodation Bookings* and *Transportation Bookings*. All three features depends on the start and end date set by the trip. Hence, if we allowed the user to edit the dates of the trip, we would have many bugs and dependency issues. Hence, we decided to prevent the user from editing the start and end dates of the trip. The user will have to delete the trip and start again with the new dates.
+
+Another challenge we faced was that we were refactoring from a base code. While having a base code gave us a place to start from, it was difficult for our team to fully understand the base code. It took us some time to understand the base code, and to be able to work from there. In the end, we managed to overcome this challenge to develop *Easy Travel*.
+
+Overall, we managed to achieve our goal, which was to create an application that can help ease the pain of planning for a trip. We created an all-in-one trip manager, a user interface that is neat and organised, and implemented features that are user-focused.
+
+
+//end::effort[]
+
